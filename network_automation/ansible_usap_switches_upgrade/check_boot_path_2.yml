@@ -1,0 +1,19 @@
+---
+
+
+- name: CHECK SWITCH BOOT PATH
+  connection: network_cli
+  gather_facts: false
+  hosts: usapswitches
+  
+  tasks:
+    - name: Check Boot path
+      ios_command:
+        commands: 'show boot | i BOOT'
+      register: bootvar
+ 
+      tags:
+        - bootvar
+
+    - debug:
+        var: bootvar

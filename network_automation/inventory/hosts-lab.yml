@@ -1,0 +1,14 @@
+vars:
+  ansible_command_timeout: 60
+  ansible_python_interpreter: /usr/bin/python3
+  ansible_network_os: asa
+  ansible_user: reuben
+  ansible_become: yes
+  ansible_become_method: enable
+  ansible_ssh_pass: cisco
+  ansible_become_pass=cisco
+
+
+labasa1:
+  ansible_host: 10.7.250.54
+

@@ -1,0 +1,46 @@
+---
+- name: get facts from asa
+  hosts: usapfirewalls
+  connection: network_cli
+  gather_facts: no
+
+  vars:
+    hostname:
+    version:
+    serialnum:
+    ipaddress:
+    asa_compliant_ver: 9.12(4)18
+    asdm_compatible_ver: 7.13(1)
+
+  tasks:
+    - name: asa facts
+      asa_command:
+        commands:
+          - show run hostname
+          - show version
+          - show inventory
+          - show ip | in INSIDE|inside|Data|guestwifi|DATA
+          - show run asdm | grep image
+      register: asa_vars
+
+    - debug:
+        var: asa_vars
+
+    - name: asa set facts
+      set_fact:
+        hostname: "{{ asa_vars.stdout_lines[0][0].split()[-1] }}"
+        version: "{{ asa_vars.stdout_lines[1][0].split()[-1] }}"
+        serialnum: "{{ asa_vars.stdout_lines[2][1].split()[-1] }}"
+        ipaddress: "{{ asa_vars.stdout_lines[3][0].split()[2] }}"
+        asdmversion: "{{ asa_vars.stdout_lines[1][2].split()[-1] }}"
+
+    - name: Display facts
+      debug:
+        msg: "The software version for {{ hostname }} is {{ version }}, asdm version is {{ asdmversion }}, serial number is {{ serialnum }}, ip address is {{ ipaddress }}. "
+
+    - name: Assert That Software Version is the Compliant Version
+      assert:
+        that:
+          - asdmversion == asdm_compatible_ver
+        fail_msg: 'The ASDM Software Version on {{ inventory_hostname }} has not been upgraded to the compatible version {{ asdm_compatible_ver }}. Please upgrade ASDM image!!'
+        success_msg: 'The ASDM Software Version on {{ inventory_hostname }} has been upgraded to the compatible version {{ asdm_compatible_ver }}.'

@@ -1,0 +1,107 @@
+- name: BUILD CISCO ISR4331K9 ISR4451K9 ROUTER  COMPLIANCE REPORT
+  connection: network_cli
+  hosts: usapISR4331K9routers usapISR4451K9routers
+  gather_facts: false
+
+  vars:
+    hostname:
+    version:
+    serialnum:
+    ipaddress:
+    physicaladdress:
+    verdict:
+    upgradeto:
+    compliant_4331K9: 16.12.05
+    compliant_4451K9: 16.12.05
+    non_compliant_4331K9: 16.12.04
+    non_compliant_4331K9_2: 16.06.08
+    non_compliant_4331K9_3: 16.06.03
+    non_compliant_4451K9: 16.12.04
+    date_of_upgrade:
+    time_of_upgrade:
+    time_zone_of_upgrade:
+    day_of_upgrade:
+
+
+  tasks:
+    - name: Get Physical Address from Router
+      ios_command:
+        commands:
+          - command: show run | in snmp-server location
+      register: snmp_location
+
+    #- debug:
+        #var: snmp_location.stdout[0][21:]
+
+    - name: Gather ISR 4331_4451_9300 Router Facts
+      ios_facts:
+      register: routerfacts
+
+    #- debug:
+        #var: routerfacts
+
+    - name: Get When System Last Restarted
+      ios_command:
+        commands:
+          - command: show version | in System restarted
+      register: sysrestart
+
+
+    - set_fact:
+        ipaddress: "{{ ansible_net_all_ipv4_addresses[0] }}"
+        version: "{{ ansible_net_version }}"
+        serialnum: '{{ ansible_net_serialnum }}'
+        hostname: '{{ ansible_net_hostname }}'
+        physicaladdress: "{{ snmp_location.stdout[0][21:].replace(',','') }}"
+        date_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[6] + ' ' + sysrestart.stdout_lines[0][-1].split()[7] + ' ' + sysrestart.stdout_lines[0][-1].split()[8] }}"
+        time_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[3] }}"
+        time_zone_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[4] }}"
+        day_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[5] }}"
+ 
+
+    - name: set fact 2
+      set_fact:
+        verdict: 'compliant'
+      when: (version  == compliant_4331K9) or (version  == compliant_4451K9) 
+
+    - name: set fact 3
+      set_fact:
+        verdict: 'non-compliant'
+      when: (version  != compliant_4331K9) and (version  != compliant_4451K9)
+      
+    - name: set fact 4
+      set_fact:
+        upgradeto: 'N/A'
+      when: (version  == compliant_4331K9) or (version  == compliant_4451K9)
+
+    - name: set fact 5
+      set_fact: 
+        upgradeto: '{{ compliant_4451K9 }}'
+      when: version == non_compliant_4451K9
+
+    - name: set fact 6
+      set_fact:
+        upgradeto: '{{ compliant_4331K9 }}'
+      when: (version == non_compliant_4331K9) or
+            (version == non_compliant_4331K9_2) or
+            (version == non_compliant_4331K9_3)
+
+    #- debug:
+       # var: snmp_location.stdout[0][21:].replace(',','')
+        
+
+    #- debug:
+        #var: ipaddress
+
+    - debug:
+        msg: 'The device name is {{ hostname }}, ip address of MPLS interface is {{ ipaddress }},  version is {{ version }}, serial number is {{ serialnum}}, physical address is {{ physicaladdress }}.'
+
+    - name: Write mydevices.csv
+      run_once: true
+      shell: echo Serial Number,Device Name,Software Version,Verdict,UpgradeTO,TimeUpgraded,TimeZoneOfUpgrade,DayOfUpgrade,DateUpgraded,Tags,Notes  > 43314451K9RouterComplianceReport.csv
+
+
+
+    - name: Write My Devices CSV File
+      shell: echo "{{ serialnum }},{{ hostname }},{{ version }},{{ verdict }},{{ upgradeto }},{{ time_of_upgrade }},{{ time_zone_of_upgrade }},{{ day_of_upgrade }},{{ date_of_upgrade }},{{ ipaddress }},{{ physicaladdress }}" >> 43314451K9RouterComplianceReport.csv
+      delegate_to: localhost

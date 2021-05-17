@@ -1,0 +1,20 @@
+- name: GET ROM MONITOR VERSION FOR ISR4451K9 ROUTERS
+  connection: network_cli
+  hosts: usapISR4451K9routers
+  gather_facts: false
+
+
+
+  vars:
+    rom_monitor: "16.12(2r)"
+
+  tasks:
+    - name: Get rom monitor version
+      ios_command:
+        commands: "show rom-monitor r0"
+      register: rom_monitor_version
+
+    - set_fact:
+        rom_monitor_ve
+    - debug:
+        var: rom_monitor_version.stdout[0].split()[3].rstrip(',')

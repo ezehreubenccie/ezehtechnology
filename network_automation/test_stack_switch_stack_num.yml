@@ -1,0 +1,32 @@
+- name : GATHER 2960X SWITCH FACTS
+  connection: network_cli
+  hosts: usap2960xswitches
+  gather_facts: false
+
+
+
+
+  vars:
+    switch_compliant_ver: 15.2(7)E2
+    stack_num:
+
+  tasks:
+    - name: Gather all 2960X Switch Hardware facts
+      ios_facts:
+        gather_subset: hardware
+      register: output
+
+
+    - name: set fact 2
+      set_fact: 
+        stack_num: '{{item + 1}}'
+      loop: '{{range(0, ansible_net_stacked_models |length) | list }}'
+      register: stack_num
+
+
+    - name: Print Number of Stack
+      debug:
+        var: stack_num
+
+
+

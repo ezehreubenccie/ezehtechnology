@@ -1,0 +1,66 @@
+- name : COPY TARGET SOFTWARE TO 2960X SWITCHES
+  connection: network_cli
+  hosts: usap2960xswitches
+  gather_facts: false
+
+
+
+  vars:
+    ios_version: "15.2(7)E2"
+    ios_path: "IOS/"
+    ios_archive: "c2960x-universalk9-tar.152-7.E2.tar"
+    ios_binary: "c2960x-universalk9-mz.152-7.E2.bin"
+    ios_md5: "9d4271dc68544234a36ee438337e8663"
+    ios_size_kb: 42000
+    ftp_server: '10.2.0.250'
+    protocol: 'ftp'
+    ftp_user: 'reuben'
+    ftp_pass: 'T3nb3ll11p1ds!'
+
+
+  tasks:
+    - name: Gather all 2960X Switch Hardware facts
+      ios_facts:
+        gather_subset: hardware
+      register: output
+
+    - name: Check if IOS Software was copied successfully to the flash
+      ios_command:
+        commands: "dir  flash: | include {{ ios_archive }}"
+      register: dir_flash
+
+    - name: Check that there is enough space for upload
+      assert:
+        that:
+          - ansible_net_filesystems_info['flash:']['spacefree_kb'] > ios_size_kb
+        fail_msg: 'There is not enough space left on {{ inventory_hostname }} flash'
+        success_msg: '{{ inventory_hostname }} has enough space left on flash. Coping Software to Flash Now!!'
+      when:
+        - ios_archive not in dir_flash.stdout[0]
+
+
+    - name: Start Image Copy from FTP Server
+      ios_command:
+        commands:
+          - command: 'copy {{ protocol }}://{{ ftp_user }}:{{ ftp_pass }}@{{ ftp_server }}/{{ ios_archive }}  flash:/'
+            prompt: 'Destination filename \[{{ ios_archive }}\]?'
+            answer: '{{ ios_archive }}'
+      when:
+        - ios_archive not in dir_flash.stdout[0]
+        - ansible_net_filesystems_info['flash:']['spacefree_kb'] > ios_size_kb
+      vars:
+        ansible_command_timeout: 1800
+
+    - name: Check if IOS Software was copied successfully to the flash
+      ios_command:
+        commands: "dir  flash: | include {{ ios_archive }}"
+      register: dir_flash
+
+    - name: Assert that software TAR is in Switch flash
+      assert:
+        that:
+          - ios_archive in dir_flash['stdout'][0]
+        fail_msg: 'Target software {{ ios_archive }} was not copied successfully to {{ inventory_hostname }} flash. Please troubleshoot!!'
+        success_msg: 'Hooray!!..Target software {{ ios_archive }} was  copied successfully to {{ inventory_hostname }} flash.'    
+
+ 

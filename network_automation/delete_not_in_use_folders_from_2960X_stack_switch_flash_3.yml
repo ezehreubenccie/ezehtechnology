@@ -1,0 +1,84 @@
+- name: DELETE FILES THAT ARE NOT IN USE FROM CISCO 2960X STACK SWITCH FLASH
+  hosts: usap2960xswitches
+  connection: network_cli
+  gather_facts: false
+
+  vars: 
+    system_image_folder:  "c2960x-universalk9-mz.152-7.E2"
+    folder_name_includes: "c2960x-universalk9-mz."
+    #folder_name: test 
+    empty_string: ''
+    spacefree_before:
+    spacefree_after:
+
+
+  tasks:
+   # - name: Gather all 2960X SWITCH STACK Hardware facts
+    #  ios_facts:
+     #   gather_subset: hardware
+      
+
+   # - name: Set fact before delete
+    #  set_fact:
+     #   spacefree_before: "{{ ansible_net_filesystems_info['flash:']['spacefree_kb'] }}"
+      
+
+    
+    #- name: DISPLAY FREE SPACE BEFORE DELETE
+     # debug:
+      #  msg: "Free space is  {{ spacefree_before }}KB for {{ ansible_net_hostname }} before delete task."
+      #tags: spacefree
+      
+    - name: DISPLAY CONTENTS OF FLASH
+      ios_command:
+        commands:
+          - command: 'dir flash3:'
+      register: flash_contents
+
+          
+
+
+    - debug:
+        var: flash_contents.stdout_lines[0][1]
+
+    - name: set fact 1
+      set_fact:
+        list1: "{{ flash_contents.stdout_lines[0][2:-2] }}"
+
+    - debug:
+        var: list1
+
+    - name: DELETE FLASH FILES NOT IN USE
+      ios_command: 
+        commands:
+          - command: delete /recursive /force flash3:{{ item.split()[-1] }}
+      loop: '{{ list1 }}'
+      when: 
+        - 'folder_name_includes in  item.split()[-1]'
+        - 'item.split()[-1]  !=  system_image_folder'
+        #- 'folder_name == item.split()[-1]'
+         
+    - name: DISPLAY CONTENTS OF FLASH
+      ios_command:
+        commands:
+          - command: 'dir flash3:'
+      register: flash_contents
+
+    - name: Print dir after delete
+      debug:
+        var: flash_contents
+
+   # - name: GET FREE SPACE AFTER DELETE
+    #  ios_facts:
+     #   gather_subset: hardware
+      #tags: spacefree
+
+    #- name: Set fact after delete
+     # set_fact:
+      #  spacefree_after: "{{ ansible_net_filesystems_info['flash:']['spacefree_kb'] }}"
+     # tags: spacefree  
+
+    #- debug:
+     #   msg: "Free space is  {{ spacefree_after }}KB for {{ ansible_net_hostname }} after delete task. {{ spacefree_after|float - spacefree_before|float }}KB was recovered!."
+
+   

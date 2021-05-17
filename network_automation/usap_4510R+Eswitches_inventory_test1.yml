@@ -1,0 +1,56 @@
+- name: BUILD CISCO 4510R+E SWITCHES INVENTORY
+  connection: network_cli
+  hosts: usap4510REswitches
+  gather_facts: false
+
+  vars:
+    hostname:
+    version:
+    serialnum:
+    ipaddress:
+    physicaladdress:
+
+
+  tasks:
+    - name: Get Physical Address from Switch
+      ios_command:
+        commands:
+          - command: show run | in snmp-server location
+      register: snmp_location
+
+    - debug:
+        var: snmp_location.stdout[0][21:]
+
+    - name: Gather 4510R+E Switch Facts
+      ios_facts:
+      register: switchfacts
+
+    #- debug:
+        #var: switchfacts
+
+    - set_fact:
+        ipaddress: "{{ ansible_net_all_ipv4_addresses[0] }}"
+        version: "{{ ansible_net_version.replace('0','').replace('.E','E' ) }}"
+        serialnum: '{{ ansible_net_serialnum }}'
+        hostname: '{{ ansible_net_hostname }}'
+        physicaladdress: "{{ snmp_location.stdout[0][21:].replace(',','') }}"
+
+    #- debug:
+        #var: snmp_location.stdout[0][21:].replace(',','')
+        
+
+    #- debug:
+        #var: ipaddress
+
+    - debug:
+        msg: 'The device name is {{ hostname }}, ip address of MANAGEMENT VLAN interface is {{ ipaddress }},  version is {{ version }}, serial number is {{ serialnum }}, physical address is {{ physicaladdress }}.'
+
+    - name: Write mydevices.csv
+      run_once: true
+      shell: echo Serial Number,Device Name,Software Version,Tags,Notes  > mydevices4510R+E.csv
+
+
+
+    - name: Write My Devices CSV File
+      shell: echo "{{ serialnum }},{{ hostname }},{{ version }},{{ ipaddress }},{{ physicaladdress }}" >> mydevices4510R+E.csv
+      delegate_to: localhost

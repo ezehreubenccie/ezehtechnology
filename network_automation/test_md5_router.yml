@@ -1,0 +1,25 @@
+- name : VERIFY MD5 HASH OF TARGET SOFTWARE ON ISR4331K9 ROUTERS
+  connection: network_cli
+  hosts: usapISR4331K9routers
+  gather_facts: false
+
+
+
+  vars:
+    ios_binary: "isr4300-universalk9.16.06.08.SPA.bin"
+    ios_md5_bin: 10cb4589883439d31f27fcfaee6bb8db
+
+  tasks:
+    - name: Get Copied BIN Software from flash
+      ios_command:
+        commands: "dir  bootflash: | in {{ ios_binary }}"
+      register: dir_flash
+
+    - debug:
+        var: dir_flash.stdout[0].split()
+
+    - set_fact:
+        bin_file: "{{ dir_flash['stdout'][0].split()[-1] }}"
+
+    - debug:
+        var: bin_file

@@ -1,0 +1,8 @@
+---
+- name: get facts from asa
+  hosts: usap5506xfirewalls usapchcfirewall 
+  connection: network_cli
+  gather_facts: no
+
+  roles:
+    - gather_asa_5506X_firewall_facts

@@ -1,0 +1,15 @@
+- name: RUN COMMANDS  ON USAP ROUTERS
+  connection: network_cli
+  hosts: usapISR4331K9routers 
+  gather_facts: false
+
+  vars:
+    command: 'logging on'
+
+  tasks:
+    - name: Run Command
+      ios_config:
+        lines:
+          - '{{ command }}'
+        save_when: modified
+           

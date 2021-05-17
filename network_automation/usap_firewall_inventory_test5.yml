@@ -1,0 +1,48 @@
+---
+- name: get facts from asa
+  hosts:  usapfirewalls usap5505swmethodist
+  connection: network_cli
+  gather_facts: no
+
+  vars:
+    hostname:
+    version:
+    serialnum:
+    ipaddress:
+    physicaladdress:
+
+  tasks:
+    - name: asa facts
+      asa_command:
+        commands:
+          - show run hostname
+          - show version
+          - show inventory
+          - show ip | inc CONFIG
+          - sh run snmp-server | grep location
+      register: asa_vars
+
+
+
+    - name: asa set facts
+      set_fact:
+        hostname: "{{ asa_vars['stdout'][0].split()[1] }}"
+        version: "{{ asa_vars['stdout'][1].split('\n')[0][51:] }}"
+        serialnum: "{{ asa_vars['stdout'][2].split('\n')[1].replace(' ','')[-11:] }}"
+        ipaddress: "{{ asa_vars['stdout'][3].split('\n')[1]  | regex_search('\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b') }}"
+        physicaladdress: "{{ asa_vars.stdout[4][21:].replace(',','') }}"
+
+
+
+    - name: Display facts
+      debug:
+        msg: "The software version for {{ hostname }} is {{ version }} on platform {{ serialnum }} with ip address {{ ipaddress }} installed at {{ physicaladdress }}"
+
+    - name: Write mydevices.csv
+      run_once: true
+      shell: echo Serial Number,Device Name,Software Version,Tags,Notes  > myfirewalldevices.csv
+
+
+    - name: Write My Devices CSV File
+      shell: echo "{{ serialnum }},{{ hostname }},{{ version }},{{ ipaddress }},{{ physicaladdress }}" >> myfirewalldevices.csv
+      delegate_to: localhost

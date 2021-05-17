@@ -1,0 +1,32 @@
+- name : CHECK IF TARGET SOFTWARE IS IN 2960X SWITCH FLASH
+  connection: network_cli
+  hosts: usap2960xswitches
+  gather_facts: false
+
+
+
+  vars:
+    ios_binary: c2960x-universalk9-mz.152-7.E3.bin
+    ios_tar: c2960x-universalk9-tar.152-7.E3.tar
+
+
+
+  tasks:
+    - name: Check if IOS is already present on the flash
+      ios_command:
+        commands: "dir  flash: | include {{ ios_tar }}"
+      vars:
+        ansible_command_timeout: 1800
+      register: show_flash
+
+    - debug:
+        var: show_flash
+
+    - name: Assert that target asa software is present in flash
+      assert:
+        that:
+          - ios_tar in show_flash['stdout'][0]
+        fail_msg: "Target Tar Software {{ ios_tar }}  not present in {{inventory_hostname}}'s flash"
+        success_msg: "Target Tar Software {{ ios_tar }} is  present in {{inventory_hostname}}'s flash"
+      tags:
+        - flash

@@ -1,0 +1,36 @@
+- name: BLOCK MALICIOUS IP ON USAP FIREWALLS
+  connection: network_cli
+  hosts: usapfirewalls usap5505swmethodist
+  gather_facts: false
+
+
+  vars:
+    malicious_ip: 193.176.85.71
+
+
+  tasks:
+    - name: Block Malicious IP
+      asa_config:
+        lines:
+          - 'network-object host {{ malicious_ip }}'
+        parents: ['object-group network BLOCKED_HOSTS']
+
+    - name: Verify Configuration
+      asa_command:
+        commands: 'show object-group id BLOCKED_HOSTS | grep {{ malicious_ip }}'
+      register: output
+
+    - debug:
+        var: output
+
+    - name: ASSERT THAT MALICIOUS IP WAS BLOCKED
+      assert:
+        that:
+          - malicious_ip in output.stdout[0]
+        fail_msg: 'The Malicious IP {{ malicious_ip }} was not blocked successfully on {{ inventory_hostname }}. Please Troubleshoot or use Solarwinds or other means!!'
+        success_msg: 'The Malicious IP {{ malicious_ip }} was  blocked successfully on {{ inventory_hostname }}..yayyyy!!!!!'
+
+
+    - name: SAVE CONFIG
+      asa_command:
+        commands: 'write memory'

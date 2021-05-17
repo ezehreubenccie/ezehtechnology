@@ -1,0 +1,46 @@
+---
+- name: get facts from 5508X ASA
+  hosts: labasa1 dco-5506x-asa01 dtx-mrt-5506x-asa01
+  connection: network_cli
+  gather_facts: no
+
+  vars:
+    hostname:
+    version:
+    serialnum:
+    ipaddress:
+    asa_compliant_ver: 9.8(4)22
+
+  tasks:
+    - name: asa facts
+      asa_command:
+        commands:
+          - show run hostname
+          - show version
+          - show inventory
+          - show ip | inc CONFIG
+      register: asa_vars
+
+    - debug:
+        var: asa_vars
+
+    - name: asa set facts
+      set_fact:
+        hostname: "{{ asa_vars['stdout'][0].split()[1] }}"
+        version: "{{ asa_vars['stdout'][1].split('\n')[0][-9:-1] }}"
+        serialnum: "{{ asa_vars['stdout'][2].split('\n')[1].replace(' ','')[-11:-1] }}"
+        ipaddress: "{{ asa_vars['stdout'][3].split('\n')[1]  | regex_search('\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b') }}"
+
+
+
+    - name: Display facts
+      debug:
+        msg: "The software version for {{ hostname }} is {{ version }} on platform {{ serialnum }} with ip address {{ ipaddress }} "
+
+  
+    - name: Assert That Software Version is the Compliant Version
+      assert:
+        that:
+          - version in asa_compliant_ver
+        fail_msg: 'The Software Version on {{ inventory_hostname }} has not been upgraded to the compliant version {{ asa_compliant_ver}}. Please upgrade!!'
+        success_msg: 'The Software Version on {{ inventory_hostname }} has been upgraded to the compliant version {{ asa_compliant_ver}}.'

@@ -1,0 +1,17 @@
+---
+
+- name : GATHER ROUTER FACTS
+  connection: network_cli
+  hosts: dco-4331-rtr01
+  gather_facts: false
+
+
+  tasks:
+    - name: Gather all legacy facts
+      ios_facts:
+        gather_subset: hardware
+      register: output
+      tags:
+        - facts
+    - debug:
+        var: output  

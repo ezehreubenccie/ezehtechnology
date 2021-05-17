@@ -1,0 +1,107 @@
+- name: DELETE FILES THAT ARE NOT IN USE FROM CISCO ASA FIREWALL FLASH
+  hosts: usap5506xfirewalls usap5508xfirewalls labfirewalls
+  connection: network_cli
+  gather_facts: false
+
+  vars:
+    target_system_image_file: "asa984-22-lfbff-k8.SPA" 
+    system_image_file: "asa984-22-lfbff-k8.SPA"
+    system_image_file_2: "asa964-41-lfbff-k8.SPA"
+    flash_num: 'disk0:'
+    file_type: '.SPA'
+    empty_string: ''
+    spacefree_before:
+    spacefree_after:
+
+
+  tasks:
+    - name: asa facts
+      asa_command:
+        commands:
+          - command: show run hostname
+      register: asa_vars
+
+
+    - name: Find ASA Firewall System File
+      asa_command:
+        commands:
+          - command: show version | in System image file
+      register: system_image_file
+
+    - debug:
+        var: system_image_file.stdout_lines[0][0].split()[4][1:-1].split(":/")[1]
+
+    
+    - name: Gather FLASH FACTS FOR ASA FIREWALL 
+      asa_command:
+        commands:
+          - command: 'dir {{ flash_num }}'
+      register: flash_contents
+
+
+   # - debug:
+       # var: flash_contents.stdout_lines[0]
+
+    - name: set fact 1
+      set_fact:
+        spacefree_before: "{{flash_contents.stdout_lines[0][-1].split()[3].replace('(', '')}}"
+
+    - name: set fact 2
+      set_fact:
+        hostname: "{{ asa_vars['stdout'][0].split()[1] }}"
+
+    - name: DISPLAY FREE SPACE BEFORE DELETE
+      debug:
+        msg: "Free space is  {{ spacefree_before|float / 1000000000  }}GB for {{ hostname }} before delete task."
+      tags: spacefree
+      
+          
+   # - debug:
+        #var: flash_contents.stdout_lines[0][1]
+
+    - name: set fact 1
+      set_fact:
+        list1: "{{ flash_contents.stdout_lines[0][2:-3] }}"
+
+    #- debug:
+       # var: list1
+
+    - name: DELETE FLASH FILES NOT IN USE
+      asa_command: 
+        commands:
+          - command: delete /noconfirm {{flash_num}}{{ item.split()[-1] }}
+      loop: '{{ list1 }}'
+      when: 
+         - 'file_type in  item.split()[-1]'
+         - 'item.split()[-1]  !=  system_image_file.stdout_lines[0][0].split()[4][1:-1].split(":/")[1]'
+         - 'item.split()[-1]  !=  target_system_image_file'
+         - 'item.split()[-1]  !=  system_image_file_2'
+         #- 'item != empty_string'
+
+   # - name: GET FREE SPACE AFTER DELETE
+     # ios_facts:
+     #   gather_subset: hardware
+    #  tags: spacefree
+
+
+    - name: Gather FLASH FACTS FOR ASA FIREWALL 
+      asa_command:
+        commands:
+          - command: 'dir {{ flash_num }}'
+      register: flash_contents
+
+
+  #  - debug:
+    #    var: flash_contents.stdout_lines[0]
+
+    - name: set fact 1
+      set_fact:
+        spacefree_after: "{{flash_contents.stdout_lines[0][-1].split()[3].replace('(', '')}}"
+
+
+    - debug:
+        msg: "Free space is  {{ spacefree_after|float / 1000000000 }}GB for {{ hostname }} after delete task. {{ spacefree_after|float / 1000000000 - spacefree_before|float / 1000000000 }}GB was recovered!."
+
+   
+
+  

@@ -1,0 +1,89 @@
+- name: BUILD CISCO 9300SWITCH COMPLIANCE REPORT
+  connection: network_cli
+  hosts: usap9300switches 
+  gather_facts: false
+
+  vars:
+    hostname:
+    version:
+    serialnum:
+    ipaddress:
+    physicaladdress:
+    verdict:
+    upgradeto:
+    compliant_9300switch: 16.12.04
+    non_compliant_9300switch: 16.12.03a
+    date_of_upgrade:
+    time_of_upgrade:
+
+  tasks:
+    - name: Get Physical Address from Router
+      ios_command:
+        commands:
+          - command: show run | in snmp-server location
+      register: snmp_location
+
+    #- debug:
+        #var: snmp_location.stdout[0][21:]
+
+    - name: Gather Cisco 9300 Switch Facts
+      ios_facts:
+      register: routerfacts
+
+    #- debug:
+        #var: routerfacts
+    
+    - name: Get Packages of installed ios from flash
+      ios_command:
+        commands:
+          - command: dir flash:*.pkg
+      register: packages
+
+    - set_fact:
+        ipaddress: "{{ ansible_net_all_ipv4_addresses[0] }}"
+        version: "{{ ansible_net_version }}"
+        serialnum: '{{ ansible_net_serialnum }}'
+        hostname: '{{ ansible_net_hostname }}'
+        physicaladdress: "{{ snmp_location.stdout[0][21:].replace(',','') }}"
+        date_of_upgrade: "{{ packages.stdout_lines[0][-2].split()[3] + ' ' + packages.stdout_lines[0][-2].split()[4] + ' ' +  packages.stdout_lines[0][-2].split()[5] }}"
+        time_of_upgrade: "{{ packages.stdout_lines[0][-2].split()[6] }}" 
+
+    - name: set fact 2
+      set_fact:
+        verdict: 'compliant'
+      when: (version  == compliant_9300switch) 
+
+    - name: set fact 3
+      set_fact:
+        verdict: 'non-compliant'
+      when: (version  != compliant_9300switch)
+      
+    - name: set fact 4
+      set_fact:
+        upgradeto: 'N/A'
+      when: (version  == compliant_9300switch)
+
+    - name: set fact 5
+      set_fact:
+        upgradeto: '{{ compliant_9300switch }}'
+      when: version == non_compliant_9300switch
+
+    #- debug:
+       # var: snmp_location.stdout[0][21:].replace(',','')
+        
+
+    #- debug:
+        #var: ipaddress
+
+    - debug:
+        msg: 'The device name is {{ hostname }}, ip address is {{ ipaddress }},  version is {{ version }}, serial number is {{ serialnum}}, physical address is {{ physicaladdress }}.'
+
+    - name: Write mydevices.csv
+      run_once: true
+      shell: echo Serial Number,Device Name,Software Version,Verdict,UpgradeTO,DateUpgraded,TimeUpgraded,Tags,Notes  > 9300switchComplianceReport.csv
+
+
+
+    - name: Write My Devices CSV File
+      shell: echo "{{ serialnum }},{{ hostname }},{{ version }},{{ verdict }},{{ upgradeto }},{{ date_of_upgrade }},{{ time_of_upgrade }},{{ ipaddress }},{{ physicaladdress }}" >> 9300switchComplianceReport.csv
+      delegate_to: localhost

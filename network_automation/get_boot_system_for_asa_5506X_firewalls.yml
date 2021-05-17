@@ -1,0 +1,21 @@
+- name : USAP CISCo 5506X ASA UPGRADE
+  connection: network_cli
+  hosts: usap5506xfirewalls lbjlab5505firewalls rmafirewalls
+  gather_facts: false
+
+
+  vars:
+    asa_target_version: 9.6(4)41
+
+
+
+  tasks:
+    - name: Get boot Variables
+      asa_command:
+        commands:
+          - command: sh run boot
+      register: bootvar
+
+    - debug:
+        var: bootvar
+

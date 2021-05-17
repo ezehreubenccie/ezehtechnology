@@ -1,0 +1,101 @@
+- name: DELETE FILES THAT ARE NOT IN USE FROM CISCO ASA FIREWALL FLASH
+  hosts: usapfirewalls labfirewalls
+  connection: network_cli
+  gather_facts: false
+
+  vars:
+    target_system_image_file: 
+    flash_num: 'disk0:'
+    file_type_1: '.SPA'
+    file_type_2: '.bin'
+    empty_string: ''
+    spacefree_before:
+    spacefree_after:
+
+
+  tasks:
+    - name: asa facts
+      asa_command:
+        commands:
+          - command: show run hostname
+      register: asa_vars
+
+    - name: Find ASA Firewall System File
+      asa_command:
+        commands:
+          - command: show run boot system
+      register: system_image_file
+
+    - name: Find ASDM Image File
+      asa_command:
+        commands:
+          - command: show run asdm | grep image
+      register: asdm_config
+
+    - debug:
+        var: system_image_file.stdout_lines
+
+    - set_fact:
+        system_boot_file_1: "{{ system_image_file.stdout_lines[0][0].split()[-1].split(':/')[-1] }}"
+        #system_boot_file_2: "{{ system_image_file.stdout_lines[0][1].split()[-1].split(':/')[-1] }}"
+        asdm_image_file: "{{ asdm_config.stdout_lines[0][0].split()[-1].split(':/')[-1] }}"
+
+    - name: Print Out Files That Wont Be Deleted
+      debug:
+        msg:
+          - "These files won't be deleted"
+          - '1. {{ system_boot_file_1 }}'
+          #- '2. {{ system_boot_file_2 }}'
+          - '3. {{ asdm_image_file }}'
+
+
+   # - set_fact:
+       #system_boot_file_1: "{{ system_image_file.stdout_lines[0][0].split()[-1].split(':/')[-1] }}"
+       #system_boot_file_2: "{{ system_image_file.stdout_lines[0][1].split()[-1].split(':/')[-1] }}"
+
+    - name: Gather FLASH FACTS FOR ASA FIREWALL
+      asa_command:
+        commands:
+          - command: 'dir {{ flash_num }}'
+      register: flash_contents
+
+
+    - debug:
+        var: flash_contents.stdout_lines[0]
+
+    - name: set fact 1
+      set_fact:
+        spacefree_before: "{{flash_contents.stdout_lines[0][-1].split()[3].replace('(', '')}}"
+
+    - name: set fact 2
+      set_fact:
+        hostname: "{{ asa_vars['stdout'][0].split()[1] }}"
+
+    - name: DISPLAY FREE SPACE BEFORE DELETE
+      debug:
+        msg: "Free space is  {{ spacefree_before|float / 1000000000  }}GB for {{ hostname }} before delete task."
+      tags: spacefree
+
+
+   # - debug:
+        #var: flash_contents.stdout_lines[0][1]
+
+    - name: set fact 1
+      set_fact:
+        list1: "{{ flash_contents.stdout_lines[0][2:-3] }}"
+
+    - debug:
+        var: list1
+
+
+    - name: DELETE FLASH FILES NOT IN USE - Output Only
+      debug:
+        msg:" File to delete is  {{ item.split()[-1] }}"
+      loop: '{{ list1 }}'
+      when:
+         - (file_type_1 in item.split()[-1]) or (file_type_2 in item.split()[-1])
+         - 'item.split()[-1]  !=  system_boot_file_1'
+        # - 'item.split()[-1]  !=  system_boot_file_2'
+         - 'item.split()[-1]  !=  asdm_image_file'
+         #- 'item != empty_string'
+

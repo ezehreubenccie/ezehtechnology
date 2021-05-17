@@ -1,0 +1,43 @@
+- name : VERIFY MD5 HASH OF TARGET SOFTWARE
+  connection: network_cli
+  hosts: usap2960xswitches
+  gather_facts: false
+
+
+
+  vars:
+    ios_archive: "c2960x-universalk9-tar.152-7.E2.tar"
+    ios_binary: "c2960x-universalk9-mz.152-7.E2.bin"
+    ios_md5: "9d4271dc68544234a36ee438337e8663"
+
+
+  tasks:
+    - name: Get Copied TAR Software from flash
+      ios_command:
+        commands: "dir  flash: | include {{ ios_archive }}"
+      register: dir_flash
+        
+
+    - name: Check MD5 Hash
+      ios_command:
+        commands:
+          - command: "verify /md5 flash:{{ ios_archive }}"
+      register: md5_result
+      vars:
+        ansible_command_timeout: 300
+      when:
+        - ios_archive in dir_flash.stdout[0]
+      tags:
+        - md5
+
+
+    - name: Assert That MD5 Sums are Identical
+      assert:
+        that:
+          - ios_md5 in md5_result.stdout[0]
+        fail_msg: 'IOS file MD5sum on {{ inventory_hostname }} is not correct'
+        success_msg: 'IOS file MD5sum on {{ inventory_hostname }} is correct'
+      when:
+        - ios_archive in dir_flash.stdout[0]
+      tags:
+        - md5

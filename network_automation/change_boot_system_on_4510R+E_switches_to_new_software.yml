@@ -1,0 +1,91 @@
+- name : CHANGE BOOT SYSTEM ON 4510R+E SWITCHES TO NEW SOFTWARE
+  connection: network_cli
+  hosts: usap4510REswitches
+  gather_facts: false
+
+
+
+
+  vars:
+    ios_binary: cat4500es8-universalk9.SPA.03.11.03a.E.152-7.E3a.bin
+    ios_md5: 0b508ad7ec2465623d8260099c19fde0
+    ios_version: 03.11.03a.E
+    old_boot_system:
+
+
+  tasks:
+    - name: Get Copied BIN Software from flash
+      ios_command:
+        commands: "dir  bootflash: | include {{ ios_binary }}"
+      register: dir_flash
+
+
+    - name: Check MD5 Hash
+      ios_command:
+        commands:
+          - command: "verify /md5 bootflash:{{ ios_binary }}"
+      register: md5_result
+      vars:
+        ansible_command_timeout: 300
+      when:
+        - ios_binary in dir_flash.stdout[0]
+      tags:
+        - md5
+
+    - name: Check Boot Path
+      ios_command:
+        commands: 'show boot | i BOOT'
+      register: bootvar
+      tags:
+        - bootvar
+
+    - set_fact:
+        old_boot_system: "{{ bootvar.stdout[0].split()[3].split(',')[0] }}"
+      tags:
+        - bootvar
+    - debug:
+        msg: "old boot system is {{ old_boot_system }}"
+      tags:
+        - bootvar
+    - name: Change the boot image to the new version
+      ios_config:
+        lines:
+          - no boot system flash {{ old_boot_system }} 
+          - boot system flash bootflash:{{ ios_binary }}
+        save_when: modified
+      when: 
+        - ios_md5 in md5_result.stdout[0]
+        - ios_binary in dir_flash.stdout[0]
+        - ios_binary not in bootvar.stdout[0]
+      vars:
+        ansible_command_timeout: 4200
+      tags:
+        - boot
+
+    - name: Check Boot Path
+      ios_command:
+        commands: 'show boot | i BOOT'
+      register: bootvar
+      #tags:
+       # - bootvar
+
+    - name: Gather all 4510R+E SWITCH hardware facts
+      ios_facts:
+        gather_subset: hardware
+      register: output
+
+
+    - debug:
+         msg: ' {{ inventory_hostname }} boot system is  {{ bootvar.stdout[0] }}'
+
+    - name: Assert That the boot path is set to the new IOS
+      assert:
+        that:
+          - ios_binary in bootvar.stdout[0]
+        fail_msg: 'Boot path is not set to compliant software on {{ inventory_hostname }}'
+        success_msg: 'Boot path is set to compliant software on {{ inventory_hostname}}, please reload device to upgrade to target IOS version'
+      when:
+        - ansible_net_version != ios_version
+ 
+
+    

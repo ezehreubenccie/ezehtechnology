@@ -1,0 +1,34 @@
+---
+switch:
+  hostname: SWA-2960XR-SW-STACK
+  physical_address: 600 BROADWAY, SEATTLE, WA 98122-5229, United States
+  md5_authentication_password: T3nb5li1kp#Ds!@_A
+  aes_privacy_password: T3nb5li1kp#Ds!@_P
+  enable_secret_password: T3nb5li1kp#Ds!@
+  local_username: usapadmin
+  local_username_secret_password: T3nb5li1kp#Ds!@
+  timezone_for_state: PST
+  summertime_for_state: PDT
+  timezone_offset: -8
+  ipaddress_datavlan01: 10.8.0.2
+  datavlan01_subnetmask: 255.255.255.0
+  ipaddress_datavlan01_defaultgateway: 10.8.0.1
+  datavlan01: 100
+  datavlan01_name: DATA
+  sanvlan01: 101
+  sanvlan01_name: SAN
+  guest_wifi_vlan01: 305
+  guest_wifi_vlan01_name: GUEST_Wifi
+  printer_vlan01: 400
+  printer_vlan01_name: PRINTER
+  corp_wifi_vlan01: 300
+  corp_wifi_vlan01_name: CORP_Wifi
+  voicevlan01: 200
+  voicevlan01_name: VOICE
+  interfacetype_port1_merakiAP_port01: Gi1/0/47
+  interfacetype_port2_merakiAP_port02: Gi2/0/47
+  meraki_ap_trunk_native_vlan: 100
+  channel_group_interfacetype_port1: Gi1/0/48
+  channel_group_interfacetype_port2: Gi2/0/48
+  channel_group_number: 1
+

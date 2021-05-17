@@ -1,0 +1,19 @@
+---
+- name: COLLECT FACTS FOR IOS
+  hosts: swa-2960xr-sw-stack
+  connection: local
+  gather_facts: no
+
+
+
+
+
+  tasks:
+    - name: COLLECT FACTS FOR IOS
+      ios_facts:
+
+      register: switch_facts
+
+    - name: show output
+      debug:
+        var: switch_facts

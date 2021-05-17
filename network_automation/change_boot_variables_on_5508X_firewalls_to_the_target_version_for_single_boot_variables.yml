@@ -1,0 +1,75 @@
+- name : CHANGE BOOT VARIABLE OR SYSTEM ON 5508X ASA FOR DEVICES THAT HAVE SINGLE BOOT SYSTEM
+  connection: network_cli
+  hosts: labasa1
+  gather_facts: false
+
+  vars:
+    asa_target_version: "9.8(4)22"
+    asa_image: "asa984-22-lfbff-k8.SPA"
+    asa_md5: a801bacbe61051d8b3eb9708afe634e0
+
+
+  tasks:
+    - name: Check Contents of flash to verify if target software is present
+      asa_command:
+        commands: 'show disk0 | grep {{ asa_image }}'
+      register: dir_flash
+
+    - name: Check MD5 Hash
+      asa_command:
+        commands:
+          - command: "verify /md5 flash:{{ asa_image}}"
+      register: md5_result
+      vars:
+        ansible_command_timeout: 300
+
+
+    - name: Change Boot Variable for Single Boot System
+      block:
+        - name: Verify Boot Variables
+          asa_command:
+            commands:
+              - command: sh run boot
+          register: bootvar
+
+        - debug:
+            var: bootvar
+
+        - name: set fact
+          set_fact:
+            bootvar1: "{{ bootvar['stdout'][0] }}"
+
+        - debug:
+            msg: 'Changing primary boot system  {{ bootvar1 }} to boot system {{ asa_image }}'
+          tags:
+            - bootvars
+
+        - name: Remove ASA boot Variables
+          asa_config:
+            lines:
+              - 'no  {{ bootvar1 }}'
+
+        - name: Set Boot Variables
+          asa_config:
+            lines:
+              - "boot system disk0:/{{ asa_image }}"
+              - '{{ bootvar1 }}'
+              - 'wr'
+
+        - name: Verify Boot Variables
+          asa_command:
+            commands:
+              - command: sh run boot
+          register: bootvar
+        - debug:
+            var: bootvar
+
+        - name: Assert That Boot System Is Set To Target Software
+          assert:
+            that:
+              - asa_image in bootvar['stdout'][0]
+            fail_msg: "Primary boot system is not set correctly. it is {{ bootvar['stdout'][0].split()[2] }}"
+            success_msg: "Hooray!!..Primary boot system is set correctly. it is {{ bootvar['stdout'][0].split('\n')[0] }} and secondary boot system is {{ bootvar['stdout'][0].split('\n')[1] }}. Please reload {{ inventory_hostname }} to upgrade to target version"
+      when:
+        - asa_image in dir_flash['stdout'][0]
+        - asa_md5 in md5_result['stdout'][0].split()

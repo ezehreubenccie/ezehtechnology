@@ -1,0 +1,51 @@
+- name : VERIFY MD5 HASH OF TARGET SOFTWARE ON 4510R+E PRIMARY SUPERVISOR
+  connection: network_cli
+  hosts: usap4510REswitches
+  gather_facts: false
+
+
+
+  vars:
+    ios_binary: "cat4500es8-universalk9.SPA.03.11.03a.E.152-7.E3a.bin"
+    ios_md5_bin: '6631379442844e81a34af715560389d0'
+   # flash: 'slavebootflash'
+
+  tasks:
+    - name: Get Copied BIN Software from flash
+      ios_command:
+        commands: "dir  bootflash: | in {{ ios_binary }}"
+      register: dir_flash
+
+    - set_fact:
+        bin_file: "{{ dir_flash['stdout'][0].split()[-1] }}"
+      when:
+        - ios_binary in dir_flash['stdout'][0]
+
+    - debug:
+        var: bin_file
+      when:
+         - ios_binary in dir_flash['stdout'][0]
+
+    - name: Check MD5 Hash
+      ios_command:
+        commands:
+          - command: "verify /md5 bootflash:{{ bin_file }}"
+      register: md5_result
+      vars:
+        ansible_command_timeout: 300
+      when:
+        - ios_binary in dir_flash['stdout'][0]
+      tags:
+        - md5
+
+
+    - name: Assert That MD5 Sums are Identical
+      assert:
+        that:
+          - ios_md5_bin in md5_result['stdout'][0]
+        fail_msg: 'IOS binary file {{ ios_binary }} MD5sum on bootflash for {{ inventory_hostname }} is not correct'
+        success_msg: 'IOS binary file {{ ios_binary }} MD5sum on bootflash for {{ inventory_hostname }} active sup is correct'
+      when:
+        - ios_binary in dir_flash['stdout'][0]
+      tags:
+        - md5

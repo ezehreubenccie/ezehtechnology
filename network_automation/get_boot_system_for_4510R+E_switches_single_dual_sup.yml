@@ -1,0 +1,71 @@
+- name : GATHER 4510R+E SWITCH FACTS FOR SINGLE AND DUAL SUPS
+  connection: network_cli
+  hosts: usap4510REswitches
+  gather_facts: false
+
+  vars:
+    module_number_for_primary_sup:
+    module_number_for_secondary_sup:
+    ports_on_primary_sup:
+    ports_on_secondary_sup:
+    card_type_for_primary_sup:
+    card_type_for_secondary_sup:
+    model_of_primary_sup:
+    model_of_secondary_sup:
+    serialnum_of_primary_sup:
+    serialnum_of_secondary_sup:
+    primary_sup_facts:
+    secondary_sup_facts:
+    primary_sup_redundancy_role:
+    secondary_sup_redundancy_role:
+    primary_sup_redundancy_status:
+    secondary_sup_redundancy_status:
+
+
+  tasks:
+    - name: CHECK IF 4510R+E SWITCH HAS SINGLE OR DUAL SUPERVISOR
+      ios_command:
+        commands: show module | s Sup
+      register: output
+
+    - name: Print 
+
+
+
+    - name: Set Supervisor Facts
+      set_fact: 
+        pri_info: "{{ output['stdout'][0].split('\n')[0] }}"
+        sec_info: "{{ output['stdout'][0].split('\n')[1] }}"
+        #module_number_for_primary_sup: "{{ output['stdout'][0].split('\n')[0].split()[0] }}"
+        #module_number_for_secondary_sup: "{{ output['stdout'][0].split('\n')[1].split()[0] }}"
+        #ports_on_primary_sup: "{{ output['stdout'][0].split('\n')[0].split()[1] }}"
+        #ports_on_secondary_sup: "{{ output['stdout'][0].split('\n')[1].split()[1] }}"
+        #card_type_for_primary_sup: "{{ output['stdout'][0].split('\n')[0].split()[2] }}"
+        #card_type_for_secondary_sup: "{{ output['stdout'][0].split('\n')[1].split()[2] }}"
+        #model_of_primary_sup: 
+
+
+    - name: Set Supoervisor Facts 2
+      set_fact: 
+        card_type_for_primary_sup: "{{ pri_info.split()[2] + ' ' + pri_info.split()[3] + ' ' + pri_info.split()[4] + ' ' + pri_info.split()[5] + ' ' + pri_info.split()[6] + ' ' + pri_info.split()[7] }}"
+        card_type_for_secondary_sup: "{{ sec_info.split()[2] + ' ' + sec_info.split()[3] + ' ' + sec_info.split()[4] + ' ' + sec_info.split()[5] + ' ' +  sec_info.split()[6] + ' ' + sec_info.split()[7] }}"       
+        module_number_for_primary_sup: "{{ pri_info.split()[0] }}"
+        module_number_for_secondary_sup: "{{ sec_info.split()[0] }}"
+        ports_on_primary_sup: "{{ pri_info.split()[1] }}"
+        ports_on_secondary_sup: "{{ sec_info.split()[1] }}"
+        model_of_primary_sup: "{{ pri_info.split()[8] }}"
+        model_of_secondary_sup: "{{ sec_info.split()[8] }}"
+        
+ 
+    - name: Print Primary Supervisor Facts to Console
+      debug: 
+        msg:
+          - 'Module number for primary supervisor is: {{ module_number_for_primary_sup }}' 
+          - "Card type for primary supervisor  is: {{ card_type_for_primary_sup }}"
+          
+
+    - name: Print Secondary Supervisor Facts to Console
+      debug:
+        msg:
+          - 'Module number for secondary/stand-by supervisor is: {{ module_number_for_secondary_sup }}'
+          - 'Card type for secondary/stand-by supervisor info  is: {{ card_type_for_secondary_sup }}'

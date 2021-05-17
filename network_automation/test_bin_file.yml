@@ -1,0 +1,23 @@
+- name : VERIFY MD5 HASH OF TARGET SOFTWARE
+  connection: network_cli
+  hosts: usap2960xswitches
+  gather_facts: false
+
+
+
+  vars:
+    ios_archive: "c2960x-universalk9-tar.152-7.E2.tar"
+    ios_binary: "c2960x-universalk9-mz.152-7.E2.bin"
+    ios_md5_tar: "9d4271dc68544234a36ee438337e8663"
+
+
+  tasks:
+    - name: Get Copied TAR Software from flash
+      ios_command:
+        commands: "dir  /recursive flash: | include {{ ios_binary }}"
+      register: dir_flash
+
+    - set_fact:
+        bin_file:  "{{ dir_flash['stdout'][0].split()[-1] }}"
+    - debug:
+        var: bin_file

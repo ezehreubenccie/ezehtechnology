@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  gather_facts: false
+  connection: local
+  vars_files:
+    - /etc/ansible/seattle_switch.yml   
+
+
+  tasks:
+    - name: generate seattle switch config
+      template: src=/root/network_automation/jinja/seattle_switch.j2 dest=/root/network_automation/configs2/{{switch['hostname']}}.cfg
+      with_dict: '{{ switch }}'
+

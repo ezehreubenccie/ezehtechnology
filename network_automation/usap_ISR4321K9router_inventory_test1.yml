@@ -1,0 +1,56 @@
+- name: BUILD CISCO ISR4321K9 INVENTORY
+  connection: network_cli
+  hosts: usapISR4321K9routers
+  gather_facts: false
+
+  vars:
+    hostname:
+    version:
+    serialnum:
+    ipaddress:
+    physicaladdress:
+
+
+  tasks:
+    - name: Get Physical Address from Router
+      ios_command:
+        commands:
+          - command: show run | in snmp-server location
+      register: snmp_location
+
+    - debug:
+        var: snmp_location.stdout[0][21:]
+
+    - name: Gather ISR 4321 Router Facts
+      ios_facts:
+      register: routerfacts
+
+    #- debug:
+        #var: routerfacts
+
+    - set_fact:
+        ipaddress: "{{ ansible_net_all_ipv4_addresses[0] }}"
+        version: "{{ ansible_net_version.replace('0','') }}"
+        serialnum: '{{ ansible_net_serialnum }}'
+        hostname: '{{ ansible_net_hostname }}'
+        physicaladdress: "{{ snmp_location.stdout[0][21:].replace(',','') }}"
+
+    #- debug:
+       # var: snmp_location.stdout[0][21:].replace(',','')
+        
+
+    #- debug:
+        #var: ipaddress
+
+    - debug:
+        msg: 'The device name is {{ hostname }} ip address of MPLS interface is {{ ipaddress }}  version is {{ version }} serial number is {{ serialnum}} physical address is {{ physicaladdress }}'
+
+    - name: Write mydevices.csv
+      run_once: true
+      shell: echo Serial Number,Device Name,Software Version,Tags,Notes  > mydevices4321K9.csv
+
+
+
+    - name: Write My Devices CSV File
+      shell: echo "{{ serialnum }},{{ hostname }},{{ version }},{{ ipaddress }},{{ physicaladdress }}" >> mydevices4321K9.csv
+      delegate_to: localhost

@@ -1,0 +1,10 @@
+---
+# vars file for gather_asa_5506X_firewall_facts
+
+
+hostname:
+version:
+serialnum:
+ipaddress:
+asa_compliant_ver: 9.8(4)22
+

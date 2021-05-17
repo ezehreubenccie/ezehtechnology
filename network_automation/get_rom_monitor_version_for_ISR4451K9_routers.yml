@@ -1,0 +1,28 @@
+- name: GET ROM MONITOR VERSION FOR ISR4451K9 ROUTERS
+  connection: network_cli
+  hosts: usapISR4451K9routers
+  gather_facts: false
+
+
+
+  vars:
+    target_rom_monitor_version: "16.12(2r)"
+
+  tasks:
+    - name: Get rom monitor version
+      ios_command:
+        commands: "show rom-monitor r0"
+      register: output
+
+    - set_fact:
+        rom_monitor_version: "{{ output.stdout[0].split()[3].rstrip(',') }}"
+
+    - debug:
+        var: output.stdout[0].split()[3].rstrip(',')
+
+    - name: Assert that ROM/FIRMWARE Version is the Target Version
+      assert:
+        that:
+          - target_rom_monitor_version == rom_monitor_version
+        fail_msg: 'The Firmware Version {{ rom_monitor_version }} for {{ inventory_hostname }} needs to be upgraded to Target version {{ target_rom_monitor_version }}'
+        success_msg: 'The Firmware Version for {{ inventory_hostname }} is equal to Target version {{ target_rom_monitor_version }}. No upgrade needed!!' 

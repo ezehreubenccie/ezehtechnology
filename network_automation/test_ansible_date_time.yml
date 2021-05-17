@@ -1,0 +1,45 @@
+---
+- name: TEST Ansible Date and Time
+  hosts:  localhost
+  connection: local
+ # gather_facts: no
+
+
+  vars:
+    date_of_upgrade:
+    time_of_upgrade:
+    time_zone_of_upgrade:
+    day_of_upgrade:
+    year:
+    month:
+    day:
+    
+
+
+  tasks:
+    - name: Ansible date fact example
+      debug:
+        var=ansible_date_time.hour
+
+    - name: today
+      debug:
+        msg: "today is {{ '%Y-%m-%dT%H:%M:%S'|strftime(ansible_date_time.epoch) }}"
+
+    - name: one year ago 
+      debug:
+        msg: "one-year-ago-today is {{ '%Y-%m-%dT%H:%M:%SD%W%D'|strftime((ansible_date_time.epoch|int) - (60*60*24*365)) }}"
+
+    - name: 12 hrs 36 mins ago
+      debug:
+        msg: "12hrs-36mins-today is {{ '%Y-%m-%dT%H:%M:%S'|strftime((ansible_date_time.epoch|int) - (60*60*15)) }}"
+
+
+    - name: set fact
+      set_fact:
+        time: " {{ '%Y-%m-%dT%H:%M:%S'|strftime((ansible_date_time.epoch|int) - (60*60*15)) }}"
+
+    - debug:
+        var: time
+
+    - debug:
+        var: ansible_date_time

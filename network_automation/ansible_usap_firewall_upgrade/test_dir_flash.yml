@@ -1,0 +1,46 @@
+---
+
+- name: check if ASA Software is present
+  connection: network_cli
+  hosts: labasa1
+  gather_facts: false
+
+  vars:
+    asa_target_version: 9.6(4)41
+    asa_image: asa964-41-lfbff-k8.SPA
+    asa_md5: 74c5a58cace7fce57c40fad3a1abef0a
+    asa_image_size_bytes: 85000000
+    ftp_ip: '10.7.250.54'
+    protocol: 'ftp'
+    ftp_user: 'reuben'
+    ftp_pass: 'cisco'
+    bytes_free:
+    source_file: asa964-41-lfbff-k8.SPA
+    dest_file: asa964-41-lfbff-k8.SPA
+
+
+  tasks:
+    - name: Check image if present
+      asa_command:
+        commands: "show disk0: | grep {{ asa_image }}"
+      register: dir_flash
+    - set_fact:
+        image: "{{ asa_image }}"
+    - debug:
+        var: asa_image
+    - debug:
+        var: image.split('-')
+    - assert:
+        that:
+          - image == asa_image
+        fail_msg: 'false'
+        success_msg: 'true'
+    - debug: 
+        msg: "ftp://{{ftp_ip}}"
+    - debug:
+        msg: 'disk0:/{{ image }}' 
+     # when: 
+      #  - vars['asa_image']  not in dir_flash['stdout'][0].split()
+    - debug:
+        var: dir_flash['stdout'][0].split()
+

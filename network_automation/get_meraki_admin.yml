@@ -1,0 +1,20 @@
+- name: Query information about all administrators associated to the organization
+  hosts: localhost
+  connection: https
+  gather_facts: false
+
+
+
+
+
+
+
+
+
+
+  tasks:
+   -  meraki_admin:
+        auth_key: 83c07b21caff8676f8b17c50f854df65918414fa
+        org_name: USAP
+        state: query
+        email: reuben.ezeh@usap.com

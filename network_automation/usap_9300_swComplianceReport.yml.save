@@ -1,0 +1,85 @@
+- name: BUILD CISCO 9300SWITCH  COMPLIANCE REPORT
+  connection: network_cli
+  hosts: usap9300switches 
+  gather_facts: false
+
+  vars:
+    hostname:
+    version:
+    serialnum:
+    ipaddress:
+    physicaladdress:
+    verdict:
+    upgradeto:
+    Date_Completed:
+    compliant_9300switch: 16.12.04
+    non_compliant_9300switch: 16.12.03a
+
+
+  tasks:
+    - name: Get Physical Address from Router
+      ios_command:
+        commands:
+          - command: show run | in snmp-server location
+      register: snmp_location
+
+    #- debug:
+        #var: snmp_location.stdout[0][21:]
+
+    - name: Gather Cisco 9300 Switch Facts
+      ios_facts:
+      register: routerfacts
+
+    #- debug:
+        #var: routerfacts
+
+    - set_fact:
+        ipaddress: "{{ ansible_net_all_ipv4_addresses[0] }}"
+        version: "{{ ansible_net_version }}"
+        serialnum: '{{ ansible_net_serialnum }}'
+        hostname: '{{ ansible_net_hostname }}'
+        physicaladdress: "{{ snmp_location.stdout[0][21:].replace(',','') }}"
+ 
+
+    - name: set fact 2
+      set_fact:
+        verdict: 'compliant'
+      when: (version  == compliant_9300switch) 
+
+    - name: set fact 3
+      set_fact:
+        verdict: 'non-compliant'
+      when: (version  != compliant_9300switch)
+      
+    - name: set fact 4
+      set_fact:
+        upgradeto: 'N/A'
+      when: (version  == compliant_9300switch)
+
+    - name: set fact 5
+      set_fact:
+        upgradeto: '{{ compliant_9300switch }}'
+      when: version == non_compliant_9300switch
+
+    - name: set fact 6
+      set_fact:
+        Date_Completed
+    #- debug:
+       # var: snmp_location.stdout[0][21:].replace(',','')
+        
+
+    #- debug:
+        #var: ipaddress
+
+    - debug:
+        msg: 'The device name is {{ hostname }}, ip address is {{ ipaddress }},  version is {{ version }}, serial number is {{ serialnum}}, physical address is {{ physicaladdress }}.'
+
+    - name: Write mydevices.csv
+      run_once: true
+      shell: echo Serial Number,Device Name,Software Version,Verdict,UpgradeTO,Tags,Notes  > 9300switchComplianceReport.csv
+
+
+
+    - name: Write My Devices CSV File
+      shell: echo "{{ serialnum }},{{ hostname }},{{ version }},{{ verdict }},{{ upgradeto }},{{ ipaddress }},{{ physicaladdress }}" >> 9300switchComplianceReport.csv
+      delegate_to: localhost

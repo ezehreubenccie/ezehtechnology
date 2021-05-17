@@ -1,0 +1,107 @@
+
+---
+- name: 2960X SWITCH RELOAD
+  hosts: usap2960xswitches
+  gather_facts: false
+  connection: network_cli
+
+  vars:
+    switch:
+        switch_target_version: "15.2(7)E2"
+        switch_image: "c2960x-universalk9-mz.152-7.E2.bin"
+   
+
+  tasks:
+     - name: Wait until the lock file is removed
+       wait_for:
+         path: lockfile_2960X/file.lock
+         state: absent
+       tags:
+         - lock
+
+     - name: Email start of process on Switch Name
+       mail:
+         subject: Reloading {{ inventory_hostname }}
+         host: 10.2.0.105
+         port: 25
+         to: 
+           - Network.Monitoring@usap.com
+           - reuben.ezeh@usap.com
+           - russell.booker@usap.com
+         from: ansible-reload@usap.com
+       delegate_to: localhost
+       tags:
+         - email
+         - reload
+    
+     - name: Create Lock File
+       file:
+         path: lockfile_2960X/file.lock
+         state: touch
+       tags:
+         - reload
+         - lock
+    
+     - name: Reload Switch
+       ios_command:
+         commands:
+           - command: reload
+             prompt: "Proceed with reload?"
+             answer: 'y'
+       tags:
+         - reload
+    
+     - name: Wait for the Switch to return
+       wait_for:
+         host: "{{ ansible_host }}"
+         port: 22
+         delay: 360
+         timeout: 3600
+       delegate_to: localhost
+       tags:
+         - reload
+         - check_online
+    
+     - name: Email Switch name back online
+       mail:
+         subject: Back Online {{ inventory_hostname }}
+         host: 10.2.0.105
+         port: 25
+         to: 
+           - Network.Monitoring@usap.com
+           - reuben.ezeh@usap.com
+         from: ansible-reload@usap.com
+       delegate_to: localhost
+       tags:
+          - email
+          - reload
+
+     - name: Gather all legacy facts
+       ios_facts:
+         gather_subset: hardware
+       tags:
+         - facts
+    
+     - name: Asset that the IOS version is the correct one
+       assert:
+         that:
+           - ansible_net_version == switch['switch_target_version']
+         fail_msg: '{{ inventory_hostname }} ios version is {{ ansible_net_version }} switch upgrade was not successfull!. :( :( :('
+         success_msg: '{{ inventory_hostname }} ios version is {{ ansible_net_version }} switch upgrade was successfull. Yayyyy!!'
+       tags:
+         - facts
+    
+    
+     - name: Delete Lock File
+       file:
+         path: lockfile_2960X/file.lock
+         state: absent
+       tags:
+         - reload
+         - lock
+
+
+
+
+    
+        

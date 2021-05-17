@@ -1,0 +1,108 @@
+
+---
+- name: USAP 5505 FIREWALL RELOAD
+  hosts: lbjlab5505firewalls
+  gather_facts: false
+  connection: network_cli
+
+  vars:
+    asa:
+        asa_target_version: "9.1(7)32"
+        asa_image: "asa917-32-k8.bin"
+    hostname:
+    version:
+    serialnum:
+    ipaddress:
+
+  tasks:
+     - name: SAVE CONFIG
+       asa_command:
+         commands: 'write memory'
+       register: config_save_output
+
+     - debug:
+         var: config_save_output
+
+     - name: Email start of process on Firewall Name
+       mail:
+         subject: Reloading {{ inventory_hostname }}
+         host: 10.2.0.105
+         port: 25
+         to: 
+           - Network.Monitoring@usap.com
+           - reuben.ezeh@usap.com
+         from: ansible-reload@usap.com
+       delegate_to: localhost
+       tags:
+         - email
+         - reload
+    
+     - name: Reload Firewall
+       asa_command:
+         commands:
+           - command: reload
+             prompt: "Proceed with reload?"
+             answer: 'y'
+       vars:
+         ansible_command_timeout: 1800
+       tags:
+         - reload
+    
+     - name: Wait for the firewall to return
+       wait_for:
+         host: "{{ ansible_host }}"
+         port: 22
+         delay: 180
+       delegate_to: localhost
+       vars:
+         ansible_command_timeout: 1800
+       tags:
+         - reload
+         - check_online
+    
+     - name: Email Firewall name back online
+       mail:
+         subject: Back Online {{ inventory_hostname }}
+         host: 10.2.0.105
+         port: 25
+         to: 
+           - Network.Monitoring@usap.com
+           - reuben.ezeh@usap.com
+         from: ansible-reload@usap.com
+       delegate_to: localhost
+       tags:
+          - email
+          - reload
+
+     - name: asa facts
+       asa_command:
+         commands:
+           - show run hostname
+           - show version
+           - show inventory
+           - show ip | inc DHCP
+       register: asa_vars
+
+
+
+     - name: asa set facts
+       set_fact:
+         hostname: "{{ asa_vars['stdout'][0].split()[1] }}"
+         version: "{{ asa_vars['stdout'][1].split('\n')[0][-9:-1] }}"
+         serialnum: "{{ asa_vars['stdout'][2].split('\n')[1].replace(' ','')[-11:-1] }}"
+         ipaddress: "{{ asa_vars['stdout'][3].split('\n')[1]  | regex_search('\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b') }}"
+
+     - name: Asset that the ASA Software version is the correct one
+       assert:
+         that:
+           - version == asa['asa_target_version']
+         fail_msg: 'The ASA Version is wrong version {{ version }}'
+         success_msg: 'The ASA Version is the compliant version {{ version }}'
+       tags:
+         - facts
+
+
+
+
+    
+        

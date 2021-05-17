@@ -1,0 +1,25 @@
+---
+
+- name: Verify ASA SOFTWARE MD5 HASH
+  connection: network_cli
+  hosts: labasa1
+  gather_facts: false
+
+  vars:
+    asa_compliant_ver: asa964-41-lfbff-k8.SPA
+
+
+  tasks:
+    - name: SHOW MD5 / VERIFY
+      asa_command:
+        commands:
+          - verify /md5 flash:/{{ asa_compliant_ver }}
+      register: results
+
+    - set_fact:
+        myvalue: "{{ results.stdout | regex_search('= (.*)') | first }}"
+
+    - debug:
+        var: myvalue
+
+

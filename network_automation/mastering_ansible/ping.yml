@@ -1,0 +1,11 @@
+---
+- name: ping
+  hosts: usapfirewalls
+  gather_facts: false
+
+
+  tasks: 
+   - name: ping
+     ping: 
+    
+

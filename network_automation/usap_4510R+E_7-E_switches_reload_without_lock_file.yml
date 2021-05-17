@@ -1,0 +1,99 @@
+
+---
+- name: 4510R+E SWITCH  RELOAD
+  hosts: usap4510REswitches
+  gather_facts: false
+  connection: network_cli
+
+  vars:
+    switch:
+        4510switch_target_version: "03.11.03a.E"
+        4510switch_image: "cat4500e-universalk9.SPA.03.11.03a.E.152-7.E3a.bin"
+   
+
+  tasks:
+     - name: SAVE CONFIG
+       ios_command:
+         commands: 'write memory'
+       register: config_save_output
+
+     - debug:
+         var: config_save_output
+
+     - name: Email start of process on 4510R+E Switch Name
+       mail:
+         subject: Reloading {{ inventory_hostname }}
+         host: 10.2.0.105
+         port: 25
+         to: 
+           - Network.Monitoring@usap.com
+           - reuben.ezeh@usap.com
+           - russell.booker@usap.com
+         from: ansible-reload@usap.com
+       delegate_to: localhost
+       tags:
+         - email
+         - reload
+    
+     - name: Reload 4510RE Switch
+       ios_command:
+         commands:
+           - command: redundancy reload shelf
+             prompt: "Reload the entire shelf"
+             answer: 'y'
+       #vars:
+        # ansible_command_timeout: 1800
+       tags:
+         - reload
+
+     - name: reset the connection
+       meta: reset_connection
+    
+     - name: Wait for the 4510RE Switch to return
+       wait_for_connection:
+         #host: "{{ ansible_host }}"
+         #port: 22
+         delay: 10
+         timeout: 4200
+       #delegate_to: localhost
+       #vars:
+         #ansible_command_timeout: 4200
+       #tags:
+         #- reload
+         #- check_online
+    
+     - name: Email 4510R+E Switch name back online
+       mail:
+         subject: Back Online {{ inventory_hostname }}
+         host: 10.2.0.105
+         port: 25
+         to: 
+           - Network.Monitoring@usap.com
+           - reuben.ezeh@usap.com
+           - russell.booker@usap.com
+         from: ansible-reload@usap.com
+       delegate_to: localhost
+       tags:
+          - email
+          - reload
+
+     - name: Gather all legacy facts
+       ios_facts:
+         gather_subset: hardware
+       tags:
+         - facts
+    
+     - name: Asset that the 4510R+E Switch IOS version is the correct one
+       assert:
+         that:
+           - ansible_net_version == switch['4510switch_target_version']
+         fail_msg: '{{ inventory_hostname }} ios version is {{ ansible_net_version }}  upgrade was not successfull!. :( :( :('
+         success_msg: '{{ inventory_hostname }} ios version is {{ ansible_net_version }}  upgrade was successfull. Yayyyy!!'
+       tags:
+         - facts
+
+
+
+
+    
+        

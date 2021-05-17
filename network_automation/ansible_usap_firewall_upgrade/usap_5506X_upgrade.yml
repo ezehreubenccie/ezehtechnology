@@ -1,0 +1,220 @@
+- name : USAP CISCo 5506X ASA UPGRADE
+  connection: network_cli
+  hosts: labasa1 dtx-mrt-5506x-asa01
+  gather_facts: false
+
+  vars:
+    asa_target_version: "9.6(4)41"
+    asa_image: "asa964-41-lfbff-k8.SPA"
+    asa_md5: 74c5a58cace7fce57c40fad3a1abef0a
+    asa_image_size_bytes: 85000000
+    ftp_ip: '10.7.250.54'
+    protocol: 'ftp'
+    ftp_user: 'reuben'
+    ftp_pass: 'cisco'
+    bytes_free:
+    source_file: asa964-41-lfbff-k8.SPA
+    dest_file: asa964-41-lfbff-k8.SPA
+
+
+  tasks:
+    - name: Gather all Cisco 5506X ASA facts
+      asa_command:
+        commands:
+          - show run hostname
+          - show version
+          - show inventory
+          - show ip | inc CONFIG
+      register: asa_vars
+
+
+   # - name: asa set facts
+   #   set_fact:
+   #     hostname: "{{ asa_vars['stdout'][0].split()[1] }}"
+   #     version: "{{ asa_vars['stdout'][1].split('\n')[0][-9:-1] }}"
+   #     serialnum: "{{ asa_vars['stdout'][2].split('\n')[1].replace(' ','')[-11:-1] }}"
+   #     ipaddress: "{{ asa_vars['stdout'][3].split('\n')[1]  | regex_search('\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b') }}"
+
+    
+    - name: Get boot Variables
+      asa_command:
+        commands:
+          - command: sh run boot
+      register: bootvar
+
+    - debug:
+        var: bootvar
+    - name: set fact
+      set_fact:
+        bootvar1: "{{ bootvar['stdout'][0].split('\n')[0] }}"
+        bootvar2: "{{ bootvar['stdout'][0].split('\n')[1] }}"
+      when:
+        -  asa_vars['stdout'][1].split('\n')[0][-9:-1]  !=  vars['asa_target_version']
+      tags:
+        - bootvar
+
+
+    - name: Upgrade Cisco 5506X ASA To Target Software
+      block:
+        - name: Check if Cisco ASA Software is already present on the flash
+          asa_command:
+            commands: "dir"
+          register: dir_flash
+
+        - name: set fact
+          set_fact:
+            bytes_free: "{{ dir_flash['stdout'][0].split('\n')[-1].split()[3][1:11] }}"
+          register: bytes_free
+          tags:
+            - flash
+
+        - name: Check there is enough space for Upload
+          assert:
+            that:
+              - "{{ bytes_free |int }}  > vars['asa_image_size_bytes'] |int"
+            fail_msg: 'Not enough space in flash to copy image'
+            success_msg: ' There is enough space in flash'
+          when:
+            - vars['asa_image'] not in dir_flash['stdout'][0]
+          tags:
+            - flash
+        
+        - name: Start Image Copy from FTP Server
+          cli_command:
+            command: 'copy ftp://{{ ftp_user }}:{{ ftp_pass }}@{{ ftp_ip }}/{{ source_file }}   disk0:/{{ dest_file }}'
+            prompt:
+              - Address or name of remote host
+              - Source username
+              - Source password
+              - Source filename
+              - Destination filename
+              - Warning
+            answer:
+              - '{{ ftp_ip }}'
+              - '{{ ftp_user }}'
+              - '{{ ftp_pass }}'
+              - '{{ source_file }}'
+              - '{{ dest_file }}'
+              - 'n'
+            check_all: True
+          when:
+            - "{{ bytes_free |int }}  > vars['asa_image_size_bytes'] |int"
+            - vars['asa_image'] not in dir_flash['stdout'][0]
+            - asa_vars['stdout'][1].split('\n')[0][-9:-1] !=  vars['asa_target_version'] 
+          vars:
+            ansible_command_timeout: 1800
+
+          tags:
+            - upload
+
+
+        
+        - name: Check If Cisco ASA image is present on the flash
+          asa_command:
+            commands: "dir"
+          register: dir_flash
+          tags:
+            - flash
+
+        - name: Assert that IOS is Present
+          assert:
+            that:
+              - vars['asa_image'] in dir_flash['stdout'][0]
+            fail_msg: '{{ vars["asa_image"]}} was not copied successfully to {{ inventory_hostname }} flash'
+            success_msg: '{{ vars["asa_image"]}} was copied successfully to {{ inventory_hostname }} flash'
+          tags:
+            - flash
+
+
+        - name: Check MD5 Hash
+          asa_command:
+            commands:
+              - command: "verify /md5 flash:{{ vars['asa_image'] }}"
+          register: md5_result
+          vars:
+            ansible_command_timeout: 300
+          when:
+            - vars['asa_image'] in dir_flash['stdout'][0]
+          tags:
+            - md5
+
+
+        - name: Assert That MD5 Sums are Identical
+          assert:
+            that:
+              - vars['asa_md5'] in md5_result['stdout'][0].split()
+            fail_msg: "The md5 hash of the software {{ vars['asa_image'] }} on {{ inventory_hostname }} is not correct!! :( :("
+            success_msg: "Hooray!!. The md5 hash of the software {{ vars['asa_image'] }} on {{ inventory_hostname }} is  correct!! :) :)"
+          tags:
+            - md5
+
+
+        - name: Change the boot image to the new version
+          asa_command:
+            commands:
+              - command: sh run boot
+          register: bootvar
+
+        - debug:
+            var: bootvar
+        - name: set fact
+          set_fact:
+            bootvar1: "{{ bootvar['stdout'][0].split('\n')[0] }}"
+            bootvar2: "{{ bootvar['stdout'][0].split('\n')[1] }}"
+
+        - debug:
+            msg: 'primary boot var is {{ bootvar1 }} and secondary boot var is {{ bootvar2 }}'
+          tags:
+            - bootvars
+        - name: Remove ASA boot Variables
+          asa_config:
+            lines:
+              - 'no  {{ bootvar1 }}'
+              - 'no  {{ bootvar2 }}'
+          when:
+            - vars['asa_image'] not in bootvar1
+          tags:
+            - bootvars
+        
+
+        - name: Set Boot Variables
+          asa_config:
+            lines: 
+              - "boot system disk0:/{{ vars['asa_image'] }}"
+              - '{{ bootvar1 }}'
+          when:
+            - vars['asa_md5'] in md5_result['stdout'][0].split()
+          vars:
+            ansible_command_timeout: 1800
+          tags:
+            - boot
+      when:
+        - asa_vars['stdout'][1].split('\n')[0][-9:-1] !=  vars['asa_target_version'] 
+        -  vars['asa_image'] not in bootvar['stdout'][0]
+
+
+    - name: Check boot Path
+      asa_command:
+        commands:
+          - command: 'sh run boot'
+      register: bootvar
+      tags:
+        - bootvar
+    - name: set fact
+      set_fact:
+        bootvar1: "{{ bootvar['stdout'][0].split('\n')[0] }}"
+        bootvar2: "{{ bootvar['stdout'][0].split('\n')[1] }}"
+ 
+    - debug:
+        msg: " {{ inventory_hostname }} primary boot system is {{ bootvar1.split()[2] }} and secondary boot system is {{ bootvar2.split()[2] }}"
+
+    - name: Assert That the boot path is set to the new ASA Software
+      assert:
+        that:
+          - vars['asa_image'] in bootvar['stdout'][0]
+        fail_msg: 'Boot path is not set to new image on {{ inventory_hostname }}'
+        success_msg: 'Boot path is set to new image on {{ inventory_hostname}} reload device to upgrade to target ASA version'
+      when:
+        - asa_vars['stdout'][1].split('\n')[0][-9:-1] != vars['asa_target_version'] 
+      tags:
+        - bootvar

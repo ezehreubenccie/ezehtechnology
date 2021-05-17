@@ -1,0 +1,25 @@
+---
+
+- name: upload images via FTP
+  hosts: dtx-mrt-5506x-asa01
+  connection: network_cli
+  gather_facts: false
+
+  tasks:
+    - name: ftp upload
+      cli_command:
+        command: copy scp: disk0:
+        check_all: True
+        prompt:
+          - Address or name of remote host [10.7.250.54]\?
+          - Source username [reuben]\?
+          - Source password [cisco]\?
+          - Source filename [show_tech_support_2A_03_06_2020.txt]\?
+          - Destination filename [show_tech_support_2A_03_06_2020.txt]\?
+        answer:
+          - y
+          - y
+          - y
+          - y
+          - y
+

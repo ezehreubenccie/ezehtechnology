@@ -1,0 +1,42 @@
+- name : CHANGE BOOT SYSTEM ON 4510R+E SWITCHES TO NEW SOFTWARE
+  connection: network_cli
+  hosts: usap4510REswitches
+  gather_facts: false
+
+
+
+
+  vars:
+    ios_binary: cat4500es8-universal.SPA.03.11.03a.E.152-7.E3a.bin
+    ios_md5: 37cee0b091dab477aa293ffb5c8452f5
+    ios_version: 03.11.03a.E
+    confreg: '0x2102'
+    primary_sup_boot_file:
+    standby_sup_boot_file:
+    config_reg_primary:
+    config_reg_standby:
+
+
+
+  tasks:
+    - name: Check Boot Path
+      ios_command:
+        commands: 'show bootvar'
+      register: bootvar
+      tags:
+        - bootvar
+
+    - debug:
+        var: bootvar.stdout_lines[0][0].split()
+
+    - name: Set Fact Active SUP bootfile
+      set_fact:
+        primary_sup_boot_file: "{{ bootvar.stdout_lines[0][0].split()[3].split(',')[0] }}"
+        standby_sup_boot_file: "{{ bootvar.stdout_lines[0][5].split()[4].split(',')[0] }}"
+        config_reg_primary: "{{ bootvar.stdout_lines[0][3].split()[3] }}"
+        config_reg_standby: "{{ bootvar.stdout_lines[0][8].split()[4] }}"    
+
+    - name: Display Facts
+      debug:
+        var: config_reg_standby
+          

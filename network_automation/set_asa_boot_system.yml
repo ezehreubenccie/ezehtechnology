@@ -1,0 +1,20 @@
+
+---
+
+- name: SET ASA BOOT VARIABLES
+  hosts: labasa1
+  connection: network_cli
+  gather_facts: false
+  
+  vars: 
+    asa_target_ver: asa964-41-lfbff-k8.SPA
+    asa_old_version: asa984-15-lfbff-k8.SPA
+  
+  tasks:
+    - name: SET BOOT SYSTEM FLASH
+      asa_config:
+        lines:
+          - "no boot system disk0:/{{ asa_old_ver }}"
+          - "boot system disk0:/{{ asa_compliant_ver }}"
+          - "boot system disk0:/{{ backup_ver }}"
+          #- "boot system disk0:/{{ asa_3rd_ver }}"

@@ -1,0 +1,22 @@
+- name: Check ROM MONITOR VERSION ON ROUTERS
+  connection: network_cli
+  hosts: lbjlabrouters
+  gather_facts: false
+
+
+
+  vars:
+    target_rom_monitor_version: 16.7(3r)
+
+
+
+
+  tasks:
+    - name: Check Rom Monitor Version
+      ios_command:
+        commands: " show rom-monitor r0"
+      register: rommonitor
+      
+
+    - debug: 
+        var: rommonitor.stdout[0].split()

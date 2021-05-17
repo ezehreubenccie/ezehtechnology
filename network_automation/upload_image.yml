@@ -1,0 +1,11 @@
+- name: upload cisco image to ASA
+  hosts: labasa1
+  gather_facts: no
+  connection: network_cli
+
+  tasks:
+    - name: upload cisco asa software to asa
+      net_put:
+        src:/root/network_automation/file1
+        protocol: scp
+        dest: disk0:/file1

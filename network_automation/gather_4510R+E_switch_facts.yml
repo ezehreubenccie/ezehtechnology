@@ -1,0 +1,32 @@
+- name : GATHER 4510R+E SWITCH FACTS
+  connection: network_cli
+  hosts: usap4510REswitches
+  gather_facts: false
+
+
+
+
+  vars:
+    switch_compliant_ver: 03.11.03a.E
+
+  tasks:
+    - name: Gather all 4510R+E Switch Hardware facts
+      ios_facts:
+        gather_subset: hardware
+      register: output
+
+    - name: Print facts to console
+      debug:
+        var: output
+
+    - name: Assert that Switch IOS Version is the Compliant Version
+      assert:
+        that: 
+          - ansible_net_version == switch_compliant_ver
+        fail_msg: 'The Software Version on {{ inventory_hostname }} has not been upgraded to the compliant version {{ switch_compliant_ver}}. Please upgrade!!'
+        success_msg: 'Hooray!!..The Software Version on {{ inventory_hostname }} has  been upgraded to the compliant version {{ switch_compliant_ver}}.'
+      tags:
+        - facts
+
+
+

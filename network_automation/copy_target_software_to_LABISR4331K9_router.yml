@@ -1,0 +1,67 @@
+- name : COPY TARGET SOFTWARE TO ISR4331K9 ROUTERS
+  connection: network_cli
+  hosts: lbjlabrouters
+  gather_facts: false
+
+
+
+  vars:
+    ios_version: 16.09.05
+    ios_binary: isr4300-universalk9.16.09.05.SPA.bin
+    ios_size_kb: 630000
+    ftp_server: '10.2.0.250'
+    protocol: 'ftp'
+    ftp_user: 'reuben'
+    ftp_pass: !vault |
+          $ANSIBLE_VAULT;1.2;AES256;reuben3010
+          66663564346661393730373938613763643764373532396164393234346566303065356337636237
+          3235666638313166376562343764373638373838313061350a646133333964376565623063363463
+          32336436623563653562646662376461633531613332366131653233316638353335336139646662
+          3237336432633138340a666265613733386564343161346432386532316132303061343135316531
+          6230
+
+
+  tasks:
+    - name: Gather all ISR4331K9 Router Hardware facts
+      ios_facts:
+        gather_subset: hardware
+      register: output
+
+    - name: Check if IOS Software was copied successfully to the flash
+      ios_command:
+        commands: "dir  flash: | include {{ ios_binary }}"
+      register: dir_flash
+
+    - name: Check that there is enough space for upload
+      assert:
+        that:
+          - ansible_net_filesystems_info['bootflash:']['spacefree_kb'] > ios_size_kb
+        fail_msg: 'There is not enough space left on {{ inventory_hostname }} flash'
+        success_msg: '{{ inventory_hostname }} has enough space left on flash. Coping Software to Flash Now!!'
+      when:
+        - ios_binary not in dir_flash.stdout[0]
+
+
+    - name: Start Image Copy from FTP Server
+      ios_command:
+         commands:
+          - command: 'copy {{ protocol }}://{{ ftp_user }}:{{ ftp_pass }}@{{ ftp_server }}/{{ ios_binary }}  flash:/'
+            prompt: 'Destination filename \[{{ ios_binary }}\]?'
+            answer: '{{ ios_binary }}'
+      when:
+        - ios_binary not in dir_flash.stdout[0]
+        - ansible_net_filesystems_info['bootflash:']['spacefree_kb'] > ios_size_kb
+      vars:
+        ansible_command_timeout: 4200
+
+    - name: Check if IOS Software was copied successfully to the flash
+      ios_command:
+        commands: "dir  flash: | include {{ ios_binary }}"
+      register: dir_flash
+
+    - name: Assert that software BIN is in Router flash
+      assert:
+        that:
+          - ios_binary in dir_flash['stdout'][0]
+        fail_msg: 'Target software {{ ios_binary }} was not copied successfully to {{ inventory_hostname }} flash. Please troubleshoot!!'
+        success_msg: 'Hooray!!..Target software {{ ios_binary }} was  copied successfully to {{ inventory_hostname }} flash.'

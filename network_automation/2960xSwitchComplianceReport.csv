@@ -1,0 +1,6 @@
+Serial Number,Device Name,Software Version,Verdict,UpgradeTO,TimeUpgraded,TimeZoneOfUpgrade,DayOfUpgrade,DateUpgraded,Tags,Notes
+FDO2341F0GR,SWA-2960XR-SW-STACK,15.2(7)E3,compliant,N/A,06:06:30,PDT,Thu,May 6 2021,10.8.0.2,600 BROADWAY SEATTLE WA 98122-5229 United States
+FJC2345W1YJ,AUSTX-2960X-SW01,15.2(7)E3,compliant,N/A,20:04:53,CST,Thu,May 6 2021,192.168.0.102,US Anesthesia Partners Texas 3705 Medical Parkway Ste 570
+FJC25101RE8,AUSTX-2960X-SW-STACK,15.2(7)E3,compliant,N/A,20:04:59,CST,Thu,May 6 2021,192.168.0.180,3705 Medical Parkway Ste 570 Austin 78705
+FDO2341F0GT,SWA-2960XR-SW-STACK,15.2(7)E3,compliant,N/A,06:06:30,PDT,Thu,May 6 2021,10.8.0.2,600 BROADWAY SEATTLE WA 98122-5229 United States
+FJC25101RED,AUSTX-2960X-SW-STACK,15.2(7)E3,compliant,N/A,20:04:59,CST,Thu,May 6 2021,192.168.0.180,3705 Medical Parkway Ste 570 Austin 78705

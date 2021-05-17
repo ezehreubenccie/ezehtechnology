@@ -1,0 +1,37 @@
+---
+
+- name: ASA BOOT SYSTEM CHANGE
+  hosts: labasa1
+  gather_facts: no
+  connection: network_cli
+
+  vars:
+    asa_old_ver: asa984-15-lfbff-k8.SPA
+    asa_compliant_ver: asa984-22-lfbff-k8.SPA
+    backup_ver: asa984-15-lfbff-k8.SPA
+    #asa_3rd_ver: asa933-smp-k8.bin
+    username: reuben
+
+  tasks:
+    - name: COPY FILES TO ASA FLASH
+      block:
+        command: scp {{asa_compliant_ver}} {{username}}@{{ansible_host}}:{{asa_compliant_ver}}
+    - name: SET BOOT SYSTEM FLASH
+      asa_config:
+        lines:
+          - "no boot system disk0:/{{ asa_old_ver }}"
+          - "boot system disk0:/{{ asa_compliant_ver }}"
+          - "boot system disk0:/{{ backup_ver }}"
+          #- "boot system disk0:/{{ asa_3rd_ver }}"
+
+    - name: SHOW MD5 / VERIFY
+      asa_command:
+        commands:
+          - verify /md5 flash:/{{ asa_compliant_ver }}
+      register: results
+
+    - set_fact:
+        myvalue: "{{ results.stdout | regex_search('= (.*)') | first }}"
+
+    - debug:
+        var: myvalue

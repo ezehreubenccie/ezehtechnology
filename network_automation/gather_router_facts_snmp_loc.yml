@@ -1,0 +1,17 @@
+- name: SHOW SNMP LOCATION/ADDRESS OF ROUTER
+  hosts: usapISR4331K9routers
+  connection: network_cli
+  gather_facts: false
+
+
+
+  tasks:
+    - name: Get Physical Address from Router
+      ios_command:
+        commands:
+          - command: show run | in snmp-server location
+      register: physical_address
+
+    - debug:
+        var: physical_address.stdout[0][21:]
+

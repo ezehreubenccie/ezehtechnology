@@ -1,0 +1,12 @@
+---
+
+- name: upload image using scp
+  hosts: labasa1
+  connection: network_cli
+  gather_facts: no
+
+
+ tasks:
+   asa_command:
+     commands:
+       - scp asa984-22-lfbff-k8.SPA {{ ansible_user }}@{{ inventory_hostname }}:asa984-22-lfbff-k8.SPA 

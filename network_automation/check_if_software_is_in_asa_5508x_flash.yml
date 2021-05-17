@@ -1,0 +1,24 @@
+- name : CHECK IF TARGET SOFTWARE IS PRESENT IN ASA 5508X FIREWALL FLASH
+  connection: network_cli
+  hosts: usap5508xfirewalls
+  gather_facts: false
+
+
+  vars:
+    asa_image: asa9-12-4-18-lfbff-k8.SPA
+
+
+
+  tasks:
+    - name: Check if Cisco ASA Software is already present on the flash
+      block:
+        - name: Check Contents of Flash
+          asa_command:
+            commands: 'show disk0 | grep {{ asa_image }}'
+          register: dir_flash
+        - name: Assert that target asa software is present in flash
+          assert:
+            that: 
+              - asa_image in dir_flash['stdout'][0]
+            fail_msg: "Target Software not present in {{inventory_hostname}}'s flash"      
+            success_msg: "Target Software is  present in {{inventory_hostname}}'s flash"

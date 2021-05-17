@@ -1,0 +1,213 @@
+switch 1 priority 15
+stack-mac persistent timer 0
+macro name AccessEdgeQoS
+auto qos voip cisco-phone
+@
+macro name EgressQoS
+mls qos trust dscp
+queue-set 1
+srr-queue bandwidth share 1 30 35 5
+priority-queue out
+@
+hostname {{switch.hostname}}
+vtp mode transparent
+spanning-tree mode rapid-pvst
+udld enable
+errdisable recovery cause all
+port-channel load-balance src-dst-ip
+ip name-server 10.2.0.100 10.2.0.101
+no ip http server
+no ip http secure-server
+logging on
+logging trap informational
+logging source-interface Vlan100
+logging host 10.2.0.169
+logging host 10.2.0.168
+ip domain-name usap.com
+crypto key generate rsa general-keys modulus 2048
+ip ssh version 2
+ip scp server enable
+access-list 5 permit 10.2.0.99 log
+access-list 5 permit 10.2.0.168 log
+access-list 5 permit 10.2.0.169 log
+access-list 5 permit 10.2.0.250 log
+access-list 5 permit 10.32.36.0 0.0.0.255 log
+access-list 5 permit 10.2.250.0 0.0.0.255 log
+access-list 5 permit 10.4.250.0 0.0.0.255 log
+access-list 5 permit 10.4.255.0 0.0.0.255 log
+access-list 5 permit 10.4.235.0 0.0.0.255 log
+access-list 5 permit 10.4.234.0 0.0.0.255 log
+access-list 5 permit 10.4.239.0 0.0.0.255 log
+access-list 5 permit 10.3.0.0 0.0.15.255 log
+line con 0
+ exec-timeout 15 0
+ logging synchronous
+line vty 0 4
+ session-timeout 60
+ access-class 5 in
+ exec-timeout 60 0
+ logging synchronous
+ transport preferred none
+ transport input ssh
+ transport output ssh
+line vty 5 15
+ session-timeout 60
+ access-class 5 in
+ exec-timeout 60 0
+ logging synchronous
+ transport preferred none
+ transport input ssh
+ transport output ssh
+snmp-server location {{ switch.physical_address }}
+snmp-server contact IT Department
+snmp-server group USAP_SNMP v3 priv read RW write RW
+snmp-server user netadmin USAP_SNMP v3 auth md5 {{switch.md5_authentication_password}} priv aes 256 {{switch.aes_privacy_password}}
+snmp-server view RW iso included
+snmp-server host 10.2.0.168 version 3 priv netadmin
+snmp-server enable traps
+enable secret {{switch.enable_secret_password}}
+username {{ switch.local_username }} privilege 15 secret {{ switch.local_username_secret_password }}
+Service timestamps debug datetime msec localtime show-timezone
+Service timestamps log datetime msec localtime show-timezone
+service password-encryption
+aaa new-model
+aaa group server radius USAP_RADIUS
+ server name radius02
+ server name radius01
+ ip radius source-interface Vlan100
+aaa authentication login default group USAP_RADIUS local
+radius-server directed-request
+radius server radius01
+ address ipv4 10.2.0.127 auth-port 1645 acct-port 1646
+ key 13144321001C31223F0C1C1C030403
+radius server radius02
+ address ipv4 10.2.0.128 auth-port 1645 acct-port 1646
+ key 13144321001C31223F0C1C1C030403
+aaa session-id common
+clock timezone {{switch.timezone_for_state}} {{switch.timezone_offset}}
+clock summer-time {{switch.summertime_for_state}} recurring
+ntp server 10.2.0.3 prefer
+ntp server 10.2.0.2
+ntp update-calendar
+no ip dhcp snooping information option
+ipv6 nd raguard policy HOST_POLICY
+device-role host
+vlan {{switch.datavlan01}}
+name {{switch.datavlan01_name}}
+vlan {{switch.guest_wifi_vlan01}}
+name {{switch.guest_wifi_vlan01_name}}
+vlan {{switch.printer_vlan01}}
+name {{switch.printer_vlan01_name}}
+vlan {{switch.corp_wifi_vlan01}}
+name {{switch.corp_wifi_vlan01_name}}
+vlan {{switch.voicevlan01}}
+name {{switch.voicevlan01_name}}
+interface vlan {{switch.datavlan01}}
+ip address {{switch.ipaddress_datavlan01}} {{switch.datavlan01_subnetmask}}
+ip default-gateway {{switch.ipaddress_datavlan01_defaultgateway}}
+interface range g1/0/1-46,g2/0/1-46
+switchport mode access
+switchport access vlan {{switch.datavlan01}}
+switchport voice vlan {{switch.voicevlan01}}
+switchport host
+load-interval 30
+ip arp inspection limit rate 100
+ip dhcp snooping limit rate 100
+ip verify source
+ipv6 nd raguard attach-policy HOST_POLICY
+macro apply AccessEdgeQoS
+int range {{switch.interfacetype_port1_merakiAP_port01}}, {{switch.interfacetype_port2_merakiAP_port02}}
+des Meraki Access Point Connection
+switchport mode trunk
+switchport trunk native vlan {{switch.meraki_ap_trunk_native_vlan}}
+switchport trunk allowed vlan {{switch.datavlan01}},{{switch.corp_wifi_vlan01}},{{switch.guest_wifi_vlan01}}
+int range {{switch.channel_group_interfacetype_port1}}, {{switch.channel_group_interfacetype_port2}}
+des Connection To FirePower Firewall -> gi0/2, gi0/3
+switchport
+channel-group {{switch.channel_group_number}} mode active
+logging event link-status
+logging event trunk-status
+logging event bundle-status
+load-interval 30
+macro apply EgressQoS
+interface Port-channel1
+ switchport trunk allowed vlan {{switch.datavlan01}},{{switch.printer_vlan01}},{{switch.guest_wifi_vlan01}},{{switch.corp_wifi_vlan01}},{{switch.voicevlan01}}
+ switchport mode trunk
+ spanning-tree portfast trunk
+ load-interval 30
+ no shutdown
+banner motd ^CCC
+#############################################################################
+# WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING #
+#############################################################################
+THIS U.S. ANESTHESIA PARTNERS COMPUTING SYSTEM IS FOR AUTHORIZED
+OFFICIAL USE ONLY. Unauthorized use or use for other than official U.S.
+ANESTHESIA PARTNERS' business is a violation of State and Federal law.
+
+Individuals using this computing system are subject to having all
+of their activities on this system monitored and recorded without
+further notice. Auditing of users may include keystroke monitoring.
+
+Any individual who uses this system expressly consents to such
+monitoring and is advised that information about their use of this
+system may be provided to State and Federal law enforcement or
+other authorities if evidence of criminal or other unauthorized
+activity is found.
+#############################################################################
+# WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING #
+#############################################################################
+Contact the U.S. Anesthesia Partners Helpdesk at: (800) 337-1312 for more info
+LOG OFF IMMEDIATELY AFTER USE
+^C
+banner login ^CCC
+#############################################################################
+# WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING #
+#############################################################################
+THIS U.S. ANESTHESIA PARTNERS COMPUTING SYSTEM IS FOR AUTHORIZED
+OFFICIAL USE ONLY. Unauthorized use or use for other than official U.S.
+ANESTHESIA PARTNERS' business is a violation of State and Federal law.
+
+Individuals using this computing system are subject to having all
+of their activities on this system monitored and recorded without
+further notice. Auditing of users may include keystroke monitoring.
+
+Any individual who uses this system expressly consents to such
+monitoring and is advised that information about their use of this
+system may be provided to State and Federal law enforcement or
+other authorities if evidence of criminal or other unauthorized
+activity is found.
+#############################################################################
+# WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING #
+#############################################################################
+Contact the U.S. Anesthesia Partners Helpdesk at: (800) 337-1312 for more info
+LOG OFF IMMEDIATELY AFTER USE
+^C
+banner exec ^CCC
+#############################################################################
+# WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING #
+#############################################################################
+THIS U.S. ANESTHESIA PARTNERS COMPUTING SYSTEM IS FOR AUTHORIZED
+OFFICIAL USE ONLY. Unauthorized use or use for other than official U.S.
+ANESTHESIA PARTNERS' business is a violation of State and Federal law.
+
+Individuals using this computing system are subject to having all
+of their activities on this system monitored and recorded without
+further notice. Auditing of users may include keystroke monitoring.
+
+Any individual who uses this system expressly consents to such
+monitoring and is advised that information about their use of this
+system may be provided to State and Federal law enforcement or
+other authorities if evidence of criminal or other unauthorized
+activity is found.
+#############################################################################
+# WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING #
+#############################################################################
+Contact the U.S. Anesthesia Partners Helpdesk at: (800) 337-1312 for more info
+LOG OFF IMMEDIATELY AFTER USE
+^C
+!
+!
+end
+!
+!
+wr

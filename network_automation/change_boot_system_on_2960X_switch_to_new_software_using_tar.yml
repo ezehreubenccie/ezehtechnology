@@ -1,0 +1,117 @@
+- name : CHANGE BOOT SYSTEM ON 2960X SWITCH TO NEW SOFTWARE
+  connection: network_cli
+  hosts: usap2960xswitches
+  gather_facts: false
+
+
+
+
+  vars:
+    ios_archive: "c2960x-universalk9-tar.152-7.E3.tar"
+    ios_binary: "c2960x-universalk9-mz.152-7.E3.bin"
+    ios_md5_tar: "6f3ae3e149b5a54bb91c916ede4da85b"
+    ios_version: "15.2(7)E3"
+
+
+  tasks:
+    - name: Gather all 2960X Switch Hardware facts
+      ios_facts:
+        gather_subset: hardware
+      register: output
+
+    - name: Get Copied TAR Software from flash
+      ios_command:
+        commands: "dir  flash: | include {{ ios_archive }}"
+      register: dir_flash
+      vars:
+        ansible_command_timeout: 300
+
+
+
+
+    - name: Check MD5 Hash
+      ios_command:
+        commands:
+          - command: "verify /md5 flash:{{ ios_archive }}"
+      register: md5_result
+      vars:
+        ansible_command_timeout: 300
+      when:
+        - ios_archive in dir_flash.stdout[0]
+        #- ios_binary not in bootvar.stdout[0]
+      tags:
+        - md5
+
+    - name: Check Boot Path
+      ios_command:
+        commands: 'show boot | i BOOT'
+      register: bootvar
+     # when:
+     #   - switch['ios_binary'] not in bootvar.stdout[0]
+      tags:
+        - bootvar
+
+    - name: Change the boot image to the new version
+      ios_command:
+        commands:  "archive download-sw  flash:{{ ios_archive }}"      
+      when: 
+        - ios_md5_tar in md5_result.stdout[0]
+        - ios_archive in dir_flash.stdout[0]
+        - ios_binary not in bootvar.stdout[0]
+      vars:
+        ansible_command_timeout: 5400
+      tags:
+        - boot
+
+    - name: SAVE CONFIG
+      ios_command:
+        commands: 'write memory'
+      vars:
+        ansible_command_timeout: 180
+
+    - name: Check Boot Path
+      ios_command:
+        commands: 'show boot | i BOOT'
+      register: bootvar
+     # when:
+     #   - switch['ios_binary'] not in bootvar.stdout[0]
+      tags:
+        - bootvar
+
+
+    - debug:
+         msg: ' {{ inventory_hostname }} boot system is  {{ bootvar.stdout[0] }}'
+
+    - name: Assert That the boot path is set to the new IOS
+      assert:
+        that:
+          - ios_binary in bootvar.stdout[0]
+        fail_msg: 'Boot path is not set to compliant software on {{ inventory_hostname }}. Please Troubleshoot!!'
+        success_msg: 'Boot path is set to compliant software on {{ inventory_hostname}}. Reload device to upgrade to compliant IOS version!!'
+      when:
+        - ansible_net_version != ios_version
+      tags:
+        - bootvar    
+
+    - name: Delete TAR file when successfully installed
+      ios_command:
+        commands: 'delete /force flash:{{ ios_archive }}'
+      when:
+        - ios_binary in bootvar.stdout[0]
+        - ios_archive in dir_flash.stdout[0]
+
+
+    - name: Get Copied TAR Software from flash
+      ios_command:
+        commands: "dir  flash: | include {{ ios_archive }}"
+      register: dir_flash
+      vars:
+        ansible_command_timeout: 300
+
+    - name: ENSURE THAT SOFTWARE HAS BEEN DELETED
+      assert:
+        that:
+          - ios_archive not in dir_flash.stdout[0]
+        fail_msg: "{{ ios_archive }} was not deleted from {{ inventory_hostname }}'s flash"
+        success_msg: "{{ ios_archive }} was deleted successfully from {{ inventory_hostname }}'s flash"
+      

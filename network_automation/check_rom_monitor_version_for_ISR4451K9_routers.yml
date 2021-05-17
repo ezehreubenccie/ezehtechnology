@@ -1,0 +1,24 @@
+- name : CHECK ROM MONITOR VERSION OR FIRMWARE VERSION FOR ISR4451K9 ROUTERS
+  connection: network_cli
+  hosts: usapISR4451K9routers
+  gather_facts: false
+
+
+
+
+
+
+
+
+
+  tasks:
+    - name: Check Rom Monitor Version
+      ios_command:
+        commands: 'show rom-monitor r0'
+      register: rom_monitor
+
+    - set_fact:
+        rom_monitor_version: "{{ rom_monitor.stdout[0].split()[3].rstrip(',') }}" 
+
+    - debug:
+        msg: "rom monitor or firmware version for {{ inventory_hostname }} is {{ rom_monitor_version }}"

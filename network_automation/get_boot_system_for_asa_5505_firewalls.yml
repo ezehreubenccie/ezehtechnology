@@ -1,0 +1,21 @@
+- name : USAP CISCO 5505 ASA UPGRADE
+  connection: network_cli
+  hosts: usap5505firewalls lbjlab5505firewalls
+  gather_facts: false
+
+
+  vars:
+    asa_target_version: 9.1(7)32
+
+
+
+  tasks:
+    - name: Get boot Variables
+      asa_command:
+        commands:
+          - command: sh run boot
+      register: bootvar
+
+    - debug:
+        var: bootvar
+

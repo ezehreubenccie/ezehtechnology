@@ -1,0 +1,21 @@
+- name : USAP CISCO 5508X ASA UPGRADE
+  connection: network_cli
+  hosts: usap5508xfirewalls
+  gather_facts: false
+
+
+  vars:
+    asa_target_version: 9.8(4)22
+
+
+
+  tasks:
+    - name: Get boot Variables
+      asa_command:
+        commands:
+          - command: sh run boot
+      register: bootvar
+
+    - debug:
+        var: bootvar
+

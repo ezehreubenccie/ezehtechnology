@@ -1,0 +1,40 @@
+---
+
+
+- name: CHECK IF ASA IMAGE IS PRESENT IN FLASH
+  hosts: dtx-mrt-5506x-asa01
+  connection: network_cli
+  gather_facts: false
+
+  vars:
+    asa_free_space: ''
+    list1: 
+    str1: ''
+    int1: 
+    image_bytes: 8500000000000
+    asa_image: "asa964-41-lfbff-k8.SPA"
+
+  tasks:
+    - name: Check if Asa Image is already present on the flash
+      asa_command:
+        commands: "dir"
+      register: dir_flash
+    - name: set fact
+      set_fact: 
+        list1: "{{ dir_flash['stdout'][0].split('\n')[-1].split()[3][1:11] }}" 
+      register: list1
+      tags:
+        - flash
+
+    - name: Compare two Values
+      assert:
+        that:
+          - list1 > vars['image_bytes']
+        fail_msg: 'Not enough space in flash to copy image'
+        success_msg: ' There is enough space in flash'
+      when:
+        - asa_image not in dir_flash['stdout'][0]
+      tags:
+        - flash
+    - debug:
+        var: list1

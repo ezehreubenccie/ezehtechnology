@@ -1,0 +1,22 @@
+- name : USAP CISCO FPR1120 FTD UPGRADE
+  connection: network_cli
+  hosts:  usapfirepowerfirewalls
+  gather_facts: false
+
+
+  vars:
+    asa_target_version: 9.15(1)10
+
+
+
+  tasks:
+    - name: Get boot Variable and ASDM Image
+      asa_command:
+        commands:
+          - sh run boot
+          - show run asdm | grep image
+      register: bootasdm
+
+    - debug:
+        var: bootasdm
+

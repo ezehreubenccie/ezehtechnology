@@ -1,0 +1,21 @@
+- name : GET BOOT SYSTEM FOR ISR4331K9 ROUTERS
+  connection: network_cli
+  hosts: usapISR4331K9routers usap9300switches 
+  gather_facts: false
+
+
+
+
+
+
+
+
+
+  tasks:
+    - name: Check Boot path
+      ios_command:
+        commands: 'show boot | i BOOT'
+      register: bootvar
+
+    - debug:
+        var: bootvar

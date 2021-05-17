@@ -1,0 +1,17 @@
+---
+
+- name : GATHER ROUTER FACTS
+  connection: network_cli
+  hosts: usapISR4331K9routers
+  gather_facts: false
+
+
+  tasks:
+    - name: Gather all legacy facts
+      ios_facts:
+        gather_subset: config
+      register: output
+      tags:
+        - facts
+    - debug:
+        var: output  

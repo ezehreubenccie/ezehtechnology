@@ -1,0 +1,34 @@
+---
+
+- name: Verify ASA SOFTWARE MD5 HASH
+  connection: network_cli
+  hosts: labasa1 dtx-mrt-5506x-asa01
+  gather_facts: false
+
+  vars:
+    asa_compliant_ver: asa964-41-lfbff-k8.SPA
+    asa_md5: 74c5a58cace7fce57c40fad3a1abef0a
+
+
+  tasks:
+    - name: SHOW MD5 / VERIFY
+      asa_command:
+        commands:
+          - verify /md5 flash:/{{ asa_compliant_ver }}
+      register: results
+
+    - assert:
+        that:
+          - vars['asa_md5'] in results['stdout'][0].split()
+        fail_msg: "The md5 hash of the software {{ vars['asa_compliant_ver'] }} on {{ inventory_hostname }} is not correct!! :( :("
+        success_msg: "Hooray!!. The md5 hash of the software {{ vars['asa_compliant_ver'] }} on {{ inventory_hostname }} is  correct!! :) :)"
+
+
+    #- set_fact:
+     #   myvalue: "{{ results['stdout'] }}"
+
+    #- debug:
+     #   var: myvalue
+    - debug:
+        var: results['stdout'][0].split()
+

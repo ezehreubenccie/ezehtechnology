@@ -1,0 +1,29 @@
+---
+- name: get facts from asa
+  hosts: labasa1 swa-fpr1120-ftd01
+  connection: network_cli
+  gather_facts: no
+
+  tasks:
+    - name: asa facts
+      asa_command:
+        commands:
+          - show run hostname
+          - show version
+          - show inventory
+      register: asa_vars
+
+
+    - name: asa set facts
+      set_fact:
+        ansible_net_hostname: "{{ asa_vars['stdout'][0].split()[1] }}"
+        ansible_net_version: "{{ asa_vars['stdout'][1].split('\n')[0][-9:-1] }}"
+        ansible_net_model: "{{ asa_vars['stdout'][2].split('\n')[1].replace(' ','')[-11:-1] }}"
+        ansible_net_ipaddress: "{{ asa_vars['stdout'][3].split('\n')[6].replace(' ','')[21:29] }}"
+        inventory: "{{ inventory+ [{'hostname': ansible_net_hostname,'ip': ansible_net_ipaddress,'serial':ansible_net_model, 'version': ansible_net_version}] }}"
+
+
+    - name: Display facts
+      debug:
+        var=inventory
+...

@@ -1,0 +1,15 @@
+- name: limit example play
+  hosts: all
+  gather_facts: false
+
+
+
+  tasks: 
+    - name: Tell us which host we are on
+      debug:
+        var: inventory_hostname
+ 
+
+    - name: grab variable data from 5506X firewalls
+      debug:
+        var: hostvars['dtx-mrt-5506x-asa01']['ansible_network_os']

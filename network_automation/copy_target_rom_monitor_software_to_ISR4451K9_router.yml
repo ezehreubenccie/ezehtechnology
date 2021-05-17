@@ -1,0 +1,61 @@
+- name : COPY TARGET ROM MONITOR SOFTWARE TO ISR4451K9 ROUTERS
+  connection: network_cli
+  hosts: usapISR4451K9routers
+  gather_facts: false
+
+
+
+  vars:
+    target_rom_monitor_version: 16.12(2r)
+    target_rom_monitor_software: isr4400_rommon_1612_2r_SPA.pkg
+    rom_monitor_size_kb: 4000
+    ftp_server: '10.2.0.250'
+    protocol: 'ftp'
+    ftp_user: 'reuben'
+    ftp_pass: 'T3nb3ll11p1ds!'
+
+
+  tasks:
+    - name: Gather all ISR4451K9 Router Hardware facts
+      ios_facts:
+        gather_subset: hardware
+      register: output
+
+    - name: Check if Target Rom Software was copied successfully to the flash
+      ios_command:
+        commands: "dir  flash: | include {{ target_rom_monitor_software }}"
+      register: dir_flash
+
+    - name: Check that there is enough space for upload
+      assert:
+        that:
+          - ansible_net_filesystems_info['bootflash:']['spacefree_kb'] > rom_monitor_size_kb
+        fail_msg: 'There is not enough space left on {{ inventory_hostname }} flash'
+        success_msg: '{{ inventory_hostname }} has enough space left on flash. Coping Software to Flash Now!!'
+      when:
+        - target_rom_monitor_software not in dir_flash.stdout[0]
+
+
+    - name: Start Image Copy from FTP Server
+      ios_command:
+         commands:
+          - command: 'copy {{ protocol }}://{{ ftp_user }}:{{ ftp_pass }}@{{ ftp_server }}/{{ target_rom_monitor_software }}  flash:/'
+            prompt: 'Destination filename \[{{ target_rom_monitor_software }}\]?'
+            answer: '{{ target_rom_monitor_software }}'
+      when:
+        - target_rom_monitor_software not in dir_flash.stdout[0]
+        - ansible_net_filesystems_info['bootflash:']['spacefree_kb'] > rom_monitor_size_kb
+      vars:
+        ansible_command_timeout: 4200
+
+    - name: Check if IOS Software was copied successfully to the flash
+      ios_command:
+        commands: "dir  flash: | include {{ target_rom_monitor_software }}"
+      register: dir_flash
+
+    - name: Assert that target rom monitor software  is in Router flash
+      assert:
+        that:
+          - target_rom_monitor_software in dir_flash['stdout'][0]
+        fail_msg: 'Target software {{ target_rom_monitor_software }} was not copied successfully to {{ inventory_hostname }} flash. Please troubleshoot!!'
+        success_msg: 'Hooray!!..Target software {{ target_rom_monitor_software }} was  copied successfully to {{ inventory_hostname }} flash.'

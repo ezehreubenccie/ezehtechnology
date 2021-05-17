@@ -1,0 +1,40 @@
+- name: DELETE FILES FROM 2960X Switches
+  hosts: usap2960xswitches
+  connection: network_cli
+  gather_facts: false
+
+
+
+  vars:
+    ios_archive: c2960x-universalk9-tar.152-7.E2.tar
+    ios_binary: "c2960x-universalk9-mz.152-7.E2.bin"
+    
+
+
+  tasks:
+    - name: Get Copied TAR Software from flash
+      ios_command:
+        commands: "dir  flash: | include {{ ios_archive }}"
+      register: dir_flash
+      vars:
+        ansible_command_timeout: 300
+
+    - name: Check Boot Path
+      ios_command:
+        commands: 'show boot | i BOOT'
+      register: bootvar
+     # when:
+     #   - switch['ios_binary'] not in bootvar.stdout[0]
+      tags:
+        - bootvar
+    
+    - name: Delete TAR file when successfully installed
+      ios_command:
+        commands:
+          - command: 'delete flash:{{ ios_archive }}'
+            prompt: 'Delete filename \[{{ ios_archive }}\]?'
+            answer: '\r'
+      when:
+        - ios_binary in bootvar.stdout[0]
+        - ios_archive in dir_flash.stdout[0]
+

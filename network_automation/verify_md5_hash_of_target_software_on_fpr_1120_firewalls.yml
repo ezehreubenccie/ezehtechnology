@@ -1,0 +1,36 @@
+- name : VERIFY MD5 HASH OF ASA TARGET SOFTWARE COPIED TO FPR1120 FIREWALLS
+  connection: network_cli
+  hosts: usapfirepowerfirewalls
+  gather_facts: false
+
+
+  vars:
+    asa_target_version: "9.15(1)10"
+    asa_image: "cisco-asa-fp1k.9.15.1.10.SPA"
+    asa_md5: 46304f7fbb12e3d0fe6cee90b3e0a720
+
+
+  tasks:
+    - name: Check Contents of flash to verify if target software is present
+      asa_command:
+        commands: 'show disk0 | grep {{ asa_image }}'
+      register: dir_flash
+
+    - name: Check AND VERFIY MD5 Hash
+      block:
+        - name: Check MD5 Hash
+          asa_command:
+            commands:
+              - "verify /md5 flash:{{ asa_image}}"
+          register: md5_result
+          vars:
+            ansible_command_timeout: 300
+
+        - name: Assert That MD5 Sums are Identical
+          assert:
+            that:
+              - asa_md5 in md5_result['stdout'][0].split()
+            fail_msg: "The md5 hash of the software {{ asa_image }} on {{ inventory_hostname }} is not correct!! :( :("
+            success_msg: "Hooray!!. The md5 hash of the software {{ asa_image }} on {{ inventory_hostname }} is  correct!! :) :)"
+      when:    
+        - asa_image in dir_flash['stdout'][0]                  

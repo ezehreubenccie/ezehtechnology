@@ -1,0 +1,21 @@
+- name : GET BOOT SYSTEM FOR ISR4321K9 ROUTERS
+  connection: network_cli
+  hosts: lbjlabrouters
+  gather_facts: false
+
+
+
+
+
+
+
+
+
+  tasks:
+    - name: Check Boot path
+      ios_command:
+        commands: 'show bootvar | i BOOT'
+      register: bootvar
+
+    - debug:
+        var: bootvar

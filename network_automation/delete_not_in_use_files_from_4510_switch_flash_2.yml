@@ -1,0 +1,94 @@
+- name: DELETE FILES THAT ARE NOT IN USE FROM CISCO 4510R+E SWITCH FLASH
+  hosts: usap4510REswitches
+  connection: network_cli
+  gather_facts: false
+
+  vars:
+    target_system_image_file: "cat4500e-universalk9.SPA.03.11.03a.E.152-7.E3a.bin" 
+    system_image_file: "cat4500e-universalk9.SPA.03.11.03a.E.152-7.E3a.bin"
+    file_type: '.bin'
+    flash_num: 'slavebootflash:'
+    empty_string: ''
+    spacefree_before:
+    spacefree_after:
+
+
+  tasks:
+    - name: Gather 4510R+E SWITCH Hardware facts
+      ios_facts:
+        gather_subset: hardware
+
+    - name: Gather all 4510R+E SWITCH  Hardware facts
+      ios_command:
+        commands:
+          - command: show version | in System image file
+      register: system_image_file
+
+    
+    - name: Gather FLASH FACTS FOR 4510R+E SWITCH 
+      ios_command:
+        commands:
+          - command: 'dir {{ flash_num }}'
+      register: flash_contents
+
+
+    - debug:
+        var: flash_contents.stdout_lines[0]
+
+    - name: set fact 1
+      set_fact:
+        spacefree_before: "{{flash_contents.stdout_lines[0][-1].split()[3].replace('(', '')}}"
+
+    
+    - name: DISPLAY FREE SPACE BEFORE DELETE
+      debug:
+        msg: "Free space is  {{ spacefree_before|float / 1000000  }}MB for {{ ansible_net_hostname }} before delete task."
+      tags: spacefree
+      
+          
+   # - debug:
+        #var: flash_contents.stdout_lines[0][1]
+
+    - name: set fact 1
+      set_fact:
+        list1: "{{ flash_contents.stdout_lines[0][2:-2] }}"
+
+    #- debug:
+        #var: list1[4].split()[-1]
+
+    - name: DELETE FLASH FILES NOT IN USE
+      ios_command: 
+        commands:
+          - command: delete /force {{flash_num}}{{ item.split()[-1] }}
+      loop: '{{ list1 }}'
+      when: 
+         - 'file_type in  item.split()[-1]'
+         - 'item.split()[-1]  !=  system_image_file.stdout_lines[0][0].split()[4][1:-1].split(":")[1]'
+         - 'item.split()[-1]  !=  target_system_image_file'
+         #- 'item != empty_string'
+
+    - name: GET FREE SPACE AFTER DELETE
+      ios_facts:
+        gather_subset: hardware
+      tags: spacefree
+
+
+    - name: Gather FLASH FACTS FOR 4510R+E SWITCH 
+      ios_command:
+        commands:
+          - command: 'dir {{ flash_num }}'
+      register: flash_contents
+
+
+    - debug:
+        var: flash_contents.stdout_lines[0]
+
+    - name: set fact 1
+      set_fact:
+        spacefree_after: "{{flash_contents.stdout_lines[0][-1].split()[3].replace('(', '')}}"
+
+
+    - debug:
+        msg: "Free space is  {{ spacefree_after|float / 1000000 }}MB for {{ ansible_net_hostname }} after delete task. {{ spacefree_after|float / 1000000 - spacefree_before|float / 1000000 }}MB was recovered!."
+
+   

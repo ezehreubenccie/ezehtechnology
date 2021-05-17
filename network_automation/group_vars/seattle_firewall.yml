@@ -1,0 +1,54 @@
+---
+
+asafirepower:
+  hostname: SWA-FPR1120-FTD01
+  domainname: usap.com
+  md5_authentication_password: T3nb5li1kp#Ds!@_A
+  aes_privacy_password: T3nb5li1kp#Ds!@_P
+  enable_secret_password: T3nb5li1kp#Ds!@
+  local_username: usapadmin
+  local_username_secret_password: T3nb5li1kp#Ds!@
+  primary_isp_name_circuitnumber_accountnumber: Comcast_acct#:8498320016162467
+  primary_isp_outside_interface_name: outside
+  primary_isp_public_ipaddress: 50.210.60.49
+  primary_isp_public_ipaddress_subnetmask: 255.255.255.248
+  primary_isp_public_ipaddress_gateway: 50.210.60.54
+  channel_group_number: 1
+  secondary_isp_name_circuitnumber_accountnumber:
+  asafirepower.secondary_isp_outside_interface_name:
+  secondary_isp_public_ipaddress:
+  secondary_isp_public_ipaddress_gateway:
+  datavlan01: 100
+  datavlan01_name: Data
+  ipaddress_datavlan01:  10.8.0.1
+  datavlan01_subnetmask: 255.255.255.0
+  voicevlan01: 200
+  voicevlan01_name: Voice
+  ipaddress_voicevlan01:  10.8.1.1
+  voicevlan01_subnetmask: 255.255.255.0
+  corp_wifi_vlan01: 300
+  corp_wifi_vlan01_name: Corp_Wifi
+  ipaddress_corp_wifi_vlan01:  10.8.3.1
+  corp_wifi_vlan01_subnetmask: 255.255.255.0
+  guest_wifi_vlan01: 305
+  guest_wifi_vlan01_name: Guest_Wifi
+  ipaddress_guest_wifi_vlan01:  10.8.4.1
+  guest_wifi_vlan01_subnetmask: 255.255.255.0
+  printervlan01: 400
+  printervlan01_name: Printer
+  ipaddress_printervlan01:  10.8.2.1
+  printervlan01_subnetmask: 255.255.255.0
+  timezone_for_state: US/Pacific
+  dns_server01:  10.8.0.7
+  dns_server02:  10.8.0.6
+  dns_server03: 10.2.0.100
+  datavlan01_subnet:  10.8.0.0
+  voicevlan01_subnet:  10.8.1.0
+  corp_wifi_vlan01_subnet:  10.8.3.0
+  guest_wifi_vlan01_subnet:  10.8.4.0
+  printervlan01_subnet:  10.8.2.0
+  city: seattle
+  state: washington
+  city_state_abbreviation: swa
+  preshared_secret: dj.kcX+$+FF<E~zl}QmD:]^[
+ 

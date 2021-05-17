@@ -1,0 +1,18 @@
+- name: GATHER NEXUS5672UP SWITCH FACTS
+  connection: network_cli
+  hosts: usap5672UPnexusswitches
+  gather_facts: false
+
+  vars:
+    nexus_switch_compliant_ver: 7.3(8)N1(1)
+
+  tasks:
+    - name: Gather all NEXUS5672UP Switch Hardware facts
+      cisco.nxos.nxos_facts:
+        gather_subset: hardware
+      register: output
+
+
+    - name: Print facts to console
+      debug:
+        var: output

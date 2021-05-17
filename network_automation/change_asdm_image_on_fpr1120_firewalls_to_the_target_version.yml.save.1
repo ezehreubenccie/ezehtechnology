@@ -1,0 +1,110 @@
+CC- name : CHANGE ASDM IMAGE ON 5506X ASA FIREWALLS
+  connection: network_cli
+  hosts: usap5506xfirewalls labfirewalls
+  gather_facts: false
+
+  vars:
+    asdm_target_version: "7.13(1)"
+    target_asdm_image: "asdm-7131-101.bin"
+    asdm_md5: fac75582056ebb9599d03f1ca354073c
+    asdm_compatible_ver: 7.13(1)
+    asdmversion:
+
+
+  tasks:
+    - name: Check Contents of flash to verify if target software is present
+      asa_command:
+        commands: 'show disk0 | grep {{ target_asdm_image }}'
+      register: dir_flash
+
+    - name: Check MD5 Hash
+      asa_command:
+        commands:
+          - "verify /md5 flash:{{ target_asdm_image}}"
+      register: md5_result
+      vars:
+        ansible_command_timeout: 300
+
+
+    - name: Verify ASDM Image
+      asa_command:
+        commands:
+          - sh run asdm | grep image
+      register: asdm_config
+
+    - debug:
+        var: asdm_config
+
+    - name: set fact
+      set_fact:
+        #asdmimage: "{{ asdm_config['stdout'][0] }}"
+        asdmimage: "{{ asdm_config.stdout_lines[0][0].split()[-1].split(':/')[-1] }}"
+
+    - debug:
+        msg: 'Changing asdm image  {{ asdmimage }} to compaible asdm image {{ target_asdm_image }}'
+      tags:
+        - asdmvars
+
+    - name: Remove ASDM Image
+      asa_config:
+        lines:
+          - 'no asdm image disk0:/{{ asdmimage }}'
+      when:
+        - target_asdm_image in dir_flash['stdout'][0]
+        - asdm_md5 in md5_result['stdout'][0].split()
+        - target_asdm_image not in asdm_config.stdout[0]
+
+    - name: Set ASDM Image
+      asa_config:
+        lines:
+          - "asdm image disk0:/{{ target_asdm_image }}"
+          - 'wr'
+      when:
+        - target_asdm_image in dir_flash['stdout'][0]
+        - asdm_md5 in md5_result['stdout'][0].split()
+        - target_asdm_image not in asdm_config.stdout[0]
+
+    - name: Verify ASDM Image
+      asa_command:
+        commands:
+          - sh run asdm | grep image
+      register: asdm_config
+    - debug:
+        var: asdm_config
+
+    - name: asdm facts
+      asa_command:
+        commands:
+          - show version
+      register: asdm_vars_version
+
+    - name: set fact 1
+      set_fact:
+        asdmversion: "{{ asa_vars.stdout_lines[1][2].split()[-1] }}"
+      when: "'Firepower'  in asa_vars.stdout_lines[1][1]"
+
+    - name: set fact 2
+      set_fact:
+        asdmversion: "{{ asa_vars.stdout_lines[1][2].split()[-1] }}"
+      when:  "'SSP' in asa_vars.stdout_lines[1][1]"
+
+    - name: set fact 3
+      set_fact:
+        asdmversion: "{{ asa_vars.stdout_lines[1][1].split()[-1] }}"
+      when:
+        - "'Firepower'  not in asa_vars['stdout'][1]"
+        - "'SSP' not in asa_vars['stdout'][1]"
+
+
+
+    - name: Assert That ASDM Image Is Set To Target ASDM Software
+      assert:
+        that:
+          - asdm_config.stdout_lines[0][0].split()[-1].split(':/')[-1] == target_asdm_image
+        fail_msg: "asdm image is not set correctly. it is {{asdm_config.stdout_lines[0][0].split()[-1].split(':/')[-1]}}. Asdm has not been upgraded. :("
+        success_msg: "Hooray!!..asdm image is set correctly. it is {{ asdm_config.stdout_lines[0][0].split()[-1].split(':/')[-1] }}.Configuration was saved  with 'write memory' asdm has been upgraded!"
+      when:
+        #- asa_image in dir_flash['stdout'][0]
+        #- asa_md5 in md5_result['stdout'][0].split()
+        - asdmversion !=  asdm_compatible_ver
+       

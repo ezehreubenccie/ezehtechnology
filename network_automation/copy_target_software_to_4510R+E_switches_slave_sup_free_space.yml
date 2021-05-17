@@ -1,0 +1,36 @@
+- name : COPY TARGET SOFTWARE TO 4510R+E SWITCHES SLAVE SUPERVISOR
+  connection: network_cli
+  hosts: usap4510REswitches
+  gather_facts: false
+
+
+
+  vars:
+    ios_version: 03.11.03a.E
+    ios_binary: cat4500es8-universal.SPA.03.11.03a.E.152-7.E3a.bin
+    ios_size_kb: 300000
+    ftp_server: '10.2.0.250'
+    protocol: 'ftp'
+    ftp_user: 'reuben'
+    ftp_pass: 'T3nb3ll11p1ds!'
+    free_space:
+
+
+  tasks:
+    - name: Gather all ISR4451K9 Router Hardware facts
+      ios_facts:
+        gather_subset: hardware
+      register: output
+
+    - name: Get Slave BootFlash Free Space
+      ios_command:
+        commands: 'dir slavebootflash:'
+      register: dir_flash_space
+
+    - name: Set Fact 
+      set_fact: 
+        free_space: "{{ dir_flash_space.stdout_lines[0][-1].split()[3].replace('(', '') }}"
+ 
+    - name: Print Space
+      debug:
+        var: free_space

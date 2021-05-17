@@ -1,0 +1,21 @@
+- name : GET BOOT SYSTEM FOR ISR4321K9 ROUTERS
+  connection: network_cli
+  hosts: usapISR4321K9routers
+  gather_facts: false
+
+
+
+
+
+
+
+
+
+  tasks:
+    - name: Check Boot path
+      ios_command:
+        commands: 'show boot | i BOOT'
+      register: bootvar
+
+    - debug:
+        var: bootvar

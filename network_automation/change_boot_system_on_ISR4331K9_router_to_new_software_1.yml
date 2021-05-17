@@ -1,0 +1,28 @@
+- name : CHANGE BOOT SYSTEM ON ISR4331 ROUTER TO NEW SOFTWARE
+  connection: network_cli
+  hosts: usapISR4331K9routers
+  gather_facts: false
+
+
+
+  vars:
+    ios_binary: isr4300-universalk9.16.06.08.SPA.bin
+    ios_md5: 10cb4589883439d31f27fcfaee6bb8db
+    ios_version: 16.06.08
+    old_boot_system:
+
+
+  tasks:
+    - name: Check Boot Path
+      ios_command:
+        commands: 'show boot | i BOOT'
+      register: bootvar
+      tags:
+        - bootvar
+
+
+    - debug: 
+        var: bootvar.stdout[0].split()[3].split(',')[0]
+
+    - set_fact:
+        old_boot_system: "{{ bootvar.stdout[0].split()[3].split(',')[0] }}"

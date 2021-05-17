@@ -1,0 +1,73 @@
+- name: DELETE FILES THAT ARE NOT IN USE FROM CISCO ROUTER FLASH
+  hosts: lbjlabrouters
+  connection: network_cli
+  gather_facts: false
+
+  vars: 
+    system_image_file:  "isr4300-universalk9.16.12.05.SPA.bin"
+    file_type: '.bin'
+    empty_string: ''
+    spacefree_before:
+    spacefree_after:
+
+
+  tasks:
+    - name: Gather all ISR4331K9 Router Hardware facts
+      ios_facts:
+        gather_subset: hardware
+      
+
+    - name: Set fact before delete
+      set_fact:
+        spacefree_before: "{{ ansible_net_filesystems_info['bootflash:']['spacefree_kb'] }}"
+      
+
+    
+    - name: DISPLAY FREE SPACE BEFORE DELETE
+      debug:
+        msg: "Free space is  {{ spacefree_before }}KB for {{ ansible_net_hostname }} before delete task."
+      tags: spacefree
+      
+    - name: DISPLAY CONTENTS OF FLASH
+      ios_command:
+        commands:
+          - command: dir
+      register: flash_contents
+
+          
+
+
+   # - debug:
+        #var: flash_contents.stdout_lines[0][1]
+
+    - name: set fact 1
+      set_fact:
+        list1: "{{ flash_contents.stdout_lines[0][2:-2] }}"
+
+    #- debug:
+        #var: list1[4].split()[-1]
+
+    - name: DELETE FLASH FILES NOT IN USE
+      ios_command: 
+        commands:
+          - command: delete /force bootflash:{{ item.split()[-1] }}
+      loop: '{{ list1 }}'
+      when: 
+         - 'file_type in  item.split()[-1]'
+         - 'item.split()[-1]  !=  system_image_file'
+         - 'item != empty_string'
+
+    - name: GET FREE SPACE AFTER DELETE
+      ios_facts:
+        gather_subset: hardware
+      tags: spacefree
+
+    - name: Set fact after delete
+      set_fact:
+        spacefree_after: "{{ ansible_net_filesystems_info['bootflash:']['spacefree_kb'] }}"
+      tags: spacefree  
+
+    - debug:
+        msg: "Free space is  {{ spacefree_after }}KB for {{ ansible_net_hostname }} after delete task. {{ spacefree_after|float - spacefree_before|float }}KB was recovered!."
+
+   

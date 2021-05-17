@@ -1,0 +1,11 @@
+---
+- name: print stuff
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: print out something
+      debug:
+        msg: 'I love python'
+
+

@@ -1,0 +1,13 @@
+---
+
+- name: NET PING
+  hosts: labasa1
+  connection: network_cli
+  gather_facts: false
+
+
+
+  tasks:
+    - name: Ping from device to destination
+      net_ping:
+        dest: 10.4.234.22

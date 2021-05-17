@@ -1,0 +1,41 @@
+- name: BUILD CISCO ISR4331K9 INVENTORY
+  connection: network_cli
+  hosts: usapISR4331K9routers
+  gather_facts: false
+
+  vars:
+    hostname:
+    version:
+    serialnum:
+    ipaddress:
+    physicaladdress:
+
+
+  tasks:
+    - name: Gather ISR 4331 Router Facts
+      ios_facts:
+      register: routerfacts
+
+
+    - debug:
+        var: routerfacts
+
+
+
+
+
+
+
+
+    - name: Display facts
+      debug:
+        msg: "The software version for {{ ansible_net_hostname }} is Everest-{{ ansible_net_version }} on platform {{ ansible_net_serialnum }} with ip address {{ ipaddress }} "
+
+    - name: Write mydevices.csv
+      run_once: true
+      shell: echo Serial Number,Device Name,Device os version, Device IP address  > mydevices.csv
+
+
+    - name: Write My Devices CSV File
+      shell: echo "{{ serialnum }},{{ hostname }},{{ version }},{{ ipaddress }}" >> mydevices.csv
+      delegate_to: localhost

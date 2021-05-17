@@ -1,0 +1,26 @@
+- name: SEND CONFIG TO 5506X FIREWALL USING FILE
+  connection: network_cli
+  hosts: labasa1
+  gather_facts: false
+
+
+  tasks:
+    - name: Send Configs to 5506X Firewall using file
+      asa_config:
+        src: "./configs2/test_5506x_firewall_config.cfg"
+        after:
+      register: output
+
+
+    - debug:
+        var: output
+
+
+    - name: Save Config
+      asa_command:
+        commands: 'write memory'
+      register: saved_config
+
+
+    - debug:
+        var: saved_config

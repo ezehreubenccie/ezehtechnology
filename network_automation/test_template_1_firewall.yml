@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  gather_facts: false
+  connection: local
+  vars_files:
+    - /etc/ansible/seattle_firewall.yml   
+
+
+  tasks:
+    - name: generate seattle firewall config
+      template: src=/root/network_automation/jinja/seattle_firewall.j2 dest=/root/network_automation/configs2/{{asafirepower['hostname']}}.cfg
+      with_dict: '{{ asafirepower }}'
+

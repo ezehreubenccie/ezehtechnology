@@ -1,0 +1,12 @@
+---
+- name: GENERATE USAP NEW SITE CONFIG
+  hosts: swa-fpr1120-ftd01 swa-2960xr-sw-stack
+  connection: local
+  gather_facts: no
+
+
+  tasks:
+    - name: GENERATE CONFIGS FOR EACH DEVICE
+      template:
+        src: './usap_new_site_config/{{ os }}.j2'
+        dest: './configs/{{ inventory_hostname }}.cfg'

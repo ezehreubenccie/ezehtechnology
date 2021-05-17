@@ -1,0 +1,18 @@
+---
+
+- name: upload software image to cisco asa firewall
+  hosts: labasa1
+  gather_facts: false
+  connection: network_cli
+
+
+  tasks:
+    - name: upload software image to asa
+      ntc_file_copy:
+        file_system: disk0
+        local_file: images/asa984-22-lfbff-k8.SPA
+        host: labasa1
+        platform: cisco_asa_ssh
+        username: reuben
+        password: cisco
+        secret: cisco

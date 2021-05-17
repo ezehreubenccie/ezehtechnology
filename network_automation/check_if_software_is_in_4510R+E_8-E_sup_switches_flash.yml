@@ -1,0 +1,32 @@
+- name : CHECK IF TARGET SOFTWARE IS IN 4510R+E SWITCHES FLASH
+  connection: network_cli
+  hosts: usap4510REswitches
+  gather_facts: false
+
+
+
+  vars:
+    ios_binary: cat4500es8-universalk9.SPA.03.11.03a.E.152-7.E3a.bin
+    
+
+
+
+  tasks:
+    - name: Check if IOS is already present on the flash
+      ios_command:
+        commands: "dir  bootflash: | include {{ ios_binary }}"
+      vars:
+        ansible_command_timeout: 1800
+      register: show_flash
+
+    - debug:
+        var: show_flash
+
+    - name: Assert that target 4501R+E switch software is present in flash
+      assert:
+        that:
+          - ios_binary in show_flash['stdout'][0]
+        fail_msg: "Compliant Software not present in {{inventory_hostname}}'s flash"
+        success_msg: "Compliant Software is  present in {{inventory_hostname}}'s flash"
+      tags:
+        - flash

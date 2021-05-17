@@ -1,0 +1,99 @@
+
+---
+- name: ISR4331/K9 ROUTER  RELOAD
+  hosts: usapISR4331K9routers
+  gather_facts: false
+  connection: network_cli
+
+  vars:
+    router:
+        router_target_version: "16.12.05"
+        router_image: "isr4300-universalk9.16.12.05.SPA.bin"
+   
+
+  tasks:
+     - name: SAVE CONFIG
+       ios_command:
+         commands: 'write memory'
+       register: config_save_output
+
+     - debug:
+         var: config_save_output
+
+     - name: Email start of process on Router Name
+       mail:
+         subject: Reloading {{ inventory_hostname }}
+         host: 10.2.0.105
+         port: 25
+         to: 
+           - Network.Monitoring@usap.com
+           - reuben.ezeh@usap.com
+           - russell.booker@usap.com
+         from: ansible-reload@usap.com
+       delegate_to: localhost
+       tags:
+         - email
+         - reload
+    
+     - name: Reload Router
+       ios_command:
+         commands:
+           - command: reload
+             prompt: "Proceed with reload?"
+             answer: 'y'
+       #vars:
+        # ansible_command_timeout: 1800
+       tags:
+         - reload
+
+     - name: reset the connection
+       meta: reset_connection
+    
+     - name: Wait for the Router to return
+       wait_for_connection:
+         #host: "{{ ansible_host }}"
+         #port: 22
+         delay: 2
+         timeout: 1080 
+       #delegate_to: localhost
+       #vars:
+        # ansible_command_timeout: 300
+       #tags:
+         #- reload
+         #- check_online
+    
+     - name: Email Router name back online
+       mail:
+         subject: Back Online {{ inventory_hostname }}
+         host: 10.2.0.105
+         port: 25
+         to: 
+           - Network.Monitoring@usap.com
+           - reuben.ezeh@usap.com
+           - russell.booker@usap.com
+         from: ansible-reload@usap.com
+       delegate_to: localhost
+       tags:
+          - email
+          - reload
+
+     - name: Gather all legacy facts
+       ios_facts:
+         gather_subset: hardware
+       tags:
+         - facts
+    
+     - name: Asset that the Router IOS version is the correct one
+       assert:
+         that:
+           - ansible_net_version == router['router_target_version']
+         fail_msg: '{{ inventory_hostname }} ios version is {{ ansible_net_version }} router upgrade was not successfull!. :( :( :('
+         success_msg: '{{ inventory_hostname }} ios version is {{ ansible_net_version }} router upgrade was successfull. Yayyyy!!'
+       tags:
+         - facts
+
+
+
+
+    
+        

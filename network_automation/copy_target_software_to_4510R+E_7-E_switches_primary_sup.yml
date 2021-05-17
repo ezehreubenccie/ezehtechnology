@@ -1,0 +1,66 @@
+- name : COPY TARGET SOFTWARE TO 4510R+E SWITCHES PRIMARY SUPERVISOR
+  connection: network_cli
+  hosts: usap4510REswitches
+  gather_facts: false
+
+
+
+  vars:
+    ios_version: 03.11.03a.E
+    ios_binary: cat4500e-universalk9.SPA.03.11.03a.E.152-7.E3a.bin
+    ios_size_kb: 300000
+    ftp_server: '10.2.0.250'
+    protocol: 'ftp'
+    ftp_user: 'reuben'
+    ftp_pass: !vault |
+          $ANSIBLE_VAULT;1.2;AES256;reuben3010
+          34396631336161386132343637343935653434376634386133363364616335383630653634653466
+          3438373365623464356363356161626635373835633230660a656662633962303265393030653862
+          63373664626230643933393365666265643139646563363633616532323330636634323430663638
+          3835646366333666650a383562633265333030356562343532633132356234356433653564323035
+          3561
+
+  tasks:
+    - name: Gather all ISR4451K9 Router Hardware facts
+      ios_facts:
+        gather_subset: hardware
+      register: output
+
+    - name: Check if IOS Software was copied successfully to the flash
+      ios_command:
+        commands: "dir  bootflash: | include {{ ios_binary }}"
+      register: dir_flash
+
+    - name: Check that there is enough space for upload
+      assert:
+        that:
+          - ansible_net_filesystems_info['bootflash:']['spacefree_kb'] > ios_size_kb
+        fail_msg: 'There is not enough space left on {{ inventory_hostname }} primary supervisor flash'
+        success_msg: '{{ inventory_hostname }} has enough space left on primary supervisor flash. Coping Software to Flash Now!!'
+      when:
+        - ios_binary not in dir_flash.stdout[0]
+
+
+    - name: Start Image Copy from FTP Server
+      ios_command:
+         commands:
+          - command: 'copy {{ protocol }}://{{ ftp_user }}:{{ ftp_pass }}@{{ ftp_server }}/{{ ios_binary }}  bootflash:/'
+            prompt: 'Destination filename \[{{ ios_binary }}\]?'
+            answer: '{{ ios_binary }}'
+      when:
+        - ios_binary not in dir_flash.stdout[0]
+        - ansible_net_filesystems_info['bootflash:']['spacefree_kb'] > ios_size_kb
+      vars:
+        ansible_command_timeout: 4200
+
+    - name: Check if IOS Software was copied successfully to the flash
+      ios_command:
+        commands: "dir  bootflash: | include {{ ios_binary }}"
+      register: dir_flash
+
+    - name: Assert that software BIN is in Router flash
+      assert:
+        that:
+          - ios_binary in dir_flash['stdout'][0]
+        fail_msg: 'Target software {{ ios_binary }} was not copied successfully to {{ inventory_hostname }} flash. Please troubleshoot!!'
+        success_msg: 'Hooray!!..Target software {{ ios_binary }} was  copied successfully to {{ inventory_hostname }} flash.'

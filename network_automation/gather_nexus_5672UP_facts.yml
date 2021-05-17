@@ -1,0 +1,17 @@
+---
+
+- name: GATHER NEXUS CORE SWITCH FACTS
+  connection: network_cli
+  gather_facts: false
+  hosts: usap5672UPnexusswitches
+
+
+  tasks:
+    - name: Gather Nexus Facts
+      nxos_facts:
+        gather_subset: hardware
+      register: nexus_facts
+
+
+    - debug:
+        var: nexus_facts

@@ -1,0 +1,31 @@
+---
+
+- name: upload images via FTP
+  hosts: dtx-mrt-5506x-asa01
+  connection: network_cli
+  gather_facts: false
+  vars:
+    user: reuben
+    pass1: cisco
+    ftp_ip: 10.7.250.54
+    source_file: show_tech_support_2A_03_06_2020.txt
+    dest_file: show_tech_support_2A_03_06_2020.txt
+  tasks:
+    - name: ftp upload
+      cli_command:
+        command: 'copy ftp://{{ user }}:{{ pass1 }}@{{ ftp_ip }}/{{ source_file }}   disk0:/{{ dest_file }}'
+        prompt:
+          - Address or name of remote host 
+          - Source username 
+          - Source password 
+          - Source filename
+          - Destination filename
+          - Warning
+        answer:
+          - '{{ ftp_ip }}'
+          - '{{ user }}'
+          - '{{ pass1 }}'
+          - '{{ source_file }}'
+          - '{{ dest_file }}'
+          - 'n'
+        check_all: True

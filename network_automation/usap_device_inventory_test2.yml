@@ -1,0 +1,44 @@
+---
+- name: get facts from asa
+  hosts: labasa1 swa-fpr1120-ftd01
+  connection: network_cli
+  gather_facts: no
+
+  vars:
+    hostname:
+    version:
+    serialnum:
+    ipaddress:
+
+  tasks:
+    - name: asa facts
+      asa_command:
+        commands:
+          - show run hostname
+          - show version
+          - show inventory
+          - show ip | inc CONFIG
+      register: asa_vars
+
+
+    - name: asa set facts
+      set_fact:
+        hostname: "{{ asa_vars['stdout'][0].split()[1] }}"
+        version: "{{ asa_vars['stdout'][1].split('\n')[0][-9:-1] }}"
+        serialnum: "{{ asa_vars['stdout'][2].split('\n')[1].replace(' ','')[-11:-1] }}"
+        ipaddress: "{{ asa_vars['stdout'][3].split('\n')[1]  | regex_search('\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b') }}"
+
+
+
+    - name: Display facts
+      debug:
+        msg: "The software version for {{ hostname }} is {{ version }} on platform {{ serialnum }} with ip address {{ ipaddress }} "
+
+    - name: Write mydevices.csv
+      run_once: true
+      shell: echo Serial Number,Device Name,Device os version, Device IP address  > mydevices.csv
+
+
+    - name: Write My Devices CSV File
+      shell: echo "{{ serialnum }},{{ hostname }},{{ version }},{{ ipaddress }}" >> mydevices.csv
+      delegate_to: localhost
