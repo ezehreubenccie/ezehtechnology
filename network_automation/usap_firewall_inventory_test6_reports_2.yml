@@ -33,7 +33,7 @@
           - show run hostname
           - show version
           - show inventory
-          - show ip | in INSIDE|inside|Data|guestwifi|DATA
+          - show ip | in INSIDE|inside|Data|guestwifi|DATA|FW
           - sh run snmp-server | grep location
       register: asa_vars
     
@@ -56,7 +56,7 @@
         version: "{{ asa_vars.stdout_lines[1][0].split()[-1] }}"
         serialnum: "{{ asa_vars.stdout_lines[2][1].split()[-1] }}"
         ipaddress: "{{ asa_vars.stdout_lines[3][0].split()[2] }}"
-        asdmversion: "{{ asa_vars.stdout_lines[1][2].split()[-1] }}"
+       # asdmversion: "{{ asa_vars.stdout_lines[1][2].split()[-1] }}"
         physicaladdress: "{{ asa_vars.stdout[4][21:].replace(',','') }}"
         lastUpgradeTime: "{{ asauptime.stdout_lines[0][0].split()[2] + asauptime.stdout_lines[0][0].split()[3] + ' ' + asauptime.stdout_lines[0][0].split()[4] + asauptime.stdout_lines[0][0].split()[5] }}"    
 
