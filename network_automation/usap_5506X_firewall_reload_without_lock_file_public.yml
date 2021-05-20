@@ -26,7 +26,7 @@
      - name: Email start of process on Firewall Name
        mail:
          subject: Reloading {{ inventory_hostname }}
-         host: 10.2.0.105
+         host: 1.x.y.z
          port: 25
          to: 
            - N@t.com
