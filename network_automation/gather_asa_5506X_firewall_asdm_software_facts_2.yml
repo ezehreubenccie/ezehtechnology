@@ -19,7 +19,7 @@
           - show run hostname
           - show version
           - show inventory
-          - show ip | in INSIDE|inside|Data|guestwifi|DATA
+          - show ip | in INSIDE|inside|Data|guestwifi|DATA|FW
           - show run asdm | grep image
       register: asa_vars
 
