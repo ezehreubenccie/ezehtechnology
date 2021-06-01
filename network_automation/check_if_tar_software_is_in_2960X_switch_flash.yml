@@ -26,7 +26,7 @@
       assert:
         that:
           - ios_tar in show_flash['stdout'][0]
-        fail_msg: "Target Tar Software {{ ios_tar }}  not present in {{inventory_hostname}}'s flash"
-        success_msg: "Target Tar Software {{ ios_tar }} is  present in {{inventory_hostname}}'s flash"
+        fail_msg: "Desired Tar Software {{ ios_tar }}  not present in {{inventory_hostname}}'s flash"
+        success_msg: "Desired Tar Software {{ ios_tar }} is  present in {{inventory_hostname}}'s flash"
       tags:
         - flash

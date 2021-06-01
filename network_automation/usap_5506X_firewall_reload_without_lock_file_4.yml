@@ -50,15 +50,15 @@
        tags:
          - reload
 
-     - name: reset the connection
-       meta: reset_connection
+     #- name: reset the connection
+      # meta: reset_connection
 
      - name: Wait for the firewall to return
-       wait_for_connection:
-         #host: "{{ ansible_host }}"
-         #port: 22
-         delay: 2
-         timeout: 600
+       wait_for:
+         host: "{{ ansible_host }}"
+         port: 22
+         delay: 240
+         timeout: 1800
          #ignore_errors: yes
        #delegate_to: localhost
        #tags:

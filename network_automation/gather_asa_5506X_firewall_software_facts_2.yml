@@ -23,8 +23,8 @@
           - show run asdm | grep image
       register: asa_vars
 
-    #- debug:
-        #var: asa_vars
+    - debug:
+        var: asa_vars
 
     - name: asa set facts
       set_fact:

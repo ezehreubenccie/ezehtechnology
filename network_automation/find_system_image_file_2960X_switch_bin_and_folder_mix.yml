@@ -6,7 +6,7 @@
   vars: 
     target_system_image_folder:  "c2960x-universalk9-mz.152-7.E3"
     folder_name_includes: "c2960x-universalk9"
-    flash_num: 'flash2:'
+    flash_num: 'flash:'
     flash_bin_file: '.bin'
     flash_tar_file: 'c2960x-universalk9-tar.'
     #folder_name: test 

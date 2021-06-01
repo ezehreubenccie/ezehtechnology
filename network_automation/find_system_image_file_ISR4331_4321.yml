@@ -1,5 +1,5 @@
 - name: DELETE FILES THAT ARE NOT IN USE FROM CISCO ROUTER FLASH
-  hosts: usapISR4331K9routers
+  hosts: usapISR4331K9routers:lbjlabrouters
   connection: network_cli
   gather_facts: false
 
