@@ -1,7 +1,7 @@
 ---
 
 - name: NET PING
-  hosts: labasa1
+  hosts: dtx-lbj-4331-rtr01
   connection: network_cli
   gather_facts: false
 
@@ -10,4 +10,8 @@
   tasks:
     - name: Ping from device to destination
       net_ping:
-        dest: 10.4.234.22
+        dest: 4.2.2.2
+      register: output
+
+    - debug:
+        var: output

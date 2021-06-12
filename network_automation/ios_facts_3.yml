@@ -1,0 +1,15 @@
+---
+- name: IOS FACTS
+  gather_facts: false
+  hosts: dtx-mrt-4510-sw01
+
+
+  tasks:
+    - name: Gather all legacy facts
+      ios_facts: 
+        gather_network_resources: all
+      register: output
+
+    - name: debug
+      debug:
+        var: output

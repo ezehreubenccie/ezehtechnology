@@ -1,0 +1,27 @@
+---
+- name: IOS FACTS
+  gather_facts: true
+  hosts: lbjlabrouter01
+  module_defaults:
+    gather_network_resources:
+     # - vlans
+      - interfaces
+      - l2_interfaces
+      - l3_interfaces
+      - lacp
+      - lldp_global
+      - lldp_interfaces
+      - lag_interfaces
+
+  tasks:
+    - name: Test
+      debug:
+        var: ansible_network_resources
+      tags: rm_all
+ 
+   # - name: Vlans only
+    #  debug:
+     #   var: ansible_network_resources.vlans
+      #tags: vlans
+
+
