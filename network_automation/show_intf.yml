@@ -1,0 +1,16 @@
+---
+- name: show  interface configuration
+  gather_facts: false
+  hosts: lbjlabrouters
+
+
+  tasks:
+    - name: show interface config
+      ios_command:
+        commands:
+          - show run int g0/0/0
+      register: output
+
+
+    - debug:
+        var: output.stdout_lines

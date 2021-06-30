@@ -1,0 +1,13 @@
+---
+- name: interface configuration
+  gather_facts: false
+  hosts: lbjlabrouters
+
+
+  tasks:
+    - name: Update interface configuration
+      ios_interfaces:
+        config:
+          - name: GigabitEthernet0/0/0
+            description: Replaced by Reuben using Ansible
+        state: replaced

@@ -1,0 +1,14 @@
+---
+- name: ios ping
+  gather_facts: false
+  hosts: dtx-mrt-4331-rtr01
+
+
+  tasks:
+    - name: Test reachability
+      ios_ping:
+        dest: 4.2.2.2
+      register: output
+
+    - debug:
+        var: output

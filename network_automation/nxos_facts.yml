@@ -1,15 +1,15 @@
 ---
-- name: IOS FACTS
+- name: Nexus Facts
   gather_facts: false
-  hosts: dtx-mrt-6thflr-2960x-sw-stack
+  hosts: usap5672UPnexusswitches
 
 
   tasks:
     - name: Gather all legacy facts
-      ios_facts: 
+      nxos_facts: 
         gather_network_resources: all
-      #register: output
+      register: output
 
     - name: debug
       debug:
-        var: ansible_network_resources
+        var: output

@@ -1,0 +1,12 @@
+---
+- name: Test Copy
+  gather_facts: false
+  hosts: lbjlabrouters
+
+
+  tasks:
+    - name: Copy to device
+      net_put:
+        src: file_1.txt
+        protocol: sftp
+        dest: flash:/file_1.txt

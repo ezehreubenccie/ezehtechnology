@@ -1,0 +1,15 @@
+---
+- name: Nexus Facts
+  gather_facts: false
+  hosts: usap5672UPnexusswitches
+
+
+  tasks:
+    - name: Gather all legacy facts
+      nxos_facts: 
+        gather_subset: all
+      register: output
+
+    - name: debug
+      debug:
+        var: output
