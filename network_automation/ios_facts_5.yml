@@ -1,0 +1,8 @@
+---
+- name: gather facts
+  hosts: dtx-mrt-7thflr-2960x-sw01
+  gather_facts: true
+  tasks:
+    - name: grab info
+      debug: 
+        msg: '{{ ansible_facts.net_iostype }}' 

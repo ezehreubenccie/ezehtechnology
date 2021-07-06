@@ -1,0 +1,8 @@
+---
+- name: nexus facts
+  hosts: cdc-core-5k-2a
+  gather_facts: true
+
+  tasks:
+    - debug:
+        msg: '{{ ansible_facts.net_iostype }}'

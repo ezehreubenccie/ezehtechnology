@@ -8,7 +8,7 @@
     - name: Gather all legacy facts
       ios_facts: 
         gather_network_resources: all
-      #register: output
+      register: output
 
     - name: debug
       debug:
