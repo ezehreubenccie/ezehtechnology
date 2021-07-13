@@ -1,0 +1,5 @@
+---
+- hosts: usapISR4331K9routers
+  gather_facts: false
+  roles:
+    - 4331routers

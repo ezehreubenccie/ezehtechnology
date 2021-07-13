@@ -36,17 +36,17 @@
         serialnum: "{{ asa_vars.stdout_lines[2][1].split()[-1] }}"
         ipaddress: "{{ asa_vars.stdout_lines[3][0].split()[2] }}"
 
-    - name: set fact 1
+    - name: set asdm fact 1
       set_fact:
         asdmversion: "{{ asa_vars.stdout_lines[1][2].split()[-1] }}"
       when: "'Firepower'  in asa_vars.stdout_lines[1][1]" 
 
-    - name: set fact 2
+    - name: set asdm fact 2
       set_fact:
         asdmversion: "{{ asa_vars.stdout_lines[1][2].split()[-1] }}"
       when:  "'SSP' in asa_vars.stdout_lines[1][1]"
 
-    - name: set fact 3
+    - name: set asdm fact 3
       set_fact:
         asdmversion: "{{ asa_vars.stdout_lines[1][1].split()[-1] }}"
       when: 

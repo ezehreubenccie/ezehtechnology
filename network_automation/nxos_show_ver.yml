@@ -1,0 +1,10 @@
+---
+- hosts: usap5672UPnexusswitches
+  gather_facts: False
+  tasks:
+    - nxos_command:
+        commands: show version | json
+      register: output
+
+    - debug:
+        var: output

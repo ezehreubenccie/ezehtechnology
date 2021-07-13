@@ -1,0 +1,11 @@
+---
+- hosts: dtx-lbj-4331-rtr01
+  gather_facts: true
+  tasks:
+    - ios_command:
+        commands: show ip int brie | exc unass
+      register: output
+ 
+
+    - debug:
+        var: output.stdout_lines[0][1].split()

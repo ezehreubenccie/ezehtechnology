@@ -1,0 +1,7 @@
+---
+- name: Testing
+  hosts: local
+  tasks:
+    - name: Test tags
+      include_tasks: subtask1.yml
+      tags: always

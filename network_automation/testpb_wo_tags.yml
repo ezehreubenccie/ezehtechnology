@@ -1,0 +1,6 @@
+---
+- name: Testing
+  hosts: local
+  tasks:
+    - name: Test tags
+      import_tasks: subtask1.yml
