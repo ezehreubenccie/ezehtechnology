@@ -1,0 +1,36 @@
+---
+- name: Regex Example1
+  hosts: dtx-lbj-4331-rtr01
+  gather_facts: no
+
+  tasks:
+    - name: Executing command
+      ios_command:
+        commands: show ip int brief
+      register: output
+
+    - set_fact:
+        output: "{{ output.stdout[0] }}"
+
+    - debug:
+        var: output
+
+    - name: Strip header information
+      set_fact: 
+        show_ip: "{{ output | regex_replace('Interface.*Protocol') | trim }}"
+
+    - debug:
+        var: show_ip
+
+    - name: Extract interface and IP columns
+      set_fact:
+        show_ip_list: "{{ show_ip | regex_findall('^(\\S+)\\s+(\\S+)', multiline=True) }}"
+    
+    - debug:
+        var: show_ip_list
+
+    - name: Show interfaces with IP addresses 
+      debug:
+        msg: "{{ item }}"
+      loop: "{{ show_ip_list }}"
+      when: "item[1] != 'unassigned'"

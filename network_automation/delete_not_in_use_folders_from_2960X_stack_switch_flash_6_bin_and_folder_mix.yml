@@ -5,16 +5,11 @@
 
   vars: 
     target_system_image_folder:  "c2960x-universalk9-mz.152-7.E3"
-    folder_name_includes: "c2960x-universalk9-mz."
+    folder_and_file_name_includes: "c2960x-universalk9"
     flash_num: 'flash:'
-    #folder_name: test 
-    empty_string: ''
-    spacefree_before:
-    spacefree_after:
 
 
   tasks:
-
     - name: Gather all 2960X SWITCH STACK Hardware facts
       ios_facts:
         gather_subset: hardware
@@ -51,8 +46,8 @@
       set_fact:
         list1: "{{ flash_contents.stdout_lines[0][2:-2] }}"
 
-    #- debug:
-       # var: list1
+    - debug:
+        var: list1
 
     - name: DELETE FLASH FILES NOT IN USE
       ios_command: 
@@ -60,11 +55,9 @@
           - command: delete /recursive /force {{ flash_num }}{{ item.split()[-1] }}
       loop: '{{ list1 }}'
       when: 
-        - 'folder_name_includes in  item.split()[-1]'
-       # - 'item.split()[-1]  !=  system_image_file.stdout_lines[0][0].split()[4][1:-1].split(":")[1]'
+        - 'folder_and_file_name_includes in  item.split()[-1]'
         - 'item.split()[-1]  not in  system_image_file.stdout_lines[0][0].split()[4][1:-1]'
         - 'item.split()[-1]  !=  target_system_image_folder'
-        #- 'folder_name == item.split()[-1]'
          
     - name: DISPLAY CONTENTS OF FLASH
       ios_command:
@@ -72,14 +65,14 @@
           - command: 'dir {{ flash_num }}'
       register: flash_contents
 
-    #- name: Print dir after delete
-      #debug:
-        #var: flash_contents
+    - name: Print dir after delete
+      debug:
+        var: flash_contents
 
     - name: GET FREE SPACE AFTER DELETE
       ios_facts:
         gather_subset: hardware
-      #tags: spacefree
+#      tags: spacefree
 
     - name: Set fact after delete
       set_fact:

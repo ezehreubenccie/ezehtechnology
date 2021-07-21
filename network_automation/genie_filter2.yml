@@ -1,0 +1,24 @@
+---
+- hosts: cdc-core-5k-2a
+  gather_facts: false
+  vars:
+    command: show lldp neighbors
+  collections:
+    - clay584.genie
+
+
+  tasks:
+    - name: Executing command
+      ios_command:
+        commands: "{{ command }}"
+      register: output
+
+
+    - debug:
+        var: output
+
+    - set_fact:
+        output_struct: "{{ output.stdout[0] | clay584.genie.parse_genie(command=command, os='nxos') }}"
+
+    - debug:
+        msg: "{{ output_struct }}"

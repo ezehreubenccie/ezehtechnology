@@ -1,0 +1,42 @@
+---
+- name: Data Structure Conversion
+  hosts: usap5506xfirewalls:usap5508xfirewalls
+  gather_facts: no
+
+  vars:
+    fsm_template: "./ntc-templates/templates/cisco_asa_show_interface.template"
+
+  tasks:
+    - name: Executing command
+      asa_command: 
+        commands: show int 
+      register: output
+
+    - name: TextFSM Conversion
+      set_fact:
+        show_intf: "{{ output.stdout[0] | parse_cli_textfsm(fsm_template) }}"
+
+    - debug:
+        msg: "{{ show_intf }}"
+
+    - name: use map to create equal length lists
+      set_fact:
+        ip_addr: "{{ show_intf | map(attribute='IP_ADDRESS') | list }}"
+        interfaces: "{{ show_intf | map(attribute='INTERFACE_ZONE') | list }}"
+
+    - debug:
+        var: ip_addr
+
+    - name: create list of lists using zip
+      set_fact:
+        new_struct: "{{ interfaces | zip(ip_addr) | list }}"
+
+    - debug:
+        var: new_struct
+
+#    - name: Create a dictionary with intf_name as the key
+#      set_fact:
+#        ip_dict: "{{ dict(new_struct) }}"
+#
+#    - debug:
+#        var: ip_dict

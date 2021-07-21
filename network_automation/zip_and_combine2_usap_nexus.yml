@@ -1,0 +1,47 @@
+---
+- name: Get Structured output in dictionary form
+  gather_facts: no
+  hosts: usap5672UPnexusswitches
+
+  vars:
+    fsm_template: "./ntc-templates/templates/cisco_nxos_show_lldp_neighbors.template"
+
+  tasks:
+    - name: Execute command
+      nxos_command:
+        commands: show lldp neighbors
+      register: output
+
+    - debug:
+        var: output.stdout[0]
+
+    - set_fact:
+        show_lldp: "{{ output.stdout[0] | parse_cli_textfsm(fsm_template) }}"
+
+    - debug:
+        var: show_lldp
+#
+#    - name: Extract local intf and remote device
+#      set_fact:
+#        local_intf: "{{ show_lldp | map(attribute='LOCAL_INTERFACE') | list }}"
+#        remote_dev: "{{ show_lldp | map(attribute='NEIGHBOR') | list }}"
+#
+#
+#    - debug:
+#        var: local_intf
+#
+#    - name: Create list with extracted info
+#      set_fact:
+#        new_struct: "{{ local_intf | zip(remote_dev) | list }}"
+#
+#    - debug:
+#        var: new_struct
+#
+#
+#    - name: Create dictionary with extracted info
+#      set_fact:
+#        lldp_map: "{{ lldp_map | default({}) | combine({item[0]:item[1]}) }}"
+#      loop: "{{ new_struct }}"
+#
+#    - debug:
+#        var: lldp_map

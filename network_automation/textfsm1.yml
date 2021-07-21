@@ -15,4 +15,7 @@
         show_ip: "{{ output.stdout[0] | parse_cli_textfsm(fsm_template) }}"
 
     - debug:
+        var: show_ip
+
+    - debug:
         var: show_ip[2]["IPADDR"] 
