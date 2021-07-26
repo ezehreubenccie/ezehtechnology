@@ -1,0 +1,16 @@
+if i pass one of the tags
+
+a) does the tasks execute? No, it doesn't execute.
+
+b) why not? because tags do not get propagated down the subtask as seen below
+
+ansible-playbook --list-tasks exercise1c.yml --tags foo1
+
+playbook: exercise1c.yml
+
+  play #1 (local): exercise1c	TAGS: []
+    tasks:
+
+
+c) how would you correct the main pb such that the subtask would execute, if you use the sub-task corresponding tag?
+use  tag: always in the main pb. 

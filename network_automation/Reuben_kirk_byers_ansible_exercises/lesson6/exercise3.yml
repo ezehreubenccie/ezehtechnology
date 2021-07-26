@@ -1,0 +1,24 @@
+---
+- name: exercise3
+  hosts: cisco
+  
+  vars:
+#    ios: IOS
+#    ios_xe: IOS-XE
+    my_ios_tasks: ios_task.yml
+    my_ios_xe_tasks: ios_xe_task.yml
+    
+    
+
+  tasks:
+    - name: IOS global config
+      import_tasks: "{{ my_ios_tasks }}"
+      when: ansible_facts.net_iostype == "IOS"
+            
+
+
+    - name: IOS-XE global config
+      import_tasks: "{{ my_ios_xe_tasks }}"
+      when: ansible_facts.net_iostype == "IOS-XE"
+            
+

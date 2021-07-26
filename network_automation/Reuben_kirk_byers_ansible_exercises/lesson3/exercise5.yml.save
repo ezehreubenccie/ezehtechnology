@@ -1,0 +1,10 @@
+---
+- name: exercise5
+  hosts: nxos
+  gather_facts: false
+
+
+  tasks:
+    - name: Generate interface and bgp configs
+      template:
+        src: 

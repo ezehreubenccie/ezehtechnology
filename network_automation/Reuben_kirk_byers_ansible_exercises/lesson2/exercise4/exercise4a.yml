@@ -1,0 +1,20 @@
+---
+- name: Clear looging on Cisco device
+  hosts: cisco6
+  connection: network_cli
+  gather_facts: false
+
+
+
+  tasks:
+    - name: Clear loggin on Cisco6
+      ios_command:
+        commands: 
+          - command: clear logging
+            prompt: confirm
+            answer: y
+      register: output
+
+    - debug:
+        var: output
+ 

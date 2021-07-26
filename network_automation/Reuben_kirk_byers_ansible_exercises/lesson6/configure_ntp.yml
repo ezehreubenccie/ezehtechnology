@@ -1,0 +1,18 @@
+---
+- hosts: cisco:nxos:arista
+  
+  tasks:
+    - name: Configure NTP on ios and iosxe
+      import_role:
+        name: configure_ios_iosxe_devices
+      when: ansible_facts.net_iostype is defined
+
+    - name: Configure NTP on arista
+      import_role:
+        name: configure_ntp_on_arista_devices
+      when: ansible_network_os == "eos"
+
+    - name: Configure NTP on Nexus
+      import_role:
+        name: configure_ntp_on_nexus_devices
+      when: ansible_network_os == "nxos"

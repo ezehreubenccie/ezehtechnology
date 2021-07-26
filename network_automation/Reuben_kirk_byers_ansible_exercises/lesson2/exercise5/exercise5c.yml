@@ -1,0 +1,16 @@
+---
+- name: Exercise5a
+  connection: network_cli
+  hosts: juniper
+  gather_facts: false
+
+
+  tasks:
+    - name: Run Juniper command
+      junos_command:
+        commands: show interfaces terse
+      register: interfaces
+
+    - debug:
+        msg: '{{interfaces.stdout_lines[0][21].split()[-1]}}'
+

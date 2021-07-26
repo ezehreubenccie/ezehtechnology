@@ -1,0 +1,27 @@
+---
+- name: exercise1
+  gather_facts: false
+  hosts: cisco
+
+
+
+  tasks: 
+    - name: configure banner
+      ios_banner:
+        banner: login
+        text: |
+          *********************************************
+          Reuben Ezeh Configured this!
+ 
+          Terminator 3 salvation 
+          *********************************************
+        state: present
+      notify: write mem
+  
+
+  handlers:
+    - name: write mem
+      ios_command:
+        commands: write mem
+      changed_when: True
+      

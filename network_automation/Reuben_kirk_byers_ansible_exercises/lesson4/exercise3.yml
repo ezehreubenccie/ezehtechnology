@@ -1,0 +1,28 @@
+---
+- name: exercise3
+  gather_facts: false
+  hosts: nxos
+
+
+
+
+
+
+  tasks:
+    - name: Configure IP addresses
+      nxos_l3_interfaces:
+        config:
+          - name: Ethernet1/4
+            ipv4:
+              - address: '{{ ethernet_1_4_ip }}'
+        state: merged
+      notify: copy run sta
+
+
+  handlers:
+    - name: copy run sta
+      nxos_command:
+        commands: copy run sta
+      changed_when: True
+
+

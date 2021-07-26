@@ -1,0 +1,14 @@
+---
+- name: Nexus facts
+  gather_facts: false
+  hosts: nxos
+
+
+  tasks:
+    - name: Gather all legacy facts
+      nxos_facts:
+        gather_network_resources: all
+      register: output
+
+    - debug:
+        var: output

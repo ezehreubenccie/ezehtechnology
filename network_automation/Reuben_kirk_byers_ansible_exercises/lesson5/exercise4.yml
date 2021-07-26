@@ -1,0 +1,21 @@
+---
+- name:	exercise5
+  hosts: nxos
+  gather_facts:	false
+
+
+  tasks:
+    - name: Deploy Configurations
+      nxos_config:
+        src: "../lesson3/CFGS/{{ inventory_hostname }}-config.txt"
+        save_when: changed 
+
+    - name: Verify Configuration
+      nxos_command:
+        commands: show ip bgp summary
+      register: output
+      tags: verify 
+
+    - debug:
+        var: output.stdout_lines[0]
+      tags: verify

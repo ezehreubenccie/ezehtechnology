@@ -1,0 +1,23 @@
+---
+- name: exercise5
+  gather_facts: false
+  hosts: cisco1:cisco2
+
+
+  tasks:
+    - name: show user ssh sessions
+      ios_command: 
+        commands: 'show users'
+      register: output
+
+
+   # - debug:
+       # var: output.stdout_lines[0][1].split()[-4]
+
+
+    - set_fact:
+        user1: '{{ output.stdout_lines[0][1].split()[-4] }}'
+
+    - assert:
+        that:
+          - '"student1" in user1'

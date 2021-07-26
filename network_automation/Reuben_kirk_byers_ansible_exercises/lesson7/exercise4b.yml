@@ -1,0 +1,35 @@
+---
+- name: exercise4b
+  gather_facts: no
+  hosts: nxos
+
+  vars:
+    command: "show version"
+  collections:
+    - clay584.genie
+
+
+  tasks: 
+    - name: excuting command
+      nxos_command:
+        commands: "{{ command }}"
+      register: output
+
+    - debug:
+        var: output
+
+    - set_fact:
+        show_ver: "{{ output.stdout[0] | clay584.genie.parse_genie(command=command, os=ansible_network_os) }}"
+
+    - debug:
+        var: show_ver
+
+    - set_fact:
+        sw_version: "{{ show_ver.platform.software['system_version'] }}"
+
+    - debug:
+        msg:
+          - "________________"
+          - "{{ inventory_hostname }}:" 
+          - "{{ sw_version }}"
+          - "________________"

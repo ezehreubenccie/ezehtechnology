@@ -1,0 +1,31 @@
+---
+- name: exercise3a
+  hosts: nxos
+  gather_facts: no
+
+  vars:
+    fsm_template: "../ntc-templates/ntc_templates/templates/cisco_nxos_show_ip_bgp_summary.textfsm"
+
+  tasks:
+    - name: Extract structured BGP information
+      nxos_command:
+        commands: show ip bgp summary
+      register: output
+
+
+    - debug:
+        var: output
+
+    - set_fact:
+        out_struct: "{{ output.stdout[0] | parse_cli_textfsm(fsm_template) }}"
+
+    - debug:
+        var: out_struct
+      when: out_struct != []
+
+    - assert:
+        that:
+          - "'shut' not in out_struct[0]['STATE_PFXRCD']"
+          - "'idle' not in out_struct[0]['STATE_PFXRCD']"
+          - "out_struct[0]['STATE_PFXRCD'] | int >= 2"
+      when: out_struct != []

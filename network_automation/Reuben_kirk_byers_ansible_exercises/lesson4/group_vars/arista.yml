@@ -1,0 +1,4 @@
+---
+vlan_id: "205"
+vlan_name: DATA
+intf_name: Ethernet7

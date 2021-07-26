@@ -1,0 +1,60 @@
+---
+- name: exercise5a
+  hosts: nxos
+  gather_facts: no
+
+
+  tasks:
+    - name: Configure VLANS - nxos1
+      nxos_vlans:
+        config:
+          - vlan_id: 100
+            name: blue100
+          - vlan_id: 101
+            name: blue101
+      when: "'nxos1' in inventory_hostname"
+
+    - name: Configure VLANS - nxos2
+      nxos_vlans:
+        config:
+          - vlan_id: 200
+            name: blue200
+          - vlan_id: 201
+            name: blue201 
+      when: "'nxos2' in inventory_hostname"
+
+
+    - name: verify after state
+      nxos_command:
+        commands: show vlan | json
+      register: output
+ 
+    - ansible.builtin.set_fact:
+        vlan_dict: "{{ output.stdout[0].TABLE_vlanbrief.ROW_vlanbrief }}"
+
+    - debug:
+        var: vlan_dict
+
+    - name: Use map to extract two relevant fields
+      ansible.builtin.set_fact:
+        vlans: "{{ vlan_dict | map(attribute='vlanshowbr-vlanid') | list }}"
+
+    - ansible.builtin.debug:
+        var: vlans
+
+    - name: Common VLANs
+      ansible.builtin.debug:
+        msg: "Common VLANs: {{ vlans | intersect(hostvars['nxos2']['vlans']) }}"
+      when: inventory_hostname == 'nxos1'
+
+    - name: Unique VLANs nxos1
+      ansible.builtin.debug:
+        msg: "Unique VLANs nxos1: {{ vlans | difference(hostvars['nxos2']['vlans']) }}"
+      when: inventory_hostname == 'nxos1'
+
+    - name: Unique VLANs nxos2
+      ansible.builtin.debug:
+        msg: "Unique VLANs nxos2: {{ vlans | difference(hostvars['nxos1']['vlans']) }}"
+      when: inventory_hostname == 'nxos2' 
+#    - debug:
+#        var: output

@@ -1,0 +1,25 @@
+---
+- name: exercise4a
+  gather_facts: no
+  hosts: nxos
+
+  vars:
+    command: "show interface"
+  collections:
+    - clay584.genie
+
+
+  tasks: 
+    - name: excuting command
+      nxos_command:
+        commands: "{{ command }}"
+      register: output
+
+    - debug:
+        var: output
+
+    - set_fact:
+        show_intf: "{{ output.stdout[0] | clay584.genie.parse_genie(command=command, os='nxos') }}"
+
+    - debug:
+        var: show_intf

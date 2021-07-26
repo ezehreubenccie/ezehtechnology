@@ -1,0 +1,5 @@
+- name: Configure ntp on arista devices
+  eos_config:
+    src: ntp_eos.j2
+    save_when: changed
+

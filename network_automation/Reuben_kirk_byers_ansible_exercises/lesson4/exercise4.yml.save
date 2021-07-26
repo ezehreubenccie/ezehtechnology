@@ -1,0 +1,20 @@
+---
+- name: exercise4
+  gather_facts: false
+  hosts: arista
+
+
+
+  tasks:
+    - name: Create DATA VLAN
+      eos_vlans:
+      config:
+        - name: DATA
+          vlan_id: 200
+          state: active
+      state: merged
+
+
+    
+    - name: Assign VLAN to interface
+      eos_l2_interfaces:

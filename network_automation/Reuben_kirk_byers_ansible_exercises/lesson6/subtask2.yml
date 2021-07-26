@@ -1,0 +1,16 @@
+- debug:
+    msg: 'Hello, world1'
+  tags: foo1
+
+- debug:
+    msg: 'Hello, world2'
+  tags:	foo2
+
+- debug:
+    msg: 'Hello, world3'
+  tags:	foo3
+
+- debug:
+    msg: 'Hello, world4'
+  tags:	foo4
+

@@ -1,0 +1,55 @@
+---
+- name:	exercise1
+  hosts: nxos
+  gather_facts:	false
+
+#  vars:
+    
+  tasks:
+#    - debug:
+#        var: hostvars
+#
+#    - debug:
+#        msg: "{{ hostvars['nxos1'] }}"
+#
+#    - debug:
+#        msg: "{{ hostvars['nxos1']['bgp_peer_ip'] }}"
+    - name: Generate interface configs
+      template:
+        src: "./jinja/interfaces.j2"
+        dest: "./CFGS/{{ inventory_hostname }}/01-{{ inventory_hostname }}-intf.txt"
+    
+    - set_fact:
+        bgp_peer_ip: "{{ hostvars['nxos2']['eth1_4_ip_address'] }}"
+      when: "inventory_hostname == 'nxos1'"
+
+    - set_fact:
+        bgp_peer_ip: "{{ hostvars['nxos1']['eth1_4_ip_address'] }}"
+      when: "inventory_hostname == 'nxos2'"
+
+
+    - name: Generate BGP configuration
+      ansible.builtin.template:
+        src: "./jinja/bgp.j2"
+        dest: "./CFGS/{{ inventory_hostname }}/02-{{ inventory_hostname }}-bgp.txt"
+
+    - name: Assemble the two parts into one configuration change file
+      ansible.builtin.assemble:
+        src: "./CFGS/{{ inventory_hostname }}/"
+        dest: "./CFGS/{{ inventory_hostname }}-config.txt"
+
+
+    - name: Deploy configurations to devices
+      cisco.nxos.nxos_config:
+        src: "./CFGS/{{ inventory_hostname }}-config.txt"
+
+    - name: Verify BGP State
+      cisco.nxos.nxos_command:
+        commands: show ip bgp summary
+      register: output
+      tags: bgp_out
+
+    - name: Show BGP Session
+      ansible.builtin.debug:
+        var: output.stdout_lines[0]
+      tags: bgp_out

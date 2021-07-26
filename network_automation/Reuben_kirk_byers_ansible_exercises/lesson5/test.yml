@@ -1,0 +1,9 @@
+---
+- name: test inventory
+  gather_facts: false
+  hosts: cisco
+
+
+  tasks:
+    - debug:
+        msg: '{{ inventory_hostname }}'

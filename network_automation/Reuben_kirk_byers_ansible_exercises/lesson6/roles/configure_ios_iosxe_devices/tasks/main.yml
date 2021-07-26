@@ -1,0 +1,6 @@
+- name: Configure ntp on IOS and IOS-XE devices
+  ios_config:
+    src: ntp_ios.j2
+    save_when: changed
+
+

@@ -1,0 +1,10 @@
+---
+- name: exercise2a
+  gather_facts: false
+  hosts: local
+
+
+  tasks:
+    - name: loop over IP addresses
+      import_tasks: subtask2a.yml
+      

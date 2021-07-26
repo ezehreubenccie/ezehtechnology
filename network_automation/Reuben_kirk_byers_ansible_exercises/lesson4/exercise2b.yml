@@ -1,0 +1,17 @@
+---
+- name: exercise 2
+  hosts: cisco1
+  gather_facts: false
+
+
+  tasks: 
+    - name: configure hostname and domain name
+      ios_system:
+        state: absent
+      notify: write mem
+
+  handlers:
+    - name: write mem
+      ios_command:
+        commands: write mem
+      changed_when: True

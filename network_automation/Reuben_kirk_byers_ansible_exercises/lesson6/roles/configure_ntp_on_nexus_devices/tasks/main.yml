@@ -1,0 +1,5 @@
+- name: Configure ntp on nexus devices
+  nxos_config:
+    src: ntp_nxos.j2
+    save_when: changed
+

@@ -1,0 +1,50 @@
+---
+- name: exercise4
+  gather_facts: false
+  hosts: arista
+
+
+
+  tasks:
+    - name: Create DATA VLAN
+      eos_vlans:
+        config:
+          - name: '{{vlan_name }}'
+            vlan_id: '{{ vlan_id }}'
+            state: active
+        state: merged
+
+
+    
+    - name: Assign VLAN to interface
+      eos_l2_interfaces:
+        config:
+          - name: '{{ intf_name }}'
+            mode: access
+            access:
+              vlan: '{{ vlan_id }}'
+        state: merged
+      
+
+    - name: verify configuration
+      eos_command:
+        commands:
+          - 'show vlan | json'
+      register: output
+      tags: verify
+
+    - debug:
+        var: output
+       # var: output.stdout_lines[0].vlans["1"]["status"]
+     # tags: verify
+  
+    - set_fact:
+        interfaces_dict: '{{ output.stdout_lines[0].vlans[vlan_id].interfaces }}'
+        vlan_status: '{{ output.stdout_lines[0].vlans[vlan_id]["status"] }}'
+      tags: verify
+
+    - assert:
+        that:
+          - "'Ethernet6' in interfaces_dict"
+          -  "vlan_status == 'active'"
+      tags: verify

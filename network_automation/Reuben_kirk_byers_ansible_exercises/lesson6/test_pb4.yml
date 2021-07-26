@@ -1,0 +1,4 @@
+---
+- hosts: cisco1
+  roles:
+    - core_router4

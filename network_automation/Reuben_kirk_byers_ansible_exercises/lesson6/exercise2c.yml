@@ -1,0 +1,8 @@
+---
+- name: exercise2c
+  gather_facts: false
+  hosts: local
+
+  tasks:
+    - name: print messages
+      import_tasks: subtask2.yml

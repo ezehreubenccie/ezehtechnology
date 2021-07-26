@@ -1,0 +1,48 @@
+---
+- name: exercise5
+  gather_facts: false
+  hosts: nxos
+
+
+  tasks:
+    - name: configure nexus interfaces
+      nxos_interfaces:
+        config:
+          - name: '{{ intf_name }}'
+            mode: '{{ intf_mode }}'
+            enabled: true
+        state: merged
+
+
+    - name: set trunking mode
+      nxos_l2_interface:
+        name: '{{ intf_name }}'
+        mode: '{{ switchport_mode }}'
+        state: present    
+
+    - name: Set trunk native vlan
+      nxos_l2_interfaces:
+        config:
+          - name: '{{ intf_name }}'
+            trunk:
+              native_vlan: '{{ vlan_id }}'
+        state: merged
+
+
+
+    - name: verify config
+      nxos_command:
+        commands:
+          - 'show run interface {{ intf_name }}'
+      register: output
+      tags: verify
+
+    #- debug:
+     #   var: output.stdout_lines[0][-2]
+      #tags: verify
+
+    - assert:
+        that:
+          - "'trunk' in output.stdout_lines[0][-2]"
+          - "'switchport trunk native vlan 4' in output.stdout_lines[0][-1]"
+      tags: verify

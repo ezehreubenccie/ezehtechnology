@@ -1,0 +1,16 @@
+---
+- name: exercise6a
+  hosts: arista
+  connection: network_cli
+  gather_facts: false
+
+
+  tasks:
+    - name: show ip arp
+      eos_command:
+        commands: show ip arp
+      register: output
+
+
+    - debug:
+        msg: '{{output}}'

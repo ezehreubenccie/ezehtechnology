@@ -1,0 +1,26 @@
+---
+- name: exercise4
+  gather_facts: false
+  hosts: arista
+
+
+
+  tasks:
+    - name: Create DATA VLAN
+      eos_vlans:
+      config:
+        - name: '{{ vlan_name }}'
+          vlan_id: '{{ vlan_id }}'
+          state: active
+      state: merged
+
+
+    
+    - name: Assign VLAN to interface
+      eos_l2_interfaces:
+        config:
+          - name: '{{ intf_name }}'
+            mode: access
+            access:
+              vlan: '{{ vlan_id }}'
+        state: merged

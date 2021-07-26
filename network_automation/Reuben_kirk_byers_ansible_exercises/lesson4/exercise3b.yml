@@ -1,0 +1,44 @@
+---
+- name: exercise3
+  gather_facts: false
+  hosts: nxos
+
+
+  tasks:
+
+    - name: Admin up interface and ensure interface is layer 3
+      nxos_interfaces:
+        config: 
+          - name: '{{ intf_name }}'
+            enabled: True
+            mode: layer3
+        state: merged
+
+
+    - name: Configure IP addresses
+      nxos_l3_interfaces:
+        config:
+          - name: '{{ intf_name }}'
+            ipv4:
+              - address: '{{ intf_ip }}/{{ intf_netmask}}'
+        state: merged
+      notify: copy run sta
+
+    - name: Test ping
+      net_ping:
+        dest: '{{ peer_ip }}'
+      register: output
+
+    - name: Verify successful ping
+      assert:
+        that:
+          - output.packets_rx >= 4
+
+  handlers:
+    - name: copy run sta
+      nxos_command:
+        commands: copy run sta
+      changed_when: True
+
+
+   

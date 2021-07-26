@@ -1,0 +1,27 @@
+---
+- name: exercise2a
+  connection: network_cli
+  hosts: nxos
+  gather_facts: false
+
+
+  vars: 
+    vlans:
+      - 1
+      - 2
+      - 3
+      - 4
+
+
+
+  tasks:
+    - name: get vlan id info
+      nxos_command:
+        commands: 'show vlan id {{ item }}'
+      loop: '{{ vlans }}'
+      register: vlans
+
+
+    - debug:
+        var: vlans.results[3].stdout_lines
+

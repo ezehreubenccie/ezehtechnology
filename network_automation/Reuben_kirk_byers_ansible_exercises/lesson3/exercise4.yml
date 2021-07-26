@@ -1,0 +1,11 @@
+---
+- name: exercise4
+  hosts: arista
+  gather_facts: false
+
+
+  tasks:
+    - name: generate arista device configs
+      template: 
+        src: './jinja/arista_switches.j2' 
+        dest: './CFGS/{{ inventory_hostname }}.txt'

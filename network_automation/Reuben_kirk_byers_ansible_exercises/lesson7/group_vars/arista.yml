@@ -1,0 +1,9 @@
+---
+def_gateway: 10.220.88.1
+ports:
+  Ethernet2: {'mode': 'access', 'access_vlan': 2}
+  Ethernet3: {'mode': 'access', 'access_vlan': 3}
+  Ethernet4: {'mode': 'access', 'access_vlan': 4}
+  Ethernet5: {'mode': 'access', 'access_vlan': 5}
+  Ethernet6: {'mode': 'access', 'access_vlan': 6}
+  Ethernet7: {'mode': 'access', 'access_vlan': 7}

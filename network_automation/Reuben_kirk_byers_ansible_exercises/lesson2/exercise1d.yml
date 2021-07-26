@@ -1,0 +1,27 @@
+- name: Gather facts on arista
+  connection: network_cli
+  hosts: arista5
+  gather_facts: True
+
+  vars_files:
+    my_vars.yml
+
+  tasks:
+    #- name: gather facts from arista5
+      #eos_facts:      
+      #register: ansible_facts
+
+    - debug:
+        var: ansible_facts.net_all_ipv4_addresses
+
+    - debug:
+        msg:
+          - '{{ansible_network_os}}'
+          - '{{ansible_host}}'
+   
+
+    - debug:
+        var: desired_eos_version
+
+    - debug:
+        msg: 'The playbook vars_file variable wins because it is higher precedence compared to the variable in the group_vars folder'

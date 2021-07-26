@@ -1,0 +1,14 @@
+a) what happens upon ansible-playbook execution when you pass a tag that exists in the subtask? Does the subtask execute
+or not? it executes because import_tasks is ignored. The subtask executes the task with the specified task.
+
+ansible-playbook --list-tasks exercise2c.yml --tags foo1
+
+playbook: exercise2c.yml
+
+  play #1 (local): exercise2c	TAGS: []
+    tasks:
+      debug	TAGS: [foo1]
+
+
+b) why does the subtask execute.? It executes because import_task is ignored and it is as if import task wasnt called 
+in the playbook.

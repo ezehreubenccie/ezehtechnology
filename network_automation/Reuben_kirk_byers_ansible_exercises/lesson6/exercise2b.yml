@@ -1,0 +1,13 @@
+---
+- name: exercise2b
+  gather_facts: false
+  hosts: local
+  vars:
+    my_tasks_alt: subtask2a.yml
+
+
+  tasks:
+    - name: loop over IP addresses
+      #include_tasks: "{{ my_tasks}}"
+      import_tasks: "{{ my_tasks_alt }}"
+      

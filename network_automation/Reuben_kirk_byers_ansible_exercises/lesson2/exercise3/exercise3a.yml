@@ -1,0 +1,16 @@
+---
+- name: Show Version Command
+  hosts: nxos
+  connection: network_cli
+  gather_facts: false
+
+
+
+  tasks:
+    - name: Gather ouput with show version
+      nxos_command:
+        commands: show version
+      register: output
+
+    - debug:
+        var: output

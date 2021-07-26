@@ -1,0 +1,29 @@
+---
+- name: exercise5a
+  gather_facts: no
+  hosts: nxos
+
+
+  tasks:
+    - name: Execute command
+      nxos_command:
+        commands: show lldp neighbors
+      register: output
+
+
+    - debug:
+        var: output
+ 
+    - set_fact:
+        output: "{{ output.stdout[0] }}"
+
+    - debug:
+        var: output
+
+
+    - name: Extract information
+      set_fact:
+        show_lldp: "{{ output | regex_findall('^(\\S+)\\s+(Eth\\S+)\\s+\\d+\\s+\\S+\\s+(Ethernet\\S+)', multiline=True) }}"
+
+    - debug:
+        var: show_lldp

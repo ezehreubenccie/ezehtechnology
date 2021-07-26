@@ -1,0 +1,24 @@
+- name: vrf blue
+  ios_config:
+    lines:
+      - rd {{ rd1 }}
+    parents: ip vrf {{ vrf_name1 }}
+    before: no ip vrf {{ vrf_name1 }}
+    match: exact
+
+- name:	vrf red
+  ios_config:
+    lines:
+      -	rd {{ rd2 }}
+    parents: ip	vrf {{ vrf_name2 }}
+    before: no ip vrf {{ vrf_name2 }}
+    match: exact
+
+- name: loopback98
+  ios_config:
+    lines:
+      - ip vrf forwarding {{ vrf_name1 }}
+    parents: int loopback 98 
+    before: no int loopback 98
+    match: exact
+

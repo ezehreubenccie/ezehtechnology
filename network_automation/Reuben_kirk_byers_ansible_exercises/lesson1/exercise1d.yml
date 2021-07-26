@@ -1,0 +1,7 @@
+---
+{'rtr1': {'device_type': 'cisco_ios',
+          'host': 'rtr1.ezehtechnology.com',
+          'password': 'Pa5s@w!1',
+          'use_session_log': True,
+          'username': 'reuben3010'}}
+

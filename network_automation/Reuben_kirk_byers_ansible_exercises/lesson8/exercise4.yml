@@ -1,0 +1,50 @@
+---
+- name: exercise4
+  hosts: arista
+  gather_facts: no
+
+
+  tasks:
+    - name: Retrieve switching table
+      eos_command:
+        commands: show mac address-table | json
+      register: output
+
+#    - debug:
+#        var: output.stdout[0].unicastTable.tableEntries
+
+    - set_fact:
+        mac_entr: "{{ output.stdout[0].unicastTable.tableEntries }}"
+
+    - debug:
+        var: mac_entr
+
+    - name: Create a list of mac addresses
+      set_fact:
+        mac_addr_list: "{{ mac_addr_list | default([]) + [item['macAddress']] }}"
+      loop: "{{ mac_entr }}"
+
+    - debug:
+        var: mac_addr_list
+##    - name: Use map to create equal lenght lists
+#      set_fact: 
+#        mac_addr: "{{ output.stdout[0].unicastTable.tableEntries | map(attribute='macAddress') | list }}"
+#        source_intf: "{{ output.stdout[0].unicastTable.tableEntries | map(attribute='interface') | list }}"
+#
+#    - debug:
+#        var: mac_addr
+#        
+#
+#    - name: Create list of lists using zip
+#      set_fact:
+#        new_struct: "{{ mac_addr | zip(source_intf) | list }}"
+#
+#    - debug:
+#        var: new_struct
+#
+#    - name: Create a dictionary with mac_addr as key
+#      set_fact:
+#        mac_addr_table: "{{ dict(new_struct) }}"
+#
+#    - debug:
+#        var: mac_addr_table

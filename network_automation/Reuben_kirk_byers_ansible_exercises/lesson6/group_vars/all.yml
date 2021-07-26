@@ -1,0 +1,6 @@
+dns_server1: 10.10.10.10
+dns_server2: 11.11.11.11
+domain_name: ktbansible.com
+ntp_server1: 12.12.12.12
+ntp_server2: 13.13.13.13
+

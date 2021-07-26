@@ -1,0 +1,26 @@
+---
+- name: exercise3b
+  gather_facts: no
+  hosts: arista
+
+
+  vars:
+    platform: "arista_eos"
+    command: "show vlan"
+    textfsm_index: "/home/rezeh/ntc-templates/ntc_templates/templates/"
+
+  tasks:
+    - name: Executing command
+      eos_command:
+        commands: "{{ command }}"
+      register: output
+
+
+    - debug:
+        var: output
+
+    - set_fact:
+        show_vlan: "{{ output.stdout[0] | ntc_parse(command, platform, textfsm_index) }}"
+
+    - debug:
+        var: show_vlan

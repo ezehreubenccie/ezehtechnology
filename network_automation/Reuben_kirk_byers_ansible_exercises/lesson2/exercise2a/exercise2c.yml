@@ -1,0 +1,11 @@
+- name: Exercise2a
+  hosts: cisco
+  connection: network_cli
+  gather_facts: false
+
+
+
+  tasks:
+    - name: Print BGP ASN for cisco hosts
+      debug:
+        msg: 'The ASN for host {{inventory_hostname}} is {{bgp_asn}}, the router-id is {{bgp_router_id}}'

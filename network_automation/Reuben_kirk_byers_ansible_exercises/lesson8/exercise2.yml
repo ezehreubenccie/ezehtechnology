@@ -1,0 +1,17 @@
+---
+- name: exercise2
+  hosts: arista
+  gather_facts: no
+
+  vars: 
+    ansible_ssh_pass: "{{ lookup('env', 'ANSIBLE_PASSWORD') }}" 
+    ansible_user: pyclass
+
+  tasks:
+    - name: Show vlan
+      eos_command:
+        commands: show vlan
+      register: output
+
+    - debug:
+        var: output        

@@ -1,0 +1,17 @@
+---
+network_devices:
+  - host: device1
+    username: reuben3010
+    password: Pa@5sW0rD!
+    device_type: cisco_asa
+    use_session_log: True
+    ip_address: 192.168.30.1
+
+  - host: device2
+    username: reuben3010
+    password: Pa@5sW0rD!9
+    device_type: cisco_ios
+    use_session_log: True
+    ip_address: 192.168.30.10
+
+

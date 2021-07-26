@@ -1,0 +1,34 @@
+---
+- name: Global configuration
+  hosts: cisco:arista:nxos
+  gather_facts: true
+  tasks:
+    - name: IOS global config
+      include_tasks: "example_tasks/{{ ansible_tasks.net_iostype }}/tasks.yml"
+      when: ansible_facts.net_iostype is defined and 
+            ansible_facts.net_iostype == "IOS"
+   
+
+    - name: IOS-XE global config
+      include_tasks: "example_tasks/{{ ansible_tasks.net_iostype }}/tasks.yml"
+      when: ansible_facts.net_iostype is defined and 
+            ansible_facts.net_iostype == "IOS-XE"
+
+    - name: EOS global config
+      include_tasks: "example_tasks/{{ ansible_network_os }}/tasks.yml"
+      when: 'ansible_network_os == "eos"'
+   
+
+    - name: NX-OS global config
+      include_tasks: "example_tasks/{{ ansible_network_os }}/tasks.yml"
+      when: 'ansible_network_os == "nxos"'
+      tags: nxos
+ 
+
+  - name: Global Configuration
+    hosts: juniper
+    gather_facts: false
+    tasks:
+      - name: Juniper global config
+        include_tasks: "example_tasks/{{ ansible_network_os }}/tasks.yml" 
+        tags: junos            

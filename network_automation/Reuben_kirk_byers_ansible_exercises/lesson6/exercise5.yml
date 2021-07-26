@@ -1,0 +1,6 @@
+---
+- name: Configure NTP
+  gather_facts: false
+  hosts: cisco:arista:nxos
+  roles:
+    - ntp
