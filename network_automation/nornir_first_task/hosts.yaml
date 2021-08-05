@@ -1,0 +1,9 @@
+---
+dtx-lbj-4331-rtr01:
+  hostname: dtx-lbj-4331-rtr01
+dtx-mrt-4331-rtr01:
+  hostname: dtx-mrt-4331-rtr01
+cdc-4451-rtr01:
+  hostname: cdc-4451-rtr01
+cdc-4451-rtr02:
+  hostname: cdc-4451-rtr02

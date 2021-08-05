@@ -1,0 +1,13 @@
+---
+- name: nexus napalm
+  hosts: usap5672UPnexusswitches
+  gather_facts: no
+  tasks: 
+    - name: Retrieve get_facts, get_interfaces
+      napalm_get_facts:
+        filter: facts,interfaces
+      optional_args:
+        port: 8443
+
+    - debug:
+        var: napalm_facts

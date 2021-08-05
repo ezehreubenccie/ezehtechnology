@@ -1,6 +1,6 @@
 ---
 - name: get facts from asa
-  hosts:  usapfirewalls usap5505swmethodist
+  hosts:  usapfirewalls
   connection: network_cli
   gather_facts: no
 

@@ -1,0 +1,23 @@
+---
+- name: NAPALM get_facts and get_interfaces
+  hosts: usapISR4331K9routers
+  gather_facts: False
+
+  vars:
+    secret: !vault |
+          $ANSIBLE_VAULT;1.2;AES256;reuben3010
+          66623463653636613232653466353462343730666537376232346165303338346530653035363438
+          3433323931313461366337373364353238336536386437630a313634303166336334626163323432
+          63383932363136393063613466333138303463653533666631303634386430333631303765316634
+          6463656334646265620a656337656134333162306262326364656437636332343562626230636432
+          3738
+
+  tasks:
+    - name: napalm get_facts
+      napalm_get_facts:
+        filter: facts,interfaces,lldp_neighbors
+        optional_args: 
+          secret: "{{ secret }}"
+ 
+    - debug:
+        msg: "{{ hostvars[inventory_hostname] }}"

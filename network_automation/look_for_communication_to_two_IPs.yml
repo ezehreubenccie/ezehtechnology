@@ -1,0 +1,27 @@
+---
+- name: Look for connection to two IPs
+  hosts: usap5506xfirewalls:usap5508xfirewalls:usap5545xcorefirewalls:usap5505firewalls:usapchcfirewall
+  gather_facts: false
+
+  vars:
+    ioc_alert_ip1: 159.203.182.45
+    ioc_alert_ip2: 104.131.30.201 
+
+  tasks:
+    - name: show connection
+      asa_command:
+        commands: 
+          - show conn | grep 159.203.182.45
+          - show conn | grep 104.131.30.201
+      register: output
+
+    - debug:
+        var: output
+        
+
+    - assert:
+        that:
+          - ioc_alert_ip1 not in output
+          - ioc_alert_ip2 not in output
+        fail_msg: 'Found traffic/connections to {{ ioc_alert_ip1 }} and {{ ioc_alert_ip2 }} on {{ inventory_hostname }}. Please remediate!'
+        success_msg: "Didn't find any traffic/connections to {{ ioc_alert_ip1 }} and {{ ioc_alert_ip2 }} on {{ inventory_hostname }}. No action needed at this time."

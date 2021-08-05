@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+addr_list = ['10.23.2.34','2.34.100.243','34.23.124.27','74.124.23.123','97.105.23.76']
+print(addr_list)
+print('****append to list****')
+addr_list.append('172.28.4.1')
+# print('****Original list*****')
+print(addr_list)
+print('****extend list**** ')
+addr_list.extend(['10.23.1.1','23.34.8.98'])
+# addr_list.extend('23.34.8.98')
+print(addr_list)
+print('****list concatenation****')
+addr_list = addr_list + ['5.34.4.4','10.249.0.1']
+print(addr_list)
+print('****first element****')
+print(addr_list[0])
+print('****Last element****')
+print(addr_list[-1])
+print('****Remove first and last elements****')
+print(addr_list.pop(0))
+print(addr_list.pop(-1))
+print(addr_list)
+print('****Update new first element****')
+addr_list[0] = '2.2.2.2'
+print(addr_list[0])
+print(addr_list)

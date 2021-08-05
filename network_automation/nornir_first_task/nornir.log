@@ -1,0 +1,17 @@
+2021-07-29 13:55:51,990 -  nornir.core -     INFO -        run() - Running task 'my_first_task' with args {} on 1 hosts
+2021-07-29 14:22:43,519 -  nornir.core -     INFO -        run() - Running task 'my_task' with args {} on 1 hosts
+2021-07-29 15:09:44,162 -  nornir.core -     INFO -        run() - Running task 'my_task' with args {} on 1 hosts
+2021-07-29 15:09:44,162 - nornir.core.task -    ERROR -      start() - Host 'localhost': task 'my_task' failed with traceback:
+Traceback (most recent call last):
+  File "/home/reuben3010/GIT_2/ezehtechnology/network_automation/nornir_3.0/lib/python3.9/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/reuben3010/GIT_2/ezehtechnology/network_automation/nornir_first_task/example2.py", line 12, in my_task
+    print(x1.hostname)
+AttributeError: 'Task' object has no attribute 'hostname'
+
+2021-07-29 15:10:01,457 -  nornir.core -     INFO -        run() - Running task 'my_task' with args {} on 1 hosts
+2021-07-29 15:16:41,297 -  nornir.core -     INFO -        run() - Running task 'my_task' with args {} on 4 hosts
+2021-07-29 15:24:46,571 -  nornir.core -     INFO -        run() - Running task 'my_task' with args {} on 4 hosts
+2021-07-29 15:24:49,832 -  nornir.core -     INFO -        run() - Running task 'my_task' with args {} on 4 hosts
+2021-07-29 15:26:40,839 -  nornir.core -     INFO -        run() - Running task 'my_task' with args {} on 4 hosts
+2021-07-29 15:26:47,824 -  nornir.core -     INFO -        run() - Running task 'my_task' with args {} on 4 hosts

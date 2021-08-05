@@ -1,0 +1,57 @@
+Capability codes:
+  (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS Cable Device
+  (W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other
+Device ID            Local Intf      Hold-time  Capability  Port ID  
+
+Chassis id: 8c60.4f14.6e41
+Port id: mgmt0
+Local Port id: mgmt0
+Port Description: mgmt0
+System Name: CDC-CORE-5K-3A.usap.com
+System Description: Cisco NX-OS(tm) n6000, Software (n6000-uk9), Version 7.3(5)N1(1), RELEASE SOFTWARE Copyright (c) 2002-2012, 2016-2017 by Cisco Systems, Inc. Compiled 2/11/2019 2:00:00
+Time remaining: 91 seconds
+System Capabilities: B
+Enabled Capabilities: B
+Management Address: 10.2.255.2
+Vlan ID: not advertised
+
+
+Chassis id: 8c60.4f14.6e48
+Port id: Eth1/1
+Local Port id: Eth1/1
+Port Description: NX5K-1 Eth1/1
+System Name: CDC-CORE-5K-3A.usap.com
+System Description: Cisco NX-OS(tm) n6000, Software (n6000-uk9), Version 7.3(5)N1(1), RELEASE SOFTWARE Copyright (c) 2002-2012, 2016-2017 by Cisco Systems, Inc. Compiled 2/11/2019 2:00:00
+Time remaining: 106 seconds
+System Capabilities: B
+Enabled Capabilities: B
+Management Address: 10.2.255.2
+Vlan ID: 1
+
+
+Chassis id: 8c60.4f14.6e78
+Port id: Eth2/1
+Local Port id: Eth2/1
+Port Description: NX5K-1 Eth2/1
+System Name: CDC-CORE-5K-3A.usap.com
+System Description: Cisco NX-OS(tm) n6000, Software (n6000-uk9), Version 7.3(5)N1(1), RELEASE SOFTWARE Copyright (c) 2002-2012, 2016-2017 by Cisco Systems, Inc. Compiled 2/11/2019 2:00:00
+Time remaining: 106 seconds
+System Capabilities: B
+Enabled Capabilities: B
+Management Address: 10.2.255.2
+Vlan ID: 1
+
+
+Chassis id: 8c60.4f14.6e79
+Port id: Eth2/2
+Local Port id: Eth2/2
+Port Description: NX5K-1 Eth2/2
+System Name: CDC-CORE-5K-3A.usap.com
+System Description: Cisco NX-OS(tm) n6000, Software (n6000-uk9), Version 7.3(5)N1(1), RELEASE SOFTWARE Copyright (c) 2002-2012, 2016-2017 by Cisco Systems, Inc. Compiled 2/11/2019 2:00:00
+Time remaining: 106 seconds
+System Capabilities: B
+Enabled Capabilities: B
+Management Address: 10.2.255.2
+Vlan ID: 1
+
+Total entries displayed: 4

@@ -1,0 +1,116 @@
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Gi4/1, Gi4/19, Gi4/25, Gi4/27, Gi4/31, Te5/4, Te5/5, Te5/6, Te5/7, Te5/8, Te6/2
+                                                Te6/3, Te6/4, Te6/5, Te6/6, Te6/7, Te6/8
+100  DATA_01                          active    Gi1/1, Gi1/2, Gi1/3, Gi1/4, Gi1/5, Gi1/6, Gi1/7, Gi1/9, Gi1/10, Gi1/11, Gi1/12
+                                                Gi1/13, Gi1/14, Gi1/15, Gi1/16, Gi1/17, Gi1/18, Gi1/19, Gi1/20, Gi1/21, Gi1/22
+                                                Gi1/23, Gi1/24, Gi1/25, Gi1/26, Gi1/27, Gi1/28, Gi1/29, Gi1/30, Gi1/31, Gi1/32
+                                                Gi1/33, Gi1/34, Gi1/35, Gi1/36, Gi1/37, Gi1/38, Gi1/39, Gi1/40, Gi1/41, Gi1/42
+                                                Gi1/43, Gi1/44, Gi1/45, Gi1/46, Gi1/47, Gi1/48, Gi2/1, Gi2/2, Gi2/3, Gi2/4, Gi2/5
+                                                Gi2/7, Gi2/9, Gi2/11, Gi2/12, Gi2/13, Gi2/14, Gi2/15, Gi2/16, Gi2/17, Gi2/18
+                                                Gi2/19, Gi2/20, Gi2/21, Gi2/22, Gi2/23, Gi2/24, Gi2/25, Gi2/26, Gi2/27, Gi2/28
+                                                Gi2/29, Gi2/30, Gi2/31, Gi2/32, Gi2/33, Gi2/34, Gi2/35, Gi2/36, Gi2/37, Gi2/38
+                                                Gi2/39, Gi2/40, Gi2/41, Gi2/42, Gi2/43, Gi2/44, Gi2/45, Gi2/46, Gi2/47, Gi2/48
+                                                Gi3/1, Gi3/2, Gi3/3, Gi3/4, Gi3/5, Gi3/6, Gi3/7, Gi3/8, Gi3/9, Gi3/10, Gi3/11
+                                                Gi3/12, Gi3/13, Gi3/14, Gi3/15, Gi3/16, Gi3/17, Gi3/18, Gi3/19, Gi3/20, Gi3/21
+                                                Gi3/22, Gi3/23, Gi3/24, Gi3/25, Gi3/26, Gi3/27, Gi3/28, Gi3/29, Gi3/30, Gi3/31
+                                                Gi3/32, Gi3/33, Gi3/34, Gi3/35, Gi3/36, Gi3/37, Gi3/38, Gi3/39, Gi3/40, Gi3/41
+                                                Gi3/42, Gi3/43, Gi3/44, Gi3/45, Gi3/46, Gi3/47, Gi3/48, Gi4/3, Gi4/4, Gi4/5, Gi4/6
+                                                Gi4/7, Gi4/8, Gi4/9, Gi4/10, Gi4/11, Gi4/12, Gi4/13, Gi4/14, Gi4/15, Gi4/16, Gi4/17
+                                                Gi4/18, Gi4/20, Gi4/22, Gi4/23, Gi4/24, Gi4/29, Gi4/30, Gi4/32, Gi4/41, Gi4/42
+                                                Gi4/43, Gi4/44, Gi4/46, Gi7/1, Gi7/2, Gi7/3, Gi7/4, Gi7/5, Gi7/6, Gi7/7, Gi7/8
+                                                Gi7/9, Gi7/10, Gi7/11, Gi7/12, Gi7/13, Gi7/14, Gi7/15, Gi7/16, Gi7/17, Gi7/18
+                                                Gi7/19, Gi7/20, Gi7/21, Gi7/22, Gi7/23, Gi7/24, Gi7/25, Gi7/26, Gi7/27, Gi7/28
+                                                Gi7/29, Gi7/30, Gi7/31, Gi7/32, Gi7/33, Gi7/34, Gi7/35, Gi7/36, Gi7/37, Gi7/38
+                                                Gi7/39, Gi7/40, Gi7/41, Gi7/42, Gi7/43, Gi7/44, Gi7/45, Gi7/46, Gi7/47, Gi7/48
+                                                Gi8/1, Gi8/2, Gi8/3, Gi8/4, Gi8/5, Gi8/6, Gi8/7, Gi8/8, Gi8/9, Gi8/11, Gi8/12
+                                                Gi8/13, Gi8/14, Gi8/15, Gi8/16, Gi8/17, Gi8/18, Gi8/19, Gi8/20, Gi8/21, Gi8/22
+                                                Gi8/23, Gi8/24, Gi8/25, Gi8/26, Gi8/27, Gi8/28, Gi8/29, Gi8/30, Gi8/31, Gi8/32
+                                                Gi8/33, Gi8/34, Gi8/35, Gi8/36, Gi8/37, Gi8/38, Gi8/39, Gi8/40, Gi8/42, Gi8/43
+                                                Gi8/44, Gi8/45, Gi8/46, Gi8/47, Gi8/48, Gi9/1, Gi9/2, Gi9/3, Gi9/4, Gi9/5, Gi9/6
+                                                Gi9/7, Gi9/8, Gi9/9, Gi9/10, Gi9/11, Gi9/12, Gi9/13, Gi9/14, Gi9/15, Gi9/16, Gi9/17
+                                                Gi9/18, Gi9/19, Gi9/20, Gi9/21, Gi9/22, Gi9/23, Gi9/24, Gi9/25, Gi9/26, Gi9/27
+                                                Gi9/28, Gi9/29, Gi9/30, Gi9/31, Gi9/32, Gi9/33, Gi9/34, Gi9/35, Gi9/36, Gi9/37
+                                                Gi9/38, Gi9/39, Gi9/40, Gi9/41, Gi9/42, Gi9/43, Gi9/44, Gi9/45, Gi9/46, Gi9/47
+                                                Gi9/48, Gi10/3, Gi10/4, Gi10/5, Gi10/6, Gi10/7, Gi10/8, Gi10/9, Gi10/10, Gi10/11
+                                                Gi10/12, Gi10/13, Gi10/14, Gi10/15, Gi10/16, Gi10/17, Gi10/18, Gi10/19, Gi10/20
+                                                Gi10/22, Gi10/25, Gi10/26, Gi10/27, Gi10/30, Gi10/31, Gi10/32, Gi10/33, Gi10/34
+                                                Gi10/35, Gi10/36, Gi10/37, Gi10/38, Gi10/39, Gi10/40, Gi10/41, Gi10/42, Gi10/43
+                                                Gi10/44, Gi10/45, Gi10/46, Gi10/47, Gi10/48
+101  DATA_02                          active    
+102  DATA_03                          active    Gi8/41
+104  GUEST_01                         active    Gi4/21, Gi4/39
+106  BLDG_ACESS                       active    Gi2/8
+200  VOIP_01                          active    Gi1/1, Gi1/2, Gi1/3, Gi1/4, Gi1/5, Gi1/6, Gi1/7, Gi1/8, Gi1/9, Gi1/10, Gi1/11
+                                                Gi1/12, Gi1/13, Gi1/14, Gi1/15, Gi1/16, Gi1/17, Gi1/18, Gi1/19, Gi1/20, Gi1/21
+                                                Gi1/22, Gi1/23, Gi1/24, Gi1/25, Gi1/26, Gi1/27, Gi1/28, Gi1/29, Gi1/30, Gi1/31
+                                                Gi1/32, Gi1/33, Gi1/34, Gi1/35, Gi1/36, Gi1/37, Gi1/38, Gi1/39, Gi1/40, Gi1/41
+                                                Gi1/42, Gi1/43, Gi1/44, Gi1/45, Gi1/46, Gi1/47, Gi1/48, Gi2/1, Gi2/2, Gi2/3, Gi2/4
+                                                Gi2/5, Gi2/7, Gi2/9, Gi2/11, Gi2/12, Gi2/13, Gi2/14, Gi2/15, Gi2/16, Gi2/17, Gi2/18
+                                                Gi2/19, Gi2/20, Gi2/21, Gi2/22, Gi2/23, Gi2/24, Gi2/25, Gi2/26, Gi2/27, Gi2/28
+                                                Gi2/29, Gi2/30, Gi2/31, Gi2/32, Gi2/33, Gi2/34, Gi2/35, Gi2/36, Gi2/37, Gi2/38
+                                                Gi2/39, Gi2/40, Gi2/41, Gi2/42, Gi2/43, Gi2/44, Gi2/45, Gi2/46, Gi2/47, Gi2/48
+                                                Gi3/1, Gi3/2, Gi3/3, Gi3/4, Gi3/5, Gi3/6, Gi3/7, Gi3/8, Gi3/9, Gi3/10, Gi3/11
+                                                Gi3/12, Gi3/13, Gi3/14, Gi3/15, Gi3/16, Gi3/17, Gi3/18, Gi3/19, Gi3/20, Gi3/21
+                                                Gi3/22, Gi3/23, Gi3/24, Gi3/25, Gi3/26, Gi3/27, Gi3/28, Gi3/29, Gi3/30, Gi3/31
+                                                Gi3/32, Gi3/33, Gi3/34, Gi3/35, Gi3/36, Gi3/37, Gi3/38, Gi3/39, Gi3/40, Gi3/41
+                                                Gi3/42, Gi3/43, Gi3/44, Gi3/45, Gi3/46, Gi3/47, Gi3/48, Gi4/2, Gi4/3, Gi4/4, Gi4/5
+                                                Gi4/6, Gi4/7, Gi4/8, Gi4/9, Gi4/10, Gi4/11, Gi4/12, Gi4/13, Gi4/14, Gi4/15, Gi4/16
+                                                Gi4/17, Gi4/18, Gi4/20, Gi4/22, Gi4/24, Gi4/29, Gi4/30, Gi4/32, Gi4/41, Gi4/42
+                                                Gi4/43, Gi4/44, Gi7/1, Gi7/2, Gi7/3, Gi7/4, Gi7/5, Gi7/6, Gi7/7, Gi7/8, Gi7/9
+                                                Gi7/10, Gi7/11, Gi7/12, Gi7/13, Gi7/14, Gi7/15, Gi7/16, Gi7/17, Gi7/18, Gi7/19
+                                                Gi7/20, Gi7/21, Gi7/22, Gi7/23, Gi7/24, Gi7/25, Gi7/26, Gi7/27, Gi7/28, Gi7/29
+                                                Gi7/30, Gi7/31, Gi7/32, Gi7/33, Gi7/34, Gi7/35, Gi7/36, Gi7/37, Gi7/38, Gi7/39
+                                                Gi7/40, Gi7/41, Gi7/42, Gi7/43, Gi7/44, Gi7/45, Gi7/46, Gi7/47, Gi7/48, Gi8/1
+                                                Gi8/2, Gi8/3, Gi8/4, Gi8/5, Gi8/6, Gi8/7, Gi8/8, Gi8/9, Gi8/11, Gi8/12, Gi8/13
+                                                Gi8/14, Gi8/15, Gi8/16, Gi8/17, Gi8/18, Gi8/19, Gi8/20, Gi8/21, Gi8/22, Gi8/23
+                                                Gi8/24, Gi8/25, Gi8/26, Gi8/27, Gi8/28, Gi8/29, Gi8/30, Gi8/31, Gi8/32, Gi8/33
+                                                Gi8/34, Gi8/35, Gi8/36, Gi8/37, Gi8/38, Gi8/39, Gi8/40, Gi8/41, Gi8/42, Gi8/43
+                                                Gi8/44, Gi8/45, Gi8/46, Gi8/47, Gi8/48, Gi9/1, Gi9/2, Gi9/3, Gi9/4, Gi9/5, Gi9/6
+                                                Gi9/7, Gi9/8, Gi9/9, Gi9/10, Gi9/11, Gi9/12, Gi9/13, Gi9/14, Gi9/15, Gi9/16, Gi9/17
+                                                Gi9/18, Gi9/19, Gi9/20, Gi9/21, Gi9/22, Gi9/23, Gi9/24, Gi9/25, Gi9/26, Gi9/27
+                                                Gi9/28, Gi9/29, Gi9/30, Gi9/31, Gi9/32, Gi9/33, Gi9/34, Gi9/35, Gi9/36, Gi9/37
+                                                Gi9/38, Gi9/39, Gi9/40, Gi9/41, Gi9/42, Gi9/43, Gi9/44, Gi9/45, Gi9/46, Gi9/47
+                                                Gi9/48, Gi10/1, Gi10/2, Gi10/3, Gi10/4, Gi10/5, Gi10/6, Gi10/7, Gi10/8, Gi10/9
+                                                Gi10/10, Gi10/11, Gi10/12, Gi10/13, Gi10/14, Gi10/15, Gi10/16, Gi10/17, Gi10/18
+                                                Gi10/20, Gi10/22, Gi10/25, Gi10/26, Gi10/27, Gi10/30, Gi10/31, Gi10/32, Gi10/33
+                                                Gi10/34, Gi10/35, Gi10/36, Gi10/37, Gi10/38, Gi10/39, Gi10/40, Gi10/41, Gi10/42
+                                                Gi10/43, Gi10/44, Gi10/45, Gi10/46, Gi10/47, Gi10/48
+201  VOIP_02                          active    
+300  CORP_WIFI                        active    Gi2/6, Gi2/10, Gi4/26, Gi4/40, Gi8/10
+500  RTR-TRANSIT                      active    
+501  DMVPN-SPOKE                      active    Gi4/45
+503  INTERNET_LOCAL                   active    Gi4/28
+999  UNUSED                           active    
+1002 fddi-default                     act/unsup 
+1003 token-ring-default               act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trnet-default                    act/unsup 
+
+VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2
+---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------
+1    enet  100001     1500  -      -      -        -    -        0      0   
+100  enet  100100     1500  -      -      -        -    -        0      0   
+101  enet  100101     1500  -      -      -        -    -        0      0   
+102  enet  100102     1500  -      -      -        -    -        0      0   
+104  enet  100104     1500  -      -      -        -    -        0      0   
+106  enet  100106     1500  -      -      -        -    -        0      0   
+200  enet  100200     1500  -      -      -        -    -        0      0   
+201  enet  100201     1500  -      -      -        -    -        0      0   
+300  enet  100300     1500  -      -      -        -    -        0      0   
+500  enet  100500     1500  -      -      -        -    -        0      0   
+501  enet  100501     1500  -      -      -        -    -        0      0   
+503  enet  100503     1500  -      -      -        -    -        0      0   
+999  enet  100999     1500  -      -      -        -    -        0      0   
+1002 fddi  101002     1500  -      -      -        -    -        0      0   
+1003 tr    101003     1500  -      -      -        -    -        0      0   
+1004 fdnet 101004     1500  -      -      -        ieee -        0      0   
+1005 trnet 101005     1500  -      -      -        ibm  -        0      0   
+
+Remote SPAN VLANs
+------------------------------------------------------------------------------
+
+
+Primary Secondary Type              Ports
+------- --------- ----------------- ------------------------------------------
+

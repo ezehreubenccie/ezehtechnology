@@ -1,0 +1,8 @@
+f = open('show_version.txt')
+# print(f)
+# print(type(f))
+# print(f.read())
+output = f.read()
+print(type(output))
+print(output)
+f.close()

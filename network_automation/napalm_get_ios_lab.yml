@@ -1,0 +1,23 @@
+---
+- name: NAPALM get_facts and get_interfaces
+  hosts: lbjlabrouters
+  gather_facts: False
+
+  vars:
+    secret: !vault |
+          $ANSIBLE_VAULT;1.2;AES256;reuben3010
+          64313238323633333531346135383734336335613632343935333239666530323132633738376631
+          3761303632383434363861366434626466316234333133360a303837636530303465623736303766
+          37326238393161323339343537636239613730343530393235386339633534376532653432666163
+          3963356438313736370a646166346437653833393539643637636633303165363639653234316565
+          3363
+
+  tasks:
+    - name: napalm get_facts
+      napalm_get_facts:
+        filter: bgp_config
+        optional_args: 
+          secret: "{{ secret }}"
+ 
+    - debug:
+        var: napalm_bgp_config
