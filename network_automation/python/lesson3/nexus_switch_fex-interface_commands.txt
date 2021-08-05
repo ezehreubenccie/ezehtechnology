@@ -1,0 +1,574 @@
+CDC-CORE-5K-2A# sh fex
+  FEX         FEX           FEX              FEX              Fex       
+Number    Description      State            Model            Serial     
+------------------------------------------------------------------------
+121         FEX121                Online    N2K-C2232TM-10GE   SSI182402PW
+122         FEX122                Online   N2K-C2248TP-E-1GE   SSI18170982
+123         FEX123                Online   N2K-C2248TP-E-1GE   SSI181505TW
+CDC-CORE-5K-2A# sh int ethernet | inc up
+                               ^
+Invalid interface format at '^' marker.
+CDC-CORE-5K-2A# sh int Ethernet | inc up
+                               ^
+Invalid interface format at '^' marker.
+CDC-CORE-5K-2A# sh int Ethernet 
+                                ^
+Invalid command (incomplete interface) at '^' marker.
+CDC-CORE-5K-2A# sh int Ethernet ?
+  <1-255>  Slot/chassis number
+
+CDC-CORE-5K-2A# sh int Ethernet 121-123
+                                   ^
+Invalid interface format at '^' marker.
+CDC-CORE-5K-2A# sh int Ethernet 121
+                                   ^
+Invalid command (incomplete interface) at '^' marker.
+CDC-CORE-5K-2A# sh int Ethernet 121?
+  /        Slash separator
+  <1-255>  Slot/chassis number
+
+CDC-CORE-5K-2A# sh int status
+
+--------------------------------------------------------------------------------
+Port          Name               Status    Vlan      Duplex  Speed   Type
+--------------------------------------------------------------------------------
+Eth1/1        NX5K-2 Eth1/1      connected trunk     full    10G     SFP-H10GB-C
+Eth1/2        --                 sfpAbsent 1         full    10G     --         
+Eth1/3        FEX Uplink         connected 1         full    10G     SFP-H10GB-C
+Eth1/4        FEX Uplink         connected 1         full    10G     SFP-H10GB-C
+Eth1/5        --                 sfpAbsent 1         full    10G     --         
+Eth1/6        --                 sfpAbsent 1         full    10G     --         
+Eth1/7        Firewall Primary E connected trunk     full    1000    SFP-1000BAS
+Eth1/8        Firewall Primary E connected trunk     full    1000    SFP-1000BAS
+Eth1/9        Firewall Secondary connected trunk     full    1000    SFP-1000BAS
+Eth1/10       Firewall Secondary connected trunk     full    1000    SFP-1000BAS
+Eth1/11       --                 connected 291       full    10G     SFP-H10GB-A
+Eth1/12       --                 connected 290       full    10G     SFP-H10GB-A
+Eth1/13       --                 sfpAbsent 1         full    10G     --         
+Eth1/14       --                 sfpAbsent 1         full    10G     --         
+Eth1/15       --                 sfpAbsent 1         full    10G     --         
+Eth1/16       AlertLogic SPAN Po connected 1         full    10G     SFP-10G-AOC
+Eth1/17       FEX Uplink         connected 1         full    10G     SFP-H10GB-C
+Eth1/18       FEX Uplink         connected 1         full    10G     SFP-H10GB-C
+Eth1/19       --                 sfpAbsent 1         full    10G     --         
+Eth1/20       --                 sfpAbsent 1         full    10G     --         
+Eth1/21       --                 sfpAbsent 1         full    10G     --         
+Eth1/22       --                 sfpAbsent 1         full    10G     --         
+Eth1/23       --                 sfpAbsent 1         full    10G     --         
+Eth1/24       --                 sfpAbsent 1         full    10G     --         
+Eth1/25       FEX Uplink         connected 1         full    10G     SFP-H10GB-C
+Eth1/26       FEX Uplink         connected 1         full    10G     SFP-H10GB-C
+Eth1/27       --                 sfpAbsent 1         full    10G     --         
+Eth1/28       --                 sfpAbsent 1         full    10G     --         
+Eth1/29       --                 sfpAbsent 1         full    10G     --         
+Eth1/30       --                 sfpAbsent 1         full    10G     --         
+Eth1/31       --                 sfpAbsent 1         full    10G     --         
+Eth1/32       --                 sfpAbsent 1         full    10G     --         
+Eth1/33       --                 sfpAbsent 1         full    10G     --         
+Eth1/34       --                 sfpAbsent 1         full    10G     --         
+Eth1/35       --                 sfpAbsent 1         full    10G     --         
+Eth1/36       --                 sfpAbsent 1         full    10G     --         
+Eth1/37       --                 sfpAbsent 1         full    10G     --         
+Eth1/38       --                 sfpAbsent 1         full    10G     --         
+Eth1/39       --                 sfpAbsent 1         full    10G     --         
+Eth1/40       --                 sfpAbsent 1         full    10G     --         
+Eth1/41       --                 sfpAbsent 1         full    10G     --         
+Eth1/42       --                 sfpAbsent 1         full    10G     --         
+Eth1/43       --                 sfpAbsent 1         full    10G     --         
+Eth1/44       --                 sfpAbsent 1         full    10G     --         
+Eth1/45       --                 sfpAbsent 1         full    10G     --         
+Eth1/46       --                 sfpAbsent 1         full    10G     --         
+Eth1/47       --                 sfpAbsent 1         full    10G     --         
+Eth1/48       --                 connected routed    full    1000    SFP-1000BAS
+Eth2/1        Peer-Link to CDC-C connected trunk     full    40G     QSFP-H40G-A
+Eth2/2        Peer-Link to CDC-C connected trunk     full    40G     QSFP-H40G-A
+Eth2/3        --                 sfpAbsent 1         half    40G     --         
+Eth2/4        --                 sfpAbsent 1         half    40G     --         
+Eth2/5        --                 sfpAbsent 1         half    40G     --         
+Eth2/6        --                 sfpAbsent 1         half    40G     --         
+Po1           NX5K-2 VPC peer-li connected trunk     full    a-40G   --         
+Po2           Firewall Uplink    connected trunk     full    1000    --         
+Po3           Firewall Secondary connected trunk     full    1000    --         
+Po4           Port-Channel to Ve connected 327       full    a-1000  --         
+Po121         FEX Uplink         connected 1         full    10G     --         
+Po122         FEX Uplink         connected 1         full    a-10G   --         
+Po123         FEX Uplink         connected 1         full    a-10G   --         
+mgmt0         --                 connected routed    full    a-1000  --         
+Vlan1         --                 down      routed    auto    auto    --
+Vlan200       Server Network Sub connected routed    auto    auto    --
+Vlan201       Server Network Sub connected routed    auto    auto    --
+Vlan454       Firewall Transit   connected routed    auto    auto    --
+Vlan455       5K Routing         connected routed    auto    auto    --
+Vlan464       MCK-FW TRANSIT     connected routed    auto    auto    --
+Vlan500       RTR-TRANSIT        connected routed    auto    auto    --
+Eth121/1/1    --                 connected trunk     full    a-10G   1g/10g     
+Eth121/1/2    --                 connected trunk     full    a-10G   1g/10g     
+Eth121/1/3    --                 connected trunk     full    a-10G   1g/10g     
+Eth121/1/4    --                 connected trunk     full    a-10G   1g/10g     
+Eth121/1/5    --                 connected trunk     full    a-10G   1g/10g     
+Eth121/1/6    --                 connected trunk     full    a-10G   1g/10g     
+Eth121/1/7    --                 connected trunk     full    a-10G   1g/10g     
+Eth121/1/8    --                 connected trunk     full    a-10G   1g/10g     
+Eth121/1/9    --                 connected trunk     full    a-10G   1g/10g     
+Eth121/1/10   --                 connected trunk     full    a-10G   1g/10g     
+Eth121/1/11   --                 connected trunk     full    a-10G   1g/10g     
+Eth121/1/12   --                 notconnec trunk     auto    auto    1g/10g     
+Eth121/1/13   --                 connected trunk     full    a-10G   1g/10g     
+Eth121/1/14   --                 connected 327       full    a-1000  1g/10g     
+Eth121/1/15   --                 notconnec 1         auto    auto    1g/10g     
+Eth121/1/16   AlertLogic SPAN In notconnec 1         auto    auto    1g/10g     
+Eth121/1/17   --                 notconnec 1         auto    auto    1g/10g     
+Eth121/1/18   --                 notconnec 1         auto    auto    1g/10g     
+Eth121/1/19   --                 notconnec 1         auto    auto    1g/10g     
+Eth121/1/20   --                 notconnec 1         auto    auto    1g/10g     
+Eth121/1/21   --                 notconnec 1         auto    auto    1g/10g     
+Eth121/1/22   --                 notconnec 1         auto    auto    1g/10g     
+Eth121/1/23   NONAT LINK to CDC- connected 974       full    a-1000  1g/10g     
+Eth121/1/24   NONAT LINK to CDC_ connected 974       full    a-1000  1g/10g     
+Eth121/1/25   --                 notconnec 1         auto    auto    1g/10g     
+Eth121/1/26   --                 notconnec 1         auto    auto    1g/10g     
+Eth121/1/27   QUALYS SCANNING CO notconnec 301       auto    auto    1g/10g     
+Eth121/1/28   --                 notconnec 1         auto    auto    1g/10g     
+Eth121/1/29   --                 notconnec 1         auto    auto    1g/10g     
+Eth121/1/30   CDC-WAN-RTR-01 G0/ connected 500       full    1000    1g/10g     
+Eth121/1/31   CDC-WAN-RTR-02 G0/ connected 500       full    1000    1g/10g     
+Eth121/1/32   --                 notconnec 1         auto    auto    1g/10g     
+Eth122/1/1    --                 connected 327       full    a-1000             
+Eth122/1/2    --                 connected 327       full    a-1000             
+Eth122/1/3    --                 connected 327       full    a-1000             
+Eth122/1/4    --                 connected 327       full    a-1000             
+Eth122/1/5    --                 connected 327       full    a-1000             
+Eth122/1/6    --                 connected 327       full    a-1000             
+Eth122/1/7    --                 connected 327       full    a-1000             
+Eth122/1/8    Veeam BACKUP SERVE notconnec 327       auto    auto               
+Eth122/1/9    --                 notconnec 1         auto    auto               
+Eth122/1/10   --                 notconnec 1         auto    auto               
+Eth122/1/11   --                 notconnec 1         auto    auto               
+Eth122/1/12   --                 notconnec 1         auto    auto               
+Eth122/1/13   CDC-AUDIOCODES LAN connected 200       full    a-1000             
+Eth122/1/14   Connection to SATX notconnec 200       auto    auto               
+Eth122/1/15   --                 notconnec 1         auto    auto               
+Eth122/1/16   --                 notconnec 1         auto    auto               
+Eth122/1/17   --                 notconnec 1         auto    auto               
+Eth122/1/18   --                 notconnec 1         auto    auto               
+Eth122/1/19   --                 notconnec 1         auto    auto               
+Eth122/1/20   --                 notconnec 1         auto    auto               
+Eth122/1/21   --                 notconnec 1         auto    auto               
+Eth122/1/22   --                 notconnec 1         auto    auto               
+Eth122/1/23   Link to MCK-FW PRI connected 464       full    a-1000             
+Eth122/1/24   --                 notconnec 1         auto    auto               
+Eth122/1/25   --                 notconnec 200       auto    auto               
+Eth122/1/26   --                 notconnec 200       auto    auto               
+Eth122/1/27   --                 notconnec 200       auto    auto               
+Eth122/1/28   --                 notconnec 1         auto    auto               
+Eth122/1/29   --                 notconnec 1         auto    auto               
+Eth122/1/30   --                 notconnec 1         auto    auto               
+Eth122/1/31   --                 notconnec 1         auto    auto               
+Eth122/1/32   --                 notconnec 1         auto    auto               
+Eth122/1/33   --                 notconnec 1         auto    auto               
+Eth122/1/34   --                 notconnec 1         auto    auto               
+Eth122/1/35   --                 notconnec 1         auto    auto               
+Eth122/1/36   TEMP SRVMGMT user  notconnec 327       auto    auto               
+Eth122/1/37   --                 notconnec 1         auto    auto               
+Eth122/1/38   --                 notconnec 1         auto    auto               
+Eth122/1/39   --                 notconnec 1         auto    auto               
+Eth122/1/40   --                 notconnec 1         auto    auto               
+Eth122/1/41   --                 notconnec 1         auto    auto               
+Eth122/1/42   --                 notconnec 1         auto    auto               
+Eth122/1/43   --                 notconnec 1         auto    auto               
+Eth122/1/44   --                 notconnec 1         auto    auto               
+Eth122/1/45   PDU 2A             connected 327       full    a-100              
+Eth122/1/46   PDU 2B             connected 327       full    a-100              
+Eth122/1/47   PDU 1A - PP1-2 por notconnec 327       auto    auto               
+Eth122/1/48   --                 notconnec 1         auto    auto               
+Eth123/1/1    --                 connected 327       full    a-1000             
+CDC-CORE-5K-2A# sh int  Eth121/1/1 - 32 | inc up
+Ethernet121/1/1 is up
+  full-duplex, auto-speed
+    226827528000 jumbo packets  0 storm suppression bytes
+Ethernet121/1/2 is up
+  full-duplex, auto-speed
+    353631746596 jumbo packets  0 storm suppression bytes
+Ethernet121/1/3 is up
+  full-duplex, auto-speed
+    40052207594 jumbo packets  0 storm suppression bytes
+Ethernet121/1/4 is up
+  full-duplex, auto-speed
+    97461582643 jumbo packets  0 storm suppression bytes
+Ethernet121/1/5 is up
+  full-duplex, auto-speed
+    66031213057 jumbo packets  0 storm suppression bytes
+Ethernet121/1/6 is up
+  full-duplex, auto-speed
+    87411498997 jumbo packets  0 storm suppression bytes
+Ethernet121/1/7 is up
+  full-duplex, auto-speed
+    143182902122 jumbo packets  0 storm suppression bytes
+Ethernet121/1/8 is up
+CDC-CORE-5K-2A# sh int  Eth121/1/1 - 32 | inc up | less
+Ethernet121/1/1 is up
+  full-duplex, auto-speed
+    226827606840 jumbo packets  0 storm suppression bytes
+Ethernet121/1/2 is up
+  full-duplex, auto-speed
+    353632087407 jumbo packets  0 storm suppression bytes
+Ethernet121/1/3 is up
+  full-duplex, auto-speed
+    40052236490 jumbo packets  0 storm suppression bytes
+Ethernet121/1/4 is up
+  full-duplex, auto-speed
+    97461615163 jumbo packets  0 storm suppression bytes
+Ethernet121/1/5 is up
+  full-duplex, auto-speed
+    66031289297 jumbo packets  0 storm suppression bytes
+Ethernet121/1/6 is up
+  full-duplex, auto-speed
+    87411526013 jumbo packets  0 storm suppression bytes
+Ethernet121/1/7 is up
+  full-duplex, auto-speed
+    143183006736 jumbo packets  0 storm suppression bytes
+Ethernet121/1/8 is up
+CDC-CORE-5K-2A# sh int  Eth121/1/1 - 32 brief | inc up | less
+Eth121/1/1     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/2     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/3     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/4     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/5     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/6     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/7     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/8     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/9     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/10    1       eth  trunk  up      none                       10G(D) --
+Eth121/1/11    1       eth  trunk  up      none                       10G(D) --
+Eth121/1/13    1       eth  trunk  up      none                       10G(D) --
+Eth121/1/14    327     eth  access up      none                      1000(D) 4
+Eth121/1/23    974     eth  access up      none                      1000(D) --
+Eth121/1/24    974     eth  access up      none                      1000(D) --
+Eth121/1/30    500     eth  access up      none                      1000(D) --
+Eth121/1/31    500     eth  access up      none                      1000(D) --
+CDC-CORE-5K-2A# sh fex
+  FEX         FEX           FEX              FEX              Fex       
+Number    Description      State            Model            Serial     
+------------------------------------------------------------------------
+121         FEX121                Online    N2K-C2232TM-10GE   SSI182402PW
+122         FEX122                Online   N2K-C2248TP-E-1GE   SSI18170982
+123         FEX123                Online   N2K-C2248TP-E-1GE   SSI181505TW
+CDC-CORE-5K-2A# sh vlan brie
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Po1, Eth1/1, Eth1/2, Eth1/5
+                                                Eth1/6, Eth1/13, Eth1/14
+                                                Eth1/15, Eth1/16, Eth1/19
+                                                Eth1/20, Eth1/21, Eth1/22
+                                                Eth1/23, Eth1/24, Eth1/27
+                                                Eth1/28, Eth1/29, Eth1/30
+                                                Eth1/31, Eth1/32, Eth1/33
+                                                Eth1/34, Eth1/35, Eth1/36
+                                                Eth1/37, Eth1/38, Eth1/39
+                                                Eth1/40, Eth1/41, Eth1/42
+                                                Eth1/43, Eth1/44, Eth1/45
+                                                Eth1/46, Eth1/47, Eth2/1, Eth2/2
+                                                Eth2/3, Eth2/4, Eth2/5, Eth2/6
+                                                Eth121/1/15, Eth121/1/16
+                                                Eth121/1/17, Eth121/1/18
+                                                Eth121/1/19, Eth121/1/20
+                                                Eth121/1/21, Eth121/1/22
+                                                Eth121/1/25, Eth121/1/26
+                                                Eth121/1/28, Eth121/1/29
+CDC-CORE-5K-2A# sh vlan brie | i 327
+327  DC-CAR-SRVMGMT                   active    Po1, Po2, Po3, Po4, Eth1/1
+CDC-CORE-5K-2A# sh run int e1/1
+
+!Command: show running-config interface Ethernet1/1
+!Time: Thu Aug  5 08:54:58 2021
+
+version 7.3(5)N1(1)
+
+interface Ethernet1/1
+  description NX5K-2 Eth1/1
+  switchport mode trunk
+  switchport trunk allowed vlan 1,200,290-293,301-304,327-328,454-455,1000
+
+CDC-CORE-5K-2A# sh cdp nei
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+
+Device-ID             Local Intrfce Hldtme Capability  Platform         Port ID
+CDC-CORE-5K-3A.usap.com(FOC1839R20X)
+                    mgmt0          166    R S s     N5K-C5672UP        mgmt0         
+CDC-CORE-5K-3A.usap.com(FOC1839R20X)
+                    Eth1/1         166    R S I s   N5K-C5672UP        Eth1/1        
+6509_10.10.0.1.pinnacle.local
+                    Eth1/48        169    R S I     WS-C6509-E         Gig4/41       
+CDC-CORE-5K-3A.usap.com(FOC1839R20X)
+                    Eth2/1         166    R S I s   N5K-C5672UP        Eth2/1        
+CDC-CORE-5K-3A.usap.com(FOC1839R20X)
+                    Eth2/2         166    R S I s   N5K-C5672UP        Eth2/2        
+CDC-4451-RTR01.USAP.com
+                    Eth121/1/24    154    R S I     ISR4451-X/K9       Gig0/0/2      
+CDC-4451-RTR01.USAP.com
+                    Eth121/1/30    173    R S I     ISR4451-X/K9       Gig0/0/0      
+CDC-4451-RTR02.USAP.com
+                    Eth121/1/31    124    R S I     ISR4451-X/K9       Gig0/0/1      
+CDC-CORE-5K-2A# sh lldp nei
+Capability codes:
+  (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS Cable Device
+  (W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other
+Device ID            Local Intf      Hold-time  Capability  Port ID  
+CDC-CORE-5K-3A.usap.commgmt0           120        B           mgmt0             
+CDC-CORE-5K-3A.usap.comEth1/1          120        B           Eth1/1            
+CDC-CORE-5K-3A.usap.comEth2/1          120        B           Eth2/1            
+CDC-CORE-5K-3A.usap.comEth2/2          120        B           Eth2/2            
+Total entries displayed: 4
+CDC-CORE-5K-2A# sh mac address-table 
+Legend: 
+        * - primary entry, G - Gateway MAC, (R) - Routed MAC, O - Overlay MAC
+        age - seconds since last seen,+ - primary entry using vPC Peer-Link
+   VLAN     MAC Address      Type      age     Secure NTFY   Ports/SWID.SSID.LID
+---------+-----------------+--------+---------+------+----+------------------
+* 974      0050.569f.31fc    dynamic   10         F    F  Eth121/1/8
++ 974      0050.569f.751b    dynamic   0          F    F  Po1
++ 974      0090.8f79.9422    dynamic   0          F    F  Po1
+* 974      6412.2537.046b    dynamic   10         F    F  Eth121/1/23
+* 974      6412.2537.0491    dynamic   0          F    F  Po1
++ 974      881d.fc0e.19d2    dynamic   0          F    F  Po1
+* 974      f44e.0546.bd02    dynamic   10         F    F  Eth121/1/24
+* 500      881d.fc0e.19d1    dynamic   10         F    F  Eth121/1/31
+* 500      f44e.0546.bd00    dynamic   10         F    F  Eth121/1/30
++ 464      286f.7f02.40b6    dynamic   0          F    F  Po1
+* 464      5c83.8f4b.5555    dynamic   10         F    F  Eth122/1/23
+* 464      8c60.4f14.6e81    static    0          F    F  Po1
+* 455      8c60.4f14.6e81    static    0          F    F  Po1
+* 454      6412.2537.0469    dynamic   10         F    F  Po2
+* 454      6412.2537.048f    dynamic   10         F    F  Po3
+* 454      8c60.4f14.6e81    static    0          F    F  Po1
+* 328      6412.2537.0469    dynamic   1800       F    F  Po2
+CDC-CORE-5K-2A# sh mac address-table | grep Eth121/1/24
+* 974      f44e.0546.bd02    dynamic   0          F    F  Eth121/1/24
+CDC-CORE-5K-2A# sh int  Eth121/1/1 - 32 brief | inc up | less | grep Eth121/1/24
+Eth121/1/24    974     eth  access up      none                      1000(D) --
+CDC-CORE-5K-2A# sh int  Eth121/1/1 - 32 brief | inc up | less 
+Eth121/1/1     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/2     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/3     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/4     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/5     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/6     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/7     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/8     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/9     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/10    1       eth  trunk  up      none                       10G(D) --
+Eth121/1/11    1       eth  trunk  up      none                       10G(D) --
+Eth121/1/13    1       eth  trunk  up      none                       10G(D) --
+Eth121/1/14    327     eth  access up      none                      1000(D) 4
+Eth121/1/23    974     eth  access up      none                      1000(D) --
+Eth121/1/24    974     eth  access up      none                      1000(D) --
+Eth121/1/30    500     eth  access up      none                      1000(D) --
+Eth121/1/31    500     eth  access up      none                      1000(D) --
+CDC-CORE-5K-2A# sh mac address-table | grep Eth121/1/1 
+* 303      0050.569f.0a75    dynamic   0          F    F  Eth121/1/11
+* 303      0050.569f.0c94    dynamic   0          F    F  Eth121/1/1
+* 303      0050.569f.0dbd    dynamic   0          F    F  Eth121/1/13
+* 303      0050.569f.39c3    dynamic   0          F    F  Eth121/1/1
+* 303      0050.569f.5298    dynamic   0          F    F  Eth121/1/13
+* 303      0050.569f.5353    dynamic   0          F    F  Eth121/1/1
+* 303      0050.569f.53c3    dynamic   0          F    F  Eth121/1/11
+* 303      0050.569f.fbbc    dynamic   0          F    F  Eth121/1/10
+* 301      0050.569f.45c2    dynamic   20         F    F  Eth121/1/10
+* 291      0050.5663.87c8    dynamic   0          F    F  Eth121/1/13
+* 291      0050.566c.4c55    dynamic   0          F    F  Eth121/1/10
+* 290      0050.5663.54fc    dynamic   0          F    F  Eth121/1/1
+* 290      0050.566c.ad91    dynamic   0          F    F  Eth121/1/11
+* 200      0050.569f.0ac7    dynamic   0          F    F  Eth121/1/10
+* 200      0050.569f.1e13    dynamic   10         F    F  Eth121/1/10
+* 200      0050.569f.2207    dynamic   0          F    F  Eth121/1/10
+* 200      0050.569f.222c    dynamic   0          F    F  Eth121/1/10
+* 200      0050.569f.3403    dynamic   0          F    F  Eth121/1/10
+* 200      0050.569f.4134    dynamic   0          F    F  Eth121/1/10
+* 200      0050.569f.55bc    dynamic   0          F    F  Eth121/1/1
+* 200      0050.569f.5e11    dynamic   0          F    F  Eth121/1/1
+* 200      0050.569f.d71a    dynamic   0          F    F  Eth121/1/10
+CDC-CORE-5K-2A# sh cdp nei
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+
+Device-ID             Local Intrfce Hldtme Capability  Platform         Port ID
+CDC-CORE-5K-3A.usap.com(FOC1839R20X)
+                    mgmt0          171    R S s     N5K-C5672UP        mgmt0         
+CDC-CORE-5K-3A.usap.com(FOC1839R20X)
+                    Eth1/1         171    R S I s   N5K-C5672UP        Eth1/1        
+6509_10.10.0.1.pinnacle.local
+                    Eth1/48        174    R S I     WS-C6509-E         Gig4/41       
+CDC-CORE-5K-3A.usap.com(FOC1839R20X)
+                    Eth2/1         171    R S I s   N5K-C5672UP        Eth2/1        
+CDC-CORE-5K-3A.usap.com(FOC1839R20X)
+                    Eth2/2         171    R S I s   N5K-C5672UP        Eth2/2        
+CDC-4451-RTR01.USAP.com
+                    Eth121/1/24    156    R S I     ISR4451-X/K9       Gig0/0/2      
+CDC-4451-RTR01.USAP.com
+                    Eth121/1/30    174    R S I     ISR4451-X/K9       Gig0/0/0      
+CDC-4451-RTR02.USAP.com
+                    Eth121/1/31    134    R S I     ISR4451-X/K9       Gig0/0/1      
+CDC-CORE-5K-2A# sh run int e121/1/1
+
+!Command: show running-config interface Ethernet121/1/1
+!Time: Thu Aug  5 09:13:15 2021
+
+version 7.3(5)N1(1)
+
+interface Ethernet121/1/1
+  inherit port-profile ESXI-SERVER
+
+CDC-CORE-5K-2A# sh int  Eth121/1/1 - 32 brief | inc up | less 
+Eth121/1/1     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/2     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/3     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/4     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/5     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/6     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/7     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/8     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/9     1       eth  trunk  up      none                       10G(D) --
+Eth121/1/10    1       eth  trunk  up      none                       10G(D) --
+Eth121/1/11    1       eth  trunk  up      none                       10G(D) --
+Eth121/1/13    1       eth  trunk  up      none                       10G(D) --
+Eth121/1/14    327     eth  access up      none                      1000(D) 4
+Eth121/1/23    974     eth  access up      none                      1000(D) --
+Eth121/1/24    974     eth  access up      none                      1000(D) --
+Eth121/1/30    500     eth  access up      none                      1000(D) --
+Eth121/1/31    500     eth  access up      none                      1000(D) --
+CDC-CORE-5K-2A# sh run int e121/1/10
+
+!Command: show running-config interface Ethernet121/1/10
+!Time: Thu Aug  5 09:13:41 2021
+
+version 7.3(5)N1(1)
+
+interface Ethernet121/1/10
+  inherit port-profile ESXI-SERVER
+
+CDC-CORE-5K-2A# sh vlan brie | i 303
+303  DC-CAR-PROD-DB                   active    Po1, Po2, Po3, Eth1/1, Eth1/7
+CDC-CORE-5K-2A# sh vlan brie | i 291
+291  DC-CAR-ISCSI-02                  active    Po1, Eth1/1, Eth1/11, Eth2/1
+CDC-CORE-5K-2A# sh vlan brie | i 200
+200  DC-CAR-SERVER-00                 active    Po1, Po2, Po3, Eth1/1, Eth1/7
+CDC-CORE-5K-2A# sh port-channel ?
+  capacity                  Capacity information
+  compatibility-parameters  Show compatibility parameters
+  database                  Show port-channel database
+  internal                  Show port-channel service internal status
+  load-balance              Configure port-channel load balance
+  summary                   Show port-channel summary
+  traffic                   Show port-channel traffic statistics
+  usage                     Show port-channel number usage
+
+CDC-CORE-5K-2A# sh port-channel summary ?
+  <CR>       
+  >          Redirect it to a file
+  >>         Redirect it to a file in append mode
+  interface  Specify a port-channel
+  |          Pipe command output to filter
+
+CDC-CORE-5K-2A# sh port-channel summary 
+Flags:  D - Down        P - Up in port-channel (members)
+        I - Individual  H - Hot-standby (LACP only)
+        s - Suspended   r - Module-removed
+        S - Switched    R - Routed
+        U - Up (port-channel)
+        M - Not in use. Min-links not met
+--------------------------------------------------------------------------------
+Group Port-       Type     Protocol  Member Ports
+      Channel
+--------------------------------------------------------------------------------
+1     Po1(SU)     Eth      LACP      Eth2/1(P)    Eth2/2(P)    
+2     Po2(SU)     Eth      LACP      Eth1/7(P)    Eth1/8(P)    
+3     Po3(SU)     Eth      LACP      Eth1/9(P)    Eth1/10(P)   
+4     Po4(SU)     Eth      LACP      Eth121/1/14(P)  
+121   Po121(SU)   Eth      NONE      Eth1/3(P)    Eth1/4(P)    
+122   Po122(SU)   Eth      NONE      Eth1/17(P)   Eth1/18(P)   
+123   Po123(SU)   Eth      NONE      Eth1/25(P)   Eth1/26(P)   
+CDC-CORE-5K-2A# sh int  Eth121/1/1 - 32 brief | inc up | less | grep Eth121/1/14
+Eth121/1/14    327     eth  access up      none                      1000(D) 4
+CDC-CORE-5K-2A# sh vlan brie | inc 327
+327  DC-CAR-SRVMGMT                   active    Po1, Po2, Po3, Po4, Eth1/1
+CDC-CORE-5K-2A# sh hist
+                    ^
+% Invalid command at '^' marker.
+CDC-CORE-5K-2A# show ?
+  aaa                     Show aaa information
+  access-lists            List access lists
+  accounting              Show accounting configuration
+  adbm                    Show information about adbm
+  analysis                Analysis
+  application             Display application route status
+  arp                     ARP access-lists
+  background              Show background processes (started with 'source background <file>' command)
+  banner                  Show current banner message
+  bfdc                    BFD client commands
+  bgp                     Display BGP status and configuration
+  boot                    Show Bootvar Variables
+  callhome                Show callhome information
+  cdp                     Show Cisco Discovery Protocol information
+  cfs                     CFS Show Command handler
+  checkpoint              Show configuration rollback checkpoints
+  class-map               Show class maps
+  cli                     Show CLI information
+  clock                   Display current Date
+  config-profile          Show configuration profile
+  configuration           Show information about configuration sessions
+  consistency-checker     Consistency Checker
+  copp                    Control-Plane Policing
+  copyright               Copyright information
+  cores                   Show all core dumps for the current vdc
+  crypto                  Show crypto configuration
+  debug                   Show debug flags
+  debug-filter            Display debug filters
+  default-interface       Current default-interface configuration
+  diagnostic              Diagnostic commands
+  diff                    Show diff between configuration files or checkpoints
+  dot1q-tunnel            Show if port mode is dot1q-tunnel
+  ecp                     ECP (Edge Control Protocol)
+  eem_policy_dir          Show information about eem_policy_dir
+  eemtest                 EEM test publisher commands
+  elam                    Embedded Logical Analyzer Module
+  environment             System environment information
+  errdisable              Error disable
+  event                   Event Manager commands
+  fabric                  Fabric
+  fabric-mode             Show switch fabric-mode
+  feature                 Show feature status
+  feature-set             Show feature set status
+  fex                     Show FEX information
+  fex                     Fex attached to the system
+  file                    Displays content of files
+  fips                    Show if FIPS mode is enabled or disabled
+  flow                    Show NetFlow information
+  forwarding              Show forwarding information
+  global-mobility-domain  Global mobility domain show commands
+  hardware                Show hardware information
+  hostname                Show the system's hostname
+  hosts                   Show information about DNS
+  http-server             Show http-server configuration
+  inactive-if-config      Current clear inactive if config log
+  incompatibility         Show incompatible configurations
+  incompatibility-all     Show incompatible configurations for the entire system
+  ingress                 Show switch ingress information
+  install                 Show the software install impact between two images
+  interface               Show interface status and information
+  inventory               Show physical inventory
+  ip                      Display IP information
+  ip                      IP information
+  ipv6                    Display IPv6 information
+  key                     Display Key Information
+  klm                     Show kernel module information
+          
+CDC-CORE-5K-2A# show 
+
