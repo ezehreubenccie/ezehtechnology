@@ -1,0 +1,14 @@
+---
+- name: Test firepower
+  hosts: firepower
+  gather_facts: no
+
+
+  tasks:
+    - name: Test inventory
+      asa_command:
+        commands: show inventory
+      register: output
+
+    - debug:
+        var: output

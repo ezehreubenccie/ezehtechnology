@@ -1,2 +1,17 @@
 Serial Number,Device Name,Software Version,Verdict,UpgradeTO,LastUpgradeTime,Tags,Notes
-JMX200640V4,DTX-MRT-5506X-ASA01,9.12(4)18,compliant,N/A,42days 1hour,10.4.238.1,12222 Merit Dr Suite 700 Dallas TX 75251
+JMX2215G0FC,CMD-5506X-ASA01,9.6(4)41,non-compliant,9.12(4)18,293days 2hours,172.28.14.1,10400 Little Patuxent Parkway Suite 240 Columbia Maryland 21044
+JMX2045Y11S,DCO-5506X-ASA01,9.12(4)18,compliant,N/A,109days 2hours,10.64.2.1,8000 E MAPLE WOOD AVE BUILDING #5 SUITE #200 Denver CO
+JMX2207G1BM,AUSTX-5506X-ASA01,9.12(4)18,compliant,N/A,95days 2hours,192.168.0.1,3705 Medical Parkway Austin TX 78705
+JMX2211G03M,LNV-5506X-ASA01,9.6(4)41,non-compliant,9.12(4)18,293days 2hours,192.168.10.1,9127 W. Russell Road Suite 110 Las Vegas NV 89148
+JMX200640V4,DTX-MRT-5506X-ASA01,9.12(4)18,compliant,N/A,82days 4hours,10.4.238.1,12222 Merit Dr Suite 700 Dallas TX 75251
+JMX2047Y278,MCK-INTRANET-5506X-ASA,9.9(2),non-compliant,9.12(4)18,1year 278days,|,2440 Marsh Ln Carrollton TX 75006
+JMX2237G0HS,TTX-5506X-ASA01,9.12(4)18,compliant,N/A,102days 4hours,192.168.130.200,3200 Troup Hwy Ste #200 Tyler Texas 75701
+JMX2014403T,MCK-INTRANET-5506X-ASA,9.9(2),non-compliant,9.12(4)18,261days 14hours,|,2440 Marsh Ln Carrollton TX 75006
+JMX2306G0XW,ARLTX-5508X-ASA01,9.12(4)18,compliant,N/A,104days 7hours,172.28.26.1,PAA - 4305 S Bowen Rd  Arlington  TX  76016
+JMX2305G02Y,GAZ-5508X-ASA01,9.8(4)22,non-compliant,9.12(4)18,52days 5hours,172.28.22.1,18205 N. 51st Ave STE 109 Glendale AZ 85308
+FTX181510DR,CDC-5545X-ASA01,9.12(3)12,non-compliant,9.12(4)18,289days 13hours,10.2.254.17,2440 Marsh Ln Carrollton TX 75006
+JMX2306G0U6,FTMFL-5508X-ASA01,9.12(4)18,compliant,N/A,87days 9hours,172.28.4.1,13350 Metro Parkway Suite 301 Fort Myers FL 33966
+FTX181510DK,CDC-5545X-ASA01,9.12(3)12,non-compliant,9.12(4)18,289days 12hours,10.2.254.17,2440 Marsh Ln Carrollton TX 75006
+JMX1851403S,MAITLNDFL-5505-ASA01,9.1(7)32,compliant,N/A,362days 5hours,192.168.3.150,851 Trafalgar Court Maitland FL
+JMX2413X15D,SWA-FPR1120-FTD01,9.15(1)10,compliant,N/A,56days 1hour,10.8.0.1,600 BROADWAY SEATTLE WA 98122-5229 United States
+JMX1320Z2G1,DTX-SWMETHODIST-5505-ASA01,9.1(7)32,compliant,N/A,55days 12hours,172.28.2.1,3500 W Wheatland Rd Dallas TX 75237

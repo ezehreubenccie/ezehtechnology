@@ -36,7 +36,10 @@
           - show ip | in INSIDE|inside|Data|guestwifi|DATA|FW
           - sh run snmp-server | grep location
       register: asa_vars
-    
+
+#    - debug:
+#        var: asa_vars
+
     - name: Get Hostname of ASA
       asa_command:
         commands:
@@ -57,9 +60,12 @@
         serialnum: "{{ asa_vars.stdout_lines[2][1].split()[-1] }}"
         ipaddress: "{{ asa_vars.stdout_lines[3][0].split()[2] }}"
        # asdmversion: "{{ asa_vars.stdout_lines[1][2].split()[-1] }}"
-        physicaladdress: "{{ asa_vars.stdout[4][21:].replace(',','') }}"
+#        physicaladdress: "{{ asa_vars.stdout[4][21:].replace(',','') }}"
+        physicaladdress: "{{ asa_vars.stdout_lines[4][0].split('snmp-server location ')[-1].replace(',','') }}"
         lastUpgradeTime: "{{ asauptime.stdout_lines[0][0].split()[2] + asauptime.stdout_lines[0][0].split()[3] + ' ' + asauptime.stdout_lines[0][0].split()[4] + asauptime.stdout_lines[0][0].split()[5] }}"    
 
+    - debug:
+        var: physicaladdress
     #- name: set fact
      # set_fact:
        # time: " {{ '%Y-%m-%dT%H:%M:%S'|strftime((ansible_date_time.epoch|int) - (60* asauptime.stdout_lines[0][0].split()[4]|int * asauptime.stdout_lines[0][0].split()[2]|int )) }}"
