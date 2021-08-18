@@ -1,10 +1,13 @@
 ---
 - name: Hello we're going to print this to the screen
-  hosts: usap2960xswitches:usap5506xfirewalls
+  hosts: usap2960xswitches:usap5506xfirewalls:firepower
   gather_facts: false
   connection: local
 
 
   tasks:
     - ping:
-
+      register: output
+   
+    - debug:
+        var: output
