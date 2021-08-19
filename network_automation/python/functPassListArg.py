@@ -6,5 +6,6 @@ def print_ip(ip_addr, username, password):
     print(password)
     return
 
-print_ip('10.247.0.1','admin','admin123')
+my_list = ['10.249.0.1', 'admin', 'Cisco123']
+print_ip(*my_list)
 

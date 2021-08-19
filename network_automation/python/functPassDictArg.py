@@ -6,5 +6,9 @@ def print_ip(ip_addr, username, password):
     print(password)
     return
 
-print_ip('10.247.0.1','admin','admin123')
+my_dict = {'ip_addr':'172.16.31.1', 
+           'username':'admin', 
+           'password':'juniper123',
+}
+print_ip(**my_dict)
 

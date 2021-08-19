@@ -6,5 +6,5 @@ def print_ip(ip_addr, username, password):
     print(password)
     return
 
-print_ip('10.247.0.1','admin','admin123')
+print_ip(ip_addr='10.247.0.1',password='admin123',username='admin')
 
