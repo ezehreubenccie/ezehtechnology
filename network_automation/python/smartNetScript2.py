@@ -95,3 +95,4 @@ pprint(devicesNotInInsight)
 print()
 print('****These devices are in insight sheet but not in solarwinds.****')
 pprint(insgUnique_list)
+
