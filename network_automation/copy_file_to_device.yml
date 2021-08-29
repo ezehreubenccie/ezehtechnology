@@ -1,7 +1,7 @@
 ---
 - name: Test Copy
   gather_facts: false
-  hosts: lbjlabrouters
+  hosts: lbjlabrouter02
 
 
   tasks:
