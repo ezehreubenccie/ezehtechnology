@@ -12,8 +12,8 @@
     - name: COLLECT FACTS FOR IOS
       ios_facts:
 
-      register: switch_ios_facts
+      register: switch_facts
 
     - name: show output
       debug:
-        var: switch_ios_facts
+        var: switch_facts
