@@ -3,11 +3,11 @@
 asafirepower:
   hostname: SWA-FPR1120-FTD01
   domainname: usap.com
-  md5_authentication_password: T3nb5li1kp#Ds!@_A
-  aes_privacy_password: T3nb5li1kp#Ds!@_P
-  enable_secret_password: T3nb5li1kp#Ds!@
-  local_username: usapadmin
-  local_username_secret_password: T3nb5li1kp#Ds!@
+  md5_authentication_password: xxxx
+  aes_privacy_password: xxxx
+  enable_secret_password: xxxx
+  local_username: xxxx
+  local_username_secret_password: xxxx
   primary_isp_name_circuitnumber_accountnumber: Comcast_acct#:8498320016162467
   primary_isp_outside_interface_name: outside
   primary_isp_public_ipaddress: 50.210.60.49

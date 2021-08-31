@@ -2,11 +2,11 @@
 switch:
   hostname: SWA-2960XR-SW-STACK
   physical_address: 600 BROADWAY, SEATTLE, WA 98122-5229, United States
-  md5_authentication_password: T3nb5li1kp#Ds!@_A
-  aes_privacy_password: T3nb5li1kp#Ds!@_P
-  enable_secret_password: T3nb5li1kp#Ds!@
-  local_username: usapadmin
-  local_username_secret_password: T3nb5li1kp#Ds!@
+  md5_authentication_password: xxxx
+  aes_privacy_password: xxxx
+  enable_secret_password: xxxx
+  local_username: xxxx
+  local_username_secret_password: xxxx
   timezone_for_state: PST
   summertime_for_state: PDT
   timezone_offset: -8
