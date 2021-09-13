@@ -1,0 +1,19 @@
+aaa new-model
+aaa local authentication attempts max-fail 10
+aaa group server radius USAP_RADIUS
+ server name radius02
+ server name radius01
+ ip radius source-interface GigabitEthernet0/0/2
+aaa authentication login default group USAP_RADIUS local
+aaa authentication login NOAUTH none
+aaa session-id common
+
+
+<remove aaa and enable https for restconf. Netconf will work also>
+no aaa new-model
+aaa new-model
+aaa authorization exec default local
+aaa authentication login NOAUTH none
+
+<disable https>
+no ip http secure-server

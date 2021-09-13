@@ -1,0 +1,320 @@
+
+<native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native"  xmlns:ios="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+  <version>16.12</version>
+  <boot-start-marker/>
+  <boot>
+  <system>
+  <flash>
+    <flash-list>
+      <flash-leaf>bootflash:isr4300-universalk9.16.12.05.SPA.bin</flash-leaf>
+    </flash-list>
+  </flash>
+</system>
+</boot>
+<boot-end-marker/>
+<memory>
+<free>
+<low-watermark>
+  <processor>67076</processor>
+</low-watermark>
+</free>
+</memory>
+<call-home>
+  <contact-email-addr xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-call-home">sch-smart-licensing@cisco.com</contact-email-addr>
+  <profile xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-call-home">
+    <profile-name>CiscoTAC-1</profile-name>
+    <active>true</active>
+  </profile>
+</call-home>
+<service>
+<timestamps>
+<debug>
+<datetime>
+<msec>
+</msec>
+</datetime>
+</debug>
+<log>
+<datetime>
+  <msec/>
+</datetime>
+</log>
+</timestamps>
+<call-home/>
+</service>
+<hostname>lbjlabrouter01</hostname>
+<enable>
+<secret>
+  <type>9</type>
+  <secret>$9$ImPEfNtHj/SPDk$zcITa7Rgs6LS52IoWRmryy7IqlIaF8DM4PqTljQ89bo</secret>
+</secret>
+</enable>
+<username>
+  <name>frank</name>
+  <privilege>15</privilege>
+  <secret>
+    <encryption>9</encryption>
+    <secret>$14$TdsP$q3wmS1ZDmkZnVU$/hqctwyt2d.xgHoBBq1zOSjndQcJISKPtkCZYW.TViw</secret>
+  </secret>
+</username>
+<username>
+  <name>reuben</name>
+  <privilege>15</privilege>
+  <secret>
+    <encryption>9</encryption>
+    <secret>$14$mXD9$Uv4ANsKao5Ep0.$Eyd5qOK1R9JmPWxb4C8Ocylkhuxz2l/uJg8SQcOf.lE</secret>
+  </secret>
+</username>
+<vrf>
+  <definition>
+    <name>Mgmt-intf</name>
+    <address-family>
+    <ipv4>
+    </ipv4>
+    <ipv6>
+    </ipv6>
+  </address-family>
+</definition>
+</vrf>
+<ip>
+<domain>
+  <lookup>false</lookup>
+  <name>usaplbjlab.local</name>
+</domain>
+<forward-protocol>
+  <protocol>nd</protocol>
+</forward-protocol>
+<pim>
+<autorp-container xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-multicast">
+  <autorp>false</autorp>
+</autorp-container>
+</pim>
+<route>
+  <ip-route-interface-forwarding-list>
+    <prefix>0.0.0.0</prefix>
+    <mask>0.0.0.0</mask>
+    <fwd-list>
+      <fwd>10.7.250.1</fwd>
+    </fwd-list>
+  </ip-route-interface-forwarding-list>
+</route>
+<ssh>
+<pubkey-chain>
+  <username>
+    <name>rubuntu3010</name>
+    <key-hash>
+      <key-type>ssh-rsa</key-type>
+      <key-hash-value>8539E00D6496C677992BDF27AFFA1F81</key-hash-value>
+    </key-hash>
+  </username>
+  <username>
+    <name>rwindows14</name>
+    <key-hash>
+      <key-type>ssh-rsa</key-type>
+      <key-hash-value>40857A6E700F0C72C7E498E30A320C59</key-hash-value>
+    </key-hash>
+  </username>
+</pubkey-chain>
+<version>2</version>
+</ssh>
+<tftp>
+<source-interface>
+  <GigabitEthernet>0</GigabitEthernet>
+</source-interface>
+</tftp>
+<access-list>
+  <extended xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-acl">
+    <name>TEST-ANSIBLE1</name>
+    <access-list-seq-rule>
+      <sequence>9</sequence>
+      <ace-rule>
+        <action>deny</action>
+        <protocol>ip</protocol>
+        <host>4.4.4.4</host>
+        <dst-any/>
+      </ace-rule>
+    </access-list-seq-rule>
+    <access-list-seq-rule>
+      <sequence>10</sequence>
+      <ace-rule>
+        <action>permit</action>
+        <protocol>ip</protocol>
+        <host>2.2.2.2</host>
+        <dst-any/>
+      </ace-rule>
+    </access-list-seq-rule>
+    <access-list-seq-rule>
+      <sequence>20</sequence>
+      <ace-rule>
+        <action>permit</action>
+        <protocol>ip</protocol>
+        <host>5.5.5.5</host>
+        <dst-any/>
+      </ace-rule>
+    </access-list-seq-rule>
+  </extended>
+  <extended xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-acl">
+    <name>meraki-fqdn-dns</name>
+  </extended>
+</access-list>
+<http xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-http">
+<authentication>
+  <local/>
+</authentication>
+<server>false</server>
+<secure-server>true</secure-server>
+</http>
+</ip>
+<interface>
+  <GigabitEthernet>
+    <name>0</name>
+    <description>MANAGEMENT</description>
+    <shutdown/>
+    <vrf>
+      <forwarding>Mgmt-intf</forwarding>
+    </vrf>
+    <negotiation xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ethernet">
+      <auto>true</auto>
+    </negotiation>
+  </GigabitEthernet>
+  <GigabitEthernet>
+    <name>0/0/0</name>
+    <media-type>rj45</media-type>
+    <description>Replaced by Reuben using Ansible</description>
+    <ip>
+    <access-group>
+    <in>
+    <acl>
+      <acl-name>TEST99</acl-name>
+      <in/>
+    </acl>
+  </in>
+</access-group>
+<address>
+<primary>
+  <address>10.1.1.1</address>
+  <mask>255.255.255.0</mask>
+</primary>
+</address>
+</ip>
+<negotiation xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ethernet">
+  <auto>true</auto>
+</negotiation>
+</GigabitEthernet>
+<GigabitEthernet>
+  <name>0/0/1</name>
+  <media-type>rj45</media-type>
+  <description>CAA_AUSTIN</description>
+  <ip>
+  <address>
+  <primary>
+    <address>10.7.250.59</address>
+    <mask>255.255.255.0</mask>
+  </primary>
+</address>
+</ip>
+<negotiation xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ethernet">
+  <auto>true</auto>
+</negotiation>
+</GigabitEthernet>
+</interface>
+<control-plane>
+</control-plane>
+<multilink>
+  <bundle-name xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ppp">authenticated</bundle-name>
+</multilink>
+<redundancy>
+  <mode>none</mode>
+</redundancy>
+<spanning-tree>
+<extend xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-spanning-tree">
+  <system-id/>
+</extend>
+</spanning-tree>
+<subscriber>
+  <templating/>
+</subscriber>
+<crypto>
+<pki xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-crypto">
+<certificate>
+  <chain>
+    <name>SLA-TrustPoint</name>
+    <certificate>
+      <serial>01</serial>
+      <certtype>ca</certtype>
+    </certificate>
+  </chain>
+  <chain>
+    <name>TP-self-signed-3590908464</name>
+    <certificate>
+      <serial>01</serial>
+      <certtype>self-signed</certtype>
+    </certificate>
+  </chain>
+</certificate>
+<trustpoint>
+  <id>SLA-TrustPoint</id>
+  <enrollment>
+    <pkcs12/>
+  </enrollment>
+  <revocation-check>crl</revocation-check>
+</trustpoint>
+<trustpoint>
+  <id>TP-self-signed-3590908464</id>
+  <enrollment>
+    <selfsigned/>
+  </enrollment>
+  <revocation-check>none</revocation-check>
+  <subject-name>cn=IOS-Self-Signed-Certificate-3590908464</subject-name>
+</trustpoint>
+</pki>
+</crypto>
+<license>
+<udi>
+  <pid>ISR4321/K9</pid>
+  <sn>FDO1931141D</sn>
+</udi>
+</license>
+<line>
+  <aux>
+    <first>0</first>
+    <stopbits>1</stopbits>
+  </aux>
+  <console>
+    <first>0</first>
+    <logging>
+    <synchronous>
+    </synchronous>
+  </logging>
+  <stopbits>1</stopbits>
+</console>
+<vty>
+  <first>0</first>
+  <last>97</last>
+  <login>
+    <local/>
+  </login>
+  <transport>
+  <input>
+    <input>ssh</input>
+  </input>
+</transport>
+</vty>
+<vty>
+  <first>5</first>
+  <last>97</last>
+  <login>
+  </login>
+  <transport>
+  <input>
+    <input>ssh</input>
+  </input>
+</transport>
+</vty>
+</line>
+<diagnostic xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-diagnostics">
+<bootup>
+  <level>minimal</level>
+</bootup>
+</diagnostic>
+</native>

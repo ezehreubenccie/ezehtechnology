@@ -1,0 +1,46 @@
+
+<router xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native"  xmlns:ios="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+  <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-bgp">
+    <id>65012</id>
+    <bgp>
+      <log-neighbor-changes>true</log-neighbor-changes>
+    </bgp>
+    <neighbor>
+      <id>10.247.0.9</id>
+      <remote-as>2828</remote-as>
+      <version>4</version>
+    </neighbor>
+  </bgp>
+  <router-ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
+  <ospf>
+    <process-id>
+      <id>10</id>
+      <default-information>
+      <originate>
+      </originate>
+    </default-information>
+    <network>
+      <ip>10.4.249.1</ip>
+      <wildcard>0.0.0.0</wildcard>
+      <area>0</area>
+    </network>
+    <network>
+      <ip>10.4.249.10</ip>
+      <wildcard>0.0.0.0</wildcard>
+      <area>0</area>
+    </network>
+    <passive-interface>
+      <default>true</default>
+    </passive-interface>
+    <redistribute>
+      <bgp>
+        <as>65012</as>
+      </bgp>
+      <connected>
+      </connected>
+    </redistribute>
+    <router-id>10.4.249.1</router-id>
+  </process-id>
+</ospf>
+</router-ospf>
+</router>

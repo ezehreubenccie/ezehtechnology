@@ -1,0 +1,17 @@
+<config>
+  <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+    <interface>
+      <name>{intf_name}</name>
+      <description>{intf_desc}</description>
+      <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>true</enabled>
+      <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
+        <address>
+          <ip>{ip_address}</ip>
+          <netmask>{subnet_mask}</netmask>
+        </address>
+      </ipv4>
+    </interface>
+  </interfaces>
+</config>
+
