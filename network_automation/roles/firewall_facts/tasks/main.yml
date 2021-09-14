@@ -43,4 +43,4 @@
       - version in asa_compliant_ver
       - asdmversion == asdm_compatible_ver
     fail_msg: 'The software and asdm version on {{ inventory_hostname }} must be {{ asa_compliant_ver }} and {{ asdm_compatible_ver }}. Please upgrade!!'
-    success_msg: 'The software and asdm version on {{ inventory_hostname }} are {{ asa_compliant_ver }} and {{ asdm_compatible_ver }}. Upgrade not needed at this time.!!'
+    success_msg: 'The software and asdm version on {{ inventory_hostname }} are {{ asa_compliant_ver }} and {{ asdm_compatible_ver }} respectively. Upgrade not needed at this time.!!'
