@@ -1,0 +1,5 @@
+---
+# vars file for FMC-enable-policyrule
+
+# FMC ip address
+fmc_ip: 10.2.0.100 

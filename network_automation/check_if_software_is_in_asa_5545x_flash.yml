@@ -1,11 +1,11 @@
-- name : CHECK IF TARGET SOFTWARE IS PRESENT IN ASA 5506X FIREWALL FLASH
+- name : CHECK IF TARGET SOFTWARE IS PRESENT IN ASA 5545X FIREWALL FLASH
   connection: network_cli
-  hosts: usap5506xfirewalls lbjlab5505firewalls labfirewalls usap5545xcorefirewalls
+  hosts: usap5545xcorefirewalls
   gather_facts: false
 
 
   vars:
-    asa_image: asa9-12-4-18-lfbff-k8.SPA
+    asa_image: asa9-12-4-18-smp-k8.bin
     asdm_image: asdm-7131-101.bin
 
 

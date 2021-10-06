@@ -1,0 +1,97 @@
+---
+- name: CHECK USAP ROUTERS FOR VULNERABILITIES
+  hosts: usapISR4331K9routers:usapISR4321K9routers:usapISR4451K9routers:lbjlabrouters
+  gather_facts: false
+
+
+
+  vars:
+    command1: show run | in ip http server|secure
+    command2: show subsys | in cts_core 
+    cisco_bug_id: cscvx66699
+    httpSetting: 'ip http server'
+    httpsSetting: 'ip http secure-server'
+
+  tasks:
+    - name: Run command on routers
+      ios_command:
+        commands: 
+          - '{{ command1 }}'
+          - '{{ command2 }}'
+      register: output
+    - debug:
+        var: output
+
+    - debug:
+        msg: 
+          - '{{ output.stdout_lines[0] }}' 
+          - '{{ output.stdout_lines[1] }}'
+ 
+    - name: Set Fact 1
+      set_fact:
+        httpServer: '{{ output.stdout_lines[0][0] }}'
+        httpsServer: '{{ output.stdout_lines[0][1] }}'
+
+    - name: Check that Http Server is enabled
+      set_fact:
+        httpStatus: 'enabled'
+      when: "'no' not in httpServer or 'no' not in httpsServer"  
+    
+    - name: Check that Http Server is disabled
+      set_fact:
+        httpServer: 'disabled'
+      when: "'no' in httpServer  and 'no' in httpsServer"
+    
+
+    - debug:
+        msg:
+          - '{{ httpServer }}'
+
+#    - name: Check that Https Server is enabled
+#      set_fact:
+#        httpStatus: 'enabled'
+#      when: "'no' not in httpsServer"  
+#    
+#    - name: Check that Https Server is disabled
+#      set_fact:
+#        httpServer: 'disabled'
+#      when: "'no' in httpsServer" 
+#          
+    - name: Check that TrustSec feature is enabled 
+      set_fact:
+        trustSec: 'enabled' 
+      when: "'cts_core' == output.stdout_lines[1][0].split()[0] or 'cts_core_early' == output.stdout_lines[1][1].split()[0]"
+   
+    - name: Check that TrustSec feature is disabled 
+      set_fact:
+        trustSec: 'disabled' 
+      when: "'cts_core' != output.stdout_lines[1][0].split()[0] and 'cts_core_early' != output.stdout_lines[1][1].split()[0]"
+   
+    
+    - assert:
+        that:
+          - "httpServer == 'disabled'"
+          - "trustSec == 'disabled'"
+        fail_msg: 'The software on {{ inventory_hostname }} is affected by the bug id, {{ cisco_bug_id }}. Please upgrade software. There are no workarounds for this bug.!'
+        success_msg: 'The software on {{ inventory_hostname }} is not affected by the {{ cisco_bug_id }}.'
+            
+#    - name: Check that Http Server is not enabled
+#      set_fact:
+#        httpServer: 'not enabled'
+#      when: ("'no ip http server' == output.stdout_lines[0][0]") or ("'no ip http secure-server' == output.stdout_lines[0][1]") 
+#
+#    - name: Check that trustSec feature is not enabled
+#      set_fact:
+#        trustSec: 'not enabled' 
+#      when: ("'cts_core' not in output.stdout_lines[1][0].split()[0]") or ("'cts_core_early' not in output.stdout_lines[1][1].split()[0]")
+#
+#    - debug:
+#        msg:
+#          - '{{ httpServer }}'
+
+#    - assert:
+#        that:
+##          - "httpServer == 'not enabled'"
+#          - "trustSec == 'not enabled'"
+#        fail_msg: 'The software on {{ inventory_hostname }} is affected by the {{ cisco_bug_id }}. Please upgrade or perform workaround!'
+#        success_msg: 'The software on {{ inventory_hostname }} is not affected by the {{ cisco_bug_id }}. Please remediate!'

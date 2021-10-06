@@ -1,0 +1,45 @@
+---
+- name: Check Router Software TrustSec CLI Parser Denial of Service Vulnerability
+  hosts: lbjlabrouters
+  gather_facts: no
+
+
+  vars:
+    command1: show run | inc ip http server|secure
+    command2: show subsys | inc cts_core
+    httpCurrentStatus: enabled
+
+  tasks:
+    - name: Run Commands
+      ios_command:
+        commands:
+          - '{{ command1}}'
+      register: output
+
+    - debug:
+        var: output
+
+
+    - name: Set Fact 1
+      set_fact:
+        httpServer: '{{ output.stdout_lines[0][0] }}'
+        httpsServer: '{{ output.stdout_lines[0][1] }}'
+
+    - debug:
+        msg:
+          - '{{ httpServer }}'
+          - '{{ httpsServer }}'
+
+    - name: Set Http Status
+      set_fact:
+        httpStatus: 'disabled'
+      when: "'no' in httpServer"
+
+    - name: Set Http Status enabled
+      set_fact:
+        httpStatus: 'enabled'
+      when: "'no' not in httpServer"
+
+    - debug:
+        msg:
+          - '{{ httpStatus }}'

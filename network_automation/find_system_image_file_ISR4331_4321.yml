@@ -52,7 +52,7 @@
 
     - name: DELETE FLASH FILES NOT IN USE - Output only
       debug:
-        msg:" File to delete is  {{ item.split()[-1] }}"
+        msg: " File to delete is  {{ item.split()[-1] }}"
       loop: '{{ list1 }}'
       when: 
          - 'file_type in  item.split()[-1]'

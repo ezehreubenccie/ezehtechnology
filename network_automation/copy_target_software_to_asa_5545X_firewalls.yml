@@ -1,0 +1,85 @@
+- name : COPY TARGET SOFTWARE TO CISCO 5545X ASA
+  connection: network_cli
+  hosts: usap5545xcorefirewalls
+  gather_facts: false
+
+
+
+  vars:
+    asa_image_size_bytes: 115000000
+    ftp_ip: '10.2.0.250'
+    protocol: 'ftp'
+    ftp_user: 'reuben'
+    ftp_pass: !vault |
+          $ANSIBLE_VAULT;1.2;AES256;reuben3010
+          34396631336161386132343637343935653434376634386133363364616335383630653634653466
+          3438373365623464356363356161626635373835633230660a656662633962303265393030653862
+          63373664626230643933393365666265643139646563363633616532323330636634323430663638
+          3835646366333666650a383562633265333030356562343532633132356234356433653564323035
+          3561
+    source_file: asa9-12-4-18-smp-k8.bin
+    dest_file: asa9-12-4-18-smp-k8.bin
+
+
+  tasks:
+    - name: Copy target software To 5545x firewalls
+      block:
+        - name: Check there is enough space for Upload
+          asa_command: 
+            commands:  'show disk0: | in bytes'
+          register: flash_facts
+        - set_fact:
+            free_space: "{{ flash_facts['stdout'][0].split()[3][1:11] }}"
+        - debug:
+            var: free_space
+        - name: Assert That There is enough Space to Copy Sofware
+          assert:
+            that:
+              - free_space |int > asa_image_size_bytes |int
+            fail_msg: 'There is not enough free space on {{ inventory_hostname }} flash to copy the target software.'
+            success_msg: 'Hooray!!..There is enough free space on {{ inventory_hostname }} flash to copy the target software.'
+
+        - name: Check Contents of flash to verify if target software is present
+          asa_command:
+            commands: 'show disk0 | grep {{ source_file }}'
+          register: dir_flash 
+
+        
+        
+
+        - name: Upload Software from FTP Server to ASA flash
+          cli_command:
+            command: 'copy ftp://{{ ftp_user }}:{{ ftp_pass }}@{{ ftp_ip }}/{{ source_file }}   disk0:/{{ source_file }}'
+            prompt:
+              - Address or name of remote host
+              - Source username
+              - Source password
+              - Source filename
+              - Destination filename
+              - Warning
+            answer:
+              - '{{ ftp_ip }}'
+              - '{{ ftp_user }}'
+              - '{{ ftp_pass }}'
+              - '{{ source_file }}'
+              - '{{ dest_file }}'
+              - 'n'
+            check_all: True
+          when:
+            - free_space |int   > asa_image_size_bytes |int
+            - source_file not in dir_flash['stdout'][0]
+          vars:
+            ansible_command_timeout: 1800
+
+        - name: Check Contents of flash to verify if target software is present
+          asa_command:
+            commands: 'show disk0 | grep {{ source_file }}'
+          register: dir_flash
+
+
+        - name: Assert that target software is in ASA flash
+          assert:
+            that:
+              - source_file in dir_flash['stdout'][0]
+            fail_msg: 'Target software {{ source_file }} was not copied successfully to {{ inventory_hostname }} flash. Please troubleshoot!!'
+            success_msg: 'Hooray!!..Target software {{ source_file }} was  copied successfully to {{ inventory_hostname }} flash.'       
