@@ -1,14 +1,14 @@
-- name : COPY TARGET SOFTWARE TO ISR4451K9 ROUTERS
+- name : COPY TARGET SOFTWARE TO LAB AND NEW SITE ROUTERS
   connection: network_cli
-  hosts: usapISR4451K9routers
+  hosts: newsiterouters
   gather_facts: false
 
 
 
   vars:
     ios_version: 16.12.06
-    ios_binary: isr4400-universalk9.16.12.06.SPA.bin
-    ios_size_kb: 700000
+    ios_binary: isr4300-universalk9.16.12.06.SPA.bin
+    ios_size_kb: 660000
     ftp_server: '10.2.0.250'
     protocol: 'ftp'
     ftp_user: 'reuben'
@@ -20,8 +20,10 @@
           3835646366333666650a383562633265333030356562343532633132356234356433653564323035
           3561
 
+
+
   tasks:
-    - name: Gather all ISR4451K9 Router Hardware facts
+    - name: Gather all LAB AND NEW SITE Router Hardware facts
       ios_facts:
         gather_subset: hardware
       register: output

@@ -1,6 +1,6 @@
 - name : GET BOOT SYSTEM FOR ISR4321K9 ROUTERS
   connection: network_cli
-  hosts: usapISR4321K9routers lbjlabrouters
+  hosts: usapISR4321K9routers lbjlabrouters newsiterouters
   gather_facts: false
 
 

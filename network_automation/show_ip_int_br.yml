@@ -1,0 +1,23 @@
+---
+- name: Show IP Int Brief
+  hosts: lbjlabrouters
+  gather_facts: false
+
+
+  tasks:
+    - name: Executing Command
+      ios_command:
+        commands: show ip int brief
+      register: output
+    
+    - debug:
+        var: output
+
+    - set_fact:
+        show_ver: "{{ output.stdout[0] }}"
+
+    - debug:
+        var: show_ver
+
+    - debug:
+        msg: "{{ show_ver | show_ip_filter }}"  

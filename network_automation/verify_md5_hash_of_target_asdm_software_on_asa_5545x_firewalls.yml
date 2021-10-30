@@ -30,7 +30,7 @@
           assert:
             that:
               - asdm_md5 in md5_result['stdout'][0].split()
-            fail_msg: "The md5 hash of the software {{ asdm_image }} on {{ inventory_hostname }} is not correct!! :( :("
-            success_msg: "Hooray!!. The md5 hash of the software {{ asdm_image }} on {{ inventory_hostname }} is  correct!! :) :)"
+            fail_msg: "The ASDM software md5 hash on {{ inventory_hostname }} is not correct!! :( :("
+            success_msg: "The ASDM software md5 hash on {{ inventory_hostname }} is  correct!! :) :)"
       when:    
         - asdm_image in dir_flash['stdout'][0]                  

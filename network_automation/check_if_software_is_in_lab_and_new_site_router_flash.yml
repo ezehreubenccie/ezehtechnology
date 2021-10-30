@@ -1,12 +1,12 @@
-- name : CHECK IF TARGET SOFTWARE IS IN ISR4451K9 ROUTER FLASH
+- name : CHECK IF TARGET SOFTWARE IS IN LAB OR NEW SITE ROUTER FLASH
   connection: network_cli
-  hosts: usapISR4451K9routers
+  hosts: newsiterouters
   gather_facts: false
 
 
 
   vars:
-    ios_binary: isr4400-universalk9.16.12.06.SPA.bin
+    ios_binary: isr4300-universalk9.16.12.06.SPA.bin
     
 
 
@@ -26,7 +26,7 @@
       assert:
         that:
           - ios_binary in show_flash['stdout'][0]
-        fail_msg: "Compliant Software not present in {{inventory_hostname}}'s flash"
-        success_msg: "Compliant Software is  present in {{inventory_hostname}}'s flash"
+        fail_msg: "Compliant Software {{ ios_binary }} not present in {{inventory_hostname}}'s flash"
+        success_msg: "Compliant Software {{ ios_binary }} is  present in {{inventory_hostname}}'s flash"
       tags:
         - flash

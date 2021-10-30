@@ -85,7 +85,7 @@
 
     - name: set fact 2
       set_fact:
-        asdmversion: "{{ asdm_vars.stdout_lines[0][2].split()[-1] }}"
+        asdmversion: "{{ asdm_vars_version.stdout_lines[0][2].split()[-1] }}"
       when:  "'SSP' in asdm_vars_version['stdout'][0]"
 
 

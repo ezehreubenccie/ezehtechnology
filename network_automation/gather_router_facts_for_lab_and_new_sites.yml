@@ -1,0 +1,29 @@
+- name : GATHER ISR4331K9 ROUTER FACTS
+  connection: network_cli
+  hosts: lbjlabrouters newsiterouters 
+  gather_facts: false
+
+
+
+
+  vars:
+    router_compliant_ver: 16.12.06
+
+  tasks:
+    - name: Gather all ISR4331K9 Router Hardware facts
+      ios_facts:
+        gather_subset: hardware
+      register: output
+
+    - name: Print facts to console
+      debug:
+        var: output
+
+    - name: Assert that Router IOS Version is the Compliant Version
+      assert:
+        that:
+          - ansible_net_version == router_compliant_ver
+        fail_msg: 'The Software Version on {{ inventory_hostname }} has not been upgraded to the compliant version {{ router_compliant_ver}}. Please upgrade!!'
+        success_msg: 'Hooray!!..The Software Version on {{ inventory_hostname }} has  been upgraded to the compliant version {{ router_compliant_ver}}.'
+      tags:
+        - facts

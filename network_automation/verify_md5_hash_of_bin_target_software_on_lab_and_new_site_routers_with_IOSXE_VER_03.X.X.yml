@@ -1,13 +1,13 @@
-- name : VERIFY MD5 HASH OF TARGET SOFTWARE ON ISR4451K9 ROUTERS
+- name : VERIFY MD5 HASH OF TARGET SOFTWARE ON LAB AND NEW SITE ROUTERS
   connection: network_cli
-  hosts: usapISR4451K9routers
+  hosts: lbjlabrouters:newsiterouters
   gather_facts: false
 
 
 
   vars:
-    ios_binary: "isr4400-universalk9.16.12.06.SPA.bin"
-    ios_md5_bin: 4a67fede162457ec846df54f2594756c
+    ios_binary: "isr4300-universalk9.16.12.06.SPA.bin"
+    ios_md5_bin: 8e833ed689ec2352eb759f87319f39b4
 
   tasks:
     - name: Get Copied BIN Software from flash
@@ -42,8 +42,8 @@
       assert:
         that:
           - ios_md5_bin in md5_result['stdout'][0]
-        fail_msg: 'IOS binary file {{ ios_binary }} MD5sum on {{ inventory_hostname }} is not correct'
-        success_msg: 'IOS binary file {{ ios_binary }} MD5sum on {{ inventory_hostname }} is correct'
+        fail_msg: 'IOS binary file MD5sum on {{ inventory_hostname }} is not correct'
+        success_msg: 'IOS binary file MD5sum on {{ inventory_hostname }} is correct'
       when:
         - ios_binary in dir_flash['stdout'][0]
       tags:

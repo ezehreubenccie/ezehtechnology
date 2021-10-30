@@ -1,0 +1,39 @@
+- name : GATHER ISR4331K9 ROUTER FACTS
+  connection: network_cli
+  hosts: lbjlabrouters newsiterouters 
+  gather_facts: false
+
+
+
+
+  vars:
+    router_compliant_ver: 16.12.06
+    router_minimum_rommon_version: 16.7(5r)
+
+  tasks:
+    - name: Gather all ISR4331K9 Router Hardware facts
+      ios_facts:
+        gather_subset: hardware
+      register: output
+
+    - name: Get rommon version
+      ios_command:
+        commands: 'show ver | sec ROM:'
+      register: rom_ver
+
+    - name: Print facts to console
+      debug:
+        var: output
+
+    - name: Print Rommon Version
+      debug:
+        var: rom_ver
+
+#    - name: Assert that Router ROMMON Version is the Minimum Version to install 16.X
+#      assert:
+#        that:
+#          - ansible_net_version == router_compliant_ver
+#        fail_msg: 'The Software Version on {{ inventory_hostname }} has not been upgraded to the compliant version {{ router_compliant_ver}}. Please upgrade!!'
+#        success_msg: 'Hooray!!..The Software Version on {{ inventory_hostname }} has  been upgraded to the compliant version {{ router_compliant_ver}}.'
+#      tags:
+#        - facts

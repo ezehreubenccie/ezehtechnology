@@ -87,7 +87,10 @@
 
     - name: asa set facts
       set_fact:
-        version: "{{ asa_vars['stdout'][1].split('\n')[0][-9:-1] }}"
+        version: "{{ asa_vars.stdout_lines[1][0].split()[-1] }}"
+
+    - debug:
+        var: version
 
 
     - name: Assert That Boot System Is Set To Target Software

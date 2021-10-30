@@ -1,0 +1,22 @@
+- name : USAP CISCO 5545X ASA UPGRADE
+  connection: network_cli
+  hosts: usap5545xcorefirewalls
+  gather_facts: false
+
+
+  vars:
+    asa_target_version: 9.12(4)18
+
+
+
+  tasks:
+    - name: Get boot Variable and ASDM Image
+      asa_command:
+        commands:
+          - sh run boot
+          - show run asdm | grep image
+      register: bootasdm
+
+    - debug:
+        var: bootasdm
+

@@ -23,5 +23,5 @@
           assert:
             that: 
               - asdm_image in dir_flash['stdout'][0]
-            fail_msg: "Target Software {{ asdm_image }} not present in {{inventory_hostname}}'s flash"      
-            success_msg: "Target Software {{ asdm_image }} is  present in {{inventory_hostname}}'s flash"
+            fail_msg: "Compatible ASDM Software {{ asdm_image }} not present in {{inventory_hostname}}'s flash"      
+            success_msg: "Compatible ASDM Software {{ asdm_image }} is  present in {{inventory_hostname}}'s flash"
