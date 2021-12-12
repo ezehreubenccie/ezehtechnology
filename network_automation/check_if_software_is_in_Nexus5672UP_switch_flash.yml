@@ -1,0 +1,34 @@
+- name : CHECK IF TARGET SOFTWARE IS IN NEXUS 5672UP SWITCH FLASH
+  connection: network_cli
+  hosts: usap5672UPnexusswitches
+  gather_facts: false
+
+
+
+  vars:
+    kickstart_binary: n6000-uk9-kickstart.7.3.8.N1.1.bin
+    nxos_binary: n6000-uk9.7.3.8.N1.1.bin
+    
+
+
+
+  tasks:
+    - name: Check if NXOS and Kickstart software are present on the flash
+      nxos_command:
+        commands: "dir  bootflash: | include {{ nxos_binary }}|{{ kickstart_binary }}"
+      vars:
+        ansible_command_timeout: 1800
+      register: show_flash
+
+    - debug:
+        var: show_flash
+
+    - name: Assert that target asa software is present in flash
+      assert:
+        that:
+          - nxos_binary in show_flash['stdout'][0]
+          - kickstart_binary in show_flash['stdout'][0]
+        fail_msg: "Compliant Software not present in {{inventory_hostname}}'s flash"
+        success_msg: "Compliant Software is  present in {{inventory_hostname}}'s flash"
+      tags:
+        - flash

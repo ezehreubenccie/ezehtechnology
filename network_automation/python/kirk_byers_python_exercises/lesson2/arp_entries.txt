@@ -1,0 +1,3 @@
+Internet  10.247.0.253           10   0021.59a1.b38b  ARPA   GigabitEthernet0/0/2
+Internet  10.247.0.254            -   00d7.8fae.4332  ARPA   GigabitEthernet0/0/2
+Internet  10.4.249.253            -   00d7.8fae.4370  ARPA   Port-channel1.500

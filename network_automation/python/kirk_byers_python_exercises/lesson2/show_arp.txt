@@ -1,0 +1,8 @@
+Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+Internet  10.4.249.253            -   00d7.8fae.4370  ARPA   Port-channel1.500
+Internet  10.4.249.254          117   00fe.c825.75ff  ARPA   Port-channel1.500
+Internet  10.4.250.252          181   00fe.c825.75ff  ARPA   Port-channel1.503
+Internet  10.4.250.253            -   00d7.8fae.4370  ARPA   Port-channel1.503
+Internet  10.4.250.254          200   0035.1a6a.0689  ARPA   Port-channel1.503
+Internet  10.247.0.253           10   0021.59a1.b38b  ARPA   GigabitEthernet0/0/2
+Internet  10.247.0.254            -   00d7.8fae.4332  ARPA   GigabitEthernet0/0/2

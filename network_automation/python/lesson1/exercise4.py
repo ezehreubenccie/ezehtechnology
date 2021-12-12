@@ -3,7 +3,7 @@ show_version = '*0        CISCO881-SEC-K9        FTX0000038X     '
 print('show_version output:')
 print(show_version)
 print('\n')
-print('****Removing all leading whitespace from the string****')
+print('****Removing all leading and trailing whitespace from the string****')
 print(show_version.strip())
 print('\n')
 print('****Extract model and serial number****')

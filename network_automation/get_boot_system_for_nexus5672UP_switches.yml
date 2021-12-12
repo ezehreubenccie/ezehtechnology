@@ -1,0 +1,21 @@
+- name : GET BOOT SYSTEM FOR Nexus5672UP SWITCHES
+  connection: network_cli
+  hosts: usap5672UPnexusswitches 
+  gather_facts: false
+
+
+
+
+
+
+
+
+
+  tasks:
+    - name: Check Boot path
+      nxos_command:
+        commands: 'sh boot | in kickstart|system'
+      register: bootvar
+
+    - debug:
+        var: bootvar
