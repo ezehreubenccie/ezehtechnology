@@ -22,13 +22,12 @@ def isValidChessBoard(board):
     count = {}
     for v in board.values():
         count.setdefault(v, 0)
-#        print(count)
         count[v] = count[v] + 1
-#        print(count)
     print(count)
     
     if ('bking' in count.keys()) and ('wking' in count.keys()):
-        if (count['bking'] == validBoard['bking']) and (count['wking'] == validBoard['wking']) and (count['bking'] != '') and (count['bking'] != ' ') and (count['wking'] != '') and (count['wking'] != ' '):
+        if (count['bking'] == validBoard['bking'] and count['wking'] == validBoard['wking']   
+            and count['bking'] != '' and count['bking'] != ' ' and count['wking'] != '' and count['wking'] != ' '):
             print('1 bking and 1 wking is verified.')
             criteria1 = 'true'
     else:

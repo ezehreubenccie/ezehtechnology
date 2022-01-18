@@ -9,13 +9,13 @@ with open('show_vlan.txt') as f:
 list2 = []
 # Remove Unwanted lines
 for line in show_vlan.splitlines():
-    if ('enet' in line or '---' in line or 'VLAN' in line or 'tr' in line or
-        'fdnet' in line or 'trnet' in line 'fddi' in line or 'fddi-default' in line or
+    if ('enet' in line or '---' in line or 'VLAN' in line or 'tr' in line or 
+        'fdnet' in line or 'trnet' in line or 'fddi' in line or 'fddi-default' in line or 
         'token-ring-default' in line or 'fddinet-default' in line or 'trnet-default' in line):
         continue
     else:
         list2.append(line)
-print(list2)
+#print(list2)
 # Extract the vlan_id vlan_name string from list2
 fields = []
 pattern = re.compile(r'[0-9]+\s+\w+')

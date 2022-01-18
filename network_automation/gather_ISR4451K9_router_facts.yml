@@ -7,7 +7,7 @@
 
 
   vars:
-    router_compliant_ver: 16.12.06
+    router_compliant_ver: 16.12.04
 
   tasks:
     - name: Gather all ISR4451K9 Router Hardware facts
