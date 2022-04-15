@@ -1,0 +1,179 @@
+#############################################################################
+# WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING #
+#############################################################################
+
+THIS U.S. ANESTHESIA PARTNERS COMPUTING SYSTEM IS FOR AUTHORIZED
+OFFICIAL USE ONLY. Unauthorized use or use for other than official U.S.
+ANESTHESIA PARTNERS' business is a violation of State and Federal law.
+
+Individuals using this computing system are subject to having all
+of their activities on this system monitored and recorded without
+further notice. Auditing of users may include keystroke monitoring.
+
+Any individual who uses this system expressly consents to such
+monitoring and is advised that information about their use of this
+system may be provided to State and Federal law enforcement or
+other authorities if evidence of criminal or other unauthorized
+activity is found.
+
+#############################################################################
+# WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING #
+#############################################################################
+
+Contact the U.S. Anesthesia Partners Helpdesk at: (800) 337-1312 for more info
+LOG OFF IMMEDIATELY AFTER USE
+User SA_Solarwinds logged in to CDC-5545X-ASA01
+Logins over the last 91 days: 32.  Last login: 00:15:17 CDT Apr 15 2022 from 10.4.234.35
+Failed logins since the last login: 0.  Last failed login: 23:40:07 CDT Apr 14 2022 from 10.4.234.35
+Type help or '?' for a list of available commands.
+CDC-5545X-ASA01/pri/act> show curpriv
+Username : SA_Solarwinds
+Current privilege level : 1
+Current Mode/s : P_UNPR
+CDC-5545X-ASA01/pri/act> 
+CDC-5545X-ASA01/pri/act> 
+CDC-5545X-ASA01/pri/act> enable
+Password: ************
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# terminal pager 0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# configure terminal
+CDC-5545X-ASA01/pri/act(config)# 
+CDC-5545X-ASA01/pri/act(config)# terminal width 511
+CDC-5545X-ASA01/pri/act(config)# 
+CDC-5545X-ASA01/pri/act(config)# end
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id HTX-LEGACY-08
+object network HTX-LEGACY-08
+ host 192.200.10.35
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Denver_Workstation_Vlan100
+object network Denver_Workstation_Vlan100
+ subnet 10.64.0.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Denver_Workstation_Vlan101
+object network Denver_Workstation_Vlan101
+ subnet 10.64.1.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Arlington_user_workstation_subnet
+object network Arlington_user_workstation_subnet
+ subnet 172.28.26.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Austin_Texas_user_workstation_subnet
+object network Austin_Texas_user_workstation_subnet
+ subnet 192.168.0.0 255.255.255.0
+ description Capital Anesthesia
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Columbia_Maryland_User_workstation_Subnet
+object network Columbia_Maryland_User_workstation_Subnet
+ subnet 172.28.14.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Dallas_Acd_user_workstation_subnet
+object network Dallas_Acd_user_workstation_subnet
+ subnet 10.4.9.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Dallas_Merit_user_workstation_subnet_01
+object network Dallas_Merit_user_workstation_subnet_01
+ subnet 10.4.234.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Dallas_lbj_user_admin_subnet
+object network Dallas_lbj_user_admin_subnet
+ subnet 10.4.255.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Dallas_lbj_user_workstation_north_subnet
+object network Dallas_lbj_user_workstation_north_subnet
+ subnet 10.4.250.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Dallas_lbj_user_workstation_south_subnet
+object network Dallas_lbj_user_workstation_south_subnet
+ subnet 10.4.251.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Dallas_merit_user_workstation_subnet_02
+object network Dallas_merit_user_workstation_subnet_02
+ subnet 10.4.235.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id FortLauderdale_Florida_user_workstation_subnet02
+object network FortLauderdale_Florida_user_workstation_subnet02
+ subnet 10.63.250.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id FortMeyers_florida_user_workstation_subnet_01
+object network FortMeyers_florida_user_workstation_subnet_01
+ subnet 172.28.4.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id ForthWorth_Texas_Harris_user_workstation_subnet
+object network ForthWorth_Texas_Harris_user_workstation_subnet
+ subnet 10.4.6.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Fortlauderdale_Florida_user_workstation_subnet_01
+object network Fortlauderdale_Florida_user_workstation_subnet_01
+ subnet 10.60.250.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Glendale_Arizona_user_workstation_subnet
+object network Glendale_Arizona_user_workstation_subnet
+ subnet 172.28.22.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Houston_user_workstation_subnet_01
+object network Houston_user_workstation_subnet_01
+ subnet 10.4.228.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Houston_user_workstation_subnet_02
+object network Houston_user_workstation_subnet_02
+ subnet 10.4.229.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Maitland_Florida_user_workstation_subnet_02
+object network Maitland_Florida_user_workstation_subnet_02
+ subnet 10.72.251.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Maitland_florida_user_workstation_subnet_01
+object network Maitland_florida_user_workstation_subnet_01
+ subnet 10.72.250.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id SanAntonio_Texas_user_workstation_subnet
+object network SanAntonio_Texas_user_workstation_subnet
+ subnet 192.168.151.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Sherman_texas_user_workstation_subnet
+object network Sherman_texas_user_workstation_subnet
+ subnet 10.32.14.192 255.255.255.192
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id dallas_merit_user_workstation_subnet_03
+object network dallas_merit_user_workstation_subnet_03
+ subnet 10.4.236.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id jacksonville_florida_user_workstation_subnet
+object network jacksonville_florida_user_workstation_subnet
+ subnet 10.50.0.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id lakewood_colorado_user_workstation_subnet
+object network lakewood_colorado_user_workstation_subnet
+ subnet 172.30.176.0 255.255.255.0
+ description Teamhealth
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Las_Vegas_user_workstation_subnet
+object network Las_Vegas_user_workstation_subnet
+ subnet 192.168.10.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object id Tyler_Texas_user_workstation_subnet
+object network Tyler_Texas_user_workstation_subnet
+ subnet 192.168.130.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object-group id CAA_VPN_Z1_DSMCUT
+object-group network CAA_VPN_Z1_DSMCUT
+ network-object 10.0.5.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object-group id CAA_VPN_Z1_HAYS
+object-group network CAA_VPN_Z1_HAYS
+ network-object 10.0.4.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object-group id CAA_VPN_Z1_SMC
+object-group network CAA_VPN_Z1_SMC
+ network-object object 10.0.0.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# sh run object-group id CAA_VPN_Z1_SNW
+object-group network CAA_VPN_Z1_SNW
+ network-object 10.0.1.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# exit

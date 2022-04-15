@@ -7,10 +7,10 @@
 
 
   vars:
-    ios_archive: "c2960x-universalk9-tar.152-7.E3.tar"
-    ios_binary: "c2960x-universalk9-mz.152-7.E3.bin"
-    ios_md5_tar: "6f3ae3e149b5a54bb91c916ede4da85b"
-    ios_version: "15.2(7)E3"
+    ios_archive: "c2960x-universalk9-tar.152-7.E5.tar"
+    ios_binary: "c2960x-universalk9-mz.152-7.E5.bin"
+    ios_md5_tar: "c729cea70db7fc30bf3065706d73772e"
+    ios_version: "15.2(7)E5"
 
 
   tasks:

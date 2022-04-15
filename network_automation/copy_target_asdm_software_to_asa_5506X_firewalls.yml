@@ -1,6 +1,6 @@
 - name : COPY TARGET ASDM SOFTWARE TO CISCO 5506X ASA
   connection: network_cli
-  hosts: usap5506xfirewalls labasa1
+  hosts: usap5506xfirewalls labasa1 lbjtoazurefirewalls
   gather_facts: false
 
 

@@ -6,8 +6,8 @@
 
 
   vars:
-    ios_binary: c2960x-universalk9-mz.152-7.E3.bin
-    ios_tar: c2960x-universalk9-tar.152-7.E3.tar
+    ios_binary: c2960x-universalk9-mz.152-7.E5.bin
+    ios_tar: c2960x-universalk9-tar.152-7.E5.tar
 
 
 

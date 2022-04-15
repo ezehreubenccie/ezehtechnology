@@ -1,6 +1,6 @@
 - name : CHANGE BOOT VARIABLE OR SYSTEM ON 5506X ASA FOR DEVICES THAT HAVE DUAL BOOT SYSTEM
   connection: network_cli
-  hosts: usap5506xfirewalls labfirewalls
+  hosts: usap5506xfirewalls labfirewalls lbjtoazurefirewalls
   gather_facts: false
 
   vars:

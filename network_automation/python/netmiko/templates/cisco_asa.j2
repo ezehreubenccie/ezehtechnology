@@ -1,0 +1,9 @@
+{% for interface in data.interfaces %}
+ interface {{interface.name}}.{{interface.vlan}}
+  description {{ interface.desc }}
+  vlan {{ interface.vlan }}
+  nameif {{ interface.nameif }}
+  security-level 100
+  ip address {{ interface.ip }} {{ interface.mask }}
+{% endfor %}
+write memory

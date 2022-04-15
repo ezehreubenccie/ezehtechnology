@@ -19,3 +19,6 @@
 
     - debug:
         var: bootvar
+
+    - debug:
+        var: bootvar.stdout[0].split()[3].split(',')[0] 

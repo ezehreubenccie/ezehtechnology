@@ -1,14 +1,14 @@
 
 ---
 - name: ISR4331/K9 ROUTER  RELOAD
-  hosts: lbjlabrouters:newsiterouters
+  hosts: lbjlabrouters
   gather_facts: false
   connection: network_cli
 
   vars:
     router:
-        router_target_version: "16.12.05"
-        router_image: "isr4300-universalk9.16.12.05.SPA.bin"
+        router_target_version: "17.03.04a"
+        router_image: "isr4300-universalk9.17.03.04a.SPA.bin"
    
 
   tasks:
@@ -26,10 +26,9 @@
          host: 10.2.0.105
          port: 25
          to: 
-           - Network.Monitoring@usap.com
            - reuben.ezeh@usap.com
-           - russell.booker@usap.com
-           - obumrozel@yahoo.com
+           - frank.nguyen@usap.com
+           - jim.march@usap.com
          from: ansible-reload@usap.com
        delegate_to: localhost
        tags:
@@ -69,9 +68,9 @@
          host: 10.2.0.105
          port: 25
          to: 
-           - Network.Monitoring@usap.com
+           - frank.nguyen@usap.com
            - reuben.ezeh@usap.com
-           - russell.booker@usap.com
+           - jim.march@usap.com
          from: ansible-reload@usap.com
        delegate_to: localhost
        tags:

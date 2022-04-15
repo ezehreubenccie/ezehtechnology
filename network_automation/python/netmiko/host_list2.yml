@@ -1,0 +1,4 @@
+---
+host_list:
+  - name: lbjlabrouter01
+    platform

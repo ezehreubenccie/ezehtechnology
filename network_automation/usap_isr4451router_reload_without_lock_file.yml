@@ -7,8 +7,8 @@
 
   vars:
     router:
-        router_target_version: "16.12.04"
-        router_image: "isr4400-universalk9.16.12.04.SPA.bin"
+        router_target_version: "16.12.06"
+        router_image: "isr4400-universalk9.16.12.06.SPA.bin"
    
 
   tasks:
@@ -26,8 +26,9 @@
          host: 10.2.0.105
          port: 25
          to: 
-           - Network.Monitoring@usap.com
+           - frank.nguyen@usap.com
            - reuben.ezeh@usap.com
+           - jim.march@usap.com
          from: ansible-reload@usap.com
        delegate_to: localhost
        tags:
@@ -67,8 +68,9 @@
          host: 10.2.0.105
          port: 25
          to: 
-           - Network.Monitoring@usap.com
+           - frank.nguyen@usap.com
            - reuben.ezeh@usap.com
+           - jim.march@usap.com
          from: ansible-reload@usap.com
        delegate_to: localhost
        tags:

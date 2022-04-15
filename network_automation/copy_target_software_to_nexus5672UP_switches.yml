@@ -26,7 +26,61 @@
       register: output
 
     - name: Check if Nexus Switch Software was copied successfully to the flash
-      ios_command:
+      nxos_command:
         commands: "dir  bootflash: | include {{ sw_image }}"
       register: dir_bootflash
+
+#    - debug:
+#        var: dir_bootflash
+
+    - name: Get Free Space on Nexus Switch
+      nxos_command:
+        commands: "dir"
+      register: free
+
+#    - debug:
+#        var: free.stdout_lines[0][-3:][1].split()[0]
+
+    - name: Get free space and convert to float and KB
+      set_fact:
+        free_space_KB: "{{ free.stdout_lines[0][-3:][1].split()[0]|float / 1000 }}"
+
+    - debug:
+        msg: "Free sapce on {{ inventory_hostname }} is {{ free_space_KB }} KB."
+
+    - name: Check that there is enough space for upload
+      assert:
+        that:
+          - free_space_KB|float > sw_image_size_kb|float
+        fail_msg: 'There is not enough space left on {{ inventory_hostname }} flash'
+        success_msg: '{{ inventory_hostname }} has enough space left on flash. Coping Software Image to Flash Now!!'
+      when:
+        - sw_image not in dir_bootflash.stdout_lines[0]
+
+
+    - name: Start Image Copy from FTP Server
+      nxos_command:
+        commands:
+          - command: 'copy {{ protocol }}://{{ ftp_user }}:{{ ftp_pass }}@{{ ftp_server }}/{{ sw_image }}  bootflash:/'
+            prompt: "Enter vrf (If no input, current vrf 'default' is considered):"
+            answer: ''
+      when:
+        - sw_image not in dir_bootflash.stdout_lines[0]
+        - free_space_KB|float > sw_image_size_kb|float
+      vars:
+        ansible_command_timeout: 4200
+
+    
+    - name: Check if Nexus Switch Software was copied successfully to the flash
+      nxos_command:
+        commands: "dir  bootflash: | include {{ sw_image }}"
+      register: dir_bootflash
+
+
+    - name: Assert that Nexus software Image is in Switch flash
+      assert:
+        that:
+          - sw_image not in dir_bootflash.stdout_lines[0]
+        fail_msg: 'Target software {{ sw_image }} was not copied successfully to {{ inventory_hostname }} flash. Please troubleshoot!!'
+        success_msg: 'Hooray!!..Target software {{ sw_image }} was  copied successfully to {{ inventory_hostname }} flash.'
 

@@ -1,6 +1,6 @@
 ---
 - name: get facts from asa
-  hosts: usap5506xfirewalls usapchcfirewall labfirewalls usap5545xcorefirewalls 
+  hosts: usap5506xfirewalls usapchcfirewall labfirewalls usap5545xcorefirewalls lbjtoazurefirewalls 
   connection: network_cli
   gather_facts: no
 

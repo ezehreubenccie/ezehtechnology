@@ -7,7 +7,7 @@
 
 
   vars:
-    router_compliant_ver: 16.12.05
+    router_compliant_ver: 17.03.04a
 
   tasks:
     - name: Gather all ISR4331K9 Router Hardware facts

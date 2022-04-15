@@ -1,0 +1,7 @@
+---
+host_list:
+  - name: cdc-5545x-asa01-primary
+    cmd: 'sh run object-group id BLOCKED_HOSTS'
+    platform: asa
+    
+

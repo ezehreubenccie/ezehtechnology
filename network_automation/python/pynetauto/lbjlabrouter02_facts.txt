@@ -1,0 +1,9 @@
+term length 0
+lbjlabrouter02#show version | inc Software,
+Cisco IOS XE Software, Version 16.12.06
+lbjlabrouter02#show ip int brie
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0/0   unassigned      YES NVRAM  down                  down    
+GigabitEthernet0/0/1   10.7.250.60     YES NVRAM  up                    up      
+GigabitEthernet0       unassigned      YES NVRAM  administratively down down    
+lbjlabrouter02#

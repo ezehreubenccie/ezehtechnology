@@ -1,0 +1,27 @@
+term length 0
+lbjlabrouter01#show version | inc Software,
+Cisco IOS XE Software, Version 16.12.06
+lbjlabrouter01#show run vrf
+Building configuration...
+
+Current configuration : 248 bytes
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+!
+interface GigabitEthernet0
+ description MANAGEMENT
+ vrf forwarding Mgmt-intf
+ no ip address
+ shutdown
+ negotiation auto
+!
+!
+end
+
+lbjlabrouter01#

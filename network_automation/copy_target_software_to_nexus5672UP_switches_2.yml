@@ -1,0 +1,102 @@
+- name : GATHER 5672UP NEXUS SWITCH FACTS
+  connection: network_cli
+  hosts: usap5672UPnexusswitches
+  gather_facts: false
+
+
+  vars:
+    sw_version: 7.3(8)N1(1)
+    sw_image: n6000-uk9.7.3.8.N1.1.bin
+    sw_image_size_kb: 400000
+    ftp_server: '10.2.0.250'
+    protocol: 'ftp'
+    ftp_user: 'reunexus'
+    ftp_pass: !vault |
+          $ANSIBLE_VAULT;1.2;AES256;reuben3010
+          31363263333639336166396434356436353631316464623736303862353264396462386635663939
+          3635373433303562613031353532636131613465383063640a343566396531646465643733386564
+          39333033656161323435326464373132323537336333336461343035366162376462623434303431
+          3361343166313233350a326231393665383631366538373238303330373132626539313530653239
+          6232
+
+  tasks:
+    - name: Gather all 5672UP Nexus Switch Hardware facts
+      nxos_facts:
+        gather_subset: hardware
+      register: output
+
+    - name: Check if Nexus Switch Software was copied successfully to the flash
+      nxos_command:
+        commands: "dir  bootflash: | include {{ sw_image }}"
+      register: dir_bootflash
+
+#    - debug:
+#        var: dir_bootflash
+
+    - name: Get Free Space on Nexus Switch
+      nxos_command:
+        commands: "dir"
+      register: free
+
+#    - debug:
+#        var: free.stdout_lines[0][-3:][1].split()[0]
+
+    - name: Get free space and convert to float and KB
+      set_fact:
+        free_space_KB: "{{ free.stdout_lines[0][-3:][1].split()[0]|float / 1000 }}"
+
+    - debug:
+        msg: "Free sapce on {{ inventory_hostname }} is {{ free_space_KB }} KB."
+
+    - name: Check that there is enough space for upload
+      assert:
+        that:
+          - free_space_KB|float > sw_image_size_kb|float
+        fail_msg: 'There is not enough space left on {{ inventory_hostname }} flash'
+        success_msg: '{{ inventory_hostname }} has enough space left on flash. Coping Software Image to Flash Now!!'
+      when:
+        - sw_image not in dir_bootflash.stdout_lines[0]
+
+
+    - name: initiate file copy from device
+      cisco.nxos.nxos_file_copy:
+        file_pull: true
+        file_pull_protocol: '{{ protocol }}'
+        local_file: '{{ sw_image }}'
+        remote_file: '/{{ protocol }}/{{sw_image}}'
+        remote_scp_server: '{{ ftp_server }}'
+        remote_scp_server_user: '{{ ftp_user }}'
+        remote_scp_server_password: T3Nh84B56HJ2
+        vrf: management
+      when:
+        - sw_image not in dir_bootflash.stdout_lines[0]
+        - free_space_KB|float > sw_image_size_kb|float
+
+
+
+#    - name: Start Image Copy from FTP Server
+#      nxos_command:
+#        commands:
+#          - command: 'copy {{ protocol }}://{{ ftp_user }}:{{ ftp_pass }}@{{ ftp_server }}/{{ sw_image }}  bootflash:/'
+#            prompt: "Enter vrf (If no input, current vrf 'default' is considered):"
+#            answer: ''
+#      when:
+#        - sw_image not in dir_bootflash.stdout_lines[0]
+#        - free_space_KB|float > sw_image_size_kb|float
+#      vars:
+#        ansible_command_timeout: 4200
+
+    
+    - name: Check if Nexus Switch Software was copied successfully to the flash
+      nxos_command:
+        commands: "dir  bootflash: | include {{ sw_image }}"
+      register: dir_bootflash
+
+
+    - name: Assert that Nexus software Image is in Switch flash
+      assert:
+        that:
+          - sw_image not in dir_bootflash.stdout_lines[0]
+        fail_msg: 'Target software {{ sw_image }} was not copied successfully to {{ inventory_hostname }} flash. Please troubleshoot!!'
+        success_msg: 'Hooray!!..Target software {{ sw_image }} was  copied successfully to {{ inventory_hostname }} flash.'
+

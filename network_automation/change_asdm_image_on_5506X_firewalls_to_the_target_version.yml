@@ -1,6 +1,6 @@
-- name : CHANGE ASDM IMAGE ON 5545X ASA FIREWALLS
+- name : CHANGE ASDM IMAGE ON 5506X ASA FIREWALLS
   connection: network_cli
-  hosts: usap5545xcorefirewalls
+  hosts: usap5506xfirewalls
   gather_facts: false
 
   vars:
@@ -20,7 +20,7 @@
     - name: Check MD5 Hash
       asa_command:
         commands:
-          - "verify /md5 flash:{{ target_asdm_image}}"
+          - "verify /md5 flash:{{ target_asdm_image }}"
       register: md5_result
       vars:
         ansible_command_timeout: 300
@@ -58,7 +58,7 @@
       asa_config:
         lines:
           - "asdm image disk0:/{{ target_asdm_image }}"
-          - 'write memory'
+          - 'wr'
       when:
         - target_asdm_image in dir_flash['stdout'][0]
         - asdm_md5 in md5_result['stdout'][0].split()
@@ -78,33 +78,20 @@
           - show version
       register: asdm_vars_version
 
-    - name: asa set fact 1
+    - name: asa set facts
       set_fact:
         asdm_version: "{{ asdm_vars_version.stdout_lines[0][2].split()[-1] }}"
-      when: "'Firepower' in asdm_vars_version['stdout'][0]"
-
-    - name: set fact 2
-      set_fact:
-        asdmversion: "{{ asdm_vars_version.stdout_lines[0][2].split()[-1] }}"
-      when:  "'SSP' in asdm_vars_version['stdout'][0]"
-
-
-    - name: asa set fact 3
-      set_fact:
-        asdm_version: "{{ asdm_vars_version.stdout_lines[0][1].split()[-1] }}"
-      when: 
-        - "'Firepower' not in asdm_vars_version['stdout'][0]"
-        - "'SSP' not in asdm_vars_version['stdout'][0]"
-
+    - debug:
+        var: asdm_version
 
     - name: Assert That ASDM Image Is Set To Target ASDM Software
       assert:
         that:
           - asdm_config.stdout_lines[0][0].split()[-1].split(':/')[-1] == target_asdm_image
-        fail_msg: "asdm image is not set correctly. it is {{asdm_config.stdout_lines[0][0].split()[-1].split(':/')[-1]}}. Asdm has not been upgraded. :("
-        success_msg: "Hooray!!..asdm image is set correctly. it is {{ asdm_config.stdout_lines[0][0].split()[-1].split(':/')[-1] }}.Configuration was saved  with 'write memory' asdm has been upgraded!"
+        fail_msg: "asdm image is not set correctly. it is {{asdm_config.stdout_lines[0][0].split()[-1].split(':/')[-1]}}"
+        success_msg: "Hooray!!..asdm image has been upgraded successfully!. it is {{ asdm_config.stdout_lines[0][0].split()[-1].split(':/')[-1] }}.Asdm configuration was saved with 'write memory'"
       when:
         #- asa_image in dir_flash['stdout'][0]
         #- asa_md5 in md5_result['stdout'][0].split()
-        - asdm_version !=  asdm_compatible_ver
+        - asdm_version ==  asdm_compatible_ver
        

@@ -7,7 +7,7 @@
 
 
   vars:
-    switch_compliant_ver: 16.12.04
+    switch_compliant_ver: 17.03.04
 
   tasks:
     - name: Gather all 9300 Switch Hardware facts

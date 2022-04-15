@@ -1,0 +1,45 @@
+
+
+lbjlabrouter02#terminal width 511
+lbjlabrouter02#terminal length 0
+lbjlabrouter02#
+lbjlabrouter02#
+lbjlabrouter02#dir bootflash:/test.txt
+%Error opening bootflash:/test.txt (No such file or directory)
+lbjlabrouter02#
+lbjlabrouter02#dir bootflash:
+Directory of bootflash:/
+
+   11  drwx            16384  Nov 14 2014 17:57:35 +00:00  lost+found
+209665  drwx             4096  Jan 20 2022 21:15:14 +00:00  .prst_sync
+   12  -rw-        586072463  Feb 28 2021 02:47:00 +00:00  isr4300-universalk9.16.09.05.SPA.bin
+96769  drwx             4096  Jan 20 2022 21:13:16 +00:00  sysboot
+338689  drwx             4096  Jan 20 2022 21:13:38 +00:00  .installer
+   14  -rwx              479  Nov 14 2014 17:58:17 +00:00  tracelogs.330
+80641  drwx            32768   Apr 5 2022 02:42:16 +00:00  tracelogs
+64513  drwx             4096  Jun 14 2018 20:35:58 +00:00  core
+112897  drwx             4096  Nov 14 2014 18:14:48 +00:00  .rollback_timer
+   13  -rw-        642564977  Jan 20 2022 20:20:53 +00:00  isr4300-universalk9.16.12.06.SPA.bin
+   15  -rw-          2606028  Jun 14 2018 20:21:50 +00:00  isr4200_4300_rommon_167_3r_SPA.pkg
+   16  -rw-               30  Jan 20 2022 21:15:14 +00:00  throughput_monitor_params
+   17  -rw-          2754560  Jun 14 2018 21:35:13 +00:00  nbar2_http_default.tar
+129025  drwx             4096  Jun 14 2018 21:35:23 +00:00  nbar2
+145157  -rw-               35  Jul 11 2020 19:02:10 +00:00  pnp-tech-time
+145158  -rw-            96617  Jul 11 2020 19:02:14 +00:00  pnp-tech-discovery-summary
+   18  -rw-           132108  Jan 20 2022 21:14:35 +00:00  memleak.tcl
+96789  drwx             4096  Jan 20 2022 21:15:32 +00:00  license_evlog
+322565  drwx             4096  Aug 23 2020 21:13:01 +00:00  gs_script
+322566  drwx             4096  May 10 2021 02:00:20 +00:00  .dbpersist
+322567  drwx             4096  Aug 23 2020 21:24:12 +00:00  virtual-instance
+322568  drwx             4096  Aug 23 2020 21:25:21 +00:00  onep
+
+3249049600 bytes total (1231491072 bytes free)
+lbjlabrouter02#
+lbjlabrouter02#verify /md5 bootflash:/test.txt
+.Done!
+verify /md5 (bootflash:/test.txt) = d15f71268ae8a63f5ee5c0e9688285b9
+
+
+lbjlabrouter02#
+lbjlabrouter02#
+lbjlabrouter02#exit

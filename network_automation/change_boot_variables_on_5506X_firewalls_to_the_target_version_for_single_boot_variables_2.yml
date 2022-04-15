@@ -1,6 +1,6 @@
 - name : CHANGE BOOT VARIABLE OR SYSTEM ON 5506X ASA FOR DEVICES THAT HAVE SINGLE BOOT SYSTEM
   connection: network_cli
-  hosts: usap5506xfirewalls
+  hosts: usap5506xfirewalls lbjtoazurefirewalls
   gather_facts: false
 
   vars:
