@@ -1,0 +1,33 @@
+ network-object 10.2.0.0 255.255.0.0
+ network-object object HTX-LEGACY-08
+ network-object object Denver_Workstation_Vlan100
+ network-object object Denver_Workstation_Vlan101
+ network-object object Arlington_user_workstation_subnet
+ network-object object Austin_Texas_user_workstation_subnet
+ network-object object Columbia_Maryland_User_workstation_Subnet
+ network-object object Dallas_Acd_user_workstation_subnet
+ network-object object Dallas_Merit_user_workstation_subnet_01
+ network-object object Dallas_lbj_user_admin_subnet
+ network-object object Dallas_lbj_user_workstation_north_subnet
+ network-object object Dallas_lbj_user_workstation_south_subnet
+ network-object object Dallas_merit_user_workstation_subnet_02
+ network-object object FortLauderdale_Florida_user_workstation_subnet02
+ network-object object FortMeyers_florida_user_workstation_subnet_01
+ network-object object ForthWorth_Texas_Harris_user_workstation_subnet
+ network-object object Fortlauderdale_Florida_user_workstation_subnet_01
+ network-object object Glendale_Arizona_user_workstation_subnet
+ network-object object Houston_user_workstation_subnet_01
+ network-object object Houston_user_workstation_subnet_02
+ network-object object Maitland_Florida_user_workstation_subnet_02
+ network-object object Maitland_florida_user_workstation_subnet_01
+ network-object object SanAntonio_Texas_user_workstation_subnet
+ network-object object Sherman_texas_user_workstation_subnet
+ network-object object dallas_merit_user_workstation_subnet_03
+ network-object object jacksonville_florida_user_workstation_subnet
+ network-object object lakewood_colorado_user_workstation_subnet
+ network-object object Las_Vegas_user_workstation_subnet
+ network-object object Tyler_Texas_user_workstation_subnet
+ group-object CAA_VPN_Z1_DSMCUT
+ group-object CAA_VPN_Z1_HAYS
+ group-object CAA_VPN_Z1_SMC
+ group-object CAA_VPN_Z1_SNW

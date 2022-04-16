@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-from netmiko8 import get_og
+from conn_to_asa_and_read_og import get_og
 import pprint
 import re
 

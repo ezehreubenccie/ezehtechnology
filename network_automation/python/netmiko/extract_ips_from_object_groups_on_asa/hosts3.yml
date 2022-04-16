@@ -1,0 +1,6 @@
+---
+host_list:
+  - name: cdc-5545x-asa01-primary
+    platform: asa
+    
+
