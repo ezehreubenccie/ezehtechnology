@@ -23,7 +23,7 @@ activity is found.
 Contact the U.S. Anesthesia Partners Helpdesk at: (800) 337-1312 for more info
 LOG OFF IMMEDIATELY AFTER USE
 User SA_Solarwinds logged in to CDC-5545X-ASA01
-Logins over the last 91 days: 41.  Last login: 20:00:07 CDT Apr 15 2022 from 10.4.234.35
+Logins over the last 91 days: 47.  Last login: 16:21:05 CDT Apr 18 2022 from 10.4.234.35
 Failed logins since the last login: 0.  Last failed login: 23:40:07 CDT Apr 14 2022 from 10.4.234.35
 Type help or '?' for a list of available commands.
 CDC-5545X-ASA01/pri/act> show curpriv
@@ -46,7 +46,6 @@ CDC-5545X-ASA01/pri/act#
 CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# 
-CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# sh run object id HTX-LEGACY-08
 object network HTX-LEGACY-08
  host 192.200.10.35
@@ -60,11 +59,9 @@ CDC-5545X-ASA01/pri/act# sh run object id Denver_Workstation_Vlan101
 object network Denver_Workstation_Vlan101
  subnet 10.64.1.0 255.255.255.0
 CDC-5545X-ASA01/pri/act# 
-CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# sh run object id Arlington_user_workstation_subnet
 object network Arlington_user_workstation_subnet
  subnet 172.28.26.0 255.255.255.0
-CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# sh run object id Austin_Texas_user_workstation_subnet
 object network Austin_Texas_user_workstation_subnet
@@ -83,7 +80,6 @@ CDC-5545X-ASA01/pri/act# sh run object id Dallas_Merit_user_workstation_subnet_0
 object network Dallas_Merit_user_workstation_subnet_01
  subnet 10.4.234.0 255.255.255.0
 CDC-5545X-ASA01/pri/act# 
-CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# sh run object id Dallas_lbj_user_admin_subnet
 object network Dallas_lbj_user_admin_subnet
  subnet 10.4.255.0 255.255.255.0
@@ -100,21 +96,17 @@ CDC-5545X-ASA01/pri/act# sh run object id Dallas_merit_user_workstation_subnet_0
 object network Dallas_merit_user_workstation_subnet_02
  subnet 10.4.235.0 255.255.255.0
 CDC-5545X-ASA01/pri/act# 
-CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# sh run object id FortLauderdale_Florida_user_workstation_subnet02
 object network FortLauderdale_Florida_user_workstation_subnet02
  subnet 10.63.250.0 255.255.255.0
-CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# sh run object id FortMeyers_florida_user_workstation_subnet_01
 object network FortMeyers_florida_user_workstation_subnet_01
  subnet 172.28.4.0 255.255.255.0
 CDC-5545X-ASA01/pri/act# 
-CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# sh run object id ForthWorth_Texas_Harris_user_workstation_subnet
 object network ForthWorth_Texas_Harris_user_workstation_subnet
  subnet 10.4.6.0 255.255.255.0
-CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# sh run object id Fortlauderdale_Florida_user_workstation_subnet_01
 object network Fortlauderdale_Florida_user_workstation_subnet_01
@@ -123,6 +115,7 @@ CDC-5545X-ASA01/pri/act#
 CDC-5545X-ASA01/pri/act# sh run object id Glendale_Arizona_user_workstation_subnet
 object network Glendale_Arizona_user_workstation_subnet
  subnet 172.28.22.0 255.255.255.0
+CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# sh run object id Houston_user_workstation_subnet_01
 object network Houston_user_workstation_subnet_01
@@ -148,11 +141,9 @@ CDC-5545X-ASA01/pri/act# sh run object id Sherman_texas_user_workstation_subnet
 object network Sherman_texas_user_workstation_subnet
  subnet 10.32.14.192 255.255.255.192
 CDC-5545X-ASA01/pri/act# 
-CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# sh run object id dallas_merit_user_workstation_subnet_03
 object network dallas_merit_user_workstation_subnet_03
  subnet 10.4.236.0 255.255.255.0
-CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# sh run object id jacksonville_florida_user_workstation_subnet
 object network jacksonville_florida_user_workstation_subnet
@@ -162,6 +153,7 @@ CDC-5545X-ASA01/pri/act# sh run object id lakewood_colorado_user_workstation_sub
 object network lakewood_colorado_user_workstation_subnet
  subnet 172.30.176.0 255.255.255.0
  description Teamhealth
+CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# sh run object id Las_Vegas_user_workstation_subnet
 object network Las_Vegas_user_workstation_subnet
@@ -179,10 +171,10 @@ CDC-5545X-ASA01/pri/act# sh run object-group id CAA_VPN_Z1_HAYS
 object-group network CAA_VPN_Z1_HAYS
  network-object 10.0.4.0 255.255.255.0
 CDC-5545X-ASA01/pri/act# 
+CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# sh run object-group id CAA_VPN_Z1_SMC
 object-group network CAA_VPN_Z1_SMC
  network-object object 10.0.0.0
-CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# 
 CDC-5545X-ASA01/pri/act# sh run object-group id CAA_VPN_Z1_SNW
 object-group network CAA_VPN_Z1_SNW

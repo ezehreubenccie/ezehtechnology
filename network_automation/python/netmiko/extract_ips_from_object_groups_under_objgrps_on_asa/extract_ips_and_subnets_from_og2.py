@@ -58,7 +58,7 @@ with open('object_ids.txt', 'r') as objs:
 #            else:
 #                field1 = object.split()[1]
 #                obj_net_grp_list.append(field1)
-#        pprint.pprint(obj_net_grp_list)
+        pprint.pprint(obj_net_grp_list)
 #        print(' ' + 'subnet' + ' ' + '10.2.0.0 255.255.0.0')
         for entry in obj_net_grp_list:
 #            print(f'{field1} {field2}')
