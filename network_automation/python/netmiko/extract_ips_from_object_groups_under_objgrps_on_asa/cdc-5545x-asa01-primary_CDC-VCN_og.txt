@@ -1,0 +1,3 @@
+object-group network CDC-VCN
+ network-object object CDC-VCN-01
+ network-object object CDC-VCN-02

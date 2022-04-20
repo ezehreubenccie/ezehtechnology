@@ -6,6 +6,7 @@ from netmiko import Netmiko
 from jinja2 import Environment, FileSystemLoader
 from netmiko import ConnectHandler
 import getpass
+import time
 
 def get_og(file):
     with open(file, 'r') as handle:
@@ -31,14 +32,15 @@ def get_og(file):
         print(f'Logged into {conn.find_prompt()} successfully')
         object_group = 'USAP-Server-Subnets'
         result = conn.send_command(f'sh run object-group id {object_group}')
-
-#        print(result)
+        time.sleep(1.0)
+        print(result)
 
         conn.disconnect()
 
         print(f"Writing {host['name']} network object group to file")
         with open(f'{host["name"]}_{object_group}_og.txt', 'w') as handle:
             handle.write(result)
+            time.sleep(1.0)
     return f'{host["name"]}_{object_group}_og.txt'
 
 if __name__=='__main__':

@@ -31,3 +31,4 @@
  group-object CAA_VPN_Z1_HAYS
  group-object CAA_VPN_Z1_SMC
  group-object CAA_VPN_Z1_SNW
+ group-object FARWEST_VPN_REMOTE_HOST

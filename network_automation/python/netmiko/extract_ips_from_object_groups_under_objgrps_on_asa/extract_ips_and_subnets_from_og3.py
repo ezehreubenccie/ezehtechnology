@@ -71,6 +71,14 @@ with open('object_ids.txt', 'r') as objs:
                 field2 = fields[1]
                 print(f' {field1} {field2}')
                 obj_net_grp.append(f' {field1} {field2}')
+#            print(len(entry.split('\n')))
+            elif len(entry.split('\n')) == int(3):
+                fields = entry.split('\n')
+                field1 = fields[1]
+                field2 = fields[2]
+                print(f'{field1}')
+                print(f'{field2}')
+                obj_net_grp.append(f' {field1}\n{field2}')
             else:
                 fields = entry.split('\n')
                 field1 = fields[1]
