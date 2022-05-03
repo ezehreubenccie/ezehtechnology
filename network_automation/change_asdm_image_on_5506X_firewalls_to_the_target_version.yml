@@ -1,13 +1,13 @@
 - name : CHANGE ASDM IMAGE ON 5506X ASA FIREWALLS
   connection: network_cli
-  hosts: usap5506xfirewalls
+  hosts: usap5506xfirewalls labfirewalls lbjtoazurefirewalls
   gather_facts: false
 
   vars:
-    asdm_target_version: "7.13(1)"
-    target_asdm_image: "asdm-7131-101.bin"
-    asdm_md5: fac75582056ebb9599d03f1ca354073c
-    asdm_compatible_ver: 7.13(1)
+    asdm_target_version: "7.16(1.150)"
+    target_asdm_image: "asdm-7161-150.bin"
+    asdm_md5: 3361688b47d93cb93dd3c0cdd8670e1f
+    asdm_compatible_ver: 7.16(1.150)
     asdm_version:
 
 

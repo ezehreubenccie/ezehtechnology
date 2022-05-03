@@ -50,5 +50,7 @@ asafirepower:
   city: seattle
   state: washington
   city_state_abbreviation: swa
+  street_name: 600 BROADWAY,
+  town_city_zipcode: SEATTLE, WA 98122-5229,
   preshared_secret: dj.kcX+$+FF<E~zl}QmD:]^[
  

@@ -1,0 +1,37 @@
+---
+interfaces:
+    - name: GigabitEthernet1/6
+      desc: Conn To Switch Port g2/0/48
+      port_channel_mem: True
+      port_channel_num: 1
+    - name: GigabitEthernet1/7
+      desc: Conn To Switch Port g2/0/49
+      port_channel_mem: True
+      port_channel_num: 1
+    - name: po1
+      port_channel: True
+      vlan_num: 100
+      desc: Data_Vlan
+      nameif: data
+      sec_level: 100
+      ip: 10.20.0.100
+      mask: 255.255.255.0
+    - name: po1
+      port_channel: True
+      vlan_num: 200
+      desc: Voice_Vlan
+      nameif: voip
+      sec_level: 100
+      ip: 10.20.5.100
+      mask: 255.255.255.0
+    - name: GigabitEthernet1/8
+      nameif: test
+      desc: This port was configured by paramiko
+      ip: 8.8.8.8
+      mask: 255.255.255.0
+
+        
+creds:
+    - username: usapadmin
+      password: T3nb5li1kp#Ds!@%8n
+      enable: T3nb5li1kp#Ds!@%8n

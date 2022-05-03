@@ -476,7 +476,7 @@ snmp-server group USAP_SNMP v3 priv read RW write RW
 snmp-server user netadmin USAP_SNMP v3 auth md5 {{asafirepower.md5_authentication_password}} priv aes 256 {{asafirepower.aes_privacy_password}}
 snmp-server view RW iso included
 snmp-server host Data 10.2.0.168 version 3 netadmin udp-port 161
-snmp-server location 600 BROADWAY, SEATTLE, WA 98122-5229, United States
+snmp-server location {{ asafirepower.street_name }} {{ town_city_zipcode }} United States
 snmp-server contact IT Department
 snmp-server enable traps syslog
 snmp-server enable traps ipsec start stop

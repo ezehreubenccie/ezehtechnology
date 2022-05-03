@@ -1,3 +1,4 @@
+object-group network CDC_TO_AZURE
  network-object 10.2.0.0 255.255.255.0
  network-object 10.2.101.0 255.255.255.0
  network-object 10.2.102.0 255.255.255.0

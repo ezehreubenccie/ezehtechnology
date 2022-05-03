@@ -1,0 +1,10 @@
+enable
+Password: *****
+LABASA1# terminal pager 0
+LABASA1# show version | grep Software
+Cisco Adaptive Security Appliance Software Version 9.16(2)14 
+LABASA1# show run | grep access-l
+access-list inbound extended permit ip any object SFTP_FTP_SERVER 
+access-list inbound extended permit ip any any 
+threat-detection statistics access-list
+LABASA1# 

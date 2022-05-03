@@ -30,7 +30,7 @@ def get_og(file):
         )
 
         print(f'Logged into {conn.find_prompt()} successfully')
-        object_group = 'USAP-Server-Subnets'
+        object_group = 'CDC_TO_AZURE'
         result = conn.send_command(f'sh run object-group id {object_group}')
         time.sleep(1.0)
         print(result)

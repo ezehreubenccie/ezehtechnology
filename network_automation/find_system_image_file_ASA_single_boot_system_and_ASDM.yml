@@ -1,5 +1,5 @@
 - name: DELETE FILES THAT ARE NOT IN USE FROM CISCO ASA FIREWALL FLASH
-  hosts: usapfirewalls labfirewalls
+  hosts: usapfirewalls labfirewalls usapchcfirewall
   connection: network_cli
   gather_facts: false
 

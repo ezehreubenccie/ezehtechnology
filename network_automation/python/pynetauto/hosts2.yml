@@ -1,0 +1,12 @@
+---
+host_list:
+    - name: labasa1
+      terminal: 'terminal pager 0'
+      cmd: 'show version | grep Software'
+      platform: asa
+    - name: dtx-lbjlab-5506x-asa01
+      platform: asa
+    - name: lbjlabrouter01
+      terminal: 'terminal length 0'
+      cmd: 'show version | inc Software'
+      platform: ios

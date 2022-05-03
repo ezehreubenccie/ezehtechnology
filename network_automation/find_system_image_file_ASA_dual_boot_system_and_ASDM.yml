@@ -1,5 +1,5 @@
 - name: DELETE FILES THAT ARE NOT IN USE FROM CISCO ASA FIREWALL FLASH
-  hosts: usapfirewalls labfirewalls
+  hosts: usapfirewalls labfirewalls usapchcfirewall
   connection: network_cli
   gather_facts: false
 
@@ -15,19 +15,19 @@
 
   tasks:
     - name: asa facts
-      cisco.asa.asa_command:
+      asa_command:
         commands:
           - show run hostname
       register: asa_vars
 
     - name: Find ASA Firewall System File
-      cisco.asa.asa_command:
+      asa_command:
         commands:
           - show run boot system
       register: system_image_file
 
     - name: Find ASDM Image File
-      cisco.asa.asa_command:
+      asa_command:
         commands:
           - show run asdm | grep image
       register: asdm_config
@@ -54,7 +54,7 @@
        #system_boot_file_2: "{{ system_image_file.stdout_lines[0][1].split()[-1].split(':/')[-1] }}"
 
     - name: Gather FLASH FACTS FOR ASA FIREWALL
-      cisco.asa.asa_command:
+      asa_command:
         commands:
           - 'dir {{ flash_num }}'
       register: flash_contents

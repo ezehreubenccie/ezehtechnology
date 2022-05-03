@@ -1,11 +1,11 @@
 - name : CHECK IF TARGET SOFTWARE IS PRESENT IN ASA 5506X FIREWALL FLASH
   connection: network_cli
-  hosts: usap5506xfirewalls lbjlab5505firewalls labfirewalls usap5545xcorefirewalls lbjtoazurefirewalls
+  hosts: usap5506xfirewalls lbjlab5505firewalls labfirewalls usap5545xcorefirewalls lbjtoazurefirewalls usapchcfirewall
   gather_facts: false
 
 
   vars:
-    asdm_image: asdm-7131-101.bin
+    asdm_image: asdm-7161-150.bin
 
 
   tasks:

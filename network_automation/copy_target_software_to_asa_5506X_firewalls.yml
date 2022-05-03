@@ -1,12 +1,12 @@
 - name : COPY TARGET SOFTWARE TO CISCO 5506X ASA
   connection: network_cli
-  hosts: usap5506xfirewalls labasa1 lbjtoazurefirewalls
+  hosts: usap5506xfirewalls labasa1 lbjtoazurefirewalls usapchcfirewall
   gather_facts: false
 
 
 
   vars:
-    asa_image_size_bytes: 115000000
+    asa_image_size_bytes: 160000000
     ftp_ip: '10.2.0.250'
     protocol: 'ftp'
     ftp_user: 'reuben'
@@ -17,8 +17,8 @@
           63373664626230643933393365666265643139646563363633616532323330636634323430663638
           3835646366333666650a383562633265333030356562343532633132356234356433653564323035
           3561
-    source_file: asa9-12-4-18-lfbff-k8.SPA
-    dest_file: asa9-12-4-18-lfbff-k8.SPA
+    source_file: asa9-16-2-14-lfbff-k8.SPA
+    dest_file: asa9-16-2-14-lfbff-k8.SPA
 
 
   tasks:

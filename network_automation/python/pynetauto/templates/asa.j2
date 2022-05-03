@@ -1,0 +1,25 @@
+configure terminal
+{% for int in data.interfaces %}
+{% if int.port_channel_mem %}
+  interface {{int.name}}
+    channel-group {{ int.port_channel_num }} mode active
+    description {{ int.desc }}
+    no nameif
+    no security-level
+    no ip address
+{% elif int.port_channel %}
+  interface {{int.name}}.{{int.vlan_num}}
+    description {{ int.desc }}
+    vlan {{ int.vlan_num }}
+    nameif {{ int.nameif }}
+    security-level {{ int.sec_level }}
+    ip address {{ int.ip }} {{ int.mask }}
+{% else %}
+  interface {{ int.name }}
+    description {{ int.desc }}
+    nameif {{ int.nameif }}
+    security-level 100
+    ip address {{ int.ip }} {{ int.mask }}
+{% endif %}
+{% endfor %}
+write memory
