@@ -1,6 +1,6 @@
 ---
 - name: USAP 5506X FIREWALL RELOAD
-  hosts: usap5506xfirewalls labasa1 lbjtoazurefirewalls
+  hosts: usap5506xfirewalls labasa1 lbjtoazurefirewalls usapchcfirewall
   gather_facts: false
   connection: network_cli
 

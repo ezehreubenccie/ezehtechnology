@@ -27,7 +27,7 @@
         - name: Check there is enough space for Upload
           asa_command: 
             commands: 
-              - command: 'show disk0: | in bytes'
+              -  'show disk0: | in bytes'
           register: flash_facts
         - set_fact:
             free_space: "{{ flash_facts['stdout'][0].split()[3][1:11] }}"
@@ -81,4 +81,4 @@
             that:
               - source_file in dir_flash['stdout'][0]
             fail_msg: 'Target asdm software {{ source_file }} was not copied successfully to {{ inventory_hostname }} flash. Please troubleshoot!!'
-            success_msg: 'Hooray!!..Target asdm software {{ source_file }} was  copied successfully to {{ inventory_hostname }} flash.'       
+            success_msg: 'Hooray!!..Target asdm software {{ source_file }} was  copied successfully to {{ inventory_hostname }} flash.'

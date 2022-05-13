@@ -1,6 +1,6 @@
 - name : CHANGE ASDM IMAGE ON 5506X ASA FIREWALLS
   connection: network_cli
-  hosts: usap5506xfirewalls labfirewalls lbjtoazurefirewalls
+  hosts: usap5506xfirewalls labfirewalls lbjtoazurefirewalls usapchcfirewall
   gather_facts: false
 
   vars:

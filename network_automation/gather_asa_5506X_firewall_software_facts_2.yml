@@ -31,7 +31,7 @@
         hostname: "{{ asa_vars.stdout_lines[0][0].split()[-1] }}"
         version: "{{ asa_vars.stdout_lines[1][0].split()[-1] }}"
         serialnum: "{{ asa_vars.stdout_lines[2][1].split()[-1] }}"
-        ipaddress: "{{ asa_vars.stdout_lines[3][0].split()[2] }}"
+        ipaddress: "{{ asa_vars.stdout_lines[3][1].split()[2] }}"
         #asdmversion: "{{ asa_vars.stdout_lines[1][2].split()[-1] }}"
 
     - name: Display facts

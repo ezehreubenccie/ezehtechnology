@@ -12,9 +12,9 @@
     physicaladdress:
     verdict:
     upgradeto:
-    compliant_5545x: 9.12(4)18
-    compliant_5506x: 9.12(4)18
-    compliant_5508x: 9.12(4)18
+    compliant_5545x: 9.16(2)14
+    compliant_5506x: 9.16(2)14
+    compliant_5508x: 9.16(2)14
     compliant_5505: 9.1(7)32
     compliant_fpr1120_asa: 9.15(1)10
     non_compliant_5545x: 9.12(3)12
@@ -43,13 +43,13 @@
     - name: Get Hostname of ASA
       asa_command:
         commands:
-          - command: show hostname
+          - show hostname
       register: hostname
 
     - name: Get Firewall Uptime
       asa_command:
         commands:
-          - command: "show version | grep {{ hostname.stdout_lines[0][0] }}"
+          - "show version | grep {{ hostname.stdout_lines[0][0] }}"
       register: asauptime
 
 

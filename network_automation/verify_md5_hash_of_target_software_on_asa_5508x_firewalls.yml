@@ -5,9 +5,9 @@
 
 
   vars:
-    asa_target_version: 9.12(4)18
-    asa_image: asa9-12-4-18-lfbff-k8.SPA
-    asa_md5: bbc78e4eb48694b18f4d05cc3dfc77d1
+    asa_target_version: 9.16(2)14
+    asa_image: asa9-16-2-14-lfbff-k8.SPA
+    asa_md5: 599b91f71cabddcca272ae97d51d6a8b
 
 
   tasks:

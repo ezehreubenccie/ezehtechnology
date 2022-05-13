@@ -1,0 +1,65 @@
+User usapadmin logged in to dtx-lbjlab-5506x-asa01
+Logins over the last 84 days: 98.  Last login: 05:45:20 UTC May 4 2022 from 97.105.123.74
+Failed logins since the last login: 0.  Last failed login: 00:38:48 UTC Apr 1 2022 from 97.105.123.74
+Type help or '?' for a list of available commands.
+dtx-lbjlab-5506x-asa01> show curpriv
+Username : usapadmin
+Current privilege level : 1
+Current Mode/s : P_UNPR
+dtx-lbjlab-5506x-asa01> 
+dtx-lbjlab-5506x-asa01> 
+dtx-lbjlab-5506x-asa01> enable
+Password: ******************
+dtx-lbjlab-5506x-asa01# terminal pager 0
+dtx-lbjlab-5506x-asa01# 
+dtx-lbjlab-5506x-asa01# configure terminal
+dtx-lbjlab-5506x-asa01(config)# 
+dtx-lbjlab-5506x-asa01(config)# terminal width 511
+dtx-lbjlab-5506x-asa01(config)# 
+dtx-lbjlab-5506x-asa01(config)# end
+dtx-lbjlab-5506x-asa01# 
+dtx-lbjlab-5506x-asa01# 
+dtx-lbjlab-5506x-asa01# 
+dtx-lbjlab-5506x-asa01# 
+dtx-lbjlab-5506x-asa01# configure terminal
+dtx-lbjlab-5506x-asa01(config)# 
+dtx-lbjlab-5506x-asa01(config)# interface GigabitEthernet1/6
+dtx-lbjlab-5506x-asa01(config-if)# channel-group 1 mode active
+dtx-lbjlab-5506x-asa01(config-if)# description Conn To Switch Port g2/0/48
+dtx-lbjlab-5506x-asa01(config-if)# no nameif
+dtx-lbjlab-5506x-asa01(config-if)# no security-level
+dtx-lbjlab-5506x-asa01(config-if)# no ip address
+dtx-lbjlab-5506x-asa01(config-if)# interface GigabitEthernet1/7
+dtx-lbjlab-5506x-asa01(config-if)# channel-group 1 mode active
+dtx-lbjlab-5506x-asa01(config-if)# description Conn To Switch Port g2/0/49
+dtx-lbjlab-5506x-asa01(config-if)# no nameif
+dtx-lbjlab-5506x-asa01(config-if)# no security-level
+dtx-lbjlab-5506x-asa01(config-if)# no ip address
+dtx-lbjlab-5506x-asa01(config-if)# interface po1.100
+dtx-lbjlab-5506x-asa01(config-subif)# description Data_Vlan
+dtx-lbjlab-5506x-asa01(config-subif)# vlan 100
+dtx-lbjlab-5506x-asa01(config-subif)# nameif data
+dtx-lbjlab-5506x-asa01(config-subif)# security-level 100
+dtx-lbjlab-5506x-asa01(config-subif)# ip address 10.20.0.100 255.255.255.0
+dtx-lbjlab-5506x-asa01(config-subif)# interface po1.200
+dtx-lbjlab-5506x-asa01(config-subif)# description Voice_Vlan
+dtx-lbjlab-5506x-asa01(config-subif)# vlan 200
+dtx-lbjlab-5506x-asa01(config-subif)# nameif voip
+dtx-lbjlab-5506x-asa01(config-subif)# security-level 100
+dtx-lbjlab-5506x-asa01(config-subif)# ip address 10.20.5.100 255.255.255.0
+dtx-lbjlab-5506x-asa01(config-subif)# interface GigabitEthernet1/8
+dtx-lbjlab-5506x-asa01(config-if)# description This port was configured by netmiko
+dtx-lbjlab-5506x-asa01(config-if)# nameif test
+dtx-lbjlab-5506x-asa01(config-if)# security-level 100
+dtx-lbjlab-5506x-asa01(config-if)# ip address 8.8.8.8 255.255.255.0
+dtx-lbjlab-5506x-asa01(config-if)# write memory
+Building configuration...
+Cryptochecksum: b4d47a94 f9b2ae1c 26adf657 25830e52 
+
+13791 bytes copied in 0.380 secs
+[OK]
+dtx-lbjlab-5506x-asa01(config-if)# 
+dtx-lbjlab-5506x-asa01(config-if)# end
+dtx-lbjlab-5506x-asa01# 
+dtx-lbjlab-5506x-asa01# 
+dtx-lbjlab-5506x-asa01# exit

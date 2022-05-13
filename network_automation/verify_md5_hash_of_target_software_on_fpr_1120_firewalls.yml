@@ -5,9 +5,9 @@
 
 
   vars:
-    asa_target_version: "9.15(1)10"
-    asa_image: "cisco-asa-fp1k.9.15.1.10.SPA"
-    asa_md5: 46304f7fbb12e3d0fe6cee90b3e0a720
+    asa_target_version: "9.16(2)14"
+    asa_image: "cisco-asa-fp1k.9.16.2.14.SPA"
+    asa_md5: 922e3621156da145d9c725f694fae47a
 
 
   tasks:

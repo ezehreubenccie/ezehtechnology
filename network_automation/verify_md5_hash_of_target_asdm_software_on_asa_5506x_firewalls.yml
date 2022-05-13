@@ -21,7 +21,7 @@
         - name: Check MD5 Hash
           asa_command:
             commands:
-              - command: "verify /md5 flash:{{ asdm_image}}"
+              - "verify /md5 flash:{{ asdm_image }}"
           register: md5_result
           vars:
             ansible_command_timeout: 300

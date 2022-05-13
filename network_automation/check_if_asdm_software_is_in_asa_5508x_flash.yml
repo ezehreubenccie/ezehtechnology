@@ -5,7 +5,7 @@
 
 
   vars:
-    asdm_image: asdm-7131-101.bin
+    asdm_image: asdm-7161-150.bin
 
 
   tasks:

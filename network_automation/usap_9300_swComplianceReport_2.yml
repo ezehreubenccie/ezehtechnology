@@ -42,6 +42,9 @@
           - command: show version | in System restarted
       register: sysrestart
 
+    - debug:
+        var: sysrestart
+
     - set_fact:
         ipaddress: "{{ ansible_net_all_ipv4_addresses[0] }}"
         version: "{{ ansible_net_version }}"

@@ -6,7 +6,7 @@
 
   vars:
     asa:
-        asa_target_version: "9.12(4)18"
+        asa_target_version: "9.16(2)14"
         asa_image: "asa9-12-4-18-lfbff-k8.SPA"
     hostname:
     version:

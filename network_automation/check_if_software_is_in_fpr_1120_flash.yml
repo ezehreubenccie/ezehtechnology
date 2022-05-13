@@ -5,8 +5,8 @@
 
 
   vars:
-    asa_image: cisco-asa-fp1k.9.15.1.10.SPA
-    asdm_image: asdm-7131-101.bin
+    asa_image: cisco-asa-fp1k.9.16.2.14.SPA
+    asdm_image: asdm-7161-150.bin
 
 
   tasks:

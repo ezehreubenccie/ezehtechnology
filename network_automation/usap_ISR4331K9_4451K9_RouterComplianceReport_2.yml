@@ -43,7 +43,7 @@
     - name: Get When System Last Restarted
       ios_command:
         commands:
-          - command: show version | in System restarted
+          - command: show version | in System ret|rest
       register: sysrestart
 
 
@@ -53,10 +53,10 @@
         serialnum: '{{ ansible_net_serialnum }}'
         hostname: '{{ ansible_net_hostname }}'
         physicaladdress: "{{ snmp_location.stdout[0][21:].replace(',','') }}"
-        date_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[6] + ' ' + sysrestart.stdout_lines[0][-1].split()[7] + ' ' + sysrestart.stdout_lines[0][-1].split()[8] }}"
-        time_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[3] }}"
-        time_zone_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[4] }}"
-        day_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[5] }}"
+        date_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[-3] + ' ' + sysrestart.stdout_lines[0][-1].split()[-2] + ' ' + sysrestart.stdout_lines[0][-1].split()[-1] }}"
+        time_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[-6] }}"
+        time_zone_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[-5] }}"
+        day_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[-4] }}"
  
 
     - name: set fact 2

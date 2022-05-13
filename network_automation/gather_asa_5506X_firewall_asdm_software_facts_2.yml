@@ -10,7 +10,7 @@
     serialnum:
     ipaddress:
     asa_compliant_ver: 9.16(2)14
-    asdm_compatible_ver: 7.16(1.150)
+    asdm_compatible_ver: 7.16(1)150
 
   tasks:
     - name: asa facts
@@ -34,7 +34,7 @@
         hostname: "{{ asa_vars['stdout'][0].split()[1] }}"
         version: "{{ asa_vars.stdout_lines[1][0].split()[-1] }}"
         serialnum: "{{ asa_vars.stdout_lines[2][1].split()[-1] }}"
-        ipaddress: "{{ asa_vars.stdout_lines[3][0].split()[2] }}"
+        ipaddress: "{{ asa_vars.stdout_lines[3][1].split()[2] }}"
 
     - name: set asdm fact 1
       set_fact:
