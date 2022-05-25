@@ -13,7 +13,7 @@
       block:
         - name: Check Contents of Flash
           asa_command:
-            commands:  'show run asdm | grep {{ asdm_image }}'
+            commands:  'show disk0: | grep {{ asdm_image }}'
           register: dir_flash
 
         - debug:

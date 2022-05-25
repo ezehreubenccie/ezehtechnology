@@ -2,17 +2,7 @@
 
 
 import os
-import json
 import requests
-
-# Maps the type of an object to the API resource string
-URL_MAP = {
-    'Host': 'object/hosts',
-    'Network': 'objects/networks',
-    'NetworkGroup': 'object/networkgroups',
-    'ProtocolPortObject': 'object/protocolportobjects',
-    'PortObjectGroup': 'object/portobjectgroups'
-}
 
 
 class CiscoFMC:
@@ -25,7 +15,7 @@ class CiscoFMC:
         self,
         username,
         password,
-        host="cdcfmc01",
+        host="fmcrestapisandbox.cisco.com",
         verify=False,
     ):
 
@@ -93,16 +83,16 @@ class CiscoFMC:
         """
 
         # Collect username and password (required) from env vars
-        username = os.environ.get("FMC_USERNAME")
+        username = os.environ.get("FMC_DEV_USERNAME")
         if not username:
-            raise ValueError("Must define FMC_USERNAME env var")
+            raise ValueError("Must define FMC_DEV_USERNAME env var")
 
-        password = os.environ.get("FMC_PASSWORD")
+        password = os.environ.get("FMC_DEV_PASSWORD")
         if not password:
-            raise ValueError("Must define FMC_PASSWORD environment var")
+            raise ValueError("Must define FMC_DEV_PASSWORD environment var")
 
         # Specifying the host is optional;
-        host = os.environ.get("FMC_HOST", "cdcfmc01")
+        host = os.environ.get("FMC_DEV_HOST", "fmcrestapisandbox.cisco.com")
 
         # Create and return new CiscoFMC object
         return CiscoFMC(username=username, password=password, host=host)

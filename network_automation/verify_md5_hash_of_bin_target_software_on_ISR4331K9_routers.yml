@@ -1,13 +1,13 @@
 - name : VERIFY MD5 HASH OF TARGET SOFTWARE ON ISR4331K9 ROUTERS
   connection: network_cli
-  hosts: usapISR4331K9routers
+  hosts: usapISR4331K9routers lbjlabrouters
   gather_facts: false
 
 
 
   vars:
-    ios_binary: "isr4300-universalk9.16.12.05.SPA.bin"
-    ios_md5_bin: da22dad3905bd79d23f2acdf3c10c33e
+    ios_binary: "isr4300-universalk9.17.03.05.SPA.bin"
+    ios_md5_bin: 7a05820a9200a8c557f27db6be554929
 
   tasks:
     - name: Get Copied BIN Software from flash

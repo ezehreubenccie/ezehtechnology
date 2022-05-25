@@ -1,10 +1,10 @@
 - name: DELETE FILES THAT ARE NOT IN USE FROM CISCO ROUTER FLASH
-  hosts: usapISR4331K9routers
+  hosts: usapISR4331K9routers lbjlabrouters
   connection: network_cli
   gather_facts: false
 
   vars: 
-    target_system_image_file: "isr4300-universalk9.16.12.05.SPA.bin"
+    target_system_image_file: "isr4300-universalk9.16.12.06.SPA.bin"
     file_type: '.bin'
     empty_string: ''
     spacefree_before:
@@ -12,11 +12,11 @@
 
 
   tasks:
-    - name: Gather all ISR4331K9 ISR4451 Router Hardware facts
+    - name: Gather all ISR4331K9 ISR4321 Router Hardware facts
       ios_facts:
         gather_subset: hardware
 
-    - name: Gather all ISR4331K9 ISR4451 Router Hardware facts
+    - name: Gather all ISR4331K9 ISR4321 Router Hardware facts
       ios_command:
         commands:
           - command: show version | in System image file

@@ -46,7 +46,7 @@
           register: dir_flash 
 
         
-        - name: Upload Software from FTP Server to ASA flash
+        - name: Upload ASDM Software from FTP Server to ASA flash
           cli_command:
             command: 'copy ftp://{{ ftp_user }}:{{ ftp_pass }}@{{ ftp_ip }}/{{ source_file }}   disk0:/{{ source_file }}'
             prompt:

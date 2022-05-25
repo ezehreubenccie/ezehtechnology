@@ -4,10 +4,10 @@
   gather_facts: false
 
   vars:
-    asdm_target_version: "7.16(1.150)"
+    asdm_target_version: "7.16(1)150"
     target_asdm_image: "asdm-7161-150.bin"
     asdm_md5: 3361688b47d93cb93dd3c0cdd8670e1f
-    asdm_compatible_ver: 7.16(1.150)
+    asdm_compatible_ver: 7.16(1)150
     asdm_version:
 
 

@@ -16,13 +16,13 @@
     compliant_5506x: 9.16(2)14
     compliant_5508x: 9.16(2)14
     compliant_5505: 9.1(7)32
-    compliant_fpr1120_asa: 9.15(1)10
-    non_compliant_5545x: 9.12(3)12
-    non_compliant_5506x_1: 9.6(4)41
+    compliant_fpr1120_asa: 9.16(2)14
+    non_compliant_5545x: 9.12(4)18
+    non_compliant_5506x: 9.12(4)18
     non_compliant_5506x_2: 9.9(2)
     non_compliant_5506x_3: 9.8(4)22
-    non_compliant_fpr1120_asa: 9.13(1)7
-    non_compliant_5508x: 9.8(4)22
+    non_compliant_fpr1120_asa: 9.15(1)10
+    non_compliant_5508x: 9.12(4)18
     non_compliant_5505:
     lastUpgradeTime:
 

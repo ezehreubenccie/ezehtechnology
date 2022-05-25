@@ -20,7 +20,7 @@
     - name: Check MD5 Hash
       asa_command:
         commands:
-          - command: "verify /md5 flash:{{ asa_image}}"
+          - "verify /md5 flash:{{ asa_image}}"
       register: md5_result
       vars:
         ansible_command_timeout: 300
@@ -29,7 +29,7 @@
     - name: Verify Boot Variables
       asa_command:
         commands:
-          - command: sh run boot
+          - sh run boot
       register: bootvar
 
     - debug:
@@ -69,7 +69,7 @@
     - name: Verify Boot Variables
       asa_command:
         commands:
-          - command: sh run boot
+          - sh run boot
       register: bootvar
     - debug:
         var: bootvar

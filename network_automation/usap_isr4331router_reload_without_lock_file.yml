@@ -1,14 +1,14 @@
 
 ---
 - name: ISR4331/K9 ROUTER  RELOAD
-  hosts: usapISR4331K9routers
+  hosts: usapISR4331K9routers lbjlabrouters
   gather_facts: false
   connection: network_cli
 
   vars:
     router:
-        router_target_version: "16.12.06"
-        router_image: "isr4300-universalk9.16.12.06.SPA.bin"
+        router_target_version: "17.03.05"
+        router_image: "isr4300-universalk9.17.03.05.SPA.bin"
    
 
   tasks:

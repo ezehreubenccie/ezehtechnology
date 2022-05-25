@@ -4,9 +4,9 @@
   gather_facts: false
 
   vars:
-    asa_target_version: "9.8(4)22"
-    asa_image: "asa984-22-lfbff-k8.SPA"
-    asa_md5: a801bacbe61051d8b3eb9708afe634e0
+    asa_target_version: "9.16(2)14"
+    asa_image: "asa9-16-2-14-lfbff-k8.SPA"
+    asa_md5: 599b91f71cabddcca272ae97d51d6a8b
     version:
 
 
@@ -19,7 +19,7 @@
     - name: Check MD5 Hash
       asa_command:
         commands:
-          - command: "verify /md5 flash:{{ asa_image}}"
+          - "verify /md5 flash:{{ asa_image}}"
       register: md5_result
       vars:
         ansible_command_timeout: 300
@@ -28,7 +28,7 @@
     - name: Verify Boot Variables
       asa_command:
         commands:
-          - command: sh run boot
+          - sh run boot
       register: bootvar
 
     - debug:
@@ -66,7 +66,7 @@
     - name: Verify Boot Variables
       asa_command:
         commands:
-          - command: sh run boot
+          - sh run boot
       register: bootvar
     - debug:
         var: bootvar

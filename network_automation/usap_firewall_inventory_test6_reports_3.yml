@@ -16,13 +16,13 @@
     compliant_5506x: 9.16(2)14
     compliant_5508x: 9.16(2)14
     compliant_5505: 9.1(7)32
-    compliant_fpr1120_asa: 9.15(1)10
-    non_compliant_5545x: 9.12(3)12
-    non_compliant_5506x_1: 9.6(4)41
-    non_compliant_5506x_2: 9.9(2)
-    non_compliant_5506x_3: 9.8(4)22
-    non_compliant_fpr1120_asa: 9.13(1)7
-    non_compliant_5508x: 9.8(4)22
+    compliant_fpr1120_asa: 9.16(2)14
+    non_compliant_5545x: 9.12(4)18
+    non_compliant_5506x: 9.12(4)18
+#    non_compliant_5506x_2: 9.9(2)
+#    non_compliant_5506x_3: 9.8(4)22
+    non_compliant_fpr1120_asa: 9.15(1)10
+    non_compliant_5508x: 9.12(4)18
     non_compliant_5505:
     lastUpgradeTime:
 
@@ -36,17 +36,20 @@
           - show ip | in INSIDE|inside|Data|guestwifi|DATA|FW
           - sh run snmp-server | grep location
       register: asa_vars
-    
+
+#    - debug:
+#        var: asa_vars
+
     - name: Get Hostname of ASA
       asa_command:
         commands:
-          - command: show hostname
+          - show hostname
       register: hostname
 
     - name: Get Firewall Uptime
       asa_command:
         commands:
-          - command: "show version | grep {{ hostname.stdout_lines[0][0] }}"
+          - "show version | grep {{ hostname.stdout_lines[0][0] }}"
       register: asauptime
 
 
@@ -55,11 +58,17 @@
         hostname: "{{ asa_vars.stdout_lines[0][0].split()[-1] }}"
         version: "{{ asa_vars.stdout_lines[1][0].split()[-1] }}"
         serialnum: "{{ asa_vars.stdout_lines[2][1].split()[-1] }}"
-        ipaddress: "{{ asa_vars.stdout_lines[3][0].split()[2] }}"
+        ipaddress: "{{ asa_vars.stdout_lines[3][1].split()[2] }}"
        # asdmversion: "{{ asa_vars.stdout_lines[1][2].split()[-1] }}"
-        physicaladdress: "{{ asa_vars.stdout[4][21:].replace(',','') }}"
+#        physicaladdress: "{{ asa_vars.stdout[4][21:].replace(',','') }}"
+        physicaladdress: "{{ asa_vars.stdout_lines[4][0].split('snmp-server location ')[-1].replace(',','') }}"
         lastUpgradeTime: "{{ asauptime.stdout_lines[0][0].split()[2] + asauptime.stdout_lines[0][0].split()[3] + ' ' + asauptime.stdout_lines[0][0].split()[4] + asauptime.stdout_lines[0][0].split()[5] }}"    
 
+#    - debug:
+#        var: physicaladdress
+
+#    - debug:
+#        var: ipaddress
     #- name: set fact
      # set_fact:
        # time: " {{ '%Y-%m-%dT%H:%M:%S'|strftime((ansible_date_time.epoch|int) - (60* asauptime.stdout_lines[0][0].split()[4]|int * asauptime.stdout_lines[0][0].split()[2]|int )) }}"
@@ -72,17 +81,17 @@
     - name: set fact 2
       set_fact:
         verdict: 'compliant'
-      when: (version  == compliant_5506x) or (version  == compliant_5508x) or (version  == compliant_5545x) or (version  ==  compliant_5505) or (version  == compliant_fpr1120_asa )
+      when: (version  == compliant_5506x) or (version  == compliant_5508x) or (version  == compliant_5545x)  or (version  == compliant_fpr1120_asa )
 
     - name: set fact 3
       set_fact:
         verdict: 'non-compliant'
-      when: (version  != compliant_5506x) or (version  != compliant_5508x) or (version  != compliant_5545x) or (version  != compliant_5505) or (version  != compliant_fpr1120_asa)
+      when: (version  != compliant_5506x) and (version  != compliant_5508x) and (version  != compliant_5545x)  and (version  != compliant_fpr1120_asa)
 
     - name: set fact 4
       set_fact: 
         upgradeto: 'N/A'
-      when: (version  == compliant_5506x) or (version  == compliant_5508x) or (version  == compliant_5545x) or (version  == compliant_5505) or (version  == compliant_fpr1120_asa)
+      when: (version  == compliant_5506x) or (version  == compliant_5508x) or (version  == compliant_5545x)  or (version  == compliant_fpr1120_asa)
 
     - name: set fact 5
       set_fact:
@@ -92,9 +101,8 @@
     - name: set fact 6
       set_fact:
         upgradeto: '{{ compliant_5506x }}'
-      when: (version == non_compliant_5506x_2 and '"5506" in hostname') or
-            (version == non_compliant_5506x_1 and '"5506" in hostname') or
-            (version == non_compliant_5506x_3 and '"5506" in hostname')    
+      when: version == non_compliant_5506x and '"5506" in hostname'
+               
 
     - name: set fact 7
       set_fact:

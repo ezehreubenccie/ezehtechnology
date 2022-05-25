@@ -1,11 +1,11 @@
-- name : VERIFY MD5 HASH OF ASA TARGET SOFTWARE COPIED TO ASA 5506X FIREWALLS
+- name : VERIFY MD5 HASH OF ASDM TARGET SOFTWARE COPIED TO ASA 5506X FIREWALLS
   connection: network_cli
   hosts: usap5506xfirewalls labfirewalls lbjtoazurefirewalls usapchcfirewall
   gather_facts: false
 
 
   vars:
-    asdm_target_version: "7.16(1.150)"
+    asdm_target_version: "7.16(1)150"
     asdm_image: "asdm-7161-150.bin"
     asdm_md5: 3361688b47d93cb93dd3c0cdd8670e1f
 

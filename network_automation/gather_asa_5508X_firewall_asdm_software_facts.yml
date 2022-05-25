@@ -10,7 +10,7 @@
     serialnum:
     ipaddress:
     asa_compliant_ver: 9.16(2)14
-    asdm_compatible_ver: 7.16(1.150)
+    asdm_compatible_ver: 7.16(1)150
 
   tasks:
     - name: asa facts

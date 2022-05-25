@@ -1,10 +1,10 @@
 - name: DELETE FILES THAT ARE NOT IN USE FROM CISCO ROUTER FLASH
-  hosts: usapISR4331K9routers:lbjlabrouters
+  hosts: usapISR4451K9routers
   connection: network_cli
   gather_facts: false
 
   vars: 
-    target_system_image_file: "isr4300-universalk9.16.12.06.SPA.bin"
+    target_system_image_file: "isr4400-universalk9.17.03.05.SPA.bin"
     file_type: '.bin'
     empty_string: ''
     spacefree_before:
@@ -12,11 +12,11 @@
 
 
   tasks:
-    - name: Gather all ISR4331K9  ISR4321K9 Router Hardware facts
+    - name: Gather all ISR4451 Router Hardware facts
       ios_facts:
         gather_subset: hardware
 
-    - name: Find ISR4331K9 ISR4451K9 ISR4231K9 System Image File
+    - name: Gather all ISR4451K9 Router Hardware facts
       ios_command:
         commands:
           - command: show version | in System image file
@@ -40,19 +40,20 @@
           - command: dir
       register: flash_contents
 
-    - debug:
-        var: flash_contents.stdout_lines[0]
+   # - debug:
+        #var: flash_contents.stdout_lines[0][1]
 
     - name: set fact 1
       set_fact:
         list1: "{{ flash_contents.stdout_lines[0][2:-2] }}"
 
-    - debug:
-        var: list1
+    #- debug:
+        #var: list1[4].split()[-1]
 
-    - name: DELETE FLASH FILES NOT IN USE - Output only
-      debug:
-        msg: " File to delete is  {{ item.split()[-1] }}"
+    - name: DELETE FLASH FILES NOT IN USE
+      ios_command: 
+        commands:
+          - command: delete /force bootflash:{{ item.split()[-1] }}
       loop: '{{ list1 }}'
       when: 
          - 'file_type in  item.split()[-1]'
@@ -60,17 +61,17 @@
          - 'item.split()[-1]  !=  target_system_image_file'
          #- 'item != empty_string'
 
-   # - name: GET FREE SPACE AFTER DELETE
-     # ios_facts:
-      #  gather_subset: hardware
-     # tags: spacefree
+    - name: GET FREE SPACE AFTER DELETE
+      ios_facts:
+        gather_subset: hardware
+      tags: spacefree
 
-   # - name: Set fact after delete
-     # set_fact:
-      #  spacefree_after: "{{ ansible_net_filesystems_info['bootflash:']['spacefree_kb'] }}"
-     # tags: spacefree  
+    - name: Set fact after delete
+      set_fact:
+        spacefree_after: "{{ ansible_net_filesystems_info['bootflash:']['spacefree_kb'] }}"
+      tags: spacefree  
 
-    #- debug:
-       # msg: "Free space is  {{ spacefree_after|float / 1000000 }}GB for {{ ansible_net_hostname }} after delete task. {{ spacefree_after|float / 1000000 -  spacefree_before|float / 1000000 }}GB was recovered!."
+    - debug:
+        msg: "Free space is  {{ spacefree_after|float / 1000000 }}GB for {{ ansible_net_hostname }} after delete task. {{ spacefree_after|float / 1000000 -  spacefree_before|float / 1000000 }}GB was recovered!."
 
    

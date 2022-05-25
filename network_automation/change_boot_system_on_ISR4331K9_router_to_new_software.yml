@@ -1,15 +1,15 @@
 - name : CHANGE BOOT SYSTEM ON ISR4331 ROUTER TO NEW SOFTWARE
   connection: network_cli
-  hosts: usapISR4331K9routers 
+  hosts: usapISR4331K9routers lbjlabrouters 
   gather_facts: false
 
 
 
 
   vars:
-    ios_binary: isr4300-universalk9.16.12.05.SPA.bin
-    ios_md5: da22dad3905bd79d23f2acdf3c10c33e
-    ios_version: 16.12.05
+    ios_binary: isr4300-universalk9.17.03.05.SPA.bin
+    ios_md5: 7a05820a9200a8c557f27db6be554929
+    ios_version: 17.03.05
     old_boot_system:
 
 
