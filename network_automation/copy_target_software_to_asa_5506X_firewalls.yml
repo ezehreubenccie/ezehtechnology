@@ -1,12 +1,13 @@
 - name : COPY TARGET SOFTWARE TO CISCO 5506X ASA
   connection: network_cli
-  hosts: usap5506xfirewalls labasa1 lbjtoazurefirewalls usapchcfirewall
+  hosts: usap5506xfirewalls usap5508xfirewalls labasa1 lbjtoazurefirewalls usapchcfirewall
   gather_facts: false
 
 
 
   vars:
     asa_image_size_bytes: 160000000
+    rom_image_size_bytes: 
     ftp_ip: '10.2.0.250'
     protocol: 'ftp'
     ftp_user: 'reuben'
@@ -17,9 +18,10 @@
           63373664626230643933393365666265643139646563363633616532323330636634323430663638
           3835646366333666650a383562633265333030356562343532633132356234356433653564323035
           3561
-    source_file: asa9-16-2-14-lfbff-k8.SPA
-    dest_file: asa9-16-2-14-lfbff-k8.SPA
-
+    source_file: asa9-12-4-41-lfbff-k8.SPA
+    dest_file: asa9-12-4-41-lfbff-k8.SPA
+    rom_source_file: asa5500-firmware-1115.SPA
+    rom_dest_file: asa5500-firmware-1115.SPA
 
   tasks:
     - name: Copy target software To 5506x firewalls

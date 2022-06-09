@@ -1,6 +1,6 @@
 ---
 - name: get facts from asa
-  hosts: usapfirepowerfirewalls 
+  hosts: usap5506xfirewalls usapchcfirewall labfirewalls usap5545xcorefirewalls lbjtoazurefirewalls 
   connection: network_cli
   gather_facts: no
 
@@ -9,8 +9,8 @@
     version:
     serialnum:
     ipaddress:
-    asa_compliant_ver: 9.15(1)21
-    asdm_compatible_ver: 7.16(1)150
+    asa_compliant_ver: 9.16(2)14
+    asdm_compatible_ver: 7.16(1.150)
 
   tasks:
     - name: asa facts
@@ -19,19 +19,26 @@
           - show run hostname
           - show version
           - show inventory
-          - show ip | in INSIDE|inside|Data|guestwifi|DATA
+          - show ip | in INSIDE|inside|Data|guestwifi|DATA|FW
           - show run asdm | grep image
       register: asa_vars
 
-    #- debug:
-        #var: asa_vars
+    - debug:
+        var: asa_vars
+
+    - name: Write Output to File
+#      run_once: true
+      shell: echo {{asa_vars}} > asa_facts_output.txt
+      delegate_to: localhost
+
+
 
     - name: asa set facts
       set_fact:
         hostname: "{{ asa_vars.stdout_lines[0][0].split()[-1] }}"
         version: "{{ asa_vars.stdout_lines[1][0].split()[-1] }}"
         serialnum: "{{ asa_vars.stdout_lines[2][1].split()[-1] }}"
-        ipaddress: "{{ asa_vars.stdout_lines[3][0].split()[2] }}"
+        ipaddress: "{{ asa_vars.stdout_lines[3][1].split()[2] }}"
         #asdmversion: "{{ asa_vars.stdout_lines[1][2].split()[-1] }}"
 
     - name: Display facts

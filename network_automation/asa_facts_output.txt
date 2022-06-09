@@ -1,0 +1,71 @@
+{changed: False, stdout: [hostname TTX-5506X-ASA01, Cisco Adaptive Security Appliance Software Version 9.12(4)18 
+SSP Operating System Version 2.6(1.225)
+Device Manager Version 7.13(1)
+
+Compiled on Sun 28-Mar-21 22:23 GMT by builders
+System image file is "disk0:/asa9-12-4-18-lfbff-k8.SPA"
+Config file at boot was "startup-config"
+
+TTX-5506X-ASA01 up 1 year 25 days
+
+Hardware:   ASA5506, 4096 MB RAM, CPU Atom C2000 series 1250 MHz, 1 CPU (4 cores)
+Internal ATA Compact Flash, 8000MB
+BIOS Flash M25P64 @ 0xfed01000, 16384KB
+
+Encryption hardware device : Cisco ASA Crypto on-board accelerator (revision 0x1)
+                             Number of accelerators: 1
+
+ 1: Ext: GigabitEthernet1/1  : address is f4db.e673.d247, irq 255
+ 2: Ext: GigabitEthernet1/2  : address is f4db.e673.d248, irq 255
+ 3: Ext: GigabitEthernet1/3  : address is f4db.e673.d249, irq 255
+ 4: Ext: GigabitEthernet1/4  : address is f4db.e673.d24a, irq 255
+ 5: Ext: GigabitEthernet1/5  : address is f4db.e673.d24b, irq 255
+ 6: Ext: GigabitEthernet1/6  : address is f4db.e673.d24c, irq 255
+ 7: Ext: GigabitEthernet1/7  : address is f4db.e673.d24d, irq 255
+ 8: Ext: GigabitEthernet1/8  : address is f4db.e673.d24e, irq 255
+ 9: Int: Internal-Data1/1    : address is f4db.e673.d246, irq 255
+10: Int: Internal-Data1/2    : address is 0000.0001.0002, irq 0
+11: Int: Internal-Control1/1 : address is 0000.0001.0001, irq 0
+12: Int: Internal-Data1/3    : address is 0000.0001.0003, irq 0
+13: Ext: Management1/1       : address is f4db.e673.d246, irq 0
+14: Int: Internal-Data1/4    : address is 0000.0100.0001, irq 0
+The Running Activation Key feature: 2 security contexts exceed the limit on the platform, reduced to 0 security contexts.
+
+Licensed features for this platform:
+Maximum Physical Interfaces       : Unlimited      perpetual
+Maximum VLANs                     : 30             perpetual
+Inside Hosts                      : Unlimited      perpetual
+Failover                          : Active/Standby perpetual
+Encryption-DES                    : Enabled        perpetual
+Encryption-3DES-AES               : Enabled        perpetual
+Carrier                           : Disabled       perpetual
+AnyConnect Premium Peers          : 4              perpetual
+AnyConnect Essentials             : Disabled       perpetual
+Other VPN Peers                   : 50             perpetual
+Total VPN Peers                   : 50             perpetual
+AnyConnect for Mobile             : Disabled       perpetual
+AnyConnect for Cisco VPN Phone    : Disabled       perpetual
+Advanced Endpoint Assessment      : Disabled       perpetual
+Shared License                    : Disabled       perpetual
+Total TLS Proxy Sessions          : 160            perpetual
+Botnet Traffic Filter             : Disabled       perpetual
+Cluster                           : Disabled       perpetual
+
+This platform has an ASA 5506 Security Plus license.
+
+Serial Number: JAD223602S8
+Running Permanent Activation Key: 0x3803de4d 0xb4945cf5 0xa8221128 0xb5cc486c 0x84310db0 
+Configuration register is 0x1
+FPGA UPGRADE Version      : 2.4
+FPGA GOLDEN Version       : unavailable
+ROMMON Version            : 1.1.13
+WARNING: Platform FPGA version is older than minimum recommended image.
+WARNING: Platform ROMMON version is older than minimum recommended image.
+Image type                : Release
+Key Version               : A
+Configuration last modified by enable_15 at 12:39:07.562 CDT Wed May 11 2022, Name: "Chassis", DESCR: "ASA 5506-X with SW, 8GE Data, 1GE Mgmt, AC"
+PID: ASA5506           , VID: V05     , SN: JMX2237G0HS
+
+Name: "Storage Device 1", DESCR: "ASA 5506-X SSD"
+PID: ASA5506-SSD       , VID: N/A     , SN: MSA222406ZC, GigabitEthernet1/2.100   DATA                   192.168.130.200 255.255.255.0   CONFIG
+GigabitEthernet1/2.100   DATA                   192.168.130.200 255.255.255.0   CONFIG, asdm image disk0:/asdm-7131-101.bin], stdout_lines: [[hostname TTX-5506X-ASA01], [Cisco Adaptive Security Appliance Software Version 9.12(4)18 , SSP Operating System Version 2.6(1.225), Device Manager Version 7.13(1), , Compiled on Sun 28-Mar-21 22:23 GMT by builders, System image file is "disk0:/asa9-12-4-18-lfbff-k8.SPA", Config file at boot was "startup-config", , TTX-5506X-ASA01 up 1 year 25 days, , Hardware:   ASA5506, 4096 MB RAM, CPU Atom C2000 series 1250 MHz, 1 CPU (4 cores), Internal ATA Compact Flash, 8000MB, BIOS Flash M25P64 @ 0xfed01000, 16384KB, , Encryption hardware device : Cisco ASA Crypto on-board accelerator (revision 0x1),                              Number of accelerators: 1, ,  1: Ext: GigabitEthernet1/1  : address is f4db.e673.d247, irq 255,  2: Ext: GigabitEthernet1/2  : address is f4db.e673.d248, irq 255,  3: Ext: GigabitEthernet1/3  : address is f4db.e673.d249, irq 255,  4: Ext: GigabitEthernet1/4  : address is f4db.e673.d24a, irq 255,  5: Ext: GigabitEthernet1/5  : address is f4db.e673.d24b, irq 255,  6: Ext: GigabitEthernet1/6  : address is f4db.e673.d24c, irq 255,  7: Ext: GigabitEthernet1/7  : address is f4db.e673.d24d, irq 255,  8: Ext: GigabitEthernet1/8  : address is f4db.e673.d24e, irq 255,  9: Int: Internal-Data1/1    : address is f4db.e673.d246, irq 255, 10: Int: Internal-Data1/2    : address is 0000.0001.0002, irq 0, 11: Int: Internal-Control1/1 : address is 0000.0001.0001, irq 0, 12: Int: Internal-Data1/3    : address is 0000.0001.0003, irq 0, 13: Ext: Management1/1       : address is f4db.e673.d246, irq 0, 14: Int: Internal-Data1/4    : address is 0000.0100.0001, irq 0, The Running Activation Key feature: 2 security contexts exceed the limit on the platform, reduced to 0 security contexts., , Licensed features for this platform:, Maximum Physical Interfaces       : Unlimited      perpetual, Maximum VLANs                     : 30             perpetual, Inside Hosts                      : Unlimited      perpetual, Failover                          : Active/Standby perpetual, Encryption-DES                    : Enabled        perpetual, Encryption-3DES-AES               : Enabled        perpetual, Carrier                           : Disabled       perpetual, AnyConnect Premium Peers          : 4              perpetual, AnyConnect Essentials             : Disabled       perpetual, Other VPN Peers                   : 50             perpetual, Total VPN Peers                   : 50             perpetual, AnyConnect for Mobile             : Disabled       perpetual, AnyConnect for Cisco VPN Phone    : Disabled       perpetual, Advanced Endpoint Assessment      : Disabled       perpetual, Shared License                    : Disabled       perpetual, Total TLS Proxy Sessions          : 160            perpetual, Botnet Traffic Filter             : Disabled       perpetual, Cluster                           : Disabled       perpetual, , This platform has an ASA 5506 Security Plus license., , Serial Number: JAD223602S8, Running Permanent Activation Key: 0x3803de4d 0xb4945cf5 0xa8221128 0xb5cc486c 0x84310db0 , Configuration register is 0x1, FPGA UPGRADE Version      : 2.4, FPGA GOLDEN Version       : unavailable, ROMMON Version            : 1.1.13, WARNING: Platform FPGA version is older than minimum recommended image., WARNING: Platform ROMMON version is older than minimum recommended image., Image type                : Release, Key Version               : A, Configuration last modified by enable_15 at 12:39:07.562 CDT Wed May 11 2022], [Name: "Chassis", DESCR: "ASA 5506-X with SW, 8GE Data, 1GE Mgmt, AC", PID: ASA5506           , VID: V05     , SN: JMX2237G0HS, , Name: "Storage Device 1", DESCR: "ASA 5506-X SSD", PID: ASA5506-SSD       , VID: N/A     , SN: MSA222406ZC], [GigabitEthernet1/2.100   DATA                   192.168.130.200 255.255.255.0   CONFIG, GigabitEthernet1/2.100   DATA                   192.168.130.200 255.255.255.0   CONFIG], [asdm image disk0:/asdm-7131-101.bin]], failed: False}

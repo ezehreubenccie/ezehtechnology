@@ -1,11 +1,11 @@
 - name : USAP CISCO 5506X ASA UPGRADE
   connection: network_cli
-  hosts: usap5506xfirewalls lbjlab5505firewalls rmafirewalls labfirewalls usapchcfirewall usap5545xcorefirewalls lbjtoazurefirewalls
+  hosts: usap5506xfirewalls usap5508xfirewalls rmafirewalls labfirewalls usapchcfirewall usap5545xcorefirewalls lbjtoazurefirewalls
   gather_facts: false
 
 
   vars:
-    asa_target_version: 9.16(2)14
+    asa_target_version: 9.12(4)41
 
 
 

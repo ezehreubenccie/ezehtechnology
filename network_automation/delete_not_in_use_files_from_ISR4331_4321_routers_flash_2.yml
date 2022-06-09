@@ -4,7 +4,7 @@
   gather_facts: false
 
   vars: 
-    target_system_image_file: "isr4300-universalk9.16.12.06.SPA.bin"
+    target_system_image_file: "isr4300-universalk9.16.12.05.SPA.bin"
     file_type: '.bin'
     empty_string: ''
     spacefree_before:

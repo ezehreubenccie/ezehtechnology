@@ -1,6 +1,6 @@
 ---
 - name: get facts from asa
-  hosts: usap5506xfirewalls usapchcfirewall labfirewalls usap5545xcorefirewalls lbjtoazurefirewalls 
+  hosts: usap5506xfirewalls usap5508xfirewalls usapchcfirewall labfirewalls usap5545xcorefirewalls lbjtoazurefirewalls 
   connection: network_cli
   gather_facts: no
 
@@ -9,8 +9,8 @@
     version:
     serialnum:
     ipaddress:
-    asa_compliant_ver: 9.16(2)14
-    asdm_compatible_ver: 7.16(1.150)
+    asa_compliant_ver: 9.12(4)41
+    asdm_compatible_ver: 7.16(1)150
 
   tasks:
     - name: asa facts

@@ -6,8 +6,8 @@
 
   vars:
     asa:
-        asa_target_version: "9.16(2)14"
-        asa_image: "asa9-16-2-14-lfbff-k8.SPA"
+        asa_target_version: "9.12(4)41"
+        asa_image: "asa9-12-4-41-lfbff-k8.SPA"
     hostname:
     version:
     serialnum:
@@ -44,11 +44,15 @@
          command: reload
          prompt: "Proceed with reload?"
          answer: 'y'
+       register: asa_reload
        ignore_errors: yes
+    
 #       vars:
 #         ansible_command_timeout: 1800
        tags:
          - reload
+#     - debug:
+#         var: asa_reload
 
      - name: reset the connection
        meta: reset_connection

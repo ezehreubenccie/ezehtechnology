@@ -1,0 +1,6 @@
+---
+host_list:
+    - name: labasa1
+      platform: asa
+      
+

@@ -4,10 +4,10 @@
   gather_facts: false
 
   vars:
-    asa_target_version: "9.16(2)14"
-    asa_image: "cisco-asa-fp1k.9.16.2.14.SPA"
-    asa_md5: 922e3621156da145d9c725f694fae47a
-    asa_compliant_ver: 9.16(2)14
+    asa_target_version: "9.15(1)21"
+    asa_image: "cisco-asa-fp1k.9.15.1.21.SPA"
+    asa_md5: 448b0f3380cc6271f8c0112483328a3d
+    asa_compliant_ver: 9.15(1)21
     version:
 
 

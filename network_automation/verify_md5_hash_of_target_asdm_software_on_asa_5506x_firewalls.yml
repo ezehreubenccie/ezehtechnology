@@ -1,6 +1,6 @@
 - name : VERIFY MD5 HASH OF ASDM TARGET SOFTWARE COPIED TO ASA 5506X FIREWALLS
   connection: network_cli
-  hosts: usap5506xfirewalls labfirewalls lbjtoazurefirewalls usapchcfirewall
+  hosts: usap5506xfirewalls usap5508xfirewalls labfirewalls lbjtoazurefirewalls usapchcfirewall
   gather_facts: false
 
 

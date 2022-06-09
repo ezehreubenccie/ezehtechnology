@@ -1,0 +1,24 @@
+- name : CHECK IF TARGET SOFTWARE IS PRESENT IN ASA 5506X FIREWALL FLASH
+  connection: network_cli
+  hosts: usap5506xfirewalls lbjlab5505firewalls labfirewalls usap5545xcorefirewalls lbjtoazurefirewalls usapchcfirewall usap5508xfirewalls
+  gather_facts: false
+
+
+  vars:
+    asa_rom_image: asa5500-firmware-1115.SPA
+    
+
+
+  tasks:
+    - name: Check if Cisco ASA ROM Software is already present on the flash
+      block:
+        - name: Check Contents of Flash
+          asa_command:
+            commands: 'show disk0 | grep {{ asa_rom_image }}'
+          register: dir_rom_flash
+        - name: Assert that target asa rom software is present in flash
+          assert:
+            that: 
+              - asa_rom_image in dir_rom_flash['stdout'][0]
+            fail_msg: "Target Software {{ asa_rom_image }} not present in {{inventory_hostname}}'s flash"      
+            success_msg: "Target Software {{ asa_rom_image }} is  present in {{inventory_hostname}}'s flash"

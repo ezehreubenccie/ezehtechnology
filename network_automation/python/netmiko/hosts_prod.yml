@@ -1,0 +1,27 @@
+---
+host_list:
+    - name: gaz-5508x-asa01
+      platform: asa
+    - name: dco-5506x-asa01
+      platform: asa
+    - name: maitlndfl-5508x-asa01
+      platform: asa
+    - name: ftmfl-5508x-asa01
+      platform: asa
+    - name: cmd-5506x-asa01
+      platform: asa
+    - name: lnv-5506x-asa01
+      platform: asa
+    - name: arltx-5508x-asa01
+      platform: asa
+    - name: austx-5506x-asa01
+      platform: asa
+    - name: cdc-pinnacle-5510-asa01
+      platform: asa
+    - name: cdc-5545x-asa01-primary
+      platform: asa
+    - name: ttx-5506x-asa01
+      platform: asa
+    - name: dtx-mrt-5506x-asa01
+      platform: asa
+

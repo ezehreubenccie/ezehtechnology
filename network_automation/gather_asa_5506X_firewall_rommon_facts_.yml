@@ -1,6 +1,6 @@
 ---
-- name: get facts from asa
-  hosts: usapfirepowerfirewalls 
+- name: get rommon facts from asa
+  hosts: usap5506xfirewalls usapchcfirewall labfirewalls usap5545xcorefirewalls lbjtoazurefirewalls usap5508xfirewalls 
   connection: network_cli
   gather_facts: no
 
@@ -9,8 +9,10 @@
     version:
     serialnum:
     ipaddress:
-    asa_compliant_ver: 9.15(1)21
-    asdm_compatible_ver: 7.16(1)150
+    rommon:
+    asa_compliant_ver: 9.12(4)41
+    asdm_compatible_ver: 7.13(1)101
+    rommon_version: 1.1.15
 
   tasks:
     - name: asa facts
@@ -19,24 +21,39 @@
           - show run hostname
           - show version
           - show inventory
-          - show ip | in INSIDE|inside|Data|guestwifi|DATA
+          - show ip | in INSIDE|inside|Data|guestwifi|DATA|FW
           - show run asdm | grep image
       register: asa_vars
 
-    #- debug:
-        #var: asa_vars
+    - name: Rommon facts
+      asa_command:
+        commands:
+          - show module
+      register: asa_module
+
+    - debug:
+        var: asa_vars
+
+    - debug:
+        var: asa_module
+
 
     - name: asa set facts
       set_fact:
         hostname: "{{ asa_vars.stdout_lines[0][0].split()[-1] }}"
         version: "{{ asa_vars.stdout_lines[1][0].split()[-1] }}"
         serialnum: "{{ asa_vars.stdout_lines[2][1].split()[-1] }}"
-        ipaddress: "{{ asa_vars.stdout_lines[3][0].split()[2] }}"
+        ipaddress: "{{ asa_vars.stdout_lines[3][1].split()[2] }}"
+        rommon: "{{ asa_module.stdout_lines[0][7].split()[-2] }}"
         #asdmversion: "{{ asa_vars.stdout_lines[1][2].split()[-1] }}"
+
+#    - name: Display rommon
+#      debug:
+#        msg: 'Rommon version is {{ rommon }}'
 
     - name: Display facts
       debug:
-        msg: "The software version for {{ hostname }} is {{ version }}, serial number is {{ serialnum }}, ip address is {{ ipaddress }}. "
+        msg: "The software version for {{ hostname }} is {{ version }}, serial number is {{ serialnum }}, rommon version is {{ rommon }}, ip address is {{ ipaddress }}. "
 
     - name: Assert That Software Version is the Compliant Version
       assert:

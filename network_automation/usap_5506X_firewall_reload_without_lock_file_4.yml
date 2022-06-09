@@ -1,17 +1,19 @@
 ---
 - name: USAP 5506X FIREWALL RELOAD
-  hosts: usap5506xfirewalls labasa1
+  hosts: usap5506xfirewalls labasa1 lbjtoazurefirewalls usapchcfirewall usap5508xfirewalls
   gather_facts: false
   connection: network_cli
 
   vars:
     asa:
-        asa_target_version: "9.12(4)18"
-        asa_image: "asa9-12-4-18-lfbff-k8.SPA"
+        asa_target_version: "9.12(4)41"
+        asa_image: "asa9-12-4-41-lfbff-k8.SPA"
+        rommon_version: 1.1.15
     hostname:
     version:
     serialnum:
     ipaddress:
+    
 
   tasks:
      - name: SAVE CONFIG
@@ -29,36 +31,40 @@
          host: 10.2.0.105
          port: 25
          to: 
-           - Network.Monitoring@usap.com
+           - frank.nguyen@usap.com
            - reuben.ezeh@usap.com
            - russell.booker@usap.com
+           - jim.march@usap.com
          from: ansible-reload@usap.com
        delegate_to: localhost
        tags:
          - email
          - reload
     
-     - name: Reload Firewall
-       asa_command:
-         commands: 
-           - command: reload
-             prompt: "Proceed with reload?"
-             answer: 'y'
+     - name: Reload Firewall to upgrade Rommon
+       cli_command:
+         command: upgrade rommon disk0:asa5500-firmware-1115.SPA
+         prompt: "Proceed with reload?"
+         answer: 'y'
+#       register: asa_reload
        ignore_errors: yes
-      # vars:
-         #ansible_command_timeout: 1800
+    
+#       vars:
+#         ansible_command_timeout: 1800
        tags:
          - reload
+     - debug:
+         var: asa_reload
 
-     #- name: reset the connection
-      # meta: reset_connection
+     - name: reset the connection
+       meta: reset_connection
 
      - name: Wait for the firewall to return
-       wait_for:
-         host: "{{ ansible_host }}"
-         port: 22
-         delay: 240
-         timeout: 1800
+       wait_for_connection:
+         #host: "{{ ansible_host }}"
+         #port: 22
+         delay: 2
+         timeout: 600
          #ignore_errors: yes
        #delegate_to: localhost
        #tags:
@@ -71,9 +77,10 @@
          host: 10.2.0.105
          port: 25
          to: 
-           - Network.Monitoring@usap.com
+           - frank.nguyen@usap.com
            - reuben.ezeh@usap.com
            - russell.booker@usap.com
+           - jim.march@usap.com
          from: ansible-reload@usap.com
        delegate_to: localhost
        tags:
@@ -89,6 +96,12 @@
            - show ip | in INSIDE|inside|Data|guestwifi|DATA
        register: asa_vars
 
+     - name: Rommon facts
+       asa_command:
+         commands:
+           - show module
+       register: asa_module
+
 
 
      - name: asa set facts
@@ -97,13 +110,15 @@
          version: "{{ asa_vars.stdout_lines[1][0].split()[-1] }}"
          serialnum: "{{ asa_vars.stdout_lines[2][1].split()[-1] }}"
          ipaddress: "{{ asa_vars.stdout_lines[3][0].split()[2] }}"
+         rommon: "{{ asa_module.stdout_lines[0][7].split()[-2] }}"
 
-     - name: Asset that the ASA Software version is the correct one
+     - name: Asset that the ASA and ROMMON Software version is are correct
        assert:
          that:
            - version == asa['asa_target_version']
-         fail_msg: 'The ASA Version is wrong version {{ version }}'
-         success_msg: 'The ASA Version is the target version {{ version }}.Upgrade was Successfull!!.'
+           - rommon == asa['rommon_version']
+         fail_msg: 'The ASA Version is wrong version {{ version }}, rommon version is {{ rommon }}'
+         success_msg: 'The ASA Version is the target version {{ version }}, rommon version is {{ rommon }}.Upgrade was Successfull!!.'
        tags:
          - facts
 

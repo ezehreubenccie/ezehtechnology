@@ -7,8 +7,8 @@
 
   vars:
     asa:
-        asa_target_version: "9.16(2)14"
-        asa_image: "cisco-asa-fp1k.9.16.2.14.SPA"
+        asa_target_version: "9.15(1)21"
+        asa_image: "cisco-asa-fp1k.9.15.1.21.SPA"
     hostname:
     version:
     serialnum:

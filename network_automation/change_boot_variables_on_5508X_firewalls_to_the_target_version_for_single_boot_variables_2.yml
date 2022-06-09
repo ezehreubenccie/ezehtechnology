@@ -4,9 +4,9 @@
   gather_facts: false
 
   vars:
-    asa_target_version: "9.16(2)14"
-    asa_image: "asa9-16-2-14-lfbff-k8.SPA"
-    asa_md5: 599b91f71cabddcca272ae97d51d6a8b
+    asa_target_version: "9.12(4)41"
+    asa_image: "asa9-12-4-41-lfbff-k8.SPA"
+    asa_md5: b5a88c9fbbe586e2952b6fe1cd644269
     version:
 
 

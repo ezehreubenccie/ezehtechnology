@@ -1,0 +1,64 @@
+#############################################################################
+# WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING #
+#############################################################################
+
+THIS U.S. ANESTHESIA PARTNERS COMPUTING SYSTEM IS FOR AUTHORIZED
+OFFICIAL USE ONLY. Unauthorized use or use for other than official U.S.
+ANESTHESIA PARTNERS' business is a violation of State and Federal law.
+
+Individuals using this computing system are subject to having all
+of their activities on this system monitored and recorded without
+further notice. Auditing of users may include keystroke monitoring.
+
+Any individual who uses this system expressly consents to such
+monitoring and is advised that information about their use of this
+system may be provided to State and Federal law enforcement or
+other authorities if evidence of criminal or other unauthorized
+activity is found.
+
+#############################################################################
+# WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING ## WARNING #
+#############################################################################
+
+Contact the U.S. Anesthesia Partners Helpdesk at: (800) 337-1312 for more info
+LOG OFF IMMEDIATELY AFTER USE
+User reuben logged in to LABASA1
+Logins over the last 3 days: 10.  Last login: 06:47:03 UTC Jun 5 2022 from 10.4.234.35
+Failed logins since the last login: 0.  Last failed login: 06:44:48 UTC Jun 5 2022 from 10.4.234.35
+Type help or '?' for a list of available commands.
+LABASA1> show curpriv
+Username : reuben
+Current privilege level : 1
+Current Mode/s : P_UNPR
+LABASA1> 
+LABASA1> 
+LABASA1> enable
+Password: *****
+LABASA1# terminal pager 0
+LABASA1# 
+LABASA1# configure terminal
+LABASA1(config)# 
+LABASA1(config)# terminal width 511
+LABASA1(config)# 
+LABASA1(config)# end
+LABASA1# 
+LABASA1# 
+LABASA1# 
+LABASA1# 
+LABASA1# configure terminal
+LABASA1(config)# 
+LABASA1(config)# object-group network BLOCKED_HOSTS
+LABASA1(config-network-object-group)# network-object host 196.196.53.84
+WARNING: Adding obj (network-object host 196.196.53.84) to grp (BLOCKED_HOSTS) failed; object already exists
+LABASA1(config-network-object-group)# !
+LABASA1(config-network-object-group)# !
+LABASA1(config-network-object-group)# end
+LABASA1# wr
+Building configuration...
+Cryptochecksum: 3ea47d7e 6b9a2607 c05fe60c 44b71a25 
+
+20386 bytes copied in 0.520 secs
+[OK]
+LABASA1# 
+LABASA1# 
+LABASA1# exit

@@ -5,7 +5,7 @@
 
 
   vars:
-    asa_image: cisco-asa-fp1k.9.16.2.14.SPA
+    asa_image: cisco-asa-fp1k.9.15.1.21.SPA
     asdm_image: asdm-7161-150.bin
 
 

@@ -9,7 +9,7 @@
     version:
     serialnum:
     ipaddress:
-    asa_compliant_ver: 9.16(2)14
+    asa_compliant_ver: 9.12(4)41
 
   tasks:
     - name: asa facts
@@ -20,6 +20,9 @@
           - show inventory
           - show ip | in INSIDE|inside|Data|guestwifi|DATA
       register: asa_vars
+
+    - debug:
+        var: asa_vars
 
     - name: asa set facts
       set_fact:
