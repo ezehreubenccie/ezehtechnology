@@ -1,13 +1,13 @@
-- name : VERIFY MD5 HASH OF TARGET SOFTWARE ON ISR4451K9 ROUTERS
+- name : VERIFY MD5 HASH OF TARGET SOFTWARE ON 9300 SWITCHES
   connection: network_cli
-  hosts: usapISR4451K9routers
+  hosts: usap9300switches
   gather_facts: false
 
 
 
   vars:
-    ios_binary: "isr4400-universalk9.17.03.05.SPA.bin"
-    ios_md5_bin: 57500a08d1b5feb275e80dbee6b0964b
+    ios_binary: "cat9k_iosxe.17.03.05.SPA.bin"
+    ios_md5_bin: 62dcae59c73eb99aa54969b4da5a7c84
 
   tasks:
     - name: Get Copied BIN Software from flash

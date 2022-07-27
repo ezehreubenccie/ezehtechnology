@@ -1,6 +1,6 @@
 term length 0
 lbjlabrouter01#show version | inc Software,
-Cisco IOS XE Software, Version 16.12.06
+Cisco IOS XE Software, Version 17.03.05
 lbjlabrouter01#show run vrf
 Building configuration...
 

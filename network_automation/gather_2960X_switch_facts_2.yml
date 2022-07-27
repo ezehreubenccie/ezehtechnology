@@ -1,0 +1,42 @@
+- name : GATHER 2960X SWITCH FACTS
+  connection: network_cli
+  hosts: usap2960xswitches
+  gather_facts: false
+
+
+
+
+  vars:
+    switch_compliant_ver: 15.2(7)E5
+
+  tasks:
+    - name: Gather all 2960X Switch Hardware facts
+      ios_facts:
+        gather_subset: hardware
+      register: output
+
+    - name: Print facts to console
+      debug:
+        var: output
+
+    - name: Get Number of switch in stack
+      ios_command:
+        commands:
+          - command: show switch stack-ports
+      register: stack_num
+
+    - name: Print Stack num
+      debug:
+        var: stack_num.stdout_lines[0][2:]
+
+    - name: Assert that Switch IOS Version is the Compliant Version
+      assert:
+        that: 
+          - ansible_net_version == switch_compliant_ver
+        fail_msg: 'The Software Version on {{ inventory_hostname }} has not been upgraded to the compliant version {{ switch_compliant_ver}}. Please upgrade!!'
+        success_msg: 'Hooray!!..The Software Version on {{ inventory_hostname }} has  been upgraded to the compliant version {{ switch_compliant_ver}}.'
+      tags:
+        - facts
+
+
+

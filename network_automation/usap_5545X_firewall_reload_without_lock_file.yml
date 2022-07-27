@@ -6,8 +6,8 @@
 
   vars:
     asa:
-        asa_target_version: "9.16(2)14"
-        asa_image: "asa9-12-4-18-smp-k8.bin"
+        asa_target_version: "9.12(4)41"
+        asa_image: "asa9-12-4-41-smp-k8.bin"
     hostname:
     version:
     serialnum:

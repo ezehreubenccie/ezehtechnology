@@ -1,6 +1,6 @@
-- name : GET BOOT SYSTEM FOR ISR4331K9 ROUTERS
+- name : GET BOOT SYSTEM FOR 9300 SWITCHES
   connection: network_cli
-  hosts: usapISR4331K9routers usap9300switches 
+  hosts: usap9300switches 
   gather_facts: false
 
 

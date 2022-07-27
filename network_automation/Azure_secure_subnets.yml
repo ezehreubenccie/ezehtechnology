@@ -1,0 +1,19 @@
+---
+- name: get facts from 5508X ASA
+  hosts: usap5508xfirewalls usap5506xfirewalls
+  connection: network_cli
+  gather_facts: no
+
+  vars:
+    subnet: 10.151.0.0
+
+  tasks:
+    - name: asa facts
+      asa_command:
+        commands:
+          - show run | grep {{subnet}} 
+      register: output
+
+
+    - debug:
+        var: output

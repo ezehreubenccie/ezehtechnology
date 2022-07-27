@@ -1,6 +1,6 @@
 - name: BUILD CISCO ISR4331K9 AND ISR4451K9 ROUTER  COMPLIANCE REPORT
   connection: network_cli
-  hosts: usapISR4331K9routers usapISR4451K9routers
+  hosts: usapISR4331K9routers usapISR4451K9routers usapISR4321K9routers lbjlabrouters usap9300switches
   gather_facts: false
 
   vars:
@@ -11,12 +11,12 @@
     physicaladdress:
     verdict:
     upgradeto:
-    compliant_4331K9: 16.12.05
-    compliant_4451K9: 16.12.05
-    non_compliant_4331K9: 16.12.04
+    compliant_4331K9: 17.03.05
+    compliant_4451K9: 17.03.05
+    non_compliant_4331K9: 16.12.05
     non_compliant_4331K9_2: 16.06.08
     non_compliant_4331K9_3: 16.06.03
-    non_compliant_4451K9: 16.12.04
+    non_compliant_4451K9: 16.12.06
     date_of_upgrade:
     time_of_upgrade:
     time_zone_of_upgrade:

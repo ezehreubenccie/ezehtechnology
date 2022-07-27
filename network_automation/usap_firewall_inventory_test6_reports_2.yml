@@ -12,11 +12,11 @@
     physicaladdress:
     verdict:
     upgradeto:
-    compliant_5545x: 9.16(2)14
-    compliant_5506x: 9.16(2)14
-    compliant_5508x: 9.16(2)14
+    compliant_5545x: 9.12(4)41
+    compliant_5506x: 9.12(4)41
+    compliant_5508x: 9.12(4)41
     compliant_5505: 9.1(7)32
-    compliant_fpr1120_asa: 9.16(2)14
+    compliant_fpr1120_asa: 9.12(4)41
     non_compliant_5545x: 9.12(4)18
     non_compliant_5506x: 9.12(4)18
     non_compliant_5506x_2: 9.9(2)

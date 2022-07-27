@@ -1,5 +1,5 @@
 - name: DELETE FILES THAT ARE NOT IN USE FROM CISCO ASA FIREWALL FLASH
-  hosts: usapfirewalls  usapchcfirewall lbjtoazurefirewalls
+  hosts: usapfirewalls labfirewalls usapchcfirewall lbjtoazurefirewalls
   connection: network_cli
   gather_facts: false
 
@@ -88,9 +88,11 @@
         var: list1
 
 
-    - name: DELETE FLASH FILES NOT IN USE - Output Only
-      debug:
-        msg: " File to delete is  {{ item.split()[-1] }}"
+    - name: DELETE FLASH FILES NOT IN USE 
+      asa_command:
+        commands: 
+          - delete /noconfirm {{flash_num}}{{ item.split()[-1] }}
+#        msg: " File to delete is  {{ item.split()[-1] }}"
       loop: '{{ list1 }}'
       when:
          - (file_type_1 in item.split()[-1]) or (file_type_2 in item.split()[-1])
@@ -99,3 +101,20 @@
          - 'item.split()[-1]  !=  asdm_image_file'
          #- 'item != empty_string'
 
+    - name: Gather FLASH FACTS FOR ASA FIREWALL 
+      asa_command:
+        commands:
+          - 'dir'
+      register: flash_contents
+
+
+  #  - debug:
+    #    var: flash_contents.stdout_lines[0]
+
+    - name: set fact 1
+      set_fact:
+        spacefree_after: "{{flash_contents.stdout_lines[0][-1].split()[3].replace('(', '')}}"
+
+
+    - debug:
+        msg: "Free space is  {{ spacefree_after|float / 1000000000 }}GB for {{ hostname }} after delete task. {{ spacefree_after|float / 1000000000 - spacefree_before|float / 1000000000 }}GB was recovered!."

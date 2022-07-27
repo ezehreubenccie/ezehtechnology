@@ -19,6 +19,12 @@
         commands: "dir  bootflash: | include {{ ios_binary }}"
       register: dir_flash
 
+#    - name: Gather all ISR4331K9 Router Hardware facts
+#      ios_facts:
+#        gather_subset: hardware
+#      register: output
+
+
 
     - name: Check MD5 Hash
       ios_command:
@@ -29,6 +35,7 @@
         ansible_command_timeout: 300
       when:
         - ios_binary in dir_flash.stdout[0]
+#        - ios_version != ansible_net_version
       tags:
         - md5
 

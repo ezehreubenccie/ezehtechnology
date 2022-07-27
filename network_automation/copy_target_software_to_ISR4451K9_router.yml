@@ -6,8 +6,8 @@
 
 
   vars:
-    ios_version: 16.12.06
-    ios_binary: isr4400-universalk9.16.12.06.SPA.bin
+    ios_version: 17.03.05
+    ios_binary: isr4400-universalk9.17.03.05.SPA.bin
     ios_size_kb: 700000
     ftp_server: '10.2.0.250'
     protocol: 'ftp'

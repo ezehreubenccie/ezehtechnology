@@ -6,7 +6,7 @@
 
 
   vars:
-    ios_binary: "isr4300-universalk9.16.12.06.SPA.bin"
+    ios_binary: "isr4300-universalk9.17.03.05.SPA.bin"
     ios_md5_bin: 8e833ed689ec2352eb759f87319f39b4
 
   tasks:

@@ -7,7 +7,7 @@
 
 
   vars:
-    router_compliant_ver: 16.12.06
+    router_compliant_ver: 17.03.05
     router_minimum_rommon_version: 16.7(5r)
 
   tasks:

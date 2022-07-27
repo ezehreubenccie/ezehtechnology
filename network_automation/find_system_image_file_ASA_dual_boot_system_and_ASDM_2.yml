@@ -73,8 +73,12 @@
 
     - name: DISPLAY FREE SPACE BEFORE DELETE
       debug:
-        msg: "Free space is  {{ spacefree_before|float / 1000000000  }}GB for {{ hostname }} before delete task."
+        msg: "Free space is  {{ spacefree_before|float / 1000000000  }} GB for {{ hostname }} before delete task."
       tags: spacefree
+
+    - name: get free space before delete
+      set_fact:
+        spacefree_before: '{{ (spacefree_before|float / 1000000000) | round(2)  }} GB'
 
 
    # - debug:
@@ -98,4 +102,12 @@
          - 'item.split()[-1]  !=  system_boot_file_2'
          - 'item.split()[-1]  !=  asdm_image_file'
          #- 'item != empty_string'
+
+    - name: Write mydevices.csv
+      run_once: true
+      shell: echo Device Name,DiskSpacePreCleanUp  > DiskSpaceCleanUpTest.csv
+
+    - name: Write My Devices CSV File
+      shell: echo "{{ hostname }},{{ spacefree_before }}" >> DiskSpaceCleanUpTest.csv
+      delegate_to: localhost
 

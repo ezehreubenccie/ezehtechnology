@@ -1,14 +1,14 @@
 
 ---
-- name: ISR4451/K9 ROUTER  RELOAD
-  hosts: usapISR4451K9routers
+- name: 9300 SWITCH  RELOAD
+  hosts: usap9300switches 
   gather_facts: false
   connection: network_cli
 
   vars:
     router:
         router_target_version: "17.03.05"
-        router_image: "isr4400-universalk9.17.03.05.SPA.bin"
+        router_image: "cat9k_iosxe.17.03.05.SPA.bin"
    
 
   tasks:
@@ -38,7 +38,7 @@
      - name: Reload Router
        ios_command:
          commands:
-           - command: reload
+           - command: install add file flash:{{ router_image }} activate commit
              prompt: "Proceed with reload?"
              answer: 'y'
        #vars:
@@ -53,11 +53,11 @@
        wait_for_connection:
          #host: "{{ ansible_host }}"
          #port: 22
-         delay: 10
-         timeout: 1080
+         delay: 2
+         timeout: 1080 
        #delegate_to: localhost
        #vars:
-         #ansible_command_timeout: 4200
+        # ansible_command_timeout: 300
        #tags:
          #- reload
          #- check_online

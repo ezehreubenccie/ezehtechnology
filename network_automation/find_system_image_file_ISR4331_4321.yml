@@ -4,7 +4,7 @@
   gather_facts: false
 
   vars: 
-    target_system_image_file: "isr4300-universalk9.16.12.05.SPA.bin"
+    target_system_image_file: "isr4300-universalk9.17.03.05.SPA.bin"
     file_type: '.bin'
     empty_string: ''
     spacefree_before:
@@ -22,7 +22,8 @@
           - command: show version | in System image file
       register: system_image_file
       
-
+    - debug:
+        var: system_image_file.stdout_lines[0][0].split()[4][1:-1].split(":")[1]
     - name: Set fact before delete
       set_fact:
         spacefree_before: "{{ ansible_net_filesystems_info['bootflash:']['spacefree_kb'] }}"

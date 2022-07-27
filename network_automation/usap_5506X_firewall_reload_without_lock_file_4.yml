@@ -64,7 +64,7 @@
          #host: "{{ ansible_host }}"
          #port: 22
          delay: 2
-         timeout: 600
+         timeout: 720
          #ignore_errors: yes
        #delegate_to: localhost
        #tags:

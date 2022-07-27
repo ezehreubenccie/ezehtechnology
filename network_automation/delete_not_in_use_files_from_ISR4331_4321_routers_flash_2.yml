@@ -4,7 +4,7 @@
   gather_facts: false
 
   vars: 
-    target_system_image_file: "isr4300-universalk9.16.12.05.SPA.bin"
+    target_system_image_file: "isr4300-universalk9.17.03.05.SPA.bin"
     file_type: '.bin'
     empty_string: ''
     spacefree_before:
@@ -61,6 +61,22 @@
          - 'item.split()[-1]  !=  target_system_image_file'
          #- 'item != empty_string'
 
+
+    - name: Get Physical Address from Router
+      ios_command:
+        commands:
+          - command: show run | in snmp-server location
+      register: snmp_location
+
+    - set_fact:
+        physicaladdress: "{{ snmp_location.stdout[0][21:].replace(',','') }}"
+        hostname: '{{ ansible_net_hostname }}'
+
+
+    - name: Gather ISR 4331_4451_9300 Router Facts
+      ios_facts:
+      register: routerfacts
+
     - name: GET FREE SPACE AFTER DELETE
       ios_facts:
         gather_subset: hardware
@@ -72,6 +88,15 @@
       tags: spacefree  
 
     - debug:
-        msg: "Free space is  {{ spacefree_after|float / 1000000 }}GB for {{ ansible_net_hostname }} after delete task. {{ spacefree_after|float / 1000000 -  spacefree_before|float / 1000000 }}GB was recovered!."
+        msg: "Free space is  {{ spacefree_after|float / 1000000 }} GB for {{ ansible_net_hostname }} after delete task. {{ spacefree_after|float / 1000000 -  spacefree_before|float / 1000000 }} GB was recovered!."
 
    
+    - name: Write Router Disk Space Report Heading
+      run_once: true
+      shell: echo Device Name,DiskSpacePreCleanUP,DiskSpacePostCleanUP,DiskSpaceRecovered,location  > 43314321K9RouterDiskSpaceReport.csv
+
+    
+    - name: Write Router Disk Space Report to CSV file
+      shell: echo "{{ hostname }},{{ (spacefree_before|float / 1000000) | round(2) }} GB,{{ (spacefree_after|float / 1000000) | round(2) }} GB,{{ (spacefree_after|float / 1000000 -  spacefree_before|float / 1000000) | round(2) }} GB,{{ physicaladdress }}" >> 43314321K9RouterDiskSpaceReport.csv
+      delegate_to: localhost
+

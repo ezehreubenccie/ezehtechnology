@@ -7,9 +7,9 @@
 
 
   vars:
-    ios_binary: isr4400-universalk9.16.12.06.SPA.bin
-    ios_md5: 4a67fede162457ec846df54f2594756c
-    ios_version: 16.12.06
+    ios_binary: isr4400-universalk9.17.03.05.SPA.bin
+    ios_md5: 57500a08d1b5feb275e80dbee6b0964b
+    ios_version: 17.03.05
     old_boot_system:
 
 

@@ -1,6 +1,6 @@
-- name : COPY TARGET SOFTWARE TO ISR4331K9 ROUTERS
+- name : COPY TARGET SOFTWARE TO 9300 SWITCHES
   connection: network_cli
-  hosts: usapISR4331K9routers lbjlabrouters
+  hosts: usap9300switches
   gather_facts: false
 
 
@@ -8,7 +8,7 @@
   vars:
     ios_version: 17.03.05
     ios_binary: cat9k_iosxe.17.03.05.SPA.bin
-    ios_size_kb: 750000
+    ios_size_kb: 990000
     ftp_server: '10.2.0.250'
     protocol: 'ftp'
     ftp_user: 'reuben'
@@ -21,20 +21,20 @@
           3561
 
   tasks:
-    - name: Gather all 9300 SWITCH Hardware facts
+    - name: Gather all 9300 Switch Hardware facts
       ios_facts:
         gather_subset: hardware
       register: output
 
     - name: Check if IOS Software is present in the flash
       ios_command:
-        commands: "dir | include {{ ios_binary }}"
+        commands: "dir  flash: | include {{ ios_binary }}"
       register: dir_flash
 
     - name: Check that there is enough space for upload
       assert:
         that:
-          - ansible_net_filesystems_info['bootflash:']['spacefree_kb'] > ios_size_kb
+          - ansible_net_filesystems_info['flash:']['spacefree_kb'] > ios_size_kb
         fail_msg: 'There is not enough space left on {{ inventory_hostname }} flash'
         success_msg: '{{ inventory_hostname }} has enough space left on flash. Coping {{ ios_binary }} to Flash Now!!'
       when:
@@ -49,13 +49,13 @@
             answer: '{{ ios_binary }}'
       when:
         - ios_binary not in dir_flash.stdout[0]
-        - ansible_net_filesystems_info['bootflash:']['spacefree_kb'] > ios_size_kb
+        - ansible_net_filesystems_info['flash:']['spacefree_kb'] > ios_size_kb
       vars:
         ansible_command_timeout: 4200
 
     - name: Check if IOS Software was copied successfully to the flash
       ios_command:
-        commands: "dir | include {{ ios_binary }}"
+        commands: "dir  flash: | include {{ ios_binary }}"
       register: dir_flash
 
     - name: Assert that software BIN is in Router flash
