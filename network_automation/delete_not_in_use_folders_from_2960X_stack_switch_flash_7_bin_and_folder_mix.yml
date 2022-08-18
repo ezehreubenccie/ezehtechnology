@@ -82,26 +82,4 @@
     - debug:
         msg: "Free space is  {{ spacefree_after|float / 1000000 }}MB for {{ ansible_net_hostname }} on {{ flash_num }} after delete task. {{ spacefree_after|float / 1000000 - spacefree_before|float / 1000000 }}MB was recovered!."
 
-
-    - name: Get Physical Address from Switch
-      ios_command:
-        commands:
-          - command: show run | in snmp-server location
-      register: snmp_location
-
-    - debug:
-        var: snmp_location.stdout[0][21:]
-
-    - set_fact:
-        physicaladdress: "{{ snmp_location.stdout[0][21:].replace(',','') }}"
    
-    - name: Write Switch Disk Space Report Heading
-      run_once: true
-      shell: echo Device Name,DiskSpacePreCleanUP,DiskSpacePostCleanUP,DiskSpaceRecovered,location  > 2960XSwitchDiskSpaceReport.csv
-
-
-    - name: Write Switch Disk Space Report to CSV file
-      shell: echo "{{ inventory_hostname }},{{ (spacefree_before|float / 1000000) | round(2) }} MB,{{ (spacefree_after|float / 1000000) | round(2) }} MB,{{ (spacefree_after|float / 1000000 -  spacefree_before|float / 1000000) | round(2) }} MB,{{ physicaladdress }}" >> 2960XSwitchDiskSpaceReport.csv
-      delegate_to: localhost
-
-

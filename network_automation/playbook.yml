@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+  vars: 
+    ip_addresses:
+        - 10.2.0.100
+        - 10.2.0.101
+
+  tasks:
+    - name: deploy files with network addresses in them
+      include_tasks: network_files.yml
+      loop: '{{ ip_addresses }}'

@@ -1,0 +1,99 @@
+- name: DELETE FILES THAT ARE NOT IN USE FROM CISCO 2960X STACK SWITCH FLASH
+  hosts: usap2960xswitches
+  connection: network_cli
+  gather_facts: false
+
+  vars: 
+    target_system_image_folder:  "c2960x-universalk9-mz.152-7.E3"
+    folder_name_includes: "c2960x-universalk9"
+    flash_num: 'flash:'
+    flash_bin_file: '.bin'
+    flash_tar_file: 'c2960x-universalk9-tar.'
+    #folder_name: test 
+    empty_string: ''
+    spacefree_before:
+    spacefree_after:
+
+
+  tasks:
+
+    - name: Gather all 2960X SWITCH STACK Hardware facts
+      ios_facts:
+        gather_subset: hardware
+
+    - name: Gather all 2960X SWITCH  Hardware facts
+      ios_command:
+        commands:
+          - command: show version | in System image file
+      register: system_image_file
+
+    - debug:
+        var: system_image_file.stdout_lines[0][0].split()[4][1:-1]
+
+    #system_image_file.stdout_lines[0][0].split(":/")[1][1:-1]
+
+    - name: Gather FLASH FACTS FOR EACH 2960X SWITCH IN STACK
+      ios_command:
+        commands:
+          - command: 'dir {{ flash_num }}'
+      register: flash_contents
+
+
+    - debug:
+        var: flash_contents.stdout_lines[0]
+    - debug:
+        var: flash_contents.stdout[0]
+    - name: set fact 1
+      set_fact:
+        spacefree_before: "{{flash_contents.stdout_lines[0][-1].split()[3].replace('(', '')}}"
+
+    - name: DISPLAY FREE SPACE BEFORE DELETE
+      debug:
+        msg: "Free space is  {{ spacefree_before|float /1000000 }}MB for {{ ansible_net_hostname }} on {{ flash_num }} before delete task."
+
+    - name: set fact 2
+      set_fact:
+        list1: "{{ flash_contents.stdout_lines[0][2:-2] }}"
+
+    - debug:
+        var: list1
+    
+#    - set_fact:
+#        list2: "{{ list1.split()[-1] }}"
+
+    - name: DELETE FLASH FILES NOT IN USE - output only
+      debug:
+        msg: "file to delete is  {{ item.split()[-1] }}"
+      loop: '{{}} | product{{ list1 }}'
+      when: 
+        - 'folder_name_includes in  item.split()[-1]' 
+       # - 'flash_tar_file in item.split()[-1]'
+       # - 'item.split()[-1]  !=  system_image_file.stdout_lines[0][0].split(":/")[1][1:-1]'
+        - 'item.split()[-1]  not in  system_image_file.stdout_lines[0][0].split()[4][1:-1]'
+        - 'item.split()[-1]  !=  target_system_image_folder'
+        #- 'folder_name == item.split()[-1]'
+         
+    #- name: DISPLAY CONTENTS OF FLASH
+      #ios_command:
+       # commands:
+      #    - command: 'dir {{ flash_num }}'
+     # register: flash_contents
+
+    #- name: Print dir after delete
+      #debug:
+        #var: flash_contents
+
+    #- name: GET FREE SPACE AFTER DELETE
+      #ios_facts:
+       # gather_subset: hardware
+      #tags: spacefree
+
+   # - name: Set fact after delete
+     # set_fact:
+       # spacefree_after: "{{flash_contents.stdout_lines[0][-1].split()[3].replace('(', '')}}"
+     # tags: spacefree  
+
+   # - debug:
+       # msg: "Free space is  {{ spacefree_after|float / 1000000 }}MB for {{ ansible_net_hostname }} on {{ flash_num }} after delete task. {{ spacefree_after|float / 1000000 - spacefree_before|float / 1000000 }}MB was recovered!."
+
+ 

@@ -29,6 +29,14 @@
       debug:
         var: stack_num.stdout_lines[0][2:]
 
+    - name: Build List 2
+      set_fact: 
+        list2: '{{stack_num.stdout_lines[0][2:][0].split()[0]}}'
+
+    - name: Output list 2
+      debug:
+        var: list2
+
     - name: Assert that Switch IOS Version is the Compliant Version
       assert:
         that: 
