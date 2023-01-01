@@ -106,7 +106,7 @@
     - name: set fact 3
       set_fact:
         verdict: 'non-compliant'
-      when: (version  != compliant_asdm)
+      when: (asdmversion  != compliant_asdm)
 
     - name: set fact 4
       set_fact: 
