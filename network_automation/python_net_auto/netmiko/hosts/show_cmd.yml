@@ -1,0 +1,8 @@
+---
+host_list:
+  - name: mrtlabrouter02
+    platform: ios
+    cmd: sh ip int brie | exc unass
+  - name: dco-4331-rtr01
+    platform: ios
+    cmd: sh version

@@ -1,1 +1,2 @@
 network_automation/group_vars/
+network_automation/python_net_auto/netmiko/vars/creds.yml

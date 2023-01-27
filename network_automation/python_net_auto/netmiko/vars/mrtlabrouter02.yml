@@ -1,0 +1,4 @@
+---
+intf:
+   name: 'g0/0/0'
+   description: 'configured by netmiko'
