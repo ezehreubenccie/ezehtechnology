@@ -1,0 +1,7 @@
+object-group network BLOCKED_HOSTS
+{% for ip_add in data.mal_ip %}
+network-object host {{ ip_add.ip }}
+{% endfor %}
+!
+end
+wr

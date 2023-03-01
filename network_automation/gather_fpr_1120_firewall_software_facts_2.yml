@@ -1,6 +1,6 @@
 ---
 - name: get facts from asa
-  hosts: usapfirepowerfirewalls 
+  hosts: usapfirepowerfirewalls:ftd 
   connection: network_cli
   gather_facts: no
 

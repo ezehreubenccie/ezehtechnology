@@ -1,0 +1,6 @@
+---
+host_list:
+  - name: mrtlabrouter02
+    platform: ios
+  - name: mrtlabrouter01
+    platform: ios

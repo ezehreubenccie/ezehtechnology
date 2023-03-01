@@ -1,0 +1,79 @@
+configure terminal
+LABASA1(config)# object-group network BLOCKED_HOSTS
+LABASA1(config-network-object-group)# network-object host 43.45.32.11
+WARNING: Adding obj (network-object host 43.45.32.11) to grp (BLOCKED_HOSTS) failed; object already exists
+LABASA1(config-network-object-group)# network-object host 30.46.23.90
+WARNING: Adding obj (network-object host 30.46.23.90) to grp (BLOCKED_HOSTS) failed; object already exists
+LABASA1(config-network-object-group)# network-object host 56.45.27.22
+WARNING: Adding obj (network-object host 56.45.27.22) to grp (BLOCKED_HOSTS) failed; object already exists
+LABASA1(config-network-object-group)# network-object host 34.23.57.45
+WARNING: Adding obj (network-object host 34.23.57.45) to grp (BLOCKED_HOSTS) failed; object already exists
+LABASA1(config-network-object-group)# !
+LABASA1(config-network-object-group)# end
+LABASA1# wr
+Building configuration...
+Cryptochecksum: e0553850 9b697797 99932f50 3bbbcda5 
+
+20721 bytes copied in 0.350 secs
+[OK]
+LABASA1# configure terminal
+LABASA1(config)# object-group network BLOCKED_HOSTS
+LABASA1(config-network-object-group)# network-object host 43.45.32.11
+WARNING: Adding obj (network-object host 43.45.32.11) to grp (BLOCKED_HOSTS) failed; object already exists
+LABASA1(config-network-object-group)# network-object host 30.46.23.90
+WARNING: Adding obj (network-object host 30.46.23.90) to grp (BLOCKED_HOSTS) failed; object already exists
+LABASA1(config-network-object-group)# network-object host 56.45.27.22
+WARNING: Adding obj (network-object host 56.45.27.22) to grp (BLOCKED_HOSTS) failed; object already exists
+LABASA1(config-network-object-group)# network-object host 34.23.57.45
+WARNING: Adding obj (network-object host 34.23.57.45) to grp (BLOCKED_HOSTS) failed; object already exists
+LABASA1(config-network-object-group)# !
+LABASA1(config-network-object-group)# end
+LABASA1# wr
+Building configuration...
+Cryptochecksum: e0553850 9b697797 99932f50 3bbbcda5 
+
+20721 bytes copied in 0.350 secs
+[OK]
+LABASA1# configure terminal
+LABASA1(config)# object-group network BLOCKED_HOSTS
+LABASA1(config-network-object-group)# network-object host 93.45.32.11
+LABASA1(config-network-object-group)# network-object host 3.46.23.90
+LABASA1(config-network-object-group)# network-object host 6.45.27.22
+LABASA1(config-network-object-group)# network-object host 38.23.57.45
+LABASA1(config-network-object-group)# !
+LABASA1(config-network-object-group)# end
+LABASA1# wr
+Building configuration...
+Cryptochecksum: d0cac287 e31c21f2 22d3a21d efdfa8cf 
+
+20851 bytes copied in 0.350 secs
+[OK]
+LABASA1# configure terminal
+LABASA1(config)# object-group network BLOCKED_HOSTS
+LABASA1(config-network-object-group)# network-object host 93.45.32.11
+LABASA1(config-network-object-group)# network-object host 3.46.23.90
+LABASA1(config-network-object-group)# network-object host 6.45.27.22
+LABASA1(config-network-object-group)# network-object host 38.23.57.45
+LABASA1(config-network-object-group)# !
+LABASA1(config-network-object-group)# end
+LABASA1# wr
+Building configuration...
+Cryptochecksum: d0cac287 e31c21f2 22d3a21d efdfa8cf 
+
+20851 bytes copied in 0.350 secs
+[OK]
+LABASA1# configure terminal
+LABASA1(config)# object-group network BLOCKED_HOSTS
+LABASA1(config-network-object-group)# network-object host 83.45.32.11
+LABASA1(config-network-object-group)# network-object host 31.46.23.90
+LABASA1(config-network-object-group)# network-object host 60.45.27.22
+LABASA1(config-network-object-group)# network-object host 28.23.57.45
+LABASA1(config-network-object-group)# !
+LABASA1(config-network-object-group)# end
+LABASA1# wr
+Building configuration...
+Cryptochecksum: 7b36e912 83eea904 0359068e 717b036c 
+
+20983 bytes copied in 0.350 secs
+[OK]
+LABASA1# 

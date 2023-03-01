@@ -1,0 +1,9 @@
+---
+mrtlabrouter02:
+  intf:
+    name: g0/0/0
+    description: configured by netmiko
+mrtlabrouter01:
+  intf:
+    name: g0
+    description: management port
