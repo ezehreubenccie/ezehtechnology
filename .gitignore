@@ -2,3 +2,11 @@ network_automation/group_vars/
 network_automation/python_net_auto/netmiko/vars/labrouters.yml
 network_automation/python_net_auto/netmiko/vars/prodrouters.yml
 network_automation/configs/Netmiko_USAP_5506X_Firewall_Upgrade
+network_automation/configs/
+network_automation/ansible_usap_firewall_upgrade/
+network_automation/Netmiko_USAP_5506X_Firewall_Upgrade/
+network_automation/Netmiko_USAP_5508X_Firewall_Upgrade/
+network_automation/ansible_usap_router_upgrade/
+network_automation/ansible_usap_switches_upgrade/
+network_automation/configs2/
+network_automation/templates/asafirepower/
