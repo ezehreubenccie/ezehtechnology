@@ -1,3 +1,4 @@
 network_automation/group_vars/
 network_automation/python_net_auto/netmiko/vars/labrouters.yml
 network_automation/python_net_auto/netmiko/vars/prodrouters.yml
+network_automation/configs/Netmiko_USAP_5506X_Firewall_Upgrade
