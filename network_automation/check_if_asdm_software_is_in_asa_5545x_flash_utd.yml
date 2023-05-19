@@ -1,0 +1,27 @@
+- name : CHECK IF TARGET SOFTWARE IS PRESENT IN ASA 5506X FIREWALL FLASH
+  connection: network_cli
+  hosts: walthamfirewalls
+  gather_facts: false
+
+
+  vars:
+    asdm_image: asdm-7131-101.bin
+
+
+  tasks:
+    - name: Check if Cisco ASDM Software is already present on the flash
+      block:
+        - name: Check Contents of Flash
+          asa_command:
+            commands:  'show disk0: | grep {{ asdm_image }}'
+          register: dir_flash
+
+        - debug:
+            var: dir_flash
+
+        - name: Assert that target asdm software is present in flash
+          assert:
+            that: 
+              - asdm_image in dir_flash['stdout'][0]
+            fail_msg: "Compatible ASDM Software {{ asdm_image }} not present in {{inventory_hostname}}'s flash"      
+            success_msg: "Compatible ASDM Software {{ asdm_image }} is  present in {{inventory_hostname}}'s flash"
