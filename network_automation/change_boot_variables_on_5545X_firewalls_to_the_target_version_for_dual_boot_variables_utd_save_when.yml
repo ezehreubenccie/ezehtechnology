@@ -63,6 +63,7 @@
           - "boot system disk0:/{{ asa_image }}"
           - '{{ bootvar1 }}'
           - 'write memory'
+        save_when: changed
       when:
         - asa_image in dir_flash['stdout'][0]
         - asa_md5 in md5_result['stdout'][0].split()
