@@ -1,0 +1,15 @@
+---
+- name: interface configuration
+  hosts: routers
+  gather_facts: False
+
+  tasks:
+    - name: Update interface configuration
+      cisco.ios.ios_interfaces:
+        config:
+          - name: 'g0/4'
+            description: 'Testing Ansible 5!!!'
+            speed: auto
+            duplex: auto
+        state: merged
+        

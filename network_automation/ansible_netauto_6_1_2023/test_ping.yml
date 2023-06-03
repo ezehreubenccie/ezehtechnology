@@ -1,0 +1,8 @@
+---
+- name: Test ping
+  hosts: routers
+  gather_facts: False
+  tasks:
+    - name: Test reachability
+      cisco.ios.ios_ping:
+        dest: 192.168.1.254

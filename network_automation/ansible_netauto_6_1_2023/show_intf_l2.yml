@@ -1,0 +1,31 @@
+---
+- name: Show interface configuration
+  hosts: nxos
+  gather_facts: False
+
+  tasks:
+    - name: Show interface config (nxos)
+      cisco.nxos.nxos_command:
+        commands:
+          - show run int e1/3
+          - show run int e1/4
+      register: output
+      tags: nxos
+      when: 'ansible_network_os == "nxos"'
+
+    - ansible.builtin.debug:
+        var: output['stdout_lines']
+      tags: nxos
+      when: 'ansible_network_os == "nxos"'
+
+    - name: Switchport config
+      cisco.nxos.nxos_config:
+        parents: "interface {{ item }}"
+        lines:
+          - switchport
+      tags: nxos_cfg
+      when: 'ansible_network_os == "nxos"'
+      loop:
+        - e1/3
+        - e1/4
+
