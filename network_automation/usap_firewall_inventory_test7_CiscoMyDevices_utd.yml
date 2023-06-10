@@ -1,6 +1,6 @@
 ---
 - name: get facts from asa
-  hosts:  walthamfirewalls:NYfirewalls
+  hosts:  walthamfirewalls:newjerseybcdrasa
   connection: network_cli
   gather_facts: no
 
@@ -18,9 +18,15 @@
           - show run hostname
           - show version
           - show inventory
-          - show ip | in INSIDE|inside|Data|guestwifi|DATA|FW
+          - show ip | in INSIDE|inside|Data|guestwifi|DATA|FW|Inside2058
           - sh run snmp-server | grep location
       register: asa_vars
+
+    - debug:
+        var: asa_vars
+
+  #  - debug: 
+ #       var: "{{ asa_vars.stdout_lines[2][1].split()[-1] }}"
 
 
 
@@ -33,6 +39,8 @@
         physicaladdress: "{{ asa_vars.stdout_lines[4][0].split('snmp-server location ')[-1] }}"
 
 
+   # - debug:
+    #    var: serialnum
 
     - name: Display facts
       debug:

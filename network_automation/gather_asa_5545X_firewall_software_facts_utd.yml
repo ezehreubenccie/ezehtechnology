@@ -1,6 +1,6 @@
 ---
 - name: get facts from asa
-  hosts: walthamfirewalls 
+  hosts: walthamfirewalls:tokyoasas:shanghaiasas 
   connection: network_cli
   gather_facts: no
 
