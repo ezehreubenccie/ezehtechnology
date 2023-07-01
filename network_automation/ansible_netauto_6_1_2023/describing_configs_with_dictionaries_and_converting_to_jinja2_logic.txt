@@ -1,0 +1,24 @@
+!
+feature bgp
+router bgp {{ bgp_asn }}
+  router-id {{ loopback101_ip_address }}
+  address-family ipv4 unicast
+{% for advertise_prefix in bgp_advertise %}
+    network {{ advertise_prefix }}
+{% endfor %}
+  neighbor {{ bgp_peer_ip }}
+    remote-as {{ bgp_asn }}
+    description configured by ansible
+    address-family ipv4 unicast
+!
+
+
+nxos_bgp = {'feature': 'bgp', 'router bgp': '22', 'router-id': '172.31.101.102',
+            'address-family': {'address-family': 'ipv4', 'address-family-modifier': 'unicast'}, 'network': ['172.31.101.102/32', '172.31.102.102/32']}
+            
+            
+interfaces = {'interface g0/1': {'description': 'Ansible cfg', 'ip address': {'ip_addr': '192.168.1.10', 'submask': '255.255.255.0'}}}
+
+interface g0/1
+ description {{ interfaces.description }}
+ ip address {{ interfaces.ip address.ip_addr}}

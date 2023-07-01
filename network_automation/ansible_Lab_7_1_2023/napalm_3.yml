@@ -1,0 +1,14 @@
+---
+- name: NAPLAM on IOS
+  hosts: routers
+  gather_facts: False
+
+  collections:
+    - napalm.napalm
+  tasks:
+    - name: NAPALM facts
+      napalm_get_facts:
+        filter: facts,interfaces
+
+    - debug:
+        var: napalm_facts

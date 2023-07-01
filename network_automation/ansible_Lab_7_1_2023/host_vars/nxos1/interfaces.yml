@@ -1,0 +1,10 @@
+---
+eth1_4_name: Ethernet1/4
+eth1_4_ip_addr: 172.31.254.1
+eth1_4_subnetmask: 30
+loopback101_name: loopback101
+loopback101_ip_addr: 172.31.101.101
+loopback101_subnetmask: 32
+loopback102_name: loopback102
+loopback102_ip_addr: 172.31.102.101
+loopback102_subnetmask: 32

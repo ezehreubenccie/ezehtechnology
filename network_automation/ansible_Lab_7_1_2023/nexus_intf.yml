@@ -1,0 +1,24 @@
+---
+- name: Configure Nexus Interfaces
+  hosts: nxos
+  gather_facts: False
+
+  tasks:
+    - name: Update interfaces config
+      nxos_interfaces:
+        config:
+          - name: e1/2
+            description: 'Testing Ansible configuration!'
+            enabled: False
+        state: merged
+
+    - name: Configure ports to be switchports
+      nxos_interfaces:
+        config:
+          - name: "{{ item }}"
+            enabled: True
+            mode: layer2
+      loop:
+        - e1/2
+        - e1/3
+      tags: switchport

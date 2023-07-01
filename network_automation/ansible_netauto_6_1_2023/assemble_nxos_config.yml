@@ -1,0 +1,33 @@
+---
+- name: create nxos config
+  hosts: nxos
+  gather_facts: False
+  tasks:
+    - name: get timestamp
+      command: date +%Y_%m_%d-%H-%M-%S
+      register: timestamp
+
+    - debug:
+        var: timestamp
+
+    - name: backup asa firewall config
+      cisco.nxos.nxos_config:
+        backup: yes
+        backup_options:
+          filename: '{{ inventory_hostname }}-running_config-{{ timestamp.stdout }}.txt'
+          dir_path: 'CFGS/{{ inventory_hostname }}/backups'
+
+    - name: generate interface config
+      ansible.builtin.template:
+        src: interfaces.j2
+        dest: 'CFGS/{{ inventory_hostname }}/01-{{ inventory_hostname }}-intf.txt'
+
+    - name: generate bgp configuration
+      ansible.builtin.template:
+        src: bgp.j2
+        dest: 'CFGS/{{ inventory_hostname }}/02-{{ inventory_hostname }}-bgp.txt'
+
+    - name: assemble the two parts into one change file
+      ansible.builtin.assemble:
+        src: 'CFGS/{{ inventory_hostname }}/'
+        dest: 'CFGS/{{ inventory_hostname }}-config.txt'

@@ -1,0 +1,5 @@
+---
+vlans_unique: 
+  - vlan_id: 570
+    admin_state: active
+    name: GRAY10

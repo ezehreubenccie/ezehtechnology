@@ -1,0 +1,46 @@
+---
+- name: Config diff platforms
+  hosts: routers:switches:nxos:asas
+  gather_facts: False
+  tasks:
+    - name: ios config
+      cisco.ios.ios_config:
+        lines:
+          - ip domain name {{ domain_name }}
+          - ip name-server {{ dns_server1 }} {{ dns_server2 }}
+        save_when: changed
+        diff_against: running
+      when: ansible_network_os == 'ios'
+
+    - name: nxos config
+      cisco.nxos.nxos_config:
+        lines:
+          - ip name-server {{ dns_server1 }} {{ dns_server2 }}
+        save_when: changed
+        diff_against: running
+      when: ansible_network_os == 'nxos'
+
+    - name: enable asa dns
+      cisco.asa.asa_config:
+        lines:
+          - dns domain-lookup {{ nameif }}
+        save_when: changed
+      when: "ansible_network_os == 'asa'"
+      
+
+    - name: create asa dns server group
+      cisco.asa.asa_config:
+        lines:
+          - dns server-group {{ server_group }}
+        save_when: changed
+      when: "ansible_network_os == 'asa'"
+
+    - name: create asa name servers
+      cisco.asa.asa_config:
+        lines:
+          - name-server {{ dns_server1 }}
+          - name-server {{ dns_server1 }}
+        parents: ['dns server-group {{ server_group }}']
+        save_when: changed
+      when: "ansible_network_os == 'asa'"
+        

@@ -1,0 +1,5 @@
+---
+bgp_peer_ip: 172.31.254.2
+bgp_advertise:
+  - '{{ loopback101_ip_addr }}/{{ loopback101_subnetmask }}'
+  - '{{ loopback102_ip_addr }}/{{ loopback102_subnetmask }}'

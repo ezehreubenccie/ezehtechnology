@@ -1,0 +1,25 @@
+interfaces = [{'name': 'e1/4', 'ip_addr':'172.31.254.1', 'mask': '30'}, {'name': 'l101', 'ip_addr': '172.31.101.101', 'mask': '32'}]
+
+jinja2
+
+#for interface in range(len(interfaces)):
+
+{% for interface in interfaces%}
+interface {{ interface.name }}
+  ip address {{ interface.ip_addr }}/{{ interface.mask }}
+  no shutdown
+{% endfor%}
+    
+    
+
+
+----------------------
+
+bgp = {'feature': 'bgp', 'router bgp': '22', 'router-id': '172.31.101.101', 'advertised_networks': [{'network':'172.31.101.101/32'}]}    
+
+feature bgp
+router bgp {{ bgp_asn_number }}
+router-id {{ loopback101_ip_addr }}
+addess-family ipv4 unicast
+{% for adv_pref in bgp_advertise %}
+  network {{ adv_pref }}

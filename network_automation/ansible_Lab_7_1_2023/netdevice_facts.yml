@@ -1,0 +1,8 @@
+---
+- name: IOS example 2
+  hosts: routers:switches:nxos
+  gather_facts: True
+  tasks:
+    - debug:
+        var: ansible_facts
+  

@@ -1,0 +1,6 @@
+---
+ntp_server1: 65.182.224.39
+ntp_server2: 74.6.168.73
+domain_name: ezehtech.com
+dns_server1: 8.8.8.8
+dns_server2: 8.8.4.4

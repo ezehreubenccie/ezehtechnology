@@ -1,0 +1,13 @@
+---
+all:
+  children:
+    routers:
+      hosts:
+        r1:
+        r2:
+        r3:
+# INI format
+# [routers]
+# r1
+# r2
+# r3
