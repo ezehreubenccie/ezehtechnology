@@ -1,6 +1,6 @@
 ---
 - name: get facts from asa
-  hosts: walthamfirewalls 
+  hosts: walthamfirewalls:tokyoasas:shanghaiasas 
   connection: network_cli
   gather_facts: no
 
@@ -10,7 +10,7 @@
     serialnum:
     ipaddress:
     asa_compliant_ver: 9.12(4)41
-    asdm_compatible_ver: 7.13(1)101
+    asdm_compatible_ver: 7.13(1)
 
   tasks:
     - name: asa facts
@@ -23,8 +23,8 @@
           - show run asdm | grep image
       register: asa_vars
 
-#    - debug:
-#        var: asa_vars
+    - debug:
+        var: asa_vars
 
     - name: asa set facts
       set_fact:
