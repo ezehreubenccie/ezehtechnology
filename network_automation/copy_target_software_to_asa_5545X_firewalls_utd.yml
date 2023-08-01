@@ -1,6 +1,6 @@
 - name : COPY TARGET SOFTWARE TO CISCO 5545X ASA
   connection: network_cli
-  hosts: walthamfirewalls
+  hosts: walthamfirewalls:tokyoasas:shanghaiasas
   gather_facts: false
 
 

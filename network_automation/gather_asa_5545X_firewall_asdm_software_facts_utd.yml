@@ -1,6 +1,6 @@
 ---
 - name: get facts from asa
-  hosts: walthamfirewalls 
+  hosts: walthamfirewalls:tokyoasas:shanghaiasas 
   connection: network_cli
   gather_facts: no
 
@@ -19,7 +19,7 @@
           - show run hostname
           - show version
           - show inventory
-          - show ip | in INSIDE|inside|Data|guestwifi|DATA|FW
+          - show ip | in INSIDE|inside|Data|guestwifi|DATA|FW|Inside2558|Inside3558
           - show run asdm | grep image
       register: asa_vars
 

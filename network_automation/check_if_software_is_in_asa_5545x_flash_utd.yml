@@ -1,6 +1,6 @@
 - name : CHECK IF TARGET SOFTWARE IS PRESENT IN ASA 5545X FIREWALL FLASH
   connection: network_cli
-  hosts: walthamfirewalls
+  hosts: walthamfirewalls:tokyoasas:shanghaiasas
   gather_facts: false
 
 

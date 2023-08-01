@@ -1,6 +1,6 @@
 - name : USAP CISCO 5545X ASA UPGRADE
   connection: network_cli
-  hosts: walthamfirewalls
+  hosts: walthamfirewalls:tokyoasas:shanghaiasas
   gather_facts: false
 
 

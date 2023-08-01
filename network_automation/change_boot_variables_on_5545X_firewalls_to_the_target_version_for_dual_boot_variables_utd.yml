@@ -1,6 +1,6 @@
 - name : CHANGE BOOT VARIABLE OR SYSTEM ON 5545X ASA FOR DEVICES THAT HAVE DUAL BOOT SYSTEM
   connection: network_cli
-  hosts: walthamfirewalls
+  hosts: walthamfirewalls:tokyoasas:shanghaiasas
   gather_facts: false
 
   vars:
@@ -50,6 +50,7 @@
         lines:
           - 'no  {{ bootvar1 }}'
           - 'no  {{ bootvar2 }}'
+      ignore_errors: yes
       when:
         - asa_image in dir_flash['stdout'][0]
         - asa_md5 in md5_result['stdout'][0].split()
