@@ -1,0 +1,23 @@
+---
+- name: Configure Server Team Ports
+  hosts: nxos
+  gather_facts: False
+
+  tasks:
+    - name: Generate port  configuration
+      template: 
+        src: utd_srv_team_prt_req.j2
+        dest: "{{ inventory_hostname }}_port_cfg.txt"
+      tags: two_stage
+
+#    - name: Push templated config
+#      ios_config:
+#        src: cisco_cfg_ike.txt
+#        save_when: changed
+#      tags: two_stage
+#
+#    - name: Generate and deploy
+#      ios_config:
+#        src: ike_template.j2
+#        save_when: changed
+#      tags: one_stage
