@@ -1,0 +1,11 @@
+---
+config:
+    - name: Ethernet1/10
+      access:
+        vlan: 101
+    - name: Ethernet1/11
+      access:
+        vlan: 254
+state: merged
+
+

@@ -1,0 +1,10 @@
+---
+config:
+  - name: Ethernet1/10
+    description: Configured by Ansible
+    enabled: true
+  - name: Ethernet1/11
+    description: Configured by Ansible Network
+    enabled: false
+state: merged
+
