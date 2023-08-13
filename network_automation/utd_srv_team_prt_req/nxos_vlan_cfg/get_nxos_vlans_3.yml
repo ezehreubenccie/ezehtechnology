@@ -10,9 +10,9 @@
           - show vlan brie
       register: vlan_cfg
 
-    - name: "TASK 2: show output"
-      debug:
-        var: vlan_cfg.stdout[0]
+    #- name: "TASK 2: show output"
+      #debug:
+        #var: vlan_cfg.stdout[0]
 
     - name: "TASKS 3: Parse the vlan output data"
       set_fact:
@@ -21,3 +21,11 @@
     - name: "TASK 4: Print output"
       debug:
         var:  vlan_data 
+
+    - name: ASSERT >> Ensure default vlan parsing succeeded
+      assert:
+        that:
+          - vlan_data['default']['assg_ports'] | length == 59
+          - vlan_data['default']['status'] == 'active'
+          - vlan_data['default']['vlan_number'] == '1'
+

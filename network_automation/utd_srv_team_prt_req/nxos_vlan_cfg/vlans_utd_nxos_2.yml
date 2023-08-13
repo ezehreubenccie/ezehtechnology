@@ -1,0 +1,24 @@
+---
+- name: Vlan configuration
+  hosts: nxos
+  gather_facts: False
+
+  tasks:
+    - name: "TASK 1: Merge provided configuration with device configuartion"
+      cisco.nxos.nxos_vlans:
+        config: "{{ config }}"
+      notify: config_changed
+      register: cli_result
+
+
+  handlers:
+    - name: "HANDLER 1: Display commands to be sent to device"
+      listen: config_changed
+      debug:
+        msg: "{{ cli_result }}"
+
+    - name: "HANDLER 2: Save configuration"
+      listen: config_changed
+      nxos_config:
+        save_when: always
+        

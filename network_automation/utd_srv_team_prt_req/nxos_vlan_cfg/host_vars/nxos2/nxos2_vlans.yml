@@ -1,0 +1,12 @@
+---
+config:
+      - name: SR-DB-SERVERS
+        vlan_id: 101
+        state: active
+      - name: SR-MGMT-1
+        vlan_id: 254
+        state: active
+      - name: SR-LAB-0
+        vlan_id: 110         
+        state: active
+state: merged
