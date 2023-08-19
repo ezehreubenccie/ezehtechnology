@@ -1,0 +1,8 @@
+terminal length 0
+r2#show version | in Soft
+Cisco IOS Software, IOSv Software (VIOS-ADVENTERPRISEK9-M), Version 15.9(3)M3, RELEASE SOFTWARE (fc1)
+r2#show running-config g0/1
+                       ^
+% Invalid input detected at '^' marker.
+
+r2#

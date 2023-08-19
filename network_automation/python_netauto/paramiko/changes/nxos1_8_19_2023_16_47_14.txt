@@ -1,0 +1,12 @@
+configure terminal
+interface Eth1/10
+ no switchport access vlan 101
+!
+!
+!
+no vlan 211
+!
+!
+copy running-config startup-config
+!
+!

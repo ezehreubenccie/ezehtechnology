@@ -1,0 +1,11 @@
+---
+host_list:
+  - name: r1
+    intf_cmd: "show running-config | sec interfaces"
+    platform: ios
+  - name: r2
+    intf_cmd: "show running-config g0/1"
+    platform: ios
+  - name: asa1
+    intf_cmd: "show running-config interface"
+    platform: asa

@@ -1,0 +1,5 @@
+---
+vlans:
+  intf: Eth1/10
+  vlan_intf_id: 110
+  vlan_id: 211

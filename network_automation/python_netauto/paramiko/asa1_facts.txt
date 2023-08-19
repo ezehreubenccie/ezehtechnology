@@ -1,0 +1,31 @@
+terminal length 0
+               ^
+ERROR: % Invalid input detected at '^' marker.
+asa1# show version | in Soft
+Cisco Adaptive Security Appliance Software Version 9.14(1) 
+asa1# show running-config interface
+!
+interface GigabitEthernet0/0
+ shutdown
+ no nameif
+ no security-level
+ no ip address
+!
+interface GigabitEthernet0/1
+ nameif mgmt-inside
+ security-level 100
+ ip address 192.168.1.18 255.255.255.0 
+!
+interface GigabitEthernet0/2
+ shutdown
+ no nameif
+ no security-level
+ no ip address
+!
+interface GigabitEthernet0/3
+ shutdown
+ no nameif
+ no security-level
+ no ip address
+!
+<--- More --->

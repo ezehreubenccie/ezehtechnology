@@ -1,0 +1,53 @@
+terminal length 0
+r1#show version | in Soft
+Cisco IOS Software, IOSv Software (VIOS-ADVENTERPRISEK9-M), Version 15.9(3)M3, RELEASE SOFTWARE (fc1)
+r1#show running-config | sec interface
+interface GigabitEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+interface GigabitEthernet0/1
+ ip address 192.168.1.10 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+interface GigabitEthernet0/2
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+interface GigabitEthernet0/3
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+interface GigabitEthernet0/4
+ description *****This was configured by ansible_3.14 and 3.18*******
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+interface GigabitEthernet0/5
+ description Ansible is frustrating often times!!!
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+interface GigabitEthernet0/6
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+interface GigabitEthernet0/7
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+r1#

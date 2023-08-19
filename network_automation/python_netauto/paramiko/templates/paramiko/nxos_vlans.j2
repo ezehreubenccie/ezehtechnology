@@ -1,0 +1,13 @@
+configure terminal
+interface {{ data['vlans']['intf'] }}
+ no switchport access vlan {{ data['vlans']['vlan_intf_id'] }}
+!
+!
+!
+no vlan {{ data['vlans']['vlan_id'] }}
+!
+!
+copy running-config startup-config
+!
+!
+
