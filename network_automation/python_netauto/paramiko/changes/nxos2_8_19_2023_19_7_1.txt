@@ -1,0 +1,54 @@
+changes implemented!
+ configure terminal
+Enter configuration commands, one per line. End with CNTL/Z.
+
+nxos2(config)#  vlan 211
+
+nxos2(config-vlan)# !
+nxos2(config-vlan)# !
+nxos2(config-vlan)# interface Eth1/10
+
+nxos2(config-if)#   switchport access vlan 110
+
+nxos2(config-if)# !
+nxos2(config-if)# !
+nxos2(config-if)# !
+nxos2(config-if)# copy running-config startup-config
+
+[#                                       ]   1%
+[#                                       ]   2%
+[##                                      ]   3%
+[##                                      ]   4%
+[###                                     ]   5%
+[###                                     ]   6%
+[###                                     ]   7%
+[####                                    ]   8%
+[####                                    ]   9%
+[#####                                   ]  10%
+[#####                                   ]  11%
+[#####                                   ]  12%
+[######                                  ]  13%
+[######                                  ]  14%
+[#######                                 ]  15%
+[#######                                 ]  16%
+[#######                                 ]  17%
+[########                                ]  18%
+[########                                ]  19%
+[#########                               ]  20%
+[#########                               ]  21%
+[#########                               ]  22%
+[##########                              ]  23%
+[##########                              ]  24%
+[###########                             ]  25%
+[###########                             ]  26%
+[###########                             ]  27%
+[############                            ]  28%
+[############                            ]  29%
+[#############                           ]  30%!
+
+[#############                           ]  31%
+[#############                           ]  32%!
+
+[##############                          ]  33%
+
+[##############                          ]  34%

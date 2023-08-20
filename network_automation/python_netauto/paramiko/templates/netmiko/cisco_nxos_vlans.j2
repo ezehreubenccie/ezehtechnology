@@ -1,0 +1,12 @@
+vlan {{ data['vlans']['vlan_id'] }}
+!
+!
+interface {{ data['vlans']['intf'] }}
+  switchport access vlan {{ data['vlans']['vlan_intf_id'] }}
+!
+!
+!
+copy running-config startup-config
+!
+!
+
