@@ -71,7 +71,7 @@ def main():
         # or process them further
         with open(
             f"changes/{host['name']}_{date1.month}_{date1.day}_{date1.year}_{date1.hour}_{date1.minute}_{date1.second}.txt",
-            "w",
+            "a",
         ) as handle:
             handle.write("changes implemented!\n")
             handle.write(result)
