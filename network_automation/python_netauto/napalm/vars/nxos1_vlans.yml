@@ -1,6 +1,22 @@
 ---
 vlans:
-  intf: Eth1/10
-  vlan_intf_id: 101
-  vlan_id: 211
-  name: NOBODY
+  - name: NOBODY
+    vlan_number: 211
+    status: 'active'
+    assg_ports: []
+  - name: SR-DB-SERVERS
+    vlan_number: 101
+    status: 'active'
+    assg_ports: ["Eth1/10"]
+  - name: SR-LAB-0
+    vlan_number: 110
+    status: 'active'
+    assg_ports: ["Eth1/42"]
+  - name: SR-MGMT-1
+    vlan_number: 254
+    status: 'active'
+    assg_ports: ["Eth1/7", "Eth1/8"]
+  - name: TEST
+    vlan_number: 222
+    assg_ports: []
+    status: 'active'

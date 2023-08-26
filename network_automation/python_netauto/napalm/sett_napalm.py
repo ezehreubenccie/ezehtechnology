@@ -9,6 +9,7 @@ nxos devices to collect structured data
 from napalm import get_network_driver
 from jinja2 import Environment, FileSystemLoader
 from yaml import safe_load
+from parse_nxos_vlans_6 import parse_vlan_nxos, vlan_diff
 
 
 def main():
@@ -34,23 +35,34 @@ def main():
 #        print(facts)
         print(f"{host['name']} model type: {facts['model']}")
 
+        # Run the proper show command and perform parsing
+        output = conn.cli([host["vlan_cmd"]])
+#        print(output)
+        vlan_data = parse_vlan_nxos(output[host["vlan_cmd"]])
+
+#        print(vlan_data)
         # Read the YAML file into structured data, may raise YAMLError
         with open(f"vars/{host['name']}_vlans.yml", "r") as handle:
             vlans = safe_load(handle)
 
-        # Template the configuration changes based on the VLAN updates
-        j2_env = Environment(
-            loader=FileSystemLoader("."), trim_blocks=True, autoescape=True
-        )
-        template = j2_env.get_template(f"templates/basic/{host['platform']}_vlans.j2")
-        vlan_cfg_chg = template.render(data=vlans)
+        # Find the differnce in VLANs between intended and actual config
+        vlan_updates = vlan_diff(vlans, vlan_data)
 
-        # Use NAPALM built-in merging to compare and merge VLAN updates
-        # Note that dynamically removing configuration is still a challenge
-        # unless NAPLAM is explicitly told ...
-        conn.load_merge_candidate(config=vlan_cfg_chg)
-        diff = conn.compare_config()
-        print(diff)
+        print(vlan_updates)
+
+#        # Template the configuration changes based on the VLAN updates
+#        j2_env = Environment(
+#            loader=FileSystemLoader("."), trim_blocks=True, autoescape=True
+#        )
+#        template = j2_env.get_template(f"templates/basic/{host['platform']}_vlans.j2")
+#        vlan_cfg_chg = template.render(data=vlans)
+#
+#        # Use NAPALM built-in merging to compare and merge VLAN updates
+#        # Note that dynamically removing configuration is still a challenge
+#        # unless NAPLAM is explicitly told ...
+#        conn.load_merge_candidate(config=vlan_cfg_chg)
+#        diff = conn.compare_config()
+#        print(diff)
 #        if diff:
 #            print(diff)
 #            print("Commiting configuration changes")
