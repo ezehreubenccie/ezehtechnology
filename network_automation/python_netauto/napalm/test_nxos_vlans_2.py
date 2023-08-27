@@ -6,7 +6,7 @@ Purpose: The pytest functions for ensuring vlan configuration parsers
 for nxos are functional. Run with "-s" to see outputs.
 """
 
-from parse_nxos_vlans_6 import parse_vlan_nxos, vlan_diff
+from parse_nxos_vlans_5 import parse_vlan_nxos, vlan_diff
 import pprint
 
 def test_parse_vlan_nxos():
@@ -119,7 +119,7 @@ def test_vlan_diff():
     assert vlan_updates[2]["status"] == "active"
     assert vlan_updates[2]["vlan_number"] == "110"
     assert len(vlan_updates[2]["del_assg_ports"]) == 2
-    vlan_updates[2]["del_assg_ports"] = ["Eth1/23", "Eth1/35"]
+    vlan_updates[2]["del_assg_ports"] = ["Eth1/23", "Eth1/35"] # Python changes the index automatically!
     assert vlan_updates[2]["del_assg_ports"][1] == "Eth1/35"
     assert vlan_updates[2]["del_assg_ports"][0] == "Eth1/23"
     assert vlan_updates[2]["add_assg_ports"] == []

@@ -1,8 +1,7 @@
 configure terminal
-no vlan {{ data['vlans']['vlan_id'] }}
+no vlan 222
 !
 !
 copy running-config startup-config
 !
 !
-

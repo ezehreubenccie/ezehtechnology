@@ -32,12 +32,12 @@ def main():
         print("Opening connection and gathering facts")
         conn.open()
         facts = conn.get_facts()
-#        print(facts)
+        # print(facts)
         print(f"{host['name']} model type: {facts['model']}")
 
         # Run the proper show command and perform parsing
         output = conn.cli([host["vlan_cmd"]])
-#        print(output)
+        # print(output)
         vlan_data = parse_vlan_nxos(output[host["vlan_cmd"]])
 
 #        print(vlan_data)
@@ -50,29 +50,29 @@ def main():
 
         print(vlan_updates)
 
-#        # Template the configuration changes based on the VLAN updates
-#        j2_env = Environment(
-#            loader=FileSystemLoader("."), trim_blocks=True, autoescape=True
-#        )
-#        template = j2_env.get_template(f"templates/basic/{host['platform']}_vlans.j2")
-#        vlan_cfg_chg = template.render(data=vlans)
-#
-#        # Use NAPALM built-in merging to compare and merge VLAN updates
-#        # Note that dynamically removing configuration is still a challenge
-#        # unless NAPLAM is explicitly told ...
-#        conn.load_merge_candidate(config=vlan_cfg_chg)
-#        diff = conn.compare_config()
-#        print(diff)
-#        if diff:
-#            print(diff)
-#            print("Commiting configuration changes")
-#            conn.commit_config()
-#        else:
-#            print("no diff; config up to date")
-#
-#        # ALl done; close the connection
-#        conn.close()
-#        print("OK!\n")
+        # Template the configuration changes based on the VLAN updates
+        j2_env = Environment(
+            loader=FileSystemLoader("."), trim_blocks=True, autoescape=True
+        )
+        template = j2_env.get_template(f"templates/sett/{host['platform']}_vlans.j2")
+        vlan_cfg_chg = template.render(data=vlan_updates)
+
+        # Use NAPALM built-in merging to compare and merge VLAN updates
+        # Note that dynamically removing configuration is still a challenge
+        # unless NAPLAM is explicitly told ...
+        conn.load_merge_candidate(config=vlan_cfg_chg)
+        diff = conn.compare_config()
+        # print(diff)
+        if diff:
+            print(diff)
+            print("Commiting configuration changes")
+            conn.commit_config()
+        else:
+            print("no diff; config up to date")
+
+        # ALl done; close the connection
+        conn.close()
+        print("OK!\n")
 
 
 if __name__ == "__main__":

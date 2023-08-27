@@ -7,12 +7,20 @@ vlans:
   - name: SR-DB-SERVERS
     vlan_number: 101
     status: 'active'
-    assg_ports: []
+    assg_ports: ["Eth1/10"]
   - name: SR-LAB-0
     vlan_number: 110
     status: 'active'
-    assg_ports: ['Eth1/10']
+    assg_ports: ["Eth1/42"]
   - name: SR-MGMT-1
     vlan_number: 254
-    status: active
-    assg_ports: ["Eth1/7", "Eth1,8", "Eth1/11"]
+    status: 'active'
+    assg_ports: ["Eth1/7", "Eth1/8", "Eth1/11", "Eth1/22"]
+  - name: MARKETING
+    vlan_number: 48
+    status: "active"
+    assg_ports: ["Eth1/38", "Eth1/39"]
+  - name: VOICE
+    vlan_number: 300
+    status: "active"
+    assg_ports: []

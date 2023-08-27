@@ -35,7 +35,7 @@ def main():
         print(f"{host['name']} model type: {facts['model']}")
 
         # Read the YAML file into structured data, may raise YAMLError
-        with open(f"vars/{host['name']}_vlans.yml", "r") as handle:
+        with open(f"vars/basic/{host['name']}_vlans.yml", "r") as handle:
             vlans = safe_load(handle)
 
         # Template the configuration changes based on the VLAN updates

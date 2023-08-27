@@ -1,6 +1,4 @@
 ---
 vlans:
-  intf: Eth1/10
-  vlan_intf_id: 110
-  vlan_id: 211
-  name: NOBODY
+  vlan_id: 222
+  name: TEST

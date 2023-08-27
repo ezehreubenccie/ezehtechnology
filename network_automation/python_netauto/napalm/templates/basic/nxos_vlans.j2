@@ -1,5 +1,1 @@
-vlan {{ data['vlans']['vlan_id'] }}
-  name {{ data['vlans']['name'] }}
-interface {{ data['vlans']['intf'] }}
- switchport access vlan {{ data['vlans']['vlan_intf_id'] }}
-
+no vlan {{ data['vlans']['vlan_number'] }}

@@ -1,0 +1,6 @@
+---
+#vlans:
+#  - name: TEST
+#    vlan_number: 222
+#    assg_ports: []
+#    status: 'active'
