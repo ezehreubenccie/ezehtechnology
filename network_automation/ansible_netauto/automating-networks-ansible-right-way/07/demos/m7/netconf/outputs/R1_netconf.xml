@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+    <vrf>
+      <definition>
+        <name>CHEMICAL</name>
+        <description>CHEMICAL ENGINEERING FIRM</description>
+        <rd>65000:2</rd>
+        <address-family>
+          <ipv4/>
+          <ipv6/>
+        </address-family>
+        <route-target>
+          <export>
+            <asn-ip>65000:2</asn-ip>
+          </export>
+          <import>
+            <asn-ip>65000:2</asn-ip>
+          </import>
+        </route-target>
+      </definition>
+      <definition>
+        <name>CHEM_MGMT</name>
+        <description>CHEMICAL ENGINEERING MANAGER</description>
+        <rd>65000:3</rd>
+        <address-family>
+          <ipv4/>
+          <ipv6/>
+        </address-family>
+        <route-target>
+          <export>
+            <asn-ip>65000:3</asn-ip>
+          </export>
+          <import>
+            <asn-ip>65000:4</asn-ip>
+          </import>
+        </route-target>
+      </definition>
+      <definition>
+        <name>POLICE</name>
+        <description>POLICE DEPARTMENT</description>
+        <rd>65000:1</rd>
+        <address-family>
+          <ipv4/>
+          <ipv6/>
+        </address-family>
+        <route-target>
+          <export>
+            <asn-ip>65000:1</asn-ip>
+          </export>
+          <import>
+            <asn-ip>65000:1</asn-ip>
+          </import>
+        </route-target>
+      </definition>
+    </vrf>
+  </native>
+</data>

@@ -1,0 +1,27 @@
+---
+- name: "PLAY 1: Capture and store show tech-support"
+  hosts: nxos:routers
+  connection: network_cli
+  tasks:
+    - name: "TASK 1: Get show tech-support output from network devices"
+      nxos_command:
+        commands:
+          - "terminal length 0"
+          - "show tech-support"
+      register: cli_result
+      
+    - name: "TASK 2: Print show tech-support output"
+      debug:
+        msg: "{{ cli_result }}"
+
+    - name: "TASK 3: Create outputs/ folder"
+      file:
+        path: "outputs"
+        state: directory
+      run_once: true
+
+    - name: "TASK 4: Write output to file"
+      copy: 
+        content: "{{ cli_result.stdout[0] }}\n"
+        dest: "outputs/{{ inventory_hostname }}.txt"
+     

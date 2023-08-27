@@ -1,0 +1,24 @@
+---
+- name: "Connect to devices for unit testing"
+  hosts: nxos
+  gather_facts: False
+
+  tasks: 
+    - name: "TASK1 : Collect data"
+      cisco_nxos_nxos_command:
+        commands:
+          - show vlan brie
+      register: text
+
+    - name: Perform parsing
+      set_fact:
+        vlan_data: "{{ text.stdout[0] | nxos_vlans }}"
+    - name: Print structured vlan data
+      debug:
+        msg: "{{ vlan_data }}"
+    - name: ASSERT >> Ensure default vlan parsing succeeded
+      assert:
+        that:
+          - vlan_data['default']['assg_ports'] | length == 59
+          - vlan_data['default']['status'] == 'active'
+          - vlan_data['default']['vlan_number'] == '1'

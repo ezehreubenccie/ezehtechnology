@@ -1,0 +1,7 @@
+---
+- name: check ansible conn to hosts
+  hosts: all
+  gather_facts: false
+  tasks:
+    - ansible.builtin.ping:
+        

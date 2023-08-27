@@ -1,0 +1,8 @@
+---
+ports:
+  - port_number: Eth1/7 
+    desc: centdb01p-drac
+    vlan_num: 254
+  - port_number: Eth1/8
+    desc: centdb02p-drac
+    vlan_num: 254

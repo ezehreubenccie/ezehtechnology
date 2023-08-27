@@ -1,0 +1,38 @@
+---
+- name: Configure Server Team Ports
+  hosts: nxos
+  gather_facts: False
+
+  tasks:
+    - name: "TASK 1: Create outputs folder"
+      file:
+        path: "outputs"
+        state: directory
+      run_once: true
+
+    - name: "TASK 2: Generate port configuration for investigation"
+      template: 
+        src: "templates/{{ ansible_network_os }}_port.j2"
+        dest: "outputs/{{ inventory_hostname }}_port_cfg.txt"
+      tags: two_stage
+
+#    - name: Push templated config
+#      ios_config:
+#        src: "outputs/{{ inventory_hostname }}_port_cfg.txt"
+#        save_when: changed
+#      tags: two_stage
+
+    - name: "TASK 3: Apply the PORT config via SSH/CLI "
+      cisco.nxos.nxos_config:
+        src: "templates/{{ ansible_network_os }}_port.j2"
+        save_when: changed
+        diff_against: running
+      tags: one_stage
+      notify: config_changed
+      register: cli_result
+
+  handlers:
+    - name: "HANDLER 1: Display relevant changes"
+      listen: config_changed
+      debug:
+        msg: "{{ cli_result.commands }}"

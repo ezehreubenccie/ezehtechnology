@@ -1,0 +1,4 @@
+ansible-lint
+pylint
+ncclient
+lxml

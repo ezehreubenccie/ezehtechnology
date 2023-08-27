@@ -1,0 +1,1 @@
+ansible-playbook netdevice_config2.yml -l routers --diff >> output2.txt

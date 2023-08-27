@@ -1,0 +1,20 @@
+---
+- name: Vlan configuration
+  hosts: nxos
+  gather_facts: False
+
+  tasks:
+    - name: TASK 1: Merge provided configuration with device configuartion
+      cisco.nxos.nxos_vlans:
+        config:
+          - name: SR-DB-SERVERS
+            vlan_id: 101
+            state: active
+          - name: SR-MGMT-1
+            vlan_id: 254
+            state: active
+          - name: SR-LAB-0
+            vlan_id: 110
+            state: active
+        state: merged
+        

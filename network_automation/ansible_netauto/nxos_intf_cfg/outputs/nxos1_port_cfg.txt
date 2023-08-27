@@ -1,0 +1,12 @@
+interface Eth1/7
+  description centdb01p-drac
+  switchport access vlan 254
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+interface Eth1/8
+  description centdb02p-drac
+  switchport access vlan 254
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00

@@ -1,0 +1,27 @@
+---
+- name: Interface config
+  hosts: nxos1
+  gather_facts: False
+
+
+  tasks:
+    - name: Update L3 interface config
+      cisco.nxos.nxos_l3_interfaces:
+        config:
+          - name: e1/4
+            ipv4:
+              - address: 10.12.1.1/24
+        state: merged
+
+- name: Interface config
+  hosts: nxos2
+  gather_facts: False
+
+  tasks:
+    - name: Update L3 interface config
+      cisco.nxos.nxos_l3_interfaces:
+        config:
+          - name: e1/4
+            ipv4:
+              - address: 10.12.1.2/24
+        state: merged

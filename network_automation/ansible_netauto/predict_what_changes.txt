@@ -1,0 +1,1 @@
+To predict what changes will happen when you run a playbook includ the --check option.

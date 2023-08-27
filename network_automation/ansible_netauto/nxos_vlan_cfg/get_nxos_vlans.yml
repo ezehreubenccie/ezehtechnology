@@ -1,0 +1,19 @@
+---
+- name: "PLAY 1: Get vlan configuration on nxos"
+  hosts: nxos
+  gather_facts: False
+
+  tasks:
+    - name: "TASK 1: Get vlan information from nxos switches"
+      cisco.nxos.nxos_command:
+        commands:
+          - show vlan brie
+      register: vlan_cfg
+
+    - name: "TASK 2: show output"
+      debug:
+        var: vlan_cfg.stdout[0]
+
+    - name: "TASKS 3: Parse the vlan output data"
+      set_fact:
+        vlan_data: "{{ vlan_cfg.stdout[0] | nxos_vlans }}"

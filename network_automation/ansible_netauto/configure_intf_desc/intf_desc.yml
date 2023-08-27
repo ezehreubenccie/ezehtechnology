@@ -1,0 +1,23 @@
+---
+- name: 'PLAY 1: configure interface description'
+  hosts: routers
+  gather_facts: False
+
+  vars:
+    intf: g0/5
+    desc: Ansible is frustrating often times!!!
+  tasks:
+    - name: "TASK 1: Apply config"
+      ios_config:
+        src: templates/intf_desc.j2
+        save_when: changed
+        diff_against: running
+      notify: config_changed
+      register: cli_result
+
+
+  handlers: 
+    - name: 'Handler 1: Display changes made'
+      listen: config_changed
+      debug:
+        msg: '{{ cli_result.commands }}'

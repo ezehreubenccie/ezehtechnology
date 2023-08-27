@@ -1,0 +1,12 @@
+---
+all:
+  children:
+    nxos:
+      hosts:
+        nxos1:
+        nxos2:
+    routers:
+      hosts:
+        r1:
+        r2:
+        r3:

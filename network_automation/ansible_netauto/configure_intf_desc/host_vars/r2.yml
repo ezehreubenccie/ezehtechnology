@@ -1,0 +1,3 @@
+---
+intf: 'g0/5'
+desc: '^^^^This was configured by python3.10 and 3.14^^^^'

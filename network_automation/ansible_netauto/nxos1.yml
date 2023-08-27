@@ -1,0 +1,10 @@
+---
+ports:
+  - name: Ethernet1/7
+      description: Configured by Ansible
+      enabled: true
+  - name: Ethernet1/8
+      description: Configured by Ansible Network
+      enabled: false
+   
+

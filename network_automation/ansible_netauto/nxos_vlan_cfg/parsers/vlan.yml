@@ -1,0 +1,62 @@
+---
+- name: "Parser metadata"
+  parser_metadata:
+    version: 1.0
+    command: "show vlan brie"
+    network_os: nxos
+
+- name: "Match each VLAN"
+  pattern_match: 
+    regex: "\\d{1,3}\\s+"
+    match_all: true
+    match_greedy: true
+  register: vlan_list
+
+- name: "Match VLAN components"
+  pattern_group: 
+    - name: "Parse VLAN name"
+      pattern_match: 
+        regex: "\\d{1,3}\\s+(\\S+)"
+        content: "{{ item }}"
+      register: vlan_name
+
+    - name: "Parse assigned ports"
+      pattern_match:
+        regex: "Eth\\d{1,3}\/\\d{1,3})"
+        content: "{{ item }}"
+        match_all: true
+      register: assgd_ports
+
+    - name: "Parse VLAN Status"
+      pattern_match:
+        regex: "active|suspended|act\/lshut)"
+        content: "{{ item }}"
+      register: status
+
+    - name: "Parse VLAN ID"
+      pattern_match: 
+        regex: "\\d{1,3}"
+        content: "{{ item }}"
+      register: vlan_number
+  loop: "{{ vlan_list }}"
+  register: vlan_components
+
+- name: "Create JSON Structure"
+  json_template: 
+    template: 
+      - key: "{{ item.vlan_name.matches[0] }}"
+        object:
+          - key: assgd_ports
+            value: "{{ item.assgd_ports | map(attribute='matches') | list }}"
+          - key: status
+            value: "{{ item.status }}"
+          - key: vlan_number
+            value: "{{ item.vlan_number }}"
+  loop: "{{ vlan_components }}"
+  export: true
+  export_as: dict
+  register: vlan_data
+
+- name: "debugging"
+  debug:
+    msg: "{{ vlan_data }}"

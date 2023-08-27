@@ -1,0 +1,6 @@
+interface {{ port_number }}
+  description {{ server_name }}
+  switchport access vlan {{ vlan_num }}
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00

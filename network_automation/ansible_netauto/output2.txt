@@ -1,0 +1,61 @@
+
+PLAY [Config diff platforms] ***************************************************
+
+TASK [ios config] **************************************************************
+changed: [r3]
+--- before
++++ after
+@@ -12,8 +12,9 @@
+ no mmi pvc
+ mmi snmp-timeout 180
+ no ip domain lookup
+-ip domain name bogus.com
++ip domain name ezehtech.com
+ ip name-server 8.8.4.4
++ip name-server 8.8.8.8
+ ip cef
+ no ipv6 cef
+ multilink bundle-name authenticated
+
+changed: [r1]
+--- before
++++ after
+@@ -12,8 +12,9 @@
+ no mmi pvc
+ mmi snmp-timeout 180
+ no ip domain lookup
+-ip domain name bogus.com
++ip domain name ezehtech.com
+ ip name-server 8.8.4.4
++ip name-server 8.8.8.8
+ ip cef
+ no ipv6 cef
+ multilink bundle-name authenticated
+
+changed: [r2]
+
+TASK [nxos config] *************************************************************
+skipping: [r1]
+skipping: [r2]
+skipping: [r3]
+
+TASK [enable asa dns] **********************************************************
+skipping: [r1]
+skipping: [r2]
+skipping: [r3]
+
+TASK [create asa dns server group] *********************************************
+skipping: [r1]
+skipping: [r2]
+skipping: [r3]
+
+TASK [create asa name servers] *************************************************
+skipping: [r1]
+skipping: [r2]
+skipping: [r3]
+
+PLAY RECAP *********************************************************************
+r1                         : ok=1    changed=1    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
+r2                         : ok=1    changed=1    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
+r3                         : ok=1    changed=1    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
+
