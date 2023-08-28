@@ -1,0 +1,18 @@
+---
+devices:
+  username: reuben
+  password: cisco
+
+#ios:
+#  platform: ios
+#  groups: 
+#    - devices
+#  data:
+#    show_run: "show running-config | sec GigabitEthernet0/7"
+
+nxos:
+  platform: nxos
+  groups:
+    - devices
+  data:
+    vlan_cmd: "show vlan brie"
