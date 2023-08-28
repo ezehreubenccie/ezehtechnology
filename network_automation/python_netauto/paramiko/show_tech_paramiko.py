@@ -28,7 +28,7 @@ def get_output(conn):
     Given an open connection, read all the data from the buffer and
     decode the byte string as UTF-8.
     """
-    return conn.recv(65535).decode("utf-8")
+    return conn.recv(65535000).decode("utf-8")
 
 
 def main():
@@ -71,7 +71,7 @@ def main():
             handle.write(command)
         send_cmd(conn, command)
         output = get_output(conn)
-        time.sleep(600.0)
+        time.sleep(60.0)
         print(output)
         with open(
             f"changes/show_tech_{host['name']}_{date1.month}_{date1.day}_{date1.year}_{date1.hour}_{date1.minute}_{date1.second}.txt",
