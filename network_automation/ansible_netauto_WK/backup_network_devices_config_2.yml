@@ -1,0 +1,25 @@
+---
+- name: "PLAY 1: Backup config of utd devices"
+  hosts: walthamfirewalls:tokyoasas:shanghaiasas:newyorkfirewalls
+  gather_facts: False
+
+  tasks:
+    - name: "TASK 1: get timestamp"
+      command: date +%Y-%m-%d_%H_%M_%S
+      register: timestamp
+#
+#    - debug:
+#        var: timestamp
+#
+    - name: "TASK 2: Create folder"
+      file: 
+        path: '../UTD_Backups/2023'
+        state: directory
+      run_once: true
+
+    - name: "TASK 3: backup asa firewall config"
+      asa_config:
+        backup: yes
+        backup_options:
+          filename: '{{ inventory_hostname }}-running-config-{{ timestamp.stdout }}.txt'
+          dir_path: "../UTD_Backups/2023/{{ inventory_hostname }}"

@@ -1,0 +1,13 @@
+---
+- name: "PLAY 1: Create folder in windows"
+  hosts: jumpbox
+  gather_facts: false
+ 
+
+
+  tasks:
+    - name: Create directory structure
+      ansible.windows.win_file:
+        path: "C:/FTP/UTD_Backups/2023/{{ item }}"
+        state: directory
+      loop: "{{ query('inventory_hostnames', 'walthamfirewalls', 'walthamiosswitches') }}"
