@@ -1,6 +1,6 @@
 ---
 - name: "PLAY 1: Set theory based SSH/CLI infrastructure-as-code"
-  hosts: sjnexusswitches
+  hosts: nxos
   connection: network_cli
   tasks:
     - name: "TASK 1: Get nxos configuration"
@@ -21,16 +21,22 @@
       debug:
         msg: "{{ needed_vlan_changes }}"
 
-#    - name: "TASK 4: Apply VLAN state changes"
-#      nxos_config:
-#        src: "templates/nxos_vlans.j2"
-#        save_when: changed
+#    - name: "Generate config"
+#      ansible.builtin.template:
+#        src: templates/nxos_vlans.j2
+#        dest: "CFGS/{{ inventory_hostname }}-vlan.txt"
+
+    - name: "TASK 4: Apply VLAN state changes"
+      nxos_config:
+        src: "templates/nxos_vlans.j2"
+        save_when: changed
 #        running_config: "{{ vlan_config.stdout[0] }}"
-#      notify: config_changed
-#      register: cli_result
-#
-#  handlers:
-#    - name: "HANDLER 1: Display relevant changes"
-#      listen: config_changed
-#      debug:
-#        msg: "{{ cli_result.updates }}"
+        diff_against: running
+      notify: config_changed
+      register: cli_result
+
+  handlers:
+    - name: "HANDLER 1: Display relevant changes"
+      listen: config_changed
+      debug:
+        msg: "{{ cli_result.updates }}"
