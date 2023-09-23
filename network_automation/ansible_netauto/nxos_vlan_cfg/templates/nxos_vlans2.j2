@@ -1,0 +1,19 @@
+{% for vlan in needed_vlan_changes -%}
+vlan {{ vlan.vlan_number }}
+  name {{ vlan.name }}
+{% if vlan.add_assg_ports %}
+{% for port in vlan.add_assg_ports %}
+interface {{ port }}
+  switchport mode access
+  switchport access vlan {{ vlan.vlan_number }}
+{% endfor %}
+{% endif %}
+{% if vlan.del_assg_ports %}
+{% for port in vlan.del_assg_ports %}
+interface {{ port }}
+  no switchport access vlan {{ vlan.vlan_number }} 
+{% endfor %}
+{% endif %}
+{% endfor -%}
+
+    
