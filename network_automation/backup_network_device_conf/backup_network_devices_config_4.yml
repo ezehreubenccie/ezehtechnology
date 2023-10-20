@@ -5,9 +5,9 @@
 
   vars: 
     source_file: running-config
-    ftp_ip: '10.2.101.117'
-    ftp_user: 'a-rezeh'
-    ftp_pass: 'h0QwTZYG'
+    ftp_ip: 'xxxxx'
+    ftp_user: 'xxxxx'
+    ftp_pass: 'xxxxx'
 
   tasks:
     - name: "TASK 1: get timestamp"
