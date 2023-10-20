@@ -6,8 +6,8 @@
   vars: 
     source_file: running-config
     ftp_ip: '10.1.101.70'
-    ftp_user: 'ansible'
-    ftp_pass: 'D8-U7j$G7!q'
+    ftp_user: 'xxxx'
+    ftp_pass: 'xxxx'
 
   tasks:
     - name: "TASK 1: get timestamp"
