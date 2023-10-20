@@ -1,0 +1,36 @@
+---
+- name: "PLAY 1: Create folder in group_vars folder"
+  hosts: localhost
+  connection: local
+  gather_facts: false
+ 
+
+
+  tasks:
+    - name: Create directory structure
+      ansible.builtin.file:
+        path: "group_vars/{{ item }}"
+        state: directory
+      loop: 
+        - wanexus5672upsw
+        - wac9200l48t4gsw
+        - wawsc385048tsw
+        - wa4500coresw
+        - waasas
+        - wainetsw
+        - wainetrtr
+        - sjcorenexusc3548p10gxsw
+        - sjnexusc92348gcxsw
+        - sjc9300l48t4xsw
+        - nycasas
+        - tkywsc2960x24tslsw
+        - tkyws385048tsw
+        - shasas
+        - shwsc3750x24sw
+        - shwsc2960x24tslsw
+        - shwsc385048tsw
+        - shc930048tsw
+        - ffnexusc92348gcxsw
+        - ffnexus3548sw
+        - njbcdrasa
+        - njnexusc92348gcxsw
