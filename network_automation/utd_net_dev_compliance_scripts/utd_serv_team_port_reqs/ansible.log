@@ -1,0 +1,50 @@
+2023-08-01 12:23:32,823 p=1368954 u=rezeh n=ansible | ERROR! Attempting to decrypt but no vault secrets found
+2023-08-01 12:23:48,062 p=1368982 u=rezeh n=ansible | ERROR! No action selected, at least one of --host, --graph or --list needs to be specified.
+2023-08-01 12:24:24,885 p=1369044 u=rezeh n=ansible | @all:
+  |--@ungrouped:
+  |--@local:
+  |  |--localhost
+  |--@utdfirewalls:
+  |  |--wa-lan-asa01-pri
+  |  |--wa-lan-asa01-sec
+  |  |--wa-lan-asa02-pri
+  |  |--wa-lan-asa02-sec
+  |  |--wa-lan-asa03-pri
+  |  |--wa-lan-asa03-sec
+  |  |--sb-lan-asa0601-pri
+  |  |--sb-lan-asa0601-sec
+  |--@utdswitches:
+  |  |--WA-LAN-MANSW0100
+  |--@walthamfirewalls:
+  |  |--wa-lan-asa01-pri
+  |  |--wa-lan-asa01-sec
+  |  |--wa-lan-asa02-pri
+  |  |--wa-lan-asa02-sec
+  |  |--wa-lan-asa03-pri
+  |  |--wa-lan-asa03-sec
+  |--@newyorkfirewalls:
+  |  |--sb-lan-asa0601-pri
+  |  |--sb-lan-asa0601-sec
+  |--@walthamnexusswitches:
+  |  |--wa-lan-sd0100
+  |  |--wa-lan-sd0200
+  |--@walthaminetswitches:
+  |  |--wa-lan-inetsw0100
+  |--@sanjosenexusswitches:
+  |  |--wc-lan-core-sw0102
+  |  |--wc-lan-core-sw0202
+  |--@walthamswitches:
+  |  |--wa-lan-mansw0100
+  |  |--wa-lan-mansw0200
+  |--@newjerseyfmcs:
+  |  |--newjersey-fpr4112-ftd01_pri
+  |  |--newjersey-fpr4112-ftd01_sec
+  |--@newjerseybcdrasa:
+  |  |--ec-lan-asa0803
+  |--@tokyoasas:
+  |  |--pr-lan-asa0604-pri
+  |  |--pr-lan-asa0604-sec
+  |--@shanghaiasas:
+  |  |--sh-lan-asa0606-pri
+  |  |--sh-lan-asa0606-sec
+2023-08-01 12:24:47,430 p=1369085 u=rezeh n=ansible | ERROR! Attempting to decrypt but no vault secrets found

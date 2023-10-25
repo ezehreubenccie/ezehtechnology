@@ -1,0 +1,13 @@
+{% for port in ports %}
+interface {{ port.port_number }}
+  description {{ port.desc }}
+  switchport mode access
+  switchport access vlan {{ port.vlan_num }}
+  switchport nonegotiate
+  logging event trunk-status
+  logging event bundle-status
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+  spanning-tree portfast
+  spanning-tree guard root
+{% endfor %}

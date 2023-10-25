@@ -1,0 +1,26 @@
+---
+- name: 'PLAY1: capture and store running_config'
+  hosts: routers
+  connection: network_cli
+  gather_facts: False
+  tasks:
+    - name: 'TASK1: Get running config from routers'
+      ios_command:
+        commands: show running-config 
+      register: cli_result
+
+    - name: 'TASK2: Print output'
+      debug:
+        msg: '{{ cli_result }}'
+
+    - name: 'TASK3: Create outputs/ folder'
+      file: 
+        path: 'outputs'
+        state: directory
+      run_once: true
+
+    - name: 'TASK4: Write output to file'
+      copy: 
+        content: '{{ cli_result.stdout[0] }}\n'
+        dest: 'outputs/{{ inventory_hostname }}.txt'
+

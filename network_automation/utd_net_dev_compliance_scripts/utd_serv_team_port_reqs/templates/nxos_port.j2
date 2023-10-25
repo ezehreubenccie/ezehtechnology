@@ -1,0 +1,8 @@
+{% for port in ports %}
+interface {{ port.port_number }}
+  description {{ port.desc }}
+  switchport access vlan {{ port.vlan_num }}
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+{% endfor %}
