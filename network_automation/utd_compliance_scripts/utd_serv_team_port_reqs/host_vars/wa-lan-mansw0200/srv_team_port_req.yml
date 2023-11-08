@@ -1,0 +1,17 @@
+---
+ports:
+  - port_number: g1/0/28
+    desc: centdb01p-drac
+    vlan_num: 254
+  - port_number: g1/0/29
+    desc: centdb02p-drac
+    vlan_num: 254
+  - port_number: g1/0/30
+    desc: centdb03p-drac
+    vlan_num: 254
+  - port_number: g1/0/31
+    desc: centdb04p-drac
+    vlan_num: 254
+  - port_number: g1/0/32
+    desc: cdbpower01p-drac
+    vlan_num: 254

@@ -1,0 +1,15 @@
+Utd port change scripts
+
+cfg_server_team_ports.yml
+vim host_vars/nxos1/srv_team_port_req.yml
+vim host_vars/nxos2/srv_team_port_req.yml
+utd_srv_team_prt_req.j2
+running_cfg_getter.yml
+check_netdevice_start_against_run.yml
+read_yaml.py
+example runn with diff ansible-playbook vlans_utd_nxos.yml -l nxos  --diff
+
+/home/reuben/VENV/GIT_6_1_2023/ezehtechnology/network_automa
+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
+
+use git pull --rebase to reconcile your local copy of git repo before you can push to main.

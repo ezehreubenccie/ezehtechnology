@@ -1,0 +1,127 @@
+- name: "PLAY 1: BUILD CISCO 9300 9200 3850 IOS-XE SWITCH  COMPLIANCE REPORT"
+  hosts: wac9200l48t4gsw:wawsc385048tsw:sjc9300l48t4xsw:tkyc930048tsw:shwsc385048tsw:shc930048tsw
+  gather_facts: false
+
+  vars:
+    hostname:
+    version:
+    serialnum:
+    ipaddress:
+    physicaladdress:
+    verdict:
+    upgradeto:
+    compliant_9200_9300_switch: 17.09.04
+    compliant_3850switch: 16.12.09
+    non_compliant_9200switch: 16.09.05
+    non_compliant_3850switch: 16.06.07
+    non_compliant_3850_2switch: 03.06.06E
+    non_compliant_9300switch: 16.06.07
+    non_compliant_9300_2switch: 17.06.03
+    non_compliant_9300_3switch: 17.03.05
+    non_compliant_9300_4switch: 16.06.05
+    non_compliant_9300_5switch: 16.09.04
+    date_of_upgrade:
+    time_of_upgrade:
+    time_zone_of_upgrade:
+    day_of_upgrade:
+
+
+  tasks:
+    - name: "TASK 1: Get Physical Address from Router"
+      ios_command:
+        commands:
+          - command: show run | in snmp-server location
+      register: snmp_location
+
+    #- debug:
+        #var: snmp_location.stdout[0][21:]
+
+    - name: "TASK 2: Gather Cisco 9300/9200/3850 Switch Facts"
+      ios_facts:
+        gather_subset:
+          - all
+      register: routerfacts
+
+#    - debug:
+#        var: routerfacts
+#
+#
+
+    - name: "TASK 3: Get When System Last Restarted"         
+      ios_command:
+        commands:
+          - command: show version | in System restarted
+      register: sysrestart
+
+    - debug:
+        var: sysrestart
+
+    - set_fact:
+        ipaddress: "{{ ansible_net_all_ipv4_addresses[0] }}"
+        version: "{{ ansible_net_version }}"
+        serialnum: '{{ ansible_net_serialnum }}'
+        hostname: '{{ ansible_net_hostname }}'
+        physicaladdress: "{{ snmp_location.stdout[0][21:].replace(',','') }}"
+        date_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[6] + ' ' + sysrestart.stdout_lines[0][-1].split()[7] + ' ' + sysrestart.stdout_lines[0][-1].split()[8] }}"
+        time_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[3] }}"
+        time_zone_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[4] }}"
+        day_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[5] }}"
+
+#    - name: print out
+#      debug:
+#        msg:
+#          - '{{ ipaddress }}'
+#          - '{{ version }}'
+#          - '{{ serialnum }}'
+#          - '{{ hostname }}'
+#          - '{{ physicaladdress }}'
+#          - '{{ sysrestart.stdout_lines[0][-1].split() }}'
+#          - '{{ time_of_upgrade }}'
+#          - '{{ time_zone_of_upgrade }}'
+#          - '{{ day_of_upgrade }}'
+#
+    - name: set fact 2
+      set_fact:
+        verdict: 'compliant'
+      when: (version  == compliant_9200_9300_switch)  or (version  == compliant_3850switch)
+
+    - name: set fact 3
+      set_fact:
+        verdict: 'non-compliant'
+      when: (version  != compliant_9200_9300_switch)  or (version  != compliant_3850switch)
+      
+    - name: set fact 4
+      set_fact:
+        upgradeto: 'N/A'
+      when: (version  == compliant_9200_9300_switch)  or (version  == compliant_3850switch)
+
+    - name: set fact 5
+      set_fact:
+        upgradeto: '{{ compliant_9200_9300_switch }}'
+      when: (version == non_compliant_9300switch) or (version == non_compliant_9300_2switch) or (version == non_compliant_9300_3switch) or (version == non_compliant_9300_4switch) or (version == non_compliant_9300_5switch) or (version == non_compliant_9200switch)
+
+    - name: set fact 5
+      set_fact:
+        upgradeto: '{{ compliant_3850switch }}'
+      when: (version == non_compliant_3850switch)
+      
+
+    #- debug:
+       # var: snmp_location.stdout[0][21:].replace(',','')
+        
+
+    #- debug:
+        #var: ipaddress
+
+    - debug:
+        msg: 'The device name is {{ hostname }}, ip address is {{ ipaddress }},  version is {{ version }}, serial number is {{ serialnum}}, physical address is {{ physicaladdress }}.'
+
+    - name: Write mydevices.csv
+      run_once: true
+      shell: echo Serial Number,Device Name,Software Version,Verdict,UpgradeTO,TimeUpgraded,TimeZoneOfUpgrade,DayOfUpgrade,DateUpgraded,Tags,Notes  > 9300switchComplianceReport_no_sb_9300_tky_3850.csv
+
+
+
+    - name: Write My Devices CSV File
+      shell: echo "{{ serialnum }},{{ hostname }},{{ version }},{{ verdict }},{{ upgradeto }},{{ time_of_upgrade }},{{ time_zone_of_upgrade }},{{ day_of_upgrade }},{{ date_of_upgrade }},{{ ipaddress }},{{ physicaladdress }}" >> 9300switchComplianceReport_no_sb_9300_tky_3850.csv
+      delegate_to: localhost

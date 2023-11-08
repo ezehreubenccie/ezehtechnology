@@ -1,0 +1,17 @@
+---
+ports:
+  - port_number: e103/1/25
+    desc: Centdb01p-new
+    vlan_num: 101
+  - port_number: e103/1/26
+    desc: Centdb02p-new
+    vlan_num: 101
+  - port_number: e103/1/27
+    desc: Centdb03p-new
+    vlan_num: 101
+  - port_number: e103/1/28
+    desc: Centdb04p-new
+    vlan_num: 101
+  - port_number: e103/1/29
+    desc: netb04p
+    vlan_num: 101
