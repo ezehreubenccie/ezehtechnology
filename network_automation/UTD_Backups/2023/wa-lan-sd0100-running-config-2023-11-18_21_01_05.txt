@@ -1,0 +1,3742 @@
+!Command: show running-config
+!Time: Sat Nov 18 21:01:21 2023
+
+version 7.0(5)N1(1a)
+hostname WA-LAN-SD0100
+
+feature telnet
+feature tacacs+
+cfs eth distribute
+feature ospf
+feature interface-vlan
+feature hsrp
+feature lacp
+feature dhcp
+feature vpc
+feature lldp
+feature fex
+feature bfd
+
+username admin password 5 $1$19SJGnZx$97dVfcZpqXc.jVGG6b80Z1  role network-admin
+username Support password 5 $1$KgJvaIU4$o8iqNq1ZjnOarzAWjiScH/  role network-admin
+
+banner motd #
+************************************************************
+************************* WARNING **************************
+* THIS SYSTEM IS FOR THE USE OF AUTHORIZED PERSONNEL ONLY!  *
+* ACCESS IS RESTRICTED TO AUTHORIZED USERS ONLY!            *
+* UNAUTHORIZED ACCESS IS A VIOLATION OF STATE AND FEDERAL,  *
+* CIVIL AND CRIMINAL LAWS.  VIOLATORS WILL BE PROSECUTED.   *
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *                                                               *
+* ALL ACTIVITY ON THIS COMPUTER SYSTEM IS MONITORED BY      *
+* SYSTEM SECURITY PERSONNEL. BY USING THIS COMPUTER SYSTEM  *
+* YOU CONSENT TO THIS MONITORING. INDIVIDUALS DETERMINED TO *
+* BE USING THIS COMPUTER NETWORK SYSTEM WITHOUT PROPER      *
+* AUTHORIZATION, OR IN EXCESS OF THEIR AUTHORIZATION MAY    *
+* HAVE THEIR ACTIVITY RECORD SUBMITTED TO LEGAL AUTHORITIES *
+* AND LEGAL AND CRIMINAL CHARGES MAY FOLLOW.                * 
+*************************************************************
+*************************************************************
+#
+
+ip domain-lookup
+ip domain-name utd.com
+ip name-server 10.1.101.100 10.2.101.100 192.168.0.12
+tacacs-server host 10.1.101.78 key 7 "Alq3cwS7XKMS3Tbv"
+tacacs-server host 10.1.101.79 key 7 "Alq3cwS7XKMS3Tbv"
+aaa group server tacacs+ ISE-TACACS
+  server 10.1.101.78
+  server 10.1.101.79
+  source-interface loopback0
+crypto key param rsa label WA-LAN-5672-A modulus 2048
+logging event link-status default
+logging event trunk-status default
+ip access-list SNMP_RO_ACL
+  10 permit ip any any
+ip access-list VTY_ACL
+  10 permit ip any any
+fex 101
+  pinning max-links 1
+  description "WA-LAN-FEX0100"
+  type N2232TM-E
+fex 102
+  pinning max-links 1
+  description "WA-LAN-FEX0200"
+  type N2232TM-E
+fex 103
+  pinning max-links 1
+  description "WA-LAN-FEX0300"
+  type N2232TM-E
+fex 104
+  pinning max-links 1
+  description "WA-LAN-FEX0400"
+  type N2232TM-E
+fex 105
+  pinning max-links 1
+  description "WA-LAN-FEX0500"
+  type N2232TM-E
+fex 106
+  pinning max-links 1
+  description "WA-LAN-FEX0600"
+  type N2232TM-E
+fex 107
+  pinning max-links 1
+  description "WA-LAN-FEX0700"
+  type N2232TM-E
+fex 108
+  pinning max-links 1
+  description "WA-LAN-FEX0800"
+  type N2232TM-E
+fex 109
+  pinning max-links 1
+  description "WA-LAN-FEX0900"
+  type N2232TM-E
+fex 110
+  pinning max-links 1
+  description "WA-LAN-FEX1000"
+  type N2232TM-E
+fex 111
+  pinning max-links 1
+  description "WA-LAN-FEX1100"
+  type N2232TM-E
+fex 112
+  pinning max-links 1
+  description "WA-LAN-FEX1200"
+  type N2232TM-E
+fex 113
+  pinning max-links 1
+  description "WA-LAN-FEX0113"
+  type N2232TM-E
+snmp-server location 230 3rd Ave, Waltham, MA 02451
+snmp-server source-interface informs loopback0
+snmp-server user admin network-admin auth md5 0x4e1933c3c294979a63e5654c290da087 priv 0x4e1933c3c294979a63e5654c290da087 localizedkey
+snmp-server user Support network-admin auth md5 0x81d673dac11a07643c19b2d4e00f0784 priv 0x81d673dac11a07643c19b2d4e00f0784 localizedkey
+snmp-server community 95utd453 group network-operator
+snmp-server community 95utd453 use-acl SNMP_RO_ACL
+ntp server 172.16.31.1
+clock format 12-hours
+aaa authentication login default group ISE-TACACS
+aaa authorization config-commands default group ISE-TACACS
+aaa authorization commands default group ISE-TACACS
+aaa accounting default group ISE-TACACS
+aaa authentication login error-enable
+
+no ip source-route
+vlan 1
+vlan 101
+  name SR-DB-SERVERS
+vlan 110
+  name SR-LAB-0
+vlan 111
+  name SR-LAB-1
+vlan 112
+  name SR-LAB-2
+vlan 113
+  name SR-LAB-3
+vlan 114
+  name SR-LAB-4
+vlan 120
+  name SR-ASA-LEGACY
+vlan 192
+  name SR-DC-SERVERS
+vlan 201
+  name CP-PROD-SERVERS
+vlan 203
+  name CP-MGMT-2
+vlan 254
+  name SR-MGMT-1
+vlan 550
+  name WF_APACHE
+vlan 554
+  name WF_TOMCAT
+vlan 556
+  name WF_DB
+vlan 590
+  name AMT_CENTRAL_DB
+vlan 970
+  name I3-GATEWAY
+vlan 999
+  name DOT1Q-NATIVE
+vlan 1002
+  name PRV02-L2-ONLY
+vlan 1011
+  name PRV11-L2-ONLY
+vlan 1012
+  name PRV12-L2-ONLY
+vlan 1023
+  name PRV23-L2-ONLY
+vlan 1150
+  name PRV150-L2-ONLY
+
+spanning-tree vlan 1-3967, 4048-4093 priority 8192
+spanning-tree pseudo-information
+  vlan 1-3967, 4048-4093 root priority 8192
+  vlan 1-3967, 4048-4093 designated priority 8192
+key chain HSRP-SECURE
+  key 0
+    key-string 7 070c126f5a4f5c413c265c270b
+service dhcp
+ip dhcp relay
+vrf context management
+  ip route 0.0.0.0/0 10.2.254.1
+vpc domain 200
+  peer-switch
+  role priority 1000
+  system-priority 4000
+  peer-keepalive destination 10.2.254.12 source 10.2.254.11
+  delay restore 300
+  peer-gateway
+  delay restore interface-vlan 300
+  ip arp synchronize
+
+hsrp bfd all-interfaces
+
+
+interface Vlan1
+
+interface Vlan101
+  description DB-SERVERS
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.1.101.3/24
+  ip arp 10.1.101.216 02BF.0A01.65D8
+  hsrp version 2
+  hsrp 101
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.1.101.1
+    ip 10.1.101.2 secondary
+
+interface Vlan110
+  description SR-LAB-0
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.1.110.3/24
+  hsrp version 2
+  hsrp 110
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.1.110.1
+    ip 10.1.110.2 secondary
+  ip dhcp relay address 10.1.101.100
+
+interface Vlan111
+  description SR-LAB-1
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.1.111.3/24
+  hsrp version 2
+  hsrp 111
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.1.111.1
+    ip 10.1.111.2 secondary
+  ip dhcp relay address 10.1.101.100
+
+interface Vlan112
+  description SR-LAB-2
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.1.112.3/24
+  hsrp version 2
+  hsrp 112
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.1.112.1
+    ip 10.1.112.2 secondary
+  ip dhcp relay address 10.1.101.100
+
+interface Vlan113
+  description SR-LAB-3
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.1.113.3/24
+  hsrp version 2
+  hsrp 113
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.1.113.1
+    ip 10.1.113.2 secondary
+  ip dhcp relay address 10.1.101.100
+
+interface Vlan114
+  description SR-LAB-4
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.1.114.3/24
+  hsrp version 2
+  hsrp 114
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.1.114.1
+    ip 10.1.114.2 secondary
+  ip dhcp relay address 10.1.101.100
+
+interface Vlan120
+  description SR-ASA-LEGACY
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.1.120.3/24
+  hsrp version 2
+  hsrp 120
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.1.120.1
+    ip 10.1.120.2 secondary
+
+interface Vlan192
+  description SR-DC-SERVERS
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 192.168.0.3/22
+  hsrp version 2
+  hsrp 192
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 192.168.0.1
+    ip 192.168.0.2 secondary
+
+interface Vlan201
+  description CP-PROD-SERVERS
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.2.101.2/24
+  hsrp version 2
+  hsrp 201
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.2.101.1
+
+interface Vlan203
+  description CP-MGMT-2
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.2.253.2/24
+  hsrp version 2
+  hsrp 203
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.2.253.1
+
+interface Vlan254
+  description SR-MGMT-1
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.1.254.7/24
+  hsrp version 2
+  hsrp 254
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.1.254.1
+    ip 10.1.254.2 secondary
+
+interface Vlan550
+  description WF-APACHE
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.2.150.2/24
+  hsrp version 2
+  hsrp 550
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.2.150.1
+  ip dhcp relay address 10.1.101.100
+
+interface Vlan554
+  description WF-TOMCAT
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.2.154.2/24
+  hsrp version 2
+  hsrp 554
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.2.154.1
+  ip dhcp relay address 10.1.101.100
+
+interface Vlan556
+  description WF-DB
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.2.156.2/24
+  hsrp version 2
+  hsrp 556
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.2.156.1
+  ip dhcp relay address 10.1.101.100
+
+interface Vlan590
+  description AMT-CENTRAL-DB
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.2.190.2/24
+  hsrp version 2
+  hsrp 590
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.2.190.1
+  ip dhcp relay address 10.1.101.100
+
+interface Vlan970
+  description CP-I3-GATEWAY
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.170.55.2/24
+  hsrp version 2
+  hsrp 970
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.170.55.1
+
+interface port-channel1
+  description L3-MEC to WA-LAN-SD0200
+  no switchport
+  bfd interval 999 min_rx 999 multiplier 3
+  no bfd echo
+  no ip redirects
+  ip address 172.16.31.49/30
+  ip ospf message-digest-key 1 md5 7 120D1641470C1F
+  ip ospf network point-to-point
+  no ip ospf passive-interface
+  ip ospf bfd
+
+interface port-channel2
+  description L3-MEC to WA-LAN-CORE0100
+  no switchport
+  bfd interval 999 min_rx 999 multiplier 3
+  no bfd echo
+  no ip redirects
+  ip address 172.16.31.42/30
+  ip ospf message-digest-key 1 md5 7 120D1641470C1F
+  ip ospf network point-to-point
+  no ip ospf passive-interface
+  ip ospf bfd
+
+interface port-channel3
+  description WA-LAN-WANRTR0100 OTV Extension
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101,110-114,120,192,254
+  speed 1000
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+  vpc 3
+
+interface port-channel10
+  description WA-LAN-SD0200
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101,110-114,120,192,201,203,254,550,554,556,590,970,1002,1011-1012,1023,1150
+  spanning-tree port type network
+  vpc peer-link
+
+interface port-channel11
+  description WAN-LAN-MANSW0100
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 203,254
+  speed 1000
+  vpc 11
+
+interface port-channel12
+  description WAN-LAN-MANSW0200
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 203,254
+  speed 1000
+  vpc 12
+
+interface port-channel13
+  description WAN-LAN-MANSW0300
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 203,254
+  speed 1000
+  vpc 13
+
+interface port-channel14
+  description WAN-LAN-MANSW0400
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 203,254
+  speed 1000
+  vpc 14
+
+interface port-channel15
+  description WAN-LAN-MANSW0500
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 203,254
+  speed 1000
+  vpc 15
+
+interface port-channel16
+  description WAN-LAN-MANSW0600
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 203,254
+  speed 1000
+  vpc 16
+
+interface port-channel17
+  description VRTX-01
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101,110
+  speed 1000
+  vpc 17
+
+interface port-channel18
+  description WAN-LAN-MANSW0700
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 203,254
+  speed 1000
+  vpc 18
+
+interface port-channel19
+  description WAN-LAN-MANSW0800
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 203,254
+  speed 1000
+  vpc 19
+
+interface port-channel101
+  description WA-LAN-FEX0100
+  switchport mode fex-fabric
+  fex associate 101
+  vpc 101
+
+interface port-channel102
+  description WA-LAN-FEX0200
+  switchport mode fex-fabric
+  fex associate 102
+  vpc 102
+
+interface port-channel103
+  description WA-LAN-FEX0300
+  switchport mode fex-fabric
+  fex associate 103
+  vpc 103
+
+interface port-channel104
+  description WA-LAN-FEX0400
+  switchport mode fex-fabric
+  fex associate 104
+  vpc 104
+
+interface port-channel105
+  description WA-LAN-FEX0500
+  switchport mode fex-fabric
+  fex associate 105
+  vpc 105
+
+interface port-channel106
+  description WA-LAN-FEX0600
+  switchport mode fex-fabric
+  fex associate 106
+  vpc 106
+
+interface port-channel107
+  description WA-LAN-FEX0700
+  switchport mode fex-fabric
+  fex associate 107
+  vpc 107
+
+interface port-channel108
+  description WA-LAN-FEX0800
+  switchport mode fex-fabric
+  fex associate 108
+  vpc 108
+
+interface port-channel109
+  description WA-LAN-FEX0900
+  switchport mode fex-fabric
+  fex associate 109
+  vpc 109
+
+interface port-channel110
+  description WA-LAN-FEX1000
+  switchport mode fex-fabric
+  fex associate 110
+  vpc 110
+
+interface port-channel111
+  description WA-LAN-FEX1100
+  switchport mode fex-fabric
+  fex associate 111
+  vpc 111
+
+interface port-channel112
+  description WA-LAN-FEX1200
+  switchport mode fex-fabric
+  fex associate 112
+  vpc 112
+
+interface port-channel113
+  description WA-LAN-FEX0113
+  switchport mode fex-fabric
+  fex associate 113
+  vpc 113
+
+interface Ethernet1/1
+  description WA-LAN-FEX-0100 - Uplink E1/33
+  switchport mode fex-fabric
+  fex associate 101
+  channel-group 101
+
+interface Ethernet1/2
+  description WA-LAN-FEX-0113 - Uplink E1/33
+  switchport mode fex-fabric
+  fex associate 113
+  channel-group 113
+
+interface Ethernet1/3
+  description WA-LAN-FEX-0200 - Uplink E1/33 
+  switchport mode fex-fabric
+  fex associate 102
+  channel-group 102
+
+interface Ethernet1/4
+
+interface Ethernet1/5
+  description WA-LAN-FEX-0300 - Uplink E1/33
+  switchport mode fex-fabric
+  fex associate 103
+  channel-group 103
+
+interface Ethernet1/6
+
+interface Ethernet1/7
+  description WA-LAN-FEX-0400 - Uplink E1/33
+  switchport mode fex-fabric
+  fex associate 104
+  channel-group 104
+
+interface Ethernet1/8
+
+interface Ethernet1/9
+  description WA-LAN-FEX-0500 - Uplink E1/33
+  switchport mode fex-fabric
+  fex associate 105
+  channel-group 105
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+  description WA-LAN-FEX-0600 - Uplink E1/33
+  switchport mode fex-fabric
+  fex associate 106
+  channel-group 106
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+  description WA-LAN-FEX-0700 - Uplink E1/33
+  switchport mode fex-fabric
+  fex associate 107
+  channel-group 107
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+  description WA-LAN-FEX-0800 - Uplink E1/33
+  switchport mode fex-fabric
+  fex associate 108
+  channel-group 108
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+  description WA-LAN-FEX-0900 - Uplink E1/33
+  switchport mode fex-fabric
+  fex associate 109
+  channel-group 109
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+  description WA-LAN-FEX-1000 - Uplink E1/33
+  switchport mode fex-fabric
+  fex associate 110
+  channel-group 110
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+  description WA-LAN-FEX-1100 - Uplink E1/33
+  switchport mode fex-fabric
+  fex associate 111
+  channel-group 111
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+  description WA-LAN-FEX-1200 - Uplink E1/33
+  switchport mode fex-fabric
+  fex associate 112
+  channel-group 112
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+  description WAN-LAN-MANSW0100 - Uplink G1/1/47
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 203,254
+  speed 1000
+  channel-group 11 mode active
+
+interface Ethernet1/26
+  description WAN-LAN-MANSW0200 - Uplink G1/1/47
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 203,254
+  speed 1000
+  channel-group 12 mode active
+
+interface Ethernet1/27
+  description WAN-LAN-MANSW0300 - Uplink G1/1/47
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 203,254
+  speed 1000
+  channel-group 13 mode active
+
+interface Ethernet1/28
+  description WAN-LAN-MANSW0400 - Uplink G1/1/47
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 203,254
+  speed 1000
+  channel-group 14 mode active
+
+interface Ethernet1/29
+  description WAN-LAN-MANSW0500 - Uplink G1/1/47
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 203,254
+  speed 1000
+  channel-group 15 mode active
+
+interface Ethernet1/30
+  description WAN-LAN-MANSW0600 - Uplink G1/1/47
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 203,254
+  speed 1000
+  channel-group 16 mode active
+
+interface Ethernet1/31
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101,110
+  speed 1000
+  channel-group 17 mode active
+
+interface Ethernet1/32
+  shutdown
+
+interface Ethernet1/33
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101,110
+  speed 1000
+  channel-group 17 mode active
+
+interface Ethernet1/34
+  description WAN-LAN-MANSW0700 - Uplink G1/1/47
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 203,254
+  speed 1000
+  channel-group 18 mode active
+
+interface Ethernet1/35
+  description WAN-LAN-MANSW0800 - Uplink G1/1/47
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 203,254
+  speed 1000
+  channel-group 19 mode active
+
+interface Ethernet1/36
+  shutdown
+
+interface Ethernet1/37
+  shutdown
+
+interface Ethernet1/38
+  shutdown
+
+interface Ethernet1/39
+  shutdown
+
+interface Ethernet1/40
+  shutdown
+
+interface Ethernet1/41
+  shutdown
+
+interface Ethernet1/42
+  description L3 Links to WA-LAN-SD0200 
+  no switchport
+  channel-group 1 mode active
+
+interface Ethernet1/43
+  shutdown
+  speed 1000
+
+interface Ethernet1/44
+  description L3 Links to WA-LAN-SD0200 
+  no switchport
+  channel-group 1 mode active
+
+interface Ethernet1/45
+  description L3 Links to WA-LAN-CORE0100
+  no switchport
+  channel-group 2 mode active
+
+interface Ethernet1/46
+  description WA-LAN-SD-0200 VPC Peer Links
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101,110-114,120,192,201,203,254,550,554,556,590,970,1002,1011-1012,1023,1150
+  spanning-tree port type network
+  channel-group 10 mode active
+
+interface Ethernet1/47
+  description L3 Links to WA-LAN-CORE0100
+  no switchport
+  channel-group 2 mode active
+
+interface Ethernet1/48
+  description WA-LAN-SD-0200 VPC Peer Links
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101,110-114,120,192,201,203,254,550,554,556,590,970,1002,1011-1012,1023,1150
+  spanning-tree port type network
+  channel-group 10 mode active
+
+interface Ethernet2/1
+  shutdown
+
+interface Ethernet2/2
+  shutdown
+
+interface Ethernet2/3
+  shutdown
+
+interface Ethernet2/4
+  shutdown
+
+interface Ethernet2/5
+  shutdown
+
+interface Ethernet2/6
+  shutdown
+
+interface mgmt0
+  vrf member management
+  ip address 10.2.254.11/24
+
+interface loopback0
+  description Management and OSPF Router ID
+  ip address 172.16.31.4/32
+
+interface Ethernet101/1/1
+  description seccam01p
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/2
+  description dc04p - Server Port
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/3
+  description releng01p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/4
+  description nagxi01p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/5
+  description insight01p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/6
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/7
+  description applog01p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/8
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/9
+  description backup04p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/10
+  description utd-dc03
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/11
+  description sharedapp02p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/12
+  description ACCUREVO1P
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/13
+  description WK-LAN-I3GATEWAY01
+  switchport access vlan 970
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/14
+  description Satellite02P
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/15
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/16
+  description conbld01p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/17
+  description utd-dc02
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/18
+  description WA-LAN-RSA0100
+  shutdown
+  switchport access vlan 120
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/19
+  description WA-LAN-RSA0300
+  switchport access vlan 120
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/20
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/21
+  description vmbckp02p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/22
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/23
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/24
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/25
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/26
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/27
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/28
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/29
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/30
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/31
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet101/1/32
+  switchport access vlan 114
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/1
+  description WKUTDI3MEDCP01
+  switchport access vlan 970
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/2
+  description WKUTDI3MEDCP01
+  switchport access vlan 970
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/3
+  description centdb01p
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/4
+  description centdb02p
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/5
+  description centdb03p
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/6
+  description centdb04p
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/7
+  description edweb03p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/8
+  description edweb03p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/9
+  description eddb04p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/10
+  description edbuild02p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/11
+  description eddb03p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/12
+  description EdSearch01P
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/13
+  description backup03p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/14
+  description edlucene03p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/15
+  description edlucene04p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/16
+  description NETB03P GI1
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/17
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/18
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/19
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/20
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/21
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/22
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/23
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/24
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/25
+  description seccam02p
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/26
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/27
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/28
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/29
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/30
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/31
+  description WA-LAN-RSA0400
+  switchport access vlan 120
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet102/1/32
+  description WA-LAN-RSA0200
+  shutdown
+  switchport access vlan 120
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/1
+  description bislfsrv01p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/2
+  description bidash01p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/3
+  description bietl01p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/4
+  description bidb01p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/5
+  description BIDASH02P
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/6
+  description BIETL02P
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/7
+  description EDAPP04P
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/8
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/9
+  description bidb02p Gi1
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/10
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/11
+  description couchdb01amt-new
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/12
+  description couchdb02amt-new
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/13
+  description couchdb03amt-new
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/14
+  description couchdb04amt-new
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/15
+  description couchdb05amt-new
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/16
+  description couchb01p-new
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/17
+  description couchr01p-new
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/18
+  description centdb01p-new
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/19
+  description centdb02p-new
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/20
+  description centdb03p-new
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/21
+  description Centdb04p-new
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/22
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/23
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/24
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/25
+  description Centdb01p-new
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/26
+  description centdb02p-new
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/27
+  description centdb03p-new
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/28
+  description centdb04p-new
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/29
+  description netb04p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/30
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/31
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet103/1/32
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/1
+  description backup05p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/2
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/3
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/4
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/5
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/6
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/7
+  description ESX06P n1
+  switchport mode trunk
+  switchport access vlan 201
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/8
+  description ESX06P n2
+  switchport mode trunk
+  switchport access vlan 201
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/9
+  description ESX06P n3
+  switchport mode trunk
+  switchport access vlan 201
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/10
+  description ESX07P n1
+  switchport mode trunk
+  switchport access vlan 201
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/11
+  description ESX07P n2
+  switchport mode trunk
+  switchport access vlan 201
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/12
+  description ESX07P n3
+  switchport mode trunk
+  switchport access vlan 201
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/13
+  description ESX08P n1
+  switchport mode trunk
+  switchport access vlan 201
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/14
+  description ESX08P n2
+  switchport mode trunk
+  switchport access vlan 201
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/15
+  description ESX08P n3
+  switchport mode trunk
+  switchport access vlan 201
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/16
+  description ESX09P n1
+  switchport mode trunk
+  switchport access vlan 201
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/17
+  description ESX09P n2
+  switchport mode trunk
+  switchport access vlan 201
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/18
+  description ESX09P n3
+  switchport mode trunk
+  switchport access vlan 201
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/19
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/20
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/21
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/22
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/23
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/24
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/25
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/26
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/27
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/28
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/29
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/30
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/31
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet104/1/32
+  switchport access vlan 114
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/1
+  description cdb01am
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/2
+  description cdb02amt
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/3
+  description oramon02p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/4
+  description mp01p
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/5
+  description mp02p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/6
+  description MP03P
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/7
+  description MP04P
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/8
+  description utd-intraweb02p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/9
+  description file01pNew
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/10
+  description dc04pNew
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/11
+  description utd-dc01new
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/12
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/13
+  description file01p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/14
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/15
+  description couchdb01pmt
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/16
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/17
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/18
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/19
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/20
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/21
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/22
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/23
+  switchport access vlan 110
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/24
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/25
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/26
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/27
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/28
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/29
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/30
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/31
+  description mp05p
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet105/1/32
+  description mp01pmq-new
+  switchport access vlan 110
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/1
+  description edb01p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/2
+  description Conbld03p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/3
+  description Conbld02p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/4
+  description edb04p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/5
+  description lucapp01p
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/6
+  description lucdb01p
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/7
+  description apwamp01p GI1
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/8
+  description central db emc DPE
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/9
+  description Repliweb02p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/10
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/11
+  description Lucapp01p-NEW
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/12
+  description Lucdb01p-NEW
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/13
+  description conbld01q
+  switchport access vlan 110
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/14
+  description conbld0103s
+  switchport access vlan 110
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/15
+  description conbld0103s
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/16
+  description conbld0103s
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/17
+  description appmon02p
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/18
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/19
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/20
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/21
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/22
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/23
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/24
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/25
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/26
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/27
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/28
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/29
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/30
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/31
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet106/1/32
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet107/1/1
+  description pdotvm03
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet107/1/2
+  description pdotvm03
+  switchport access vlan 114
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet107/1/3
+  description pdotvm04
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet107/1/4
+  description pdotvm04
+  switchport access vlan 114
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet107/1/5
+  description coucdb01p_Gi1
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet107/1/6
+  description utd-dc01
+  switchport access vlan 192
+
+interface Ethernet107/1/7
+  description pdotvm03
+  switchport access vlan 114
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet107/1/8
+  description coucdb02p_Gi1
+  switchport access vlan 101
+
+interface Ethernet107/1/9
+  description file01pold
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet107/1/10
+  description sniff02p
+  switchport access vlan 101
+
+interface Ethernet107/1/11
+
+interface Ethernet107/1/12
+  description utd-dc01 - new
+  switchport access vlan 192
+
+interface Ethernet107/1/13
+
+interface Ethernet107/1/14
+
+interface Ethernet107/1/15
+  description appmon02p gi1
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet107/1/16
+  description VC01P
+  switchport access vlan 101
+
+interface Ethernet107/1/17
+  description sniff04p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet107/1/18
+
+interface Ethernet107/1/19
+
+interface Ethernet107/1/20
+
+interface Ethernet107/1/21
+
+interface Ethernet107/1/22
+
+interface Ethernet107/1/23
+  description syslog01p
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet107/1/24
+
+interface Ethernet107/1/25
+
+interface Ethernet107/1/26
+
+interface Ethernet107/1/27
+
+interface Ethernet107/1/28
+
+interface Ethernet107/1/29
+
+interface Ethernet107/1/30
+
+interface Ethernet107/1/31
+
+interface Ethernet107/1/32
+  description apwamp03p
+  switchport access vlan 101
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/1
+  description eddb05p GI1
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/2
+  description eddb06p GI1
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/3
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/4
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/5
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/6
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/7
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/8
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/9
+  description esx01p gi3
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/10
+  description esx02p gi3
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/11
+  description esx01p gi5
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/12
+  description esx02p gi5
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/13
+  description esx01p gi7
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/14
+  description esx02p gi7
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/15
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/16
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/17
+  description esx03p gi 3
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/18
+  description esx04p gi 3
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/19
+  description esx03p gi 5
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/20
+  description esx04p gi 5
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/21
+  description esx03p gi 7
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/22
+  description esx04p gi 7
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/23
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/24
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/25
+  description ESX05P N3
+  switchport mode trunk
+  switchport access vlan 192
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/26
+  description ESX05P N5
+  switchport mode trunk
+  switchport access vlan 192
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/27
+  description ESX05P N7
+  switchport mode trunk
+  switchport access vlan 192
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 101, 201, 203
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/28
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/29
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/30
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/31
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet108/1/32
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/1
+  description web01pmt
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/2
+  description couchdb04amt gi1
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/3
+  description app01pmt
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/4
+  description couchdb05amt gi1
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/5
+  description EDDB01TN
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/6
+  description EDWEB02DN
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/7
+  description app02pmt
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/8
+  description BIAPP01D
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/9
+  description BIDB01D
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/10
+  description CMSDEV10
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/11
+  description MP01D
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/12
+  description web01qa
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/13
+  description edextdb01d
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/14
+  description edextdb01
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/15
+  description edextdb01s
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/16
+  description QAEDLUCENE
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/17
+  description EDWEB01D
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/18
+  description EDWEB02D
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/19
+  description EDWEB01Q
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/20
+  description app01qa
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/21
+  description app02qa
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/22
+  description Conbld01q
+  switchport access vlan 110
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/23
+  description ESXVMLAB05
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/24
+  description ESXVMLAB05
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/25
+  description ESXVMLAB05
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/26
+  description ESXVMLAB05
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/27
+  description EDEX01Q
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/28
+  description couchdb01amt
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/29
+  description couchdb02amt
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/30
+  description couchdb03amt
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/31
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet109/1/32
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/1
+  description VEEM01p
+  switchport access vlan 110
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/2
+  description devlucene01
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/3
+  description EDDB01D
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/4
+  description EDDB01Q
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/5
+  description EDDB01T
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/6
+  description EdSearch01Q
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/7
+  description DEVEDAPP21
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/8
+  switchport access vlan 110
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/9
+  description SMTP03
+  switchport access vlan 120
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/10
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/11
+  description ESXVMLAB07
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/12
+  description ESXVMLAB07
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/13
+  description ESXVMLAB01
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-112, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/14
+  description ESXVMLAB01
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-112, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/15
+  description ESXVMLAB01
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-112, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/16
+  description ESXVMLAB01
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-112, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/17
+  description ESXVMLAB02
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-112, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/18
+  description ESXVMLAB02
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-112, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/19
+  description ESXVMLAB02
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-112, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/20
+  description ESXVMLAB02
+  switchport mode trunk
+  switchport access vlan 192
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-112, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/21
+  description ESXVMLAB03
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/22
+  description ESXVMLAB03
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/23
+  description ESXVMLAB03
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/24
+  description ESXVMLAB03
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/25
+  description ESXVMLAB04
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/26
+  description ESXVMLAB04
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/27
+  description ESXVMLAB04
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/28
+  description ESXVMLAB04
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/29
+  description ESXVMLAB07
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/30
+  description ESXVMLAB07
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/31
+  switchport access vlan 192
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet110/1/32
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/1
+  description EDWEB01Dn
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/2
+  description EDWEB01Qn
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/3
+  description EDDB01Dn
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/4
+  description EDDB01Qn
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/5
+  description ESXVMLAB08
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/6
+  description ESXVMLAB08
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/7
+  description ESXVMLAB08
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/8
+  description ESXVMLAB08
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114, 254
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/9
+  description mp03pmq gi1
+  switchport access vlan 110
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/10
+  description lucene02d  GI1
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/11
+  description lucene01d
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/12
+  description QAAPP21
+  switchport access vlan 110
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/13
+  description DEVBIGIP02
+  switchport access vlan 110
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/14
+  description DEVBIGIP01
+  switchport access vlan 110
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/15
+  description ESXVMLAB06
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/16
+  description ESXVMLAB06
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/17
+  description QAWEB18
+  switchport access vlan 1011
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/18
+  description WEB02AMTN
+  switchport access vlan 1011
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/19
+  description ESXVMLAB06
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/20
+  description ESXVMLAB06
+  switchport mode trunk
+  switchport trunk native vlan 999
+  switchport trunk allowed vlan 110-114
+  spanning-tree port type edge trunk
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/21
+  description APP10AAMTN G1
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/22
+  description APP11AAMTN G1
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/23
+  description eddb01d-new
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/24
+  description WEB02AMTN G1
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/25
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/26
+  description esxlab03
+  switchport access vlan 1011
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/27
+  description QAWEB15
+  switchport access vlan 1011
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/28
+  description devbigip02
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/29
+  description DEVBIGIP02
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/30
+  description DEVBIGIP01
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/31
+  description devbigip01
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet111/1/32
+  description esxlab04
+  switchport access vlan 1011
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/1
+  description CDB01PMT
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/2
+  description WDB01DEV
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/3
+  description WDB02DEV
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/4
+  description WDB01PMT
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/5
+  description CDB01DEV
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/6
+  description cdb01qa
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/7
+  description utdsas01d
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/8
+  description wfshdb02
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/9
+  description cdb02qa
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/10
+  description cdb01pch
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/11
+  description cdb01qa
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/12
+  description cdb02qa
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/13
+  description cdb01pmt
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/14
+  description WDB01QA
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/15
+  description ESXVMLAB07,
+  switchport access vlan 1011
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/16
+  description ESXVMLAB08
+  switchport access vlan 1011
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/17
+  description QADB32
+  switchport access vlan 1150
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/18
+  description QADB32
+  switchport access vlan 1150
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/19
+  description DEVBIGIP01
+  switchport access vlan 1011
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/20
+  description DEVBIGIP02
+  switchport access vlan 1011
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/21
+  description WDB02QA
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/22
+  description esxlab05
+  switchport access vlan 1011
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/23
+  description cdb02pmt
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/24
+  description esxlab06
+  switchport access vlan 1011
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/25
+  description wfshdb01
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/26
+  description lower DB server
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/27
+  description lower DB server
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/28
+  description utd02959
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/29
+  description utd03116
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/30
+  description cdb02dev
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/31
+  description IOSBUILD
+  switchport access vlan 201
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet112/1/32
+  description utdsas02d
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/1
+  description cdb01amt
+  switchport access vlan 590
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/2
+  description cdb02amt
+  switchport access vlan 590
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/3
+  description pdotesx01 gi1
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/4
+  description pdotesx01 gi2
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/5
+  description pdotesx02 gi1
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/6
+  description pdotesx02 gi2
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/7
+  description OSESX01AMT
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/8
+  description OSESX02AMT
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/9
+  description web01amt
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/10
+  description app05amt
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/11
+  description app06amt
+  switchport access vlan 112
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/12
+  switchport access vlan 590
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/13
+  description wdb01amt - gi/1
+  switchport access vlan 556
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/14
+  description wdb02amt - gi/1
+  switchport access vlan 556
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/15
+  description esxdevops01p
+  switchport access vlan 114
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/16
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/17
+  description esxdevops01p idrac
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/18
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/19
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/20
+  description shdbunity01-SPB-port2
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/21
+  description cdb01dev
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/22
+  description shdbunity01-SPA-port2
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/23
+  description appmon01q
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/24
+  description appmon02q
+  switchport access vlan 111
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/25
+  description etcdesx01amt gi1
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/26
+  description etcdesx01amt gi2
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/27
+  description etcdesx01pdot gi1
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/28
+  description l etcdesx01pdot gi2
+  switchport access vlan 113
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/29
+  description osesx01amt
+  switchport access vlan 114
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/30
+  description osesx02amt
+  switchport access vlan 114
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/31
+  description pdotvm01
+  switchport access vlan 114
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+
+interface Ethernet113/1/32
+  description pdotvm02
+  switchport access vlan 114
+  spanning-tree port type edge
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+clock timezone EST -5 0
+clock summer-time EDT 2 Sun Mar 02:00 1 Sun Nov 02:00 60
+cli alias name wr copy running-config startup-config
+line console
+  exec-timeout 15
+line vty
+  exec-timeout 15
+  access-class VTY_ACL in
+boot kickstart bootflash:/n6000-uk9-kickstart.7.0.5.N1.1a.bin
+boot system bootflash:/n6000-uk9.7.0.5.N1.1a.bin
+ip radius source-interface loopback0
+router ospf 99
+  bfd
+  network 10.1.101.3/32 area 0.0.0.0
+  network 10.1.110.3/32 area 0.0.0.0
+  network 10.1.111.3/32 area 0.0.0.0
+  network 10.1.112.3/32 area 0.0.0.0
+  network 10.1.113.3/32 area 0.0.0.0
+  network 10.1.114.3/32 area 0.0.0.0
+  network 10.1.120.3/32 area 0.0.0.0
+  network 10.1.254.7/32 area 0.0.0.0
+  network 10.2.101.2/32 area 0.0.0.0
+  network 10.2.150.2/32 area 0.0.0.0
+  network 10.2.154.2/32 area 0.0.0.0
+  network 10.2.156.2/32 area 0.0.0.0
+  network 10.2.190.2/32 area 0.0.0.0
+  network 10.2.253.2/32 area 0.0.0.0
+  network 10.170.55.2/32 area 0.0.0.0
+  network 172.16.31.4/32 area 0.0.0.0
+  network 172.16.31.42/32 area 0.0.0.0
+  network 172.16.31.49/32 area 0.0.0.0
+  network 192.168.0.3/32 area 0.0.0.0
+  area 0.0.0.0 authentication message-digest
+  log-adjacency-changes
+  timers throttle spf 10 100 5000
+  timers lsa-arrival 80
+  timers throttle lsa 10 100 5000
+  passive-interface default
+poap transit
+logging source-interface loopback0
