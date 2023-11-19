@@ -1,0 +1,403 @@
+Building configuration...
+
+Current configuration : 10063 bytes
+!
+! Last configuration change at 22:56:48 CST Wed Oct 18 2023 by a-rezeh
+! NVRAM config last updated at 22:56:49 CST Wed Oct 18 2023 by a-rezeh
+!
+version 15.2
+no service pad
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec show-timezone
+service timestamps log datetime msec show-timezone
+service password-encryption
+service sequence-numbers
+service counters max age 10
+!
+hostname sh-lan-sw0106
+!
+boot-start-marker
+boot-end-marker
+!
+logging buffered 131080 informational
+no logging console
+enable secret 5 $1$fRcc$zVAqDjRPoRmeEe8Zek1gi0
+enable password 7 074B70180D4A3A0A0152180907382E30
+!
+username Support privilege 15 secret 5 $1$UgGL$hw2Urivdbx4fjCHpxqTQo/
+aaa new-model
+!
+!
+aaa group server tacacs+ ISE-TACACS
+ server name ISE1-TACACS
+ server name ISE2-TACACS
+!
+aaa authentication fail-message ^C
+
+******************** W A R N I N G *********************
+
+                 AUTHORIZED ACCESS ONLY
+
+  UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED.
+  You must have explicit permission to access this
+  device. All activities performed on this device
+  are logged and violations of this policy result
+  in disciplinary action.
+
+******************** W A R N I N G *********************
+^C
+aaa authentication login default group ISE-TACACS local-case
+aaa authorization console
+aaa authorization config-commands
+aaa authorization exec default group ISE-TACACS local if-authenticated 
+aaa authorization commands 15 default group ISE-TACACS local if-authenticated 
+aaa accounting exec default start-stop group ISE-TACACS
+aaa accounting commands 1 default start-stop group ISE-TACACS
+aaa accounting commands 15 default start-stop group ISE-TACACS
+aaa accounting connection default start-stop group ISE-TACACS
+!
+!
+!
+!
+!
+!
+aaa session-id common
+clock timezone CST 8 0
+switch 1 provision ws-c3750x-24
+system mtu routing 1500
+no ip source-route
+no ip gratuitous-arps
+ip icmp rate-limit unreachable 800
+!
+!
+no ip domain-lookup
+ip domain-name uptodate.com
+ip device tracking
+login block-for 30 attempts 5 within 30
+login on-failure log
+login on-success log
+vtp domain UPTODATE
+vtp mode transparent
+udld aggressive
+
+!
+!
+crypto pki trustpoint TP-self-signed-3028514432
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3028514432
+ revocation-check none
+ rsakeypair TP-self-signed-3028514432
+!
+!
+crypto pki certificate chain TP-self-signed-3028514432
+ certificate self-signed 01
+  30820252 308201BB A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 33303238 35313434 3332301E 170D3933 30333031 30303031 
+  32335A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 30323835 
+  31343433 3230819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100AE8B 41E254BE D253E7AB 6AAC5A8B F43E6961 42380CBB 90E21E3D 746CE465 
+  99815356 669A5E6A CD550F4C B64B5380 AFD40D81 30F47253 DD167432 41876644 
+  A126C21C 3AA0D248 B7820285 F002A72D 68234226 37A8F5E2 F0D536D7 3311281E 
+  62922DBF B480717E F1D97589 D4BE3770 4F5972DA 13409696 A1812EE8 362CF7F1 
+  54E50203 010001A3 7A307830 0F060355 1D130101 FF040530 030101FF 30250603 
+  551D1104 1E301C82 1A73682D 6C616E2D 73773031 30362E75 70746F64 6174652E 
+  636F6D30 1F060355 1D230418 30168014 49B10439 03D67E8F 649F8E69 32A86FF8 
+  791906FA 301D0603 551D0E04 16041449 B1043903 D67E8F64 9F8E6932 A86FF879 
+  1906FA30 0D06092A 864886F7 0D010104 05000381 8100165B 66B2557E EE8E5289 
+  D694CEE8 34DEBCA1 2A21A3FF BBC7C115 EFA0706B 2E6F91CC 64EABD2E 1A4A9F5A 
+  CC633B27 4A75DACE 664EFB1F 02332838 66F941C7 C9F9600C C4B11F76 84900FDE 
+  1A6B436A 3FF717E0 709D6CAE 7979FF2B E08DEAD0 C8394154 6C51AF66 AAF4DB77 
+  1D19EB2F 3EF9CDEC 831CD19B 58B3405E 581E0381 D31C
+  	quit
+archive
+ log config
+  logging enable
+  notify syslog contenttype plaintext
+  hidekeys
+!
+!
+!
+!
+spanning-tree mode rapid-pvst
+spanning-tree loopguard default
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+spanning-tree pathcost method long
+spanning-tree vlan 1-4094 priority 12288
+!
+!
+!
+!
+!
+port-channel load-balance src-dst-ip
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+vlan 999
+ name NATIVE-VLAN
+!
+vlan 3550,3552 
+!
+ip tcp synwait-time 5
+ip ssh time-out 60
+ip ssh authentication-retries 2
+ip ssh version 2
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0
+ no ip address
+!
+interface GigabitEthernet1/0/1
+ description sh-lan-asa0606 Gi0/4
+ switchport access vlan 3550
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/2
+ description sh-lan-asa0706 Gi0/4
+ switchport access vlan 3550
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/3
+ switchport access vlan 3550
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/4
+ description eclb0206p-1600-1.0 
+ switchport access vlan 3550
+ switchport mode access
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/5
+ description eclb0106p-1600-1.0
+ switchport access vlan 3550
+ switchport mode access
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/6
+ description eclb0206p-i2800-1.0
+ switchport access vlan 3550
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/7
+ description eclb0106p-i2800-1.0
+ switchport access vlan 3550
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/8
+ switchport mode access
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/9
+ switchport mode access
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/10
+ switchport mode access
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/11
+ description Trunk (Cross Connect) to pr-lan-sw0706-port 1/0/1
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 3550,3552
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface GigabitEthernet1/0/12
+ description Trunk (Cross Connect) to pr-lan-sw0606-port1
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 3550,3552
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface GigabitEthernet1/0/13
+ switchport access vlan 3552
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/14
+ switchport access vlan 3552
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/15
+ switchport access vlan 3552
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/16
+ switchport access vlan 3552
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/17
+ description eclb0106p-1600-1.1
+ switchport access vlan 3552
+ switchport mode access
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/18
+ description eclb0206p-1600-1.1 
+ switchport access vlan 3552
+ switchport mode access
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/19
+ description eclb0106p-i2800-2.0
+ switchport access vlan 3552
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/20
+ description eclb0206p-i2800-2.0
+ switchport access vlan 3552
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/21
+ switchport mode access
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/22
+ switchport mode access
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/23
+ switchport mode access
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/24
+ switchport mode access
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet1/1/1
+!
+interface GigabitEthernet1/1/2
+!
+interface GigabitEthernet1/1/3
+!
+interface GigabitEthernet1/1/4
+!
+interface TenGigabitEthernet1/1/1
+!
+interface TenGigabitEthernet1/1/2
+!
+interface Vlan1
+ no ip address
+ no ip redirects
+ no ip proxy-arp
+ shutdown
+!
+interface Vlan3550
+ description vlan3550
+ ip address 10.35.50.254 255.255.255.0
+ no ip redirects
+ no ip proxy-arp
+!
+ip default-gateway 10.35.50.1
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+ip access-list standard RO_SNMP_ACL
+ remark NMS IP
+ permit 10.1.101.193
+ deny   any log
+ip access-list standard RW_SNMP_ACL
+ remark NMS IP
+ permit 10.1.101.193
+ deny   any log
+ip access-list standard VTY_ACL
+ remark Management subnet
+ permit 10.0.0.0 log
+ permit any log
+ deny   any log
+!
+!
+!
+snmp-server community 95utd453ro RO RO_SNMP_ACL
+snmp-server community 95utd453 RW RW_SNMP_ACL
+snmp-server location Shanghai, China IDC 
+snmp-server contact Information Systems
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps tty
+snmp-server enable traps cluster
+snmp-server enable traps config
+snmp-server enable traps fru-ctrl
+snmp-server enable traps entity
+snmp-server enable traps cpu threshold
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps syslog
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps flash insertion removal
+snmp-server enable traps port-security
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps mac-notification change move threshold
+snmp-server enable traps vlan-membership
+snmp-server host 10.1.101.193 95udt453 
+tacacs server ISE1-TACACS
+ address ipv4 10.1.101.78
+ key 7 05331602724759314E233F31255F3C322D
+ single-connection
+tacacs server ISE2-TACACS
+ address ipv4 10.1.101.79
+ key 7 1221151A41001B3C7D0D0C0B1D661A0B01
+ single-connection
+!
+!
+!
+!
+line con 0
+ exec-timeout 30 0
+ logging synchronous
+line vty 0 4
+ access-class VTY_ACL in
+ exec-timeout 30 0
+ logging synchronous
+ transport output telnet ssh
+line vty 5 15
+ access-class VTY_ACL in
+ exec-timeout 30 0
+ logging synchronous
+ transport input telnet ssh
+ transport output telnet ssh
+!
+ntp server 18.26.4.105 minpoll 10
+ntp server 192.5.41.209
+ntp server 129.6.15.29 prefer
+end

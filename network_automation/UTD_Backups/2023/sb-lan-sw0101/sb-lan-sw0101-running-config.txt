@@ -1,0 +1,589 @@
+Building configuration...
+
+Current configuration : 17397 bytes
+!
+! Last configuration change at 12:49:56 EST Tue Dec 13 2022
+!
+version 17.3
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+service password-encryption
+service sequence-numbers
+service call-home
+no platform punt-keepalive disable-kernel-core
+!
+hostname SB-LAN-SW0101
+!
+!
+vrf definition Mgmt-vrf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+logging buffered 131080 informational
+no logging console
+enable secret 9 $14$nURI$qS5eQaM5CPeNCE$MDyiBKqkUTtcBIPWDshzKl66EwVKR71Hz/ZBx/dvxu6
+enable password 7 074B70180D4A3A0A0152180907382E30
+!
+aaa new-model
+!
+!
+aaa group server tacacs+ ISE-TACACS
+ server name ISE1-TACACS
+ server name ISE2-TACACS
+!
+aaa authentication login default group ISE-TACACS local-case
+aaa authentication enable default enable line
+aaa authorization console
+aaa authorization config-commands
+aaa authorization exec default group ISE-TACACS local if-authenticated 
+aaa authorization commands 15 default group ISE-TACACS local if-authenticated 
+aaa accounting exec default start-stop group ISE-TACACS
+aaa accounting commands 1 default start-stop group ISE-TACACS
+aaa accounting commands 15 default start-stop group ISE-TACACS
+aaa accounting connection default start-stop group ISE-TACACS
+!
+!
+!
+!
+!
+!
+aaa session-id common
+boot system switch all flash:/packages.conf
+clock timezone EST -5 0
+clock summer-time EDT recurring
+switch 1 provision c9300-24t
+!
+!
+!
+!
+no ip gratuitous-arps
+!
+no ip domain lookup
+ip domain name uptodate.com
+!
+!
+!
+login block-for 30 attempts 5 within 30
+login on-failure log
+login on-success log
+!
+!
+!
+!
+!
+vtp domain uptodate
+vtp mode transparent
+udld aggressive
+
+no device-tracking logging theft
+!
+crypto pki trustpoint TP-self-signed-646221651
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-646221651
+ revocation-check none
+ rsakeypair TP-self-signed-646221651
+!
+crypto pki trustpoint SLA-TrustPoint
+ enrollment pkcs12
+ revocation-check crl
+!
+!
+crypto pki certificate chain TP-self-signed-646221651
+ certificate self-signed 01
+  3082032E 30820216 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 36343632 32313635 31301E17 0D313831 30333131 38323232 
+  375A170D 32303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F 
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3634 36323231 
+  36353130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 82010A02 
+  82010100 D6ACFB4A 18F8FCA0 03B6FF02 541CF3A2 7A93451C 5044076C EE297A5C 
+  DB2BBEDF CF8E787D 47AA76B8 08AB3ABD BD626103 F9B3214E B5A1408B CB582CC0 
+  0F73E32C 8515F446 0FCA8A01 6C2AF559 C5A5D412 62852446 1AFCFBCF E786063A 
+  1951734E 2F883EA3 F7AF490D AB461C35 371FB0B2 20226848 AD2054F7 78BB025E 
+  219DEECD AA39D104 9CC681E3 08DE5143 892E0FDB DC1EF38B CB67A867 42D96C88 
+  A737CD07 E616F51D C9C847DA F9B162C4 A8965A07 B85A3C51 0FC42C63 68A2CBC9 
+  C338330F F0D21664 636F4649 6AD88FAE BB7E750B 7A0001EC A3651614 D4E3E790 
+  0E4F4471 87AAB30C A8676E0C 492295EB 13B16621 A2DEA751 34B4E24A 4B9E34BC 
+  C643DB5D 02030100 01A35330 51300F06 03551D13 0101FF04 05300301 01FF301F 
+  0603551D 23041830 16801410 D157759C DBD21B52 9E4CF76E 6F5E3609 63069230 
+  1D060355 1D0E0416 041410D1 57759CDB D21B529E 4CF76E6F 5E360963 0692300D 
+  06092A86 4886F70D 01010505 00038201 01008244 FEEFFDE4 C72A1150 AB34A753 
+  C7FD9AAC AA2931B0 3199C47F 376D1725 AB771DFF 452A699F 09514A15 5A5A2279 
+  81EBF598 10C16805 EB907AF1 70715937 BE4B1E5C EC54FBEC FB59244F A0188E03 
+  F88C1345 32BA4669 A8B90F6E B4D8A0B2 862CF894 F7F8B3C2 C3360263 0BDE385D 
+  955CCF69 53EFAADB A0E6D5A0 BBCB6993 A13BDCE8 1531E587 700C7D50 FAB0830E 
+  72B30A78 9F393079 DF1C126C A5964E97 3E35E100 F0FB527F 1B4C7950 99532A75 
+  E6831028 888F9F92 D53A0E0B 2388B1C0 F99E5F5A 17C24560 35022A03 8BFDB39E 
+  65195206 9A503152 7A4921AC 68485FC1 FBEBDAEA 746B14C4 A2ECE728 D99FCE9A 
+  6DE209D2 2A6BEA29 ED9208ED ED168692 6F1C
+  	quit
+crypto pki certificate chain SLA-TrustPoint
+ certificate ca 01
+  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
+  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363 
+  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934 
+  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305 
+  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720 
+  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 
+  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D 
+  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520 
+  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE 
+  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC 
+  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188 
+  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7 
+  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191 
+  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44 
+  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201 
+  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85 
+  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500 
+  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905 
+  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B 
+  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8 
+  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C 
+  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B 
+  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678 
+  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB 
+  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0 
+  D697DF7F 28
+  	quit
+!
+port-channel load-balance src-dst-ip
+license boot level network-essentials addon dna-essentials
+!
+!
+diagnostic bootup level minimal
+!
+spanning-tree mode rapid-pvst
+spanning-tree loopguard default
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+spanning-tree vlan 1050,1052 priority 8192
+archive
+ log config
+  logging enable
+  logging size 200
+  notify syslog contenttype plaintext
+ path flash:/backup/%hostname%
+ maximum 14
+ write-memory
+memory free low-watermark processor 133114
+!
+username Support privilege 15 secret 9 $14$6Fhv$ZYFwv1xbZsl4vk$BKFiGeLZZfSKKaRLinPTqFH87BhADt9vOlxmt9WjvVs
+!
+redundancy
+ mode sso
+!
+!
+!
+!
+!
+!
+transceiver type all
+ monitoring
+!
+vlan 999
+ name NATIVE-VLAN
+!
+vlan 1050
+ name Vlan1050
+!
+vlan 1052
+ name Vlan1052
+!
+!
+class-map match-any system-cpp-police-ewlc-control
+  description EWLC Control 
+class-map match-any system-cpp-police-topology-control
+  description Topology control
+class-map match-any system-cpp-police-sw-forward
+  description Sw forwarding, L2 LVX data packets, LOGGING, Transit Traffic
+class-map match-any system-cpp-default
+  description EWLC Data, Inter FED Traffic 
+class-map match-any system-cpp-police-sys-data
+  description Openflow, Exception, EGR Exception, NFL Sampled Data, RPF Failed
+class-map match-any system-cpp-police-punt-webauth
+  description Punt Webauth
+class-map match-any system-cpp-police-l2lvx-control
+  description L2 LVX control packets
+class-map match-any system-cpp-police-forus
+  description Forus Address resolution and Forus traffic
+class-map match-any system-cpp-police-multicast-end-station
+  description MCAST END STATION
+class-map match-any system-cpp-police-high-rate-app
+  description High Rate Applications 
+class-map match-any system-cpp-police-multicast
+  description MCAST Data
+class-map match-any system-cpp-police-l2-control
+  description L2 control
+class-map match-any system-cpp-police-dot1x-auth
+  description DOT1X Auth
+class-map match-any system-cpp-police-data
+  description ICMP redirect, ICMP_GEN and BROADCAST
+class-map match-any system-cpp-police-stackwise-virt-control
+  description Stackwise Virtual OOB
+class-map match-any system-cpp-police-control-low-priority
+  description General punt
+class-map match-any non-client-nrt-class
+class-map match-any system-cpp-police-routing-control
+  description Routing control and Low Latency
+class-map match-any system-cpp-police-protocol-snooping
+  description Protocol snooping
+class-map match-any system-cpp-police-dhcp-snooping
+  description DHCP snooping
+class-map match-any system-cpp-police-ios-routing
+  description L2 control, Topology control, Routing control, Low Latency
+class-map match-any system-cpp-police-system-critical
+  description System Critical and Gold Pkt
+class-map match-any system-cpp-police-ios-feature
+  description ICMPGEN,BROADCAST,ICMP,L2LVXCntrl,ProtoSnoop,PuntWebauth,MCASTData,Transit,DOT1XAuth,Swfwd,LOGGING,L2LVXData,ForusTraffic,ForusARP,McastEndStn,Openflow,Exception,EGRExcption,NflSampled,RpfFailed
+!
+policy-map system-cpp-policy
+ class system-cpp-police-sys-data
+  police rate 100 pps
+ class system-cpp-police-multicast
+  police rate 500 pps
+ class system-cpp-police-control-low-priority
+  police rate 200 pps
+ class system-cpp-police-forus
+  police rate 1000 pps
+ class system-cpp-default
+  police rate 1000 pps
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ vrf forwarding Mgmt-vrf
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet1/0/1
+ description sb-lan-asa0601 e0/1
+ switchport access vlan 1050
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/2
+ description was asa0701 moved to 0/6 
+ switchport access vlan 1050
+ switchport mode access
+ shutdown
+!
+interface GigabitEthernet1/0/3
+ description WEB0101D
+ switchport access vlan 1050
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/4
+ description old-web0101d
+ switchport access vlan 1050
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/5
+ description acds0101d front side eth1
+ switchport access vlan 1052
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/6
+ description sb-lan-asa0701 e0/1
+ switchport access vlan 1050
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/7
+ description vm0301d
+ switchport trunk allowed vlan 1050,1052
+ switchport mode trunk
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/8
+ description vm0401d
+ switchport trunk allowed vlan 1050,1052
+ switchport mode trunk
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/9
+ description mule0101d-ft
+ switchport access vlan 1050
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/10
+ description vm0101d nic 3 
+ switchport access vlan 1050
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/11
+ description ftp0101p-ft
+ switchport access vlan 1050
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/12
+ description vm0101d nic 6
+ switchport access vlan 1050
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/13
+ description sblb0101 bck
+ switchport access vlan 1052
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/14
+ description sblb0201 bck
+ switchport access vlan 1052
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/15
+ description web0101d
+ switchport access vlan 1052
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/16
+ description sblb0101 frt
+ switchport access vlan 1050
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/17
+ description sblb0201 frt
+ switchport access vlan 1050
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/18
+ description vm0201d nic 3 
+ switchport access vlan 1050
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/19
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/20
+ description vm0201d nic 6 
+ switchport access vlan 1050
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/21
+ description vm0101d p3
+ switchport access vlan 1052
+ switchport mode access
+!
+interface GigabitEthernet1/0/22
+ description vm0101d p7
+ switchport access vlan 1052
+ switchport mode access
+!
+interface GigabitEthernet1/0/23
+ description vm0201d p3
+ switchport access vlan 1052
+ switchport mode access
+!
+interface GigabitEthernet1/0/24
+ description vm0201d p7
+ switchport access vlan 1052
+ switchport mode access
+!
+interface GigabitEthernet1/1/1
+!
+interface GigabitEthernet1/1/2
+!
+interface GigabitEthernet1/1/3
+!
+interface GigabitEthernet1/1/4
+!
+interface TenGigabitEthernet1/1/1
+!
+interface TenGigabitEthernet1/1/2
+!
+interface TenGigabitEthernet1/1/3
+!
+interface TenGigabitEthernet1/1/4
+!
+interface TenGigabitEthernet1/1/5
+!
+interface TenGigabitEthernet1/1/6
+!
+interface TenGigabitEthernet1/1/7
+!
+interface TenGigabitEthernet1/1/8
+!
+interface FortyGigabitEthernet1/1/1
+!
+interface FortyGigabitEthernet1/1/2
+!
+interface TwentyFiveGigE1/1/1
+!
+interface TwentyFiveGigE1/1/2
+!
+interface AppGigabitEthernet1/0/1
+!
+interface Vlan1
+ no ip address
+ no ip redirects
+ no ip proxy-arp
+ shutdown
+!
+interface Vlan1050
+ description vlan 1050
+ ip address 10.10.50.254 255.255.255.0
+ no ip redirects
+ no ip proxy-arp
+!
+ip default-gateway 10.10.50.1
+ip forward-protocol nd
+ip tcp window-size 65536
+ip tcp synwait-time 5
+no ip http server
+ip http authentication local
+no ip http secure-server
+ip ftp username username
+ip ftp password 7 01030717481C091D25
+ip tftp source-interface Vlan1050
+ip ssh time-out 60
+ip ssh authentication-retries 2
+ip ssh window-size 131072
+ip ssh version 2
+ip scp server enable
+!
+ip access-list standard RO_SNMP_ACL
+ 10 remark NMS IP
+ 10 permit 10.1.101.193
+ 20 deny   any log
+ip access-list standard RW_SNMP_ACL
+ 10 remark NMS IP
+ 10 permit 10.1.101.193
+ 20 deny   any log
+ip access-list standard VTY_ACL
+ 10 remark VTY Access List
+ 10 remark Remove 'permit any' if possible
+ 10 permit any
+ 20 deny   any log
+!
+!
+ip sla enable reaction-alerts
+!
+snmp-server community 95utd453ro RO
+snmp-server community 95utd453 RW
+snmp-server trap-source Vlan1050
+snmp-server location NewYork IDC 
+snmp-server contact Information Systems
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps tty
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps port-security
+snmp-server enable traps cpu threshold
+snmp-server enable traps flash insertion
+snmp-server enable traps flash removal
+snmp-server enable traps entity
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps ipsla
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps syslog
+snmp-server enable traps vlan-membership
+snmp-server enable traps mac-notification change move threshold
+snmp-server host 10.1.101.193 95udt453 
+tftp-server flash:cat9k_iosxe.17.03.05.SPA.bin
+tacacs server ISE1-TACACS
+ address ipv4 10.1.101.78
+ key 7 1131090844191C34530C030706600D3A15
+ single-connection
+tacacs server ISE2-TACACS
+ address ipv4 10.1.101.79
+ key 7 133D071F580713127C0200101B712B1F10
+ single-connection
+!
+!
+!
+control-plane
+ service-policy input system-cpp-policy
+!
+banner motd ^CC
+************************************************************
+************************* WARNING **************************
+* THIS SYSTEM IS FOR THE USE OF AUTHORIZED PERSONNEL ONLY!  *
+* ACCESS IS RESTRICTED TO AUTHORIZED USERS ONLY!            *
+* UNAUTHORIZED ACCESS IS A VIOLATION OF STATE AND FEDERAL,  *
+* CIVIL AND CRIMINAL LAWS.  VIOLATORS WILL BE PROSECUTED.   *
+* 
+* ALL ACTIVITY ON THIS COMPUTER SYSTEM IS MONITORED BY      *
+* SYSTEM SECURITY PERSONNEL. BY USING THIS COMPUTER SYSTEM  *
+* YOU CONSENT TO THIS MONITORING. INDIVIDUALS DETERMINED TO *
+* BE USING THIS COMPUTER NETWORK SYSTEM WITHOUT PROPER      *
+* AUTHORIZATION, OR IN EXCESS OF THEIR AUTHORIZATION MAY    *
+* HAVE THEIR ACTIVITY RECORD SUBMITTED TO LEGAL AUTHORITIES *
+* AND LEGAL AND CRIMINAL CHARGES MAY FOLLOW.                *
+*************************************************************
+*************************************************************
+^C
+!
+line con 0
+ exec-timeout 15 0
+ logging synchronous
+ history size 256
+ transport preferred none
+ transport output telnet ssh
+ stopbits 1
+line vty 0 4
+ exec-timeout 15 0
+ logging synchronous
+ length 0
+ history size 256
+ transport preferred none
+ transport input ssh
+ transport output telnet ssh
+line vty 5 15
+ exec-timeout 15 0
+ logging synchronous
+ history size 256
+ transport preferred none
+ transport input ssh
+ transport output telnet ssh
+line vty 16 31
+ transport input ssh
+!
+call-home
+ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com
+ ! the email address configured in Cisco Smart License Portal will be used as contact email address to send SCH notifications.
+ contact-email-addr sch-smart-licensing@cisco.com
+ profile "CiscoTAC-1"
+  active
+  destination transport-method http
+ntp server 10.1.254.1
+!
+!
+!
+!
+!
+!
+end

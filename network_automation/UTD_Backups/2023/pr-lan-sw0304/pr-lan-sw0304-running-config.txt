@@ -1,0 +1,546 @@
+Building configuration...
+
+Current configuration : 14954 bytes
+!
+! Last configuration change at 18:26:21 CET Mon May 23 2022 by a-amannan
+! NVRAM config last updated at 15:13:49 CET Tue Sep 28 2021 by a-amannan
+!
+version 16.6
+no service pad
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec show-timezone
+service timestamps log datetime msec show-timezone
+service password-encryption
+service sequence-numbers
+service counters max age 10
+no platform punt-keepalive disable-kernel-core
+!
+hostname pr-lan-sw0304
+!
+!
+vrf definition Mgmt-vrf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+logging buffered 131080 informational
+no logging console
+enable secret 5 $1$XreK$f3UQT9NwLUEeE.weJ/wVo0
+enable password 7 074B70180D4A3A0A0152180907382E30
+!
+aaa new-model
+!
+!
+aaa group server tacacs+ ISE-TACACS
+ server name ISE1-TACACS
+ server name ISE2-TACACS
+!
+aaa authentication fail-message ^CCCCCCC
+
+******************** W A R N I N G *********************
+
+                 AUTHORIZED ACCESS ONLY
+
+  UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED.
+  You must have explicit permission to access this
+  device. All activities performed on this device
+  are logged and violations of this policy result
+  in disciplinary action.
+
+******************** W A R N I N G *********************
+^C
+aaa authentication login default group ISE-TACACS local-case
+aaa authorization console
+aaa authorization config-commands
+aaa authorization exec default group ISE-TACACS local if-authenticated 
+aaa authorization commands 15 default group ISE-TACACS local if-authenticated 
+aaa accounting exec default start-stop group ISE-TACACS
+aaa accounting commands 1 default start-stop group ISE-TACACS
+aaa accounting commands 15 default start-stop group ISE-TACACS
+aaa accounting connection default start-stop group ISE-TACACS
+!
+!
+!
+!
+!
+!
+aaa session-id common
+clock timezone CET 1 0
+clock summer-time CET recurring
+switch 1 provision c9300-24t
+!
+!
+!
+!
+no ip source-route
+no ip gratuitous-arps
+ip icmp rate-limit unreachable 800
+!
+no ip bootp server
+no ip domain lookup
+ip domain name uptodate.com
+!
+!
+!
+login block-for 30 attempts 5 within 30
+login on-failure log
+login on-success log
+!
+!
+!
+!
+!
+vtp domain UPTODATE
+vtp mode transparent
+udld aggressive
+
+password encryption aes
+!
+crypto pki trustpoint TP-self-signed-1260438755
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1260438755
+ revocation-check none
+ rsakeypair TP-self-signed-1260438755
+!
+!
+crypto pki certificate chain TP-self-signed-1260438755
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 31323630 34333837 3535301E 170D3139 30353238 31363437 
+  35395A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 32363034 
+  33383735 35308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 0100CB47 9B37DB85 CEE0F537 ACAB02A4 02FDA55B FE5CDA39 406A53D2 
+  E254D43F 2EB25185 C19ECD77 A3C08B7D E75E6904 361C61E7 D11FBBE3 CC262422 
+  AB8A9AD3 B6528C45 5E632305 EFD74E2C 7733C989 87E599BB 473B9FE5 68431BD6 
+  8CBB41DE 872E0348 400B13D1 87C04C2F 9AF977F8 D5FE672E 326DEF6E C07D46F8 
+  BE9D5650 AF90247E 0A2579A5 25577A16 28649FDF 7677F142 EFBCEB5D F1F89D1C 
+  1B652C49 AC350182 E8DEAFA1 BF2A78D6 F8E28245 A1B56355 1AC3A2D8 E51F0860 
+  75DA0F4B 6E12AD08 512FDFFE 494F89D6 D9EB51FC EAE61D19 52F869FB A142A966 
+  993DEAB4 614C4763 C67C982A 93DE5582 DEA6406A 29837E5B 804C03CE 1EA29498 
+  568A2742 BA610203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 140D81B2 D407D04F 6C6D8548 775CB0C5 81C55F3E 
+  B0301D06 03551D0E 04160414 0D81B2D4 07D04F6C 6D854877 5CB0C581 C55F3EB0 
+  300D0609 2A864886 F70D0101 05050003 82010100 894F2856 ECFFC71C 390842D7 
+  4AA7F6DB 811A5F39 78D66F5A 48D7A435 8885A2AF C052E0E8 8653488F 89FEF293 
+  56E70609 3B01FDD6 2A49F3FE EC23A442 D052E396 C2002554 4D90607E 850AAA49 
+  277BFE24 D1136368 EA54F9A3 F88BD596 0F61DB61 E3BAB978 8E3D3F58 7DEAFC24 
+  5C1537CB E8206F59 5DA4A808 BA808E2E C111822F 16282D3F 102AB85F D6841A0A 
+  03237464 CF60E6AB CB2892D2 D361517C 05959DBD 556D182E 349D2C98 2DC36014 
+  1C69D463 DABA028B D1F422BB 35EA3324 00A8C688 8F81CA18 FB91CCE8 35F1FC36 
+  6BD52BBF D9EF524C F212BF6A 14C8F259 002A0F12 68340044 91989AA1 B556AEDE 
+  1D7559F1 AA0BF9A1 8E126C2E ED961033 0562D1BB
+  	quit
+!
+port-channel load-balance src-dst-ip
+!
+!
+diagnostic bootup level minimal
+!
+spanning-tree mode rapid-pvst
+spanning-tree loopguard default
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+spanning-tree pathcost method long
+spanning-tree vlan 2556,2558,2560 priority 8192
+archive
+ log config
+  logging enable
+  notify syslog contenttype plaintext
+  hidekeys
+!
+username Support privilege 15 secret 5 $1$vhnp$RSlnLeDKDcAggbOjBv5jO.
+!
+redundancy
+ mode sso
+!
+!
+transceiver type all
+ monitoring
+!
+vlan 999
+ name NATIVE-VLAN
+!
+vlan 2556,2558,2560 
+!
+!
+class-map match-any system-cpp-police-topology-control
+  description Topology control
+class-map match-any system-cpp-police-sw-forward
+  description Sw forwarding, L2 LVX data, LOGGING
+class-map match-any system-cpp-default
+  description DHCP Snooping, EWLC control, EWCL data 
+class-map match-any system-cpp-police-sys-data
+  description Learning cache ovfl, Crypto Control, Exception, EGR Exception, NFL SAMPLED DATA, RPF Failed
+class-map match-any system-cpp-police-punt-webauth
+  description Punt Webauth
+class-map match-any system-cpp-police-l2lvx-control
+  description L2 LVX control packets
+class-map match-any system-cpp-police-forus
+  description Forus Address resolution and Forus traffic
+class-map match-any system-cpp-police-multicast-end-station
+  description MCAST END STATION
+class-map match-any system-cpp-police-multicast
+  description Transit Traffic and MCAST Data
+class-map match-any system-cpp-police-l2-control
+  description L2 control
+class-map match-any system-cpp-police-dot1x-auth
+  description DOT1X Auth
+class-map match-any system-cpp-police-data
+  description ICMP redirect, ICMP_GEN and BROADCAST
+class-map match-any system-cpp-police-stackwise-virt-control
+  description Stackwise Virtual
+class-map match-any system-cpp-police-control-low-priority
+  description General punt
+class-map match-any non-client-nrt-class
+class-map match-any system-cpp-police-routing-control
+  description Routing control
+class-map match-any system-cpp-police-protocol-snooping
+  description Protocol snooping
+class-map match-any system-cpp-police-dhcp-snooping
+  description DHCP snooping
+class-map match-any system-cpp-police-system-critical
+  description System Critical and Gold
+!
+policy-map system-cpp-policy
+ class system-cpp-police-control-low-priority
+ class system-cpp-police-dhcp-snooping
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ vrf forwarding Mgmt-vrf
+ no ip address
+ shutdown
+ speed 1000
+ negotiation auto
+!
+interface GigabitEthernet1/0/1
+ description pr-lan-asa-0604 port g0/1
+ switchport access vlan 2558
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/2
+ description pr-lan-asa-0704 port g0/1
+ switchport access vlan 2558
+ switchport mode access
+!
+interface GigabitEthernet1/0/3
+ description trunk_to_pr-lan-sw0704
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 2556
+ switchport mode trunk
+ switchport nonegotiate
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/4
+ description couchdb0104p nic1
+ switchport access vlan 2556
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/5
+ description couchdb0104p iDrac
+ switchport access vlan 2556
+ switchport mode access
+ switchport port-security violation restrict
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ switchport port-security
+ macro description cisco-desktop
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/6
+ description couchdb0204p nic1
+ switchport access vlan 2556
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/7
+ description couchdb0204p iDrac
+ switchport access vlan 2556
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/8
+ description osesx0104p
+ switchport access vlan 2556
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/9
+ description osesx0206p
+ switchport access vlan 2556
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/10
+ description couchdb0304p nic1
+ switchport access vlan 2556
+ switchport mode access
+ switchport port-security violation restrict
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ switchport port-security
+ macro description cisco-desktop
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/11
+ description couchdb0304p iDrac
+ switchport access vlan 2556
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/12
+ description Trunk (Cross Connect) to pr-lan-sw0604-G1/0/3 
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 2556,2558,2560
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface GigabitEthernet1/0/13
+ description couchdb0404p nic1
+ switchport access vlan 2556
+ switchport mode access
+ speed 1000
+ duplex full
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/14
+ description couchdb0504p iDrac
+ switchport access vlan 2556
+ switchport mode access
+ speed 1000
+ duplex full
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/15
+ description couchdb0504p nic1
+ switchport access vlan 2556
+ switchport mode access
+ speed 1000
+ duplex full
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/16
+ description couchdb0504p iDrac
+ switchport access vlan 2556
+ switchport mode access
+ speed 1000
+ duplex full
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/17
+ switchport access vlan 2556
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/18
+ switchport access vlan 2556
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/19
+ switchport access vlan 2556
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/20
+ switchport access vlan 2556
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/21
+ switchport access vlan 2556
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/22
+ switchport access vlan 2556
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/23
+ description pr-lan-asa-0604 port g0/2
+ switchport access vlan 2556
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/0/24
+ description pr-lan-asa-0704 port g0/2
+ switchport access vlan 2556
+ switchport mode access
+ speed auto 10 100 1000
+!
+interface GigabitEthernet1/1/1
+!
+interface GigabitEthernet1/1/2
+!
+interface GigabitEthernet1/1/3
+!
+interface GigabitEthernet1/1/4
+!
+interface TenGigabitEthernet1/1/1
+!
+interface TenGigabitEthernet1/1/2
+!
+interface TenGigabitEthernet1/1/3
+!
+interface TenGigabitEthernet1/1/4
+!
+interface TenGigabitEthernet1/1/5
+!
+interface TenGigabitEthernet1/1/6
+!
+interface TenGigabitEthernet1/1/7
+!
+interface TenGigabitEthernet1/1/8
+!
+interface FortyGigabitEthernet1/1/1
+!
+interface FortyGigabitEthernet1/1/2
+!
+interface Vlan1
+ no ip address
+ no ip redirects
+ no ip proxy-arp
+ shutdown
+!
+interface Vlan2556
+ ip address 10.25.56.254 255.255.255.0
+ no ip redirects
+ no ip proxy-arp
+!
+ip default-gateway 10.25.56.1
+ip forward-protocol nd
+ip tcp synwait-time 5
+no ip http server
+ip http authentication local
+ip http secure-server
+ip ssh time-out 60
+ip ssh authentication-retries 2
+ip ssh version 2
+ip ssh dscp 48
+!
+!
+ip access-list standard RO_SNMP_ACL
+ remark NMS IP
+ permit 10.1.101.193
+ deny   any log
+ip access-list standard RW_SNMP_ACL
+ remark NMS IP
+ permit 10.1.101.193
+ deny   any log
+ip access-list standard VTY_ACL
+ remark Management subnet
+ permit 10.0.0.0 log
+ permit any log
+ deny   any log
+!
+!
+snmp-server community 95utd453ro RO
+snmp-server community 95utd453 RW
+snmp-server trap-source Vlan2556
+snmp-server location JAPAN IDC
+snmp-server contact Information Systems
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps tty
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps port-security
+snmp-server enable traps cpu threshold
+snmp-server enable traps fru-ctrl
+snmp-server enable traps flash insertion
+snmp-server enable traps flash removal
+snmp-server enable traps entity
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps syslog
+snmp-server enable traps vlan-membership
+snmp-server enable traps mac-notification change move threshold
+snmp-server host 10.1.101.193 95udt453 
+tacacs server ISE1-TACACS
+ address ipv4 10.1.101.78
+ key 7 003C030B57501C3E5807646D274A3D0F14
+ single-connection
+tacacs server ISE2-TACACS
+ address ipv4 10.1.101.79
+ key 7 142F02065F0F3D13730E1B160C403F0E05
+ single-connection
+!
+!
+!
+!
+control-plane
+ service-policy input system-cpp-policy
+!
+banner motd ^C
+************************************************************
+************************* WARNING **************************
+* THIS SYSTEM IS FOR THE USE OF AUTHORIZED PERSONNEL ONLY!  *
+* ACCESS IS RESTRICTED TO AUTHORIZED USERS ONLY!            *
+* UNAUTHORIZED ACCESS IS A VIOLATION OF STATE AND FEDERAL,  *
+* CIVIL AND CRIMINAL LAWS.  VIOLATORS WILL BE PROSECUTED.   *
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *                                      
+* ALL ACTIVITY ON THIS COMPUTER SYSTEM IS MONITORED BY      *
+* SYSTEM SECURITY PERSONNEL. BY USING THIS COMPUTER SYSTEM  *
+* YOU CONSENT TO THIS MONITORING. INDIVIDUALS DETERMINED TO *
+* BE USING THIS COMPUTER NETWORK SYSTEM WITHOUT PROPER      *
+* AUTHORIZATION, OR IN EXCESS OF THEIR AUTHORIZATION MAY    *
+* HAVE THEIR ACTIVITY RECORD SUBMITTED TO LEGAL AUTHORITIES *
+* AND LEGAL AND CRIMINAL CHARGES MAY FOLLOW.                *
+*************************************************************
+*************************************************************
+^C
+!
+line con 0
+ exec-timeout 30 0
+ logging synchronous
+ stopbits 1
+line vty 0 4
+ access-class VTY_ACL in
+ exec-timeout 30 0
+ logging synchronous
+ transport input ssh
+ transport output telnet ssh
+line vty 5 15
+ access-class VTY_ACL in
+ exec-timeout 30 0
+ logging synchronous
+ transport input ssh
+ transport output telnet ssh
+!
+ntp server 192.5.41.209
+ntp server 18.26.4.105 minpoll 10
+ntp server 129.6.15.29 prefer
+!
+mac address-table notification mac-move
+!
+!
+!
+!
+!
+end

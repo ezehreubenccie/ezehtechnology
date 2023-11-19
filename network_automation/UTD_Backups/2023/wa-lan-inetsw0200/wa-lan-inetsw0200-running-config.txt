@@ -1,0 +1,779 @@
+Building configuration...
+
+Current configuration : 24140 bytes
+!
+! Last configuration change at 12:27:22 EDT Sat May 13 2023 by a-yayyub
+! NVRAM config last updated at 11:19:07 EST Sat Mar 4 2023
+!
+version 16.12
+service nagle
+no service pad
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+service password-encryption
+service sequence-numbers
+service counters max age 10
+service call-home
+platform punt-keepalive disable-kernel-core
+!
+hostname WA-LAN-INETSW0200
+!
+!
+vrf definition Mgmt-vrf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+logging buffered 131080 informational
+no logging console
+enable secret 9 $9$r4R7xZpNr.M0QE$LeKVMnzOe/qrFaxEYnRQzHQQgJ39hA1Bd4o0PPpvopU
+!
+aaa new-model
+!
+!
+aaa group server tacacs+ ISE-TACACS
+ server name ISE1-TACACS
+ server name ISE2-TACACS
+ ip tacacs source-interface Vlan1000
+!
+aaa authentication login default group ISE-TACACS local-case
+aaa authentication enable default enable line
+aaa authorization console
+aaa authorization exec default group ISE-TACACS local if-authenticated 
+aaa accounting exec default start-stop group ISE-TACACS
+aaa accounting commands 1 default start-stop group ISE-TACACS
+aaa accounting commands 15 default start-stop group ISE-TACACS
+aaa accounting connection default start-stop group ISE-TACACS
+!
+!
+!
+!
+!
+!
+aaa session-id common
+clock timezone EST -5 0
+clock summer-time EDT recurring
+switch 1 provision c9300l-24t-4g
+!
+!
+!
+!
+call-home
+ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com
+ ! the email address configured in Cisco Smart License Portal will be used as contact email address to send SCH notifications.
+ contact-email-addr sch-smart-licensing@cisco.com
+ source-interface Vlan1000
+ profile "CiscoTAC-1"
+  active
+  destination transport-method http
+  no destination transport-method email
+no ip source-route
+no ip gratuitous-arps
+no ip icmp rate-limit unreachable
+!
+ip name-server 8.8.8.8 8.8.4.4
+ip domain lookup source-interface Vlan1000
+ip domain name utd.com
+!
+!
+!
+login block-for 300 attempts 5 within 150
+login delay 2
+login on-failure log
+login on-success log
+!
+!
+!
+!
+!
+vtp domain UPTODATE-VTP
+vtp mode transparent
+udld aggressive
+
+no device-tracking logging theft
+!
+crypto pki trustpoint SLA-TrustPoint
+ enrollment terminal
+ revocation-check crl
+!
+crypto pki trustpoint TP-self-signed-2887887813
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2887887813
+ revocation-check none
+ rsakeypair TP-self-signed-2887887813
+!
+!
+crypto pki certificate chain SLA-TrustPoint
+ certificate ca 01
+  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
+  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363 
+  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934 
+  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305 
+  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720 
+  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 
+  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D 
+  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520 
+  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE 
+  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC 
+  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188 
+  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7 
+  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191 
+  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44 
+  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201 
+  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85 
+  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500 
+  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905 
+  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B 
+  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8 
+  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C 
+  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B 
+  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678 
+  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB 
+  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0 
+  D697DF7F 28
+  	quit
+crypto pki certificate chain TP-self-signed-2887887813
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 32383837 38383738 3133301E 170D3230 30373134 31343337 
+  31345A17 0D333030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 38383738 
+  38373831 33308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 01009AB9 B0A57C1D AE621F0E F29B8DA5 376F19D9 3A592039 C9364082 
+  DAC998A7 8E57021B 2331AE86 52E04E6B 59005D96 C737545E E57516C3 3665F7F0 
+  7D8C5685 3D8BC97C 7802A92C BC1AD8AF 84878F8F 008E127F 59478DD5 748EC690 
+  462B0752 3D8DC314 C53A9CD8 985CEFD2 BA4DA455 33874018 E73A8D84 CB5890A4 
+  54087D85 BB6D65B9 C3BF2AC1 7EA66486 05A96DF0 E8850CDD DCED82F9 310008EF 
+  DE3AD9DC B2619416 A7DB62A8 3C378898 D388D7D8 B76D815C C1BB1058 13FBD41E 
+  BA0585A7 43554B47 8DFFF9B6 D162B9C4 0E39AFF2 5DEB87FA F3BDDA8B 5668714E 
+  70B7D7B5 A8388AE5 AAF34DA7 D4690F7B 57C89C11 01EDBD05 603D471A 9ED726A7 
+  653494F4 93F50203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 141561E9 500C0289 2C2F4362 37D2C157 81E52D66 
+  30301D06 03551D0E 04160414 1561E950 0C02892C 2F436237 D2C15781 E52D6630 
+  300D0609 2A864886 F70D0101 05050003 82010100 567F7427 22798C1C D5C85B1C 
+  EA750BAD 6D0CF1D2 90716583 F995AFFB C08E0CEF C90789D0 1FE41267 567CB1B2 
+  0D63BFBA C4B431C1 808EB3B9 F06BD0CE 43CB7583 25C44529 58F815F9 1E661ECF 
+  B0D09A2E 57731761 06A8FA0C FE1841E3 B73D75B4 07ABE4CE A508CA24 DF991915 
+  22A65B74 AF2CDEF6 231A1AEC C9FBE6E0 DE6DA75E 3AF66EFC 09CDC15A 80A56C37 
+  5FE33BA7 EFBEB155 E40DF561 9B7195CE 421C5579 D4D3EA5B DB90CC8A ADD495D4 
+  18F81321 5A93D4C1 19B75819 ADA00DC9 9FCC894D 52F6ACBF 79458494 110A51A1 
+  98FA47CB 9F3AECF0 E037D511 57926E1A 91F9D7B9 AAA46802 A89EF9EA C862630D 
+  6491F898 A8072E0B CC39AA76 08E8F200 80D8BB76
+  	quit
+!
+crypto pki certificate pool
+ cabundle nvram:ios_core.p7b
+!
+port-channel load-balance src-dst-ip
+license boot level network-essentials addon dna-essentials
+!
+!
+diagnostic bootup level minimal
+!
+spanning-tree mode rapid-pvst
+spanning-tree loopguard default
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+spanning-tree pathcost method long
+spanning-tree vlan 1-4094 priority 16384
+archive
+ log config
+  logging enable
+  logging size 1000
+  hidekeys
+memory free low-watermark processor 134384
+!
+username Support privilege 15 secret 9 $9$Z7t9pnOVjFAPN.$eFQOm8uJXOrIuy7f91HV5AfGl.BNsvvwPbh8KAizTeM
+username yayyub privilege 15 secret 9 $9$.ptn01f9YV123k$mNUoG0zI.1ticfZ0o3S56Hlaj4v4lcmfdewUVc1OKqg
+!
+redundancy
+ mode sso
+!
+!
+!
+!
+!
+transceiver type all
+ monitoring
+!
+vlan 100
+ name FW-OUTSIDE
+!
+vlan 200
+ name DMZ-1
+!
+vlan 600
+ name WK-CORP-TRANSIT
+!
+vlan 800
+ name FW-SYNC-INET
+!
+vlan 801
+ name FW-SYNC-L2L
+!
+vlan 802
+ name FW-SYNC-RA
+!
+vlan 999
+ name DOT1Q-NATIVE
+!
+vlan 1000
+ name MGMT-DMZ
+!
+!
+class-map match-any system-cpp-police-ewlc-control
+  description EWLC Control 
+class-map match-any system-cpp-police-topology-control
+  description Topology control
+class-map match-any system-cpp-police-sw-forward
+  description Sw forwarding, L2 LVX data packets, LOGGING, Transit Traffic
+class-map match-any system-cpp-default
+  description EWLC Data, Inter FED Traffic 
+class-map match-any system-cpp-police-sys-data
+  description Openflow, Exception, EGR Exception, NFL Sampled Data, RPF Failed
+class-map match-any system-cpp-police-punt-webauth
+  description Punt Webauth
+class-map match-any system-cpp-police-l2lvx-control
+  description L2 LVX control packets
+class-map match-any system-cpp-police-forus
+  description Forus Address resolution and Forus traffic
+class-map match-any system-cpp-police-multicast-end-station
+  description MCAST END STATION
+class-map match-any system-cpp-police-high-rate-app
+  description High Rate Applications 
+class-map match-any system-cpp-police-multicast
+  description MCAST Data
+class-map match-any system-cpp-police-l2-control
+  description L2 control
+class-map match-any system-cpp-police-dot1x-auth
+  description DOT1X Auth
+class-map match-any system-cpp-police-data
+  description ICMP redirect, ICMP_GEN and BROADCAST
+class-map match-any system-cpp-police-stackwise-virt-control
+  description Stackwise Virtual OOB
+class-map match-any non-client-nrt-class
+class-map match-any system-cpp-police-routing-control
+  description Routing control and Low Latency
+class-map match-any system-cpp-police-protocol-snooping
+  description Protocol snooping
+class-map match-any system-cpp-police-dhcp-snooping
+  description DHCP snooping
+class-map match-any system-cpp-police-ios-routing
+  description L2 control, Topology control, Routing control, Low Latency
+class-map match-any system-cpp-police-system-critical
+  description System Critical and Gold Pkt
+class-map match-any system-cpp-police-ios-feature
+  description ICMPGEN,BROADCAST,ICMP,L2LVXCntrl,ProtoSnoop,PuntWebauth,MCASTData,Transit,DOT1XAuth,Swfwd,LOGGING,L2LVXData,ForusTraffic,ForusARP,McastEndStn,Openflow,Exception,EGRExcption,NflSampled,RpfFailed
+!
+policy-map system-cpp-policy
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+interface Null0
+ no ip unreachables
+!
+interface Port-channel1
+ description L2-EC WA-LAN-INETSW0200 to WA-LAN-INETSW0100
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 100,200,600,800-802,1000
+ switchport mode trunk
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+!
+interface GigabitEthernet0/0
+ vrf forwarding Mgmt-vrf
+ ip address 10.2.253.7 255.255.255.0
+ negotiation auto
+!
+interface GigabitEthernet1/0/1
+ description WA-LAN-INETRTR0200 G0/0/0
+ switchport access vlan 100
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/2
+ description WA-LAN-ASA0100-S G0/3
+ switchport access vlan 800
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/3
+ description WA-LAN-ASA0100-S G0/2
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 100,1000
+ switchport mode trunk
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast trunk
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/4
+ switchport access vlan 800
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/5
+ description WA-LAN-ASA0200-S G0/2
+ switchport access vlan 100
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/6
+ description WA-LAN-ASA0200-S G0/3
+ switchport access vlan 801
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/7
+ description WA-LAN-ASA0300-S G0/2
+ switchport access vlan 100
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/8
+ description WA-LAN-ASA0300-S G0/3
+ switchport access vlan 802
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/9
+ description WA-LAN-ASA0100-S G0/4 (DMZ)
+ switchport access vlan 200
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/10
+ description WA-LAN-INETRTR0200 G0
+ switchport access vlan 1000
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/11
+ switchport access vlan 1000
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/12
+ switchport access vlan 1000
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/13
+ switchport access vlan 1000
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/14
+ switchport access vlan 1000
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/15
+ switchport access vlan 1000
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/16
+ switchport access vlan 1000
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/17
+ switchport access vlan 1000
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/18
+ description WA-LAN-ASA0400 Gi0/1
+ switchport access vlan 600
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/19
+ description WK Checkpoint 1 Eth1
+ switchport access vlan 600
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/20
+ description WK Checkpoint 2 Eth1
+ switchport access vlan 600
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/21
+ switchport access vlan 1000
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/22
+ switchport access vlan 1000
+ switchport mode access
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/23
+ description L2-EC WA-LAN-INETSW0200 to WA-LAN-INETSW0100
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 100,200,600,800-802,1000
+ switchport mode trunk
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ channel-group 1 mode active
+!
+interface GigabitEthernet1/0/24
+ description L2-EC WA-LAN-INETSW0200 to WA-LAN-INETSW0100
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 100,200,600,800-802,1000
+ switchport mode trunk
+ switchport nonegotiate
+ logging event trunk-status
+ logging event bundle-status
+ channel-group 1 mode active
+!
+interface GigabitEthernet1/1/1
+ shutdown
+!
+interface GigabitEthernet1/1/2
+ shutdown
+!
+interface GigabitEthernet1/1/3
+ shutdown
+!
+interface GigabitEthernet1/1/4
+ shutdown
+!
+interface AppGigabitEthernet1/0/1
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan1000
+ description Management VLAN
+ ip address 172.16.31.38 255.255.255.248
+ no ip redirects
+ no ip proxy-arp
+!
+ip default-gateway 172.16.31.33
+ip forward-protocol nd
+ip tcp synwait-time 5
+no ip http server
+ip http authentication local
+no ip http secure-server
+ip http client source-interface GigabitEthernet0/0
+ip ftp source-interface Vlan1000
+ip route vrf Mgmt-vrf 0.0.0.0 0.0.0.0 10.2.253.1
+ip ssh time-out 15
+ip ssh authentication-retries 2
+ip ssh source-interface Vlan1000
+ip ssh version 2
+!
+ip access-list standard SNMP_RO_ACL
+ 10 permit 10.1.101.69
+ 20 permit 10.1.101.193
+ip access-list standard VTY_ACL
+ 10 permit any
+!
+!
+ip radius source-interface Vlan1000 
+!
+snmp-server community 95utd453 RO SNMP_RO_ACL
+snmp-server trap-source Vlan1000
+snmp-server source-interface informs Vlan1000
+snmp-server location CityPoint
+snmp-server contact Anziano, Steve
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps flowmon
+snmp-server enable traps entity-perf throughput-notif
+snmp-server enable traps call-home message-send-fail server-fail
+snmp-server enable traps tty
+snmp-server enable traps ospf state-change
+snmp-server enable traps ospf errors
+snmp-server enable traps ospf retransmit
+snmp-server enable traps ospf lsa
+snmp-server enable traps ospf cisco-specific state-change nssa-trans-change
+snmp-server enable traps ospf cisco-specific state-change shamlink interface
+snmp-server enable traps ospf cisco-specific state-change shamlink neighbor
+snmp-server enable traps ospf cisco-specific errors
+snmp-server enable traps ospf cisco-specific retransmit
+snmp-server enable traps ospf cisco-specific lsa
+snmp-server enable traps eigrp
+snmp-server enable traps auth-framework sec-violation
+snmp-server enable traps rep
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps port-security
+snmp-server enable traps license
+snmp-server enable traps smart-license
+snmp-server enable traps cpu threshold
+snmp-server enable traps memory bufferpeak
+snmp-server enable traps stackwise
+snmp-server enable traps udld link-fail-rpt
+snmp-server enable traps udld status-change
+snmp-server enable traps fru-ctrl
+snmp-server enable traps flash insertion removal lowspace
+snmp-server enable traps energywise
+snmp-server enable traps power-ethernet police
+snmp-server enable traps entity
+snmp-server enable traps pw vc
+snmp-server enable traps mvpn
+snmp-server enable traps envmon
+snmp-server enable traps ipsla
+snmp-server enable traps bfd
+snmp-server enable traps ike policy add
+snmp-server enable traps ike policy delete
+snmp-server enable traps ike tunnel start
+snmp-server enable traps ike tunnel stop
+snmp-server enable traps ipsec cryptomap add
+snmp-server enable traps ipsec cryptomap delete
+snmp-server enable traps ipsec cryptomap attach
+snmp-server enable traps ipsec cryptomap detach
+snmp-server enable traps ipsec tunnel start
+snmp-server enable traps ipsec tunnel stop
+snmp-server enable traps ipsec too-many-sas
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps dhcp
+snmp-server enable traps event-manager
+snmp-server enable traps ipmulticast
+snmp-server enable traps msdp
+snmp-server enable traps ospfv3 state-change
+snmp-server enable traps ospfv3 errors
+snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps syslog
+snmp-server enable traps pimstdmib neighbor-loss invalid-register invalid-join-prune rp-mapping-change interface-election
+snmp-server enable traps vlan-membership
+snmp-server enable traps errdisable
+snmp-server enable traps rf
+snmp-server enable traps transceiver all
+snmp-server enable traps bulkstat collection transfer
+snmp-server enable traps mac-notification change move threshold
+snmp-server enable traps vrfmib vrf-up vrf-down vnet-trunk-up vnet-trunk-down
+snmp-server host 10.1.101.193 95utd453 
+tacacs server ISE1-TACACS
+ address ipv4 10.1.101.78
+ key 7 073731411D020E3D4034232F2A79133C2E
+ timeout 15
+ single-connection
+tacacs server ISE2-TACACS
+ address ipv4 10.1.101.79
+ key 7 023E1456580D18191B68213A2B442A130A
+ timeout 15
+ single-connection
+!
+!
+!
+control-plane
+ service-policy input system-cpp-policy
+!
+banner motd ^C
+************************************************************
+************************* WARNING **************************
+* THIS SYSTEM IS FOR THE USE OF AUTHORIZED PERSONNEL ONLY!  *
+* ACCESS IS RESTRICTED TO AUTHORIZED USERS ONLY!            *
+* UNAUTHORIZED ACCESS IS A VIOLATION OF STATE AND FEDERAL,  *
+* CIVIL AND CRIMINAL LAWS.  VIOLATORS WILL BE PROSECUTED.   *
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *                                                           *
+* ALL ACTIVITY ON THIS COMPUTER SYSTEM IS MONITORED BY      *
+* SYSTEM SECURITY PERSONNEL. BY USING THIS COMPUTER SYSTEM  *
+* YOU CONSENT TO THIS MONITORING. INDIVIDUALS DETERMINED TO *
+* BE USING THIS COMPUTER NETWORK SYSTEM WITHOUT PROPER      *
+* AUTHORIZATION, OR IN EXCESS OF THEIR AUTHORIZATION MAY    *
+* HAVE THEIR ACTIVITY RECORD SUBMITTED TO LEGAL AUTHORITIES *
+* AND LEGAL AND CRIMINAL CHARGES MAY FOLLOW.                * 
+*************************************************************
+*************************************************************
+^C
+!
+line con 0
+ exec-timeout 15 0
+ logging synchronous
+ history size 256
+ transport preferred none
+ transport output telnet ssh
+ stopbits 1
+line vty 0 4
+ access-class VTY_ACL in vrf-also
+ exec-timeout 15 0
+ logging synchronous
+ width 0
+ history size 256
+ transport preferred none
+ transport input ssh
+ transport output telnet ssh
+line vty 5 15
+ access-class VTY_ACL in vrf-also
+ exec-timeout 15 0
+ logging synchronous
+ width 0
+ history size 256
+ transport preferred none
+ transport input ssh
+ transport output telnet ssh
+!
+ntp source Vlan1000
+ntp server 172.16.31.1
+!
+!
+!
+!
+!
+!
+end

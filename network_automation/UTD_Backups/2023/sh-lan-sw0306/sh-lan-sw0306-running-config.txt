@@ -1,0 +1,413 @@
+Building configuration...
+
+Current configuration : 10381 bytes
+!
+! Last configuration change at 22:56:47 CST Wed Oct 18 2023 by a-rezeh
+! NVRAM config last updated at 22:56:49 CST Wed Oct 18 2023 by a-rezeh
+!
+version 15.2
+no service pad
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec show-timezone
+service timestamps log datetime msec show-timezone
+service password-encryption
+service sequence-numbers
+service counters max age 10
+!
+hostname sh-lan-sw0306
+!
+boot-start-marker
+boot-end-marker
+!
+logging buffered 131080 informational
+no logging console
+enable secret 5 $1$GFZM$GSNV7tnKpj1cZiFNISPpu.
+enable password 7 03400A5F454C024358490A0014000E18
+!
+username Support privilege 15 secret 5 $1$8ckD$GOk52n4cJEOgwa5D6zKfG0
+aaa new-model
+!
+!
+aaa group server tacacs+ ISE-TACACS
+ server name ISE1-TACACS
+ server name ISE2-TACACS
+!
+aaa authentication fail-message ^CC
+
+******************** W A R N I N G *********************
+
+                 AUTHORIZED ACCESS ONLY
+
+  UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED.
+  You must have explicit permission to access this
+  device. All activities performed on this device
+  are logged and violations of this policy result
+  in disciplinary action.
+
+******************** W A R N I N G *********************
+^C
+aaa authentication login default group ISE-TACACS local-case
+aaa authorization console
+aaa authorization config-commands
+aaa authorization exec default group ISE-TACACS local if-authenticated 
+aaa authorization commands 15 default group ISE-TACACS local if-authenticated 
+aaa accounting exec default start-stop group ISE-TACACS
+aaa accounting commands 1 default start-stop group ISE-TACACS
+aaa accounting commands 15 default start-stop group ISE-TACACS
+aaa accounting connection default start-stop group ISE-TACACS
+!
+!
+!
+!
+!
+!
+aaa session-id common
+clock timezone CST 8 0
+switch 1 provision ws-c3750x-24
+system mtu routing 1500
+no ip source-route
+no ip gratuitous-arps
+ip icmp rate-limit unreachable 800
+!
+!
+no ip domain-lookup
+ip domain-name uptodate.com
+ip device tracking
+login block-for 30 attempts 5 within 30
+login on-failure log
+login on-success log
+vtp domain UPTODATE
+vtp mode transparent
+udld aggressive
+
+!
+!
+crypto pki trustpoint TP-self-signed-4139006848
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-4139006848
+ revocation-check none
+ rsakeypair TP-self-signed-4139006848
+!
+!
+crypto pki certificate chain TP-self-signed-4139006848
+ certificate self-signed 01
+  30820252 308201BB A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 34313339 30303638 3438301E 170D3933 30333031 30303031 
+  31375A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D34 31333930 
+  30363834 3830819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100C493 15110545 D4ED4E28 915F58EC 24B3D3AF 5AD3011B E8B359B3 C016ECCC 
+  2F00EA47 09C79522 04987CAD F7E40DB0 23DC3878 2E72B088 4D829EBB BFA8BA7E 
+  A5CCED61 4FC5A038 BB9B18B0 71D8C5B7 0FBCD6B7 7540AE10 63534257 08537922 
+  F3D08DB7 822898CE F5899BE0 D423B729 03F90E42 EA04EF05 6FCC0731 79AD4DF5 
+  BEA30203 010001A3 7A307830 0F060355 1D130101 FF040530 030101FF 30250603 
+  551D1104 1E301C82 1A73682D 6C616E2D 73773033 30362E75 70746F64 6174652E 
+  636F6D30 1F060355 1D230418 30168014 073C1077 F00F0A52 B54C8DDE 48A59444 
+  22EDAA12 301D0603 551D0E04 16041407 3C1077F0 0F0A52B5 4C8DDE48 A5944422 
+  EDAA1230 0D06092A 864886F7 0D010104 05000381 8100B3CB 01BC6CC9 FB8A552F 
+  3A8E2D78 5DB15698 20AB17F4 D02BD2E5 C03C832F 466BE8AC 46D60992 69CB1F8E 
+  FD6BDA3C B54D5C44 D18EBDD7 0FEE34D0 A5383BEC C9FD0D23 D91E4459 6B5AC247 
+  4F0C95C5 229511DE 37531919 0F0D300D 19D056B3 F9CD3A4B A277653D 58276CD0 
+  E36CDADA 7DB7A96F 654184EA DC4C452B E131917B 0253
+  	quit
+archive
+ log config
+  logging enable
+  notify syslog contenttype plaintext
+  hidekeys
+!
+!
+!
+!
+spanning-tree mode rapid-pvst
+spanning-tree loopguard default
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+spanning-tree pathcost method long
+spanning-tree vlan 1-4094 priority 12288
+!
+!
+!
+!
+!
+port-channel load-balance src-dst-ip
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+vlan 999
+ name NATIVE-VLAN
+!
+vlan 3556,3558,3560 
+!
+ip tcp synwait-time 5
+ip ssh time-out 60
+ip ssh authentication-retries 2
+ip ssh version 2
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/1
+ description sh-lan-asa0606 Gi0/1
+ switchport access vlan 3558
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/2
+ description sh-lan-asa0706 Gi0/1
+ switchport access vlan 3558
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/3
+ description AVPN AT&T-USWOKLSHA0002R - G0/1
+ switchport access vlan 3558
+ switchport mode access
+ speed 100
+ duplex full
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/4
+ description couchdb0106p idrac
+ switchport access vlan 3556
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/5
+ description couchdb0206p
+ switchport access vlan 3556
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/6
+ description couchdb0206p idrac
+ switchport access vlan 3556
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/7
+ description couchdb0306p
+ switchport access vlan 3556
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/8
+ description couchdb0306p idrac
+ switchport access vlan 3556
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/9
+ description couchdb0106p
+ switchport access vlan 3556
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/10
+ switchport access vlan 3556
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/11
+ description Trunk (Cross Connect) to pr-lan-sw0706-port 1/0/3
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 3556,3558,3560
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface GigabitEthernet1/0/12
+ description Trunk (Cross Connect) to pr-lan-sw0606-port3
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 3556,3558,3560
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface GigabitEthernet1/0/13
+ description ecdb0706p-new - Gb1
+ switchport access vlan 3556
+ switchport mode access
+ speed 1000
+ duplex full
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/14
+ description ecdb0806p-new -Gb1
+ switchport access vlan 3556
+ switchport mode access
+ speed 1000
+ duplex full
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/15
+ description ecdb0706p-new - iDrac
+ switchport access vlan 3556
+ switchport mode access
+ speed 1000
+ duplex full
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/16
+ description ecdb0806p-new - iDrac
+ switchport access vlan 3556
+ switchport mode access
+ speed 1000
+ duplex full
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/17
+ switchport access vlan 3556
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/18
+ switchport access vlan 3556
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/19
+ switchport access vlan 3556
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/20
+ switchport access vlan 3556
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/21
+ switchport access vlan 3556
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/22
+ switchport access vlan 3556
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/23
+ description eu-lan-asa0605 Gi0/2
+ switchport access vlan 3556
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/24
+ description eu-lan-asa0705 Gi0/2
+ switchport access vlan 3556
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/1/1
+!
+interface GigabitEthernet1/1/2
+!
+interface GigabitEthernet1/1/3
+!
+interface GigabitEthernet1/1/4
+!
+interface TenGigabitEthernet1/1/1
+!
+interface TenGigabitEthernet1/1/2
+!
+interface Vlan1
+ no ip address
+ no ip redirects
+ no ip proxy-arp
+ shutdown
+!
+interface Vlan3556
+ ip address 10.35.56.254 255.255.255.0
+ no ip redirects
+ no ip proxy-arp
+!
+ip default-gateway 10.35.56.1
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+ip access-list standard RO_SNMP_ACL
+ remark NMS IP
+ permit 10.1.101.193
+ deny   any log
+ip access-list standard RW_SNMP_ACL
+ remark NMS IP
+ permit 10.1.101.193
+ deny   any log
+ip access-list standard VTY_ACL
+ remark Management subnet
+ permit 10.0.0.0 log
+ permit any log
+ deny   any log
+!
+!
+!
+snmp-server community 95utd453ro RO RO_SNMP_ACL
+snmp-server community 95utd453 RW RW_SNMP_ACL
+snmp-server location Shanghai, China IDC 
+snmp-server contact Information Systems
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps tty
+snmp-server enable traps cluster
+snmp-server enable traps config
+snmp-server enable traps fru-ctrl
+snmp-server enable traps entity
+snmp-server enable traps cpu threshold
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps flash insertion removal
+snmp-server enable traps port-security
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps mac-notification change move threshold
+snmp-server enable traps vlan-membership
+tacacs server ISE1-TACACS
+ address ipv4 10.1.101.78
+ key 7 10761914561C05335B2202080A7B0B2D24
+ single-connection
+tacacs server ISE2-TACACS
+ address ipv4 10.1.101.79
+ key 7 023E1456580D18191B68213A2B442A130A
+ single-connection
+!
+!
+!
+!
+line con 0
+ exec-timeout 30 0
+ logging synchronous
+line vty 0 4
+ access-class VTY_ACL in
+ exec-timeout 30 0
+ logging synchronous
+ transport input telnet ssh
+ transport output telnet ssh
+line vty 5 15
+ access-class VTY_ACL in
+ exec-timeout 30 0
+ logging synchronous
+ transport input telnet ssh
+ transport output telnet ssh
+!
+ntp server 18.26.4.105 minpoll 10
+ntp server 192.5.41.209
+ntp server 129.6.15.29 prefer
+end

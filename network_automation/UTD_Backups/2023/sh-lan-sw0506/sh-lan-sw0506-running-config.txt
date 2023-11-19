@@ -1,0 +1,471 @@
+Building configuration...
+
+Current configuration : 12266 bytes
+!
+! Last configuration change at 21:05:22 CET Wed Sep 29 2021 by a-amannan
+! NVRAM config last updated at 22:48:24 CET Wed Oct 18 2023 by a-rezeh
+!
+version 15.2
+service nagle
+no service pad
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+service password-encryption
+service sequence-numbers
+!
+hostname sh-lan-sw0506
+!
+boot-start-marker
+boot-end-marker
+!
+logging buffered 131080 informational
+no logging console
+enable secret 5 $1$GQBA$5528g/pj7tzmdXkulKbEw.
+enable password 7 100A584D465431041A44392E273A3621
+!
+username Support privilege 15 secret 5 $1$6XkE$kOKcrsRxh2ijsiQ1t1Le7/
+aaa new-model
+!
+!
+aaa group server tacacs+ ISE-TACACS
+ server name ISE1-TACACS
+ server name ISE2-TACACS
+!
+aaa authentication login default group ISE-TACACS local-case
+aaa authentication enable default enable line
+aaa authorization console
+aaa authorization config-commands
+aaa authorization exec default group ISE-TACACS local if-authenticated 
+aaa authorization commands 15 default group ISE-TACACS local if-authenticated 
+aaa accounting exec default start-stop group ISE-TACACS
+aaa accounting commands 1 default start-stop group ISE-TACACS
+aaa accounting commands 15 default start-stop group ISE-TACACS
+aaa accounting connection default start-stop group ISE-TACACS
+!
+!
+!
+!
+!
+!
+aaa session-id common
+clock timezone CST 8 0
+clock summer-time CET recurring
+switch 1 provision ws-c2960x-24ts-l
+no ip source-route
+no ip gratuitous-arps
+!
+!
+no ip domain-lookup
+ip domain-name uptodate.com
+login block-for 30 attempts 5 within 30
+login on-failure log
+login on-success log
+vtp domain UTD-SH-VTP
+vtp mode transparent
+!
+!
+!
+!
+!
+udld aggressive
+
+!
+!
+!
+archive
+ log config
+  logging enable
+  notify syslog contenttype plaintext
+  hidekeys
+!
+spanning-tree mode rapid-pvst
+spanning-tree loopguard default
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+spanning-tree pathcost method long
+spanning-tree vlan 1-4094 priority 16384
+port-channel load-balance src-dst-ip
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+vlan 999
+ name NATIVE-VLAN
+!
+vlan 3547
+ name OUTSIDE
+!
+vlan 3548
+ name INET-MGMT
+!
+ip tcp synwait-time 5
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+interface Port-channel1
+ description PO to sh-lan-sw0406
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 3547,3548
+ switchport mode trunk
+ switchport nonegotiate
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface FastEthernet0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/1
+ description sh-lan-asa0606-secondary outside
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 3547,3548
+ switchport mode trunk
+ switchport nonegotiate
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast trunk
+!
+interface GigabitEthernet1/0/2
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/3
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/4
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/5
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/6
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/7
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/8
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/9
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/10
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/11
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/12
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/13
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/14
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/15
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/16
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/17
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/18
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/19
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/20
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/21
+ switchport access vlan 999
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/22
+ description AT&T Internet
+ switchport access vlan 3547
+ switchport mode access
+ switchport nonegotiate
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/23
+ description sh-lan-sw0406 G1/0/23
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 3547,3548
+ switchport mode trunk
+ switchport nonegotiate
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ channel-group 1 mode active
+!
+interface GigabitEthernet1/0/24
+ description sh-lan-sw0406 Gi1/0/24
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 3547,3548
+ switchport mode trunk
+ switchport nonegotiate
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ channel-group 1 mode active
+!
+interface GigabitEthernet1/0/25
+!
+interface GigabitEthernet1/0/26
+!
+interface GigabitEthernet1/0/27
+!
+interface GigabitEthernet1/0/28
+!
+interface Vlan1
+ no ip address
+ no ip redirects
+ no ip proxy-arp
+ shutdown
+!
+interface Vlan3548
+ description INET MGMT VLAN
+ ip address 10.35.48.20 255.255.255.0
+ no ip redirects
+ no ip proxy-arp
+!
+ip default-gateway 10.35.48.1
+no ip http server
+no ip http secure-server
+!
+ip ssh time-out 60
+ip ssh authentication-retries 2
+ip ssh version 2
+!
+ip access-list standard RO_SNMP_ACL
+ remark NMS IP
+ permit 10.1.101.193
+ deny   any log
+ip access-list standard RW_SNMP_ACL
+ remark NMS IP
+ permit 10.1.101.193
+ deny   any log
+ip access-list standard VTY_ACL
+ remark Management subnet
+ permit 10.0.0.0 log
+ deny   any log
+!
+!
+snmp-server community 95utd453ro RO RO_SNMP_ACL
+snmp-server community 95utd453 RW RW_SNMP_ACL
+snmp-server location Shanghai, China IDC
+snmp-server contact Information Systems
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps transceiver all
+snmp-server enable traps call-home message-send-fail server-fail
+snmp-server enable traps tty
+snmp-server enable traps license
+snmp-server enable traps auth-framework sec-violation
+snmp-server enable traps cluster
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps trustsec-sxp conn-srcaddr-err msg-parse-err conn-config-err binding-err conn-up conn-down binding-expn-fail oper-nodeid-change binding-conflict
+snmp-server enable traps energywise
+snmp-server enable traps fru-ctrl
+snmp-server enable traps entity
+snmp-server enable traps event-manager
+snmp-server enable traps ike policy add
+snmp-server enable traps ike policy delete
+snmp-server enable traps ike tunnel start
+snmp-server enable traps ike tunnel stop
+snmp-server enable traps ipsec cryptomap add
+snmp-server enable traps ipsec cryptomap delete
+snmp-server enable traps ipsec cryptomap attach
+snmp-server enable traps ipsec cryptomap detach
+snmp-server enable traps ipsec tunnel start
+snmp-server enable traps ipsec tunnel stop
+snmp-server enable traps ipsec too-many-sas
+snmp-server enable traps power-ethernet police
+snmp-server enable traps cpu threshold
+snmp-server enable traps vstack
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps syslog
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps flash insertion removal
+snmp-server enable traps port-security
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps stackwise
+snmp-server enable traps bulkstat collection transfer
+snmp-server enable traps errdisable
+snmp-server enable traps mac-notification change move threshold
+snmp-server enable traps vlan-membership
+snmp-server host 10.1.101.193 95udt453 
+tacacs server ISE1-TACACS
+ address ipv4 10.1.101.78
+ key 7 012B160908001137766A662A37562F0A0D
+ single-connection
+tacacs server ISE2-TACACS
+ address ipv4 10.1.101.79
+ key 7 023E1456580D18191B68213A2B442A130A
+ single-connection
+!
+!
+no vstack
+banner motd ^C
+************************************************************
+************************* WARNING **************************
+* THIS SYSTEM IS FOR THE USE OF AUTHORIZED PERSONNEL ONLY!  *
+* ACCESS IS RESTRICTED TO AUTHORIZED USERS ONLY!            *
+* UNAUTHORIZED ACCESS IS A VIOLATION OF STATE AND FEDERAL,  *
+* CIVIL AND CRIMINAL LAWS.  VIOLATORS WILL BE PROSECUTED.   *
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *
+* ALL ACTIVITY ON THIS COMPUTER SYSTEM IS MONITORED BY      *
+* SYSTEM SECURITY PERSONNEL. BY USING THIS COMPUTER SYSTEM  *
+* YOU CONSENT TO THIS MONITORING. INDIVIDUALS DETERMINED TO *
+* BE USING THIS COMPUTER NETWORK SYSTEM WITHOUT PROPER      *
+* AUTHORIZATION, OR IN EXCESS OF THEIR AUTHORIZATION MAY    *
+* HAVE THEIR ACTIVITY RECORD SUBMITTED TO LEGAL AUTHORITIES *
+* AND LEGAL AND CRIMINAL CHARGES MAY FOLLOW.                *
+*************************************************************
+*************************************************************
+^C
+!
+line con 0
+ exec-timeout 15 0
+ logging synchronous
+ history size 256
+ transport preferred none
+ transport output telnet ssh
+ stopbits 1
+line vty 0 4
+ exec-timeout 15 0
+ logging synchronous
+ length 0
+ history size 256
+ transport preferred none
+ transport input telnet ssh
+ transport output telnet ssh
+line vty 5 15
+ exec-timeout 15 0
+ logging synchronous
+ history size 256
+ transport preferred none
+ transport input telnet ssh
+ transport output telnet ssh
+!
+ntp server 10.1.254.1
+end
