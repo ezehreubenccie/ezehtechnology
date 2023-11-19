@@ -19,6 +19,7 @@ service-module sfr keepalive-timeout 4
 service-module sfr keepalive-counter 6
 passwd ***** encrypted
 names
+name 2.2.2.2 test_machine description This is a test
 no mac-address auto
 ip local pool ssl-vpn-pool1 10.20.200.11-10.20.200.244 mask 255.255.255.0
 
@@ -2654,5 +2655,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname context 
 no call-home reporting anonymous
-Cryptochecksum:aedaedfd92109241ee8c39635b22396d
+Cryptochecksum:ec09bc61b50f86080020d05eed25460d
 : end
