@@ -99,6 +99,7 @@ name 10.204.34.122 vthptcsh115 description WK - vthptcsh115 - ARMS
 name 10.204.196.105 wk_smtp_1 description wk_smtp_1
 name 10.204.196.112 wk_smtp_2 description wk_smtp_2
 name 10.1.110.101 utd-qatcase01p description utd-qatcase01p
+name 3.3.1.1 test_machine description This is a test
 no mac-address auto
 
 !
@@ -6149,5 +6150,5 @@ call-home
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
 crashinfo save disable
-Cryptochecksum:4f33e3342aa1bbcc44b67bacf59feca5
+Cryptochecksum:afa492ad007230c6a9b15f5991e9a8da
 : end
