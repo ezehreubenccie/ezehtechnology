@@ -1,0 +1,11 @@
+#!/bin/bash
+
+az vm create \
+  --resource-group ExpensiveResourceGroup \
+  --location southcentralus \
+  --name SampleVM \
+  --image Ubuntu2204 \
+  --admin-username testuser \
+  --generate-ssh-keys \
+  --verbose \
+  --no-wait
