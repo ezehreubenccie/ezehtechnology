@@ -4274,8 +4274,6 @@ access-list 115 remark SA 11.20.20
 access-list 115 extended permit ip object-group Prodmon 10.15.0.0 255.255.0.0 
 access-list 115 remark IS-6816
 access-list 115 extended permit ip object-group DM_INLINE_NETWORK_68 10.15.0.0 255.255.0.0 
-access-list 115 remark Weblog replacement Y.A 2023
-access-list 115 extended permit ip object obj-10.1.110.210 10.15.0.0 255.255.0.0 
 access-list dmz02 extended permit tcp any object-group NETIQ-SERVERS_ref object-group NETIQ 
 access-list dmz02 extended permit tcp any object 10.1.120.2 eq smtp inactive 
 access-list dmz02 extended permit tcp any object IronPort02_OUTBOUND eq smtp inactive 
@@ -5101,7 +5099,7 @@ nat (inside,outside) source static edex01q edex01q destination static obj-10.15.
 nat (inside,outside) source static obj-10.1.112.13 obj-10.1.112.13 destination static obj-10.15.0.0 obj-10.15.0.0 no-proxy-arp route-lookup description IS-6816
 nat (inside,outside) source static obj-10.1.112.12 obj-10.1.112.12 destination static obj-10.15.0.0 obj-10.15.0.0 no-proxy-arp route-lookup description IS-6816
 nat (inside,outside) source static obj-10.1.112.23 obj-10.1.112.23 destination static obj-10.15.0.0 obj-10.15.0.0 no-proxy-arp route-lookup description IS-6816
-nat (inside,outside) source static obj-10.1.110.210 obj-10.1.110.210 destination static obj-10.15.0.0 obj-10.15.0.0 no-proxy-arp route-lookup
+nat (inside,outside) source static obj-10.1.0.0 obj-10.1.0.0 destination static obj-10.15.0.0 obj-10.15.0.0 no-proxy-arp route-lookup
 nat (inside,outside) source static obj-10.1.30.0 obj-10.1.30.0 destination static obj-10.20.0.0 obj-10.20.0.0 no-proxy-arp route-lookup
 nat (inside,outside) source static obj-10.1.20.0 obj-10.1.20.0 destination static obj-10.20.0.0 obj-10.20.0.0 no-proxy-arp route-lookup
 nat (inside,outside) source static net_10.170.48.0_20 net_10.170.48.0_20 destination static obj-10.20.0.0 obj-10.20.0.0 no-proxy-arp route-lookup
@@ -6151,5 +6149,5 @@ call-home
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
 crashinfo save disable
-Cryptochecksum:437919b25104e44c594b173f3b9d7bfd
+Cryptochecksum:9fd545e35b442f87d4ffe6e5d0c5ebd3
 : end
