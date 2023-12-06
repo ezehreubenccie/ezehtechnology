@@ -1083,6 +1083,12 @@ object network ecweb0105p-bk
 object network obj-10.1.110.210
  host 10.1.110.210
  description weblogs01p
+object network OBJ-10.15.54.21
+ host 10.15.54.21
+ description CECR-4898
+object network OBJ-10.15.54.0_24
+ subnet 10.15.54.0 255.255.255.0
+ description CECR-4898
 object-group service VPN-concentrator tcp-udp
  description VPN ports for Concentrator
  port-object range 50 50
@@ -4274,6 +4280,8 @@ access-list 115 remark SA 11.20.20
 access-list 115 extended permit ip object-group Prodmon 10.15.0.0 255.255.0.0 
 access-list 115 remark IS-6816
 access-list 115 extended permit ip object-group DM_INLINE_NETWORK_68 10.15.0.0 255.255.0.0 
+access-list 115 remark CECR-4898 12_5_2023 R.E
+access-list 115 extended permit ip object obj-10.1.110.210 object OBJ-10.15.54.0_24 
 access-list dmz02 extended permit tcp any object-group NETIQ-SERVERS_ref object-group NETIQ 
 access-list dmz02 extended permit tcp any object 10.1.120.2 eq smtp inactive 
 access-list dmz02 extended permit tcp any object IronPort02_OUTBOUND eq smtp inactive 
@@ -5099,7 +5107,7 @@ nat (inside,outside) source static edex01q edex01q destination static obj-10.15.
 nat (inside,outside) source static obj-10.1.112.13 obj-10.1.112.13 destination static obj-10.15.0.0 obj-10.15.0.0 no-proxy-arp route-lookup description IS-6816
 nat (inside,outside) source static obj-10.1.112.12 obj-10.1.112.12 destination static obj-10.15.0.0 obj-10.15.0.0 no-proxy-arp route-lookup description IS-6816
 nat (inside,outside) source static obj-10.1.112.23 obj-10.1.112.23 destination static obj-10.15.0.0 obj-10.15.0.0 no-proxy-arp route-lookup description IS-6816
-nat (inside,outside) source static obj-10.1.0.0 obj-10.1.0.0 destination static obj-10.15.0.0 obj-10.15.0.0 no-proxy-arp route-lookup
+nat (inside,outside) source static obj-10.1.110.210 obj-10.1.110.210 destination static obj-10.15.0.0 obj-10.15.0.0 no-proxy-arp route-lookup description CECR-4898 12_5_2023 R.E
 nat (inside,outside) source static obj-10.1.30.0 obj-10.1.30.0 destination static obj-10.20.0.0 obj-10.20.0.0 no-proxy-arp route-lookup
 nat (inside,outside) source static obj-10.1.20.0 obj-10.1.20.0 destination static obj-10.20.0.0 obj-10.20.0.0 no-proxy-arp route-lookup
 nat (inside,outside) source static net_10.170.48.0_20 net_10.170.48.0_20 destination static obj-10.20.0.0 obj-10.20.0.0 no-proxy-arp route-lookup
@@ -6149,5 +6157,5 @@ call-home
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
 crashinfo save disable
-Cryptochecksum:722f5857c9bfd5affd7fb193ca71a997
+Cryptochecksum:e08bb61315f091d3420e33898ccbf24f
 : end
