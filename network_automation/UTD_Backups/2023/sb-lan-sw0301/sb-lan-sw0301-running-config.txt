@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 17043 bytes
+Current configuration : 17032 bytes
 !
-! Last configuration change at 12:54:54 EST Tue Dec 13 2022
+! Last configuration change at 22:31:39 EST Tue Dec 5 2023 by a-rezeh
 !
 version 17.3
 service tcp-keepalives-in
@@ -459,7 +459,6 @@ ip ssh time-out 60
 ip ssh authentication-retries 2
 ip ssh window-size 65536
 ip ssh version 2
-ip scp server enable
 !
 ip access-list standard RO_SNMP_ACL
  10 remark NMS IP

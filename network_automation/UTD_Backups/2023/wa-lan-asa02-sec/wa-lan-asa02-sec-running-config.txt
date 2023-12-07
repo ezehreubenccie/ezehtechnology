@@ -3795,7 +3795,6 @@ object-group network DM_INLINE_NETWORK_55
  network-object object redwood-agent07q
  network-object object redwood-agent10q
  network-object object redwood-agent11q
- network-object object redwood-agent12q
 object-group service DM_INLINE_TCP_24 tcp
  port-object eq www
  port-object eq https
@@ -4087,7 +4086,6 @@ object-group network DM_INLINE_NETWORK_67
  network-object object obj-10.1.112.23
 object-group network DM_INLINE_NETWORK_68
  network-object object obj-10.1.112.12
- network-object object obj-10.1.112.13
  network-object object obj-10.1.112.23
 object-group service Azure_50000_8080_443 tcp
  port-object eq 50000
@@ -4258,8 +4256,6 @@ access-list 115 extended permit ip host 10.1.111.167 10.15.0.0 255.255.0.0
 access-list 115 extended permit ip object cdb01pch 10.15.0.0 255.255.0.0 
 access-list 115 remark SA
 access-list 115 extended permit ip object 10.1.110.101 10.15.0.0 255.255.0.0 
-access-list 115 extended deny ip 10.2.81.0 255.255.255.0 10.15.0.0 255.255.0.0 
-access-list 115 extended deny ip 10.2.80.0 255.255.255.0 10.15.0.0 255.255.0.0 
 access-list 115 extended permit ip 10.2.0.0 255.255.0.0 10.15.0.0 255.255.0.0 
 access-list 115 extended permit ip 10.71.0.0 255.255.192.0 10.15.0.0 255.255.0.0 
 access-list 115 remark SA 1.24.17
@@ -4268,14 +4264,10 @@ access-list 115 remark OpenShift access to - Web, Application, DB from Waltham
 access-list 115 extended permit ip 10.1.113.192 255.255.255.192 10.15.0.0 255.255.0.0 
 access-list 115 remark redwood-agent08q
 access-list 115 extended permit ip object redwood-agent08q 10.15.0.0 255.255.0.0 
-access-list 115 remark YA 5.16.18
-access-list 115 extended permit ip object redwood-agent09q 10.15.0.0 255.255.0.0 
 access-list 115 extended permit ip object-group DM_INLINE_NETWORK_55 10.15.0.0 255.255.0.0 
 access-list 115 extended permit ip host 10.1.110.199 10.15.0.0 255.255.0.0 
 access-list 115 remark Test automation SA 7.14.20
 access-list 115 extended permit ip object edex01q 10.15.0.0 255.255.0.0 
-access-list 115 remark YA 07.20.23
-access-list 115 extended permit ip object 10.1.101.114 10.15.0.0 255.255.0.0 
 access-list 115 remark SA 11.20.20
 access-list 115 extended permit ip object-group Prodmon 10.15.0.0 255.255.0.0 
 access-list 115 remark IS-6816
@@ -5107,7 +5099,7 @@ nat (inside,outside) source static edex01q edex01q destination static obj-10.15.
 nat (inside,outside) source static obj-10.1.112.13 obj-10.1.112.13 destination static obj-10.15.0.0 obj-10.15.0.0 no-proxy-arp route-lookup description IS-6816
 nat (inside,outside) source static obj-10.1.112.12 obj-10.1.112.12 destination static obj-10.15.0.0 obj-10.15.0.0 no-proxy-arp route-lookup description IS-6816
 nat (inside,outside) source static obj-10.1.112.23 obj-10.1.112.23 destination static obj-10.15.0.0 obj-10.15.0.0 no-proxy-arp route-lookup description IS-6816
-nat (inside,outside) source static obj-10.1.110.210 obj-10.1.110.210 destination static obj-10.15.0.0 obj-10.15.0.0 no-proxy-arp route-lookup description CECR-4898 12_5_2023 R.E
+nat (inside,outside) source static obj-10.1.110.210 obj-10.1.110.210 destination static obj-10.15.0.0 obj-10.15.0.0 no-proxy-arp route-lookup inactive description CECR-4898 12_5_2023 R.E
 nat (inside,outside) source static obj-10.1.30.0 obj-10.1.30.0 destination static obj-10.20.0.0 obj-10.20.0.0 no-proxy-arp route-lookup
 nat (inside,outside) source static obj-10.1.20.0 obj-10.1.20.0 destination static obj-10.20.0.0 obj-10.20.0.0 no-proxy-arp route-lookup
 nat (inside,outside) source static net_10.170.48.0_20 net_10.170.48.0_20 destination static obj-10.20.0.0 obj-10.20.0.0 no-proxy-arp route-lookup
@@ -6157,5 +6149,5 @@ call-home
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
 crashinfo save disable
-Cryptochecksum:e08bb61315f091d3420e33898ccbf24f
+Cryptochecksum:8fff35291e82214ab3979c7b82377e36
 : end
