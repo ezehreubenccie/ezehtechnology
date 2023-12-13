@@ -1089,6 +1089,9 @@ object network OBJ-10.15.54.21
 object network OBJ-10.15.54.0_24
  subnet 10.15.54.0 255.255.255.0
  description CECR-4898
+object network jenkins-pdot.utdlab.com
+ host 10.2.101.211
+ description Jenkins_Pdot
 object-group service VPN-concentrator tcp-udp
  description VPN ports for Concentrator
  port-object range 50 50
@@ -6148,5 +6151,5 @@ call-home
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
 crashinfo save disable
-Cryptochecksum:14caeaa1003f38d38e8e59c2bbe0cbe4
+Cryptochecksum:95e910c49d89ec72f2788d972b097c44
 : end
