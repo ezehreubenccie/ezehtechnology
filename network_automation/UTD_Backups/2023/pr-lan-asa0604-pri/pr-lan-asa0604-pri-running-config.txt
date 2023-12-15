@@ -760,6 +760,9 @@ object network ATT_Router_1_inside_IP
  description Ip ATT public IP will nat to inbound
 object network ATT_Router_2_inside_IP
  host 10.198.228.151
+object network obj-10.1.110.210
+ host 10.1.110.210
+ description CECR-4976 R.E 12_14_2023
 object-group network DM_INLINE_NETWORK_32
  network-object host 10.20.56.83
  network-object host 10.20.56.84
@@ -5060,6 +5063,7 @@ nat (DMZ2554,any) source static obj-10.25.54.0 obj-10.25.54.0 destination static
 nat (DMZ2554,any) source static obj-10.25.54.0 obj-10.25.54.0 destination static Waltham_112 Waltham_112 no-proxy-arp route-lookup
 nat (DMZ2554,any) source static obj-10.25.54.0 obj-10.25.54.0 destination static Waltham_111 Waltham_111 no-proxy-arp route-lookup
 nat (DMZ2554,any) source static obj-10.25.54.0 obj-10.25.54.0 destination static obj-10.1.110.199 obj-10.1.110.199 no-proxy-arp route-lookup
+nat (DMZ2554,any) source static obj-10.25.54.0 obj-10.25.54.0 destination static obj-10.1.110.210 obj-10.1.110.210 no-proxy-arp route-lookup description CECR-4976 Reuben Ezeh 12_14_2023
 nat (DMZ2554,any) source static obj-10.25.54.0 obj-10.25.54.0 destination static obj-10.20.200.0 obj-10.20.200.0 no-proxy-arp route-lookup
 nat (DMZ2554,any) source static obj-10.25.54.0 obj-10.25.54.0 destination static DM_INLINE_NETWORK_54 DM_INLINE_NETWORK_54 no-proxy-arp route-lookup
 nat (DMZ2554,any) source static obj-10.25.54.0 obj-10.25.54.0 destination static obj-10.20.56.0 obj-10.20.56.0 no-proxy-arp route-lookup
@@ -5114,6 +5118,7 @@ router ospf 99
  log-adj-changes
 !
 route outside 0.0.0.0 0.0.0.0 203.163.125.6 1
+route outside 10.1.110.210 255.255.255.255 203.163.125.6 1
 route Inside2558 10.1.131.0 255.255.255.0 10.25.58.3 1
 route outside 10.15.50.0 255.255.255.0 203.163.125.6 1
 route outside 10.15.54.0 255.255.255.0 203.163.125.6 1
@@ -5436,5 +5441,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname priority state 
 no call-home reporting anonymous
-Cryptochecksum:4616045e40a9359fc2fa8088225cc708
+Cryptochecksum:85af0fd99b90a7782254b785fc466730
 : end
