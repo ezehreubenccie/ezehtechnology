@@ -1092,6 +1092,9 @@ object network OBJ-10.15.54.0_24
 object network jenkins-pdot.utdlab.com
  host 10.2.101.211
  description Jenkins_Pdot
+object network redwood-agent03q.utd.com
+ host 10.1.111.94
+ description Y.A. 01-9.-24 automation server  EMMI Elastic at UTD
 object-group service VPN-concentrator tcp-udp
  description VPN ports for Concentrator
  port-object range 50 50
@@ -1539,6 +1542,7 @@ object-group network CHI_Redwood_For_CHI_B2B
  network-object object hst-chi-dev-redwood17
  network-object object hst-chi-dev-redwood18
  network-object object hst-chi-dev-redwood19
+ network-object host 10.82.39.16
 object-group network WA_Floors_For_CHI_B2B
  description WA_Floors_For_CHI_B2B
  network-object object net-wal-10.2.20.0
@@ -1607,6 +1611,7 @@ object-group network WA_RedwoodHQ_Servers
  network-object host 10.1.111.143
  network-object host 10.1.111.93
  network-object host 10.1.101.119
+ network-object object redwood-agent03q.utd.com
 object-group network DM_INLINE_NETWORK_32
  network-object host 10.12.29.14
  network-object host 10.12.29.15
@@ -4093,6 +4098,15 @@ object-group service Azure_50000_8080_443 tcp
  port-object eq 50000
  port-object eq 8080
  port-object eq https
+object-group network DM_INLINE_NETWORK_69
+ network-object host 10.1.111.93
+ network-object object redwood-agent03q.utd.com
+object-group network DM_INLINE_NETWORK_70
+ network-object host 10.1.111.93
+ network-object object redwood-agent03q.utd.com
+object-group service DM_INLINE_TCP_26 tcp
+ port-object eq 5601
+ port-object eq 9200
 access-list inside_outbound_nat0_acl extended permit ip 10.1.30.0 255.255.255.0 10.15.0.0 255.255.0.0 
 access-list inside_outbound_nat0_acl extended permit ip 10.1.31.0 255.255.255.0 10.15.0.0 255.255.0.0 
 access-list inside_outbound_nat0_acl extended permit ip 10.1.101.0 255.255.255.0 10.15.0.0 255.255.0.0 
@@ -4601,7 +4615,7 @@ access-list FILTER_WA_CHI_B2B extended permit udp 10.82.9.0 255.255.255.0 object
 access-list FILTER_WA_CHI_B2B remark IN - hdreq-12522
 access-list FILTER_WA_CHI_B2B extended permit tcp 10.82.9.0 255.255.255.0 object-group WA_RedwoodHQ_Servers eq 5601 
 access-list FILTER_WA_CHI_B2B remark IN
-access-list FILTER_WA_CHI_B2B extended permit tcp object-group CHI_Redwood_For_CHI_B2B host 10.1.111.93 eq 9200 
+access-list FILTER_WA_CHI_B2B extended permit tcp object-group CHI_Redwood_For_CHI_B2B object-group DM_INLINE_NETWORK_69 eq 9200 
 access-list FILTER_WA_CHI_B2B remark IN - DNS Conditional Forwarders
 access-list FILTER_WA_CHI_B2B extended permit object-group TCPUDP object-group CHI_emmisolutions_com object-group WA_Infra_For_CHI_B2B eq domain 
 access-list FILTER_WA_CHI_B2B remark IN - DNS Conditional Forwarders
@@ -4622,8 +4636,8 @@ access-list FILTER_WA_CHI_B2B remark IN - OpenSSH to Jenkins, vCenter and groot0
 access-list FILTER_WA_CHI_B2B extended permit tcp 10.82.10.0 255.255.255.0 object-group DM_INLINE_NETWORK_33 object-group DM_INLINE_TCP_3 
 access-list FILTER_WA_CHI_B2B remark IN - 8081 to nexus01p.utd.com
 access-list FILTER_WA_CHI_B2B extended permit tcp host 192.168.100.164 host 10.1.111.126 eq 8081 
-access-list FILTER_WA_CHI_B2B remark IN - 5601 Chicago Developers access to Waltham Redwood HQ Agent's
-access-list FILTER_WA_CHI_B2B extended permit tcp 10.82.10.0 255.255.255.0 host 10.1.111.93 eq 5601 
+access-list FILTER_WA_CHI_B2B remark IN - 5601,9200 Chicago Developers access to Waltham Redwood HQ Agent's
+access-list FILTER_WA_CHI_B2B extended permit tcp 10.82.10.0 255.255.255.0 object-group DM_INLINE_NETWORK_70 object-group DM_INLINE_TCP_26 
 access-list FILTER_WA_CHI_B2B remark IN - 5601 Chicago Editorial tool hdreq-10217
 access-list FILTER_WA_CHI_B2B extended permit tcp 10.82.12.0 255.255.255.0 host 10.1.101.216 object-group DM_INLINE_TCP_4 
 access-list FILTER_WA_CHI_B2B remark IN - Chicago CS team to editorialapp 80 SA 4.16.19
@@ -6151,5 +6165,5 @@ call-home
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
 crashinfo save disable
-Cryptochecksum:fa32a0c3fd1aa813749ceed3cab3acbe
+Cryptochecksum:a1e5df903f119662081c41b85425dcab
 : end
