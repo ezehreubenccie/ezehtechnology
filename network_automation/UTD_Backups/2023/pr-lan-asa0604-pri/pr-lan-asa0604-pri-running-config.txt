@@ -763,6 +763,18 @@ object network ATT_Router_2_inside_IP
 object network obj-10.1.110.210
  host 10.1.110.210
  description CECR-4976 R.E 12_14_2023
+object network 10.25.50.170
+ host 10.25.50.170
+ description CECR-5057 Reuben Ezeh
+object network 10.25.50.190
+ host 10.25.50.190
+ description CECR-5057 Reuben Ezeh
+object network obj-10.25.50.170
+ host 10.25.50.170
+ description CECR-5057 Reuben Ezeh
+object network obj-10.25.50.190
+ host 10.25.50.190
+ description CECR-5057 Reuben Ezeh
 object-group network DM_INLINE_NETWORK_32
  network-object host 10.20.56.83
  network-object host 10.20.56.84
@@ -955,6 +967,8 @@ object-group network WebServers-INET_real
  network-object 10.25.50.22 255.255.255.255
  network-object 10.25.50.230 255.255.255.255
  network-object 10.25.50.101 255.255.255.255
+ network-object host 10.25.50.170
+ network-object host 10.25.50.190
 object-group service DellLVMSwitch tcp
  description Dell KVM Switch 2161DS-2
  port-object range 8192 8192
@@ -1385,6 +1399,8 @@ object-group network WebServers-INET_1
  network-object host 10.25.50.200
  network-object host 10.25.50.230
  network-object host 10.25.50.101
+ network-object object 10.25.50.170
+ network-object object 10.25.50.190
 object-group network BigIPNATServers-INET_1
  network-object host eclb0104p
  network-object host eclb01204p
@@ -4996,7 +5012,9 @@ nat (DMZ2550,outside) source static eclb obj-203.163.124.33
 nat (DMZ2550,outside) source static eclb0104p obj-203.163.124.34
 nat (DMZ2550,outside) source static eclb01204p obj-203.163.124.35
 nat (DMZ2550,outside) source static obj-10.25.50.200 obj-203.163.124.37
+nat (DMZ2550,outside) source static obj-10.25.50.170 obj-203.163.124.37 inactive
 nat (DMZ2550,outside) source static obj-10.25.50.230 obj-203.163.124.41
+nat (DMZ2550,outside) source static obj-10.25.50.190 obj-203.163.124.41 inactive
 nat (DMZ2554,outside) source static obj-10.25.54.0 obj-10.25.54.0 destination static DM_INLINE_NETWORK_56 DM_INLINE_NETWORK_56 no-proxy-arp description SA 12.2.19 12.6.19
 nat (DMZ2554,outside) source dynamic obj-10.25.54.0 interface destination static RH-Servers RH-Servers service obj-tcp-eq-443 obj-tcp-eq-443
 nat (DMZ2554,outside) source dynamic obj-10.25.50.0 interface destination static RH-Servers RH-Servers service obj-tcp-eq-80 obj-tcp-eq-80
@@ -5441,5 +5459,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname priority state 
 no call-home reporting anonymous
-Cryptochecksum:85af0fd99b90a7782254b785fc466730
+Cryptochecksum:7ec4a3a4ca1d9d3b5898524e12a1ef42
 : end
