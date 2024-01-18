@@ -3742,7 +3742,7 @@ access-list DMZ1056-in remark Sandbox servers to Waltham DNS
 access-list DMZ1056-in extended permit udp 10.10.56.0 255.255.255.0 host 192.168.0.12 eq domain 
 access-list DMZ1056-in remark TACACS Waltham
 access-list DMZ1056-in extended permit tcp host 10.10.56.254 object-group DM_INLINE_NETWORK_49 eq tacacs 
-access-list DMZ1056-in extended permit object ssh host 10.10.56.254 host 10.1.101.70 
+access-list DMZ1056-in extended permit tcp host 10.10.56.254 host 10.1.101.70 eq ssh 
 access-list DMZ1056-in remark Sandbox servers to Waltham NTP
 access-list DMZ1056-in extended permit udp 10.10.56.0 255.255.255.0 host 10.1.101.100 eq ntp 
 access-list DMZ1056-in remark Sandbox servers to Waltham NTP
@@ -4234,5 +4234,5 @@ policy-map type inspect dns migrated_dns_map_1
 service-policy global_policy global
 prompt hostname priority state 
 no call-home reporting anonymous
-Cryptochecksum:e556a4dc7c46bc518b62392eec44bec2
+Cryptochecksum:73347b76b965c9924cb4516b187a1610
 : end
