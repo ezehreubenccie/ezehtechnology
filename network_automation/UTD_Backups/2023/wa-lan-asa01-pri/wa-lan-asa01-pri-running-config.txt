@@ -3273,7 +3273,7 @@ access-list OUTSIDE extended permit icmp any any traceroute
 access-list OUTSIDE remark Block inbound to Waltham SA 12.24.18
 access-list OUTSIDE extended deny ip object-group BlockOut any 
 access-list OUTSIDE remark DSI Access MP Prod - (Multipub) Firecall Access
-access-list OUTSIDE extended deny tcp object-group OBJGRP_DSI_NETS object multipub eq ssh 
+access-list OUTSIDE extended permit tcp object-group OBJGRP_DSI_NETS object multipub eq ssh 
 access-list OUTSIDE remark DSI MP DEV - (uptdev)  Firecall Access
 access-list OUTSIDE extended permit tcp object-group OBJGRP_DSI_NETS object uptdev eq ssh 
 access-list OUTSIDE remark DSI MP QA_PMT - (upt_qa)  Firecall Access
@@ -3530,5 +3530,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname priority state 
 no call-home reporting anonymous
-Cryptochecksum:5b04a87c2ba8a20ffeeb1f3c31e6fabb
+Cryptochecksum:102a8ca90575f03d115ecbba244f981e
 : end
