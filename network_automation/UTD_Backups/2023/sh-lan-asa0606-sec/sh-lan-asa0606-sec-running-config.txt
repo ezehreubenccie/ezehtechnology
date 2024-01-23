@@ -5113,7 +5113,7 @@ access-list DMZ3556_access_in extended permit tcp object-group Database-Servers 
 access-list DMZ3556_access_in remark Red Hat Servers
 access-list DMZ3556_access_in extended permit tcp object-group Database-Servers object-group RH-Servers object-group DM_INLINE_TCP_11 
 access-list DMZ3556_access_in remark vlan 56 out to INET Firecall Y.A 2019
-access-list DMZ3556_access_in extended permit tcp 10.35.56.0 255.255.255.0 any object-group DM_INLINE_TCP_15 inactive 
+access-list DMZ3556_access_in extended permit tcp 10.35.56.0 255.255.255.0 any object-group DM_INLINE_TCP_15 
 access-list DMZ3556_access_in remark CrowdStrike ACL 443 outbound to White List IP SA 5.30.19
 access-list DMZ3556_access_in extended permit tcp 10.35.56.0 255.255.255.0 object-group DM_INLINE_NETWORK_84 eq https 
 access-list DMZ3556_access_in remark TACACS Waltham
@@ -5697,5 +5697,5 @@ call-home
   subscribe-to-alert-group inventory periodic monthly
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
-Cryptochecksum:dbe38031f6dcca7d1b174664f7955eed
+Cryptochecksum:8e1bd512dd8f1e671120efc126acb363
 : end
