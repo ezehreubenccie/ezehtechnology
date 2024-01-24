@@ -1,3 +1,4 @@
+ikev1 policy 30 is superseded by identical policy 25
 : Saved
 
 : 
@@ -4107,9 +4108,6 @@ object-group network DM_INLINE_NETWORK_70
 object-group service DM_INLINE_TCP_26 tcp
  port-object eq 5601
  port-object eq 9200
-object-group service DM_INLINE_TCP_27 tcp
- port-object eq www
- port-object eq https
 access-list inside_outbound_nat0_acl extended permit ip 10.1.30.0 255.255.255.0 10.15.0.0 255.255.0.0 
 access-list inside_outbound_nat0_acl extended permit ip 10.1.31.0 255.255.255.0 10.15.0.0 255.255.0.0 
 access-list inside_outbound_nat0_acl extended permit ip 10.1.101.0 255.255.255.0 10.15.0.0 255.255.0.0 
@@ -4667,8 +4665,8 @@ access-list FILTER_WA_CHI_B2B remark IN - Chicago to Waltham Code Scanning Conso
 access-list FILTER_WA_CHI_B2B extended permit tcp object-group CHI_User_Net_1 host 10.1.101.7 object-group DM_INLINE_TCP_12 
 access-list FILTER_WA_CHI_B2B remark IN - Chicago to Waltham ce-scoop SA 6.27.19
 access-list FILTER_WA_CHI_B2B extended permit tcp object-group DM_INLINE_NETWORK_41 object-group DM_INLINE_NETWORK_42 object-group DM_INLINE_TCP_14 
-access-list FILTER_WA_CHI_B2B remark CECR-
-access-list FILTER_WA_CHI_B2B extended permit tcp object net-chi-emmi object jenkins-pdot.utdlab.com object-group DM_INLINE_TCP_27 inactive 
+access-list FILTER_WA_CHI_B2B remark CECR-5132 R.E 1.23.2024
+access-list FILTER_WA_CHI_B2B extended permit ip object net-chi-emmi object jenkins-pdot.utdlab.com 
 access-list FILTER_WA_CHI_B2B remark IN - Chicago to Waltham oradb01p-vip  SA 6.27.19
 access-list FILTER_WA_CHI_B2B extended permit tcp object net-chi-cs object oradb01p-vip.utd.com eq sqlnet inactive 
 access-list FILTER_WA_CHI_B2B remark IN - Chicago Product team to pull reports SA 4.25.19
@@ -5823,41 +5821,23 @@ crypto ikev2 policy 1000
  lifetime seconds 86400
 crypto ikev2 enable outside
 crypto ikev1 enable outside
-crypto ikev1 policy 10
- authentication pre-share
- encryption 3des
- hash sha
- group 2
- lifetime 86400
-crypto ikev1 policy 20
- authentication pre-share
- encryption 3des
- hash md5
- group 2
- lifetime 86400
 crypto ikev1 policy 25
  authentication pre-share
  encryption aes-256
  hash sha
- group 2
- lifetime 86400
-crypto ikev1 policy 30
- authentication pre-share
- encryption aes-256
- hash sha
- group 5
+ group 14
  lifetime 86400
 crypto ikev1 policy 40
  authentication pre-share
  encryption aes-256
  hash sha
- group 5
+ group 14
  lifetime 3600
 crypto ikev1 policy 50
  authentication pre-share
  encryption aes-256
  hash sha
- group 5
+ group 14
  lifetime 28800
 telnet timeout 5
 no ssh stricthostkeycheck
@@ -6170,5 +6150,5 @@ call-home
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
 crashinfo save disable
-Cryptochecksum:f3f41feb9410c29c1dc760511508def1
+Cryptochecksum:6f123b9e5d9ff1664ef0040299910eb9
 : end
