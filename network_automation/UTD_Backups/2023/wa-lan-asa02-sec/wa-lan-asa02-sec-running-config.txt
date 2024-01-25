@@ -1,4 +1,3 @@
-ikev1 policy 30 is superseded by identical policy 25
 : Saved
 
 : 
