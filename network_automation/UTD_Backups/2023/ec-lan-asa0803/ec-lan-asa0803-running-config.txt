@@ -2538,7 +2538,7 @@ group-policy DfltGrpPolicy attributes
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
  wins-server value 10.20.56.30
- dns-server value 10.20.54.16 10.20.54.17
+ dns-server value 10.20.54.16 10.20.56.30
  vpn-simultaneous-logins 2
  vpn-idle-timeout 60
  vpn-session-timeout 480
@@ -2546,7 +2546,7 @@ group-policy DfltGrpPolicy attributes
  split-tunnel-policy tunnelspecified
  split-tunnel-network-list value acl-split-tunnel1
  default-domain value utd.com
- split-dns value utd.com utdlab.com emmi.local emmidev.com emmiload.com emmiqa.com emmirc.com emmisolutions.com emmisolutions.local emmistg.com lexi.wkce.app wkglobal.com wkrainier.com wolterskluwercdi.com lab.wkce.app utd.wkce.app privatelink.eastus2.azmk8s.io privatelink.southcentralus.azmk8s.io privatelink.eastus.azmk8s.io privatelink.westus.azmk8s.io emmi.wkce.app ce.wkce.app
+ split-dns value utd.com utdlab.com emmi.local emmiload.com emmiqa.com emmirc.com emmisolutions.com emmisolutions.local emmistg.com lexi.wkce.app wkglobal.com wkrainier.com wolterskluwercdi.com lab.wkce.app utd.wkce.app privatelink.eastus2.azmk8s.io privatelink.southcentralus.azmk8s.io privatelink.eastus.azmk8s.io privatelink.westus.azmk8s.io emmi.wkce.app ce.wkce.app
  split-tunnel-all-dns enable
  address-pools value ssl-vpn-pool1
  webvpn
@@ -2656,5 +2656,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname context 
 no call-home reporting anonymous
-Cryptochecksum:215b6d52e79c0f3339a3031b1342deb0
+Cryptochecksum:7a07aa7a55fbfc3ff99651a80aa65203
 : end
