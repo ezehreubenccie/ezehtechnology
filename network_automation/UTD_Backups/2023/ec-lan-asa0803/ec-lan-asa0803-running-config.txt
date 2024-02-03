@@ -2199,6 +2199,7 @@ route Inside2058 10.30.54.0 255.255.255.0 10.20.58.1 1
 route Inside2058 10.30.56.0 255.255.255.0 10.20.58.1 1
 route Inside2058 10.30.58.0 255.255.255.0 10.20.58.1 1
 route Inside2058 10.71.0.0 255.255.192.0 10.20.58.1 1
+route Inside2058 10.240.2.171 255.255.255.255 10.20.58.1 1
 timeout xlate 3:00:00
 timeout pat-xlate 0:00:30
 timeout conn 1:00:00 half-closed 0:10:00 udp 0:02:00 sctp 0:02:00 icmp 0:00:02
@@ -2656,5 +2657,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname context 
 no call-home reporting anonymous
-Cryptochecksum:7a07aa7a55fbfc3ff99651a80aa65203
+Cryptochecksum:001ff0c0a41a51e97f6b6ed98814e466
 : end
