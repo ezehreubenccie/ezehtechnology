@@ -1,9 +1,9 @@
 Building configuration...
 
-Current configuration : 17506 bytes
+Current configuration : 17542 bytes
 !
-! Last configuration change at 15:12:34 CET Tue Sep 28 2021 by a-amannan
-! NVRAM config last updated at 15:12:39 CET Tue Sep 28 2021 by a-amannan
+! Last configuration change at 23:24:35 CET Sat Feb 3 2024 by a-varora
+! NVRAM config last updated at 23:24:56 CET Sat Feb 3 2024 by a-varora
 !
 version 16.6
 no service pad
@@ -556,10 +556,12 @@ ip ssh dscp 48
 !
 !
 ip access-list standard RO_SNMP_ACL
+ permit 10.1.101.69
  remark NMS IP
  permit 10.1.101.193
  deny   any log
 ip access-list standard RW_SNMP_ACL
+ permit 10.1.101.69
  remark NMS IP
  permit 10.1.101.193
  deny   any log

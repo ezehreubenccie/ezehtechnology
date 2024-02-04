@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 21309 bytes
+Current configuration : 21347 bytes
 !
-! Last configuration change at 21:47:49 CET Tue Sep 28 2021 by a-amannan
+! Last configuration change at 07:17:57 CST Sun Feb 4 2024 by a-varora
 !
 version 15.2
 service nagle
@@ -575,10 +575,12 @@ ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
 ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
 !
 ip access-list standard RO_SNMP_ACL
+ permit 10.1.101.69
  remark NMS IP
  permit 10.1.101.193
  deny   any log
 ip access-list standard RW_SNMP_ACL
+ permit 10.1.101.69
  remark NMS IP
  permit 10.1.101.193
  deny   any log
