@@ -1,9 +1,9 @@
 Building configuration...
 
-Current configuration : 22048 bytes
+Current configuration : 22084 bytes
 !
-! Last configuration change at 21:48:27 CET Wed Sep 29 2021 by a-amannan
-! NVRAM config last updated at 21:48:54 CET Wed Sep 29 2021 by a-amannan
+! Last configuration change at 08:03:27 CST Mon Feb 5 2024 by a-varora
+! NVRAM config last updated at 08:03:29 CST Mon Feb 5 2024 by a-varora
 !
 version 15.2
 service nagle
@@ -597,10 +597,12 @@ ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
 ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
 !
 ip access-list standard RO_SNMP_ACL
+ permit 10.1.101.69
  remark NMS IP
  permit 10.1.101.193
  deny   any log
 ip access-list standard RW_SNMP_ACL
+ permit 10.1.101.69
  remark NMS IP
  permit 10.1.101.193
  deny   any log
