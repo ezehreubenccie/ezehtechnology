@@ -1095,6 +1095,9 @@ object network jenkins-pdot.utdlab.com
 object network redwood-agent03q.utd.com
  host 10.1.111.94
  description Y.A. 01-9.-24 automation server  EMMI Elastic at UTD
+object network 10.240.0.0_21
+ subnet 10.240.0.0 255.255.248.0
+ description CECR-5231 R.E 2_6_2024
 object-group service VPN-concentrator tcp-udp
  description VPN ports for Concentrator
  port-object range 50 50
@@ -3975,6 +3978,7 @@ object-group network Azure-UTD-NonProd01-Subnets
  description Azure UTD NonProd01 Networks
  network-object 10.145.20.0 255.255.252.0
  network-object 10.145.24.0 255.255.252.0
+ network-object 10.161.248.0 255.255.252.0
 object-group service Azure-UTD-NonProd01-HTTP-Ports tcp
  description HTTP Protocol Ports
  port-object eq www
@@ -4315,6 +4319,8 @@ access-list 120 extended permit ip 10.71.0.0 255.255.192.0 10.20.0.0 255.255.0.0
 access-list 120 extended permit ip 10.170.48.0 255.255.240.0 10.20.0.0 255.255.0.0 
 access-list 120 remark Two_Factor_VPN_Pool_Waltham to New York IDC
 access-list 120 extended permit ip 10.35.0.0 255.255.0.0 10.20.0.0 255.255.0.0 
+access-list 120 remark CECR-5231 R.E 2_6_2024
+access-list 120 extended permit ip 10.240.0.0 255.255.248.0 10.20.0.0 255.255.0.0 
 access-list 125 extended permit ip 10.1.30.0 255.255.255.0 10.25.0.0 255.255.0.0 
 access-list 125 extended permit ip 10.1.31.0 255.255.255.0 10.25.0.0 255.255.0.0 
 access-list 125 extended permit ip 10.1.101.0 255.255.255.0 10.25.0.0 255.255.0.0 
@@ -5156,6 +5162,7 @@ nat (inside,outside) source static obj-10.1.120.42 obj-10.1.120.42 destination s
 nat (inside,outside) source static obj-10.1.120.43 obj-10.1.120.43 destination static obj-10.20.0.0 obj-10.20.0.0 no-proxy-arp route-lookup
 nat (inside,outside) source static net-wal-10.1.113.0 net-wal-10.1.113.0 destination static obj-10.20.0.0 obj-10.20.0.0 no-proxy-arp route-lookup
 nat (inside,outside) source static 10.1.110.101 10.1.110.101 destination static obj-10.20.0.0 obj-10.20.0.0 no-proxy-arp route-lookup
+nat (outside,outside) source static 10.240.0.0_21 10.240.0.0_21 destination static obj-10.20.0.0 obj-10.20.0.0 no-proxy-arp route-lookup description CECR-5231 R.E 2_6_2024
 nat (inside,outside) source static obj-10.1.30.0 obj-10.1.30.0 destination static obj-10.25.0.0 obj-10.25.0.0 no-proxy-arp route-lookup
 nat (inside,outside) source static obj-10.1.31.0 obj-10.1.31.0 destination static obj-10.25.0.0 obj-10.25.0.0 no-proxy-arp route-lookup
 nat (inside,outside) source static net-wal-10.1.101.0 net-wal-10.1.101.0 destination static obj-10.25.0.0 obj-10.25.0.0 no-proxy-arp route-lookup
@@ -5261,6 +5268,7 @@ prefix-list BGP->OSPF seq 90 permit 10.240.0.0/21 le 32
 prefix-list BGP->OSPF seq 100 permit 10.240.32.0/21 le 32
 prefix-list BGP->OSPF seq 110 permit 10.240.40.0/21 le 32
 prefix-list BGP->OSPF seq 120 permit 10.240.76.0/22 le 32
+prefix-list BGP->OSPF seq 130 permit 10.161.248.0/22 le 32
 prefix-list BGP->OSPF seq 1000 deny 0.0.0.0/0
 prefix-list BGP->OSPF seq 1010 deny 0.0.0.0/0 le 32
 !
@@ -5395,6 +5403,7 @@ prefix-list Waltham-to-Azure-UTD-ToolsProd seq 40 permit 10.1.114.0/24
 prefix-list Waltham-to-Azure-UTD-ToolsProd seq 45 permit 10.2.101.0/24
 prefix-list Waltham-to-Azure-UTD-ToolsProd seq 50 permit 10.2.250.0/23
 prefix-list Waltham-to-Azure-UTD-ToolsProd seq 55 permit 10.71.0.0/18
+prefix-list Waltham-to-Azure-UTD-ToolsProd seq 60 permit 10.20.0.0/16
 !
 !
 route-map Waltham-to-Azure-UTD-Sandbox permit 10
@@ -5523,6 +5532,7 @@ router bgp 64889
   neighbor 169.254.172.193 activate
   neighbor 169.254.172.193 route-map Clrdata-east2-to-Uptodate in
   neighbor 169.254.172.193 route-map Uptodate-to-Clrdata-east-2 out
+  network 10.20.0.0 mask 255.255.0.0
   network 10.71.0.0 mask 255.255.192.0
   network 192.168.0.0 mask 255.255.252.0
   network 10.1.101.0 mask 255.255.255.0
@@ -6149,5 +6159,5 @@ call-home
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
 crashinfo save disable
-Cryptochecksum:6f123b9e5d9ff1664ef0040299910eb9
+Cryptochecksum:d23a1508d3312ad569e9f9874d806edb
 : end

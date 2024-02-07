@@ -4058,6 +4058,12 @@ crypto ca trustpoint test1
  enrollment terminal
  fqdn none
  crl configure
+crypto ca trustpoint sra_2025
+ enrollment terminal
+ fqdn sra.uptodate.com
+ subject-name CN=sra.uptodate.com
+ keypair sra_uptodate_2025
+ crl configure
 crypto ca trustpool policy
 crypto ca certificate chain ASDM_TrustPoint1
  certificate ca 70bae41d10d92934b638ca7b03ccbabf
@@ -5108,5 +5114,5 @@ call-home
   subscribe-to-alert-group inventory periodic monthly
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
-Cryptochecksum:8018b9ae454dbfa887767cf66a67bf9e
+Cryptochecksum:acd81b74213d2874667d9d47cf82c92d
 : end
