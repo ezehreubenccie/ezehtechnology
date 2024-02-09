@@ -1,9 +1,9 @@
 Building configuration...
 
-Current configuration : 26940 bytes
+Current configuration : 27038 bytes
 !
-! Last configuration change at 16:34:04 EDT Mon Aug 7 2023 by a-yayyub
-! NVRAM config last updated at 11:42:06 EDT Thu Aug 31 2023
+! Last configuration change at 10:28:36 EST Thu Feb 8 2024 by a-rezeh
+! NVRAM config last updated at 10:11:17 EST Thu Feb 8 2024 by a-rezeh
 !
 version 16.9
 service nagle
@@ -472,6 +472,7 @@ interface GigabitEthernet1/0/18
  spanning-tree guard root
 !
 interface GigabitEthernet1/0/19
+ description couchr01p-drac
  switchport access vlan 203
  switchport mode access
  switchport nonegotiate
@@ -483,6 +484,7 @@ interface GigabitEthernet1/0/19
  spanning-tree guard root
 !
 interface GigabitEthernet1/0/20
+ description Centdb-pswitch-mgmt
  switchport access vlan 203
  switchport mode access
  switchport nonegotiate
@@ -494,6 +496,7 @@ interface GigabitEthernet1/0/20
  spanning-tree guard root
 !
 interface GigabitEthernet1/0/21
+ description Backup05p-drac
  switchport access vlan 203
  switchport mode access
  switchport nonegotiate

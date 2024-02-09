@@ -6,6 +6,7 @@
 :
 ASA Version 9.12(4)41 
 !
+terminal width 511
 hostname WA-LAN-ASA0100
 enable password ***** encrypted
 service-module 0 keepalive-timeout 4
@@ -3530,5 +3531,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname priority state 
 no call-home reporting anonymous
-Cryptochecksum:102a8ca90575f03d115ecbba244f981e
+Cryptochecksum:efdd683f2393d3cf3370a17f0f88e873
 : end

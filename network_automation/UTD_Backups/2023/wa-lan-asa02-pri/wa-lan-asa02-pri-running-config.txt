@@ -6,6 +6,7 @@
 :
 ASA Version 9.14(4)23 
 !
+terminal width 511
 hostname WA-LAN-ASA0200
 domain-name uptodate.com
 enable password ***** encrypted
@@ -6159,5 +6160,5 @@ call-home
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
 crashinfo save disable
-Cryptochecksum:d23a1508d3312ad569e9f9874d806edb
+Cryptochecksum:6c9b39910d2273d4da3814e109a26e3d
 : end
