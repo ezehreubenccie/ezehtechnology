@@ -1,9 +1,9 @@
 Building configuration...
 
-Current configuration : 72665 bytes
+Current configuration : 70590 bytes
 !
-! Last configuration change at 18:36:53 EST Mon Jan 29 2024 by a-rezeh
-! NVRAM config last updated at 18:21:48 EST Mon Jan 29 2024 by a-rezeh
+! Last configuration change at 10:29:37 EST Sat Feb 10 2024 by a-mkeller
+! NVRAM config last updated at 08:55:32 EST Sat Feb 10 2024 by a-mkeller
 !
 version 15.2
 service nagle
@@ -622,16 +622,10 @@ interface Port-channel100
  spanning-tree guard root
 !
 interface Port-channel101
- description WA-LAN-2FS-SW0100 Uplinks
  switchport
- switchport trunk native vlan 999
- switchport trunk allowed vlan 225,228,229,325,328,329,820,925,1000
+ switchport trunk allowed vlan 900-902
  switchport mode trunk
  switchport nonegotiate
- ip flow monitor M1 input
- logging event link-status
- logging event trunk-status
- spanning-tree guard root
 !
 interface Port-channel102
  description WA-LAN-3FN-SW0100 Uplinks
@@ -774,52 +768,32 @@ interface TenGigabitEthernet1/1/2
  channel-group 95 mode active
 !
 interface TenGigabitEthernet1/1/3
- description WA-LAN-2FS-SW0100 - Uplink Te5/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 225,228,229,325,328,329,820,925,1000
+ switchport trunk allowed vlan 900-902
  switchport mode trunk
  switchport nonegotiate
- logging event link-status
- logging event trunk-status
+ channel-protocol lacp
  channel-group 101 mode active
 !
 interface TenGigabitEthernet1/1/4
- description WA-LAN-2FS-SW200 - Uplink Te1/1/1, Te2/1/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 225,228,229,325,328,329,820,925,1000
+ switchport trunk allowed vlan 900-902
  switchport mode trunk
  switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
- channel-group 107 mode active
+ channel-protocol lacp
+ channel-group 101 mode active
 !
 interface TenGigabitEthernet1/1/5
- description WA-LAN-2FN-SW100 - Uplink Te1/1/1, Te3/1/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 220,223,224,320,323,324,820,920,1000
+ switchport trunk allowed vlan 900-902
  switchport mode trunk
  switchport nonegotiate
- ip flow monitor M1 input
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
- channel-group 104 mode active
- spanning-tree guard root
+ channel-protocol lacp
+ channel-group 101 mode active
 !
 interface TenGigabitEthernet1/1/6
- description WA-LAN-2FN-SW200 - Uplink Te1/1/1, Te3/1/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 220,223,224,320,323,324,820,920,1000
+ switchport trunk allowed vlan 900-902
  switchport mode trunk
  switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
- channel-group 109 mode active
+ channel-protocol lacp
+ channel-group 101 mode active
 !
 interface TenGigabitEthernet1/1/7
  description WA-LAN-3FN-SW0100 - Uplink Te5/1
@@ -933,6 +907,7 @@ interface TenGigabitEthernet1/1/17
  switchport nonegotiate
  logging event link-status
  logging event trunk-status
+ shutdown
  channel-group 3 mode active
  spanning-tree portfast
  spanning-tree guard root
@@ -956,6 +931,7 @@ interface TenGigabitEthernet1/1/19
  switchport nonegotiate
  logging event link-status
  logging event trunk-status
+ shutdown
  channel-group 4 mode active
  spanning-tree portfast
  spanning-tree guard root
@@ -977,6 +953,7 @@ interface TenGigabitEthernet1/1/21
  switchport nonegotiate
  logging event link-status
  logging event trunk-status
+ shutdown
  channel-group 5 mode active
  spanning-tree portfast
  spanning-tree guard root
@@ -999,6 +976,7 @@ interface TenGigabitEthernet1/1/23
  switchport nonegotiate
  logging event link-status
  logging event trunk-status
+ shutdown
  storm-control broadcast level 10.00
  channel-group 6 mode active
  spanning-tree portfast
@@ -1110,51 +1088,32 @@ interface TenGigabitEthernet2/1/2
  channel-group 95 mode active
 !
 interface TenGigabitEthernet2/1/3
- description WA-LAN-2FS-SW0100 - Uplink Te6/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 225,228,229,325,328,329,820,925,1000
+ switchport trunk allowed vlan 900-902
  switchport mode trunk
  switchport nonegotiate
- logging event link-status
- logging event trunk-status
+ channel-protocol lacp
  channel-group 101 mode active
 !
 interface TenGigabitEthernet2/1/4
- description WA-LAN-2FS-SW200 - Uplink Te1/1/1, Te2/1/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 225,228,229,325,328,329,820,925,1000
+ switchport trunk allowed vlan 900-902
  switchport mode trunk
  switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
- channel-group 107 mode active
+ channel-protocol lacp
+ channel-group 101 mode active
 !
 interface TenGigabitEthernet2/1/5
- description WA-LAN-2FN-SW100 - Uplink Te1/1/1, Te3/1/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 220,223,224,320,323,324,820,920,1000
+ switchport trunk allowed vlan 900-902
  switchport mode trunk
  switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
- channel-group 104 mode active
- spanning-tree guard root
+ channel-protocol lacp
+ channel-group 101 mode active
 !
 interface TenGigabitEthernet2/1/6
- description WA-LAN-2FN-SW200 - Uplink Te1/1/1, Te3/1/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 220,223,224,320,323,324,820,920,1000
+ switchport trunk allowed vlan 900-902
  switchport mode trunk
  switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
- channel-group 109 mode active
+ channel-protocol lacp
+ channel-group 101 mode active
 !
 interface TenGigabitEthernet2/1/7
  description WA-LAN-3FN-SW0100 - Uplink Te6/1
@@ -1269,6 +1228,7 @@ interface TenGigabitEthernet2/1/17
  switchport nonegotiate
  logging event link-status
  logging event trunk-status
+ shutdown
  channel-group 3 mode active
  spanning-tree portfast
  spanning-tree guard root
@@ -1288,6 +1248,7 @@ interface TenGigabitEthernet2/1/19
  switchport nonegotiate
  logging event link-status
  logging event trunk-status
+ shutdown
  channel-group 4 mode active
  spanning-tree portfast
  spanning-tree guard root
@@ -1309,6 +1270,7 @@ interface TenGigabitEthernet2/1/21
  switchport nonegotiate
  logging event link-status
  logging event trunk-status
+ shutdown
  channel-group 5 mode active
  spanning-tree portfast
  spanning-tree guard root
@@ -1331,6 +1293,7 @@ interface TenGigabitEthernet2/1/23
  switchport nonegotiate
  logging event link-status
  logging event trunk-status
+ shutdown
  storm-control broadcast level 10.00
  channel-group 6 mode active
  spanning-tree portfast
@@ -2290,10 +2253,6 @@ ip route 10.198.158.137 255.255.255.255 10.79.209.70
 ip route 10.198.158.178 255.255.255.255 10.79.209.70
 ip route 10.198.201.0 255.255.255.0 10.79.209.70
 ip route 10.198.202.0 255.255.255.0 10.79.209.70
-ip route 10.198.207.0 255.255.255.192 172.16.31.18
-ip route 10.198.208.0 255.255.255.252 172.16.31.18
-ip route 10.198.208.5 255.255.255.255 172.16.31.18
-ip route 10.198.219.0 255.255.255.192 172.16.31.18
 ip route 10.203.100.0 255.255.255.0 10.79.209.70
 ip route 10.203.101.132 255.255.255.255 10.79.209.70
 ip route 10.203.108.0 255.255.255.0 10.79.209.70
