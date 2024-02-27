@@ -4,7 +4,7 @@
 : Serial Number: FCH18037VC8
 : Hardware:   ASA5555, 16384 MB RAM, CPU Lynnfield 2800 MHz, 1 CPU (8 cores)
 :
-ASA Version 9.12(4)41 
+ASA Version 9.14(4)23 
 !
 terminal width 511
 hostname sb-lan-asa0601
@@ -78,8 +78,8 @@ interface Management0/0
  no security-level
  no ip address
 !
+boot system disk0:/asa9-14-4-23-smp-k8.bin
 boot system disk0:/asa9-12-4-41-smp-k8.bin
-boot system disk0:/asa9-14-4-17-smp-k8.bin
 ftp mode passive
 clock timezone EST -5
 clock summer-time EDT recurring
@@ -3954,7 +3954,6 @@ no failover wait-disable
 monitor-interface outside_mng
 no monitor-interface service-module 
 icmp unreachable rate-limit 1 burst-size 1
-asdm image disk0:/asdm-7131-101.bin
 no asdm history enable
 arp timeout 14400
 no arp permit-nonconnected
@@ -4020,12 +4019,12 @@ http 10.0.0.0 255.0.0.0 DMZ1054
 http 198.52.89.0 255.255.255.0 outside
 http 73.249.59.172 255.255.255.255 outside
 http 24.60.87.13 255.255.255.255 outside
+snmp-server group WKSNMPGROUP v3 priv 
 snmp-server group axonius-grp v3 priv 
-snmp-server user axon axonius-grp v3 engineID 80000009fe2436ae15712b37b41791c79443e9fa2ca6a9634c encrypted auth sha d5:d7:d8:f8:28:1f:43:9f:eb:d8:19:01:1b:68:48:cb:c1:71:84:7b priv aes 128 ca:f8:6b:51:68:2f:1b:e9:13:08:80:ea:f7:f3:dc:0e 
+snmp-server user WKUTDSNMP WKSNMPGROUP v3 engineID 80000009fe2436ae15712b37b41791c79443e9fa2ca6a9634c encrypted auth sha 2b:2b:23:43:91:e1:4d:9a:c8:7c:63:2c:7f:13:33:72:08:e6:0e:d8 priv aes 128 81:96:ad:39:06:0b:93:a9:7d:fc:0c:d3:fd:0c:ad:f1 
 snmp-server host outside 10.1.101.193 community *****
 snmp-server host outside 10.1.101.69 community *****
-snmp-server host DMZ1054 10.1.101.69 community *****
-snmp-server host DMZ1054 10.2.101.205 version 3 axon
+snmp-server host DMZ1054 10.1.101.69 version 3 WKUTDSNMP
 snmp-server location NYC_1 IDC
 snmp-server contact Information Systems
 snmp-server community *****
@@ -4234,5 +4233,5 @@ policy-map type inspect dns migrated_dns_map_1
 service-policy global_policy global
 prompt hostname priority state 
 no call-home reporting anonymous
-Cryptochecksum:73347b76b965c9924cb4516b187a1610
+Cryptochecksum:ded8d55aa7eb45ca99e47fe9afda967f
 : end
