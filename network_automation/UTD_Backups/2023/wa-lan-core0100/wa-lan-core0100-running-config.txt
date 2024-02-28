@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 70638 bytes
+Current configuration : 70689 bytes
 !
-! Last configuration change at 15:44:42 EST Tue Feb 20 2024 by a-rezeh
+! Last configuration change at 16:07:22 EST Tue Feb 27 2024 by a-rezeh
 ! NVRAM config last updated at 15:44:36 EST Tue Feb 20 2024 by a-rezeh
 !
 version 15.2
@@ -2206,6 +2206,7 @@ ip route 10.138.72.0 255.255.248.0 10.79.209.70
 ip route 10.138.80.0 255.255.248.0 10.79.209.70
 ip route 10.138.82.3 255.255.255.255 10.79.209.70
 ip route 10.138.88.0 255.255.248.0 10.79.209.70
+ip route 10.138.98.49 255.255.255.255 10.79.209.70
 ip route 10.138.99.118 255.255.255.255 10.79.209.70
 ip route 10.139.80.5 255.255.255.255 10.79.209.70
 ip route 10.141.32.0 255.255.224.0 10.79.209.70

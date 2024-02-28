@@ -2,7 +2,7 @@ Building configuration...
 
 Current configuration : 17054 bytes
 !
-! Last configuration change at 20:45:24 EST Wed Jan 17 2024 by a-rezeh
+! Last configuration change at 20:21:51 EST Tue Feb 27 2024 by a-rezeh
 !
 version 17.3
 service tcp-keepalives-in
@@ -544,7 +544,7 @@ line con 0
  transport output telnet ssh
  stopbits 1
 line vty 0 4
- exec-timeout 15 0
+ exec-timeout 60 0
  logging synchronous
  length 0
  history size 256
