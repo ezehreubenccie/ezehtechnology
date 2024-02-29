@@ -1,10 +1,10 @@
 Building configuration...
 
-Current configuration : 17337 bytes
+Current configuration : 17339 bytes
 !
-! Last configuration change at 20:41:59 EST Tue Feb 27 2024 by a-rezeh
+! Last configuration change at 21:06:34 EST Tue Feb 27 2024
 !
-version 17.3
+version 17.9
 service tcp-keepalives-in
 service tcp-keepalives-out
 service timestamps debug datetime msec localtime show-timezone
@@ -27,9 +27,6 @@ vrf definition Mgmt-vrf
 !
 logging buffered 131080 informational
 no logging console
-enable secret 9 $14$y.9s$AEhZ6u3kLSndGU$itzdmMwjzxaDNj.oAVFlriu45XHTgosTn/vTUR/BSc6
-enable password 7 03400A5F454C024358490A0014000E18
-!
 aaa new-model
 !
 !
@@ -49,14 +46,10 @@ aaa accounting commands 15 default start-stop group ISE-TACACS
 aaa accounting connection default start-stop group ISE-TACACS
 !
 !
-!
-!
-!
-!
 aaa session-id common
-boot system switch all flash:packages.conf
 clock timezone EST -5 0
 clock summer-time EDT recurring
+boot system switch all flash:packages.conf
 switch 1 provision c9300-24t
 !
 !
@@ -72,16 +65,16 @@ ip domain name uptodate.com
 login block-for 30 attempts 5 within 30
 login on-failure log
 login on-success log
-!
-!
-!
-!
-!
-vtp domain uptodate
-vtp mode transparent
 udld aggressive
 
-no device-tracking logging theft
+vtp domain uptodate
+vtp mode transparent
+vtp version 1
+!
+!
+!
+!
+!
 !
 crypto pki trustpoint TP-self-signed-3431589429
  enrollment selfsigned
@@ -153,17 +146,8 @@ crypto pki certificate chain SLA-TrustPoint
   D697DF7F 28
   	quit
 !
-port-channel load-balance src-dst-ip
 license boot level network-essentials addon dna-essentials
-!
-!
-diagnostic bootup level minimal
-!
-spanning-tree mode rapid-pvst
-spanning-tree loopguard default
-spanning-tree portfast bpduguard default
-spanning-tree extend system-id
-spanning-tree vlan 1054,1070 priority 8192
+port-channel load-balance src-dst-ip
 archive
  log config
   logging enable
@@ -174,12 +158,25 @@ archive
  write-memory
 memory free low-watermark processor 133114
 !
+diagnostic bootup level minimal
+!
+spanning-tree mode rapid-pvst
+spanning-tree loopguard default
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+spanning-tree vlan 1054,1070 priority 8192
+!
+!
+!
+enable secret 9 $14$y.9s$AEhZ6u3kLSndGU$itzdmMwjzxaDNj.oAVFlriu45XHTgosTn/vTUR/BSc6
+enable password 7 03400A5F454C024358490A0014000E18
+!
 username admin privilege 15 secret 9 $14$/Hva$S2uuwkwQyf6ZaU$jlve1hymFFDLXpKumkGXNY.2WUwc8J/ISYaB00FghIQ
 username Support privilege 15 secret 9 $14$aZCL$55mnLnk791InEk$prKS0axNcq7jAe2yaYztge0hwzUsT.sLvSwO98bctqg
 !
 redundancy
  mode sso
-!
+crypto engine compliance shield disable
 !
 !
 !
@@ -489,23 +486,23 @@ snmp-server location Frankfurt - Europe IDC
 snmp-server contact Information Systems
 snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
 snmp-server enable traps tty
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps entity
+snmp-server enable traps flash insertion
+snmp-server enable traps flash removal
+snmp-server enable traps cpu threshold
+snmp-server enable traps syslog
 snmp-server enable traps vtp
 snmp-server enable traps vlancreate
 snmp-server enable traps vlandelete
 snmp-server enable traps port-security
-snmp-server enable traps cpu threshold
-snmp-server enable traps flash insertion
-snmp-server enable traps flash removal
-snmp-server enable traps entity
 snmp-server enable traps envmon fan shutdown supply temperature status
 snmp-server enable traps ipsla
-snmp-server enable traps config-copy
-snmp-server enable traps config
 snmp-server enable traps bridge newroot topologychange
 snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
-snmp-server enable traps syslog
-snmp-server enable traps vlan-membership
 snmp-server enable traps mac-notification change move threshold
+snmp-server enable traps vlan-membership
 snmp-server host 10.1.101.193 95udt453 
 tacacs server ISE1-TACACS
  address ipv4 10.1.101.78
