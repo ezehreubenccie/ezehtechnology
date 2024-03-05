@@ -1,9 +1,9 @@
 Building configuration...
 
-Current configuration : 70896 bytes
+Current configuration : 41980 bytes
 !
-! Last configuration change at 15:16:47 EST Thu Feb 29 2024 by a-rezeh
-! NVRAM config last updated at 15:01:43 EST Thu Feb 29 2024 by a-rezeh
+! Last configuration change at 18:19:37 EST Mon Mar 4 2024 by a-mkeller
+! NVRAM config last updated at 18:19:38 EST Mon Mar 4 2024 by a-mkeller
 !
 version 15.2
 service nagle
@@ -214,129 +214,6 @@ vlan internal allocation policy ascending
 vlan 141
  name fortigate_transit
 !
-vlan 210
- name 1N-PC
-!
-vlan 213
- name 1N-PRINT_CAM
-!
-vlan 214
- name 1N-WIFI
-!
-vlan 220
- name 2N-PC
-!
-vlan 223
- name 2N-PRINT_CAM
-!
-vlan 224
- name 2N-WIFI
-!
-vlan 225
- name 2S-PC
-!
-vlan 228
- name 2S-PRINT_CAM
-!
-vlan 229
- name 2S-WIFI
-!
-vlan 230
- name 3N-PC
-!
-vlan 231
- name 3N-VOIP
-!
-vlan 233
- name 3N-PRINT_CAM
-!
-vlan 234
- name 3N-WIFI
-!
-vlan 240
- name 4N-PC
-!
-vlan 243
- name 4N-PRINT_CAM
-!
-vlan 244
- name 4N-WIFI
-!
-vlan 270
- name CP-SMG-TLAN
-!
-vlan 271
- name CP-SMG-ELAN
-!
-vlan 280
- name WLC-U-L1
-!
-vlan 281
- name WLC-U-M1 (Temp)
-!
-vlan 284
- name WLC-U-M1
-!
-vlan 288
- name WLC-U-G1
-!
-vlan 310
- name 1FN-PC
-!
-vlan 313
- name 1FN-PRINT_CAM
-!
-vlan 314
- name 1FN- Wi-Fi
-!
-vlan 320
- name 2FN-PC
-!
-vlan 323
- name 2FN-PRINT_CAM
-!
-vlan 324
- name 2FN-WIFI
-!
-vlan 325
- name 2FS-PC
-!
-vlan 328
- name 2FS-PRINT_CAM
-!
-vlan 329
- name 2FS- Wi-Fi
-!
-vlan 330
- name 3FN-PC
-!
-vlan 333
- name 3FN-PRINT_CAM
-!
-vlan 334
- name 3FN- Wi-Fi
-!
-vlan 340
- name 4FN-PC
-!
-vlan 343
- name 4FN-PRINT_CAM
-!
-vlan 344
- name 4FN- Wi-Fi
-!
-vlan 345
- name 4S-PC
-!
-vlan 348
- name 4S-PRINT_CAM
-!
-vlan 349
- name 4S-WIFI
-!
-vlan 820
- name Telepresence
-!
 vlan 900
  name ASA-L3-INET
 !
@@ -345,24 +222,6 @@ vlan 901
 !
 vlan 902
  name ASA-L3-RA
-!
-vlan 910
- name 1N-I3-VOIP
-!
-vlan 920
- name 2N-I3-VOIP
-!
-vlan 925
- name 2S-I3-VOIP
-!
-vlan 930
- name 3N-I3-VOIP
-!
-vlan 940
- name 4N-I3-VOIP
-!
-vlan 945
- name 4S-I3-VOIP
 !
 vlan 999
  name DOT1Q-NATIVE
@@ -484,94 +343,6 @@ interface Port-channel2
  bfd interval 999 min_rx 999 multiplier 3
  no bfd echo
 !
-interface Port-channel3
- description WA-LAN-ASA0100-P
- switchport
- switchport trunk native vlan 999
- switchport trunk allowed vlan 288,900
- switchport mode trunk
- switchport nonegotiate
- ip flow monitor M3 input
- logging event link-status
- logging event trunk-status
- spanning-tree portfast trunk
- spanning-tree guard root
-!
-interface Port-channel4
- description WA-LAN-ASA0100-S
- switchport
- switchport trunk native vlan 999
- switchport trunk allowed vlan 288,900
- switchport mode trunk
- switchport nonegotiate
- ip flow monitor M3 input
- logging event link-status
- logging event trunk-status
- spanning-tree portfast trunk
- spanning-tree guard root
-!
-interface Port-channel5
- description WA-LAN-ASA0200-P
- switchport
- switchport access vlan 901
- switchport mode access
- switchport nonegotiate
- ip flow monitor M4 input
- logging event link-status
- logging event trunk-status
- spanning-tree portfast
- spanning-tree guard root
-!
-interface Port-channel6
- description WA-LAN-ASA0200-S
- switchport
- switchport access vlan 901
- switchport mode access
- switchport nonegotiate
- ip flow monitor M4 input
- logging event link-status
- logging event trunk-status
- storm-control broadcast level 10.00
- spanning-tree portfast
- spanning-tree guard root
-!
-interface Port-channel7
- description WA-LAN-ASA0300-P
- switchport
- switchport access vlan 902
- switchport mode access
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast level 10.00
- spanning-tree portfast
- spanning-tree guard root
-!
-interface Port-channel8
- description WA-LAN-ASA0300-S
- switchport
- switchport access vlan 902
- switchport mode access
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast level 10.00
- spanning-tree portfast
- spanning-tree guard root
-!
-interface Port-channel9
- description WA-LAN-WCTRL0100
- switchport
- switchport trunk native vlan 999
- switchport trunk allowed vlan 280,284,288,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast level 10.00
- spanning-tree portfast trunk
- spanning-tree guard root
-!
 interface Port-channel10
  description WA-LAN-CORE0100 VSL Uplinks
  switchport
@@ -579,163 +350,16 @@ interface Port-channel10
  switchport nonegotiate
  switch virtual link 1
 !
-interface Port-channel11
- description WA-LAN-WCTRL0200
- switchport
- switchport trunk native vlan 999
- switchport trunk allowed vlan 280,284,288,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- spanning-tree portfast trunk
- spanning-tree guard root
-!
 interface Port-channel20
  description WA-LAN-CORE0200 VSL Uplinks
  switchport
  switch virtual link 2
-!
-interface Port-channel95
- description WA-LAN-9500-CORE - Te1/0/2,Te2/0/2
- switchport
- switchport trunk native vlan 999
- switchport trunk allowed vlan 310,313,314,320,323-325,328-330,333,334,340
- switchport trunk allowed vlan add 343-345,348,349,820,910,920,930,940,945,1000
- switchport mode trunk
- switchport nonegotiate
- ip flow monitor M1 input
- logging event link-status
- logging event trunk-status
- spanning-tree guard root
-!
-interface Port-channel100
- description WA-LAN-1FN-SW0100 Uplinks
- switchport
- switchport trunk native vlan 999
- switchport trunk allowed vlan 210,213,214,310,313,314,820,910,1000
- switchport mode trunk
- switchport nonegotiate
- ip flow monitor M2 input
- logging event link-status
- logging event trunk-status
- spanning-tree guard root
 !
 interface Port-channel101
  switchport
  switchport trunk allowed vlan 900-902
  switchport mode trunk
  switchport nonegotiate
-!
-interface Port-channel102
- description WA-LAN-3FN-SW0100 Uplinks
- switchport
- switchport trunk native vlan 999
- switchport trunk allowed vlan 230,231,233,234,270,271,280,281,330,333,334,820
- switchport trunk allowed vlan add 930,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- spanning-tree guard root
-!
-interface Port-channel103
- description WA-LAN-4FN-SW0100 Uplinks
- switchport
- switchport trunk native vlan 999
- switchport trunk allowed vlan 240,243,244,340,343,344,820,940,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- spanning-tree guard root
-!
-interface Port-channel104
- description *** L2 Uplink to WA-LAN-2FN-SW0100 -  Po1 ***
- switchport
- switchport trunk native vlan 999
- switchport trunk allowed vlan 220,223,224,320,323,324,820,920,1000
- switchport mode trunk
- switchport nonegotiate
- ip flow monitor M1 input
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
- spanning-tree guard root
-!
-interface Port-channel105
- description WA-LAN-4FS-SW0100 - Po1
- switchport
- switchport trunk native vlan 999
- switchport trunk allowed vlan 345,348,349,820,945,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
-!
-interface Port-channel106
- description WA-LAN-4FS-SW200 - Po1
- switchport
- switchport trunk native vlan 999
- switchport trunk allowed vlan 345,348,349,820,945,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
-!
-interface Port-channel107
- description WA-LAN-2FS-SW200 - Po1
- switchport
- switchport trunk native vlan 999
- switchport trunk allowed vlan 225,228,229,325,328,329,820,925,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
-!
-interface Port-channel108
- description WA-LAN-3FN-SW200 - Po1
- switchport
- switchport trunk native vlan 999
- switchport trunk allowed vlan 230,231,233,234,270,271,280,281,330,333,334,820
- switchport trunk allowed vlan add 930,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
-!
-interface Port-channel109
- description WA-LAN-2FN-SW200 - Po1
- switchport
- switchport trunk native vlan 999
- switchport trunk allowed vlan 220,223,224,320,323,324,820,920,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
-!
-interface Port-channel110
- description WA-LAN-4FN-SW200 - Po1
- switchport
- switchport trunk native vlan 999
- switchport trunk allowed vlan 240,243,244,340,343,344,820,940,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
 !
 interface FastEthernet1
  vrf forwarding mgmtVrf
@@ -757,15 +381,9 @@ interface TenGigabitEthernet1/1/1
  bfd interval 50 min_rx 50 multiplier 3
 !
 interface TenGigabitEthernet1/1/2
- description WA-LAN-9500-CORE - Uplink Te1/0/2
- switchport trunk native vlan 999
- switchport trunk allowed vlan 310,313,314,320,323-325,328-330,333,334,340
- switchport trunk allowed vlan add 343-345,348,349,820,910,920,930,940,945,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- channel-group 95 mode active
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet1/1/3
  switchport trunk allowed vlan 900-902
@@ -796,74 +414,34 @@ interface TenGigabitEthernet1/1/6
  channel-group 101 mode active
 !
 interface TenGigabitEthernet1/1/7
- description WA-LAN-3FN-SW0100 - Uplink Te5/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 230,231,233,234,270,271,280,281,330,333,334,820
- switchport trunk allowed vlan add 930,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- channel-group 102 mode active
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet1/1/8
- description WA-LAN-3FN-SW200 - Uplink Te1/1/1, Te3/1/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 230,231,233,234,270,271,280,281,330,333,334,820
- switchport trunk allowed vlan add 930,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
- channel-group 108 mode active
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet1/1/9
- description WA-LAN-4FN-SW0100 - Uplink Te5/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 240,243,244,340,343,344,820,940,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- channel-group 103 mode active
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet1/1/10
- description WA-LAN-4FN-SW200 - Uplink Te1/1/1, Te3/1/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 240,243,244,340,343,344,820,940,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
- channel-group 110 mode active
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet1/1/11
- description WA-LAN-4FS-SW0100 - Uplink Te5/0/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 345,348,349,820,945,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
- channel-group 105 mode active
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet1/1/12
- description WA-LAN-4FS-SW200 - Uplink Te1/1/1, Te3/1/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 345,348,349,820,945,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
- channel-group 106 mode active
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet1/1/13
  description fortigate_transit
@@ -874,43 +452,24 @@ interface TenGigabitEthernet1/1/13
  logging event trunk-status
 !
 interface TenGigabitEthernet1/1/14
- description AVPN AT&T-USWOKLWALMA01R - G0/1
  no switchport
  no ip address
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
  shutdown
 !
 interface TenGigabitEthernet1/1/15
- description AVPN R1-LNSWKW2D - G0/1
  no switchport
- ip address 172.16.31.57 255.255.255.252
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet1/1/16
- switchport trunk native vlan 999
- switchport trunk allowed vlan none
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
+ no switchport
+ no ip address
  shutdown
 !
 interface TenGigabitEthernet1/1/17
- description WA-LAN-ASA0100-P - Uplink G0/0
- switchport trunk native vlan 999
- switchport trunk allowed vlan 288,900
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
+ no switchport
+ no ip address
  shutdown
- channel-group 3 mode active
- spanning-tree portfast
- spanning-tree guard root
 !
 interface TenGigabitEthernet1/1/18
  description AVPN AT&T-USWOKLWALMA01R - G0/1
@@ -924,17 +483,9 @@ interface TenGigabitEthernet1/1/18
  no logging event trunk-status
 !
 interface TenGigabitEthernet1/1/19
- description WA-LAN-ASA0100-S - Uplink G0/0
- switchport trunk native vlan 999
- switchport trunk allowed vlan 288,900
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
+ no switchport
+ no ip address
  shutdown
- channel-group 4 mode active
- spanning-tree portfast
- spanning-tree guard root
 !
 interface TenGigabitEthernet1/1/20
  description WA-LAN-SD0100 - Uplink Mgmt0
@@ -947,78 +498,38 @@ interface TenGigabitEthernet1/1/20
  spanning-tree guard root
 !
 interface TenGigabitEthernet1/1/21
- description WA-LAN-ASA0200-P - Uplink G0/0
- switchport access vlan 901
- switchport mode access
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
+ no switchport
+ no ip address
  shutdown
- channel-group 5 mode active
- spanning-tree portfast
- spanning-tree guard root
 !
 interface TenGigabitEthernet1/1/22
- description WA-LAN-WCTRL0100 - Uplink Port1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 280,284,288,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast level 10.00
- channel-group 9 mode on
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet1/1/23
- description WA-LAN-ASA0200-S - Uplink G0/0
- switchport access vlan 901
- switchport mode access
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
+ no switchport
+ no ip address
  shutdown
- storm-control broadcast level 10.00
- channel-group 6 mode active
- spanning-tree portfast
- spanning-tree guard root
 !
 interface TenGigabitEthernet1/1/24
- description WA-LAN-WCTRL0200 - Uplink Port1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 280,284,288,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- channel-group 11 mode on
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet1/1/25
- description WA-LAN-ASA0300-P - Uplink G0/0
- switchport access vlan 902
- switchport mode access
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast level 10.00
- channel-group 7 mode active
- spanning-tree portfast
- spanning-tree guard root
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet1/1/26
  description WA-LAN-CORE0200 Direct VSL Fast-Hello Links
  dual-active fast-hello
 !
 interface TenGigabitEthernet1/1/27
- description WA-LAN-ASA0300-S - Uplink G0/0
- switchport access vlan 902
- switchport mode access
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast level 10.00
- channel-group 8 mode active
- spanning-tree portfast
- spanning-tree guard root
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet1/1/28
  description WA-LAN-CORE0200 Direct VSL Fast-Hello Links
@@ -1077,15 +588,9 @@ interface TenGigabitEthernet2/1/1
  bfd interval 50 min_rx 50 multiplier 3
 !
 interface TenGigabitEthernet2/1/2
- description WA-LAN-9500-CORE - Uplink Te2/0/2
- switchport trunk native vlan 999
- switchport trunk allowed vlan 310,313,314,320,323-325,328-330,333,334,340
- switchport trunk allowed vlan add 343-345,348,349,820,910,920,930,940,945,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- channel-group 95 mode active
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet2/1/3
  switchport trunk allowed vlan 900-902
@@ -1116,74 +621,34 @@ interface TenGigabitEthernet2/1/6
  channel-group 101 mode active
 !
 interface TenGigabitEthernet2/1/7
- description WA-LAN-3FN-SW0100 - Uplink Te6/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 230,231,233,234,270,271,280,281,330,333,334,820
- switchport trunk allowed vlan add 930,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- channel-group 102 mode active
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet2/1/8
- description WA-LAN-3FN-SW200 - Uplink Te1/1/1, Te3/1/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 230,231,233,234,270,271,280,281,330,333,334,820
- switchport trunk allowed vlan add 930,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
- channel-group 108 mode active
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet2/1/9
- description WA-LAN-4FN-SW0100 - Uplink Te6/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 240,243,244,340,343,344,820,940,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- channel-group 103 mode active
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet2/1/10
- description WA-LAN-4FN-SW200 - Uplink Te1/1/1, Te3/1/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 240,243,244,340,343,344,820,940,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
- channel-group 110 mode active
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet2/1/11
- description WA-LAN-4FS-SW0100 - Uplink Te6/0/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 345,348,349,820,945,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
- channel-group 105 mode active
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet2/1/12
- description WA-LAN-4FS-SW200 - Uplink Te1/1/1, Te3/1/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 345,348,349,820,945,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast include multicast
- storm-control broadcast level 10.00
- channel-group 106 mode active
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet2/1/13
  description fortigate_transit
@@ -1194,44 +659,24 @@ interface TenGigabitEthernet2/1/13
  logging event trunk-status
 !
 interface TenGigabitEthernet2/1/14
- switchport trunk native vlan 999
- switchport trunk allowed vlan none
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
+ no switchport
+ no ip address
  shutdown
 !
 interface TenGigabitEthernet2/1/15
- switchport trunk native vlan 999
- switchport trunk allowed vlan none
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
+ no switchport
+ no ip address
  shutdown
 !
 interface TenGigabitEthernet2/1/16
- switchport trunk native vlan 999
- switchport trunk allowed vlan none
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
+ no switchport
+ no ip address
  shutdown
 !
 interface TenGigabitEthernet2/1/17
- description WA-LAN-ASA0100-P - Uplink G0/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 288,900
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
+ no switchport
+ no ip address
  shutdown
- channel-group 3 mode active
- spanning-tree portfast
- spanning-tree guard root
 !
 interface TenGigabitEthernet2/1/18
  description sniffo2p G4
@@ -1241,17 +686,9 @@ interface TenGigabitEthernet2/1/18
  no logging event trunk-status
 !
 interface TenGigabitEthernet2/1/19
- description WA-LAN-ASA0100-S - Uplink G0/1
- switchport trunk native vlan 999
- switchport trunk allowed vlan 288,900
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
+ no switchport
+ no ip address
  shutdown
- channel-group 4 mode active
- spanning-tree portfast
- spanning-tree guard root
 !
 interface TenGigabitEthernet2/1/20
  description WA-LAN-SD0200 - Uplink Mgmt0
@@ -1264,78 +701,38 @@ interface TenGigabitEthernet2/1/20
  spanning-tree guard root
 !
 interface TenGigabitEthernet2/1/21
- description WA-LAN-ASA0200-P - Uplink G0/1
- switchport access vlan 901
- switchport mode access
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
+ no switchport
+ no ip address
  shutdown
- channel-group 5 mode active
- spanning-tree portfast
- spanning-tree guard root
 !
 interface TenGigabitEthernet2/1/22
- description WA-LAN-WCTRL0100 - Uplink Port2
- switchport trunk native vlan 999
- switchport trunk allowed vlan 280,284,288,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast level 10.00
- channel-group 9 mode on
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet2/1/23
- description WA-LAN-ASA0200-S - Uplink G0/1
- switchport access vlan 901
- switchport mode access
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
+ no switchport
+ no ip address
  shutdown
- storm-control broadcast level 10.00
- channel-group 6 mode active
- spanning-tree portfast
- spanning-tree guard root
 !
 interface TenGigabitEthernet2/1/24
- description WA-LAN-WCTRL0200 - Uplink Port2
- switchport trunk native vlan 999
- switchport trunk allowed vlan 280,284,288,1000
- switchport mode trunk
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- channel-group 11 mode on
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet2/1/25
- description WA-LAN-ASA0300-P - Uplink G0/1
- switchport access vlan 902
- switchport mode access
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast level 10.00
- channel-group 7 mode active
- spanning-tree portfast
- spanning-tree guard root
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet2/1/26
  description WA-LAN-CORE0100 Direct VSL Fast-Hello Links
  dual-active fast-hello
 !
 interface TenGigabitEthernet2/1/27
- description WA-LAN-ASA0300-S - Uplink G0/1
- switchport access vlan 902
- switchport mode access
- switchport nonegotiate
- logging event link-status
- logging event trunk-status
- storm-control broadcast level 10.00
- channel-group 8 mode active
- spanning-tree portfast
- spanning-tree guard root
+ no switchport
+ no ip address
+ shutdown
 !
 interface TenGigabitEthernet2/1/28
  description WA-LAN-CORE0100 Direct VSL Fast-Hello Links
@@ -1387,478 +784,8 @@ interface Vlan141
  no ip redirects
  no ip proxy-arp
 !
-interface Vlan210
- description 1N-PC
- ip address 10.2.10.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan213
- description 1N-PRINT_CAM
- ip address 10.2.13.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan214
- description 1N-WIFI
- ip address 10.2.14.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
 interface Vlan215
  no ip address
-!
-interface Vlan220
- description 2N-PC
- ip address 10.2.20.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan223
- description 2N-PRINT_CAM
- ip address 10.2.23.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan224
- description 2N-WIFI
- ip address 10.2.24.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan225
- description 2S-PC
- ip address 10.2.25.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan228
- description 2S-PRINT_CAM
- ip address 10.2.28.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan229
- description 2S-WIFI
- ip address 10.2.29.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan230
- description 3N-PC
- ip address 10.2.30.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan231
- description 3N-VOIP
- ip address 10.2.31.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan232
- no ip address
- shutdown
-!
-interface Vlan233
- description 3N-PRINT_CAM
- ip address 10.2.33.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan234
- description 3N-WIFI
- ip address 10.2.34.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan240
- description 4N-PC
- ip address 10.2.40.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan243
- description 4N-PRINT_CAM
- ip address 10.2.43.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan244
- description 4N-WIFI
- ip address 10.2.44.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan270
- description CP-SMG-TLAN
- ip address 10.2.170.1 255.255.255.0
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
-!
-interface Vlan271
- description CP-SMG-ELAN
- ip address 10.2.171.1 255.255.255.0
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
-!
-interface Vlan280
- description WLC-U-L1
- ip address 10.71.0.1 255.255.252.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan281
- no ip address
- shutdown
-!
-interface Vlan284
- description WLC-U-M1
- ip address 10.71.4.1 255.255.252.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan288
- no ip address
- shutdown
-!
-interface Vlan310
- description 1FN-PC
- ip address 10.71.10.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan313
- description 1FN-PRINT_CAM
- ip address 10.71.13.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan314
- description 1FN- WiFi
- ip address 10.71.14.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan320
- description 2FN-PC
- ip address 10.71.20.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan323
- description 2FN-PRINT_CAM
- ip address 10.71.23.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan324
- description 2FN- WiFi
- ip address 10.71.24.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan325
- description 2FS-PC
- ip address 10.71.25.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan328
- description 2FS-PRINT_CAM
- ip address 10.71.28.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan329
- description 2FS- WiFi
- ip address 10.71.29.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan330
- description 3N-PC
- ip address 10.71.30.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan333
- description 3N-PRINT_CAM
- ip address 10.71.33.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan334
- description 3N-WIFI
- ip address 10.71.34.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan340
- description 4N-PC
- ip address 10.71.40.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan343
- description 4N-PRINT_CAM
- ip address 10.71.43.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan344
- description 3N-WIFI
- ip address 10.71.44.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan345
- description 4S-PC
- ip address 10.71.45.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan348
- description 4S-PRINT_CAM
- ip address 10.71.48.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan349
- description 4S-WIFI
- ip address 10.71.49.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan820
- description Telepresence
- ip address 10.71.60.1 255.255.255.128
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
 !
 interface Vlan900
  description ASA-L3-INET
@@ -1886,78 +813,6 @@ interface Vlan902
  ip ospf message-digest-key 1 md5 7 153C0248547B737479
  ip ospf priority 255
  ip ospf 99 area 0
-!
-interface Vlan910
- description 1N-I3-VOIP
- ip address 10.170.48.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan920
- description 2N-I3-VOIP
- ip address 10.170.49.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan925
- description 2S-I3-VOIP
- ip address 10.170.50.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan930
- description 3N-I3-VOIP
- ip address 10.170.51.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan940
- description 4N-I3-VOIP
- ip address 10.170.52.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
-!
-interface Vlan945
- description 4S-VOIP
- ip address 10.170.53.1 255.255.255.0
- ip helper-address 10.2.101.100
- ip helper-address 10.1.101.100
- ip helper-address 10.1.101.78
- ip helper-address 10.1.101.79
- no ip redirects
- no ip proxy-arp
- ip ospf 99 area 0
- shutdown
 !
 interface Vlan1000
  description CORE-MGMT-1

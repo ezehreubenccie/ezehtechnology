@@ -1,5 +1,5 @@
 !Command: show running-config
-!Time: Sun Mar  3 20:30:24 2024
+!Time: Mon Mar  4 20:30:25 2024
 
 version 7.0(5)N1(1a)
 hostname WA-LAN-SD0100
@@ -429,16 +429,6 @@ interface port-channel2
   no ip ospf passive-interface
   ip ospf bfd
 
-interface port-channel3
-  description WA-LAN-WANRTR0100 OTV Extension
-  switchport mode trunk
-  switchport trunk native vlan 999
-  switchport trunk allowed vlan 101,110-114,120,192,254
-  speed 1000
-  storm-control broadcast level 10.00
-  storm-control multicast level 10.00
-  vpc 3
-
 interface port-channel10
   description WA-LAN-SD0200
   switchport mode trunk
@@ -494,14 +484,6 @@ interface port-channel16
   switchport trunk allowed vlan 203,254
   speed 1000
   vpc 16
-
-interface port-channel17
-  description VRTX-01
-  switchport mode trunk
-  switchport trunk native vlan 999
-  switchport trunk allowed vlan 101,110
-  speed 1000
-  vpc 17
 
 interface port-channel18
   description WAN-LAN-MANSW0700
@@ -746,21 +728,11 @@ interface Ethernet1/30
   channel-group 16 mode active
 
 interface Ethernet1/31
-  switchport mode trunk
-  switchport trunk native vlan 999
-  switchport trunk allowed vlan 101,110
-  speed 1000
-  channel-group 17 mode active
 
 interface Ethernet1/32
   shutdown
 
 interface Ethernet1/33
-  switchport mode trunk
-  switchport trunk native vlan 999
-  switchport trunk allowed vlan 101,110
-  speed 1000
-  channel-group 17 mode active
 
 interface Ethernet1/34
   description WAN-LAN-MANSW0700 - Uplink G1/1/47
