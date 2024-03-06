@@ -4631,8 +4631,8 @@ ssl cipher tlsv1 low
 ssl cipher tlsv1.1 low
 ssl cipher tlsv1.2 custom "AES128-SHA:AES256-SHA:AES128-SHA256:AES256-SHA256"
 ssl cipher dtlsv1 custom "AES128-SHA:AES256-SHA:AES128-SHA256:AES256-SHA256"
-ssl trust-point ASDM_TrustPoint7 outside
-ssl trust-point ASDM_TrustPoint7 inside
+ssl trust-point sra_2025 outside
+ssl trust-point sra_2025 inside
 webvpn
  enable outside
  enable inside
@@ -5170,5 +5170,5 @@ call-home
   subscribe-to-alert-group inventory periodic monthly
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
-Cryptochecksum:142526e2edeb93ef2797f2093ce7829c
+Cryptochecksum:e74c867891b5e7b7bb0187ac303aede8
 : end
