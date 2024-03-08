@@ -1,0 +1,469 @@
+Building configuration...
+
+Current configuration : 11932 bytes
+!
+! Last configuration change at 22:39:18 EDT Sat Aug 3 2002 by a-rezeh
+! NVRAM config last updated at 22:56:44 EDT Sat Aug 3 2002 by a-rezeh
+!
+version 15.2
+service nagle
+no service pad
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+service password-encryption
+service sequence-numbers
+!
+hostname sb-lan-sw0501
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 9 $9$VCqu4JJe7cDJNv$trqG0MWkUcuBxrYUDfS2RMiA/9w7u4aZBUAg4gWWQvs
+!
+username Support privilege 15 secret 9 $9$gHiUZL/QHdey0P$MnCkHvk4ak9ObWgfMP6fLO.HQPkxOPmyAHNKR0BZMLg
+aaa new-model
+!
+!
+aaa group server tacacs+ ISE-TACACS
+ server name ISE1-TACACS
+ server name ISE2-TACACS
+!
+aaa authentication login default group ISE-TACACS local-case
+aaa authentication enable default enable line
+!
+!
+!
+!
+!
+!
+aaa session-id common
+clock timezone EST -5 0
+clock summer-time EDT recurring
+switch 1 provision ws-c2960x-24ts-l
+!
+!
+!
+!
+no ip source-route
+no ip gratuitous-arps
+!
+!
+no ip domain-lookup
+ip domain-name utd.com
+ip name-server 192.168.0.12
+ip name-server 10.1.101.100
+vtp domain UTD-SB-VTP
+vtp mode transparent
+!
+!
+!
+!
+!
+!
+udld aggressive
+
+!
+crypto pki trustpoint TP-self-signed-3581004544
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3581004544
+ revocation-check none
+ rsakeypair TP-self-signed-3581004544
+!
+!
+crypto pki certificate chain TP-self-signed-3581004544
+ certificate self-signed 01
+  3082022B 30820194 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 33353831 30303435 3434301E 170D3030 30313032 30363333 
+  31365A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 35383130 
+  30343534 3430819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100C112 BB7B8A1C B927EF59 B712AF1D 6832D416 044AF2B3 2F5F6413 6E29266C 
+  4FA19253 88DAEF2A 221D5139 F53A3394 9282860F BA7A44EC 4B8B5798 630D4A1B 
+  67ACE887 0AC4DDDD DBFF9BBB AF50213F D211099B 6463A459 8C6A2A1A 8266C23A 
+  31998370 EFB514B2 460F021B CB5928C0 06201CA4 C456FE47 DBD8D74C 44005445 
+  87450203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603 
+  551D2304 18301680 14AB44A7 F49CAB13 D5898A5E 497F4493 7D5535EA 46301D06 
+  03551D0E 04160414 AB44A7F4 9CAB13D5 898A5E49 7F44937D 5535EA46 300D0609 
+  2A864886 F70D0101 05050003 81810070 DC464F89 095F9288 CB9419D8 EEA7663A 
+  2C88C1D2 ED7D3933 76A66AD4 0B109849 654642F3 79A4F168 53670728 54AE636F 
+  172B7597 362EA12B F9FB2E37 BBAE56F1 A7A75118 67916277 D2A56780 4B8101EE 
+  3848C02C 043670BB FC2DB8D4 1F0D09C6 E579F4C2 A3AC9E6A 9526F282 017285FF 
+  812AA4F5 B8894C97 7023F69C 8B6F09
+  	quit
+!
+spanning-tree mode rapid-pvst
+spanning-tree loopguard default
+spanning-tree logging
+spanning-tree portfast edge bpduguard default
+spanning-tree extend system-id
+spanning-tree vlan 1-4094 priority 16384
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+vlan 999
+ name NATIVE
+!
+vlan 1047
+ name OUTSIDE
+!
+vlan 1048
+ name OUTSIDE_MNG
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+interface Port-channel1
+ description *** L2 Po to sb-lan-SW0501 ***
+ switchport trunk allowed vlan 1047,1048
+ switchport trunk native vlan 999
+ switchport mode trunk
+ switchport nonegotiate
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface FastEthernet0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/1
+ description sb-lan-asa0603
+ switchport trunk allowed vlan 1047,1048
+ switchport trunk native vlan 1047
+ switchport mode trunk
+ switchport nonegotiate
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge trunk
+!
+interface GigabitEthernet1/0/2
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/3
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/4
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/5
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/6
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/7
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/8
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/9
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/10
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/11
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/12
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/13
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/14
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/15
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/16
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/17
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/18
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/19
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/20
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/21
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/22
+ description *** L2 Uplink to ATT (Reserved) ***
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ speed 100
+ duplex full
+ no cdp enable
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/23
+ description *** L2 Po to sb-lan-SW0501 ***
+ switchport trunk allowed vlan 1047,1048
+ switchport trunk native vlan 999
+ switchport mode trunk
+ switchport nonegotiate
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ channel-group 1 mode active
+!
+interface GigabitEthernet1/0/24
+ description *** L2 Po to sb-lan-SW0501 ***
+ switchport trunk allowed vlan 1047,1048
+ switchport trunk native vlan 999
+ switchport mode trunk
+ switchport nonegotiate
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+ channel-group 1 mode active
+!
+interface GigabitEthernet1/0/25
+ switchport access vlan 1047
+ switchport mode access
+ switchport nonegotiate
+ shutdown
+ no cdp enable
+ storm-control broadcast level 10.00
+ storm-control multicast level 10.00
+!
+interface GigabitEthernet1/0/26
+ shutdown
+!
+interface GigabitEthernet1/0/27
+ shutdown
+!
+interface GigabitEthernet1/0/28
+ shutdown
+!
+interface Vlan1
+ no ip address
+ no ip route-cache
+ shutdown
+!
+interface Vlan1048
+ description OUTSIDE_MNG VLAN
+ ip address 10.10.48.20 255.255.255.0
+ no ip redirects
+ no ip proxy-arp
+!
+ip default-gateway 10.10.48.1
+!
+no ip http server
+no ip http secure-server
+ip ssh version 2
+!
+ip access-list standard SNMP_RO_ACL
+ permit 10.1.101.69
+ permit 10.1.101.193
+ip access-list standard VTY_ACL
+ permit any
+!
+!
+!
+snmp-server community 95utd453 RO SNMP_RO_ACL
+snmp-server location East Coast IDC1
+snmp-server contact Information Systems
+snmp-server enable traps snmp authentication linkdown linkup coldstart
+snmp-server enable traps syslog
+snmp mib flash cache
+tacacs server ISE1-TACACS
+ address ipv4 10.1.101.78
+ key 7 1131090844191C34530C030706600D3A15
+ single-connection
+tacacs server ISE2-TACACS
+ address ipv4 10.1.101.79
+ key 7 073731411D020E3D4034232F2A79133C2E
+ single-connection
+!
+!
+banner motd ^CC
+************************************************************
+************************* WARNING **************************
+* THIS SYSTEM IS FOR THE USE OF AUTHORIZED PERSONNEL ONLY!  *
+* ACCESS IS RESTRICTED TO AUTHORIZED USERS ONLY!            *
+* UNAUTHORIZED ACCESS IS A VIOLATION OF STATE AND FEDERAL,  *
+* CIVIL AND CRIMINAL LAWS.  VIOLATORS WILL BE PROSECUTED.   *
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *
+* ALL ACTIVITY ON THIS COMPUTER SYSTEM IS MONITORED BY      *
+* SYSTEM SECURITY PERSONNEL. BY USING THIS COMPUTER SYSTEM  *
+* YOU CONSENT TO THIS MONITORING. INDIVIDUALS DETERMINED TO *
+* BE USING THIS COMPUTER NETWORK SYSTEM WITHOUT PROPER      *
+* AUTHORIZATION, OR IN EXCESS OF THEIR AUTHORIZATION MAY    *
+* HAVE THEIR ACTIVITY RECORD SUBMITTED TO LEGAL AUTHORITIES *
+* AND LEGAL AND CRIMINAL CHARGES MAY FOLLOW.                *
+*************************************************************
+*************************************************************
+^C
+!
+line con 0
+ exec-timeout 15 0
+ logging synchronous
+ history size 256
+ transport preferred none
+ transport output telnet ssh
+ stopbits 1
+line vty 0 4
+ access-class VTY_ACL in
+ exec-timeout 15 0
+ logging synchronous
+ length 0
+ history size 256
+ transport preferred none
+ transport input ssh
+ transport output telnet ssh
+line vty 5 15
+ access-class VTY_ACL in
+ exec-timeout 15 0
+ logging synchronous
+ history size 256
+ transport preferred none
+ transport input ssh
+ transport output telnet ssh
+!
+ntp server 10.1.254.1
+!
+end
