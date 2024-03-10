@@ -1,0 +1,40 @@
+linux_version commands
+
+[ec2-user@ip-172-31-83-184 ~]$ cat /etc/os-release 
+NAME="Amazon Linux"
+VERSION="2"
+ID="amzn"
+ID_LIKE="centos rhel fedora"
+VERSION_ID="2"
+PRETTY_NAME="Amazon Linux 2"
+ANSI_COLOR="0;33"
+CPE_NAME="cpe:2.3:o:amazon:amazon_linux:2"
+HOME_URL="https://amazonlinux.com/"
+SUPPORT_END="2025-06-30"
+[ec2-user@ip-172-31-83-184 ~]$ 
+
+
+
+
+steps:
+2035  clear
+ 2036  pwd
+ 2037  cd ..
+ 2038  clear
+ 2039  pwd
+ 2040  ls
+ 2041  ssh ec2-user@35.170.192.26
+ 2042  ls
+ 2043  pwd
+ 2044  cd aws_course/
+ 2045  pwd
+ 2046  ssh ec2-user@35.170.192.26
+ 2047  pwd
+ 2048  ls
+ 2049  ssh -i EC2Tutorial.pem ec2-user@35.170.192.26
+ 2050  ls -al
+ 2051  chmod 400 EC2Tutorial.pem 
+ 2052  ls -al
+ 2053  ssh -i EC2Tutorial.pem ec2-user@35.170.192.26
+ 2054  history
+$ 
