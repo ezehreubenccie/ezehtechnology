@@ -6,6 +6,7 @@
 :
 ASA Version 9.12(4)41 
 !
+terminal width 511
 hostname ec-lan-asa0803
 domain-name utd.com
 enable password ***** encrypted
@@ -2657,5 +2658,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname context 
 no call-home reporting anonymous
-Cryptochecksum:001ff0c0a41a51e97f6b6ed98814e466
+Cryptochecksum:c6a8569891c725e5c6e3a13849cab03d
 : end

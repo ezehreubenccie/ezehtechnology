@@ -1,0 +1,32 @@
+- name : CHECK IF TARGET SOFTWARE IS IN 9300 SWITCH FLASH
+  connection: network_cli
+  hosts: nyc9300sw:njc9200l24t4xsw:ffc9300l48t4xsw
+  gather_facts: false
+
+
+
+  vars:
+    ios_binary: cat9k_lite_iosxe.17.09.04a.SPA.bin
+    
+
+
+
+  tasks:
+    - name: Check if IOS is already present on the flash
+      ios_command:
+        commands: "dir | include {{ ios_binary }}"
+      vars:
+        ansible_command_timeout: 1800
+      register: show_flash
+
+    - debug:
+        var: show_flash
+
+    - name: Assert that target software is present in flash
+      assert:
+        that:
+          - ios_binary in show_flash['stdout'][0]
+        fail_msg: "Compliant Software not present in {{inventory_hostname}}'s flash"
+        success_msg: "Compliant Software is  present in {{inventory_hostname}}'s flash"
+      tags:
+        - flash
