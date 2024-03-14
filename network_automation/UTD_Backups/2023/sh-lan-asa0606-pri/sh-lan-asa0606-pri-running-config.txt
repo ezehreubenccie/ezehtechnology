@@ -719,8 +719,8 @@ object network esrs_vm_waltham-10.2.101.249
 object network sh-esxunity-10.35.56.102
  host 10.35.56.102
  description IS-7121
-object network obj-10.2.101.249
- host 10.2.101.249
+object network obj-10.1.101.249
+ host 10.1.101.249
  description IS-7121
 object-group network Tomcat-Servers
  network-object object ecapp0506p
@@ -4833,7 +4833,7 @@ object-group network ESX_UNITY
  network-object object sh-esxunity-10.35.56.102
 object-group network WALTHAM_ESRS_VMS
  description IS-7121
- network-object object obj-10.2.101.249
+ network-object object obj-10.1.101.249
 access-list inside-in remark Block List to INET YA 12.23.18
 access-list inside-in extended deny ip any object-group BlockOut 
 access-list inside-in extended permit icmp object-group TechGroup any 
@@ -5185,6 +5185,8 @@ access-list DMZ3556_access_in remark Allow switch to ftp tp Waltham LAN - smd 5/
 access-list DMZ3556_access_in extended permit tcp host 10.35.56.254 10.1.30.0 255.255.255.0 eq ftp 
 access-list DMZ3556_access_in remark Web Farm VNXs to EMC Secure Remote Services VM SA 4.27.17
 access-list DMZ3556_access_in extended permit object-group TCPUDP object-group EC_DAS object esrs01p object-group EMC_Secure_Remote_Service_2 
+access-list DMZ3556_access_in remark CECR-5442 R.E 03-12-2024
+access-list DMZ3556_access_in extended permit object-group TCPUDP object-group ESX_UNITY object-group WALTHAM_ESRS_VMS object-group EMC_Secure_Remote_Service_2 
 access-list DMZ3556_access_in remark Couchbase ACL 4.28.17 YA
 access-list DMZ3556_access_in extended permit tcp object-group DM_INLINE_NETWORK_37 object-group DM_INLINE_NETWORK_38 object-group Couchbase_Node_to_Node 
 access-list DMZ3556_access_in remark DB Servers to ELK Server Waltham  YA9.26.17
@@ -5714,5 +5716,5 @@ call-home
   subscribe-to-alert-group inventory periodic monthly
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
-Cryptochecksum:13187a7e38f776f3230c4deceefb8990
+Cryptochecksum:8ece6d8cdcc904a6a8ca73a50055a592
 : end
