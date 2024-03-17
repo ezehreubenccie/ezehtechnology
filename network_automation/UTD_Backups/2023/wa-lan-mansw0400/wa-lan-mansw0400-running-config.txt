@@ -1,9 +1,8 @@
 Building configuration...
 
-Current configuration : 28254 bytes
+Current configuration : 28345 bytes
 !
-! Last configuration change at 08:18:42 EDT Thu Oct 7 2021 by a-amannan
-! NVRAM config last updated at 21:54:54 EST Wed Feb 28 2024
+! Last configuration change at 17:43:01 EDT Sat Mar 16 2024 by a-rezeh
 !
 version 16.9
 service nagle
@@ -43,6 +42,7 @@ aaa group server tacacs+ ISE-TACACS
  server name ISE2-TACACS
 !
 aaa authentication login default group ISE-TACACS local-case
+aaa authentication login CONSOLE local group tacacs+
 aaa authentication enable default enable line
 aaa authorization console
 aaa authorization exec default group ISE-TACACS local if-authenticated 
@@ -187,7 +187,8 @@ archive
   hidekeys
 !
 !
-username Support privilege 15 secret 5 $1$4t1I$8kw2BJyDNGSO0PzUtdoe8.
+username Support privilege 15 secret 5 $1$mmAM$WeEnChGLUhgyrnaN0zIFd.
+username reuben privilege 15 secret 5 $1$rISW$jvmmatALuRMN47h5FznQ01
 !
 redundancy
  mode sso
@@ -948,6 +949,7 @@ banner motd ^CC
 line con 0
  exec-timeout 15 0
  logging synchronous
+ login authentication CONSOLE
  history size 256
  transport preferred none
  transport output telnet ssh
