@@ -1,7 +1,0 @@
----
-rtr1:
-  host: 120.2.0.23
-  username: reuben
-  password: cisco
-  device_type: cisco_ios
-  use_session_log: True
