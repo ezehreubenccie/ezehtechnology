@@ -1,0 +1,41 @@
+- name : VERIFY MD5 HASH FOR NEXUS SWITCH SOFTWARE
+  connection: network_cli
+  hosts: wan9k:ffnexusc92348gcxsw:ffnexus3548sw
+  gather_facts: false
+
+
+  vars:
+    target_image: nxos64-cs.10.2.6.M.bin
+    md5_hash: a7ab27345fb90f654a943d1765df8142
+
+
+
+  tasks:
+    - name: Check if Nexus Switch Software was copied successfully to the flash
+      nxos_command:
+        commands: "dir  bootflash: | include {{ target_image }}"
+      register: dir_bootflash
+      tags: check_flash
+
+
+
+
+    - name: Calculate MD5 Hash
+      nxos_command:
+        commands: 'show file bootflash:{{ target_image }} md5sum'
+      register: md5_result
+      when:
+        - target_image  in dir_bootflash.stdout_lines[0][0]
+
+
+
+    - name: Assert That MD5 Sums are Identical
+      assert:
+        that:
+          - md5_hash == md5_result['stdout'][0]
+        fail_msg: 'NXOS binary file {{ target_image }} MD5sum on {{ inventory_hostname }} is not correct'
+        success_msg: 'NXOS binary file {{ target_image }} MD5sum on {{ inventory_hostname }} is correct'
+      when:
+        - target_image in dir_bootflash.stdout_lines[0][0]
+      tags:
+        - md5

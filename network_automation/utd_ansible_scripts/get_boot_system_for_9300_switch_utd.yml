@@ -1,0 +1,21 @@
+- name : GET BOOT SYSTEM FOR 9300 SWITCHES
+  connection: network_cli
+  hosts: nyc9300sw:njc9200l24t4xsw:ffc9300l48t4xsw 
+  gather_facts: false
+
+
+
+
+
+
+
+
+
+  tasks:
+    - name: Check Boot path
+      ios_command:
+        commands: 'show boot | i BOOT'
+      register: bootvar
+
+    - debug:
+        var: bootvar
