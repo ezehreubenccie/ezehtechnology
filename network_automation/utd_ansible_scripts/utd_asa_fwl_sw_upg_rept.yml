@@ -1,0 +1,120 @@
+---
+- name: "PLAY 1: get facts from asa"
+  hosts: wa5555xasas:wa5525xasas:nyc5555xasas:tky5555xasas:sh5555xasas:njbcdrasa
+  gather_facts: no
+
+  vars:
+    hostname:
+    version:
+    serialnum:
+    ipaddress:
+    physicaladdress:
+    verdict:
+    upgradeto:
+    compliant_5555x: 9.14(4)23
+    compliant_5525x: 9.14(4)23
+    #compliant_5508x: 9.12(4)41
+    #compliant_5505: 9.1(7)32
+    #compliant_fpr1120_asa: 9.12(4)41
+    non_compliant_5555x: 9.12(4)41
+    non_compliant_5525x: 9.12(4)41
+#    non_compliant_5506x_2: 9.9(2)
+#    non_compliant_5506x_3: 9.8(4)22
+    #non_compliant_fpr1120_asa: 9.15(1)10
+    #non_compliant_5508x: 9.12(4)18
+    #non_compliant_5505:
+    lastUpgradeTime:
+
+  tasks:
+    - name: "TASK 1: asa facts"
+      asa_command:
+        commands:
+          - show run hostname
+          - show version
+          - show inventory
+          - show ip | in INSIDE|inside|Data|guestwifi|DATA|FW|DMZ
+          - sh run snmp-server | grep location
+      register: asa_vars
+
+#    - name: "TASK 2: print output"
+#     debug:
+#       var: asa_vars
+
+    - name: "TASK 3: Get Hostname of ASA"
+      asa_command:
+        commands:
+          - show hostname
+      register: hostname
+
+    - name: "TASK 4: Get Firewall Uptime"
+      asa_command:
+        commands:
+          - "show version | grep {{ hostname.stdout_lines[0][0] }}"
+      register: asauptime
+
+
+    - name: "TASK 5: asa set facts"
+      set_fact:
+        hostname: "{{ asa_vars.stdout_lines[0][0].split()[-1] }}"
+        version: "{{ asa_vars.stdout_lines[1][0].split()[-1] }}"
+        serialnum: "{{ asa_vars.stdout_lines[2][1].split()[-1] }}"
+        ipaddress: "{{ asa_vars.stdout_lines[3][1].split()[2] }}"
+       # asdmversion: "{{ asa_vars.stdout_lines[1][2].split()[-1] }}"
+#        physicaladdress: "{{ asa_vars.stdout[4][21:].replace(',','') }}"
+        physicaladdress: "{{ asa_vars.stdout_lines[4][0].split('snmp-server location ')[-1].replace(',','') }}"
+        lastUpgradeTime: "{{ asauptime.stdout_lines[0][0].split()[2] + asauptime.stdout_lines[0][0].split()[3] + ' ' + asauptime.stdout_lines[0][0].split()[4] + asauptime.stdout_lines[0][0].split()[5] }}"    
+
+#    - debug:
+#        var: physicaladdress
+
+#    - debug:
+#        var: ipaddress
+    #- name: set fact
+     # set_fact:
+       # time: " {{ '%Y-%m-%dT%H:%M:%S'|strftime((ansible_date_time.epoch|int) - (60* asauptime.stdout_lines[0][0].split()[4]|int * asauptime.stdout_lines[0][0].split()[2]|int )) }}"
+      #delegate_to: localhost
+     # when: ("'rs' in asauptime.stdout_lines[0][0].split()[3]") and ("'ns' in asauptime.stdout_lines[0][0].split()[5]" )
+
+   # - debug:
+       # var: time
+
+    - name: set fact 2
+      set_fact:
+        verdict: 'compliant'
+      when: (version  == compliant_5555x) or (version  == compliant_5525x)
+
+    - name: set fact 3
+      set_fact:
+        verdict: 'non-compliant'
+      when: (version  != compliant_5555x) and (version  != compliant_5525x)
+
+    - name: set fact 4
+      set_fact: 
+        upgradeto: 'N/A'
+      when: (version  == compliant_5555x) or (version  == compliant_5525x)
+
+    - name: set fact 5
+      set_fact:
+        upgradeto: '{{ compliant_5555x }}'
+      when: version == non_compliant_5555x        
+
+    - name: set fact 6
+      set_fact:
+        upgradeto: '{{ compliant_5525x }}'
+      when: version == non_compliant_5525x 
+
+
+    - name: Display facts
+      debug:
+        msg: "The software version for {{ hostname }} is {{ version }} on platform {{ serialnum }} with ip address {{ ipaddress }} installed at {{ physicaladdress }}"
+
+  
+
+    - name: Write mydevices.csv
+      run_once: true
+      shell: echo Serial Number,Device Name,Software Version,Verdict,UpgradeTO,LastUpgradeTime,Tags,Notes  > FirewallComplianceReport.csv
+
+
+    - name: Write My Devices CSV File
+      shell: echo "{{ serialnum }},{{ hostname }},{{ version }},{{ verdict }},{{ upgradeto }},{{ lastUpgradeTime }},{{ ipaddress }},{{ physicaladdress }}" >> FirewallComplianceReport.csv
+      delegate_to: localhost

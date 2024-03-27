@@ -1,0 +1,116 @@
+- name: BUILD CISCO 2960X SWITCHES INVENTORY
+  connection: network_cli
+  hosts: tkywsc2960x24tslsw:nyc2960xsw:shwsc2960x24tslsw:shwsc3750x24tssw
+  gather_facts: false
+
+  vars:
+    hostname:
+    version:
+    serialnum:
+    ipaddress:
+    physicaladdress:
+    verdict:
+    upgradeto:
+    date_of_upgrade:
+    time_of_upgrade:
+    time_zone_of_upgrade:
+    day_of_upgrade:
+    compliant_2960x: 15.2(7)E7
+    compliant_3750x: 15.2.4E10
+    non_compliant_2960x_1: 15.2(7)E4
+    non_compliant_2960x_2: 15.2(2)E7
+    non_compliant_2960x_3: 15.2(2)E6
+    non_compliant_3750x: 15.2(1)E3
+
+
+  tasks:
+    - name: Get Physical Address from Switch
+      ios_command:
+        commands:
+          - command: show run | in snmp-server location
+      register: snmp_location
+      tags: 3750x
+
+    - debug:
+        var: snmp_location.stdout[0][21:]
+      tags: 3750x
+
+    - name: Gather 2960X Switch Facts
+      ios_facts:
+        gather_subset: all
+      register: switchfacts
+      tags: 
+        - 2960x
+        - 3750x
+
+    - debug:
+        var: switchfacts
+      tags: 
+        - 2960x
+        - 3750x
+
+    - name: Get When System Last Restarted
+      ios_command:
+        commands:
+          - command: show version | in System restarted
+      register: sysrestart
+      tags: 3750x
+
+
+    - set_fact:
+        ipaddress: "{{ ansible_net_all_ipv4_addresses[0] }}"
+        version: "{{ ansible_net_version.replace('0','') }}"
+        serialnum: '{{ ansible_net_serialnum }}'
+        model: "{{ ansible_net_model }}"
+        hostname: '{{ ansible_net_hostname }}'
+        physicaladdress: "{{ snmp_location.stdout[0][21:].replace(',','') }}"
+        date_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[6] + ' ' + sysrestart.stdout_lines[0][-1].split()[7] + ' ' + sysrestart.stdout_lines[0][-1].split()[8] }}"
+        time_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[3] }}"
+        time_zone_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[4] }}"
+        day_of_upgrade: "{{ sysrestart.stdout_lines[0][-1].split()[5] }}"
+      tags: 3750x
+
+    #- debug:
+       # var: snmp_location.stdout[0][21:].replace(',','')
+        
+
+    #- debug:
+        #var: ipaddress
+    - name: set fact 2
+      set_fact:
+        verdict: 'compliant'
+      when: (version == compliant_2960x) or (version == compliant_3750x)
+
+    - name: set fact 3
+      set_fact:
+        verdict: 'non-compliant'
+      when: (version != compliant_2960x) or (version != compliant_3750x)
+
+    - name: set fact 4
+      set_fact:
+        upgradeto: '{{ compliant_2960x }}'
+      when: (version == non_compliant_2960x_1) or (version == non_compliant_2960x_2) or (version == non_compliant_2960x_3)
+
+    - name: set fact 4_1
+      set_fact:
+        upgradeto: '{{ compliant_3750x }}'
+      when: version == non_compliant_3750x
+
+    - name: set fact 5
+      set_fact:
+        upgradeto: 'N/A'
+      when: (version == compliant_2960x) or (version == compliant_3750x)
+
+    - debug:
+        msg: 'The device name is {{ hostname }}, ip address of MANAGEMENT VLAN interface is {{ ipaddress }}, ios software version is {{ version }}, serial number is {{ serialnum }}, physical address is {{ physicaladdress }}'
+
+    - name: Write mydevices.csv
+      run_once: true
+      shell: echo Serial Number,Device Name,Device Model,Software Version,Verdict,UpgradeTO,TimeUpgraded,TimeZoneOfUpgrade,DayOfUpgrade,DateUpgraded,Tags,Notes  > 2960xSwitchComplianceReport.csv
+
+
+
+    - name: Write My Devices CSV File
+      shell: echo "{{ item }},{{ hostname }},{{ model }},{{ version }},{{ verdict }},{{ upgradeto }},{{ time_of_upgrade }},{{ time_zone_of_upgrade }},{{ day_of_upgrade }},{{ date_of_upgrade }},{{ ipaddress }},{{ physicaladdress }}" >> 2960xSwitchComplianceReport.csv
+      with_items: "{{ ansible_net_stacked_serialnums }}"
+      delegate_to: localhost

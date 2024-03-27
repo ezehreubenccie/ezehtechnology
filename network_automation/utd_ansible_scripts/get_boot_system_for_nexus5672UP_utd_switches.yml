@@ -1,0 +1,21 @@
+- name : GET BOOT SYSTEM FOR Nexus SWITCHES
+  connection: network_cli
+  hosts: ffnexusc92348gcxsw 
+  gather_facts: false
+
+
+
+
+
+
+
+
+
+  tasks:
+    - name: Check Boot path
+      nxos_command:
+        commands: 'sh boot'
+      register: bootvar
+
+    - debug:
+        var: bootvar
