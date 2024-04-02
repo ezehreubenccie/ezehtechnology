@@ -4701,6 +4701,7 @@ access-list inside-in extended permit tcp object-group TechGroup 10.25.56.0 255.
 access-list inside-in extended permit icmp object-group TechGroup any4 
 access-list inside-in extended permit icmp any4 any4 
 access-list inside-in extended permit udp 10.1.101.0 255.255.255.0 10.25.0.0 255.255.0.0 object-group Cisco-LMS-UDP 
+access-list inside-in extended permit tcp host 10.1.101.130 object obj-10.25.0.0 eq ssh inactive 
 access-list inside-in extended permit tcp object-group TechGroup object-group Database-Servers eq sqlnet 
 access-list inside-in extended permit tcp object-group TechGroup 10.25.0.0 255.255.0.0 eq 5900 
 access-list inside-in remark R1 Console Connectivity
@@ -5459,5 +5460,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname priority state 
 no call-home reporting anonymous
-Cryptochecksum:7ec4a3a4ca1d9d3b5898524e12a1ef42
+Cryptochecksum:84b0ab5ef7151aa552fce58d326ab754
 : end
