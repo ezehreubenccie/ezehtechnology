@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 12863 bytes
+Current configuration : 12883 bytes
 !
-! Last configuration change at 22:49:02 UTC Sat Feb 3 2024 by a-varora
+! Last configuration change at 17:44:46 UTC Tue Apr 2 2024 by a-rezeh
 ! NVRAM config last updated at 22:49:21 UTC Sat Feb 3 2024 by a-varora
 !
 version 15.2
@@ -372,6 +372,7 @@ no ip http secure-server
 ip ssh time-out 60
 ip ssh authentication-retries 2
 ip ssh version 2
+ip scp server enable
 !
 ip access-list standard RO_SNMP_ACL
  permit 10.1.101.69
