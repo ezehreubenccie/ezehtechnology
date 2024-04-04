@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 17329 bytes
+Current configuration : 17394 bytes
 !
-! Last configuration change at 15:41:44 EDT Tue Mar 12 2024 by a-rezeh
+! Last configuration change at 19:25:45 EDT Wed Apr 3 2024 by a-rezeh
 !
 version 17.9
 service tcp-keepalives-in
@@ -34,12 +34,12 @@ aaa group server tacacs+ ISE-TACACS
  server name ISE1-TACACS
  server name ISE2-TACACS
 !
-aaa authentication login default group ISE-TACACS local-case
-aaa authentication enable default enable line
-aaa authorization console
-aaa authorization config-commands
-aaa authorization exec default group ISE-TACACS local if-authenticated 
-aaa authorization commands 15 default group ISE-TACACS local if-authenticated 
+aaa group server radius UTD_RADIUS
+ server name UTD-RAD01
+!
+aaa authentication login default group UTD_RADIUS local
+aaa authentication login CONSOLE local
+aaa authorization exec default group UTD_RADIUS local 
 aaa accounting exec default start-stop group ISE-TACACS
 aaa accounting commands 1 default start-stop group ISE-TACACS
 aaa accounting commands 15 default start-stop group ISE-TACACS
@@ -173,6 +173,7 @@ enable password 7 03400A5F454C024358490A0014000E18
 !
 username admin privilege 15 secret 9 $14$/Hva$S2uuwkwQyf6ZaU$jlve1hymFFDLXpKumkGXNY.2WUwc8J/ISYaB00FghIQ
 username Support privilege 15 secret 9 $14$aZCL$55mnLnk791InEk$prKS0axNcq7jAe2yaYztge0hwzUsT.sLvSwO98bctqg
+username reuben privilege 15 secret 9 $9$WTR/Fl6lo2ObhE$qWsYIHr5sdHwlS.MG2qnDTJNiT0.9OkRkqjnONO61zk
 !
 redundancy
  mode sso
@@ -477,6 +478,7 @@ ip access-list standard VTY_ACL
  20 deny   any log
 !
 !
+ip radius source-interface Vlan1054 
 !
 snmp-server community 95utd453ro RO
 snmp-server community 95utd453 RW
@@ -503,14 +505,14 @@ snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistenc
 snmp-server enable traps mac-notification change move threshold
 snmp-server enable traps vlan-membership
 snmp-server host 10.1.101.193 95udt453 
-tacacs server ISE1-TACACS
- address ipv4 10.1.101.78
- key 7 1221151A41001B3C7D0D0C0B1D661A0B01
- single-connection
-tacacs server ISE2-TACACS
- address ipv4 10.1.101.79
- key 7 152A1B0157213C1C7F151D013D542E1B07
- single-connection
+!
+radius server UTD-RAD01
+ address ipv4 10.2.101.77 auth-port 1812 acct-port 1813
+ key 7 03140C22041702401631033F3C042E34293D0C0C3A
+!
+radius server UTD-RAD02
+ address ipv4 10.2.101.78 auth-port 1812 acct-port 1813
+ key 7 051B512623546D05413D0D28201A211206330F1B27
 !
 !
 !
@@ -537,7 +539,7 @@ banner motd ^CC
 ^C
 !
 line con 0
- exec-timeout 15 0
+ exec-timeout 0 0
  logging synchronous
  history size 256
  transport preferred none
