@@ -1,9 +1,9 @@
 Building configuration...
 
-Current configuration : 12324 bytes
+Current configuration : 12711 bytes
 !
-! Last configuration change at 08:42:13 EDT Tue Sep 28 2021 by a-amannan
-! NVRAM config last updated at 08:42:23 EDT Tue Sep 28 2021 by a-amannan
+! Last configuration change at 01:59:23 EDT Thu Apr 4 2024 by a-rezeh
+! NVRAM config last updated at 01:59:25 EDT Thu Apr 4 2024 by a-rezeh
 !
 version 15.2
 service nagle
@@ -23,7 +23,7 @@ boot-end-marker
 enable secret 5 $1$qAhJ$M.n6sB0bJwZfxeqSmgjcl0
 enable password 7 041F5A524C626F411F59161211190910
 !
-username Support privilege 15 secret 5 $1$79Z.$izZxpsfntad7FLM2SS6pY0
+username Support privilege 15 secret 5 $1$UwVN$lLrAv2Z6PH4dRLq1CV1in0
 aaa new-model
 !
 !
@@ -31,11 +31,16 @@ aaa group server tacacs+ ISE-TACACS
  server name ISE1-TACACS
  server name ISE2-TACACS
 !
-aaa authentication login default group ISE-TACACS local-case
+aaa group server radius UTD_RADIUS
+ server name UTD-RAD01
+ server name UTD-RAD02
+!
+aaa authentication login default group UTD_RADIUS local
+aaa authentication login CONSOLE local
 aaa authentication enable default enable line
 aaa authorization console
 aaa authorization config-commands
-aaa authorization exec default group ISE-TACACS local if-authenticated 
+aaa authorization exec default group UTD_RADIUS local 
 aaa authorization commands 15 default group ISE-TACACS local if-authenticated 
 aaa accounting exec default start-stop group ISE-TACACS
 aaa accounting commands 1 default start-stop group ISE-TACACS
@@ -427,6 +432,14 @@ tacacs server ISE2-TACACS
  single-connection
 !
 !
+radius server UTD-RAD01
+ address ipv4 10.2.101.77 auth-port 1812 acct-port 1813
+ key 7 0014442F0643280A57195674220F202F3F1C2B2C38
+!
+radius server UTD-RAD02
+ address ipv4 10.2.101.78 auth-port 1812 acct-port 1813
+ key 7 061658084E562A155D2F083127120F13093F141D30
+!
 !
 banner motd ^C
 ************************************************************
@@ -448,8 +461,9 @@ banner motd ^C
 ^C
 !
 line con 0
- exec-timeout 15 0
+ exec-timeout 0 0
  logging synchronous
+ login authentication CONSOLE
  history size 256
  transport preferred none
  transport output telnet ssh

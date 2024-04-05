@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 17394 bytes
+Current configuration : 17424 bytes
 !
-! Last configuration change at 19:25:45 EDT Wed Apr 3 2024 by a-rezeh
+! Last configuration change at 21:06:33 EDT Wed Apr 3 2024 by a-rezeh
 !
 version 17.9
 service tcp-keepalives-in
@@ -541,6 +541,7 @@ banner motd ^CC
 line con 0
  exec-timeout 0 0
  logging synchronous
+ login authentication CONSOLE
  history size 256
  transport preferred none
  transport output telnet ssh
