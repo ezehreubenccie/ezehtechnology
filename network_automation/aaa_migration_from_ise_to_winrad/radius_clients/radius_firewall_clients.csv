@@ -1,0 +1,5 @@
+Serial Number,Device Name,Software Version,Verdict,UpgradeTO,LastUpgradeTime,Tags,Notes
+FTX18151015,sb-lan-asa0601,9.12(4)41,non-compliant,9.14(4)23,162days 18hours,10.10.54.1,NYC_1 IDC
+FTX2149W10D,pr-lan-asa0604,9.12(4)41,non-compliant,9.14(4)23,120days 4hours,10.25.54.1,East Coast IDC
+FTX2242W01V,WA-LAN-ASA0300,9.12(4)41,non-compliant,9.14(4)23,134days 19hours,172.16.31.27,"WALTHAM, MA"
+FTX2139W0KA,sh-lan-asa0606,9.12(4)41,non-compliant,9.14(4)23,128days 1hour,10.35.54.1,Shanghai IDC

@@ -1,0 +1,3 @@
+Serial Number,Device Name,Device Model,Software Version,Verdict,UpgradeTO,TimeUpgraded,TimeZoneOfUpgrade,DayOfUpgrade,DateUpgraded,Tags,Notes
+FCW2042B61X,sb-lan-sw0401,WS-C2960X-24TS-L,15.2(2)E6,non-compliant,15.2(7)E7,16:09:56,EDT,Sun,Jul 11 2021,10.10.48.10,East Coast IDC1
+FCW2042B61X,sb-lan-sw0501,WS-C2960X-24TS-L,15.2(2)E6,non-compliant,15.2(7)E7,16:09:56,EDT,Sun,Jul 11 2021,10.10.48.20,East Coast IDC1
