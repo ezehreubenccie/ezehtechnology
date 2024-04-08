@@ -4601,6 +4601,16 @@ object-group service DM_INLINE_TCP_14 tcp
 object-group network DM_INLINE_NETWORK_62
  network-object host ecweb0104p-bk
  network-object host ecweb0204p-bk
+object-group network DM_INLINE_NETWORK_63
+ network-object host 10.25.54.252
+ network-object host 10.25.54.253
+ network-object host 10.25.54.254
+object-group network DM_INLINE_NETWORK_64
+ network-object host 10.25.50.254
+ network-object object ecmon0904p-ft
+object-group network DM_INLINE_NETWORK_65
+ network-object host 10.25.48.10
+ network-object host 10.25.48.20
 access-list SFR extended permit ip any any 
 access-list outside_cryptomap_21 extended permit ip 10.25.56.0 255.255.255.0 10.30.56.0 255.255.255.0 
 access-list outside_cryptomap_21 extended permit ip 10.25.54.0 255.255.255.0 10.30.54.0 255.255.255.0 
@@ -4742,6 +4752,7 @@ access-list DMZ2554_access_in remark Splunk Rule for JR
 access-list DMZ2554_access_in extended permit tcp object-group DM_INLINE_NETWORK_16 object-group DM_INLINE_NETWORK_17 object-group DM_INLINE_TCP_2 
 access-list DMZ2554_access_in remark For TACACS Waltham
 access-list DMZ2554_access_in extended permit tcp object-group DM_INLINE_NETWORK_44 object-group DM_INLINE_NETWORK_42 eq tacacs 
+access-list DMZ2554_access_in extended permit tcp object-group DM_INLINE_NETWORK_63 host 10.25.50.80 eq ftp 
 access-list DMZ2554_access_in remark ST
 access-list DMZ2554_access_in extended permit tcp object ecapp0504p object Applog01p eq 8090 
 access-list DMZ2554_access_in remark Centrify comunication to Waltham DC's SA 6.6.16
@@ -4855,6 +4866,8 @@ access-list DMZ2550_access_in extended deny ip any object-group BlockOut
 access-list DMZ2550_access_in extended permit udp 10.25.50.0 255.255.255.0 object-group RH-Servers eq www 
 access-list DMZ2550_access_in remark For TACACS Waltham
 access-list DMZ2550_access_in extended permit tcp host 10.25.50.254 object-group DM_INLINE_NETWORK_41 eq tacacs 
+access-list DMZ2550_access_in extended permit tcp object-group DM_INLINE_NETWORK_64 host 10.1.101.130 eq ssh 
+access-list DMZ2550_access_in extended permit tcp host 10.25.50.254 host 10.25.50.80 eq ftp 
 access-list DMZ2550_access_in extended permit udp 10.25.50.0 255.255.255.0 object-group RH-Servers eq 443 
 access-list DMZ2550_access_in remark vlan 2550 for DNS Lookups
 access-list DMZ2550_access_in extended permit udp 10.25.50.0 255.255.255.0 any4 object-group DM_INLINE_UDP_1 
@@ -4901,6 +4914,8 @@ access-list DMZ2556_access_in extended permit tcp object-group Database-Servers 
 access-list DMZ2556_access_in extended permit udp object-group ECDBServers object-group WalthamDNSServers eq domain 
 access-list DMZ2556_access_in remark For TACACS Waltham
 access-list DMZ2556_access_in extended permit tcp host 10.25.56.254 object-group DM_INLINE_NETWORK_43 eq tacacs 
+access-list DMZ2556_access_in extended permit tcp host 10.25.56.254 host 10.1.101.130 eq ssh 
+access-list DMZ2556_access_in extended permit tcp host 10.25.56.254 host 10.25.50.80 eq ftp 
 access-list DMZ2556_access_in remark to allow out bound DNS requests to public DNS servers
 access-list DMZ2556_access_in extended permit object-group DM_INLINE_SERVICE_2 10.25.56.0 255.255.255.0 any4 
 access-list DMZ2556_access_in extended permit tcp object-group ECDBServers host 10.1.120.2 eq smtp 
@@ -4966,6 +4981,8 @@ access-list DMZ2556_access_in extended permit tcp 10.25.56.0 255.255.255.0 objec
 access-list DMZ2556_access_in remark YA 7.20.2023 Production ELK Utility Servers
 access-list DMZ2556_access_in extended permit tcp 10.25.56.0 255.255.255.0 host 10.1.101.114 object-group DM_INLINE_TCP_14 
 access-list outside_cryptomap_24 extended permit ip object-group local_nets object-group corpwan_nets 
+access-list Outside_mng_access_in extended permit tcp object-group DM_INLINE_NETWORK_65 host 10.25.50.80 eq ftp inactive 
+access-list Outside_mng_access_in extended permit ip any any4 
 pager lines 24
 logging enable
 logging timestamp
@@ -5122,6 +5139,7 @@ nat (Outside_mng,outside) after-auto source dynamic Outside_mng interface
 nat (outside,outside) after-auto source dynamic solarwinds_Azure_subnet interface destination static ATT_Router_1_inside_IP ATT_Router_1_outside_IP
 nat (outside,outside) after-auto source dynamic solarwinds_Azure_subnet interface destination static ATT_Router_2_inside_IP ATT_Router_2_outside_IP
 access-group outside-in in interface outside
+access-group Outside_mng_access_in in interface Outside_mng
 access-group inside-in in interface Inside2558
 access-group DMZ2556_access_in in interface DMZ2556
 access-group DMZ2554_access_in in interface DMZ2554
@@ -5460,5 +5478,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname priority state 
 no call-home reporting anonymous
-Cryptochecksum:84b0ab5ef7151aa552fce58d326ab754
+Cryptochecksum:48dd47b83cf0fe8e2b3eab0540162446
 : end
