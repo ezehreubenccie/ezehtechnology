@@ -1,6 +1,6 @@
 - name : GET BOOT SYSTEM FOR 9300 SWITCHES
   connection: network_cli
-  hosts: nyc9300sw:njc9200l24t4xsw:ffc9300l48t4xsw 
+  hosts: nyc9300sw:njc9200l24t4xsw:ffc9300l48t4xsw:tkyc930048tsw:labsw01 
   gather_facts: false
 
 

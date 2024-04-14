@@ -1,0 +1,50 @@
+- name : CHECK IF TARGET SOFTWARE IS IN 9300 SWITCH FLASH
+  connection: network_cli
+  hosts: nyc9300sw:njc9200l24t4xsw:ffc9300l48t4xsw:tkyc930048tsw:labsw01:tkyws385048tsw
+  gather_facts: false
+
+
+
+  vars:
+    ios_binary: cat9k_iosxe.17.09.04a.SPA.bin
+    ios_3850X_binary: cat3k_caa-universalk9.16.12.10a.SPA.bin
+    
+
+
+
+  tasks:
+    - name: Gather all 9300 Switch Hardware facts
+      ios_facts:
+        gather_subset: hardware
+      #register: output
+
+    - name: Check if IOS is already present on the flash
+      ios_command:
+        commands: "dir | include {{ ios_binary }}|{{ ios_3850X_binary }}"
+      vars:
+        ansible_command_timeout: 1800
+      register: show_flash
+
+    - debug:
+        var: show_flash
+
+    - name: Assert that target software is present in flash
+      assert:
+        that:
+          - ios_binary in show_flash['stdout'][0]
+        fail_msg: "Compliant Software {{ ios_binary }} not present in {{inventory_hostname}}'s flash"
+        success_msg: "Compliant Software {{ ios_binary }}  is  present in {{inventory_hostname}}'s flash"
+      tags:
+        - flash
+      when: "'C9300' in ansible_net_model"
+      
+
+    - name: Assert that target software is present in flash
+      assert:
+        that:
+          - ios_3850X_binary in show_flash['stdout'][0]
+        fail_msg: "Compliant Software {{ ios_3850X_binary }} not present in {{inventory_hostname}}'s flash"
+        success_msg: "Compliant Software {{ ios_3850X_binary }} is  present in {{inventory_hostname}}'s flash"
+      tags:
+        - flash
+      when: "'WS-C3850' in ansible_net_model"

@@ -1,0 +1,50 @@
+- name : VERIFY MD5 HASH OF TARGET SOFTWARE ON 9300 SWITCHES
+  connection: network_cli
+  hosts: ffc9300l48t4xsw:tkyc930048tsw:labsw01
+  gather_facts: false
+
+
+
+  vars:
+    ios_binary: "cat9k_iosxe.17.09.04a.SPA.bin"
+    ios_md5_bin: 16a20aa19ec9deb2abe421efddb75fae
+
+  tasks:
+    - name: Get Copied BIN Software from flash
+      ios_command:
+        commands: "dir  flash: | in {{ ios_binary }}"
+      register: dir_flash
+
+    - set_fact:
+        bin_file: "{{ dir_flash['stdout'][0].split()[-1] }}"
+      when:
+        - ios_binary in dir_flash['stdout'][0]
+
+    - debug:
+        var: bin_file
+      when:
+         - ios_binary in dir_flash['stdout'][0]
+
+    - name: Check MD5 Hash
+      ios_command:
+        commands:
+          - command: "verify /md5 flash:{{ bin_file }}"
+      register: md5_result
+      vars:
+        ansible_command_timeout: 600
+      when:
+        - ios_binary in dir_flash['stdout'][0]
+      tags:
+        - md5
+
+
+    - name: Assert That MD5 Sums are Identical
+      assert:
+        that:
+          - ios_md5_bin in md5_result['stdout'][0]
+        fail_msg: 'IOS binary file {{ ios_binary }} MD5sum on {{ inventory_hostname }} is not correct'
+        success_msg: 'IOS binary file {{ ios_binary }} MD5sum on {{ inventory_hostname }} is correct'
+      when:
+        - ios_binary in dir_flash['stdout'][0]
+      tags:
+        - md5
