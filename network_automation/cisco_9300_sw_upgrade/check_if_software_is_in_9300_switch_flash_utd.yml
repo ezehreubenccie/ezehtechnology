@@ -39,7 +39,7 @@
       when: "'C9300' in ansible_net_model"
       
 
-    - name: Assert that target software is present in flash
+    - name: Assert that target software is present in flash for 3850X Switches
       assert:
         that:
           - ios_3850X_binary in show_flash['stdout'][0]
