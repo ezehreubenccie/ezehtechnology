@@ -26,21 +26,20 @@ Vlan    Mac Address       Type        Ports
  All    0180.c200.000f    STATIC      CPU
  All    0180.c200.0010    STATIC      CPU
  All    ffff.ffff.ffff    STATIC      CPU
+2554    0050.5686.59f8    DYNAMIC     Gi1/0/2
+2554    0050.5688.5af7    DYNAMIC     Gi1/0/2
 2554    0050.5688.7c90    DYNAMIC     Gi1/0/2
 2554    0050.5688.848a    DYNAMIC     Gi1/0/2
-2554    0050.5688.9750    DYNAMIC     Gi1/0/2
-2554    0050.5688.fe7d    DYNAMIC     Gi1/0/2
+2554    0050.5688.bf23    DYNAMIC     Gi1/0/2
 2554    005d.735b.6c78    DYNAMIC     Gi1/0/2
 2554    0060.484e.aceb    DYNAMIC     Gi1/0/14
 2554    0cd0.f832.1324    DYNAMIC     Gi1/0/2
-2554    1418.7752.0a82    DYNAMIC     Gi1/0/2
-2554    1418.7754.5e61    DYNAMIC     Gi1/0/2
-2554    b026.289b.f2d0    DYNAMIC     Gi1/0/2
+2554    b026.289b.e1dc    DYNAMIC     Gi1/0/2
 2554    b026.289b.f440    DYNAMIC     Gi1/0/2
 2554    f8b7.e2bb.ddf2    STATIC      Vl2554 
+2550    0050.5686.a1b7    DYNAMIC     Gi1/0/1
 2550    0050.5688.e0c3    DYNAMIC     Gi1/0/39
 2550    005d.735b.6c7d    DYNAMIC     Gi1/0/1
-2550    0094.a100.3204    DYNAMIC     Gi1/0/1
 2550    00b8.b3b0.f70c    DYNAMIC     Gi1/0/1
 2552    0050.5688.00fe    DYNAMIC     Gi1/0/37
 2552    0094.a100.dc06    DYNAMIC     Gi1/0/1
@@ -52,27 +51,17 @@ Vlan    Mac Address       Type        Ports
 2556    0800.1bff.7582    DYNAMIC     Gi1/0/3
 2556    2cea.7ff5.0470    DYNAMIC     Gi1/0/3
 2556    2cea.7ff5.056c    DYNAMIC     Gi1/0/29
-2556    2cea.7ff5.0806    DYNAMIC     Gi1/0/20
-2556    2cea.7ff5.2f4c    DYNAMIC     Gi1/0/23
-2556    2cea.7ff5.3696    DYNAMIC     Gi1/0/21
-2556    2cea.7ff5.9796    DYNAMIC     Gi1/0/22
-2556    509a.4cae.7dba    DYNAMIC     Gi1/0/13
-2556    509a.4cae.7df4    DYNAMIC     Gi1/0/11
 2556    bc97.e15c.244a    DYNAMIC     Gi1/0/30
 2556    bc97.e15c.6a52    DYNAMIC     Gi1/0/3
 2556    ec2a.7206.e27c    DYNAMIC     Gi1/0/3
-2556    ec2a.7206.e312    DYNAMIC     Gi1/0/3
 2556    ec2a.7206.e3b4    DYNAMIC     Gi1/0/3
 2556    ec2a.7206.e3de    DYNAMIC     Gi1/0/3
 2556    ec2a.7206.e702    DYNAMIC     Gi1/0/3
-2556    f48e.38cd.e690    DYNAMIC     Gi1/0/9
-2556    f48e.38cf.474e    DYNAMIC     Gi1/0/5
-2556    f48e.38cf.4a1a    DYNAMIC     Gi1/0/7
 2558    005d.735b.6c77    DYNAMIC     Gi1/0/3
 2558    00b8.b3b0.c80c    DYNAMIC     Gi1/0/3
 2560    00b8.b3b0.c80c    DYNAMIC     Gi1/0/3
 2570    0cd0.f832.1324    DYNAMIC     Gi1/0/2
-Total Mac Addresses for this criterion: 67
+Total Mac Addresses for this criterion: 56
 
 ====================show cdp neighbors==============================================================
 
@@ -82,11 +71,11 @@ Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
 
 Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
 pr-lan-sw0204.uptodate.com
-                 Gig 1/0/2         173              S I   C9300-48T Gig 1/0/36
+                 Gig 1/0/2         164              S I   C9300-48T Gig 1/0/36
 pr-lan-sw0304.uptodate.com
-                 Gig 1/0/3         146              S I   C9300-24T Gig 1/0/12
+                 Gig 1/0/3         134              S I   C9300-24T Gig 1/0/12
 pr-lan-sw0104.uptodate.com
-                 Gig 1/0/1         161              S I   C9300-24T Gig 1/0/12
+                 Gig 1/0/1         149              S I   C9300-24T Gig 1/0/12
 
 Total cdp entries displayed : 3
 
@@ -380,13 +369,13 @@ Vlan2554 is up, line protocol is up
   Input queue: 0/75/40/0 (size/max/drops/flushes); Total output drops: 0
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
-  5 minute input rate 2000 bits/sec, 2 packets/sec
-  5 minute output rate 1000 bits/sec, 1 packets/sec
-     1972931914 packets input, 1754874081756 bytes, 0 no buffer
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     1977219029 packets input, 1757069011104 bytes, 0 no buffer
      Received 0 broadcasts (0 IP multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
-     39979104 packets output, 21013585315 bytes, 0 underruns
+     43021318 packets output, 21213197453 bytes, 0 underruns
      0 output errors, 2 interface resets
      0 unknown protocol drops
      0 output buffer failures, 0 output buffers swapped out
@@ -434,15 +423,15 @@ GigabitEthernet1/0/1 is up, line protocol is up (connected)
   Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
-  5 minute input rate 1000 bits/sec, 2 packets/sec
-  5 minute output rate 2000 bits/sec, 2 packets/sec
-     33578294263 packets input, 8508606024621 bytes, 0 no buffer
-     Received 96596469 broadcasts (95960688 multicasts)
+  5 minute input rate 2000 bits/sec, 3 packets/sec
+  5 minute output rate 3000 bits/sec, 2 packets/sec
+     33581754373 packets input, 8508985185460 bytes, 0 no buffer
+     Received 96830001 broadcasts (96193865 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
-     0 watchdog, 95960688 multicast, 0 pause input
+     0 watchdog, 96193865 multicast, 0 pause input
      0 input packets with dribble condition detected
-     68072315871 packets output, 78844502246211 bytes, 0 underruns
+     68074689339 packets output, 78845688801024 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -463,15 +452,15 @@ GigabitEthernet1/0/2 is up, line protocol is up (connected)
   Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
-  5 minute input rate 1000 bits/sec, 2 packets/sec
+  5 minute input rate 1000 bits/sec, 1 packets/sec
   5 minute output rate 0 bits/sec, 0 packets/sec
-     977980981 packets input, 777202288303 bytes, 0 no buffer
-     Received 200196515 broadcasts (160625313 multicasts)
+     980306228 packets input, 778323038910 bytes, 0 no buffer
+     Received 200525730 broadcasts (160867669 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
-     0 watchdog, 160625313 multicast, 0 pause input
+     0 watchdog, 160867669 multicast, 0 pause input
      0 input packets with dribble condition detected
-     764149068 packets output, 745478671782 bytes, 0 underruns
+     767215932 packets output, 745705863623 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -481,26 +470,26 @@ GigabitEthernet1/0/3 is up, line protocol is up (connected)
   Hardware is Gigabit Ethernet, address is f8b7.e2bb.dd83 (bia f8b7.e2bb.dd83)
   Description: Trunk (Cross Connect) to pr-lan-sw0304-G1/0/12
   MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
-     reliability 255/255, txload 5/255, rxload 1/255
+     reliability 255/255, txload 1/255, rxload 1/255
   Encapsulation ARPA, loopback not set
   Keepalive set (10 sec)
   Full-duplex, 1000Mb/s, media type is 10/100/1000BaseTX
   input flow-control is off, output flow-control is unsupported 
   ARP type: ARPA, ARP Timeout 04:00:00
-  Last input 00:00:00, output never, output hang never
+  Last input 00:00:01, output never, output hang never
   Last clearing of "show interface" counters never
   Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 90547551
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
-  5 minute input rate 2309000 bits/sec, 1731 packets/sec
-  5 minute output rate 20621000 bits/sec, 2813 packets/sec
-     71707850948 packets input, 24865799015220 bytes, 0 no buffer
-     Received 154254888 broadcasts (152392586 multicasts)
+  5 minute input rate 2030000 bits/sec, 1114 packets/sec
+  5 minute output rate 4596000 bits/sec, 1180 packets/sec
+     71941614936 packets input, 24919283882952 bytes, 0 no buffer
+     Received 154641277 broadcasts (152768952 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
-     0 watchdog, 152392586 multicast, 0 pause input
+     0 watchdog, 152768952 multicast, 0 pause input
      0 input packets with dribble condition detected
-     82465168990 packets output, 48789133007462 bytes, 0 underruns
+     82707751941 packets output, 48900368549425 bytes, 0 underruns
      90547551 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -529,7 +518,7 @@ GigabitEthernet1/0/4 is up, line protocol is up (connected)
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 33 multicast, 0 pause input
      0 input packets with dribble condition detected
-     7829836308 packets output, 3272366222621 bytes, 0 underruns
+     7830018107 packets output, 3272382350166 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -552,13 +541,13 @@ GigabitEthernet1/0/5 is up, line protocol is up (connected)
   Output queue: 0/40 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
   5 minute output rate 0 bits/sec, 0 packets/sec
-     2854491 packets input, 1109022106 bytes, 0 no buffer
-     Received 23732 broadcasts (9 multicasts)
+     2862577 packets input, 1112079126 bytes, 0 no buffer
+     Received 23792 broadcasts (9 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 9 multicast, 3 pause input
      0 input packets with dribble condition detected
-     74674403 packets output, 6893076413 bytes, 0 underruns
+     74862924 packets output, 6910778615 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -587,7 +576,7 @@ GigabitEthernet1/0/6 is up, line protocol is up (connected)
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 36 multicast, 0 pause input
      0 input packets with dribble condition detected
-     15680907694 packets output, 3555089981029 bytes, 0 underruns
+     15681089492 packets output, 3555106108083 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -610,13 +599,13 @@ GigabitEthernet1/0/7 is up, line protocol is up (connected)
   Output queue: 0/40 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
   5 minute output rate 0 bits/sec, 0 packets/sec
-     2880493 packets input, 1117315979 bytes, 0 no buffer
+     2888730 packets input, 1120444991 bytes, 0 no buffer
      Received 2 broadcasts (0 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 0 multicast, 0 pause input
      0 input packets with dribble condition detected
-     74725994 packets output, 6899266319 bytes, 0 underruns
+     74914676 packets output, 6916992606 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -645,7 +634,7 @@ GigabitEthernet1/0/8 is up, line protocol is up (connected)
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 33 multicast, 0 pause input
      0 input packets with dribble condition detected
-     16711240061 packets output, 3765255447113 bytes, 0 underruns
+     16711421858 packets output, 3765271573676 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -668,13 +657,13 @@ GigabitEthernet1/0/9 is up, line protocol is up (connected)
   Output queue: 0/40 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
   5 minute output rate 0 bits/sec, 0 packets/sec
-     2904563 packets input, 1139811285 bytes, 0 no buffer
+     2912858 packets input, 1143047155 bytes, 0 no buffer
      Received 2 broadcasts (0 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 0 multicast, 0 pause input
      0 input packets with dribble condition detected
-     74750965 packets output, 6916105958 bytes, 0 underruns
+     74939796 packets output, 6933909870 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -703,7 +692,7 @@ GigabitEthernet1/0/10 is up, line protocol is up (connected)
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 31 multicast, 0 pause input
      0 input packets with dribble condition detected
-     17303907322 packets output, 3771554153690 bytes, 0 underruns
+     17304089115 packets output, 3771570282123 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -726,13 +715,13 @@ GigabitEthernet1/0/11 is up, line protocol is up (connected)
   Output queue: 0/40 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
   5 minute output rate 0 bits/sec, 0 packets/sec
-     2975700 packets input, 1164732476 bytes, 0 no buffer
+     2984066 packets input, 1168023632 bytes, 0 no buffer
      Received 7589 broadcasts (0 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 0 multicast, 0 pause input
      0 input packets with dribble condition detected
-     74773608 packets output, 6921589824 bytes, 0 underruns
+     74962389 packets output, 6939398637 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -761,7 +750,7 @@ GigabitEthernet1/0/12 is up, line protocol is up (connected)
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 34 multicast, 0 pause input
      0 input packets with dribble condition detected
-     7711399142 packets output, 3181747391272 bytes, 0 underruns
+     7711580941 packets output, 3181763522657 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -784,13 +773,13 @@ GigabitEthernet1/0/13 is up, line protocol is up (connected)
   Output queue: 0/40 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
   5 minute output rate 0 bits/sec, 0 packets/sec
-     2974647 packets input, 1164325717 bytes, 0 no buffer
+     2983062 packets input, 1167633115 bytes, 0 no buffer
      Received 11960 broadcasts (0 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 0 multicast, 0 pause input
      0 input packets with dribble condition detected
-     74760049 packets output, 6920462659 bytes, 0 underruns
+     74948866 packets output, 6938278601 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -812,14 +801,14 @@ GigabitEthernet1/0/14 is up, line protocol is up (connected)
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
-  5 minute output rate 0 bits/sec, 0 packets/sec
-     2613289 packets input, 290074715 bytes, 0 no buffer
-     Received 2613289 broadcasts (2613289 multicasts)
+  5 minute output rate 1000 bits/sec, 1 packets/sec
+     2620200 packets input, 290841836 bytes, 0 no buffer
+     Received 2620200 broadcasts (2620200 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
-     0 watchdog, 2613289 multicast, 0 pause input
+     0 watchdog, 2620200 multicast, 0 pause input
      0 input packets with dribble condition detected
-     145883561 packets output, 10791781693 bytes, 0 underruns
+     146130577 packets output, 10812440806 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -848,7 +837,7 @@ GigabitEthernet1/0/15 is up, line protocol is up (connected)
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 58 multicast, 0 pause input
      0 input packets with dribble condition detected
-     381523712 packets output, 236960128544 bytes, 0 underruns
+     381770721 packets output, 236980784213 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -877,7 +866,7 @@ GigabitEthernet1/0/16 is up, line protocol is up (connected)
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 42 multicast, 0 pause input
      0 input packets with dribble condition detected
-     307025462 packets output, 211167531622 bytes, 0 underruns
+     307272477 packets output, 211188190243 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -899,14 +888,14 @@ GigabitEthernet1/0/17 is up, line protocol is up (connected)
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
-  5 minute output rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 1000 bits/sec, 1 packets/sec
      252537619 packets input, 246310582825 bytes, 0 no buffer
      Received 23905 broadcasts (52 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 52 multicast, 0 pause input
      0 input packets with dribble condition detected
-     448780420 packets output, 344505934954 bytes, 0 underruns
+     449027424 packets output, 344526588163 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -956,14 +945,14 @@ GigabitEthernet1/0/19 is up, line protocol is up (connected)
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
-  5 minute output rate 1000 bits/sec, 1 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
      225496587 packets input, 233494199257 bytes, 0 no buffer
      Received 23886 broadcasts (42 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 42 multicast, 0 pause input
      0 input packets with dribble condition detected
-     377968383 packets output, 239610591160 bytes, 0 underruns
+     378215404 packets output, 239631252733 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -986,13 +975,13 @@ GigabitEthernet1/0/20 is up, line protocol is up (connected)
   Output queue: 0/40 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
   5 minute output rate 0 bits/sec, 0 packets/sec
-     3690441 packets input, 1238090662 bytes, 0 no buffer
-     Received 78110 broadcasts (78103 multicasts)
+     3701811 packets input, 1241559785 bytes, 0 no buffer
+     Received 78339 broadcasts (78332 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
-     0 watchdog, 78103 multicast, 0 pause input
+     0 watchdog, 78332 multicast, 0 pause input
      0 input packets with dribble condition detected
-     70464091 packets output, 7253550124 bytes, 0 underruns
+     70654970 packets output, 7270995736 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -1014,14 +1003,14 @@ GigabitEthernet1/0/21 is up, line protocol is up (connected)
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
-  5 minute output rate 0 bits/sec, 0 packets/sec
-     3709169 packets input, 1226654678 bytes, 0 no buffer
-     Received 78084 broadcasts (78079 multicasts)
+  5 minute output rate 1000 bits/sec, 1 packets/sec
+     3720544 packets input, 1230124766 bytes, 0 no buffer
+     Received 78311 broadcasts (78306 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
-     0 watchdog, 78079 multicast, 0 pause input
+     0 watchdog, 78306 multicast, 0 pause input
      0 input packets with dribble condition detected
-     70447232 packets output, 7248543743 bytes, 0 underruns
+     70638121 packets output, 7265992203 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -1044,13 +1033,13 @@ GigabitEthernet1/0/22 is up, line protocol is up (connected)
   Output queue: 0/40 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
   5 minute output rate 0 bits/sec, 0 packets/sec
-     3686407 packets input, 1213304500 bytes, 0 no buffer
-     Received 78050 broadcasts (78044 multicasts)
+     3697770 packets input, 1216773512 bytes, 0 no buffer
+     Received 78280 broadcasts (78274 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
-     0 watchdog, 78044 multicast, 0 pause input
+     0 watchdog, 78274 multicast, 0 pause input
      0 input packets with dribble condition detected
-     70427478 packets output, 7243744840 bytes, 0 underruns
+     70618369 packets output, 7261193437 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -1073,13 +1062,13 @@ GigabitEthernet1/0/23 is up, line protocol is up (connected)
   Output queue: 0/40 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
   5 minute output rate 0 bits/sec, 0 packets/sec
-     3685024 packets input, 1211781040 bytes, 0 no buffer
-     Received 78138 broadcasts (78130 multicasts)
+     3696394 packets input, 1215251294 bytes, 0 no buffer
+     Received 78365 broadcasts (78357 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
-     0 watchdog, 78130 multicast, 0 pause input
+     0 watchdog, 78357 multicast, 0 pause input
      0 input packets with dribble condition detected
-     70422761 packets output, 7242864528 bytes, 0 underruns
+     70613636 packets output, 7260309457 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -1095,7 +1084,7 @@ GigabitEthernet1/0/24 is up, line protocol is up (connected)
   Full-duplex, 1000Mb/s, media type is 10/100/1000BaseTX
   input flow-control is off, output flow-control is unsupported 
   ARP type: ARPA, ARP Timeout 04:00:00
-  Last input 11w5d, output never, output hang never
+  Last input 12w0d, output never, output hang never
   Last clearing of "show interface" counters never
   Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
   Queueing strategy: fifo
@@ -1108,7 +1097,7 @@ GigabitEthernet1/0/24 is up, line protocol is up (connected)
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 151755 multicast, 0 pause input
      0 input packets with dribble condition detected
-     118479817 packets output, 21977070451 bytes, 0 underruns
+     118661622 packets output, 21993204788 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -1137,7 +1126,7 @@ GigabitEthernet1/0/25 is up, line protocol is up (connected)
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 0 multicast, 0 pause input
      0 input packets with dribble condition detected
-     66701274 packets output, 5834518454 bytes, 0 underruns
+     66883077 packets output, 5850651807 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -1166,7 +1155,7 @@ GigabitEthernet1/0/26 is up, line protocol is up (connected)
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 0 multicast, 0 pause input
      0 input packets with dribble condition detected
-     66701082 packets output, 5834421817 bytes, 0 underruns
+     66882882 packets output, 5850553694 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -1188,14 +1177,14 @@ GigabitEthernet1/0/27 is up, line protocol is up (connected)
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
-  5 minute output rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 1000 bits/sec, 1 packets/sec
      0 packets input, 0 bytes, 0 no buffer
      Received 0 broadcasts (0 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 0 multicast, 0 pause input
      0 input packets with dribble condition detected
-     66701126 packets output, 5834462827 bytes, 0 underruns
+     66882925 packets output, 5850594212 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -1224,7 +1213,7 @@ GigabitEthernet1/0/28 is up, line protocol is up (connected)
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 0 multicast, 0 pause input
      0 input packets with dribble condition detected
-     66701190 packets output, 5834499519 bytes, 0 underruns
+     66882981 packets output, 5850626968 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -1240,20 +1229,20 @@ GigabitEthernet1/0/29 is up, line protocol is up (connected)
   Full-duplex, 1000Mb/s, media type is 10/100/1000BaseTX
   input flow-control is off, output flow-control is unsupported 
   ARP type: ARPA, ARP Timeout 04:00:00
-  Last input 00:00:48, output never, output hang never
+  Last input 00:02:03, output never, output hang never
   Last clearing of "show interface" counters never
   Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
-  5 minute output rate 0 bits/sec, 0 packets/sec
-     9331225 packets input, 1757596076 bytes, 0 no buffer
-     Received 377289 broadcasts (377265 multicasts)
+  5 minute output rate 1000 bits/sec, 1 packets/sec
+     9343438 packets input, 1761004193 bytes, 0 no buffer
+     Received 379244 broadcasts (379220 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
-     0 watchdog, 377265 multicast, 0 pause input
+     0 watchdog, 379220 multicast, 0 pause input
      0 input packets with dribble condition detected
-     75032346 packets output, 10654677562 bytes, 0 underruns
+     75220788 packets output, 10671803381 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -1263,26 +1252,26 @@ GigabitEthernet1/0/30 is up, line protocol is up (connected)
   Hardware is Gigabit Ethernet, address is f8b7.e2bb.dd9e (bia f8b7.e2bb.dd9e)
   Description: ecdb0804p-new_GB1
   MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
-     reliability 255/255, txload 1/255, rxload 5/255
+     reliability 255/255, txload 1/255, rxload 1/255
   Encapsulation ARPA, loopback not set
   Keepalive set (10 sec)
   Full-duplex, 1000Mb/s, media type is 10/100/1000BaseTX
   input flow-control is off, output flow-control is unsupported 
   ARP type: ARPA, ARP Timeout 04:00:00
-  Last input 45w4d, output never, output hang never
+  Last input 45w6d, output never, output hang never
   Last clearing of "show interface" counters never
   Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
-  5 minute input rate 20776000 bits/sec, 2854 packets/sec
-  5 minute output rate 2280000 bits/sec, 1762 packets/sec
-     35026602325 packets input, 27562271910946 bytes, 0 no buffer
+  5 minute input rate 4564000 bits/sec, 1179 packets/sec
+  5 minute output rate 2000000 bits/sec, 1113 packets/sec
+     35269054575 packets input, 27672498436453 bytes, 0 no buffer
      Received 550 broadcasts (282 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 282 multicast, 0 pause input
      0 input packets with dribble condition detected
-     28127748240 packets output, 14189091462876 bytes, 0 underruns
+     28361198500 packets output, 14241609136118 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -1443,7 +1432,7 @@ GigabitEthernet1/0/36 is up, line protocol is up (connected)
   Full-duplex, 1000Mb/s, media type is 10/100/1000BaseTX
   input flow-control is off, output flow-control is unsupported 
   ARP type: ARPA, ARP Timeout 04:00:00
-  Last input 30w5d, output never, output hang never
+  Last input 31w1d, output never, output hang never
   Last clearing of "show interface" counters never
   Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
   Queueing strategy: fifo
@@ -1456,7 +1445,7 @@ GigabitEthernet1/0/36 is up, line protocol is up (connected)
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 87450 multicast, 0 pause input
      0 input packets with dribble condition detected
-     205080006 packets output, 81035372436 bytes, 0 underruns
+     205348506 packets output, 81058644613 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -1472,20 +1461,20 @@ GigabitEthernet1/0/37 is up, line protocol is up (connected)
   Full-duplex, 1000Mb/s, media type is 10/100/1000BaseTX
   input flow-control is off, output flow-control is unsupported 
   ARP type: ARPA, ARP Timeout 04:00:00
-  Last input 23w2d, output never, output hang never
+  Last input 23w4d, output never, output hang never
   Last clearing of "show interface" counters never
   Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
-  5 minute input rate 0 bits/sec, 0 packets/sec
-  5 minute output rate 1000 bits/sec, 1 packets/sec
-     39746592836 packets input, 46369476192232 bytes, 0 no buffer
-     Received 20832 broadcasts (77 multicasts)
+  5 minute input rate 1000 bits/sec, 1 packets/sec
+  5 minute output rate 2000 bits/sec, 2 packets/sec
+     39746767080 packets input, 46369516714945 bytes, 0 no buffer
+     Received 20922 broadcasts (77 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 77 multicast, 0 pause input
      0 input packets with dribble condition detected
-     18857828985 packets output, 4860012353414 bytes, 0 underruns
+     18858273422 packets output, 4860136440725 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -1507,14 +1496,14 @@ GigabitEthernet1/0/38 is up, line protocol is up (connected)
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
-  5 minute output rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 1000 bits/sec, 1 packets/sec
      28205685124 packets input, 32443475445195 bytes, 0 no buffer
      Received 19718 broadcasts (114 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 114 multicast, 0 pause input
      0 input packets with dribble condition detected
-     14659178316 packets output, 3547215194296 bytes, 0 underruns
+     14659446806 packets output, 3547238460713 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -1530,20 +1519,20 @@ GigabitEthernet1/0/39 is up, line protocol is up (connected)
   Full-duplex, 1000Mb/s, media type is 10/100/1000BaseTX
   input flow-control is off, output flow-control is unsupported 
   ARP type: ARPA, ARP Timeout 04:00:00
-  Last input 2w1d, output never, output hang never
+  Last input 2w4d, output never, output hang never
   Last clearing of "show interface" counters never
   Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
   5 minute output rate 1000 bits/sec, 2 packets/sec
-     32160115 packets input, 15850277566 bytes, 0 no buffer
-     Received 240590 broadcasts (175042 multicasts)
+     34334772 packets input, 16993084512 bytes, 0 no buffer
+     Received 247785 broadcasts (181950 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
-     0 watchdog, 175042 multicast, 0 pause input
+     0 watchdog, 181950 multicast, 0 pause input
      0 input packets with dribble condition detected
-     150124979 packets output, 44866160675 bytes, 0 underruns
+     153416075 packets output, 45145180233 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -2067,7 +2056,7 @@ No Inactive Message Discriminator.
     Console logging: disabled
     Monitor logging: level debugging, 0 messages logged, xml disabled,
                      filtering disabled
-    Buffer logging:  level informational, 3811 messages logged, xml disabled,
+    Buffer logging:  level informational, 3881 messages logged, xml disabled,
                     filtering disabled
     Exception Logging: size (4096 bytes)
     Count and timestamp logging messages: disabled
@@ -2076,91 +2065,11 @@ No Inactive Message Discriminator.
 
 No active filter modules.
 
-    Trap logging: level informational, 3815 message lines logged
+    Trap logging: level informational, 3885 message lines logged
         Logging Source-Interface:       VRF Name:
 
 Log Buffer (131080 bytes):
-ernet1/0/30, changed state to up
-002812: *May 30 22:14:58.492 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to up
-002813: *May 30 22:15:08.639 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to down
-002814: *May 30 22:15:09.641 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to down
-002815: *May 30 22:15:12.840 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to up
-002816: *May 30 22:15:13.840 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to up
-002817: *May 30 22:17:34.945 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to down
-002818: *May 30 22:17:35.940 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to down
-002819: *May 30 22:17:39.041 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to up
-002820: *May 30 22:17:40.041 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to up
-002821: *Jun  5 22:01:42.717 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 12 packets 
-002822: *Jun  5 22:06:42.728 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 3 packets 
-002823: *Jun  9 00:28:42.717 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 1 packet 
-002824: *Jun  9 00:33:42.715 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 5 packets 
-002825: *Jun  9 01:43:42.715 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 6 packets 
-002826: *Jun  9 01:48:42.716 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 3 packets 
-002827: *Jun 15 10:36:42.730 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 7 packets 
-002828: *Jun 15 10:42:42.728 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 8 packets 
-002829: *Jun 19 22:05:42.726 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 10 packets 
-002830: *Jun 19 22:10:42.729 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 5 packets 
-002831: *Jun 23 16:01:42.727 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 2 packets 
-002832: *Jun 23 16:06:42.726 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 13 packets 
-002833: *Jun 25 13:58:42.729 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 12 packets 
-002834: *Jun 25 14:03:42.727 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 3 packets 
-002835: *Jun 25 22:17:42.725 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 3 packets 
-002836: *Jun 25 22:22:42.726 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 3 packets 
-002837: *Jul 11 09:10:42.727 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 2 packets 
-002838: *Jul 11 09:15:42.727 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 1 packet 
-002839: *Jul 11 10:10:42.726 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 2 packets 
-002840: *Jul 11 10:15:42.726 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 1 packet 
-002841: *Jul 11 11:10:42.725 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 1 packet 
-002842: *Jul 11 11:15:42.725 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 2 packets 
-002843: *Jul 11 12:10:42.727 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 2 packets 
-002844: *Jul 11 12:15:42.726 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 4 packets 
-002845: *Jul 11 19:56:43.872 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to down
-002846: *Jul 11 19:56:44.872 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to down
-002847: *Jul 11 19:56:48.902 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to up
-002848: *Jul 11 19:56:49.902 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to up
-002849: *Jul 11 20:03:38.171 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to down
-002850: *Jul 11 20:03:39.171 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to down
-002851: *Jul 11 20:03:42.290 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to up
-002852: *Jul 11 20:03:43.291 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to up
-002853: *Jul 11 20:18:37.111 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to down
-002854: *Jul 11 20:18:38.111 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to down
-002855: *Jul 11 20:18:41.940 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to up
-002856: *Jul 11 20:18:42.941 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to up
-002857: *Jul 11 20:21:54.200 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to down
-002858: *Jul 11 20:21:55.202 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to down
-002859: *Jul 11 20:22:01.690 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to up
-002860: *Jul 11 20:22:02.691 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to up
-002861: *Jul 11 20:24:15.222 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to down
-002862: *Jul 11 20:24:16.223 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to down
-002863: *Jul 11 20:24:19.331 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to up
-002864: *Jul 11 20:24:20.330 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to up
-002865: *Jul 11 20:30:25.743 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/29, changed state to down
-002866: *Jul 11 20:30:26.740 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/29, changed state to down
-002867: *Jul 11 20:30:30.871 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/29, changed state to up
-002868: *Jul 11 20:30:31.870 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/29, changed state to up
-002869: *Jul 11 20:31:08.160 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/29, changed state to down
-002870: *Jul 11 20:31:09.162 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/29, changed state to down
-002871: *Jul 11 20:31:28.851 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/29, changed state to up
-002872: *Jul 11 20:31:29.851 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/29, changed state to up
-002873: *Jul 11 20:32:23.692 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/29, changed state to down
-002874: *Jul 11 20:32:24.692 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/29, changed state to down
-002875: *Jul 11 20:32:35.421 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/29, changed state to up
-002876: *Jul 11 20:32:36.423 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/29, changed state to up
-002877: *Jul 11 20:40:48.001 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to down
-002878: *Jul 11 20:40:49.001 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to down
-002879: *Jul 11 20:40:53.081 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to up
-002880: *Jul 11 20:40:54.081 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to up
-002881: *Jul 11 20:43:10.124 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to down
-002882: *Jul 11 20:43:11.120 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to down
-002883: *Jul 11 20:43:14.249 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to up
-002884: *Jul 11 20:43:15.253 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to up
-002885: *Jul 11 22:41:50.933 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to down
-002886: *Jul 11 22:41:51.932 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to down
-002887: *Jul 11 22:41:55.981 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to up
-002888: *Jul 11 22:41:56.980 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to up
-002889: *Jul 11 22:44:11.111 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to down
-002890: *Jul 11 22:44:12.114 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to down
-002891: *Jul 11 22:44:15.221 CET: %LINK-3-UPDOWN: Interface GigabitEthernet1/0/30, changed state to up
+nged state to up
 002892: *Jul 11 22:44:16.221 CET: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/30, changed state to up
 002893: *Jul 17 23:33:42.739 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 7 packets 
 002894: *Jul 17 23:38:42.735 CET: %SEC-6-IPACCESSLOGNP: list RW_SNMP_ACL denied 0 10.1.101.69 -> 0.0.0.0, 8 packets 
@@ -3083,6 +2992,76 @@ ernet1/0/30, changed state to up
 003811: *Apr 14 11:39:00.562 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 11:39:00 CET Sun Apr 14 2024
 003812: *Apr 14 11:51:03.312 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
 003813: *Apr 14 12:05:58.662 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 12:05:58 CET Sun Apr 14 2024
+003814: *Apr 14 12:08:08.151 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003815: *Apr 14 12:47:52.891 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 12:47:52 CET Sun Apr 14 2024
+003816: *Apr 14 12:48:26.385 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003817: *Apr 15 03:30:04.370 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 03:30:04 CET Mon Apr 15 2024
+003818: *Apr 15 03:38:55.142 CET: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: ] [Source: 10.1.101.130] [localport: 22] [Reason: Login Authentication Failed] at 03:38:55 CET Mon Apr 15 2024
+003819: *Apr 15 03:38:56.860 CET: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: ] [Source: 10.1.101.130] [localport: 22] [Reason: Login Authentication Failed] at 03:38:56 CET Mon Apr 15 2024
+003820: *Apr 15 03:40:15.402 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 03:40:15 CET Mon Apr 15 2024
+003821: *Apr 15 03:40:21.440 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 3(10.1.101.130)
+003822: *Apr 15 03:45:22.810 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003823: *Apr 15 03:49:01.370 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 03:49:01 CET Mon Apr 15 2024
+003824: *Apr 15 03:49:22.444 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003825: *Apr 15 03:52:44.601 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 03:52:44 CET Mon Apr 15 2024
+003826: *Apr 15 03:53:05.715 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003827: *Apr 15 04:18:19.661 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 04:18:19 CET Mon Apr 15 2024
+003828: *Apr 15 04:18:40.798 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003829: *Apr 15 04:20:35.420 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 04:20:35 CET Mon Apr 15 2024
+003830: *Apr 15 04:20:40.387 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003831: *Apr 15 04:33:41.050 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 04:33:41 CET Mon Apr 15 2024
+003832: *Apr 15 04:34:02.463 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003833: *Apr 15 04:34:27.270 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 04:34:27 CET Mon Apr 15 2024
+003834: *Apr 15 04:34:48.175 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003835: *Apr 15 04:37:05.131 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 04:37:05 CET Mon Apr 15 2024
+003836: *Apr 15 04:37:40.093 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003837: *Apr 15 04:40:05.972 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 04:40:05 CET Mon Apr 15 2024
+003838: *Apr 15 04:40:40.962 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003839: *Apr 15 04:42:08.970 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 04:42:08 CET Mon Apr 15 2024
+003840: *Apr 15 04:42:30.794 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003841: *Apr 15 04:55:50.171 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 04:55:50 CET Mon Apr 15 2024
+003842: *Apr 15 04:56:10.542 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003843: *Apr 15 05:02:21.181 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 05:02:21 CET Mon Apr 15 2024
+003844: *Apr 15 05:02:45.405 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003845: *Apr 15 05:33:32.191 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 05:33:32 CET Mon Apr 15 2024
+003846: *Apr 15 05:34:07.398 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003847: *Apr 15 05:34:10.883 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 05:34:10 CET Mon Apr 15 2024
+003848: *Apr 15 05:34:19.044 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003849: *Apr 15 05:42:52.210 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 05:42:52 CET Mon Apr 15 2024
+003850: *Apr 15 05:44:06.024 CET: %SYS-5-CONFIG_I: Configured from console by a-rezeh on vty0 (10.1.101.130)
+003851: *Apr 15 06:08:53.710 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 06:08:53 CET Mon Apr 15 2024
+003852: *Apr 15 06:09:19.760 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 3(10.1.101.130)
+003853: *Apr 15 06:15:32.971 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 06:15:32 CET Mon Apr 15 2024
+003854: *Apr 15 06:26:34.683 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 3(10.1.101.130)
+003855: *Apr 15 06:30:57.403 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003856: *Apr 15 08:32:50.332 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 08:32:50 CET Mon Apr 15 2024
+003857: *Apr 15 08:33:33.220 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003858: *Apr 15 08:48:22.283 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 08:48:22 CET Mon Apr 15 2024
+003859: *Apr 15 08:54:59.365 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 08:54:59 CET Mon Apr 15 2024
+003860: *Apr 15 09:06:05.892 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 3(10.1.101.130)
+003861: *Apr 15 09:09:45.874 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003862: *Apr 15 09:10:08.800 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 09:10:08 CET Mon Apr 15 2024
+003863: *Apr 15 09:20:40.012 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003864: *Apr 15 09:23:11.334 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 09:23:11 CET Mon Apr 15 2024
+003865: *Apr 15 09:32:48.041 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 09:32:48 CET Mon Apr 15 2024
+003866: *Apr 15 09:33:30.566 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 3(10.1.101.130)
+003867: *Apr 15 09:43:37.340 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003868: *Apr 15 09:46:16.772 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 09:46:16 CET Mon Apr 15 2024
+003869: *Apr 15 10:06:34.452 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 10:06:34 CET Mon Apr 15 2024
+003870: *Apr 15 10:19:24.701 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003871: *Apr 15 10:36:58.614 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 3(10.1.101.130)
+003872: *Apr 15 10:37:32.990 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 10:37:32 CET Mon Apr 15 2024
+003873: *Apr 15 10:39:32.001 CET: %PARSER-5-CFGLOG_LOGGEDCMD: User:a-rezeh  logged command:line vty 0 15
+003874: *Apr 15 10:39:44.621 CET: %PARSER-5-CFGLOG_LOGGEDCMD: User:a-rezeh  logged command:exec-timeout 30 0
+003875: *Apr 15 10:40:05.663 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 10:40:05 CET Mon Apr 15 2024
+003876: *Apr 15 11:10:01.011 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003877: *Apr 15 11:10:01.012 CET: %SYS-5-CONFIG_I: Configured from console by a-rezeh on vty0 (10.1.101.130)
+003878: *Apr 15 11:10:31.188 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 3(10.1.101.130)
+003879: *Apr 16 08:32:55.983 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 08:32:55 CET Tue Apr 16 2024
+003880: *Apr 16 08:33:38.686 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003881: *Apr 16 09:32:48.811 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 09:32:48 CET Tue Apr 16 2024
+003882: *Apr 16 09:33:31.563 CET: %SYS-6-LOGOUT: User a-rezeh has exited tty session 2(10.1.101.130)
+003883: *Apr 16 21:41:32.319 CET: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 21:41:32 CET Tue Apr 16 2024
 
 ====================show run========================================================================
 
@@ -3090,7 +3069,7 @@ Building configuration...
 
 Current configuration : 21347 bytes
 !
-! Last configuration change at 07:17:57 CST Sun Feb 4 2024 by a-varora
+! Last configuration change at 11:10:01 CET Mon Apr 15 2024 by a-rezeh
 !
 version 15.2
 service nagle
@@ -3794,7 +3773,7 @@ line aux 0
  stopbits 1
 line vty 0 4
  access-class VTY_ACL in
- exec-timeout 15 0
+ exec-timeout 30 0
  logging synchronous
  length 0
  history size 256
@@ -3803,7 +3782,7 @@ line vty 0 4
  transport output telnet ssh
 line vty 5 15
  access-class VTY_ACL in
- exec-timeout 15 0
+ exec-timeout 30 0
  logging synchronous
  history size 256
  transport preferred none

@@ -51,11 +51,11 @@ Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
 
 Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
 pr-lan-sw0404.uptodate.com
-                 Gig 1/0/21        178              S I   WS-C2960X Gig 1/0/21
+                 Gig 1/0/21        160              S I   WS-C2960X Gig 1/0/21
 pr-lan-sw0404.uptodate.com
-                 Gig 1/0/24        160              S I   WS-C2960X Gig 1/0/24
+                 Gig 1/0/24        158              S I   WS-C2960X Gig 1/0/24
 pr-lan-sw0404.uptodate.com
-                 Gig 1/0/23        125              S I   WS-C2960X Gig 1/0/23
+                 Gig 1/0/23        123              S I   WS-C2960X Gig 1/0/23
 
 Total cdp entries displayed : 3
 
@@ -213,13 +213,13 @@ Vlan2548 is up, line protocol is up
   Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
-  5 minute input rate 1000 bits/sec, 1 packets/sec
-  5 minute output rate 1000 bits/sec, 1 packets/sec
-     23777031 packets input, 2307349481 bytes, 0 no buffer
+  5 minute input rate 2000 bits/sec, 2 packets/sec
+  5 minute output rate 2000 bits/sec, 2 packets/sec
+     23845843 packets input, 2314199323 bytes, 0 no buffer
      Received 0 broadcasts (0 IP multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
-     15201011 packets output, 1227851870 bytes, 0 underruns
+     15249444 packets output, 1232814759 bytes, 0 underruns
      0 output errors, 3 interface resets
      0 unknown protocol drops
      0 output buffer failures, 0 output buffers swapped out
@@ -260,20 +260,20 @@ GigabitEthernet1/0/1 is up, line protocol is up (connected)
   Full-duplex, 1000Mb/s, media type is 10/100/1000BaseTX
   input flow-control is off, output flow-control is unsupported 
   ARP type: ARPA, ARP Timeout 04:00:00
-  Last input never, output 00:00:00, output hang never
+  Last input never, output 00:00:01, output hang never
   Last clearing of "show interface" counters never
   Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
-  5 minute output rate 1000 bits/sec, 2 packets/sec
-     81737245 packets input, 11465477267 bytes, 0 no buffer
+  5 minute output rate 2000 bits/sec, 2 packets/sec
+     82000175 packets input, 11492844204 bytes, 0 no buffer
      Received 946 broadcasts (827 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 watchdog, 827 multicast, 0 pause input
      0 input packets with dribble condition detected
-     269813089 packets output, 30787663461 bytes, 0 underruns
+     270560881 packets output, 30854400985 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -800,13 +800,13 @@ GigabitEthernet1/0/20 is up, line protocol is up (connected)
   Output queue: 0/40 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
   5 minute output rate 1000 bits/sec, 2 packets/sec
-     49447659 packets input, 4561134812 bytes, 0 no buffer
-     Received 75957 broadcasts (75828 multicasts)
+     49561915 packets input, 4572014772 bytes, 0 no buffer
+     Received 76179 broadcasts (76050 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
-     0 watchdog, 75828 multicast, 1258 pause input
+     0 watchdog, 76050 multicast, 1258 pause input
      0 input packets with dribble condition detected
-     220822137 packets output, 17499756547 bytes, 0 underruns
+     221439040 packets output, 17552951353 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -822,20 +822,20 @@ GigabitEthernet1/0/21 is up, line protocol is up (connected)
   Full-duplex, 100Mb/s, media type is 10/100/1000BaseTX
   input flow-control is off, output flow-control is unsupported 
   ARP type: ARPA, ARP Timeout 04:00:00
-  Last input 00:00:01, output 00:00:04, output hang never
-  Last clearing of "show interface" counters 2y36w
+  Last input 00:00:01, output 00:00:00, output hang never
+  Last clearing of "show interface" counters 2y37w
   Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
   5 minute input rate 1000 bits/sec, 2 packets/sec
   5 minute output rate 0 bits/sec, 0 packets/sec
-     235712157 packets input, 17554706652 bytes, 0 no buffer
-     Received 168648277 broadcasts (131673295 multicasts)
+     236306754 packets input, 17603717405 bytes, 0 no buffer
+     Received 169031158 broadcasts (131993263 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
-     0 watchdog, 131673295 multicast, 0 pause input
+     0 watchdog, 131993263 multicast, 0 pause input
      0 input packets with dribble condition detected
-     59481452 packets output, 5822307161 bytes, 0 underruns
+     59620046 packets output, 5836245618 bytes, 0 underruns
      0 output errors, 0 collisions, 2 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -845,7 +845,7 @@ GigabitEthernet1/0/22 is up, line protocol is up (connected)
   Hardware is Gigabit Ethernet, address is 701f.53ab.c896 (bia 701f.53ab.c896)
   Description: AT&T Circuit ID IZEZ.560522..ATI
   MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
-     reliability 255/255, txload 9/255, rxload 5/255
+     reliability 255/255, txload 8/255, rxload 1/255
   Encapsulation ARPA, loopback not set
   Keepalive set (10 sec)
   Full-duplex, 1000Mb/s, media type is 10/100/1000BaseTX
@@ -856,15 +856,15 @@ GigabitEthernet1/0/22 is up, line protocol is up (connected)
   Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
-  5 minute input rate 21002000 bits/sec, 3956 packets/sec
-  5 minute output rate 35719000 bits/sec, 5315 packets/sec
-     263792261394 packets input, 79366099735782 bytes, 0 no buffer
-     Received 38564864 broadcasts (31493828 multicasts)
+  5 minute input rate 7168000 bits/sec, 3015 packets/sec
+  5 minute output rate 34219000 bits/sec, 5470 packets/sec
+     264512749133 packets input, 79566655670969 bytes, 0 no buffer
+     Received 38659538 broadcasts (31570377 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
-     0 watchdog, 31493828 multicast, 0 pause input
+     0 watchdog, 31570377 multicast, 0 pause input
      0 input packets with dribble condition detected
-     425223585713 packets output, 344217155007559 bytes, 0 underruns
+     426622526371 packets output, 345442708077593 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -880,20 +880,20 @@ GigabitEthernet1/0/23 is up, line protocol is up (connected)
   Full-duplex, 1000Mb/s, media type is 10/100/1000BaseTX
   input flow-control is off, output flow-control is unsupported 
   ARP type: ARPA, ARP Timeout 04:00:00
-  Last input 00:00:01, output 00:00:02, output hang never
+  Last input 00:00:15, output 00:00:00, output hang never
   Last clearing of "show interface" counters never
   Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
-  5 minute input rate 15131000 bits/sec, 2159 packets/sec
-  5 minute output rate 3636000 bits/sec, 1544 packets/sec
-     194899244207 packets input, 149070527709727 bytes, 0 no buffer
-     Received 278865570 broadcasts (255384352 multicasts)
+  5 minute input rate 14897000 bits/sec, 2380 packets/sec
+  5 minute output rate 4607000 bits/sec, 1826 packets/sec
+     195461035755 packets input, 149582827114093 bytes, 0 no buffer
+     Received 279520581 broadcasts (256004423 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
-     0 watchdog, 255384352 multicast, 0 pause input
+     0 watchdog, 256004423 multicast, 0 pause input
      0 input packets with dribble condition detected
-     150345019693 packets output, 45801750108332 bytes, 0 underruns
+     150739044803 packets output, 45913821076426 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -903,26 +903,26 @@ GigabitEthernet1/0/24 is up, line protocol is up (connected)
   Hardware is Gigabit Ethernet, address is 701f.53ab.c898 (bia 701f.53ab.c898)
   Description: pr-lan-sw0404 Gi1/0/24
   MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
-     reliability 255/255, txload 4/255, rxload 5/255
+     reliability 255/255, txload 1/255, rxload 4/255
   Encapsulation ARPA, loopback not set
   Keepalive set (10 sec)
   Full-duplex, 1000Mb/s, media type is 10/100/1000BaseTX
   input flow-control is off, output flow-control is unsupported 
   ARP type: ARPA, ARP Timeout 04:00:00
-  Last input 00:00:10, output 00:00:05, output hang never
+  Last input 00:00:10, output 00:00:00, output hang never
   Last clearing of "show interface" counters never
   Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
-  5 minute input rate 20759000 bits/sec, 3160 packets/sec
-  5 minute output rate 17486000 bits/sec, 2404 packets/sec
-     230561792632 packets input, 196862368385224 bytes, 0 no buffer
-     Received 30017539 broadcasts (16493315 multicasts)
+  5 minute input rate 19490000 bits/sec, 3084 packets/sec
+  5 minute output rate 2651000 bits/sec, 1187 packets/sec
+     231399437112 packets input, 197581253571910 bytes, 0 no buffer
+     Received 30085579 broadcasts (16533382 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
-     0 watchdog, 16493315 multicast, 0 pause input
+     0 watchdog, 16533382 multicast, 0 pause input
      0 input packets with dribble condition detected
-     113474754047 packets output, 34618890582955 bytes, 0 underruns
+     113801200187 packets output, 34710265722476 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -1044,27 +1044,27 @@ Port-channel1 is up, line protocol is up (connected)
   Hardware is EtherChannel, address is 701f.53ab.c897 (bia 701f.53ab.c897)
   Description: PO to pr-lan-sw0404
   MTU 1500 bytes, BW 2000000 Kbit/sec, DLY 10 usec, 
-     reliability 255/255, txload 2/255, rxload 4/255
+     reliability 255/255, txload 1/255, rxload 4/255
   Encapsulation ARPA, loopback not set
   Keepalive set (10 sec)
   Full-duplex, 1000Mb/s, link type is auto, media type is unknown
   input flow-control is off, output flow-control is unsupported 
   Members in this channel: Gi1/0/23 Gi1/0/24 
   ARP type: ARPA, ARP Timeout 04:00:00
-  Last input 00:00:00, output 1y3w, output hang never
+  Last input 00:00:00, output 1y4w, output hang never
   Last clearing of "show interface" counters never
   Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
   Queueing strategy: fifo
   Output queue: 0/40 (size/max)
-  5 minute input rate 35892000 bits/sec, 5318 packets/sec
-  5 minute output rate 21129000 bits/sec, 3957 packets/sec
-     425461036826 packets input, 345932896093287 bytes, 0 no buffer
-     Received 308883096 broadcasts (271877654 multicasts)
+  5 minute input rate 34401000 bits/sec, 5472 packets/sec
+  5 minute output rate 7263000 bits/sec, 3015 packets/sec
+     426860472854 packets input, 347164080684339 bytes, 0 no buffer
+     Received 309606147 broadcasts (272537792 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
-     0 watchdog, 271877654 multicast, 0 pause input
+     0 watchdog, 272537792 multicast, 0 pause input
      0 input packets with dribble condition detected
-     263819773715 packets output, 80420640688111 bytes, 0 underruns
+     264540244965 packets output, 80624086795726 bytes, 0 underruns
      0 output errors, 0 collisions, 2 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -1092,7 +1092,7 @@ No Inactive Message Discriminator.
     Console logging: disabled
     Monitor logging: level debugging, 0 messages logged, xml disabled,
                      filtering disabled
-    Buffer logging:  level informational, 2370 messages logged, xml disabled,
+    Buffer logging:  level informational, 2386 messages logged, xml disabled,
                     filtering disabled
     Exception Logging: size (4096 bytes)
     Count and timestamp logging messages: disabled
@@ -1101,27 +1101,11 @@ No Inactive Message Discriminator.
 
 No active filter modules.
 
-    Trap logging: level informational, 2374 message lines logged
+    Trap logging: level informational, 2390 message lines logged
         Logging Source-Interface:       VRF Name:
 
 Log Buffer (131080 bytes):
-:01:37 UTC Sun Nov 19 2023
-001339: .Nov 19 00:01:46.056 UTC: %SEC-6-IPACCESSLOGNP: list VTY_ACL permitted 0 10.1.101.130 -> 0.0.0.0, 2 packets 
-001340: .Nov 19 00:02:11.568 UTC: %SYS-6-LOGOUT: User a-rezeh has exited tty session 1(10.1.101.130)
-001341: .Nov 19 01:01:38.066 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 01:01:38 UTC Sun Nov 19 2023
-001342: .Nov 19 01:01:46.136 UTC: %SEC-6-IPACCESSLOGNP: list VTY_ACL permitted 0 10.1.101.130 -> 0.0.0.0, 2 packets 
-001343: .Nov 19 01:02:11.869 UTC: %SYS-6-LOGOUT: User a-rezeh has exited tty session 1(10.1.101.130)
-001344: .Nov 19 02:01:38.401 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 02:01:38 UTC Sun Nov 19 2023
-001345: .Nov 19 02:01:46.220 UTC: %SEC-6-IPACCESSLOGNP: list VTY_ACL permitted 0 10.1.101.130 -> 0.0.0.0, 2 packets 
-001346: .Nov 19 02:02:12.418 UTC: %SYS-6-LOGOUT: User a-rezeh has exited tty session 1(10.1.101.130)
-001347: .Nov 19 03:06:37.679 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 03:06:37 UTC Sun Nov 19 2023
-001348: .Nov 19 03:06:46.305 UTC: %SEC-6-IPACCESSLOGNP: list VTY_ACL permitted 0 10.1.101.130 -> 0.0.0.0, 2 packets 
-001349: .Nov 19 03:07:11.506 UTC: %SYS-6-LOGOUT: User a-rezeh has exited tty session 1(10.1.101.130)
-001350: .Nov 19 03:27:12.048 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 03:27:12 UTC Sun Nov 19 2023
-001351: .Nov 19 03:27:45.841 UTC: %SYS-6-LOGOUT: User a-rezeh has exited tty session 1(10.1.101.130)
-001352: .Nov 19 03:27:46.337 UTC: %SEC-6-IPACCESSLOGNP: list VTY_ACL permitted 0 10.1.101.130 -> 0.0.0.0, 2 packets 
-001353: .Nov 19 04:06:37.853 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 04:06:37 UTC Sun Nov 19 2023
-001354: .Nov 19 04:06:46.389 UTC: %SEC-6-IPACCESSLOGNP: list VTY_ACL permitted 0 10.1.101.130 -> 0.0.0.0, 2 packets 
+130 -> 0.0.0.0, 2 packets 
 001355: .Nov 19 04:07:11.646 UTC: %SYS-6-LOGOUT: User a-rezeh has exited tty session 1(10.1.101.130)
 001356: .Nov 19 04:31:09.350 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 04:31:09 UTC Sun Nov 19 2023
 001357: .Nov 19 04:31:43.157 UTC: %SYS-6-LOGOUT: User a-rezeh has exited tty session 1(10.1.101.130)
@@ -2140,6 +2124,22 @@ Log Buffer (131080 bytes):
 002370: .Apr 14 02:17:33.137 UTC: %SEC-6-IPACCESSLOGNP: list VTY_ACL permitted 0 10.1.101.130 -> 0.0.0.0, 6 packets 
 002371: .Apr 14 02:17:40.596 UTC: %SYS-6-LOGOUT: User a-rezeh has exited tty session 1(10.1.101.130)
 002372: .Apr 14 03:04:12.363 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 03:04:12 UTC Sun Apr 14 2024
+002373: .Apr 14 03:04:33.203 UTC: %SEC-6-IPACCESSLOGNP: list VTY_ACL permitted 0 10.1.101.130 -> 0.0.0.0, 2 packets 
+002374: .Apr 14 03:05:32.005 UTC: %SYS-6-LOGOUT: User a-rezeh has exited tty session 1(10.1.101.130)
+002375: .Apr 14 23:30:15.990 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 23:30:15 UTC Sun Apr 14 2024
+002376: .Apr 14 23:30:34.865 UTC: %SEC-6-IPACCESSLOGNP: list VTY_ACL permitted 0 10.1.101.130 -> 0.0.0.0, 2 packets 
+002377: .Apr 14 23:30:49.919 UTC: %SYS-6-LOGOUT: User a-rezeh has exited tty session 1(10.1.101.130)
+002378: .Apr 15 00:30:10.195 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 00:30:10 UTC Mon Apr 15 2024
+002379: .Apr 15 00:30:34.945 UTC: %SEC-6-IPACCESSLOGNP: list VTY_ACL permitted 0 10.1.101.130 -> 0.0.0.0, 2 packets 
+002380: .Apr 15 00:30:44.058 UTC: %SYS-6-LOGOUT: User a-rezeh has exited tty session 1(10.1.101.130)
+002381: .Apr 15 23:30:14.585 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 23:30:14 UTC Mon Apr 15 2024
+002382: .Apr 15 23:30:36.816 UTC: %SEC-6-IPACCESSLOGNP: list VTY_ACL permitted 0 10.1.101.130 -> 0.0.0.0, 2 packets 
+002383: .Apr 15 23:30:48.487 UTC: %SYS-6-LOGOUT: User a-rezeh has exited tty session 1(10.1.101.130)
+002384: .Apr 16 00:30:07.395 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 00:30:07 UTC Tue Apr 16 2024
+002385: .Apr 16 00:30:36.896 UTC: %SEC-6-IPACCESSLOGNP: list VTY_ACL permitted 0 10.1.101.130 -> 0.0.0.0, 2 packets 
+002386: .Apr 16 00:30:41.304 UTC: %SYS-6-LOGOUT: User a-rezeh has exited tty session 1(10.1.101.130)
+002387: .Apr 16 12:39:37.928 UTC: %SEC-6-IPACCESSLOGNP: list VTY_ACL permitted 0 10.1.101.130 -> 0.0.0.0, 2 packets 
+002388: .Apr 16 12:39:40.452 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: a-rezeh] [Source: 10.1.101.130] [localport: 22] at 12:39:40 UTC Tue Apr 16 2024
 
 ====================show run========================================================================
 
@@ -2776,9 +2776,9 @@ Partner's information:
 
                   LACP port                        Admin  Oper   Port    Port
 Port      Flags   Priority  Dev ID          Age    key    Key    Number  State
-Gi1/0/23  SA      32768     701f.53ab.8100   2s    0x0    0x1    0x118   0x3D  
+Gi1/0/23  SA      32768     701f.53ab.8100  10s    0x0    0x1    0x118   0x3D  
 
-Age of the port in the current state: 987d:12h:05m:31s
+Age of the port in the current state: 989d:21h:40m:54s
 
 Port: Gi1/0/24
 ------------
@@ -2800,9 +2800,9 @@ Partner's information:
 
                   LACP port                        Admin  Oper   Port    Port
 Port      Flags   Priority  Dev ID          Age    key    Key    Number  State
-Gi1/0/24  SA      32768     701f.53ab.8100  21s    0x0    0x1    0x119   0x3D  
+Gi1/0/24  SA      32768     701f.53ab.8100   6s    0x0    0x1    0x119   0x3D  
 
-Age of the port in the current state: 987d:12h:05m:29s
+Age of the port in the current state: 989d:21h:40m:52s
 
 		Port-channels in the group: 
 		---------------------------
@@ -2811,7 +2811,7 @@ Port-channel: Po1    (Primary Aggregator)
 
 ------------
 
-Age of the Port-channel   = 987d:12h:19m:15s
+Age of the Port-channel   = 989d:21h:54m:38s
 Logical slot/port   = 9/1          Number of ports = 2
 HotStandBy port = null 
 Port state          = Port-channel Ag-Inuse 
@@ -2826,7 +2826,7 @@ Index   Load   Port     EC state        No of bits
   0     00     Gi1/0/23 Active             0
   0     00     Gi1/0/24 Active             0
 
-Time since last port bundled:    987d:12h:05m:29s    Gi1/0/24
-Time since last port Un-bundled: 987d:12h:16m:23s    Gi1/0/23
+Time since last port bundled:    989d:21h:40m:52s    Gi1/0/24
+Time since last port Un-bundled: 989d:21h:51m:47s    Gi1/0/23
 
 
