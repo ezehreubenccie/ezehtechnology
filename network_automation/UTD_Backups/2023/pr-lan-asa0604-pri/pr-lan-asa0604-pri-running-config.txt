@@ -5358,7 +5358,11 @@ crypto ikev1 policy 65535
  group 2
  lifetime none
 telnet timeout 144
+ssh scopy enable
 ssh stricthostkeycheck
+ssh pubkey-chain
+  server 10.25.58.2
+    key-hash sha256 1e:9b:c8:54:29:15:ff:ad:13:c3:3e:c5:29:83:27:ed:ae:f5:dd:f3:4e:3a:18:d1:22:53:81:5d:1c:e4:18:59
 ssh timeout 60
 ssh version 2
 ssh key-exchange group dh-group1-sha1
@@ -5478,5 +5482,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname priority state 
 no call-home reporting anonymous
-Cryptochecksum:48dd47b83cf0fe8e2b3eab0540162446
+Cryptochecksum:732b14b18d93b968c569a2ea0528af15
 : end

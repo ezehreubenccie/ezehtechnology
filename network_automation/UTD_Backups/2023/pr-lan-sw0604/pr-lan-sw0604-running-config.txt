@@ -2,7 +2,7 @@ Building configuration...
 
 Current configuration : 21347 bytes
 !
-! Last configuration change at 05:44:06 CET Mon Apr 15 2024 by a-rezeh
+! Last configuration change at 11:10:01 CET Mon Apr 15 2024 by a-rezeh
 !
 version 15.2
 service nagle
@@ -706,7 +706,7 @@ line aux 0
  stopbits 1
 line vty 0 4
  access-class VTY_ACL in
- exec-timeout 15 0
+ exec-timeout 30 0
  logging synchronous
  length 0
  history size 256
@@ -715,7 +715,7 @@ line vty 0 4
  transport output telnet ssh
 line vty 5 15
  access-class VTY_ACL in
- exec-timeout 15 0
+ exec-timeout 30 0
  logging synchronous
  history size 256
  transport preferred none
