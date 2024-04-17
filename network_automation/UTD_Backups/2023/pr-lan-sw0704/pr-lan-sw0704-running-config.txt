@@ -1,11 +1,10 @@
 Building configuration...
 
-Current configuration : 25966 bytes
+Current configuration : 25880 bytes
 !
-! Last configuration change at 20:02:43 PDT Tue Oct 19 2021 by Support
-! NVRAM config last updated at 21:05:08 PDT Tue Oct 19 2021 by Support
+! Last configuration change at 19:28:06 PDT Tue Apr 16 2024
 !
-version 17.3
+version 17.9
 service nagle
 service tcp-keepalives-in
 service tcp-keepalives-out
@@ -29,9 +28,6 @@ vrf definition Mgmt-vrf
  exit-address-family
 !
 logging console warnings
-enable secret 9 $9$vONwAw.n6r4yi.$um.i6ctINolLlgWLbO.twTHaTMv6tjy97glCKm37mws
-enable password 7 104F0D140C19
-!
 aaa new-model
 !
 !
@@ -48,10 +44,6 @@ aaa accounting exec default start-stop group ISE-TACACS
 aaa accounting commands 1 default start-stop group ISE-TACACS
 aaa accounting commands 15 default start-stop group ISE-TACACS
 aaa accounting connection default start-stop group ISE-TACACS
-!
-!
-!
-!
 !
 !
 aaa session-id common
@@ -73,16 +65,16 @@ ip domain name uptodate.com
 login block-for 30 attempts 5 within 30
 login on-failure log
 login on-success log
-!
-!
-!
-!
-!
-vtp domain UPTODATE
-vtp mode transparent
 udld aggressive
 
-no device-tracking logging theft
+vtp domain UPTODATE
+vtp mode transparent
+vtp version 1
+!
+!
+!
+!
+!
 password encryption aes
 !
 crypto pki trustpoint SLA-TrustPoint
@@ -158,19 +150,9 @@ crypto pki certificate chain TP-self-signed-2807946112
 crypto pki certificate pool
  cabundle nvram:ios_core.p7b
 !
-port-channel load-balance src-dst-ip
 license boot level network-essentials addon dna-essentials
 license smart transport callhome
-!
-!
-diagnostic bootup level minimal
-!
-spanning-tree mode rapid-pvst
-spanning-tree loopguard default
-spanning-tree portfast bpduguard default
-spanning-tree extend system-id
-spanning-tree pathcost method long
-spanning-tree vlan 1-4094 priority 61440
+port-channel load-balance src-dst-ip
 archive
  log config
   logging enable
@@ -181,17 +163,30 @@ archive
  write-memory
 memory free low-watermark processor 134344
 !
+diagnostic bootup level minimal
+!
+spanning-tree mode rapid-pvst
+spanning-tree loopguard default
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+spanning-tree vlan 1-4094 priority 61440
+!
+!
 errdisable recovery cause udld
 errdisable recovery cause bpduguard
 errdisable recovery cause link-flap
 errdisable recovery cause sfp-config-mismatch
 errdisable recovery cause storm-control
 errdisable recovery interval 60
+!
+enable secret 9 $9$vONwAw.n6r4yi.$um.i6ctINolLlgWLbO.twTHaTMv6tjy97glCKm37mws
+enable password 7 104F0D140C19
+!
 username Support privilege 15 secret 9 $9$hsl8BFy1Ihdrtk$nYuR4SFfDCzdI0rPopJ5U1JwgYDvvotqcie06c3jbX6
 !
 redundancy
  mode sso
-!
+crypto engine compliance shield disable
 !
 !
 !
@@ -730,6 +725,7 @@ snmp-server enable traps flowmon
 snmp-server enable traps entity-perf throughput-notif
 snmp-server enable traps call-home message-send-fail server-fail
 snmp-server enable traps tty
+snmp-server enable traps eigrp
 snmp-server enable traps ospf state-change
 snmp-server enable traps ospf errors
 snmp-server enable traps ospf retransmit
@@ -740,25 +736,30 @@ snmp-server enable traps ospf cisco-specific state-change shamlink neighbor
 snmp-server enable traps ospf cisco-specific errors
 snmp-server enable traps ospf cisco-specific retransmit
 snmp-server enable traps ospf cisco-specific lsa
-snmp-server enable traps eigrp
+snmp-server enable traps bfd
+snmp-server enable traps license
 snmp-server enable traps auth-framework sec-violation
 snmp-server enable traps rep
+snmp-server enable traps memory bufferpeak
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps energywise
+snmp-server enable traps fru-ctrl
+snmp-server enable traps entity
+snmp-server enable traps flash insertion removal lowspace
+snmp-server enable traps power-ethernet police
+snmp-server enable traps cpu threshold
+snmp-server enable traps syslog
 snmp-server enable traps vtp
 snmp-server enable traps vlancreate
 snmp-server enable traps vlandelete
 snmp-server enable traps port-security
-snmp-server enable traps license
-snmp-server enable traps cpu threshold
-snmp-server enable traps memory bufferpeak
-snmp-server enable traps stackwise
-snmp-server enable traps fru-ctrl
-snmp-server enable traps flash insertion removal lowspace
-snmp-server enable traps energywise
-snmp-server enable traps power-ethernet police
-snmp-server enable traps entity
 snmp-server enable traps envmon
+snmp-server enable traps stackwise
 snmp-server enable traps ipsla
-snmp-server enable traps bfd
+snmp-server enable traps dhcp
+snmp-server enable traps event-manager
 snmp-server enable traps ike policy add
 snmp-server enable traps ike policy delete
 snmp-server enable traps ike tunnel start
@@ -770,26 +771,20 @@ snmp-server enable traps ipsec cryptomap detach
 snmp-server enable traps ipsec tunnel start
 snmp-server enable traps ipsec tunnel stop
 snmp-server enable traps ipsec too-many-sas
-snmp-server enable traps config-copy
-snmp-server enable traps config
-snmp-server enable traps config-ctid
-snmp-server enable traps dhcp
-snmp-server enable traps event-manager
-snmp-server enable traps ipmulticast
-snmp-server enable traps msdp
 snmp-server enable traps ospfv3 state-change
 snmp-server enable traps ospfv3 errors
+snmp-server enable traps ipmulticast
+snmp-server enable traps msdp
 snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
 snmp-server enable traps bridge newroot topologychange
 snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
-snmp-server enable traps syslog
-snmp-server enable traps vlan-membership
-snmp-server enable traps errdisable
-snmp-server enable traps rf
-snmp-server enable traps transceiver all
 snmp-server enable traps bulkstat collection transfer
 snmp-server enable traps mac-notification change move threshold
+snmp-server enable traps errdisable
+snmp-server enable traps vlan-membership
+snmp-server enable traps transceiver all
 snmp-server enable traps vrfmib vrf-up vrf-down vnet-trunk-up vnet-trunk-down
+snmp-server enable traps rf
 snmp-server host 10.1.101.193 95udt453 
 tacacs server ISE1-TACACS
  address ipv4 10.1.101.78
@@ -827,6 +822,7 @@ banner motd ^CCC
 ^C
 !
 line con 0
+ exec-timeout 0 0
  logging synchronous
  stopbits 1
 line vty 0 4

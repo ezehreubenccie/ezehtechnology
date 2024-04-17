@@ -1,10 +1,10 @@
 Building configuration...
 
-Current configuration : 21347 bytes
+Current configuration : 22888 bytes
 !
-! Last configuration change at 11:10:01 CET Mon Apr 15 2024 by a-rezeh
+! Last configuration change at 02:38:45 CET Wed Apr 17 2024
 !
-version 15.2
+version 16.12
 service nagle
 no service pad
 service tcp-keepalives-in
@@ -14,12 +14,12 @@ service timestamps log datetime msec localtime show-timezone
 service password-encryption
 service compress-config
 service sequence-numbers
+! Call-home is enabled by Smart-Licensing.
+service call-home
+platform punt-keepalive disable-kernel-core
+platform management port rate-limt-enabled
 !
 hostname pr-lan-sw0604
-!
-boot-start-marker
-boot system switch all flash:packages.conf
-boot-end-marker
 !
 !
 vrf definition Mgmt-vrf
@@ -32,10 +32,9 @@ vrf definition Mgmt-vrf
 !
 logging buffered 131080 informational
 no logging console
-enable secret 5 $1$3em8$gZa1JkA2FCCKN56L6HZzN.
+enable secret 9 $14$3em8$kRoYJ496JXnOGE$tNhUzaPy5btVCmcl29Lz.dJ5ii1ABWj3a8vi/Jb9thY
 enable password 7 041F5A524C626F411F59161211190910
 !
-username Support privilege 15 secret 5 $1$v87G$lk3Wqn71rvXrYesuY8DxV/
 aaa new-model
 !
 !
@@ -60,6 +59,7 @@ aaa accounting connection default start-stop group ISE-TACACS
 !
 !
 aaa session-id common
+boot system switch all flash:packages.conf
 clock timezone CST 8 0
 clock summer-time CET recurring
 switch 1 provision ws-c3850-48t
@@ -67,28 +67,50 @@ switch 1 provision ws-c3850-48t
 !
 !
 !
-!
+call-home
+ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com
+ ! the email address configured in Cisco Smart License Portal will be used as contact email address to send SCH notifications.
+ contact-email-addr sch-smart-licensing@cisco.com
+ profile "CiscoTAC-1"
+  active
+  destination transport-method http
+  no destination transport-method email
 no ip source-route
 no ip gratuitous-arps
 !
-no ip domain-lookup
-ip domain-name uptodate.com
+!
+!
+!
+!
+no ip domain lookup
+ip domain name uptodate.com
+!
 !
 !
 login block-for 30 attempts 5 within 30
 login on-failure log
 login on-success log
+!
+!
+!
+!
+!
 qos queue-softmax-multiplier 1200
 vtp domain UPTODATE
 vtp mode transparent
 udld aggressive
 
+no device-tracking logging theft
 !
 crypto pki trustpoint TP-self-signed-2998625832
  enrollment selfsigned
  subject-name cn=IOS-Self-Signed-Certificate-2998625832
  revocation-check none
  rsakeypair TP-self-signed-2998625832
+!
+crypto pki trustpoint SLA-TrustPoint
+ enrollment pkcs12
+ revocation-check crl
 !
 !
 crypto pki certificate chain TP-self-signed-2998625832
@@ -120,13 +142,42 @@ crypto pki certificate chain TP-self-signed-2998625832
   B4FFC946 49FBAD03 A8D7763E E287D05D 8D490A2C C327CA74 E313758B 954DD553 
   45C848E0 621CD8BD 519D3FDD 0992BBE7 5F3DC1B0
   	quit
-diagnostic bootup level minimal
+crypto pki certificate chain SLA-TrustPoint
+ certificate ca 01
+  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
+  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363 
+  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934 
+  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305 
+  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720 
+  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 
+  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D 
+  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520 
+  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE 
+  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC 
+  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188 
+  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7 
+  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191 
+  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44 
+  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201 
+  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85 
+  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500 
+  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905 
+  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B 
+  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8 
+  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C 
+  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B 
+  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678 
+  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB 
+  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0 
+  D697DF7F 28
+  	quit
+!
+!
 port-channel load-balance src-dst-ip
-archive
- log config
-  logging enable
-  notify syslog contenttype plaintext
-  hidekeys
+license boot level ipbasek9
+!
+!
+diagnostic bootup level minimal
 !
 spanning-tree mode rapid-pvst
 spanning-tree loopguard default
@@ -134,27 +185,40 @@ spanning-tree portfast bpduguard default
 spanning-tree extend system-id
 spanning-tree pathcost method long
 spanning-tree vlan 1-4094 priority 36864
-hw-switch switch 1 logging onboard message level 3
+archive
+ log config
+  logging enable
+  notify syslog contenttype plaintext
+  hidekeys
+memory free low-watermark processor 79468
+!
+username Support privilege 15 secret 9 $14$v87G$LTcQkE7kq/VnqE$61cShnikbbfuve42kpAV8VfJhsSeFE.9J6y.ElST6NQ
 !
 redundancy
  mode sso
 !
+!
+!
+!
+!
+transceiver type all
+ monitoring
+hw-switch switch 1 logging onboard message
 !
 vlan 999
  name NATIVE-VLAN
 !
 vlan 2550,2552,2554,2556,2558,2560,2570 
 !
-ip tcp synwait-time 5
 !
 class-map match-any system-cpp-police-topology-control
   description Topology control
 class-map match-any system-cpp-police-sw-forward
   description Sw forwarding, L2 LVX data, LOGGING
 class-map match-any system-cpp-default
-  description DHCP Snooping, EWLC control, EWCL data 
+  description EWLC control, EWLC data, Inter FED 
 class-map match-any system-cpp-police-sys-data
-  description Learning cache ovfl, Crypto Control, Exception, EGR Exception, NFL SAMPLED DATA, Gold Pkt, RPF Failed
+  description Learning cache ovfl, High Rate App, Exception, EGR Exception, NFL SAMPLED DATA, RPF Failed
 class-map match-any system-cpp-police-punt-webauth
   description Punt Webauth
 class-map match-any system-cpp-police-l2lvx-control
@@ -166,58 +230,33 @@ class-map match-any system-cpp-police-multicast-end-station
 class-map match-any system-cpp-police-multicast
   description Transit Traffic and MCAST Data
 class-map match-any system-cpp-police-l2-control
-  description L2 control, FSS
+  description L2 control
 class-map match-any system-cpp-police-dot1x-auth
   description DOT1X Auth
 class-map match-any system-cpp-police-data
   description ICMP redirect, ICMP_GEN and BROADCAST
+class-map match-any system-cpp-police-stackwise-virt-control
+  description Stackwise Virtual
 class-map match-any system-cpp-police-control-low-priority
   description General punt
 class-map match-any non-client-nrt-class
 class-map match-any system-cpp-police-routing-control
-  description Routing control
+  description Routing control and Low Latency
 class-map match-any system-cpp-police-protocol-snooping
   description Protocol snooping
+class-map match-any system-cpp-police-dhcp-snooping
+  description DHCP snooping
+class-map match-any system-cpp-police-system-critical
+  description System Critical and Gold Pkt
 !
+policy-map system-cpp-policy
+ class system-cpp-police-control-low-priority
+  police rate 200 pps
 policy-map port_child_policy
  class non-client-nrt-class
   bandwidth remaining ratio 10
-policy-map system-cpp-policy
- class system-cpp-police-data
-  police rate 600 pps
- class system-cpp-police-sys-data
-  police rate 100 pps
- class system-cpp-police-sw-forward
-  police rate 1000 pps
- class system-cpp-police-multicast
-  police rate 500 pps
- class system-cpp-police-multicast-end-station
-  police rate 2000 pps
- class system-cpp-police-punt-webauth
-  police rate 1000 pps
- class system-cpp-police-l2-control
-  police rate 500 pps
- class system-cpp-police-routing-control
-  police rate 1800 pps
- class system-cpp-police-control-low-priority
-  police rate 200 pps
- class system-cpp-police-l2lvx-control
-  police rate 1000 pps
- class system-cpp-police-topology-control
-  police rate 13000 pps
- class system-cpp-police-dot1x-auth
-  police rate 1000 pps
- class system-cpp-police-protocol-snooping
-  police rate 2000 pps
- class system-cpp-police-forus
-  police rate 1000 pps
- class system-cpp-default
-  police rate 1000 pps
 !
 ! 
-!
-!
-!
 !
 !
 !
@@ -565,6 +604,7 @@ interface Vlan2554
 !
 ip default-gateway 10.25.54.1
 ip forward-protocol nd
+ip tcp synwait-time 5
 no ip http server
 ip http authentication local
 no ip http secure-server
@@ -575,18 +615,19 @@ ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
 ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
 !
 ip access-list standard RO_SNMP_ACL
- permit 10.1.101.69
- remark NMS IP
- permit 10.1.101.193
- deny   any log
+ 10 permit 10.1.101.69
+ 20 remark NMS IP
+ 20 permit 10.1.101.193
+ 30 deny   any log
 ip access-list standard RW_SNMP_ACL
- permit 10.1.101.69
- remark NMS IP
- permit 10.1.101.193
- deny   any log
+ 10 permit 10.1.101.69
+ 20 remark NMS IP
+ 20 permit 10.1.101.193
+ 30 deny   any log
 ip access-list standard VTY_ACL
- permit 10.0.0.0 0.255.255.255
- deny   any log
+ 10 permit 10.0.0.0 0.255.255.255
+ 20 deny   any log
+!
 !
 !
 !
@@ -596,14 +637,8 @@ snmp-server location Frankfurt Europe IDC
 snmp-server contact Information Systems
 snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
 snmp-server enable traps flowmon
-snmp-server enable traps transceiver all
 snmp-server enable traps call-home message-send-fail server-fail
-snmp-server enable traps rf
-snmp-server enable traps memory
-snmp-server enable traps cpu threshold
-snmp-server enable traps wireless bsnMobileStation bsnAccessPoint bsnRogue bsn80211Security bsnAutoRF bsnGeneral SI mobility mfp RRM AP rogue client
 snmp-server enable traps tty
-snmp-server enable traps eigrp
 snmp-server enable traps ospf state-change
 snmp-server enable traps ospf errors
 snmp-server enable traps ospf retransmit
@@ -614,38 +649,24 @@ snmp-server enable traps ospf cisco-specific state-change shamlink neighbor
 snmp-server enable traps ospf cisco-specific errors
 snmp-server enable traps ospf cisco-specific retransmit
 snmp-server enable traps ospf cisco-specific lsa
+snmp-server enable traps eigrp
 snmp-server enable traps auth-framework sec-violation
-snmp-server enable traps flash insertion removal
-snmp-server enable traps power-ethernet police
-snmp-server enable traps energywise
 snmp-server enable traps vtp
 snmp-server enable traps vlancreate
 snmp-server enable traps vlandelete
-snmp-server enable traps license
-snmp-server enable traps envmon fan shutdown supply temperature status
-snmp-server enable traps stackwise
 snmp-server enable traps port-security
+snmp-server enable traps license
+snmp-server enable traps cpu threshold
+snmp-server enable traps memory bufferpeak
+snmp-server enable traps stackwise
 snmp-server enable traps fru-ctrl
+snmp-server enable traps flash insertion
+snmp-server enable traps flash removal
+snmp-server enable traps energywise
+snmp-server enable traps power-ethernet police
 snmp-server enable traps entity
-snmp-server enable traps trustsec-sxp conn-srcaddr-err msg-parse-err conn-config-err binding-err conn-up conn-down binding-expn-fail oper-nodeid-change binding-conflict
-snmp-server enable traps trustsec-server radius-server provision-secret
-snmp-server enable traps trustsec authz-file-error cache-file-error keystore-file-error keystore-sync-fail random-number-fail src-entropy-fail
-snmp-server enable traps trustsec-interface unauthorized sap-fail authc-fail supplicant-fail authz-fail
-snmp-server enable traps trustsec-policy peer-policy-updated authz-sgacl-fail
+snmp-server enable traps envmon fan shutdown supply temperature status
 snmp-server enable traps cef resource-failure peer-state-change peer-fib-state-change inconsistency
-snmp-server enable traps config-copy
-snmp-server enable traps config
-snmp-server enable traps config-ctid
-snmp-server enable traps event-manager
-snmp-server enable traps hsrp
-snmp-server enable traps ipmulticast
-snmp-server enable traps ospfv3 state-change
-snmp-server enable traps ospfv3 errors
-snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
-snmp-server enable traps vstack
-snmp-server enable traps bridge newroot topologychange
-snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
-snmp-server enable traps syslog
 snmp-server enable traps ipsla
 snmp-server enable traps ike policy add
 snmp-server enable traps ike policy delete
@@ -658,10 +679,24 @@ snmp-server enable traps ipsec cryptomap detach
 snmp-server enable traps ipsec tunnel start
 snmp-server enable traps ipsec tunnel stop
 snmp-server enable traps ipsec too-many-sas
-snmp-server enable traps errdisable
-snmp-server enable traps mac-notification change move threshold
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps event-manager
+snmp-server enable traps hsrp
+snmp-server enable traps ipmulticast
+snmp-server enable traps ospfv3 state-change
+snmp-server enable traps ospfv3 errors
+snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps syslog
 snmp-server enable traps vlan-membership
+snmp-server enable traps errdisable
+snmp-server enable traps rf
+snmp-server enable traps transceiver all
 snmp-server enable traps bulkstat collection transfer
+snmp-server enable traps mac-notification change move threshold
 snmp-server enable traps vrfmib vrf-up vrf-down vnet-trunk-up vnet-trunk-down
 snmp-server host 10.1.101.193 95udt453 
 tacacs server ISE1-TACACS
@@ -675,7 +710,9 @@ tacacs server ISE2-TACACS
 !
 !
 !
-no vstack
+control-plane
+ service-policy input system-cpp-policy
+!
 banner motd ^C
 ************************************************************
 ************************* WARNING **************************
@@ -723,6 +760,7 @@ line vty 5 15
  transport output telnet ssh
 !
 ntp server 10.1.254.1
+!
 wsma agent exec
  profile httplistener
  profile httpslistener
@@ -746,5 +784,4 @@ wsma profile listener httplistener
 wsma profile listener httpslistener
  transport https
 !
-ap group default-group
 end

@@ -4,11 +4,11 @@
 : Serial Number: FCH2145JADW
 : Hardware:   ASA5555, 16384 MB RAM, CPU Lynnfield 2800 MHz, 1 CPU (8 cores)
 :
-ASA Version 9.12(4)41 
+ASA Version 9.14(4)23 
 !
 hostname pr-lan-asa0604
 domain-name utd.com
-enable password ***** encrypted
+enable password ***** pbkdf2
 service-module 0 keepalive-timeout 4
 service-module 0 keepalive-counter 6
 service-module ips keepalive-timeout 4
@@ -194,8 +194,8 @@ interface Management0/0
  no security-level
  no ip address
 !
+boot system disk0:/asa9-14-4-23-smp-k8.bin
 boot system disk0:/asa9-12-4-41-smp-k8.bin
-boot system disk0:/asa9-12-4-smp-k8.bin
 ftp mode passive
 clock timezone JST 9
 dns server-group DefaultDNS
@@ -5013,7 +5013,6 @@ monitor-interface Outside_mng
 no monitor-interface service-module 
 icmp unreachable rate-limit 1 burst-size 1
 icmp permit any Inside2558
-asdm image disk0:/asdm-7131-101.bin
 no asdm history enable
 arp timeout 14400
 no arp permit-nonconnected
@@ -5198,7 +5197,6 @@ http 198.52.89.0 255.255.255.0 outside
 http 24.60.87.13 255.255.255.255 outside
 http 24.60.34.199 255.255.255.255 outside
 snmp-server group WKSNMPGROUP v3 priv 
-snmp-server user WKUTDSNMP WKSNMPGROUP v3 engineID 80000009fe4ac82a761f5afc3c6ecee412b022d0d6c88e61aa encrypted auth sha ae:3b:b0:85:b9:1e:cb:37:43:bf:f8:14:06:66:1d:31:61:cb:0b:60 priv aes 128 64:01:14:98:eb:4f:85:7b:5d:96:4c:ac:c1:60:66:9b 
 snmp-server user WKUTDSNMP WKSNMPGROUP v3 engineID 80000009feaca27a776f7e96f3799a339b2baf0c71f902ca1c encrypted auth sha dd:6c:9d:12:00:89:39:af:e7:e8:6d:9e:7a:16:17:62:7f:c0:71:78 priv aes 128 0e:d6:34:7a:3b:57:89:19:b0:c4:33:ed:40:d3:5f:bb 
 snmp-server host Inside2558 oradb03p version 3 WKUTDSNMP
 snmp-server host Inside2558 10.1.101.69 version 3 WKUTDSNMP
@@ -5393,7 +5391,6 @@ group-policy WK_GroupPolicy_Ikev2 attributes
  vpn-tunnel-protocol ikev2 
 dynamic-access-policy-record DfltAccessPolicy
 username Support password ***** pbkdf2 privilege 15
-username a-rezeh password ***** pbkdf2 privilege 15
 tunnel-group 65.204.39.2 type ipsec-l2l
 tunnel-group 65.204.39.2 ipsec-attributes
  ikev1 pre-shared-key *****
@@ -5482,5 +5479,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname priority state 
 no call-home reporting anonymous
-Cryptochecksum:732b14b18d93b968c569a2ea0528af15
+Cryptochecksum:5384f38502c1c1ee1f89523c7d24653c
 : end
