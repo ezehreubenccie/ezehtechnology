@@ -2549,7 +2549,7 @@ group-policy DfltGrpPolicy attributes
  split-tunnel-policy tunnelspecified
  split-tunnel-network-list value acl-split-tunnel1
  default-domain value utd.com
- split-dns value utd.com utdlab.com emmi.local emmiload.com emmiqa.com emmirc.com emmisolutions.com emmisolutions.local emmistg.com lexi.wkce.app wkglobal.com wkrainier.com wolterskluwercdi.com lab.wkce.app utd.wkce.app privatelink.eastus2.azmk8s.io privatelink.southcentralus.azmk8s.io privatelink.eastus.azmk8s.io privatelink.westus.azmk8s.io emmi.wkce.app ce.wkce.app
+ split-dns value utd.com utdlab.com emmi.local emmiload.com emmiqa.com emmirc.com emmisolutions.com emmisolutions.local emmistg.com lexi.wkce.app wkglobal.com wkrainier.com wolterskluwercdi.com lab.wkce.app utd.wkce.app privatelink.eastus2.azmk8s.io privatelink.southcentralus.azmk8s.io privatelink.eastus.azmk8s.io privatelink.westus.azmk8s.io emmi.wkce.app ce.wkce.app cecs.wkce.app
  split-tunnel-all-dns enable
  address-pools value ssl-vpn-pool1
  webvpn
@@ -2659,5 +2659,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname context 
 no call-home reporting anonymous
-Cryptochecksum:254794a14d90cf88443136ad76f28250
+Cryptochecksum:8f1c38d668cc5e42ffe8dc52ab22fcf1
 : end
