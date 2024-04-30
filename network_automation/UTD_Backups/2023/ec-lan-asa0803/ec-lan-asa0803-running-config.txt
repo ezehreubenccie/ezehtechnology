@@ -2171,7 +2171,6 @@ arp timeout 14400
 no arp permit-nonconnected
 arp rate-limit 32768
 nat (Inside2058,outside) source static ssl-vpn-pool1 ssl-vpn-pool1 destination static utd-internal-net utd-internal-net no-proxy-arp route-lookup description IS-7025 R.E 03-21-2024
-nat (outside,any) source static ssl-vpn-pool1 ssl-vpn-pool1 destination static utd-internal-net utd-internal-net no-proxy-arp route-lookup
 nat (outside,outside) source dynamic ssl-vpn-pool1 interface
 !
 route-map redistribute permit 1
@@ -2659,5 +2658,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname context 
 no call-home reporting anonymous
-Cryptochecksum:8f1c38d668cc5e42ffe8dc52ab22fcf1
+Cryptochecksum:f4b9104accf61fc72a1e19c5c612a685
 : end
