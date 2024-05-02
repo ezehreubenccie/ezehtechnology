@@ -38,17 +38,17 @@ Interface GigabitEthernet0/0 "", is up, line protocol is up
 	Active member of Port-channel1
 	MAC address a8b4.5603.2613, MTU 1500
 	IP address unassigned
-	13009878131 packets input, 12263986806677 bytes, 0 no buffer
+	13111869783 packets input, 12351756356918 bytes, 0 no buffer
 	Received 19 broadcasts, 0 runts, 0 giants
 	1712 input errors, 0 CRC, 0 frame, 1712 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
 	0 L2 decode drops
-	8407820592 packets output, 2074303237829 bytes, 0 underruns
+	8497380143 packets output, 2091515081268 bytes, 0 underruns
 	0 pause output, 0 resume output
 	0 output errors, 0 collisions, 4 interface resets
 	0 late collisions, 0 deferred
 	0 input reset drops, 0 output reset drops
-	input queue (blocks free curr/low): hardware (507/362)
+	input queue (blocks free curr/low): hardware (505/362)
 	output queue (blocks free curr/low): hardware (511/0)
 Interface GigabitEthernet0/1 "", is up, line protocol is up
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
@@ -57,17 +57,17 @@ Interface GigabitEthernet0/1 "", is up, line protocol is up
 	Active member of Port-channel1
 	MAC address a8b4.5603.260f, MTU 1500
 	IP address unassigned
-	9106451731 packets input, 8712474630506 bytes, 0 no buffer
+	9138451255 packets input, 8733701891409 bytes, 0 no buffer
 	Received 14 broadcasts, 0 runts, 0 giants
 	587 input errors, 0 CRC, 0 frame, 587 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
 	0 L2 decode drops
-	10243165113 packets output, 2762739738570 bytes, 0 underruns
+	10344208515 packets output, 2785273334464 bytes, 0 underruns
 	0 pause output, 0 resume output
 	0 output errors, 0 collisions, 4 interface resets
 	0 late collisions, 0 deferred
 	0 input reset drops, 0 output reset drops
-	input queue (blocks free curr/low): hardware (498/362)
+	input queue (blocks free curr/low): hardware (506/362)
 	output queue (blocks free curr/low): hardware (509/0)
 Interface GigabitEthernet0/2 "outside", is up, line protocol is up
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
@@ -75,28 +75,28 @@ Interface GigabitEthernet0/2 "outside", is up, line protocol is up
 	Input flow control is unsupported, output flow control is off
 	MAC address a8b4.5603.2614, MTU 1500
 	IP address 198.52.89.6, subnet mask 255.255.255.0
-	96263900674 packets input, 61781578613046 bytes, 0 no buffer
-	Received 636164149 broadcasts, 0 runts, 0 giants
-	554043 input errors, 0 CRC, 0 frame, 554043 overrun, 0 ignored, 0 abort
+	96962253569 packets input, 62189966589301 bytes, 0 no buffer
+	Received 639436630 broadcasts, 0 runts, 0 giants
+	569481 input errors, 0 CRC, 0 frame, 569481 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
 	0 L2 decode drops
-	102285875226 packets output, 79948991211853 bytes, 0 underruns
+	102932132091 packets output, 80433713314049 bytes, 0 underruns
 	0 pause output, 0 resume output
 	0 output errors, 0 collisions, 7 interface resets
 	0 late collisions, 0 deferred
 	0 input reset drops, 0 output reset drops
-	input queue (blocks free curr/low): hardware (470/362)
+	input queue (blocks free curr/low): hardware (475/362)
 	output queue (blocks free curr/low): hardware (511/97)
   Traffic Statistics for "outside":
-	96265506918 packets input, 60024931723328 bytes
-	102285875253 packets output, 78060686199836 bytes
-	704798757 packets dropped
-      1 minute input rate 2188 pkts/sec,  2128088 bytes/sec
-      1 minute output rate 2147 pkts/sec,  2277498 bytes/sec
-      1 minute drop rate, 12 pkts/sec
-      5 minute input rate 499 pkts/sec,  111100 bytes/sec
-      5 minute output rate 545 pkts/sec,  334459 bytes/sec
-      5 minute drop rate, 13 pkts/sec
+	96963880080 packets input, 60420567061136 bytes
+	102932132118 packets output, 78533479277029 bytes
+	710127722 packets dropped
+      1 minute input rate 17659 pkts/sec,  12161829 bytes/sec
+      1 minute output rate 18237 pkts/sec,  13273037 bytes/sec
+      1 minute drop rate, 59 pkts/sec
+      5 minute input rate 17604 pkts/sec,  12227260 bytes/sec
+      5 minute output rate 18611 pkts/sec,  13681762 bytes/sec
+      5 minute drop rate, 78 pkts/sec
 Interface GigabitEthernet0/3 "FAILOVER", is up, line protocol is up
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
 	Auto-Duplex(Full-duplex), Auto-Speed(1000 Mbps)
@@ -104,27 +104,27 @@ Interface GigabitEthernet0/3 "FAILOVER", is up, line protocol is up
 	Description: LAN/STATE Failover Interface
 	MAC address a8b4.5603.2610, MTU 1500
 	IP address 10.8.0.9, subnet mask 255.255.255.252
-	59249015 packets input, 8699360692 bytes, 0 no buffer
-	Received 1736 broadcasts, 0 runts, 0 giants
+	59523702 packets input, 8730767444 bytes, 0 no buffer
+	Received 1753 broadcasts, 0 runts, 0 giants
 	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
 	0 L2 decode drops
-	5285872214 packets output, 3195098403736 bytes, 0 underruns
+	5316210157 packets output, 3214231343336 bytes, 0 underruns
 	0 pause output, 0 resume output
 	0 output errors, 0 collisions, 2 interface resets
 	0 late collisions, 0 deferred
 	0 input reset drops, 0 output reset drops
-	input queue (blocks free curr/low): hardware (509/385)
-	output queue (blocks free curr/low): hardware (477/88)
+	input queue (blocks free curr/low): hardware (502/385)
+	output queue (blocks free curr/low): hardware (500/88)
   Traffic Statistics for "FAILOVER":
-	59248774 packets input, 7469128856 bytes
-	5285871965 packets output, 3099952519430 bytes
+	59523461 packets input, 7494996330 bytes
+	5316209908 packets output, 3118539375588 bytes
 	1 packets dropped
-      1 minute input rate 2 pkts/sec,  165 bytes/sec
-      1 minute output rate 118 pkts/sec,  70385 bytes/sec
+      1 minute input rate 2 pkts/sec,  135 bytes/sec
+      1 minute output rate 481 pkts/sec,  296441 bytes/sec
       1 minute drop rate, 0 pkts/sec
-      5 minute input rate 2 pkts/sec,  216 bytes/sec
-      5 minute output rate 103 pkts/sec,  61087 bytes/sec
+      5 minute input rate 2 pkts/sec,  201 bytes/sec
+      5 minute output rate 479 pkts/sec,  294467 bytes/sec
       5 minute drop rate, 0 pkts/sec
 Interface GigabitEthernet0/4 "", is administratively down, line protocol is down
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
@@ -228,15 +228,15 @@ Interface Port-channel1 "inside", is up, line protocol is up
 	MAC address a8b4.5603.2613, MTU 1500
 	IP address 172.16.31.26, subnet mask 255.255.255.248
   Traffic Statistics for "inside":
-	22114326570 packets input, 20569579912121 bytes
-	18648949176 packets output, 4427065698058 bytes
-	189563465 packets dropped
-      1 minute input rate 286 pkts/sec,  116201 bytes/sec
-      1 minute output rate 325 pkts/sec,  68272 bytes/sec
-      1 minute drop rate, 6 pkts/sec
-      5 minute input rate 372 pkts/sec,  257206 bytes/sec
-      5 minute output rate 325 pkts/sec,  60919 bytes/sec
-      5 minute drop rate, 6 pkts/sec
+	22248309068 packets input, 20676100876021 bytes
+	18839542732 packets output, 4462017629554 bytes
+	191366589 packets dropped
+      1 minute input rate 1661 pkts/sec,  1176211 bytes/sec
+      1 minute output rate 1584 pkts/sec,  389302 bytes/sec
+      1 minute drop rate, 21 pkts/sec
+      5 minute input rate 1976 pkts/sec,  1596798 bytes/sec
+      5 minute output rate 1716 pkts/sec,  457154 bytes/sec
+      5 minute drop rate, 25 pkts/sec
   Members in this channel:
       Active:   Gi0/0 Gi0/1 
 
@@ -5426,14 +5426,14 @@ VPN Session Summary
 ---------------------------------------------------------------------------
                                Active : Cumulative : Peak Concur : Inactive
                              ----------------------------------------------
-AnyConnect Client            :     77 :      78499 :         307 :        3
-  SSL/TLS/DTLS               :     77 :      78499 :         307 :        3
+AnyConnect Client            :    230 :      79042 :         307 :        1
+  SSL/TLS/DTLS               :    230 :      79042 :         307 :        1
 Clientless VPN               :      0 :          2 :           1
   Browser                    :      0 :          2 :           1
 ---------------------------------------------------------------------------
-Total Active and Inactive    :     80             Total Cumulative :  78501
+Total Active and Inactive    :    231             Total Cumulative :  79044
 Device Total VPN Capacity    :    750
-Device Load                  :    11%
+Device Load                  :    31%
 ---------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------
@@ -5442,11 +5442,11 @@ Tunnels Summary
                                Active : Cumulative : Peak Concurrent   
                              ----------------------------------------------
 Clientless                   :      0 :          2 :               1
-AnyConnect-Parent            :     80 :      78499 :             307
-SSL-Tunnel                   :     74 :     548479 :             256
-DTLS-Tunnel                  :     69 :     312389 :             246
+AnyConnect-Parent            :    231 :      79042 :             307
+SSL-Tunnel                   :    228 :     553605 :             256
+DTLS-Tunnel                  :    212 :     314420 :             246
 ---------------------------------------------------------------------------
-Totals                       :    223 :     939369
+Totals                       :    671 :     947069
 ---------------------------------------------------------------------------
 
 
