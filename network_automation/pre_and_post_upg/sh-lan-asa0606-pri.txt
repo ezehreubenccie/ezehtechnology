@@ -43,17 +43,17 @@ Interface GigabitEthernet0/0 "", is up, line protocol is up
 	Available but not configured via nameif
 	MAC address 3890.a575.93d6, MTU not set
 	IP address unassigned
-	14744832687 packets input, 5588179771463 bytes, 0 no buffer
-	Received 2637318 broadcasts, 0 runts, 0 giants
+	14746473880 packets input, 5588660104499 bytes, 0 no buffer
+	Received 2637720 broadcasts, 0 runts, 0 giants
 	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
 	0 L2 decode drops
-	17697077466 packets output, 12476089019574 bytes, 613 underruns
+	17698766592 packets output, 12476798274739 bytes, 613 underruns
 	0 pause output, 0 resume output
 	0 output errors, 0 collisions, 2 interface resets
 	0 late collisions, 0 deferred
 	0 input reset drops, 0 output reset drops
-	input queue (blocks free curr/low): hardware (504/362)
+	input queue (blocks free curr/low): hardware (483/362)
 	output queue (blocks free curr/low): hardware (511/0)
 Interface GigabitEthernet0/0.3547 "outside", is up, line protocol is up
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
@@ -62,18 +62,18 @@ Interface GigabitEthernet0/0.3547 "outside", is up, line protocol is up
 	MAC address 3890.a575.93d6, MTU 1500
 	IP address 211.144.223.252, subnet mask 255.255.255.248
   Traffic Statistics for "outside":
-	14740422042 packets input, 5252138533674 bytes
-	17689896667 packets output, 12083777919408 bytes
-	264568141 packets dropped
+	14742061411 packets input, 5252582133893 bytes
+	17691583572 packets output, 12084449681284 bytes
+	264595721 packets dropped
 Interface GigabitEthernet0/0.3548 "Outside_mng", is up, line protocol is up
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
 	VLAN identifier 3548
 	MAC address 3890.a575.93d6, MTU 1500
 	IP address 10.35.48.1, subnet mask 255.255.255.0
   Traffic Statistics for "Outside_mng":
-	4408552 packets input, 327954351 bytes
-	7181413 packets output, 627219737 bytes
-	144018 packets dropped
+	4410376 packets input, 328087747 bytes
+	7183633 packets output, 627392971 bytes
+	144040 packets dropped
 Interface GigabitEthernet0/1 "Inside3558", is up, line protocol is up
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
 	Auto-Duplex(Full-duplex), Auto-Speed(1000 Mbps)
@@ -81,27 +81,27 @@ Interface GigabitEthernet0/1 "Inside3558", is up, line protocol is up
 	Description: MPLS-Router
 	MAC address 3890.a575.93d2, MTU 1500
 	IP address 10.35.58.1, subnet mask 255.255.255.0
-	5078385931 packets input, 2467231728915 bytes, 0 no buffer
+	5078846248 packets input, 2467382049369 bytes, 0 no buffer
 	Received 4 broadcasts, 0 runts, 0 giants
 	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
 	0 L2 decode drops
-	12284025368 packets output, 5540656344674 bytes, 18318 underruns
+	12285327088 packets output, 5541226813621 bytes, 18318 underruns
 	0 pause output, 0 resume output
 	0 output errors, 0 collisions, 2 interface resets
 	0 late collisions, 0 deferred
 	0 input reset drops, 0 output reset drops
-	input queue (blocks free curr/low): hardware (487/446)
+	input queue (blocks free curr/low): hardware (509/446)
 	output queue (blocks free curr/low): hardware (511/0)
   Traffic Statistics for "Inside3558":
-	5078339506 packets input, 2375296484266 bytes
-	12284043686 packets output, 5319366166274 bytes
-	23274685 packets dropped
-      1 minute input rate 96 pkts/sec,  32849 bytes/sec
-      1 minute output rate 265 pkts/sec,  89859 bytes/sec
+	5078799823 packets input, 2375438422709 bytes
+	12285345407 packets output, 5319913165457 bytes
+	23279633 packets dropped
+      1 minute input rate 303 pkts/sec,  70344 bytes/sec
+      1 minute output rate 634 pkts/sec,  598316 bytes/sec
       1 minute drop rate, 1 pkts/sec
-      5 minute input rate 112 pkts/sec,  37862 bytes/sec
-      5 minute output rate 304 pkts/sec,  110037 bytes/sec
+      5 minute input rate 151 pkts/sec,  43695 bytes/sec
+      5 minute output rate 531 pkts/sec,  348088 bytes/sec
       5 minute drop rate, 1 pkts/sec
 Interface GigabitEthernet0/2 "DMZ3556", is up, line protocol is up
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
@@ -110,27 +110,27 @@ Interface GigabitEthernet0/2 "DMZ3556", is up, line protocol is up
 	Description: Database Servers
 	MAC address 3890.a575.93d7, MTU 1500
 	IP address 10.35.56.1, subnet mask 255.255.255.0
-	14391499497 packets input, 8885990382271 bytes, 0 no buffer
-	Received 1710616 broadcasts, 0 runts, 0 giants
+	14394046725 packets input, 8887297050169 bytes, 0 no buffer
+	Received 1710857 broadcasts, 0 runts, 0 giants
 	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
 	0 L2 decode drops
-	12321349267 packets output, 3999206405623 bytes, 0 underruns
+	12323615171 packets output, 3999715784121 bytes, 0 underruns
 	0 pause output, 0 resume output
 	0 output errors, 0 collisions, 2 interface resets
 	0 late collisions, 0 deferred
 	0 input reset drops, 0 output reset drops
-	input queue (blocks free curr/low): hardware (486/362)
+	input queue (blocks free curr/low): hardware (472/362)
 	output queue (blocks free curr/low): hardware (511/274)
   Traffic Statistics for "DMZ3556":
-	14391499514 packets input, 8626010890484 bytes
-	12321349267 packets output, 3776954787964 bytes
-	78483527 packets dropped
-      1 minute input rate 543 pkts/sec,  272433 bytes/sec
-      1 minute output rate 474 pkts/sec,  108675 bytes/sec
-      1 minute drop rate, 3 pkts/sec
-      5 minute input rate 561 pkts/sec,  275337 bytes/sec
-      5 minute output rate 493 pkts/sec,  117055 bytes/sec
+	14394046742 packets input, 8627271586803 bytes
+	12323615171 packets output, 3777423287262 bytes
+	78496034 packets dropped
+      1 minute input rate 282 pkts/sec,  235338 bytes/sec
+      1 minute output rate 190 pkts/sec,  62317 bytes/sec
+      1 minute drop rate, 2 pkts/sec
+      5 minute input rate 281 pkts/sec,  236174 bytes/sec
+      5 minute output rate 196 pkts/sec,  61943 bytes/sec
       5 minute drop rate, 3 pkts/sec
 Interface GigabitEthernet0/3 "DMZ3554", is up, line protocol is up
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
@@ -139,27 +139,27 @@ Interface GigabitEthernet0/3 "DMZ3554", is up, line protocol is up
 	Description: Tomcat Servers
 	MAC address 3890.a575.93d3, MTU 1500
 	IP address 10.35.54.1, subnet mask 255.255.255.0
-	10024797713 packets input, 5039933334592 bytes, 0 no buffer
-	Received 328701 broadcasts, 0 runts, 0 giants
+	10026261572 packets input, 5040423218397 bytes, 0 no buffer
+	Received 328750 broadcasts, 0 runts, 0 giants
 	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
 	0 L2 decode drops
-	11277571945 packets output, 8845185831617 bytes, 4053 underruns
+	11279193528 packets output, 8846270597351 bytes, 4053 underruns
 	0 pause output, 0 resume output
 	0 output errors, 0 collisions, 2 interface resets
 	0 late collisions, 0 deferred
 	0 input reset drops, 0 output reset drops
-	input queue (blocks free curr/low): hardware (481/362)
+	input queue (blocks free curr/low): hardware (509/362)
 	output queue (blocks free curr/low): hardware (511/0)
   Traffic Statistics for "DMZ3554":
-	10024777214 packets input, 4859175918159 bytes
-	11277575998 packets output, 8641561710192 bytes
-	42757175 packets dropped
-      1 minute input rate 195 pkts/sec,  66236 bytes/sec
-      1 minute output rate 259 pkts/sec,  218829 bytes/sec
-      1 minute drop rate, 2 pkts/sec
-      5 minute input rate 217 pkts/sec,  83634 bytes/sec
-      5 minute output rate 273 pkts/sec,  219917 bytes/sec
+	10026241069 packets input, 4859639441209 bytes
+	11279197581 packets output, 8642617241256 bytes
+	42769205 packets dropped
+      1 minute input rate 539 pkts/sec,  560849 bytes/sec
+      1 minute output rate 441 pkts/sec,  245833 bytes/sec
+      1 minute drop rate, 3 pkts/sec
+      5 minute input rate 446 pkts/sec,  312054 bytes/sec
+      5 minute output rate 297 pkts/sec,  222322 bytes/sec
       5 minute drop rate, 3 pkts/sec
 Interface GigabitEthernet0/4 "DMZ3550", is up, line protocol is up
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
@@ -168,27 +168,27 @@ Interface GigabitEthernet0/4 "DMZ3550", is up, line protocol is up
 	Description: Load Balancers
 	MAC address 3890.a575.93d8, MTU 1500
 	IP address 10.35.50.1, subnet mask 255.255.255.0
-	10151275503 packets input, 9848100288291 bytes, 0 no buffer
-	Received 150626 broadcasts, 0 runts, 0 giants
+	10151702520 packets input, 9848454345561 bytes, 0 no buffer
+	Received 150644 broadcasts, 0 runts, 0 giants
 	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
 	0 L2 decode drops
-	6821994835 packets output, 2491016248202 bytes, 0 underruns
+	6822292148 packets output, 2491083635880 bytes, 0 underruns
 	0 pause output, 0 resume output
 	0 output errors, 0 collisions, 2 interface resets
 	0 late collisions, 0 deferred
 	0 input reset drops, 0 output reset drops
-	input queue (blocks free curr/low): hardware (511/364)
+	input queue (blocks free curr/low): hardware (503/364)
 	output queue (blocks free curr/low): hardware (511/228)
   Traffic Statistics for "DMZ3550":
-	10151275502 packets input, 9660177739374 bytes
-	6821994835 packets output, 2358443785239 bytes
-	22384230 packets dropped
-      1 minute input rate 75 pkts/sec,  64290 bytes/sec
-      1 minute output rate 68 pkts/sec,  10518 bytes/sec
+	10151702519 packets input, 9660523867712 bytes
+	6822292148 packets output, 2358505512473 bytes
+	22385317 packets dropped
+      1 minute input rate 23 pkts/sec,  14110 bytes/sec
+      1 minute output rate 20 pkts/sec,  4503 bytes/sec
       1 minute drop rate, 0 pkts/sec
-      5 minute input rate 104 pkts/sec,  80929 bytes/sec
-      5 minute output rate 78 pkts/sec,  17791 bytes/sec
+      5 minute input rate 24 pkts/sec,  13288 bytes/sec
+      5 minute output rate 21 pkts/sec,  6462 bytes/sec
       5 minute drop rate, 0 pkts/sec
 Interface GigabitEthernet0/5 "", is administratively down, line protocol is down
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
@@ -235,27 +235,27 @@ Interface GigabitEthernet0/7 "failover", is up, line protocol is up
 	Description: LAN/STATE Failover Interface
 	MAC address 3890.a575.93d5, MTU 1500
 	IP address 192.168.255.1, subnet mask 255.255.255.252
-	49266074 packets input, 5469826144 bytes, 0 no buffer
+	49272959 packets input, 5470602820 bytes, 0 no buffer
 	Received 171 broadcasts, 0 runts, 0 giants
 	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
 	0 L2 decode drops
-	2478188670 packets output, 1538494522136 bytes, 0 underruns
+	2478469770 packets output, 1538669860276 bytes, 0 underruns
 	0 pause output, 0 resume output
 	0 output errors, 0 collisions, 1 interface resets
 	0 late collisions, 0 deferred
 	0 input reset drops, 0 output reset drops
-	input queue (blocks free curr/low): hardware (466/397)
-	output queue (blocks free curr/low): hardware (494/402)
+	input queue (blocks free curr/low): hardware (481/397)
+	output queue (blocks free curr/low): hardware (485/402)
   Traffic Statistics for "failover":
-	49265833 packets input, 4548040282 bytes
-	2478188398 packets output, 1493887133382 bytes
+	49272718 packets input, 4548689128 bytes
+	2478469498 packets output, 1494057411722 bytes
 	0 packets dropped
       1 minute input rate 1 pkts/sec,  122 bytes/sec
-      1 minute output rate 66 pkts/sec,  41206 bytes/sec
+      1 minute output rate 56 pkts/sec,  32406 bytes/sec
       1 minute drop rate, 0 pkts/sec
-      5 minute input rate 1 pkts/sec,  163 bytes/sec
-      5 minute output rate 72 pkts/sec,  44257 bytes/sec
+      5 minute input rate 1 pkts/sec,  161 bytes/sec
+      5 minute output rate 60 pkts/sec,  35664 bytes/sec
       5 minute drop rate, 0 pkts/sec
 Interface Management0/0 "", is up, line protocol is up
   Hardware is en_vtun rev00, BW 1000 Mbps, DLY 10 usec
@@ -264,11 +264,11 @@ Interface Management0/0 "", is up, line protocol is up
 	Available but not configured via nameif
 	MAC address 3890.a575.93d1, MTU not set
 	IP address unassigned
-	2724883 packets input, 172178683 bytes, 0 no buffer
+	2724932 packets input, 172182913 bytes, 0 no buffer
 	Received 0 broadcasts, 0 runts, 0 giants
 	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
-	2724883 L2 decode drops
+	2724932 L2 decode drops
 	0 packets output, 0 bytes, 0 underruns
 	0 pause output, 0 resume output
 	0 output errors, 0 collisions, 1 interface resets
@@ -6045,10 +6045,10 @@ Session-id:8081, Status:UP-ACTIVE, IKE count:1, CHILD count:1
 Tunnel-id Local                                               Remote                                                  Status         Role
 3437848567 211.144.223.252/500                                 12.130.132.3/500                                         READY    RESPONDER
       Encr: AES-CBC, keysize: 256, Hash: SHA256, DH Grp:21, Auth sign: PSK, Auth verify: PSK
-      Life/Active Time: 86400/3498 sec
+      Life/Active Time: 86400/7429 sec
 Child sa: local selector  10.35.54.0/0 - 10.35.54.255/65535
           remote selector 10.15.54.0/0 - 10.15.54.255/65535
-          ESP spi in/out: 0x19e75e2d/0x4a1e0529  
+          ESP spi in/out: 0x173800d9/0x5a8e1c1e  
 
 IKEv2 SAs:
 
@@ -6057,7 +6057,7 @@ Session-id:8099, Status:UP-ACTIVE, IKE count:1, CHILD count:1
 Tunnel-id Local                                               Remote                                                  Status         Role
 3267790751 211.144.223.252/500                                 195.33.161.12/500                                        READY    RESPONDER
       Encr: AES-CBC, keysize: 256, Hash: SHA256, DH Grp:21, Auth sign: PSK, Auth verify: PSK
-      Life/Active Time: 86400/7370 sec
+      Life/Active Time: 86400/11301 sec
 Child sa: local selector  10.35.54.0/0 - 10.35.54.255/65535
           remote selector 10.30.54.0/0 - 10.30.54.255/65535
           ESP spi in/out: 0x379883b4/0x1cef07e8  
@@ -6069,7 +6069,7 @@ Session-id:8053, Status:UP-ACTIVE, IKE count:1, CHILD count:2
 Tunnel-id Local                                               Remote                                                  Status         Role
 3429437975 211.144.223.252/500                                 203.163.125.4/500                                        READY    INITIATOR
       Encr: AES-CBC, keysize: 256, Hash: SHA96, DH Grp:5, Auth sign: PSK, Auth verify: PSK
-      Life/Active Time: 86400/77845 sec
+      Life/Active Time: 86400/81776 sec
 Child sa: local selector  10.35.56.0/0 - 10.35.56.255/65535
           remote selector 10.25.56.0/0 - 10.25.56.255/65535
           ESP spi in/out: 0xcb766643/0x35160931  
@@ -6089,10 +6089,10 @@ interface: outside
       current_peer: 12.130.132.3
 
 
-      #pkts encaps: 2683129, #pkts encrypt: 2683129, #pkts digest: 2683129
-      #pkts decaps: 2887987, #pkts decrypt: 2887987, #pkts verify: 2887987
+      #pkts encaps: 2744591, #pkts encrypt: 2744591, #pkts digest: 2744591
+      #pkts decaps: 2956680, #pkts decrypt: 2956680, #pkts verify: 2956680
       #pkts compressed: 0, #pkts decompressed: 0
-      #pkts not compressed: 2683129, #pkts comp failed: 0, #pkts decomp failed: 0
+      #pkts not compressed: 2744591, #pkts comp failed: 0, #pkts decomp failed: 0
       #pre-frag successes: 0, #pre-frag failures: 0, #fragments created: 0
       #PMTUs sent: 0, #PMTUs rcvd: 0, #decapsulated frgs needing reassembly: 0
       #TFC rcvd: 0, #TFC sent: 0
@@ -6103,27 +6103,27 @@ interface: outside
       path mtu 1500, ipsec overhead 78(44), media mtu 1500
       PMTU time remaining (sec): 0, DF policy: copy-df
       ICMP error validation: disabled, TFC packets: disabled
-      current outbound spi: 4A1E0529
-      current inbound spi : 19E75E2D
+      current outbound spi: 5A8E1C1E
+      current inbound spi : 173800D9
 
     inbound esp sas:
-      spi: 0x19E75E2D (434593325)
+      spi: 0x173800D9 (389546201)
          SA State: active
          transform: esp-aes-256 esp-sha-256-hmac no compression 
          in use settings ={L2L, Tunnel, PFS Group 21, IKEv2, }
          slot: 0, conn_id: 4833, crypto-map: Up2Date-SH
-         sa timing: remaining key lifetime (kB/sec): (4019340/4042)
+         sa timing: remaining key lifetime (kB/sec): (3905447/26671)
          IV size: 16 bytes
          replay detection support: Y
          Anti replay bitmap: 
           0xFFFFFFFF 0xFFFFFFFF
     outbound esp sas:
-      spi: 0x4A1E0529 (1243481385)
+      spi: 0x5A8E1C1E (1519262750)
          SA State: active
          transform: esp-aes-256 esp-sha-256-hmac no compression 
          in use settings ={L2L, Tunnel, PFS Group 21, IKEv2, }
          slot: 0, conn_id: 4833, crypto-map: Up2Date-SH
-         sa timing: remaining key lifetime (kB/sec): (4152343/4042)
+         sa timing: remaining key lifetime (kB/sec): (4235847/26671)
          IV size: 16 bytes
          replay detection support: Y
          Anti replay bitmap: 
@@ -6137,10 +6137,10 @@ interface: outside
       current_peer: 195.33.161.12
 
 
-      #pkts encaps: 61390, #pkts encrypt: 61390, #pkts digest: 61390
-      #pkts decaps: 62710, #pkts decrypt: 62710, #pkts verify: 62710
+      #pkts encaps: 92321, #pkts encrypt: 92321, #pkts digest: 92321
+      #pkts decaps: 95683, #pkts decrypt: 95683, #pkts verify: 95683
       #pkts compressed: 0, #pkts decompressed: 0
-      #pkts not compressed: 61390, #pkts comp failed: 0, #pkts decomp failed: 0
+      #pkts not compressed: 92321, #pkts comp failed: 0, #pkts decomp failed: 0
       #pre-frag successes: 0, #pre-frag failures: 0, #fragments created: 0
       #PMTUs sent: 0, #PMTUs rcvd: 0, #decapsulated frgs needing reassembly: 0
       #TFC rcvd: 0, #TFC sent: 0
@@ -6160,7 +6160,7 @@ interface: outside
          transform: esp-aes-256 esp-sha-256-hmac no compression 
          in use settings ={L2L, Tunnel, PFS Group 21, IKEv2, }
          slot: 0, conn_id: 4865, crypto-map: Up2Date-SH
-         sa timing: remaining key lifetime (kB/sec): (4275906/21428)
+         sa timing: remaining key lifetime (kB/sec): (4270954/17497)
          IV size: 16 bytes
          replay detection support: Y
          Anti replay bitmap: 
@@ -6171,7 +6171,7 @@ interface: outside
          transform: esp-aes-256 esp-sha-256-hmac no compression 
          in use settings ={L2L, Tunnel, PFS Group 21, IKEv2, }
          slot: 0, conn_id: 4865, crypto-map: Up2Date-SH
-         sa timing: remaining key lifetime (kB/sec): (4323107/21428)
+         sa timing: remaining key lifetime (kB/sec): (4318881/17497)
          IV size: 16 bytes
          replay detection support: Y
          Anti replay bitmap: 
@@ -6185,10 +6185,10 @@ interface: outside
       current_peer: 203.163.125.4
 
 
-      #pkts encaps: 3434598, #pkts encrypt: 3434598, #pkts digest: 3434598
-      #pkts decaps: 3363923, #pkts decrypt: 3363923, #pkts verify: 3363923
+      #pkts encaps: 3465909, #pkts encrypt: 3465909, #pkts digest: 3465909
+      #pkts decaps: 3395103, #pkts decrypt: 3395103, #pkts verify: 3395103
       #pkts compressed: 0, #pkts decompressed: 0
-      #pkts not compressed: 3434598, #pkts comp failed: 0, #pkts decomp failed: 0
+      #pkts not compressed: 3465909, #pkts comp failed: 0, #pkts decomp failed: 0
       #pre-frag successes: 0, #pre-frag failures: 0, #fragments created: 0
       #PMTUs sent: 0, #PMTUs rcvd: 0, #decapsulated frgs needing reassembly: 0
       #TFC rcvd: 0, #TFC sent: 0
@@ -6208,7 +6208,7 @@ interface: outside
          transform: esp-aes-256 esp-sha-256-hmac no compression 
          in use settings ={L2L, Tunnel, PFS Group 2, IKEv2, }
          slot: 0, conn_id: 4776, crypto-map: Up2Date-SH
-         sa timing: remaining key lifetime (kB/sec): (4138442/20086)
+         sa timing: remaining key lifetime (kB/sec): (4133803/16154)
          IV size: 16 bytes
          replay detection support: Y
          Anti replay bitmap: 
@@ -6219,7 +6219,7 @@ interface: outside
          transform: esp-aes-256 esp-sha-256-hmac no compression 
          in use settings ={L2L, Tunnel, PFS Group 2, IKEv2, }
          slot: 0, conn_id: 4776, crypto-map: Up2Date-SH
-         sa timing: remaining key lifetime (kB/sec): (4096126/20086)
+         sa timing: remaining key lifetime (kB/sec): (4091917/16154)
          IV size: 16 bytes
          replay detection support: Y
          Anti replay bitmap: 
@@ -6233,10 +6233,10 @@ interface: outside
       current_peer: 203.163.125.4
 
 
-      #pkts encaps: 81798333, #pkts encrypt: 81798333, #pkts digest: 81798333
-      #pkts decaps: 85435107, #pkts decrypt: 85435107, #pkts verify: 85435107
+      #pkts encaps: 82885078, #pkts encrypt: 82885078, #pkts digest: 82885078
+      #pkts decaps: 86565315, #pkts decrypt: 86565315, #pkts verify: 86565315
       #pkts compressed: 0, #pkts decompressed: 0
-      #pkts not compressed: 81798333, #pkts comp failed: 0, #pkts decomp failed: 0
+      #pkts not compressed: 82885078, #pkts comp failed: 0, #pkts decomp failed: 0
       #pre-frag successes: 0, #pre-frag failures: 0, #fragments created: 0
       #PMTUs sent: 0, #PMTUs rcvd: 0, #decapsulated frgs needing reassembly: 0
       #TFC rcvd: 0, #TFC sent: 0
@@ -6256,7 +6256,7 @@ interface: outside
          transform: esp-aes-256 esp-sha-256-hmac no compression 
          in use settings ={L2L, Tunnel, PFS Group 2, IKEv2, }
          slot: 0, conn_id: 4776, crypto-map: Up2Date-SH
-         sa timing: remaining key lifetime (kB/sec): (3580439/20751)
+         sa timing: remaining key lifetime (kB/sec): (3347163/16820)
          IV size: 16 bytes
          replay detection support: Y
          Anti replay bitmap: 
@@ -6267,7 +6267,7 @@ interface: outside
          transform: esp-aes-256 esp-sha-256-hmac no compression 
          in use settings ={L2L, Tunnel, PFS Group 2, IKEv2, }
          slot: 0, conn_id: 4776, crypto-map: Up2Date-SH
-         sa timing: remaining key lifetime (kB/sec): (3678950/20751)
+         sa timing: remaining key lifetime (kB/sec): (3456914/16820)
          IV size: 16 bytes
          replay detection support: Y
          Anti replay bitmap: 
@@ -6287,10 +6287,10 @@ Session-id:8081, Status:UP-ACTIVE, IKE count:1, CHILD count:1
 Tunnel-id Local                                               Remote                                                  Status         Role
 3437848567 211.144.223.252/500                                 12.130.132.3/500                                         READY    RESPONDER
       Encr: AES-CBC, keysize: 256, Hash: SHA256, DH Grp:21, Auth sign: PSK, Auth verify: PSK
-      Life/Active Time: 86400/3502 sec
+      Life/Active Time: 86400/7433 sec
 Child sa: local selector  10.35.54.0/0 - 10.35.54.255/65535
           remote selector 10.15.54.0/0 - 10.15.54.255/65535
-          ESP spi in/out: 0x19e75e2d/0x4a1e0529  
+          ESP spi in/out: 0x173800d9/0x5a8e1c1e  
 
 IKEv2 SAs:
 
@@ -6299,7 +6299,7 @@ Session-id:8099, Status:UP-ACTIVE, IKE count:1, CHILD count:1
 Tunnel-id Local                                               Remote                                                  Status         Role
 3267790751 211.144.223.252/500                                 195.33.161.12/500                                        READY    RESPONDER
       Encr: AES-CBC, keysize: 256, Hash: SHA256, DH Grp:21, Auth sign: PSK, Auth verify: PSK
-      Life/Active Time: 86400/7374 sec
+      Life/Active Time: 86400/11305 sec
 Child sa: local selector  10.35.54.0/0 - 10.35.54.255/65535
           remote selector 10.30.54.0/0 - 10.30.54.255/65535
           ESP spi in/out: 0x379883b4/0x1cef07e8  
@@ -6311,7 +6311,7 @@ Session-id:8053, Status:UP-ACTIVE, IKE count:1, CHILD count:2
 Tunnel-id Local                                               Remote                                                  Status         Role
 3429437975 211.144.223.252/500                                 203.163.125.4/500                                        READY    INITIATOR
       Encr: AES-CBC, keysize: 256, Hash: SHA96, DH Grp:5, Auth sign: PSK, Auth verify: PSK
-      Life/Active Time: 86400/77849 sec
+      Life/Active Time: 86400/81780 sec
 Child sa: local selector  10.35.56.0/0 - 10.35.56.255/65535
           remote selector 10.25.56.0/0 - 10.25.56.255/65535
           ESP spi in/out: 0xcb766643/0x35160931  
@@ -6367,9 +6367,9 @@ Index        : 4776                   IP Addr      : 203.163.125.4
 Protocol     : IKEv2 IPsec
 Encryption   : IKEv2: (1)AES256  IPsec: (2)AES256
 Hashing      : IKEv2: (1)SHA1  IPsec: (2)SHA256
-Bytes Tx     : 19637171834            Bytes Rx     : 20993969257
+Bytes Tx     : 19868735473            Bytes Rx     : 21237445560
 Login Time   : 03:16:41 CST Sun Apr 28 2024
-Duration     : 4d 21h:33m:17s
+Duration     : 4d 22h:38m:48s
 
 IKEv2 Tunnels: 1
 IPsec Tunnels: 2
@@ -6380,7 +6380,7 @@ IKEv2:
   Rem Auth Mode: preSharedKeys
   Loc Auth Mode: preSharedKeys
   Encryption   : AES256                 Hashing      : SHA1
-  Rekey Int (T): 86400 Seconds          Rekey Left(T): 8548 Seconds
+  Rekey Int (T): 86400 Seconds          Rekey Left(T): 4617 Seconds
   PRF          : SHA1                   D/H Group    : 5
   Filter Name  : 
 
@@ -6390,11 +6390,11 @@ IPsec:
   Remote Addr  : 10.25.56.0/255.255.255.0/0/0
   Encryption   : AES256                 Hashing      : SHA256                 
   Encapsulation: Tunnel                 PFS Group    : 2                      
-  Rekey Int (T): 28800 Seconds          Rekey Left(T): 20747 Seconds          
+  Rekey Int (T): 28800 Seconds          Rekey Left(T): 16816 Seconds          
   Rekey Int (D): 4608000 K-Bytes        Rekey Left(D): 0 K-Bytes              
   Idle Time Out: 30 Minutes             Idle TO Left : 30 Minutes             
-  Bytes Tx     : 19172383086            Bytes Rx     : 20472036267            
-  Pkts Tx      : 81799574               Pkts Rx      : 85436388               
+  Bytes Tx     : 19399646554            Bytes Rx     : 20710760358            
+  Pkts Tx      : 82885255               Pkts Rx      : 86565486               
   
 IPsec:
   Tunnel ID    : 4776.3
@@ -6402,20 +6402,20 @@ IPsec:
   Remote Addr  : 10.25.54.0/255.255.255.0/0/0
   Encryption   : AES256                 Hashing      : SHA256                 
   Encapsulation: Tunnel                 PFS Group    : 2                      
-  Rekey Int (T): 28800 Seconds          Rekey Left(T): 20081 Seconds          
-  Rekey Int (D): 4608000 K-Bytes        Rekey Left(D): 4599238 K-Bytes        
-  Idle Time Out: 30 Minutes             Idle TO Left : 29 Minutes             
-  Bytes Tx     : 464795881              Bytes Rx     : 521939695              
-  Pkts Tx      : 3434633                Pkts Rx      : 3363948                
+  Rekey Int (T): 28800 Seconds          Rekey Left(T): 16150 Seconds          
+  Rekey Int (D): 4608000 K-Bytes        Rekey Left(D): 4594602 K-Bytes        
+  Idle Time Out: 30 Minutes             Idle TO Left : 30 Minutes             
+  Bytes Tx     : 469105468              Bytes Rx     : 526686223              
+  Pkts Tx      : 3465921                Pkts Rx      : 3395127                
   
 Connection   : 12.130.132.3
 Index        : 4833                   IP Addr      : 12.130.132.3
 Protocol     : IKEv2 IPsec
 Encryption   : IKEv2: (1)AES256  IPsec: (1)AES256
 Hashing      : IKEv2: (1)SHA256  IPsec: (1)SHA256
-Bytes Tx     : 289102369              Bytes Rx     : 800959623
+Bytes Tx     : 295814942              Bytes Rx     : 823017681
 Login Time   : 23:53:20 CST Tue Apr 30 2024
-Duration     : 2d 0h:56m:38s
+Duration     : 2d 2h:02m:09s
 
 IKEv2 Tunnels: 1
 IPsec Tunnels: 1
@@ -6426,7 +6426,7 @@ IKEv2:
   Rem Auth Mode: preSharedKeys
   Loc Auth Mode: preSharedKeys
   Encryption   : AES256                 Hashing      : SHA256
-  Rekey Int (T): 86400 Seconds          Rekey Left(T): 82895 Seconds
+  Rekey Int (T): 86400 Seconds          Rekey Left(T): 78964 Seconds
   PRF          : SHA256                 D/H Group    : 21
   Filter Name  : 
 
@@ -6436,20 +6436,20 @@ IPsec:
   Remote Addr  : 10.15.54.0/255.255.255.0/0/0
   Encryption   : AES256                 Hashing      : SHA256                 
   Encapsulation: Tunnel                 PFS Group    : 21                     
-  Rekey Int (T): 28800 Seconds          Rekey Left(T): 4037 Seconds           
-  Rekey Int (D): 4608000 K-Bytes        Rekey Left(D): 4480128 K-Bytes        
+  Rekey Int (T): 28800 Seconds          Rekey Left(T): 26666 Seconds          
+  Rekey Int (D): 4608000 K-Bytes        Rekey Left(D): 4596644 K-Bytes        
   Idle Time Out: 30 Minutes             Idle TO Left : 30 Minutes             
-  Bytes Tx     : 289102623              Bytes Rx     : 800959918              
-  Pkts Tx      : 2683223                Pkts Rx      : 2888082                
+  Bytes Tx     : 295815046              Bytes Rx     : 823017807              
+  Pkts Tx      : 2744656                Pkts Rx      : 2956765                
   
 Connection   : 195.33.161.12
 Index        : 4865                   IP Addr      : 195.33.161.12
 Protocol     : IKEv2 IPsec
 Encryption   : IKEv2: (1)AES256  IPsec: (1)AES256
 Hashing      : IKEv2: (1)SHA256  IPsec: (1)SHA256
-Bytes Tx     : 8618931                Bytes Rx     : 9767964
+Bytes Tx     : 12944483               Bytes Rx     : 14835735
 Login Time   : 22:47:02 CST Thu May 2 2024
-Duration     : 2h:02m:57s
+Duration     : 3h:08m:28s
 
 IKEv2 Tunnels: 1
 IPsec Tunnels: 1
@@ -6460,7 +6460,7 @@ IKEv2:
   Rem Auth Mode: preSharedKeys
   Loc Auth Mode: preSharedKeys
   Encryption   : AES256                 Hashing      : SHA256
-  Rekey Int (T): 86400 Seconds          Rekey Left(T): 79023 Seconds
+  Rekey Int (T): 86400 Seconds          Rekey Left(T): 75092 Seconds
   PRF          : SHA256                 D/H Group    : 21
   Filter Name  : 
 
@@ -6470,11 +6470,11 @@ IPsec:
   Remote Addr  : 10.30.54.0/255.255.255.0/0/0
   Encryption   : AES256                 Hashing      : SHA256                 
   Encapsulation: Tunnel                 PFS Group    : 21                     
-  Rekey Int (T): 28800 Seconds          Rekey Left(T): 21422 Seconds          
-  Rekey Int (D): 4608000 K-Bytes        Rekey Left(D): 4598461 K-Bytes        
-  Idle Time Out: 30 Minutes             Idle TO Left : 30 Minutes             
-  Bytes Tx     : 8620485                Bytes Rx     : 9768594                
-  Pkts Tx      : 61435                  Pkts Rx      : 62750                  
+  Rekey Int (T): 28800 Seconds          Rekey Left(T): 17491 Seconds          
+  Rekey Int (D): 4608000 K-Bytes        Rekey Left(D): 4593512 K-Bytes        
+  Idle Time Out: 30 Minutes             Idle TO Left : 29 Minutes             
+  Bytes Tx     : 12944483               Bytes Rx     : 14835735               
+  Pkts Tx      : 92337                  Pkts Rx      : 95714                  
   
 
 

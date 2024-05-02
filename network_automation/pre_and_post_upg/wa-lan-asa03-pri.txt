@@ -21,8 +21,8 @@ GigabitEthernet0/5         unassigned      YES unset  administratively down down
 GigabitEthernet0/6         unassigned      YES unset  administratively down down
 GigabitEthernet0/7         unassigned      YES unset  administratively down down
 Internal-Control0/0        127.0.1.1       YES unset  up                    up  
-Internal-Data0/0           unassigned      YES unset  down                  down
-Internal-Data0/1           unassigned      YES unset  up                    up  
+Internal-Data0/0           unassigned      YES unset  up                    down
+Internal-Data0/1           unassigned      YES unset  down                  up  
 Internal-Data0/2           unassigned      YES unset  up                    up  
 Internal-Data0/3           169.254.1.1     YES unset  up                    up  
 Management0/0              unassigned      YES unset  administratively down down
@@ -38,18 +38,18 @@ Interface GigabitEthernet0/0 "", is up, line protocol is up
 	Active member of Port-channel1
 	MAC address a8b4.5603.2613, MTU 1500
 	IP address unassigned
-	13122804457 packets input, 12360342644660 bytes, 0 no buffer
-	Received 19 broadcasts, 0 runts, 0 giants
-	1951 input errors, 0 CRC, 0 frame, 1951 overrun, 0 ignored, 0 abort
+	257964 packets input, 198358504 bytes, 0 no buffer
+	Received 3 broadcasts, 0 runts, 0 giants
+	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
 	0 L2 decode drops
-	8502003082 packets output, 2092782790887 bytes, 0 underruns
+	159161 packets output, 45252976 bytes, 0 underruns
 	0 pause output, 0 resume output
-	0 output errors, 0 collisions, 4 interface resets
+	0 output errors, 0 collisions, 0 interface resets
 	0 late collisions, 0 deferred
 	0 input reset drops, 0 output reset drops
-	input queue (blocks free curr/low): hardware (495/362)
-	output queue (blocks free curr/low): hardware (511/0)
+	input queue (blocks free curr/low): hardware (474/382)
+	output queue (blocks free curr/low): hardware (511/414)
 Interface GigabitEthernet0/1 "", is up, line protocol is up
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
 	Auto-Duplex(Full-duplex), Auto-Speed(1000 Mbps)
@@ -57,46 +57,46 @@ Interface GigabitEthernet0/1 "", is up, line protocol is up
 	Active member of Port-channel1
 	MAC address a8b4.5603.260f, MTU 1500
 	IP address unassigned
-	9141641895 packets input, 8736064669233 bytes, 0 no buffer
-	Received 14 broadcasts, 0 runts, 0 giants
-	587 input errors, 0 CRC, 0 frame, 587 overrun, 0 ignored, 0 abort
+	69992 packets input, 49089099 bytes, 0 no buffer
+	Received 0 broadcasts, 0 runts, 0 giants
+	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
 	0 L2 decode drops
-	10351646126 packets output, 2787352667178 bytes, 0 underruns
+	122652 packets output, 38660442 bytes, 0 underruns
 	0 pause output, 0 resume output
-	0 output errors, 0 collisions, 4 interface resets
+	0 output errors, 0 collisions, 0 interface resets
 	0 late collisions, 0 deferred
 	0 input reset drops, 0 output reset drops
-	input queue (blocks free curr/low): hardware (498/362)
-	output queue (blocks free curr/low): hardware (511/0)
+	input queue (blocks free curr/low): hardware (507/384)
+	output queue (blocks free curr/low): hardware (511/442)
 Interface GigabitEthernet0/2 "outside", is up, line protocol is up
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
 	Auto-Duplex(Full-duplex), Auto-Speed(1000 Mbps)
 	Input flow control is unsupported, output flow control is off
 	MAC address a8b4.5603.2614, MTU 1500
 	IP address 198.52.89.6, subnet mask 255.255.255.0
-	97068376614 packets input, 62263538760590 bytes, 0 no buffer
-	Received 639657531 broadcasts, 0 runts, 0 giants
-	569891 input errors, 0 CRC, 0 frame, 569891 overrun, 0 ignored, 0 abort
+	2403794 packets input, 1654798103 bytes, 0 no buffer
+	Received 15044 broadcasts, 0 runts, 0 giants
+	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
 	0 L2 decode drops
-	103043354824 packets output, 80516636181378 bytes, 0 underruns
+	2652465 packets output, 1834933647 bytes, 0 underruns
 	0 pause output, 0 resume output
-	0 output errors, 0 collisions, 7 interface resets
+	0 output errors, 0 collisions, 2 interface resets
 	0 late collisions, 0 deferred
 	0 input reset drops, 0 output reset drops
-	input queue (blocks free curr/low): hardware (494/362)
-	output queue (blocks free curr/low): hardware (511/97)
+	input queue (blocks free curr/low): hardware (478/362)
+	output queue (blocks free curr/low): hardware (511/386)
   Traffic Statistics for "outside":
-	97070005554 packets input, 60492205209436 bytes
-	103043354851 packets output, 78614356801554 bytes
-	711144436 packets dropped
-      1 minute input rate 4973 pkts/sec,  2674240 bytes/sec
-      1 minute output rate 5137 pkts/sec,  3127936 bytes/sec
-      1 minute drop rate, 48 pkts/sec
-      5 minute input rate 6994 pkts/sec,  4372031 bytes/sec
-      5 minute output rate 7619 pkts/sec,  5593338 bytes/sec
-      5 minute drop rate, 57 pkts/sec
+	2403156 packets input, 1610107217 bytes
+	2652465 packets output, 1784384993 bytes
+	67555 packets dropped
+      1 minute input rate 9290 pkts/sec,  6087145 bytes/sec
+      1 minute output rate 10375 pkts/sec,  6634234 bytes/sec
+      1 minute drop rate, 199 pkts/sec
+      5 minute input rate 6593 pkts/sec,  4480938 bytes/sec
+      5 minute output rate 7249 pkts/sec,  4929236 bytes/sec
+      5 minute drop rate, 194 pkts/sec
 Interface GigabitEthernet0/3 "FAILOVER", is up, line protocol is up
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
 	Auto-Duplex(Full-duplex), Auto-Speed(1000 Mbps)
@@ -104,27 +104,27 @@ Interface GigabitEthernet0/3 "FAILOVER", is up, line protocol is up
 	Description: LAN/STATE Failover Interface
 	MAC address a8b4.5603.2610, MTU 1500
 	IP address 10.8.0.9, subnet mask 255.255.255.252
-	59541760 packets input, 8732792908 bytes, 0 no buffer
-	Received 1755 broadcasts, 0 runts, 0 giants
+	155680 packets input, 102372744 bytes, 0 no buffer
+	Received 9 broadcasts, 0 runts, 0 giants
 	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
 	0 L2 decode drops
-	5320255092 packets output, 3216835175248 bytes, 0 underruns
+	120095 packets output, 72310504 bytes, 0 underruns
 	0 pause output, 0 resume output
-	0 output errors, 0 collisions, 2 interface resets
+	0 output errors, 0 collisions, 1 interface resets
 	0 late collisions, 0 deferred
 	0 input reset drops, 0 output reset drops
-	input queue (blocks free curr/low): hardware (504/385)
-	output queue (blocks free curr/low): hardware (487/88)
+	input queue (blocks free curr/low): hardware (485/364)
+	output queue (blocks free curr/low): hardware (463/387)
   Traffic Statistics for "FAILOVER":
-	59541519 packets input, 7496653118 bytes
-	5320254843 packets output, 3121070398616 bytes
-	1 packets dropped
-      1 minute input rate 2 pkts/sec,  132 bytes/sec
-      1 minute output rate 434 pkts/sec,  274832 bytes/sec
+	155396 packets input, 96425944 bytes
+	119822 packets output, 70051788 bytes
+	0 packets dropped
+      1 minute input rate 2 pkts/sec,  144 bytes/sec
+      1 minute output rate 448 pkts/sec,  278008 bytes/sec
       1 minute drop rate, 0 pkts/sec
-      5 minute input rate 2 pkts/sec,  207 bytes/sec
-      5 minute output rate 454 pkts/sec,  287743 bytes/sec
+      5 minute input rate 158 pkts/sec,  91439 bytes/sec
+      5 minute output rate 297 pkts/sec,  183164 bytes/sec
       5 minute drop rate, 0 pkts/sec
 Interface GigabitEthernet0/4 "", is administratively down, line protocol is down
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
@@ -218,7 +218,7 @@ Interface Management0/0 "", is administratively down, line protocol is down
 	0 pause output, 0 resume output
 	0 output errors, 0 collisions, 1 interface resets
 	0 late collisions, 0 deferred
-	15 input reset drops, 0 output reset drops
+	19 input reset drops, 0 output reset drops
 	input queue (blocks free curr/low): hardware (0/0)
 	output queue (blocks free curr/low): hardware (0/0)
 Interface Port-channel1 "inside", is up, line protocol is up
@@ -228,15 +228,15 @@ Interface Port-channel1 "inside", is up, line protocol is up
 	MAC address a8b4.5603.2613, MTU 1500
 	IP address 172.16.31.26, subnet mask 255.255.255.248
   Traffic Statistics for "inside":
-	22262433816 packets input, 20686789895637 bytes
-	18851602684 packets output, 4465125858672 bytes
-	191573528 packets dropped
-      1 minute input rate 1218 pkts/sec,  714284 bytes/sec
-      1 minute output rate 1204 pkts/sec,  371740 bytes/sec
-      1 minute drop rate, 23 pkts/sec
-      5 minute input rate 1855 pkts/sec,  1526110 bytes/sec
-      5 minute output rate 1448 pkts/sec,  457873 bytes/sec
-      5 minute drop rate, 23 pkts/sec
+	327882 packets input, 241391680 bytes
+	281967 packets output, 78388414 bytes
+	6491 packets dropped
+      1 minute input rate 1097 pkts/sec,  677049 bytes/sec
+      1 minute output rate 1055 pkts/sec,  269473 bytes/sec
+      1 minute drop rate, 18 pkts/sec
+      5 minute input rate 883 pkts/sec,  647690 bytes/sec
+      5 minute output rate 764 pkts/sec,  219908 bytes/sec
+      5 minute drop rate, 15 pkts/sec
   Members in this channel:
       Active:   Gi0/0 Gi0/1 
 
@@ -249,7 +249,7 @@ Interface Port-channel1 "inside", is up, line protocol is up
 : Serial Number: FCH223875ZU
 : Hardware:   ASA5525, 8192 MB RAM, CPU Lynnfield 2400 MHz, 1 CPU (4 cores)
 :
-ASA Version 9.12(4)41 
+ASA Version 9.14(4)24 
 !
 hostname WA-LAN-ASA0300
 domain-name utd.com
@@ -4237,7 +4237,6 @@ http server enable 8443
 http server session-timeout 60
 http 10.0.0.0 255.0.0.0 inside
 snmp-server group WKSNMPGROUP v3 priv 
-snmp-server user WKUTDSNMP WKSNMPGROUP v3 engineID 80000009fe2bc4ac569fa0c77c9017b8d3786b5ae4d8285ec5 encrypted auth sha 8c:51:36:e3:64:76:60:f6:02:86:70:d3:96:3f:59:fe:44:d7:28:22 priv aes 128 1b:a4:e6:2e:7c:48:db:0c:34:7c:56:b3:e9:59:3f:8e 
 snmp-server user WKUTDSNMP WKSNMPGROUP v3 engineID 80000009fee598527bfcaa0f4ae397fcbaa3a12f8755465639 encrypted auth sha b8:f4:c8:0d:f8:ea:cc:b0:9f:aa:99:ce:76:d1:19:b0:2e:c2:e8:c4 priv aes 128 ee:8e:04:4d:84:ed:4c:6b:5c:1a:dc:36:09:53:24:75 
 snmp-server host inside 10.1.101.193 version 3 WKUTDSNMP
 snmp-server host inside 10.1.101.69 version 3 WKUTDSNMP
@@ -4881,18 +4880,19 @@ ssl trust-point sra_2025 inside
 webvpn
  enable outside
  enable inside
- hsts
-  enable
-  max-age 31536000
-  include-sub-domains
-  no preload
  http-headers
+  hsts-server
+   enable
+   max-age 31536000
+   include-sub-domains
+   no preload
+  hsts-client
+   enable
   x-content-type-options
   x-xss-protection
   content-security-policy
  hostscan image disk0:/secure-firewall-posture-5.0.02075-k9.pkg
  hostscan enable
- anyconnect image disk0:/cisco-secure-client-linux64-5.0.02075-webdeploy-k9.pkg 5
  anyconnect image disk0:/cisco-secure-client-macos-5.0.02075-webdeploy-k9.pkg 6
  anyconnect image disk0:/cisco-secure-client-win-5.0.02075-webdeploy-k9.pkg 7
  anyconnect enable
@@ -4931,7 +4931,7 @@ group-policy DfltGrpPolicy attributes
  split-tunnel-all-dns enable
  address-pools value ssl-vpn-pool1
  webvpn
-  anyconnect ssl rekey method ssl
+  anyconnect ssl rekey method new-tunnel
   anyconnect ssl compression deflate
   anyconnect ask none default anyconnect
 group-policy grp_policy_sra_qa internal
@@ -5415,7 +5415,7 @@ call-home
   subscribe-to-alert-group inventory periodic monthly
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
-Cryptochecksum:198324954b7f2be3b6b3e48c95c9f5c6
+Cryptochecksum:9865aea7dc5082c87ae134965e854964
 : end
 
 
@@ -5426,14 +5426,12 @@ VPN Session Summary
 ---------------------------------------------------------------------------
                                Active : Cumulative : Peak Concur : Inactive
                              ----------------------------------------------
-AnyConnect Client            :    234 :      79078 :         307 :        4
-  SSL/TLS/DTLS               :    234 :      79078 :         307 :        4
-Clientless VPN               :      0 :          2 :           1
-  Browser                    :      0 :          2 :           1
+AnyConnect Client            :    212 :        231 :         231 :       17
+  SSL/TLS/DTLS               :    212 :        231 :         231 :       17
 ---------------------------------------------------------------------------
-Total Active and Inactive    :    238             Total Cumulative :  79080
+Total Active and Inactive    :    229             Total Cumulative :    231
 Device Total VPN Capacity    :    750
-Device Load                  :    32%
+Device Load                  :    31%
 ---------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------
@@ -5441,12 +5439,11 @@ Tunnels Summary
 ---------------------------------------------------------------------------
                                Active : Cumulative : Peak Concurrent   
                              ----------------------------------------------
-Clientless                   :      0 :          2 :               1
-AnyConnect-Parent            :    238 :      79078 :             307
-SSL-Tunnel                   :    227 :     553970 :             256
-DTLS-Tunnel                  :    208 :     314603 :             246
+AnyConnect-Parent            :    229 :        231 :             231
+SSL-Tunnel                   :    211 :        457 :             217
+DTLS-Tunnel                  :    191 :        407 :             198
 ---------------------------------------------------------------------------
-Totals                       :    673 :     947653
+Totals                       :    631 :       1095
 ---------------------------------------------------------------------------
 
 
@@ -5490,7 +5487,6 @@ INFO: There are presently no active sessions of the type specified
 ====================show run | grep snmp============================================================
 
 snmp-server group WKSNMPGROUP v3 priv 
-snmp-server user WKUTDSNMP WKSNMPGROUP v3 engineID 80000009fe2bc4ac569fa0c77c9017b8d3786b5ae4d8285ec5 encrypted auth sha 8c:51:36:e3:64:76:60:f6:02:86:70:d3:96:3f:59:fe:44:d7:28:22 priv aes 128 1b:a4:e6:2e:7c:48:db:0c:34:7c:56:b3:e9:59:3f:8e 
 snmp-server user WKUTDSNMP WKSNMPGROUP v3 engineID 80000009fee598527bfcaa0f4ae397fcbaa3a12f8755465639 encrypted auth sha b8:f4:c8:0d:f8:ea:cc:b0:9f:aa:99:ce:76:d1:19:b0:2e:c2:e8:c4 priv aes 128 ee:8e:04:4d:84:ed:4c:6b:5c:1a:dc:36:09:53:24:75 
 snmp-server host inside 10.1.101.193 version 3 WKUTDSNMP
 snmp-server host inside 10.1.101.69 version 3 WKUTDSNMP
