@@ -9,7 +9,7 @@ ASA Version 9.12(4)41
 terminal width 511
 hostname ec-lan-asa0803
 domain-name utd.com
-enable password ***** encrypted
+enable password ***** pbkdf2
 service-module 0 keepalive-timeout 4
 service-module 0 keepalive-counter 6
 service-module ips keepalive-timeout 4
@@ -99,8 +99,8 @@ banner asdm monitored and recorded.  Anyone using this system expressly
 banner asdm consents to such monitoring and to all appropriate disclosure
 banner asdm of any evidence of violation of the Firm's rules including,
 banner asdm but not limited to, criminal activity.
+boot system disk0:/asa9-14-4-24-smp-k8.bin
 boot system disk0:/asa9-12-4-41-smp-k8.bin
-boot system disk0:/asa964-42-smp-k8.bin
 ftp mode passive
 dns server-group DefaultDNS
  domain-name utd.com
@@ -2166,6 +2166,7 @@ no failover
 no failover wait-disable
 no monitor-interface service-module 
 icmp unreachable rate-limit 1 burst-size 1
+asdm image disk0:/asdm-7181-161.bin
 no asdm history enable
 arp timeout 14400
 no arp permit-nonconnected
@@ -2618,6 +2619,7 @@ dynamic-access-policy-record DfltAccessPolicy
  user-message "You have been denied access because your a not a member of a predefined group."
  action terminate
 username Support password ***** encrypted privilege 15
+username reuben password ***** pbkdf2 privilege 15
 tunnel-group DefaultWEBVPNGroup general-attributes
  authentication-server-group RSA
  secondary-authentication-server-group LDAP use-primary-username
@@ -2658,5 +2660,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname context 
 no call-home reporting anonymous
-Cryptochecksum:f4b9104accf61fc72a1e19c5c612a685
+Cryptochecksum:26cdb54bbd803af5bccef7dbdc5be874
 : end

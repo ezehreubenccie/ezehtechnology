@@ -111,7 +111,6 @@ banner asdm consents to such monitoring and to all appropriate disclosure
 banner asdm of any evidence of violation of the Firm's rules including,
 banner asdm but not limited to, criminal activity.
 boot system disk0:/asa9-12-4-41-smp-k8.bin
-boot system disk0:/asa984-20-smp-k8.bin
 ftp mode passive
 clock timezone EST -5
 clock summer-time EDT recurring
@@ -3841,7 +3840,7 @@ failover interface ip FAILOVER 10.8.0.9 255.255.255.252 standby 10.8.0.10
 no failover wait-disable
 no monitor-interface service-module 
 icmp unreachable rate-limit 1 burst-size 1
-asdm image disk0:/asdm-7161-150.bin
+asdm image disk0:/asdm-7181-161.bin
 asdm history enable
 arp timeout 14400
 no arp permit-nonconnected
@@ -3992,7 +3991,6 @@ http server enable 8443
 http server session-timeout 60
 http 10.0.0.0 255.0.0.0 inside
 snmp-server group WKSNMPGROUP v3 priv 
-snmp-server user WKUTDSNMP WKSNMPGROUP v3 engineID 80000009fe2bc4ac569fa0c77c9017b8d3786b5ae4d8285ec5 encrypted auth sha 8c:51:36:e3:64:76:60:f6:02:86:70:d3:96:3f:59:fe:44:d7:28:22 priv aes 128 1b:a4:e6:2e:7c:48:db:0c:34:7c:56:b3:e9:59:3f:8e 
 snmp-server user WKUTDSNMP WKSNMPGROUP v3 engineID 80000009fee598527bfcaa0f4ae397fcbaa3a12f8755465639 encrypted auth sha b8:f4:c8:0d:f8:ea:cc:b0:9f:aa:99:ce:76:d1:19:b0:2e:c2:e8:c4 priv aes 128 ee:8e:04:4d:84:ed:4c:6b:5c:1a:dc:36:09:53:24:75 
 snmp-server host inside 10.1.101.193 version 3 WKUTDSNMP
 snmp-server host inside 10.1.101.69 version 3 WKUTDSNMP
@@ -4685,7 +4683,7 @@ group-policy DfltGrpPolicy attributes
  split-tunnel-all-dns enable
  address-pools value ssl-vpn-pool1
  webvpn
-  anyconnect ssl rekey method ssl
+  anyconnect ssl rekey method new-tunnel
   anyconnect ssl compression deflate
   anyconnect ask none default anyconnect
 group-policy grp_policy_sra_qa internal
@@ -5169,5 +5167,5 @@ call-home
   subscribe-to-alert-group inventory periodic monthly
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
-Cryptochecksum:5856376d84ef1cab53e1bca7d8f2f58c
+Cryptochecksum:3ccc341ae4dac3660741306e2c7e9ede
 : end

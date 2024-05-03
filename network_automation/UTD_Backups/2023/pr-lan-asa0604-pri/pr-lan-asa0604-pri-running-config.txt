@@ -4,7 +4,7 @@
 : Serial Number: FCH2145JADW
 : Hardware:   ASA5555, 16384 MB RAM, CPU Lynnfield 2800 MHz, 1 CPU (8 cores)
 :
-ASA Version 9.14(4)23 
+ASA Version 9.14(4)24 
 !
 hostname pr-lan-asa0604
 domain-name utd.com
@@ -194,8 +194,8 @@ interface Management0/0
  no security-level
  no ip address
 !
+boot system disk0:/asa9-14-4-24-smp-k8.bin
 boot system disk0:/asa9-14-4-23-smp-k8.bin
-boot system disk0:/asa9-12-4-41-smp-k8.bin
 ftp mode passive
 clock timezone JST 9
 dns server-group DefaultDNS
@@ -5013,7 +5013,7 @@ monitor-interface Outside_mng
 no monitor-interface service-module 
 icmp unreachable rate-limit 1 burst-size 1
 icmp permit any Inside2558
-asdm image disk0:/asdm-openjre-7181-161.bin
+asdm image disk0:/asdm-7181-161.bin
 no asdm history enable
 arp timeout 14400
 no arp permit-nonconnected
@@ -5480,5 +5480,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname priority state 
 no call-home reporting anonymous
-Cryptochecksum:8bde84c6b8b82ec6794273d161424771
+Cryptochecksum:35f9ad9de53375d8d47fc3f70167567a
 : end

@@ -78,8 +78,8 @@ interface Management0/0
  no security-level
  no ip address
 !
+boot system disk0:/asa9-14-4-24-smp-k8.bin
 boot system disk0:/asa9-14-4-23-smp-k8.bin
-boot system disk0:/asa9-12-4-41-smp-k8.bin
 ftp mode passive
 clock timezone EST -5
 clock summer-time EDT recurring
@@ -3959,7 +3959,7 @@ no failover wait-disable
 monitor-interface outside_mng
 no monitor-interface service-module 
 icmp unreachable rate-limit 1 burst-size 1
-asdm image disk0:/asdm-openjre-7181-161.bin
+asdm image disk0:/asdm-7181-161.bin
 no asdm history enable
 arp timeout 14400
 no arp permit-nonconnected
@@ -4245,5 +4245,5 @@ policy-map type inspect dns migrated_dns_map_1
 service-policy global_policy global
 prompt hostname priority state 
 no call-home reporting anonymous
-Cryptochecksum:57e2e8c3c2f97d7cd48335427da88529
+Cryptochecksum:cfdafed8fb7cbcaa219f11ae37b2cf9f
 : end

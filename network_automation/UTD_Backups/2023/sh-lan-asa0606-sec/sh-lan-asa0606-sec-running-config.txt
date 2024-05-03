@@ -4,7 +4,7 @@
 : Serial Number: FCH21367PQ8
 : Hardware:   ASA5555, 16384 MB RAM, CPU Lynnfield 2800 MHz, 1 CPU (8 cores)
 :
-ASA Version 9.12(4)41 
+ASA Version 9.14(4)24 
 !
 hostname sh-lan-asa0606
 domain-name utd.com
@@ -152,8 +152,8 @@ interface Management0/0
  no security-level
  no ip address
 !
+boot system disk0:/asa9-14-4-24-smp-k8.bin
 boot system disk0:/asa9-12-4-41-smp-k8.bin
-boot system disk0:/asa9-12-4-smp-k8.bin
 ftp mode passive
 clock timezone CST 8
 dns domain-lookup outside
@@ -5309,7 +5309,7 @@ no monitor-interface outside
 no monitor-interface Outside_mng
 no monitor-interface service-module 
 icmp unreachable rate-limit 1 burst-size 1
-asdm image disk0:/asdm-7131-101.bin
+asdm image disk0:/asdm-7181-161.bin
 no asdm history enable
 arp timeout 14400
 no arp permit-nonconnected
@@ -5410,7 +5410,6 @@ http 10.0.0.0 255.0.0.0 Inside3558
 http 198.52.89.0 255.255.255.0 outside
 http 73.249.59.172 255.255.255.255 outside
 snmp-server group WKSNMPGROUP v3 priv 
-snmp-server user WKUTDSNMP WKSNMPGROUP v3 engineID 80000009fe2b282a7ecae6e2f16b4d03e8ec93c32e5937a94e encrypted auth sha 2c:30:5d:41:aa:9b:23:b7:c7:58:8e:06:b9:72:f9:43:a0:30:b1:a8 priv aes 128 d7:66:0e:21:de:66:dd:3d:17:22:3d:f4:7f:8f:e3:06 
 snmp-server user WKUTDSNMP WKSNMPGROUP v3 engineID 80000009fece3f669e169bc82f8079973359ac960d93eae020 encrypted auth sha 55:91:47:c6:f2:84:de:8b:0b:30:e1:6f:a2:a7:58:f7:89:51:2b:94 priv aes 128 13:3e:99:2a:e4:9c:c7:ca:43:0c:db:1d:03:2d:b1:08 
 snmp-server host Inside3558 10.1.101.193 version 3 WKUTDSNMP
 snmp-server host Inside3558 10.1.101.69 version 3 WKUTDSNMP
@@ -5716,5 +5715,5 @@ call-home
   subscribe-to-alert-group inventory periodic monthly
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
-Cryptochecksum:35d17f8317641f0ee3c1fab0ebdfe023
+Cryptochecksum:31b70e56218fc004f00dea942bbcd914
 : end
