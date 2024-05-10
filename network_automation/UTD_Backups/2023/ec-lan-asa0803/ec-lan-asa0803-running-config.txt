@@ -99,7 +99,6 @@ banner asdm monitored and recorded.  Anyone using this system expressly
 banner asdm consents to such monitoring and to all appropriate disclosure
 banner asdm of any evidence of violation of the Firm's rules including,
 banner asdm but not limited to, criminal activity.
-boot system disk0:/asa9-14-4-24-smp-k8.bin
 boot system disk0:/asa9-12-4-41-smp-k8.bin
 ftp mode passive
 dns server-group DefaultDNS
@@ -2152,7 +2151,7 @@ access-list ny2-to-ny1 standard permit 10.20.50.0 255.255.255.0
 access-list ny2-to-ny1 standard permit 10.20.54.0 255.255.255.0 
 access-list ny2-to-ny1 standard permit 10.20.56.0 255.255.255.0 
 access-list ny2-to-ny1 standard permit 10.20.64.0 255.255.255.0 
-no pager
+pager lines 25
 logging enable
 logging emblem
 logging buffer-size 16384
@@ -2660,5 +2659,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname context 
 no call-home reporting anonymous
-Cryptochecksum:26cdb54bbd803af5bccef7dbdc5be874
+Cryptochecksum:37019fd08e85388a3fc38bac4b83c1fe
 : end
