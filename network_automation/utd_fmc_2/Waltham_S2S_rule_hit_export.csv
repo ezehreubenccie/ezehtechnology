@@ -1,0 +1,58 @@
+RuleName,RuleID,Hit Count,First Hit Time(EST),Last Hit Time(EST)
+inside_#1-no-lookup,268446749,0, , 
+inside_#2-no-lookup,268446750,0, , 
+inside_#3-no-lookup,268446751,33992855,2024-02-10T00:35:58Z,2024-02-25T05:13:39Z
+inside_#4-no-lookup,268446752,0, , 
+outside_access_in_#1-no-lookup,268446753,0, , 
+outside_access_in_#2-no-lookup,268446754,0, , 
+outside_access_in_#3-no-lookup,268446755,0, , 
+outside_access_in_#4-no-lookup,268446756,0, , 
+outside_access_in_#5-no-lookup,268446757,0, , 
+outside_access_in_#6-no-lookup,268446758,0, , 
+outside_access_in_#7-no-lookup,268446759,0, , 
+outside_access_in_#8-no-lookup,268446760,0, , 
+outside_access_in_#9-no-lookup,268446761,0, , 
+outside_access_in_#10,268446762,0, , 
+outside_access~#11_UNSUPPORTED,268446763,0, , 
+outside_access_in_#12,268446764,0, , 
+outside_access_in_#13,268446765,0, , 
+outside_access_in_#14,268446766,0, , 
+outside_access_in_#15,268446767,0, , 
+outside_access_in_#16,268446768,0, , 
+outside_access_i~#17-no-lookup,268446769,0, , 
+outside_access_i~#18-no-lookup,268446770,0, , 
+outside_access_i~#19-no-lookup,268446771,0, , 
+outside_access_i~#20-no-lookup,268446772,0, , 
+outside_access_i~#21-no-lookup,268446773,0, , 
+Azure-In-DNS,268446774,20796,2024-02-10T08:14:56Z,2024-02-25T05:11:15Z
+Azure-UTD-NonProd01-1,268446775,0, , 
+Azure-UTD-NonProd01-2,268446776,0, , 
+Azure-UTD-NonProd01-3,268446777,0, , 
+Azure-UTD-NonProd01-4,268446778,0, , 
+Azure-UTD-NonProd01-5,268446779,0, , 
+Azure-UTD-NonProd01-6,268446780,0, , 
+Azure-UTD-ToolsNonProd-1,268446781,0, , 
+Azure-UTD-ToolsNonProd-2,268446782,0, , 
+Azure-UTD-ToolsNonProd-3,268446783,37188,2024-02-12T01:42:05Z,2024-02-25T01:55:23Z
+Azure-UTD-ToolsNonProd-4,268446784,11450,2024-02-12T01:42:07Z,2024-02-25T01:55:13Z
+Azure-UTD-ToolsNonProd-5,268446785,1566,2024-02-12T01:12:16Z,2024-02-25T02:30:13Z
+Azure-UTD-ToolsNonProd-6,268446786,0, , 
+Azure-UTD-ToolsNonProd-7,268446787,95,2024-02-23T02:32:03Z,2024-02-23T03:24:06Z
+Azure-UTD-ToolsNonProd-8,268446788,72,2024-02-12T03:57:44Z,2024-02-25T01:50:06Z
+Azure-UTD-ToolsProd-1,268446789,0, , 
+Azure-UTD-ToolsProd-2,268446790,0, , 
+Azure-UTD-ToolsProd-3,268446791,486119,2024-02-10T09:04:55Z,2024-02-25T05:13:33Z
+Azure-UTD-ToolsProd-4,268446792,23471,2024-02-10T09:16:03Z,2024-02-25T05:13:31Z
+Azure-UTD-ToolsProd-5,268446793,60543,2024-02-10T08:14:56Z,2024-02-25T04:22:14Z
+Azure-UTD-ToolsProd-6,268446794,0, , 
+Azure-UTD-ToolsProd-7,268446795,24963,2024-02-10T09:28:55Z,2024-02-25T01:37:04Z
+Azure-UTD-ToolsProd-8,268446796,344,2024-02-10T09:31:16Z,2024-02-25T01:48:57Z
+Azure-UTD-Sandbox-1,268446797,0, , 
+Azure-UTD-Sandbox-2,268446798,0, , 
+Azure-UTD-Sandbox-3,268446799,0, , 
+Azure-UTD-Sandbox-4,268446800,0, , 
+Azure-UTD-Sandbox-5,268446801,0, , 
+Azure-UTD-Sandbox-6,268446802,0, , 
+Azure-EMMI-J2,268446803,0, , 
+Azure-EMMI-SQL,268446804,0, , 
+Default Action,268446748,28366929,2024-02-10T00:01:20Z,2024-02-25T05:13:39Z
