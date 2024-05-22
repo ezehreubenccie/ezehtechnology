@@ -4611,6 +4611,10 @@ object-group network DM_INLINE_NETWORK_64
 object-group network DM_INLINE_NETWORK_65
  network-object host 10.25.48.10
  network-object host 10.25.48.20
+object-group network 10.25.0.0
+ network-object 10.25.0.0 255.255.0.0
+object-group network 10.2.0.0
+ network-object 10.2.0.0 255.255.0.0
 access-list SFR extended permit ip any any 
 access-list outside_cryptomap_21 extended permit ip 10.25.56.0 255.255.255.0 10.30.56.0 255.255.255.0 
 access-list outside_cryptomap_21 extended permit ip 10.25.54.0 255.255.255.0 10.30.54.0 255.255.255.0 
@@ -5018,6 +5022,7 @@ no asdm history enable
 arp timeout 14400
 no arp permit-nonconnected
 arp rate-limit 32768
+nat (DMZ2554,outside) source static 10.25.0.0 10.25.0.0 destination static 10.2.0.0 10.2.0.0 no-proxy-arp route-lookup
 nat (DMZ2556,any) source static obj-10.25.56.254 obj-10.198.228.128 destination static obj-10.232.124.14 obj-10.232.124.14 no-proxy-arp
 nat (DMZ2554,outside) source static dns01.tk.prod.osc.utdlab.com dns01.tk.prod.osc.utdlab.com destination static DM_INLINE_NETWORK_38 DM_INLINE_NETWORK_38 no-proxy-arp route-lookup
 nat (DMZ2554,outside) source static dns02.tk.prod.osc.utdlab.com dns02.tk.prod.osc.utdlab.com destination static DM_INLINE_NETWORK_38 DM_INLINE_NETWORK_38 no-proxy-arp route-lookup
@@ -5480,5 +5485,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname priority state 
 no call-home reporting anonymous
-Cryptochecksum:35f9ad9de53375d8d47fc3f70167567a
+Cryptochecksum:b0e235c71762c89ca021027d739f6a2a
 : end
