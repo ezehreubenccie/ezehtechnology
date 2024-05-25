@@ -1,0 +1,17 @@
+- hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+    - name: Create a network object for Cisco FTD 1
+      cisco.fmcansible.fmc_configuration:
+        operation: createMultipleNetworkObject
+        data:
+          name: net15
+          value: 3.3.3.0/24
+          type: Network
+        path_params:
+          domainUUID: '{{ domain[0].uuid }}'

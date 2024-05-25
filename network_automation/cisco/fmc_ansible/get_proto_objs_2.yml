@@ -1,0 +1,42 @@
+- hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+
+    - name: Execute 'getAllProtocolPortObject' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllProtocolPortObject"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          filter: "nameOrValue:{{ item }}"
+#        register_as: port
+      loop:
+        - obj_tcp_www
+        - obj_tcp_https
+        - obj_tcp_8080
+        - obj_tcp_8443
+        - obj_tcp_8092
+        - obj_tcp_8095
+        - obj_tcp_8161
+        - obj_tcp_8300-8499
+        - obj_tcp_9300-9499
+        - obj_tcp_9600-9799
+      register: portobj
+
+    - debug:
+        msg: "{{ portobj.results | type_debug }}"
+
+    - debug:
+        msg: "{{ item | dict2items }}"
+      loop: "{{ portobj.results }}"
+ 
+#    - debug:
+#        msg: "{{ portobj.results[0].items[0] }}" 
+
+#    - debug:
+#        msg: "{{ portobj.results | selectattr('items', 'defined') | map(attribute='items')}}"

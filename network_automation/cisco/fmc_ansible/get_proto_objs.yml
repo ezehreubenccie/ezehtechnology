@@ -1,0 +1,20 @@
+- hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+
+    - name: Execute 'getAllProtocolPortObject' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllProtocolPortObject"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          filter: "nameOrValue:obj_tcp_8300-8499"
+        register_as: port
+
+    - debug:
+        var: port

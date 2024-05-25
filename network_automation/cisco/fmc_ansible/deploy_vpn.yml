@@ -1,0 +1,17 @@
+- name: PLAY 1 - deploy object group
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+    - debug:
+        var: domain
+
+
+    - name: Import object group role
+      import_role: 
+        name: azure_vti_vpn/og
+      when: True

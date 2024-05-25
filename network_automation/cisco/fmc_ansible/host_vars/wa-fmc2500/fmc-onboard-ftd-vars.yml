@@ -1,0 +1,8 @@
+user:
+  domain: 'Global'
+onboard:
+  acp_name: 'TEMPACP'
+device_name:
+  ftd1: 'FTDA'
+  ftd1_reg_key: 'cisco'
+  ftd1_nat_id: 'natcisco'

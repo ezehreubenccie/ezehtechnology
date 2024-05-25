@@ -1,0 +1,24 @@
+- hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+    - debug:
+        var: domain
+
+    - name: Get S2S VPNs
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllFTDS2SVpnModel
+        path_params: 
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          offset: 0
+          limit: 5
+          expanded: True
+        register_as: s2s_vpns
+
+    - debug:
+        var: s2s_vpns

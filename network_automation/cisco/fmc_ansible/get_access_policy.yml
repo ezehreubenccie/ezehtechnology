@@ -1,0 +1,20 @@
+- hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+    - debug:
+        var: domain
+
+    - name: Get Access Policy
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllAccessPolicy
+        path_params: 
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: access_policy
+
+    - debug:
+        var: access_policy

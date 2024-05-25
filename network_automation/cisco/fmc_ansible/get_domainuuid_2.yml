@@ -1,0 +1,12 @@
+- hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        filters:
+          name: "{{ user.domain }}"
+        register_as: domain
+
+    - debug:
+        var: domain

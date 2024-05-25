@@ -1,0 +1,6 @@
+og_name: Azure-UTD-Prod01-Test
+net_1_name: n-1.1.1.0_24
+net_2_name: n-2.2.2.0_24
+net_1: 1.1.1.0/24
+net_2: 2.2.2.0/24
+description: "{{ og_name }}_networks"

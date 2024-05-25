@@ -1,0 +1,8 @@
+- name: Execute 'createMultipleProtocolPortObject' operation
+  cisco.fmcansible.fmc_configuration:
+    operation: "createMultipleProtocolPortObject"
+    data:
+      name: protocolport_obj1_test1
+      protocol: TCP
+      port: 'www'
+      type: ProtocolPortObject

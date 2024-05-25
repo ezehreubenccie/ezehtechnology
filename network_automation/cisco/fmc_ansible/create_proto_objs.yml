@@ -1,0 +1,20 @@
+- hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+    - name: Execute 'createMultipleProtocolPortObject' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createMultipleProtocolPortObject"
+        data:
+          name: protocolport_obj1_test1
+          protocol: TCP
+          port: '123'
+          type: ProtocolPortObject
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        
+
