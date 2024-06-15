@@ -1,0 +1,22 @@
+- hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+    - name: Execute 'getAllExtendedAccessListModel' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllExtendedAccessListModel"
+        path_params:
+          domainUUID: "{{ domain[0].uuid  }}"
+        query_params:
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: eacl
+    
+    - name: Print extended access list
+      debug:
+        var: eacl | to_yaml

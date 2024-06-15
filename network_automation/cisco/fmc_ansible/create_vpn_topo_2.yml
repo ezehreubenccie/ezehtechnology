@@ -1,0 +1,94 @@
+- hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+
+    - name: Execute 'createIKEv2IPsecProposal' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createIKEv2IPsecProposal"
+        data:
+          name: ikev2ipsecproposal-test-1
+          id: ikev2ipsecproposalUUID
+          encryptionAlgorithms: ['AES-256']
+          integrityAlgorithms: ['SHA-256']
+          type: IKEv2IPsecProposal
+          description: IKEv2 IPsec object description
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: ikev2_propo
+
+    - debug:
+        var: ikev2_propo
+
+    - set_fact:
+        ikev2_ipsec_propo_id: "{{ ikev2_propo.id }}"
+        ikev2_ipsec_propo_name: "{{ ikev2_propo.name }}"
+
+
+
+    - name: Execute 'createFTDS2SVpnModel' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createFTDS2SVpnModel"
+        data: 
+          "advancedSettings": {
+              "id": "005056A9-7483-0ed3-0000-012884902864",
+              "type": "AdvancedSetting"
+          }
+          "endpoints": {
+              "items": [
+                  {
+                      "name": "WA-LAN-FPR-FW200",
+                      "id": "40CE2481-5D56-0ed3-0000-292059014290",
+                      "type": "EndPoint"
+                  },
+                  {
+                      "name": "75.75.75.18",
+                      "type": "EndPoint"
+                  }
+              ]    
+          }
+          "ikeSettings": {
+            "id": "005056A9-7483-0ed3-0000-012884902862",
+            "type": "IkeSetting"
+          }
+          "ikeV1Enabled": false,
+          "ikeV2Enabled": true,
+          "ipsecSettings": {
+              "cryptoMapType": "STATIC",
+              "doNotFragmentPolicy": "NONE",
+              "enableRRI": true,
+              "enableSaStrengthEnforcement": false,
+              "id": "005056A9-7483-0ed3-0000-012884902863",
+              "ikeV2IpsecProposal": [
+                  {
+                      "id": "{{ ikev2_ipsec_propo_id }}",
+                      "name": "{{ ikev2_ipsec_propo_name }}",
+                      "type": "IKEv2IPsecProposal"
+                  }
+              ],
+              "ikeV2Mode": "TUNNEL",
+              "lifetimeKilobytes": 4608000,
+              "lifetimeSeconds": 28800,
+              "perfectForwardSecrecy": {
+                  "enabled": false
+              },
+              "tfcPackets": {
+                  "burstBytes": 0,
+                  "enabled": false,
+                  "payloadBytes": 0,
+                  "timeoutSeconds": 0
+              },
+              "type": "IPSecSetting",
+              "validateIncomingIcmpErrorMessage": false
+          }
+          "name": "WA-LAN-ASA0200_75.75.75.18"
+          "routeBased": true,
+          "topologyType": "POINT_TO_POINT"
+          "type": "FTDS2SVpn"
+          "id": ""
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"

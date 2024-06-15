@@ -6,19 +6,14 @@
         operation: getAllDomain
         register_as: domain
 
-    - debug:
-        var: domain
 
-    - name: Get S2S VPNs
+    - name: Execute 'createFTDS2SVpnModel' operation
       cisco.fmcansible.fmc_configuration:
-        operation: getAllFTDS2SVpnModel
-        path_params: 
+        operation: "createFTDS2SVpnModel"
+        path_params:
           domainUUID: "{{ domain[0].uuid }}"
-        query_params:
-          offset: 0
-          limit: 100
-          expanded: True
-        register_as: s2s_vpns
+        register_as: vpn_topo
 
     - debug:
-        var: s2s_vpns
+        var: vpn_topo
+   

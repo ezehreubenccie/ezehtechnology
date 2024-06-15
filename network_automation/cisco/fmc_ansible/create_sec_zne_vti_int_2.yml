@@ -1,0 +1,111 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+
+    - name: Execute 'createMultipleSecurityZoneObject' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createMultipleSecurityZoneObject"
+        data:
+          type: SecurityZone
+          name: test25
+          interfaceMode: ROUTED
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: seczone
+
+    - debug:
+        var: seczone.id
+
+    - set_fact:
+        sec_zone_id: "{{ seczone.id }}"
+        
+
+
+    - name: Execute 'createMultipleFTDVTIInterface' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createMultipleFTDVTIInterface"
+        data:
+          type: VTIInterface
+          tunnelSource: {'name': 'Port-channel1.100', 'type': 'SubInterface', "id": "40CE2481-5D56-0ed3-0000-300647879743"}
+          tunnelType: STATIC
+          tunnelId: 25
+          enabled: True
+          ifname: test25
+          ipv4: {'static': {'address': '169.254.100.1', 'netmask': '255.255.255.252'}}
+          # metadata: { "destinationIpAddress": "75.75.75.18"}
+          # vpnTopologyName: "WA-LAN-ASA0200_75.75.75.18"
+          securityZone: { "id": "{{ sec_zone_id }}"}
+          ipsecMode: ipv4
+        path_params:
+          containerUUID: 87f71aea-0bda-11ee-b635-b0d44974184b
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: vti_int
+
+    - debug:
+        var: vti_int.id
+
+    - name: Execute 'createFTDS2SVpnModel' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createFTDS2SVpnModel"
+        data:
+          "name": "WA-LAN-ASA0200_75.75.75.18"
+          "type": "FTDS2SVpn"
+          "topologyType": "POINT_TO_POINT"
+          "ikeV1Enabled": false
+          "ikeV2Enabled": true
+          "routeBased": true
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: vpn_topo
+
+    - debug:
+        var: vpn_topo.id
+
+    - name: Create Node A Endpoint
+      cisco.fmcansible.fmc_configuration:
+        operation: "createVpnEndpoint"
+        data:
+          peerType: PEER
+          device: {'name': 'WA-LAN-FPR-FW200', 'id': '79162d28-172c-11ef-9959-89c92e087eab', 'type': 'DeviceHAPair'}
+          interface: {'name': 'test25', 'id': '40CE2481-5D56-0ed3-0000-300648228496', 'type': 'VTI'}
+          connectionType: BIDIRECTIONAL
+          isLocalTunnelIdEnabled: False
+          type: EndPoint
+          overrideRemoteVpnFilter: False
+        path_params:
+          containerUUID: 40CE2481-5D56-0ed3-0000-300648223256
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: endpointA
+
+    - debug:
+        var: endpointA.id
+
+    - name: Create Node A Endpoint
+      cisco.fmcansible.fmc_configuration:
+        operation: "createVpnEndpoint"
+        data:
+          peerType: PEER
+          extranet: true
+          connectionType: ORIGINATE_ONLY
+          extranetInfo: {"ipAddress": "75.75.75.18", "isDynamicIP": false, "name": "Extranet"}
+          extranetType: "GENERIC"
+          isLocalTunnelIdEnabled: False
+          type: EndPoint
+          overrideRemoteVpnFilter: False
+        path_params:
+            containerUUID: 40CE2481-5D56-0ed3-0000-300648223256
+            domainUUID: "{{ domain[0].uuid }}"
+        register_as: endpointB
+
+    - debug:
+        var: endpointB.id
+
+    
+    
+

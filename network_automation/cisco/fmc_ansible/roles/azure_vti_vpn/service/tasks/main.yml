@@ -1,8 +1,114 @@
-- name: Execute 'createMultipleProtocolPortObject' operation
+- name: "Create port object groups, {{ httpog }}"
   cisco.fmcansible.fmc_configuration:
-    operation: "createMultipleProtocolPortObject"
+    operation: "createMultiplePortObjectGroup"
     data:
-      name: protocolport_obj1_test1
-      protocol: TCP
-      port: 'www'
-      type: ProtocolPortObject
+      name: "{{ httpog }}"
+      objects: [
+        {
+          'id': "{{ httpports.portid1 }}", 
+          'type': 'ProtocolPortObject'
+        },        
+        {
+          'id': '{{ httpports.portid2 }}', 
+          'type': 'ProtocolPortObject'
+        },
+        {
+          'id': '{{ httpports.portid3 }}', 
+          'type': 'ProtocolPortObject'
+        },
+        {
+          'id': '{{ httpports.portid4 }}', 
+          'type': 'ProtocolPortObject'
+        },
+        {
+          'id': '{{ httpports.portid5 }}', 
+          'type': 'ProtocolPortObject'
+        },
+        {
+          'id': '{{ httpports.portid6 }}', 
+          'type': 'ProtocolPortObject'
+        },
+        {
+          'id': '{{ httpports.portid7 }}', 
+          'type': 'ProtocolPortObject'
+        },
+        {
+          'id': '{{ httpports.portid8 }}', 
+          'type': 'ProtocolPortObject'
+        },
+        {
+          'id': '{{ httpports.portid9 }}', 
+          'type': 'ProtocolPortObject'
+        },
+        {
+          'id': '{{ httpports.portid10 }}', 
+          'type': 'ProtocolPortObject'
+        },
+      ]
+      type: PortObjectGroup
+    path_params:
+      domainUUID: "{{ domain[0].uuid }}"
+
+
+- name: "Create port object groups, {{ hazelcastog }}"
+  cisco.fmcansible.fmc_configuration:
+    operation: "createMultiplePortObjectGroup"
+    data:
+      name: "{{ hazelcastog }}"
+      objects: [
+        {
+          'id': "{{ hazelports.portid1 }}", 
+          'type': 'ProtocolPortObject'
+        },        
+      ]
+      type: PortObjectGroup
+    path_params:
+      domainUUID: "{{ domain[0].uuid }}"
+
+
+- name: "Create port object groups, {{ apachejservog }}"
+  cisco.fmcansible.fmc_configuration:
+    operation: "createMultiplePortObjectGroup"
+    data:
+      name: "{{ apachejservog }}"
+      objects: [
+        {
+          'id': "{{ apacheports.portid1 }}", 
+          'type': 'ProtocolPortObject'
+        },        
+      ]
+      type: PortObjectGroup
+    path_params:
+      domainUUID: "{{ domain[0].uuid }}"
+
+
+- name: "Create port object groups, {{ sshog }}"
+  cisco.fmcansible.fmc_configuration:
+    operation: "createMultiplePortObjectGroup"
+    data:
+      name: "{{ sshog }}"
+      objects: [
+        {
+          'id': "{{ sshports.portid1 }}", 
+          'type': 'ProtocolPortObject'
+        },        
+      ]
+      type: PortObjectGroup
+    path_params:
+      domainUUID: "{{ domain[0].uuid }}"
+
+
+- name: "Create port object groups, {{ activemqopenwireog }}"
+  cisco.fmcansible.fmc_configuration:
+    operation: "createMultiplePortObjectGroup"
+    data:
+      name: "{{ activemqopenwireog }}"
+      objects: [
+        {
+          'id': "{{ activemqports.portid1 }}", 
+          'type': 'ProtocolPortObject'
+        },        
+      ]
+      type: PortObjectGroup
+    path_params:
+      domainUUID: "{{ domain[0].uuid }}"

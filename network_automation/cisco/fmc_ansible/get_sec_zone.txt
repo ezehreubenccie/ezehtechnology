@@ -1,0 +1,2444 @@
+
+PLAY [PLAY 1 - get domainUUID] *************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Get Domain UUID] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Execute 'getAllSecurityZoneObject' operation] ****************************
+ok: [wa-fmc2500]
+
+TASK [debug] *******************************************************************
+ok: [wa-fmc2500] => {
+    "seczone": [
+        {
+            "id": "851af628-e8bf-11ec-9da0-b7c58494cb0a",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-176094384155",
+                    "name": "Port-channel1",
+                    "type": "EtherChannelInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/851af628-e8bf-11ec-9da0-b7c58494cb0a"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1654867190
+            },
+            "name": "DMZ3056",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "9a6538ee-b67f-11e7-b83d-e2afc50a9137",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/9a6538ee-b67f-11e7-b83d-e2afc50a9137"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1704996267
+            },
+            "name": "WC-DMZ1550",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "c7d0a924-c7bc-11eb-ba4c-e728cf5140ef",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-081604402003",
+                    "name": "Port-channel10",
+                    "type": "EtherChannelInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/c7d0a924-c7bc-11eb-ba4c-e728cf5140ef"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1625101319
+            },
+            "name": "DMZ2064",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "11f8b1dc-e8d6-11ec-ae57-d1c38109dafa",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-176094393012",
+                    "name": "Port-channel1",
+                    "type": "EtherChannelInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/11f8b1dc-e8d6-11ec-ae57-d1c38109dafa"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1654876856
+            },
+            "name": "Inside1558",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "63b6585c-2469-11e8-9c42-bc90c6ebc92d",
+            "interfaceMode": "ASA",
+            "interfaces": [
+                {
+                    "id": "5b6a1f78-f50f-11e7-a527-50c1aef4b4d3",
+                    "name": "DMZ2556",
+                    "type": "FPPhysicalInterface"
+                },
+                {
+                    "id": "8fd1ac3e-f507-11e7-b3b0-55fe52eafba0",
+                    "name": "DMZ2556",
+                    "type": "FPPhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/63b6585c-2469-11e8-9c42-bc90c6ebc92d"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1645523975
+            },
+            "name": "PR-DMZ2556",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "576bfcae-3a68-11e8-84c7-deb2fde3d6b1",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/576bfcae-3a68-11e8-84c7-deb2fde3d6b1"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1693533128
+            },
+            "name": "EU-OUTSIDE",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "bf9d71f4-b67e-11e7-b83d-e2afc50a9137",
+            "interfaceMode": "ASA",
+            "interfaces": [
+                {
+                    "id": "b6cd6aa8-b669-11e7-b137-ab5ee32e0782",
+                    "name": "DMZ1050",
+                    "type": "FPPhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/bf9d71f4-b67e-11e7-b83d-e2afc50a9137"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1645523974
+            },
+            "name": "SB-DMZ1050",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "05e2ac96-25d2-11ef-8508-e786df6b27c3",
+            "interfaceMode": "ROUTED",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/05e2ac96-25d2-11ef-8508-e786df6b27c3"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "f1cbda98-d22b-11ed-a7eb-ff36d40ade14",
+                    "name": "a-rezeh",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1717876966
+            },
+            "name": "test",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "24fc19f4-e8d6-11ec-ae57-d1c38109dafa",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-176094393013",
+                    "name": "Port-channel1",
+                    "type": "EtherChannelInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/24fc19f4-e8d6-11ec-ae57-d1c38109dafa"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1654876856
+            },
+            "name": "DMZ1556",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "3bd86bda-3a68-11e8-84c7-deb2fde3d6b1",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/3bd86bda-3a68-11e8-84c7-deb2fde3d6b1"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1693533129
+            },
+            "name": "EU-DMZ3056",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "d83b1266-b67e-11e7-b83d-e2afc50a9137",
+            "interfaceMode": "ASA",
+            "interfaces": [
+                {
+                    "id": "b6e14f64-b669-11e7-b137-ab5ee32e0782",
+                    "name": "outside",
+                    "type": "FPPhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/d83b1266-b67e-11e7-b83d-e2afc50a9137"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1645523974
+            },
+            "name": "SB-OUTSIDE",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "784de884-2469-11e8-9c42-bc90c6ebc92d",
+            "interfaceMode": "ASA",
+            "interfaces": [
+                {
+                    "id": "5bfa4738-f50f-11e7-a527-50c1aef4b4d3",
+                    "name": "DMZ2554",
+                    "type": "FPPhysicalInterface"
+                },
+                {
+                    "id": "8f3364f2-f507-11e7-b3b0-55fe52eafba0",
+                    "name": "DMZ2554",
+                    "type": "FPPhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/784de884-2469-11e8-9c42-bc90c6ebc92d"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1645523975
+            },
+            "name": "PR-DMZ2554",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "4fde30d4-b64e-11ee-a0dd-8a6647a5865b",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-300647879764",
+                    "name": "Tunnel7",
+                    "type": "PhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/4fde30d4-b64e-11ee-a0dd-8a6647a5865b"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1716265775
+            },
+            "name": "vti-Azure-UTD-NonProd01",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "c408a1fc-c7bc-11eb-ba4c-e728cf5140ef",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-081604402000",
+                    "name": "Port-channel10",
+                    "type": "EtherChannelInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/c408a1fc-c7bc-11eb-ba4c-e728cf5140ef"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1625101319
+            },
+            "name": "DMZ2056",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "c186cb7a-c7bc-11eb-ba4c-e728cf5140ef",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-176094384159",
+                    "name": "Ethernet1/4",
+                    "type": "SubInterface"
+                },
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-176094393011",
+                    "name": "Ethernet1/4",
+                    "type": "SubInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/c186cb7a-c7bc-11eb-ba4c-e728cf5140ef"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1654876856
+            },
+            "name": "outside_mng",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "488ef174-b63a-11ee-a34b-7d6647a5865b",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-292057859280",
+                    "name": "Port-channel1",
+                    "type": "EtherChannelInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/488ef174-b63a-11ee-a34b-7d6647a5865b"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1705607215
+            },
+            "name": "MGMT",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "50e193ae-b64e-11ee-a0dd-8a6647a5865b",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-300647879765",
+                    "name": "Tunnel8",
+                    "type": "PhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/50e193ae-b64e-11ee-a0dd-8a6647a5865b"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1716265775
+            },
+            "name": "vti-Azure-UTD-ToolsNonProd",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "6792b9e2-c678-11e7-9e56-fe185923f9c9",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/6792b9e2-c678-11e7-9e56-fe185923f9c9"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1642694795
+            },
+            "name": "EC-DMZ2050",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "45a6f9ee-8666-11e7-af51-b0de462a5731",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/45a6f9ee-8666-11e7-af51-b0de462a5731"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1503316021
+            },
+            "name": "WA-OUTSIDE",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "cbdceb70-b67e-11e7-b83d-e2afc50a9137",
+            "interfaceMode": "ASA",
+            "interfaces": [
+                {
+                    "id": "b658a650-b669-11e7-b137-ab5ee32e0782",
+                    "name": "DMZ1056",
+                    "type": "FPPhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/cbdceb70-b67e-11e7-b83d-e2afc50a9137"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1645523974
+            },
+            "name": "SB-DMZ1056",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "47833442-3a68-11e8-84c7-deb2fde3d6b1",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/47833442-3a68-11e8-84c7-deb2fde3d6b1"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1693533127
+            },
+            "name": "EU-INSIDE3058",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "20306238-e1a9-11e7-9e9d-e9cd5b3115b1",
+            "interfaceMode": "ASA",
+            "interfaces": [
+                {
+                    "id": "4dec89f0-d546-11e7-82c3-2aa1ddb83fef",
+                    "name": "outside",
+                    "type": "FPPhysicalInterface"
+                },
+                {
+                    "id": "07928af8-d54c-11e7-a585-1194da4b6af9",
+                    "name": "outside",
+                    "type": "FPPhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/20306238-e1a9-11e7-9e9d-e9cd5b3115b1"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1513351989
+            },
+            "name": "SH-OUTSIDE",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "14f80d9c-8666-11e7-af51-b0de462a5731",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/14f80d9c-8666-11e7-af51-b0de462a5731"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1503316010
+            },
+            "name": "WA-MGMT",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "4b7b90cc-b64e-11ee-a0dd-8a6647a5865b",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-300647879760",
+                    "name": "Tunnel3",
+                    "type": "PhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/4b7b90cc-b64e-11ee-a0dd-8a6647a5865b"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1716265773
+            },
+            "name": "clr-data-est-2",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "c2c838fc-c7bc-11eb-ba4c-e728cf5140ef",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-081604402001",
+                    "name": "Port-channel10",
+                    "type": "EtherChannelInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/c2c838fc-c7bc-11eb-ba4c-e728cf5140ef"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1625102171
+            },
+            "name": "Inside2058",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "557588da-2469-11e8-a6c9-9aafe39ed4e5",
+            "interfaceMode": "ASA",
+            "interfaces": [
+                {
+                    "id": "5be6a66a-f50f-11e7-a527-50c1aef4b4d3",
+                    "name": "Outside_mng",
+                    "type": "FPPhysicalInterface"
+                },
+                {
+                    "id": "8fb47286-f507-11e7-b3b0-55fe52eafba0",
+                    "name": "Outside_mng",
+                    "type": "FPPhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/557588da-2469-11e8-a6c9-9aafe39ed4e5"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1645523973
+            },
+            "name": "PR-OUTSIDE_MNG",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "c691244e-c7bc-11eb-ba4c-e728cf5140ef",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-081604401997",
+                    "name": "Port-channel10",
+                    "type": "EtherChannelInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/c691244e-c7bc-11eb-ba4c-e728cf5140ef"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1625101318
+            },
+            "name": "DMZ2050",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "0a0e9cca-8666-11e7-af51-b0de462a5731",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/0a0e9cca-8666-11e7-af51-b0de462a5731"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1503316000
+            },
+            "name": "WA-INSIDE",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "be30d2ba-b67f-11e7-b83d-e2afc50a9137",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/be30d2ba-b67f-11e7-b83d-e2afc50a9137"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1704996266
+            },
+            "name": "WC-INSIDE1558",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "bdb4ddf0-e8bf-11ec-ba4f-d6f8846e50b9",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-176094384156",
+                    "name": "Port-channel1",
+                    "type": "EtherChannelInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/bdb4ddf0-e8bf-11ec-ba4f-d6f8846e50b9"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1654867191
+            },
+            "name": "DMZ3054",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "6d36f62a-2469-11e8-9c42-bc90c6ebc92d",
+            "interfaceMode": "ASA",
+            "interfaces": [
+                {
+                    "id": "5bf09b20-f50f-11e7-a527-50c1aef4b4d3",
+                    "name": "outside",
+                    "type": "FPPhysicalInterface"
+                },
+                {
+                    "id": "8fc7faf4-f507-11e7-b3b0-55fe52eafba0",
+                    "name": "outside",
+                    "type": "FPPhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/6d36f62a-2469-11e8-9c42-bc90c6ebc92d"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1645523973
+            },
+            "name": "PR-OUTSIDE",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "51379a00-c678-11e7-bdd1-d58838c79644",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/51379a00-c678-11e7-bdd1-d58838c79644"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1642694796
+            },
+            "name": "EC-DMZ2056",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "040e67a8-e1a9-11e7-9e9d-e9cd5b3115b1",
+            "interfaceMode": "ASA",
+            "interfaces": [
+                {
+                    "id": "4dcef6a6-d546-11e7-82c3-2aa1ddb83fef",
+                    "name": "Inside3558",
+                    "type": "FPPhysicalInterface"
+                },
+                {
+                    "id": "077575b2-d54c-11e7-a585-1194da4b6af9",
+                    "name": "Inside3558",
+                    "type": "FPPhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/040e67a8-e1a9-11e7-9e9d-e9cd5b3115b1"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1513351964
+            },
+            "name": "SH-INSIDE3558",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "dffdda94-a547-11e7-af54-a580c539e3e6",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/dffdda94-a547-11e7-af54-a580c539e3e6"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1645523974
+            },
+            "name": "EC-OUTSIDE",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "027bbeda-25eb-11ef-912a-876afc898006",
+            "interfaceMode": "ROUTED",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/027bbeda-25eb-11ef-912a-876afc898006"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1718026553
+            },
+            "name": "test25",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "f8329bde-e1a8-11e7-9e9d-e9cd5b3115b1",
+            "interfaceMode": "ASA",
+            "interfaces": [
+                {
+                    "id": "4df687e8-d546-11e7-82c3-2aa1ddb83fef",
+                    "name": "DMZ3556",
+                    "type": "FPPhysicalInterface"
+                },
+                {
+                    "id": "079c5a92-d54c-11e7-a585-1194da4b6af9",
+                    "name": "DMZ3556",
+                    "type": "FPPhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/f8329bde-e1a8-11e7-9e9d-e9cd5b3115b1"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1513351951
+            },
+            "name": "SH-DMZ3556",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "a6cce0dc-b67f-11e7-b83d-e2afc50a9137",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/a6cce0dc-b67f-11e7-b83d-e2afc50a9137"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1645523974
+            },
+            "name": "WC-DMZ1554",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "c554a61e-c7bc-11eb-ba4c-e728cf5140ef",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-081604401998",
+                    "name": "Port-channel10",
+                    "type": "EtherChannelInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/c554a61e-c7bc-11eb-ba4c-e728cf5140ef"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1625101318
+            },
+            "name": "DMZ2054",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "4a76e6ae-b64e-11ee-a0dd-8a6647a5865b",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-300647879759",
+                    "name": "Tunnel2",
+                    "type": "PhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/4a76e6ae-b64e-11ee-a0dd-8a6647a5865b"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1716265773
+            },
+            "name": "clr-data-est-1",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "a4f08ea4-b67e-11e7-b83d-e2afc50a9137",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/a4f08ea4-b67e-11e7-b83d-e2afc50a9137"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1645523974
+            },
+            "name": "DMZ1050",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "49464180-b64e-11ee-a0dd-8a6647a5865b",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-300647879758",
+                    "name": "Tunnel1",
+                    "type": "PhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/49464180-b64e-11ee-a0dd-8a6647a5865b"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1716265773
+            },
+            "name": "vti-EMMI-Azure",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "e48d6c44-b67e-11e7-b83d-e2afc50a9137",
+            "interfaceMode": "ASA",
+            "interfaces": [
+                {
+                    "id": "b6d795fa-b669-11e7-b137-ab5ee32e0782",
+                    "name": "outside_mng",
+                    "type": "FPPhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/e48d6c44-b67e-11e7-b83d-e2afc50a9137"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1645523974
+            },
+            "name": "SB-OUTSIDE_MNG",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "1a1df804-d996-11eb-8ce4-9b0a0525438c",
+            "interfaceMode": "ROUTED",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/1a1df804-d996-11eb-8ce4-9b0a0525438c"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1625052820
+            },
+            "name": "outside_in",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "dad37810-e1a8-11e7-9b82-e754ffd95c03",
+            "interfaceMode": "ASA",
+            "interfaces": [
+                {
+                    "id": "4de2ca3c-d546-11e7-82c3-2aa1ddb83fef",
+                    "name": "DMZ3550",
+                    "type": "FPPhysicalInterface"
+                },
+                {
+                    "id": "0788e912-d54c-11e7-a585-1194da4b6af9",
+                    "name": "DMZ3550",
+                    "type": "FPPhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/dad37810-e1a8-11e7-9b82-e754ffd95c03"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1513351927
+            },
+            "name": "SH-DMZ3550",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "57dc6130-01e8-11ef-9ef2-81eee944ecf1",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-300647879769",
+                    "name": "Tunnel12",
+                    "type": "PhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/57dc6130-01e8-11ef-9ef2-81eee944ecf1"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1716265776
+            },
+            "name": "vti-Azure-CECS-Prod01",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "b5895b2e-b67e-11e7-b83d-e2afc50a9137",
+            "interfaceMode": "ASA",
+            "interfaces": [
+                {
+                    "id": "b6eaf49c-b669-11e7-b137-ab5ee32e0782",
+                    "name": "DMZ1054",
+                    "type": "FPPhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/b5895b2e-b67e-11e7-b83d-e2afc50a9137"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1645523973
+            },
+            "name": "SB-DMZ1054",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "5202c776-b64e-11ee-a0dd-8a6647a5865b",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-300647879766",
+                    "name": "Tunnel9",
+                    "type": "PhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/5202c776-b64e-11ee-a0dd-8a6647a5865b"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1716265775
+            },
+            "name": "vti-Azure-UTD-ToolsProd",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "3b600326-2469-11e8-9c42-bc90c6ebc92d",
+            "interfaceMode": "ASA",
+            "interfaces": [
+                {
+                    "id": "5bdcdd88-f50f-11e7-a527-50c1aef4b4d3",
+                    "name": "DMZ2550",
+                    "type": "FPPhysicalInterface"
+                },
+                {
+                    "id": "8fbe526a-f507-11e7-b3b0-55fe52eafba0",
+                    "name": "DMZ2550",
+                    "type": "FPPhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/3b600326-2469-11e8-9c42-bc90c6ebc92d"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1645523974
+            },
+            "name": "PR-DMZ2550",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "4eb95d1e-b64e-11ee-a0dd-8a6647a5865b",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-300647879763",
+                    "name": "Tunnel6",
+                    "type": "PhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/4eb95d1e-b64e-11ee-a0dd-8a6647a5865b"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1716265774
+            },
+            "name": "vti-Azure-UTD-Sandbox",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "602a1d1c-c678-11e7-9e56-fe185923f9c9",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/602a1d1c-c678-11e7-9e56-fe185923f9c9"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1642694794
+            },
+            "name": "EC-DMZ2054",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "5c5d4d82-e8d6-11ec-ae57-d1c38109dafa",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-176094393014",
+                    "name": "Port-channel1",
+                    "type": "EtherChannelInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/5c5d4d82-e8d6-11ec-ae57-d1c38109dafa"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1654876857
+            },
+            "name": "DMZ1550",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "d4d18440-a547-11e7-b83c-e2afc50a9137",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/d4d18440-a547-11e7-b83c-e2afc50a9137"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1645523974
+            },
+            "name": "EC-INSIDE2058",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "b2a4bae2-b67f-11e7-b83d-e2afc50a9137",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/b2a4bae2-b67f-11e7-b83d-e2afc50a9137"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1704996267
+            },
+            "name": "WC-DMZ1556",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "d363441a-b67f-11e7-b83d-e2afc50a9137",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/d363441a-b67f-11e7-b83d-e2afc50a9137"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1704996266
+            },
+            "name": "WC-OUTSIDE_MNG",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "4bffec96-b63a-11ee-a34b-7d6647a5865b",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-292057859330",
+                    "name": "Port-channel2",
+                    "type": "EtherChannelInterface"
+                },
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-300647879745",
+                    "name": "Port-channel2",
+                    "type": "EtherChannelInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/4bffec96-b63a-11ee-a34b-7d6647a5865b"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1716265773
+            },
+            "name": "INSIDE",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "4c9b7936-b64e-11ee-a0dd-8a6647a5865b",
+            "interfaceMode": "ROUTED",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/4c9b7936-b64e-11ee-a0dd-8a6647a5865b"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1716265774
+            },
+            "name": "clr-data-west-1",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "0cfbf47a-e1a9-11e7-9e9d-e9cd5b3115b1",
+            "interfaceMode": "ASA",
+            "interfaces": [
+                {
+                    "id": "4dd93b8e-d546-11e7-82c3-2aa1ddb83fef",
+                    "name": "Outside_mng",
+                    "type": "FPPhysicalInterface"
+                },
+                {
+                    "id": "077f2a08-d54c-11e7-a585-1194da4b6af9",
+                    "name": "Outside_mng",
+                    "type": "FPPhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/0cfbf47a-e1a9-11e7-9e9d-e9cd5b3115b1"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1513351976
+            },
+            "name": "SH-OUTSIDE_MNG",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "49db3c04-b63a-11ee-a34b-7d6647a5865b",
+            "interfaceMode": "ROUTED",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/49db3c04-b63a-11ee-a34b-7d6647a5865b"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1706277486
+            },
+            "name": "DMZ-1",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "30ab79d2-3a68-11e8-84c7-deb2fde3d6b1",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/30ab79d2-3a68-11e8-84c7-deb2fde3d6b1"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1693533128
+            },
+            "name": "EU-DMZ3054",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "ca1d35fe-8665-11e7-b1f4-937711c4add3",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/ca1d35fe-8665-11e7-b1f4-937711c4add3"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1503315978
+            },
+            "name": "WA-DMZ-1",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "7856f78e-e8bf-11ec-9da0-b7c58494cb0a",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-176094384154",
+                    "name": "Port-channel1",
+                    "type": "EtherChannelInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/7856f78e-e8bf-11ec-9da0-b7c58494cb0a"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1654867190
+            },
+            "name": "Inside3058",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "87f46c0e-2469-11e8-9c42-bc90c6ebc92d",
+            "interfaceMode": "ASA",
+            "interfaces": [
+                {
+                    "id": "5c03d1ae-f50f-11e7-a527-50c1aef4b4d3",
+                    "name": "Inside2558",
+                    "type": "FPPhysicalInterface"
+                },
+                {
+                    "id": "8fa5194e-f507-11e7-b3b0-55fe52eafba0",
+                    "name": "Inside2558",
+                    "type": "FPPhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/87f46c0e-2469-11e8-9c42-bc90c6ebc92d"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1645523973
+            },
+            "name": "PR-INSIDE2558",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "49b9a566-c678-11e7-bdd1-d58838c79644",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/49b9a566-c678-11e7-bdd1-d58838c79644"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1642694795
+            },
+            "name": "EC-OUTSIDE_MNG",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "4f6b156c-3a68-11e8-84c7-deb2fde3d6b1",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/4f6b156c-3a68-11e8-84c7-deb2fde3d6b1"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1693533129
+            },
+            "name": "EU-OUTSIDE_MNG",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "c84b8c4a-b67f-11e7-b83d-e2afc50a9137",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/c84b8c4a-b67f-11e7-b83d-e2afc50a9137"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1704996267
+            },
+            "name": "WC-OUTSIDE",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "9407cefe-f2d6-11ee-95c9-dc64b6eb0066",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-300647879767",
+                    "name": "Tunnel10",
+                    "type": "PhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/9407cefe-f2d6-11ee-95c9-dc64b6eb0066"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1716265775
+            },
+            "name": "vti-Azure-CECS-NonProd01",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "47c24386-00c7-11ef-9ef2-81eee944ecf1",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-300647879768",
+                    "name": "Tunnel11",
+                    "type": "PhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/47c24386-00c7-11ef-9ef2-81eee944ecf1"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1716265776
+            },
+            "name": "vti-Azure-UTD-Prod01",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "cb534820-e8bf-11ec-ba4f-d6f8846e50b9",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-176094384157",
+                    "name": "Port-channel1",
+                    "type": "EtherChannelInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/cb534820-e8bf-11ec-ba4f-d6f8846e50b9"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1654867191
+            },
+            "name": "DMZ3050",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "4db82332-b64e-11ee-a0dd-8a6647a5865b",
+            "interfaceMode": "ROUTED",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/4db82332-b64e-11ee-a0dd-8a6647a5865b"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1716265774
+            },
+            "name": "clr-data-west-2",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "c023f3b6-c7bc-11eb-ba4c-e728cf5140ef",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-176094384158",
+                    "name": "Ethernet1/4",
+                    "type": "SubInterface"
+                },
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-081604402005",
+                    "name": "Ethernet1/1",
+                    "type": "SubInterface"
+                },
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-176094393010",
+                    "name": "Ethernet1/4",
+                    "type": "SubInterface"
+                },
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-292057859255",
+                    "name": "Port-channel1",
+                    "type": "EtherChannelInterface"
+                },
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-300647879743",
+                    "name": "Port-channel1",
+                    "type": "EtherChannelInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/c023f3b6-c7bc-11eb-ba4c-e728cf5140ef"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1716265772
+            },
+            "name": "outside",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "01127fe2-8666-11e7-af51-b0de462a5731",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/01127fe2-8666-11e7-af51-b0de462a5731"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1503315989
+            },
+            "name": "WA-GUEST-WIFI",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "242991d0-3a68-11e8-84c7-deb2fde3d6b1",
+            "interfaceMode": "ASA",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/242991d0-3a68-11e8-84c7-deb2fde3d6b1"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1693533129
+            },
+            "name": "EU-DMZ3050",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "e9437882-e1a8-11e7-9e9d-e9cd5b3115b1",
+            "interfaceMode": "ASA",
+            "interfaces": [
+                {
+                    "id": "4d5d736e-d546-11e7-82c3-2aa1ddb83fef",
+                    "name": "DMZ3554",
+                    "type": "FPPhysicalInterface"
+                },
+                {
+                    "id": "06fdea10-d54c-11e7-a585-1194da4b6af9",
+                    "name": "DMZ3554",
+                    "type": "FPPhysicalInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/e9437882-e1a8-11e7-9e9d-e9cd5b3115b1"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1513351940
+            },
+            "name": "SH-DMZ3554",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "4adefd70-b63a-11ee-a34b-7d6647a5865b",
+            "interfaceMode": "ROUTED",
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/4adefd70-b63a-11ee-a34b-7d6647a5865b"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1706197705
+            },
+            "name": "GUEST-WIFI",
+            "type": "SecurityZone"
+        },
+        {
+            "id": "6d5bee4a-e8d6-11ec-ae57-d1c38109dafa",
+            "interfaceMode": "ROUTED",
+            "interfaces": [
+                {
+                    "id": "40CE2481-5D56-0ed3-0000-176094393015",
+                    "name": "Port-channel1",
+                    "type": "EtherChannelInterface"
+                }
+            ],
+            "links": {
+                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/interfaceobjects",
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/securityzones/6d5bee4a-e8d6-11ec-ae57-d1c38109dafa"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "id": "68d03c42-d9bd-11dc-89f2-b7961d42c462",
+                    "name": "admin",
+                    "type": "user"
+                },
+                "parentType": "InterfaceObject",
+                "readOnly": {
+                    "state": false
+                },
+                "timestamp": 1654876857
+            },
+            "name": "DMZ1554",
+            "type": "SecurityZone"
+        }
+    ]
+}
+
+PLAY RECAP *********************************************************************
+wa-fmc2500                 : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

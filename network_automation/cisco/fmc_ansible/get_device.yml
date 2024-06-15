@@ -6,19 +6,18 @@
         operation: getAllDomain
         register_as: domain
 
-    - debug:
-        var: domain
-
-    - name: Get S2S VPNs
+    
+    - name: Execute 'getAllDevice' operation
       cisco.fmcansible.fmc_configuration:
-        operation: getAllFTDS2SVpnModel
-        path_params: 
+        operation: "getAllDevice"
+        path_params:
           domainUUID: "{{ domain[0].uuid }}"
         query_params:
-          offset: 0
-          limit: 100
-          expanded: True
-        register_as: s2s_vpns
+          # filter: "{{ filter }}"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: devices
 
     - debug:
-        var: s2s_vpns
+        var: devices

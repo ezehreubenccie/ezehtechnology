@@ -1,0 +1,531 @@
+
+PLAY [PLAY 1 - get domainUUID] *************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Get Domain UUID] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Execute 'getAllFTDVTIInterface' operation] *******************************
+ok: [wa-fmc2500]
+
+TASK [debug] *******************************************************************
+ok: [wa-fmc2500] => {
+    "vti": [
+        {
+            "MTU": 1500,
+            "enableSGTPropagate": true,
+            "enabled": true,
+            "id": "40CE2481-5D56-0ed3-0000-300647879758",
+            "ifname": "vti-EMMI-Azure",
+            "ipsecMode": "ipv4",
+            "ipv4": {
+                "static": {
+                    "address": "172.23.0.2",
+                    "netmask": "255.255.255.252"
+                }
+            },
+            "ipv6": {},
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/87f71aea-0bda-11ee-b635-b0d44974184b/virtualtunnelinterfaces/40CE2481-5D56-0ed3-0000-300647879758"
+            },
+            "managementOnly": false,
+            "metadata": {
+                "destinationIpAddress": "20.94.168.27",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "timestamp": 1716263865040,
+                "vpnTopologyName": "WA-LAN-ASA0200_20.94.168.27"
+            },
+            "mode": "NONE",
+            "name": "Tunnel1",
+            "priority": 0,
+            "securityZone": {
+                "id": "49464180-b64e-11ee-a0dd-8a6647a5865b",
+                "type": "SecurityZone"
+            },
+            "tunnelId": 1,
+            "tunnelSource": {
+                "id": "40CE2481-5D56-0ed3-0000-300647879743",
+                "name": "Port-channel1.100",
+                "type": "SubInterface"
+            },
+            "type": "VTIInterface"
+        },
+        {
+            "MTU": 1500,
+            "enableSGTPropagate": true,
+            "enabled": true,
+            "id": "40CE2481-5D56-0ed3-0000-300647879759",
+            "ifname": "clr-data-est-1",
+            "ipsecMode": "ipv4",
+            "ipv4": {
+                "static": {
+                    "address": "169.254.188.42",
+                    "netmask": "255.255.255.252"
+                }
+            },
+            "ipv6": {},
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/87f71aea-0bda-11ee-b635-b0d44974184b/virtualtunnelinterfaces/40CE2481-5D56-0ed3-0000-300647879759"
+            },
+            "managementOnly": false,
+            "metadata": {
+                "destinationIpAddress": "3.133.172.174",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "timestamp": 1716263865040,
+                "vpnTopologyName": "WA-LAN-ASA0200_3.133.172.174"
+            },
+            "mode": "NONE",
+            "name": "Tunnel2",
+            "priority": 0,
+            "securityZone": {
+                "id": "4a76e6ae-b64e-11ee-a0dd-8a6647a5865b",
+                "type": "SecurityZone"
+            },
+            "tunnelId": 2,
+            "tunnelSource": {
+                "id": "40CE2481-5D56-0ed3-0000-300647879743",
+                "name": "Port-channel1.100",
+                "type": "SubInterface"
+            },
+            "type": "VTIInterface"
+        },
+        {
+            "MTU": 1500,
+            "enableSGTPropagate": true,
+            "enabled": false,
+            "id": "40CE2481-5D56-0ed3-0000-300647879760",
+            "ifname": "clr-data-est-2",
+            "ipsecMode": "ipv4",
+            "ipv4": {
+                "static": {
+                    "address": "169.254.172.194",
+                    "netmask": "255.255.255.252"
+                }
+            },
+            "ipv6": {},
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/87f71aea-0bda-11ee-b635-b0d44974184b/virtualtunnelinterfaces/40CE2481-5D56-0ed3-0000-300647879760"
+            },
+            "managementOnly": false,
+            "metadata": {
+                "destinationIpAddress": "18.218.210.129",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "timestamp": 1716263865040,
+                "vpnTopologyName": "WA-LAN-ASA0200_18.218.210.129"
+            },
+            "mode": "NONE",
+            "name": "Tunnel3",
+            "priority": 0,
+            "securityZone": {
+                "id": "4b7b90cc-b64e-11ee-a0dd-8a6647a5865b",
+                "type": "SecurityZone"
+            },
+            "tunnelId": 3,
+            "tunnelSource": {
+                "id": "40CE2481-5D56-0ed3-0000-300647879743",
+                "name": "Port-channel1.100",
+                "type": "SubInterface"
+            },
+            "type": "VTIInterface"
+        },
+        {
+            "MTU": 1500,
+            "enableSGTPropagate": true,
+            "enabled": true,
+            "id": "40CE2481-5D56-0ed3-0000-300647879761",
+            "ifname": "clr-data-west-1",
+            "ipsecMode": "ipv4",
+            "ipv4": {
+                "static": {
+                    "address": "169.254.132.22",
+                    "netmask": "255.255.255.252"
+                }
+            },
+            "ipv6": {},
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/87f71aea-0bda-11ee-b635-b0d44974184b/virtualtunnelinterfaces/40CE2481-5D56-0ed3-0000-300647879761"
+            },
+            "managementOnly": false,
+            "metadata": {
+                "destinationIpAddress": "35.163.170.66",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "timestamp": 1717105344736,
+                "vpnTopologyName": "WA-LAN-ASA0200_35.163.170.66"
+            },
+            "mode": "NONE",
+            "name": "Tunnel4",
+            "priority": 0,
+            "tunnelId": 4,
+            "tunnelSource": {
+                "id": "40CE2481-5D56-0ed3-0000-300647879743",
+                "name": "Port-channel1.100",
+                "type": "SubInterface"
+            },
+            "type": "VTIInterface"
+        },
+        {
+            "MTU": 1500,
+            "enableSGTPropagate": true,
+            "enabled": false,
+            "id": "40CE2481-5D56-0ed3-0000-300647879762",
+            "ifname": "clr-data-west-2",
+            "ipsecMode": "ipv4",
+            "ipv4": {
+                "static": {
+                    "address": "169.254.116.138",
+                    "netmask": "255.255.255.252"
+                }
+            },
+            "ipv6": {
+                "enableIPV6": false
+            },
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/87f71aea-0bda-11ee-b635-b0d44974184b/virtualtunnelinterfaces/40CE2481-5D56-0ed3-0000-300647879762"
+            },
+            "managementOnly": false,
+            "metadata": {
+                "destinationIpAddress": "52.25.99.11",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "timestamp": 1716260228030,
+                "vpnTopologyName": "WA-LAN-ASA0200_52.25.99.11"
+            },
+            "mode": "NONE",
+            "name": "Tunnel5",
+            "priority": 0,
+            "tunnelId": 5,
+            "tunnelSource": {
+                "id": "40CE2481-5D56-0ed3-0000-300647879743",
+                "name": "Port-channel1.100",
+                "type": "SubInterface"
+            },
+            "type": "VTIInterface"
+        },
+        {
+            "MTU": 1500,
+            "enableSGTPropagate": true,
+            "enabled": true,
+            "id": "40CE2481-5D56-0ed3-0000-300647879763",
+            "ifname": "vti-Azure-UTD-Sandbox",
+            "ipsecMode": "ipv4",
+            "ipv4": {
+                "static": {
+                    "address": "172.23.0.6",
+                    "netmask": "255.255.255.252"
+                }
+            },
+            "ipv6": {},
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/87f71aea-0bda-11ee-b635-b0d44974184b/virtualtunnelinterfaces/40CE2481-5D56-0ed3-0000-300647879763"
+            },
+            "managementOnly": false,
+            "metadata": {
+                "destinationIpAddress": "20.62.53.115",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "timestamp": 1716263865040,
+                "vpnTopologyName": "WA-LAN-ASA0200_20.62.53.115"
+            },
+            "mode": "NONE",
+            "name": "Tunnel6",
+            "priority": 0,
+            "securityZone": {
+                "id": "4eb95d1e-b64e-11ee-a0dd-8a6647a5865b",
+                "type": "SecurityZone"
+            },
+            "tunnelId": 6,
+            "tunnelSource": {
+                "id": "40CE2481-5D56-0ed3-0000-300647879743",
+                "name": "Port-channel1.100",
+                "type": "SubInterface"
+            },
+            "type": "VTIInterface"
+        },
+        {
+            "MTU": 1500,
+            "enableSGTPropagate": true,
+            "enabled": true,
+            "id": "40CE2481-5D56-0ed3-0000-300647879764",
+            "ifname": "vti-Azure-UTD-NonProd01",
+            "ipsecMode": "ipv4",
+            "ipv4": {
+                "static": {
+                    "address": "172.23.0.10",
+                    "netmask": "255.255.255.252"
+                }
+            },
+            "ipv6": {},
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/87f71aea-0bda-11ee-b635-b0d44974184b/virtualtunnelinterfaces/40CE2481-5D56-0ed3-0000-300647879764"
+            },
+            "managementOnly": false,
+            "metadata": {
+                "destinationIpAddress": "20.69.227.36",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "timestamp": 1716263865040,
+                "vpnTopologyName": "WA-LAN-ASA0200_20.69.227.36"
+            },
+            "mode": "NONE",
+            "name": "Tunnel7",
+            "priority": 0,
+            "securityZone": {
+                "id": "4fde30d4-b64e-11ee-a0dd-8a6647a5865b",
+                "type": "SecurityZone"
+            },
+            "tunnelId": 7,
+            "tunnelSource": {
+                "id": "40CE2481-5D56-0ed3-0000-300647879743",
+                "name": "Port-channel1.100",
+                "type": "SubInterface"
+            },
+            "type": "VTIInterface"
+        },
+        {
+            "MTU": 1500,
+            "enableSGTPropagate": true,
+            "enabled": true,
+            "id": "40CE2481-5D56-0ed3-0000-300647879765",
+            "ifname": "vti-Azure-UTD-ToolsNonProd",
+            "ipsecMode": "ipv4",
+            "ipv4": {
+                "static": {
+                    "address": "172.23.0.14",
+                    "netmask": "255.255.255.252"
+                }
+            },
+            "ipv6": {},
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/87f71aea-0bda-11ee-b635-b0d44974184b/virtualtunnelinterfaces/40CE2481-5D56-0ed3-0000-300647879765"
+            },
+            "managementOnly": false,
+            "metadata": {
+                "destinationIpAddress": "20.97.151.148",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "timestamp": 1716263865040,
+                "vpnTopologyName": "WA-LAN-ASA0200_20.97.151.148"
+            },
+            "mode": "NONE",
+            "name": "Tunnel8",
+            "priority": 0,
+            "securityZone": {
+                "id": "50e193ae-b64e-11ee-a0dd-8a6647a5865b",
+                "type": "SecurityZone"
+            },
+            "tunnelId": 8,
+            "tunnelSource": {
+                "id": "40CE2481-5D56-0ed3-0000-300647879743",
+                "name": "Port-channel1.100",
+                "type": "SubInterface"
+            },
+            "type": "VTIInterface"
+        },
+        {
+            "MTU": 1500,
+            "enableSGTPropagate": true,
+            "enabled": true,
+            "id": "40CE2481-5D56-0ed3-0000-300647879766",
+            "ifname": "vti-Azure-UTD-ToolsProd",
+            "ipsecMode": "ipv4",
+            "ipv4": {
+                "static": {
+                    "address": "172.23.0.18",
+                    "netmask": "255.255.255.252"
+                }
+            },
+            "ipv6": {},
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/87f71aea-0bda-11ee-b635-b0d44974184b/virtualtunnelinterfaces/40CE2481-5D56-0ed3-0000-300647879766"
+            },
+            "managementOnly": false,
+            "metadata": {
+                "destinationIpAddress": "20.97.147.247",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "timestamp": 1716263865040,
+                "vpnTopologyName": "WA-LAN-ASA0200_20.97.147.247"
+            },
+            "mode": "NONE",
+            "name": "Tunnel9",
+            "priority": 0,
+            "securityZone": {
+                "id": "5202c776-b64e-11ee-a0dd-8a6647a5865b",
+                "type": "SecurityZone"
+            },
+            "tunnelId": 9,
+            "tunnelSource": {
+                "id": "40CE2481-5D56-0ed3-0000-300647879743",
+                "name": "Port-channel1.100",
+                "type": "SubInterface"
+            },
+            "type": "VTIInterface"
+        },
+        {
+            "MTU": 1500,
+            "enableSGTPropagate": true,
+            "enabled": true,
+            "id": "40CE2481-5D56-0ed3-0000-300647879767",
+            "ifname": "vti-Azure-CECS-NonProd01",
+            "ipsecMode": "ipv4",
+            "ipv4": {
+                "static": {
+                    "address": "172.23.0.26",
+                    "netmask": "255.255.255.252"
+                }
+            },
+            "ipv6": {},
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/87f71aea-0bda-11ee-b635-b0d44974184b/virtualtunnelinterfaces/40CE2481-5D56-0ed3-0000-300647879767"
+            },
+            "managementOnly": false,
+            "metadata": {
+                "destinationIpAddress": "20.12.123.226",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "timestamp": 1716263865040,
+                "vpnTopologyName": "WA-LAN-ASA0200_20.12.123.226"
+            },
+            "mode": "NONE",
+            "name": "Tunnel10",
+            "priority": 0,
+            "securityZone": {
+                "id": "9407cefe-f2d6-11ee-95c9-dc64b6eb0066",
+                "type": "SecurityZone"
+            },
+            "tunnelId": 10,
+            "tunnelSource": {
+                "id": "40CE2481-5D56-0ed3-0000-300647879743",
+                "name": "Port-channel1.100",
+                "type": "SubInterface"
+            },
+            "type": "VTIInterface"
+        },
+        {
+            "MTU": 1500,
+            "enableSGTPropagate": true,
+            "enabled": true,
+            "id": "40CE2481-5D56-0ed3-0000-300647879768",
+            "ifname": "vti-Azure-UTD-Prod01",
+            "ipsecMode": "ipv4",
+            "ipv4": {
+                "static": {
+                    "address": "172.23.0.22",
+                    "netmask": "255.255.255.252"
+                }
+            },
+            "ipv6": {},
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/87f71aea-0bda-11ee-b635-b0d44974184b/virtualtunnelinterfaces/40CE2481-5D56-0ed3-0000-300647879768"
+            },
+            "managementOnly": false,
+            "metadata": {
+                "destinationIpAddress": "20.241.247.201",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "timestamp": 1716263865040,
+                "vpnTopologyName": "WA-LAN-ASA0200_20.241.247.201"
+            },
+            "mode": "NONE",
+            "name": "Tunnel11",
+            "priority": 0,
+            "securityZone": {
+                "id": "47c24386-00c7-11ef-9ef2-81eee944ecf1",
+                "type": "SecurityZone"
+            },
+            "tunnelId": 11,
+            "tunnelSource": {
+                "id": "40CE2481-5D56-0ed3-0000-300647879743",
+                "name": "Port-channel1.100",
+                "type": "SubInterface"
+            },
+            "type": "VTIInterface"
+        },
+        {
+            "MTU": 1500,
+            "enableSGTPropagate": true,
+            "enabled": true,
+            "id": "40CE2481-5D56-0ed3-0000-300647879769",
+            "ifname": "vti-Azure-CECS-Prod01",
+            "ipsecMode": "ipv4",
+            "ipv4": {
+                "static": {
+                    "address": "172.23.0.30",
+                    "netmask": "255.255.255.252"
+                }
+            },
+            "ipv6": {},
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/87f71aea-0bda-11ee-b635-b0d44974184b/virtualtunnelinterfaces/40CE2481-5D56-0ed3-0000-300647879769"
+            },
+            "managementOnly": false,
+            "metadata": {
+                "destinationIpAddress": "40.76.144.8",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "timestamp": 1716263865040,
+                "vpnTopologyName": "WA-LAN-ASA0200_40.76.144.8"
+            },
+            "mode": "NONE",
+            "name": "Tunnel12",
+            "priority": 0,
+            "securityZone": {
+                "id": "57dc6130-01e8-11ef-9ef2-81eee944ecf1",
+                "type": "SecurityZone"
+            },
+            "tunnelId": 12,
+            "tunnelSource": {
+                "id": "40CE2481-5D56-0ed3-0000-300647879743",
+                "name": "Port-channel1.100",
+                "type": "SubInterface"
+            },
+            "type": "VTIInterface"
+        }
+    ]
+}
+
+PLAY RECAP *********************************************************************
+wa-fmc2500                 : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

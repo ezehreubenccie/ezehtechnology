@@ -1,0 +1,885 @@
+description: ' '
+entries:
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865013
+          overridable: false
+          type: NetworkGroup
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+    sourcePorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-081604387491
+          name: obj_tcp_53
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865013
+          overridable: false
+          type: NetworkGroup
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+    sourcePorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-081604387492
+          name: obj_udp_53
+          overridable: false
+          protocol: UDP
+          type: ProtocolPortObject
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865013
+          overridable: false
+          type: NetworkGroup
+    destinationPorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-081604387491
+          name: obj_tcp_53
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865013
+          overridable: false
+          type: NetworkGroup
+    destinationPorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-081604387492
+          name: obj_udp_53
+          overridable: false
+          protocol: UDP
+          type: ProtocolPortObject
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865012
+          overridable: false
+          type: NetworkGroup
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+    sourcePorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865127
+          name: obj_tcp_8161
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387515
+          name: obj_tcp_8080
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865133
+          name: obj_tcp_9300-9499
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865132
+          name: obj_tcp_8300-8499
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387194
+          name: obj_tcp_8443
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865134
+          name: obj_tcp_9600-9799
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387359
+          name: obj_tcp_8092
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865131
+          name: obj_tcp_8095
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387341
+          name: obj_tcp_443
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387340
+          name: obj_tcp_80
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865011
+          overridable: false
+          type: NetworkGroup
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+    sourcePorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-081604387515
+          name: obj_tcp_8080
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865133
+          name: obj_tcp_9300-9499
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865132
+          name: obj_tcp_8300-8499
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387194
+          name: obj_tcp_8443
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387359
+          name: obj_tcp_8092
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865134
+          name: obj_tcp_9600-9799
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387340
+          name: obj_tcp_80
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865131
+          name: obj_tcp_8095
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865127
+          name: obj_tcp_8161
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387341
+          name: obj_tcp_443
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865015
+          overridable: false
+          type: NetworkGroup
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+    sourcePorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-081604387515
+          name: obj_tcp_8080
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865133
+          name: obj_tcp_9300-9499
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865132
+          name: obj_tcp_8300-8499
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387194
+          name: obj_tcp_8443
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387359
+          name: obj_tcp_8092
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865134
+          name: obj_tcp_9600-9799
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387340
+          name: obj_tcp_80
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865131
+          name: obj_tcp_8095
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865127
+          name: obj_tcp_8161
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387341
+          name: obj_tcp_443
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865011
+          overridable: false
+          type: NetworkGroup
+    destinationPorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-081604387515
+          name: obj_tcp_8080
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865133
+          name: obj_tcp_9300-9499
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865132
+          name: obj_tcp_8300-8499
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387194
+          name: obj_tcp_8443
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387359
+          name: obj_tcp_8092
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865134
+          name: obj_tcp_9600-9799
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387340
+          name: obj_tcp_80
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865131
+          name: obj_tcp_8095
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865127
+          name: obj_tcp_8161
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387341
+          name: obj_tcp_443
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865015
+          overridable: false
+          type: NetworkGroup
+    destinationPorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-081604387515
+          name: obj_tcp_8080
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865133
+          name: obj_tcp_9300-9499
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865132
+          name: obj_tcp_8300-8499
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387194
+          name: obj_tcp_8443
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387359
+          name: obj_tcp_8092
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865134
+          name: obj_tcp_9600-9799
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387340
+          name: obj_tcp_80
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865131
+          name: obj_tcp_8095
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865127
+          name: obj_tcp_8161
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387341
+          name: obj_tcp_443
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865011
+          overridable: false
+          type: NetworkGroup
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+    sourcePorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865139
+          name: obj_tcp_8009
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865015
+          overridable: false
+          type: NetworkGroup
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+    sourcePorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865139
+          name: obj_tcp_8009
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865015
+          overridable: false
+          type: NetworkGroup
+    destinationPorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865139
+          name: obj_tcp_8009
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865011
+          overridable: false
+          type: NetworkGroup
+    destinationPorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865139
+          name: obj_tcp_8009
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865012
+          overridable: false
+          type: NetworkGroup
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+    sourcePorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865138
+          name: obj_tcp_5701
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865011
+          overridable: false
+          type: NetworkGroup
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+    sourcePorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865138
+          name: obj_tcp_5701
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865015
+          overridable: false
+          type: NetworkGroup
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+    sourcePorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865138
+          name: obj_tcp_5701
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865011
+          overridable: false
+          type: NetworkGroup
+    destinationPorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865138
+          name: obj_tcp_5701
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865015
+          overridable: false
+          type: NetworkGroup
+    destinationPorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865138
+          name: obj_tcp_5701
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865012
+          overridable: false
+          type: NetworkGroup
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+    sourcePorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-081604387185
+          name: obj_tcp_22
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865011
+          overridable: false
+          type: NetworkGroup
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+    sourcePorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-081604387185
+          name: obj_tcp_22
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865015
+          overridable: false
+          type: NetworkGroup
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+    sourcePorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-081604387185
+          name: obj_tcp_22
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865012
+          overridable: false
+          type: NetworkGroup
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+    sourcePorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865135
+          name: obj_tcp_61617
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865011
+          overridable: false
+          type: NetworkGroup
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+    sourcePorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865135
+          name: obj_tcp_61617
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865015
+          overridable: false
+          type: NetworkGroup
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+    sourcePorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865135
+          name: obj_tcp_61617
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865011
+          overridable: false
+          type: NetworkGroup
+    destinationPorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865135
+          name: obj_tcp_61617
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865015
+          overridable: false
+          type: NetworkGroup
+    destinationPorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865135
+          name: obj_tcp_61617
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865016
+          overridable: false
+          type: NetworkGroup
+    destinationPorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-081604387341
+          name: obj_tcp_443
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292057865025
+          overridable: false
+          type: NetworkGroup
+    destinationPorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-081604387366
+          name: obj_tcp_3268
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387487
+          name: obj_tcp_389
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387485
+          name: obj_tcp_636
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+  - action: PERMIT
+    destinationNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058707069
+          overridable: false
+          type: NetworkGroup
+    destinationPorts:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-081604387340
+          name: obj_tcp_80
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387341
+          name: obj_tcp_443
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865137
+          name: obj_tcp_9200
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387847
+          name: obj_tcp_8200
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-292057865136
+          name: obj_tcp_8282
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+        - id: 40CE2481-5D56-0ed3-0000-081604387656
+          name: obj_tcp_6379
+          overridable: false
+          protocol: TCP
+          type: ProtocolPortObject
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 40CE2481-5D56-0ed3-0000-292058706286
+          overridable: false
+          type: NetworkGroup
+  - action: DENY
+    destinationNetworks:
+      objects:
+        - id: 69fa2a3a-4487-4e3c-816f-4098f684826e
+          overridable: false
+          type: NetworkGroup
+    logInterval: 300
+    logLevel: INFORMATIONAL
+    logging: DEFAULT
+    sourceNetworks:
+      objects:
+        - id: 69fa2a3a-4487-4e3c-816f-4098f684826e
+          overridable: false
+          type: NetworkGroup

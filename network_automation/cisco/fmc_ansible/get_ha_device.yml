@@ -1,0 +1,24 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+
+    - name: Execute 'getAllFTDHADeviceContainer' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllFTDHADeviceContainer"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          #filter: "{{ filter }}"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: ha_dev
+
+    - debug:
+        var: ha_dev

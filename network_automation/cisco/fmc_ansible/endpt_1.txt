@@ -1,0 +1,44 @@
+
+PLAY [wa-fmc2500] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Get Domain UUID] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Execute 'getVpnEndpoint' operation] **************************************
+ok: [wa-fmc2500]
+
+TASK [debug] *******************************************************************
+ok: [wa-fmc2500] => {
+    "endpt": {
+        "connectionType": "BIDIRECTIONAL",
+        "device": {
+            "id": "79162d28-172c-11ef-9959-89c92e087eab",
+            "name": "WA-LAN-FPR-FW200",
+            "type": "DeviceHAPair"
+        },
+        "dynamicRRIEnabled": false,
+        "extranet": false,
+        "id": "40CE2481-5D56-0ed3-0000-292059014290",
+        "interface": {
+            "id": "40CE2481-5D56-0ed3-0000-300647879768",
+            "name": "vti-Azure-UTD-Prod01",
+            "type": "VTI"
+        },
+        "isLocalTunnelIdEnabled": false,
+        "links": {
+            "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-292059014286/endpoints/40CE2481-5D56-0ed3-0000-292059014290"
+        },
+        "name": "WA-LAN-FPR-FW200",
+        "overrideRemoteVpnFilter": false,
+        "peerType": "PEER",
+        "protectedNetworks": {},
+        "type": "EndPoint"
+    }
+}
+
+PLAY RECAP *********************************************************************
+wa-fmc2500                 : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

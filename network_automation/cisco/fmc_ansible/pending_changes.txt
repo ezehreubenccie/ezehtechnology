@@ -1,0 +1,1543 @@
+
+PLAY [wa-fmc2500] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Get Domain] **************************************************************
+ok: [wa-fmc2500]
+
+TASK [Get Deployable Devices] **************************************************
+ok: [wa-fmc2500]
+
+TASK [debug] *******************************************************************
+ok: [wa-fmc2500] => {
+    "devices": [
+        {
+            "canBeDeployed": true,
+            "device": {
+                "id": "2558aa92-d54a-11e7-b1fa-9339da4b6af9",
+                "keepLocalEvents": false,
+                "name": "sh-lan-fpr0200",
+                "type": "SENSOR"
+            },
+            "deviceMembers": [
+                {
+                    "id": "2558aa92-d54a-11e7-b1fa-9339da4b6af9",
+                    "keepLocalEvents": false,
+                    "name": "sh-lan-fpr0200",
+                    "type": "SENSOR"
+                }
+            ],
+            "domain": {
+                "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                "name": "Global",
+                "type": "Domain",
+                "uuid": "e276abec-e0f2-11e3-8169-6d9ed49b625f"
+            },
+            "isDeploying": false,
+            "name": "sh-lan-fpr0200",
+            "policyStatusList": [
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-025769804026",
+                        "name": "IPS-POLICY",
+                        "type": "PG.FIREWALL.NGFWAccessControlPolicy"
+                    },
+                    "referredPolicyList": [
+                        {
+                            "modifiedUserInfoList": [
+                                {
+                                    "lastModifiedTime": 1718431310,
+                                    "userName": "admin"
+                                }
+                            ],
+                            "policy": {
+                                "id": "60fa5c2a-8668-11e7-b1f4-937711c4add3",
+                                "name": "WA-INET",
+                                "type": "IntrusionPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": false,
+                            "versionTimeStamp": 1718431310000
+                        },
+                        {
+                            "policy": {
+                                "id": "739774d0-8668-11e7-b1f4-937711c4add3",
+                                "name": "WA-DNS",
+                                "type": "DNSPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1642703130000
+                        },
+                        {
+                            "policy": {
+                                "id": "7c6f2e34-4d1c-11e7-8279-70cabc3f2080",
+                                "type": "NetworkDiscovery"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1704996267000
+                        },
+                        {
+                            "policy": {
+                                "id": "f60e2450-9251-11e7-ab98-9be6536c7014",
+                                "name": "WA-NAP",
+                                "type": "NetworkAnalysisPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1718341365000
+                        }
+                    ],
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1718260392645
+                },
+                {
+                    "policy": {
+                        "id": "e73a0980-d54a-11e7-92e6-d567da4b6af9",
+                        "type": "SensorPolicy"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1513352175000
+                },
+                {
+                    "policy": {
+                        "name": "Build 388 - 2024-06-07 14:16:41",
+                        "type": "VDB"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": false
+                },
+                {
+                    "policy": {
+                        "name": " 2024-06-13-001-vrt",
+                        "type": "RuleUpdate"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": false
+                },
+                {
+                    "policy": {
+                        "id": "deviceConfigurationId",
+                        "type": "DeviceConfiguration"
+                    },
+                    "referredPolicyList": [
+                        {
+                            "policy": {
+                                "id": "e73a0980-d54a-11e7-92e6-d567da4b6af9",
+                                "type": "SensorPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1513352175000
+                        }
+                    ],
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 0
+                }
+            ],
+            "trafficInterruption": "NO",
+            "type": "DeployableDevice",
+            "upToDate": false,
+            "version": "1718465429202"
+        },
+        {
+            "canBeDeployed": true,
+            "device": {
+                "id": "0a493c0e-9304-11ec-a2e5-ad4e46de4dc7",
+                "keepLocalEvents": false,
+                "name": "sb-lan-fpr0100",
+                "type": "SENSOR"
+            },
+            "deviceMembers": [
+                {
+                    "id": "0a493c0e-9304-11ec-a2e5-ad4e46de4dc7",
+                    "keepLocalEvents": false,
+                    "name": "sb-lan-fpr0100",
+                    "type": "SENSOR"
+                }
+            ],
+            "domain": {
+                "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                "name": "Global",
+                "type": "Domain",
+                "uuid": "e276abec-e0f2-11e3-8169-6d9ed49b625f"
+            },
+            "isDeploying": false,
+            "name": "sb-lan-fpr0100",
+            "policyStatusList": [
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-025769804026",
+                        "name": "IPS-POLICY",
+                        "type": "PG.FIREWALL.NGFWAccessControlPolicy"
+                    },
+                    "referredPolicyList": [
+                        {
+                            "modifiedUserInfoList": [
+                                {
+                                    "lastModifiedTime": 1718431310,
+                                    "userName": "admin"
+                                }
+                            ],
+                            "policy": {
+                                "id": "60fa5c2a-8668-11e7-b1f4-937711c4add3",
+                                "name": "WA-INET",
+                                "type": "IntrusionPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": false,
+                            "versionTimeStamp": 1718431310000
+                        },
+                        {
+                            "policy": {
+                                "id": "739774d0-8668-11e7-b1f4-937711c4add3",
+                                "name": "WA-DNS",
+                                "type": "DNSPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1645524068000
+                        },
+                        {
+                            "policy": {
+                                "id": "7c6f2e34-4d1c-11e7-8279-70cabc3f2080",
+                                "type": "NetworkDiscovery"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1704996267000
+                        },
+                        {
+                            "policy": {
+                                "id": "f60e2450-9251-11e7-ab98-9be6536c7014",
+                                "name": "WA-NAP",
+                                "type": "NetworkAnalysisPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1718341365000
+                        }
+                    ],
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1718260392645
+                },
+                {
+                    "policy": {
+                        "id": "37baeb70-9308-11ec-8ce4-998046de4dc7",
+                        "type": "SensorPolicy"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1645625903000
+                },
+                {
+                    "policy": {
+                        "name": "Build 388 - 2024-06-07 14:16:41",
+                        "type": "VDB"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": false
+                },
+                {
+                    "policy": {
+                        "name": " 2024-06-13-001-vrt",
+                        "type": "RuleUpdate"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": false
+                },
+                {
+                    "policy": {
+                        "id": "deviceConfigurationId",
+                        "type": "DeviceConfiguration"
+                    },
+                    "referredPolicyList": [
+                        {
+                            "policy": {
+                                "id": "37baeb70-9308-11ec-8ce4-998046de4dc7",
+                                "type": "SensorPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1645625903000
+                        }
+                    ],
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 0
+                }
+            ],
+            "trafficInterruption": "NO",
+            "type": "DeployableDevice",
+            "upToDate": false,
+            "version": "1718465429202"
+        },
+        {
+            "canBeDeployed": true,
+            "device": {
+                "id": "cae2f178-b666-11e7-a201-c503e32e0782",
+                "keepLocalEvents": false,
+                "name": "sb-lan-fpr0200",
+                "type": "SENSOR"
+            },
+            "deviceMembers": [
+                {
+                    "id": "cae2f178-b666-11e7-a201-c503e32e0782",
+                    "keepLocalEvents": false,
+                    "name": "sb-lan-fpr0200",
+                    "type": "SENSOR"
+                }
+            ],
+            "domain": {
+                "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                "name": "Global",
+                "type": "Domain",
+                "uuid": "e276abec-e0f2-11e3-8169-6d9ed49b625f"
+            },
+            "isDeploying": false,
+            "name": "sb-lan-fpr0200",
+            "policyStatusList": [
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-025769804026",
+                        "name": "IPS-POLICY",
+                        "type": "PG.FIREWALL.NGFWAccessControlPolicy"
+                    },
+                    "referredPolicyList": [
+                        {
+                            "modifiedUserInfoList": [
+                                {
+                                    "lastModifiedTime": 1718431310,
+                                    "userName": "admin"
+                                }
+                            ],
+                            "policy": {
+                                "id": "60fa5c2a-8668-11e7-b1f4-937711c4add3",
+                                "name": "WA-INET",
+                                "type": "IntrusionPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": false,
+                            "versionTimeStamp": 1718431310000
+                        },
+                        {
+                            "policy": {
+                                "id": "739774d0-8668-11e7-b1f4-937711c4add3",
+                                "name": "WA-DNS",
+                                "type": "DNSPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1642703130000
+                        },
+                        {
+                            "policy": {
+                                "id": "7c6f2e34-4d1c-11e7-8279-70cabc3f2080",
+                                "type": "NetworkDiscovery"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1704996267000
+                        },
+                        {
+                            "policy": {
+                                "id": "f60e2450-9251-11e7-ab98-9be6536c7014",
+                                "name": "WA-NAP",
+                                "type": "NetworkAnalysisPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1718341365000
+                        }
+                    ],
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1718260392645
+                },
+                {
+                    "policy": {
+                        "id": "53743f30-86f9-11e7-b1f4-937711c4add3",
+                        "name": "WA-PLATFORM",
+                        "type": "PlatformSettings"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1662917459000
+                },
+                {
+                    "policy": {
+                        "id": "d4cf194a-b667-11e7-8583-0e32e32e0782",
+                        "type": "SensorPolicy"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1621277111000
+                },
+                {
+                    "policy": {
+                        "name": "Build 388 - 2024-06-07 14:16:41",
+                        "type": "VDB"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": false
+                },
+                {
+                    "policy": {
+                        "name": " 2024-06-13-001-vrt",
+                        "type": "RuleUpdate"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": false
+                },
+                {
+                    "policy": {
+                        "id": "deviceConfigurationId",
+                        "type": "DeviceConfiguration"
+                    },
+                    "referredPolicyList": [
+                        {
+                            "policy": {
+                                "id": "d4cf194a-b667-11e7-8583-0e32e32e0782",
+                                "type": "SensorPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1621277111000
+                        }
+                    ],
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 0
+                }
+            ],
+            "trafficInterruption": "NO",
+            "type": "DeployableDevice",
+            "upToDate": false,
+            "version": "1718465429202"
+        },
+        {
+            "canBeDeployed": true,
+            "device": {
+                "id": "612cc62c-f505-11e7-82bf-99a352eafba0",
+                "keepLocalEvents": false,
+                "name": "pr-lan-fpr0100",
+                "type": "SENSOR"
+            },
+            "deviceMembers": [
+                {
+                    "id": "612cc62c-f505-11e7-82bf-99a352eafba0",
+                    "keepLocalEvents": false,
+                    "name": "pr-lan-fpr0100",
+                    "type": "SENSOR"
+                }
+            ],
+            "domain": {
+                "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                "name": "Global",
+                "type": "Domain",
+                "uuid": "e276abec-e0f2-11e3-8169-6d9ed49b625f"
+            },
+            "isDeploying": false,
+            "name": "pr-lan-fpr0100",
+            "policyStatusList": [
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-025769804026",
+                        "name": "IPS-POLICY",
+                        "type": "PG.FIREWALL.NGFWAccessControlPolicy"
+                    },
+                    "referredPolicyList": [
+                        {
+                            "modifiedUserInfoList": [
+                                {
+                                    "lastModifiedTime": 1718431310,
+                                    "userName": "admin"
+                                }
+                            ],
+                            "policy": {
+                                "id": "60fa5c2a-8668-11e7-b1f4-937711c4add3",
+                                "name": "WA-INET",
+                                "type": "IntrusionPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": false,
+                            "versionTimeStamp": 1718431310000
+                        },
+                        {
+                            "policy": {
+                                "id": "739774d0-8668-11e7-b1f4-937711c4add3",
+                                "name": "WA-DNS",
+                                "type": "DNSPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1642703130000
+                        },
+                        {
+                            "policy": {
+                                "id": "7c6f2e34-4d1c-11e7-8279-70cabc3f2080",
+                                "type": "NetworkDiscovery"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1704996267000
+                        },
+                        {
+                            "policy": {
+                                "id": "f60e2450-9251-11e7-ab98-9be6536c7014",
+                                "name": "WA-NAP",
+                                "type": "NetworkAnalysisPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1718341365000
+                        }
+                    ],
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1718260392645
+                },
+                {
+                    "policy": {
+                        "id": "28693bf8-24ae-11e8-b7ba-935962646eb4",
+                        "name": "WA-PLATFORM-PR",
+                        "type": "PlatformSettings"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1662917479000
+                },
+                {
+                    "policy": {
+                        "id": "32519b6a-f506-11e7-a9a5-fad152eafba0",
+                        "type": "SensorPolicy"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1520714638000
+                },
+                {
+                    "policy": {
+                        "name": "Build 388 - 2024-06-07 14:16:41",
+                        "type": "VDB"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": false
+                },
+                {
+                    "policy": {
+                        "name": " 2024-06-13-001-vrt",
+                        "type": "RuleUpdate"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": false
+                },
+                {
+                    "policy": {
+                        "id": "deviceConfigurationId",
+                        "type": "DeviceConfiguration"
+                    },
+                    "referredPolicyList": [
+                        {
+                            "policy": {
+                                "id": "32519b6a-f506-11e7-a9a5-fad152eafba0",
+                                "type": "SensorPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1520714638000
+                        }
+                    ],
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 0
+                }
+            ],
+            "trafficInterruption": "NO",
+            "type": "DeployableDevice",
+            "upToDate": false,
+            "version": "1718465429202"
+        },
+        {
+            "canBeDeployed": true,
+            "device": {
+                "id": "3e6f9864-f50d-11e7-a621-a666aef4b4d3",
+                "keepLocalEvents": false,
+                "name": "pr-lan-fpr0200",
+                "type": "SENSOR"
+            },
+            "deviceMembers": [
+                {
+                    "id": "3e6f9864-f50d-11e7-a621-a666aef4b4d3",
+                    "keepLocalEvents": false,
+                    "name": "pr-lan-fpr0200",
+                    "type": "SENSOR"
+                }
+            ],
+            "domain": {
+                "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                "name": "Global",
+                "type": "Domain",
+                "uuid": "e276abec-e0f2-11e3-8169-6d9ed49b625f"
+            },
+            "isDeploying": false,
+            "name": "pr-lan-fpr0200",
+            "policyStatusList": [
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-025769804026",
+                        "name": "IPS-POLICY",
+                        "type": "PG.FIREWALL.NGFWAccessControlPolicy"
+                    },
+                    "referredPolicyList": [
+                        {
+                            "modifiedUserInfoList": [
+                                {
+                                    "lastModifiedTime": 1718431310,
+                                    "userName": "admin"
+                                }
+                            ],
+                            "policy": {
+                                "id": "60fa5c2a-8668-11e7-b1f4-937711c4add3",
+                                "name": "WA-INET",
+                                "type": "IntrusionPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": false,
+                            "versionTimeStamp": 1718431310000
+                        },
+                        {
+                            "policy": {
+                                "id": "739774d0-8668-11e7-b1f4-937711c4add3",
+                                "name": "WA-DNS",
+                                "type": "DNSPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1642703130000
+                        },
+                        {
+                            "policy": {
+                                "id": "7c6f2e34-4d1c-11e7-8279-70cabc3f2080",
+                                "type": "NetworkDiscovery"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1704996267000
+                        },
+                        {
+                            "policy": {
+                                "id": "f60e2450-9251-11e7-ab98-9be6536c7014",
+                                "name": "WA-NAP",
+                                "type": "NetworkAnalysisPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1718341365000
+                        }
+                    ],
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1718260392645
+                },
+                {
+                    "policy": {
+                        "id": "120fe0ac-f50e-11e7-a0c2-0295aef4b4d3",
+                        "type": "SensorPolicy"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1621284524000
+                },
+                {
+                    "policy": {
+                        "id": "28693bf8-24ae-11e8-b7ba-935962646eb4",
+                        "name": "WA-PLATFORM-PR",
+                        "type": "PlatformSettings"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1662917479000
+                },
+                {
+                    "policy": {
+                        "name": "Build 388 - 2024-06-07 14:16:41",
+                        "type": "VDB"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": false
+                },
+                {
+                    "policy": {
+                        "name": " 2024-06-13-001-vrt",
+                        "type": "RuleUpdate"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": false
+                },
+                {
+                    "policy": {
+                        "id": "deviceConfigurationId",
+                        "type": "DeviceConfiguration"
+                    },
+                    "referredPolicyList": [
+                        {
+                            "policy": {
+                                "id": "120fe0ac-f50e-11e7-a0c2-0295aef4b4d3",
+                                "type": "SensorPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1621284524000
+                        }
+                    ],
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 0
+                }
+            ],
+            "trafficInterruption": "NO",
+            "type": "DeployableDevice",
+            "upToDate": false,
+            "version": "1718465429202"
+        },
+        {
+            "canBeDeployed": true,
+            "device": {
+                "id": "87f71aea-0bda-11ee-b635-b0d44974184b",
+                "keepLocalEvents": false,
+                "name": "WA-LAN-FPR-FW200",
+                "type": "NGFW_HA"
+            },
+            "deviceMembers": [
+                {
+                    "id": "e8d5077a-0bd8-11ee-a0f4-d86d5df5a9d6",
+                    "keepLocalEvents": false,
+                    "name": "WA-LAN-FPR-0200-2",
+                    "type": "SENSOR"
+                },
+                {
+                    "id": "87f71aea-0bda-11ee-b635-b0d44974184b",
+                    "keepLocalEvents": false,
+                    "name": "WA-LAN-FPR-0200-1",
+                    "type": "SENSOR"
+                }
+            ],
+            "domain": {
+                "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                "name": "Global",
+                "type": "Domain",
+                "uuid": "e276abec-e0f2-11e3-8169-6d9ed49b625f"
+            },
+            "isDeploying": false,
+            "name": "WA-LAN-FPR-FW200",
+            "policyStatusList": [
+                {
+                    "modifiedUserInfoList": [
+                        {
+                            "lastModifiedTime": 1718463192618,
+                            "userName": "a-rezeh"
+                        },
+                        {
+                            "lastModifiedTime": 1718463431254,
+                            "userName": "apiuser"
+                        }
+                    ],
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647879705",
+                        "type": "PG.PLATFORM.PixInterface"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": false,
+                    "versionTimeStamp": 1718463430977
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-292057865814",
+                        "name": "WA-LAN-FPR-S2S",
+                        "type": "PG.FIREWALL.NGFWAccessControlPolicy"
+                    },
+                    "referredPolicyList": [
+                        {
+                            "policy": {
+                                "id": "4897c8f4-e211-4661-b0a4-25b0826cded9",
+                                "name": "Default Prefilter Policy",
+                                "type": "PG.FIREWALL.PrefilterPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1718029286029
+                        },
+                        {
+                            "policy": {
+                                "id": "40ce2481-5d56-0ed3-0000-292057991723",
+                                "name": "WA-LAN-FPR-S2S-IPS-Policy",
+                                "type": "Snort3IntrusionPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1718341273000
+                        },
+                        {
+                            "policy": {
+                                "id": "739774d0-8668-11e7-b1f4-937711c4add3",
+                                "name": "WA-DNS",
+                                "type": "DNSPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1716250825000
+                        },
+                        {
+                            "policy": {
+                                "id": "7c6f2e34-4d1c-11e7-8279-70cabc3f2080",
+                                "type": "NetworkDiscovery"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1716250718000
+                        },
+                        {
+                            "policy": {
+                                "id": "ba8dc24f-f2a4-53dc-86b3-5252e5682579",
+                                "name": "No Rules Active",
+                                "type": "Snort3IntrusionPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1718341272000
+                        },
+                        {
+                            "policy": {
+                                "id": "db7dc865-16b5-5eab-8b5a-c85f3a61690b",
+                                "name": "Balanced Security and Connectivity",
+                                "type": "Snort3NetworkAnalysisPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1718341273000
+                        }
+                    ],
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1718341307096
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647879918",
+                        "type": "PG.PLATFORM.NgfwInlineSetPage"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716260242254
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647879967",
+                        "type": "PG.PLATFORM.AutomaticApplicationBypassPage"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716260242254
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-292057941480",
+                        "name": "WA-FTD-VPN-Platform",
+                        "type": "PG.PLATFORM.NgfwPFSettings"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716263983598
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647879991",
+                        "type": "PG.PLATFORM.AsaBGPPage"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1717105305360
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647879998",
+                        "type": "PG.PLATFORM.PixDDnsPage"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716260242254
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647880002",
+                        "type": "PG.FIREWALL.FxosPolicy"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716260242254
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647880009",
+                        "type": "PG.PLATFORM.NgfwNetworkVirtualizationEndPoint"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716260242254
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647880013",
+                        "type": "PG.PLATFORM.NgfwPolicyBasedRouteTablePage"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716260242254
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647880020",
+                        "type": "PG.PLATFORM.PixStaticRouteTablePage"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716268381678
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647880024",
+                        "type": "PG.PLATFORM.PixMBoundaryPage"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716260242254
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647880031",
+                        "type": "PG.PLATFORM.AsaOSPFv3Page"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716260242254
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647880038",
+                        "type": "PG.PLATFORM.PixIGMPPage"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716260242254
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647880045",
+                        "type": "PG.PLATFORM.PixOSPFPage"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716285602366
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647880052",
+                        "type": "PG.PLATFORM.NgfwVirtualRouterPage"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716260242254
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647880059",
+                        "type": "PG.PLATFORM.NgfwECMPZonePage"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716260242254
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647880066",
+                        "type": "PG.PLATFORM.PixDhcpdPage"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716260242254
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647880073",
+                        "type": "PG.PLATFORM.PixPIMPage"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716260242254
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647880080",
+                        "type": "PG.PLATFORM.F1IPv6StaticRouteTablePage"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716260242254
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647880084",
+                        "type": "PG.PLATFORM.PixDhcpRelayPage"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716260242254
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647880091",
+                        "type": "PG.PLATFORM.PixAsaEigrpPage"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716260242254
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647880098",
+                        "type": "PG.PLATFORM.PixMroutePage"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716260242254
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647880105",
+                        "type": "PG.PLATFORM.PixRipPix72Page"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716260242254
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-292057865457",
+                        "name": "WA-LAN-FPR-S2S-NAT",
+                        "type": "PG.PLATFORM.ManualNat64Rule"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716264484516
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647893877",
+                        "type": "PG.TEMPLATE.TemplatePolicy"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716270804423
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-292057870528",
+                        "name": "WA-LAN-ASA0200_3.133.172.174",
+                        "type": "VPN.SUBTOPO.292057870528"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716273556215
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647899195",
+                        "name": "WA-LAN-ASA0200_142.215.22.98",
+                        "type": "VPN.SUBTOPO.300647899195"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716276988791
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-292057871168",
+                        "name": "WA-LAN-ASA0200_35.163.170.66",
+                        "type": "VPN.SUBTOPO.292057871168"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1717105346681
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647904566",
+                        "name": "WA-LAN-ASA0200_63.240.21.171",
+                        "type": "VPN.SUBTOPO.300647904566"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1717708331141
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300648034514",
+                        "name": "WA-LAN-ASA0200_64.72.75.158",
+                        "type": "VPN.SUBTOPO.300648034514"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1717107407755
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-292057873088",
+                        "name": "WA-LAN-ASA0200_20.94.168.27",
+                        "type": "VPN.SUBTOPO.292057873088"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716273442088
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647907946",
+                        "name": "WA-LAN-FP0200_203.163.125.4",
+                        "type": "VPN.SUBTOPO.300647907946"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716309962631
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647900738",
+                        "name": "WA-LAN-ASA0200_62.209.37.98",
+                        "type": "VPN.SUBTOPO.300647900738"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716278286452
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647909811",
+                        "name": "WA-LAN-ASA200_63.240.11.94",
+                        "type": "VPN.SUBTOPO.300647909811"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716310264207
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-292057870848",
+                        "name": "WA-LAN-ASA0200_18.218.210.129",
+                        "type": "VPN.SUBTOPO.292057870848"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716273356845
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-292058800847",
+                        "name": "WA-LAN-ASA0200_20.12.123.226",
+                        "type": "VPN.SUBTOPO.292058800847"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716272851150
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-292057867968",
+                        "name": "WA-LAN-ASA0200_20.97.147.247",
+                        "type": "VPN.SUBTOPO.292057867968"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716273479340
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647897659",
+                        "name": "WA-LAN-ASA0200_149.97.227.154",
+                        "type": "VPN.SUBTOPO.300647897659"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716275213219
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647900959",
+                        "name": "WA-LAN-ASA0200_119.27.26.252",
+                        "type": "VPN.SUBTOPO.300647900959"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716278643871
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-292057871488",
+                        "name": "WA-LAN-ASA0200_52.25.99.11",
+                        "type": "VPN.SUBTOPO.292057871488"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716273703076
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-292059014287",
+                        "name": "WA-LAN-ASA0200_20.241.247.201",
+                        "type": "VPN.SUBTOPO.292059014287"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716273209756
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-292057868608",
+                        "name": "WA-LAN-ASA0200_20.97.151.148",
+                        "type": "VPN.SUBTOPO.292057868608"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716273516091
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-292059033476",
+                        "name": "WA-LAN-ASA0200_40.76.144.8",
+                        "type": "VPN.SUBTOPO.292059033476"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716273664957
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647908612",
+                        "name": "WA-LAN-ASA0200_195.33.161.12",
+                        "type": "VPN.SUBTOPO.300647908612"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716309882044
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-292057869248",
+                        "name": "WA-LAN-ASA0200_20.69.227.36",
+                        "type": "VPN.SUBTOPO.292057869248"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716273401737
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-300647907186",
+                        "name": "WA-LAN-ASA200_12.130.132.3",
+                        "type": "VPN.SUBTOPO.300647907186"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1718026489736
+                },
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-292057869888",
+                        "name": "WA-LAN-ASA0200_20.62.53.115",
+                        "type": "VPN.SUBTOPO.292057869888"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1716273260513
+                },
+                {
+                    "policy": {
+                        "id": "79162d28-172c-11ef-9959-89c92e087eab",
+                        "name": "WA-LAN-FPR-FW200",
+                        "type": "NGFWHA"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1718341433000
+                },
+                {
+                    "policy": {
+                        "name": "Build 388 - 2024-06-07 14:16:41",
+                        "type": "VDB"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true
+                },
+                {
+                    "policy": {
+                        "name": " lsp-rel-20240613-1638",
+                        "type": "RuleUpdate"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true
+                },
+                {
+                    "policy": {
+                        "id": "deviceConfigurationId",
+                        "type": "DeviceConfiguration"
+                    },
+                    "referredPolicyList": [
+                        {
+                            "modifiedUserInfoList": [
+                                {
+                                    "lastModifiedTime": 1718463192618,
+                                    "userName": "a-rezeh"
+                                },
+                                {
+                                    "lastModifiedTime": 1718463431254,
+                                    "userName": "apiuser"
+                                }
+                            ],
+                            "policy": {
+                                "id": "40CE2481-5D56-0ed3-0000-300647879705",
+                                "type": "PG.PLATFORM.PixInterface"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": false,
+                            "versionTimeStamp": 1718463430977
+                        },
+                        {
+                            "policy": {
+                                "id": "40CE2481-5D56-0ed3-0000-300647879918",
+                                "type": "PG.PLATFORM.NgfwInlineSetPage"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1716260242254
+                        },
+                        {
+                            "policy": {
+                                "id": "40CE2481-5D56-0ed3-0000-300647879967",
+                                "type": "PG.PLATFORM.AutomaticApplicationBypassPage"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1716260242254
+                        },
+                        {
+                            "policy": {
+                                "id": "40CE2481-5D56-0ed3-0000-300647879998",
+                                "type": "PG.PLATFORM.PixDDnsPage"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1716260242254
+                        },
+                        {
+                            "policy": {
+                                "id": "40CE2481-5D56-0ed3-0000-300647880002",
+                                "type": "PG.FIREWALL.FxosPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1716260242254
+                        },
+                        {
+                            "policy": {
+                                "id": "40CE2481-5D56-0ed3-0000-300647880009",
+                                "type": "PG.PLATFORM.NgfwNetworkVirtualizationEndPoint"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1716260242254
+                        },
+                        {
+                            "policy": {
+                                "id": "40CE2481-5D56-0ed3-0000-300647880066",
+                                "type": "PG.PLATFORM.PixDhcpdPage"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1716260242254
+                        },
+                        {
+                            "policy": {
+                                "id": "40CE2481-5D56-0ed3-0000-300647880084",
+                                "type": "PG.PLATFORM.PixDhcpRelayPage"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1716260242254
+                        },
+                        {
+                            "policy": {
+                                "id": "79162d28-172c-11ef-9959-89c92e087eab",
+                                "name": "WA-LAN-FPR-FW200",
+                                "type": "NGFWHA"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1718341433000
+                        }
+                    ],
+                    "trafficInterrupting": false,
+                    "upToDate": false,
+                    "versionTimeStamp": 0
+                }
+            ],
+            "trafficInterruption": "NO",
+            "type": "DeployableDevice",
+            "upToDate": false,
+            "version": "1718465429202"
+        },
+        {
+            "canBeDeployed": true,
+            "device": {
+                "id": "6970e8c6-d544-11e7-8908-a146ddb83fef",
+                "keepLocalEvents": false,
+                "name": "sh-lan-fpr0100",
+                "type": "SENSOR"
+            },
+            "deviceMembers": [
+                {
+                    "id": "6970e8c6-d544-11e7-8908-a146ddb83fef",
+                    "keepLocalEvents": false,
+                    "name": "sh-lan-fpr0100",
+                    "type": "SENSOR"
+                }
+            ],
+            "domain": {
+                "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                "name": "Global",
+                "type": "Domain",
+                "uuid": "e276abec-e0f2-11e3-8169-6d9ed49b625f"
+            },
+            "isDeploying": false,
+            "name": "sh-lan-fpr0100",
+            "policyStatusList": [
+                {
+                    "policy": {
+                        "id": "40CE2481-5D56-0ed3-0000-025769804026",
+                        "name": "IPS-POLICY",
+                        "type": "PG.FIREWALL.NGFWAccessControlPolicy"
+                    },
+                    "referredPolicyList": [
+                        {
+                            "modifiedUserInfoList": [
+                                {
+                                    "lastModifiedTime": 1718431310,
+                                    "userName": "admin"
+                                }
+                            ],
+                            "policy": {
+                                "id": "60fa5c2a-8668-11e7-b1f4-937711c4add3",
+                                "name": "WA-INET",
+                                "type": "IntrusionPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": false,
+                            "versionTimeStamp": 1718431310000
+                        },
+                        {
+                            "policy": {
+                                "id": "739774d0-8668-11e7-b1f4-937711c4add3",
+                                "name": "WA-DNS",
+                                "type": "DNSPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1642703130000
+                        },
+                        {
+                            "policy": {
+                                "id": "7c6f2e34-4d1c-11e7-8279-70cabc3f2080",
+                                "type": "NetworkDiscovery"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1704996267000
+                        },
+                        {
+                            "policy": {
+                                "id": "f60e2450-9251-11e7-ab98-9be6536c7014",
+                                "name": "WA-NAP",
+                                "type": "NetworkAnalysisPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1718341365000
+                        }
+                    ],
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1718260392645
+                },
+                {
+                    "policy": {
+                        "id": "2d81dbf8-d545-11e7-abcc-ee74ddb83fef",
+                        "type": "SensorPolicy"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 1513352415000
+                },
+                {
+                    "policy": {
+                        "name": "Build 388 - 2024-06-07 14:16:41",
+                        "type": "VDB"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": false
+                },
+                {
+                    "policy": {
+                        "name": " 2024-06-13-001-vrt",
+                        "type": "RuleUpdate"
+                    },
+                    "trafficInterrupting": false,
+                    "upToDate": false
+                },
+                {
+                    "policy": {
+                        "id": "deviceConfigurationId",
+                        "type": "DeviceConfiguration"
+                    },
+                    "referredPolicyList": [
+                        {
+                            "policy": {
+                                "id": "2d81dbf8-d545-11e7-abcc-ee74ddb83fef",
+                                "type": "SensorPolicy"
+                            },
+                            "trafficInterrupting": false,
+                            "upToDate": true,
+                            "versionTimeStamp": 1513352415000
+                        }
+                    ],
+                    "trafficInterrupting": false,
+                    "upToDate": true,
+                    "versionTimeStamp": 0
+                }
+            ],
+            "trafficInterruption": "NO",
+            "type": "DeployableDevice",
+            "upToDate": false,
+            "version": "1718465429202"
+        }
+    ]
+}
+
+PLAY RECAP *********************************************************************
+wa-fmc2500                 : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

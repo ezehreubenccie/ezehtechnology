@@ -1,0 +1,36 @@
+- hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+    - name: Execute 'createMultiplePortObjectGroup' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createMultiplePortObjectGroup"
+        data:
+          name: portgroup_obj1
+          objects: [
+            {
+              'id': "{{ httpports.portid1 }}", 
+              'type': 'ProtocolPortObject'
+            },
+            
+            {
+              'id': '{{ httpports.portid2 }}', 
+              'type': 'ProtocolPortObject'
+            },
+            {
+              'id': '{{ httpports.portid3 }}', 
+              'type': 'ProtocolPortObject'
+            },
+            {
+              'id': '{{ httpports.portid4 }}', 
+              'type': 'ProtocolPortObject'
+            },
+          ]
+          type: PortObjectGroup
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+

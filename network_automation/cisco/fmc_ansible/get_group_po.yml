@@ -1,0 +1,25 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+
+    - name: Execute 'getAllGroupPolicyModel' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllGroupPolicyModel"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          # filter: "{{ filter }}"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: grouppo
+
+    - debug: 
+        var: grouppo
+        

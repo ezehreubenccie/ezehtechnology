@@ -1,0 +1,24 @@
+- hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+    - name: Execute 'createFTDS2SVpnModel' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createFTDS2SVpnModel"
+        data:
+          "name": "WA-LAN-ASA0200_75.75.75.18"
+          "type": "FTDS2SVpn"
+          "topologyType": "POINT_TO_POINT"
+          "ikeV1Enabled": false
+          "ikeV2Enabled": true
+          "routeBased": true
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: vpn_topo
+
+    - debug: 
+        var: vpn_topo

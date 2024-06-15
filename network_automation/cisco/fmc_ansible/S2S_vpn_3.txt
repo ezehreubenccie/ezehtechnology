@@ -1,0 +1,582 @@
+
+PLAY [wa-fmc2500] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Get Domain UUID] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [debug] *******************************************************************
+ok: [wa-fmc2500] => {
+    "domain": [
+        {
+            "name": "Global",
+            "type": "Domain",
+            "uuid": "e276abec-e0f2-11e3-8169-6d9ed49b625f"
+        }
+    ]
+}
+
+TASK [Get S2S VPNs] ************************************************************
+ok: [wa-fmc2500]
+
+TASK [debug] *******************************************************************
+ok: [wa-fmc2500] => {
+    "s2s_vpns": [
+        {
+            "advancedSettings": {
+                "advancedIkeSetting": {
+                    "cookieChallenge": "CUSTOM",
+                    "enableAggressiveMode": false,
+                    "enableNotificationOnTunnelDisconnect": false,
+                    "identitySentToPeer": "AUTO_OR_DN",
+                    "ikeKeepaliveSettings": {
+                        "ikeKeepalive": "ENABLED",
+                        "retryInterval": 2,
+                        "threshold": 10
+                    },
+                    "peerIdentityValidation": "REQUIRED",
+                    "percentageOfSAsAllowedInNegotiation": 100,
+                    "thresholdToChallengeIncomingCookies": 50
+                },
+                "advancedIpsecSetting": {
+                    "enableFragmentationBeforeEncryption": true,
+                    "maximumTransmissionUnitAging": {
+                        "enabled": false
+                    }
+                },
+                "advancedTunnelSetting": {
+                    "bypassAccessControlTrafficForDecryptedTraffic": true,
+                    "certificateMapSettings": {
+                        "useCertMapConfiguredInEndpointToDetermineTunnel": false,
+                        "useCertificateOuToDetermineTunnel": true,
+                        "useIkeIdentityOuToDetermineTunnel": true,
+                        "usePeerIpAddressToDetermineTunnel": true
+                    },
+                    "enableSpokeToSpokeConnectivityThroughHub": false,
+                    "natKeepaliveMessageTraversal": {
+                        "enabled": true,
+                        "intervalSeconds": 20
+                    }
+                },
+                "id": "005056A9-7483-0ed3-0000-012884902864",
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604412838/advancedSettings/005056A9-7483-0ed3-0000-012884902864"
+                },
+                "type": "AdvancedSetting"
+            },
+            "endpoints": {
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604412838/endpoints"
+                },
+                "refType": "list",
+                "type": "EndPoint"
+            },
+            "id": "40CE2481-5D56-0ed3-0000-081604412838",
+            "ikeSettings": {
+                "id": "005056A9-7483-0ed3-0000-012884902862",
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604412838/ikesettings/005056A9-7483-0ed3-0000-012884902862"
+                },
+                "type": "IkeSetting"
+            },
+            "ikeV1Enabled": false,
+            "ikeV2Enabled": true,
+            "ipsecSettings": {
+                "cryptoMapType": "STATIC",
+                "doNotFragmentPolicy": "NONE",
+                "enableRRI": false,
+                "enableSaStrengthEnforcement": false,
+                "id": "005056A9-7483-0ed3-0000-012884902863",
+                "ikeV2IpsecProposal": [
+                    {
+                        "id": "40CE2481-5D56-0ed3-0000-081604414584",
+                        "name": "IKEV2-IPSec-AESSHA256",
+                        "type": "IKEv2IPsecProposal"
+                    }
+                ],
+                "ikeV2Mode": "TUNNEL",
+                "lifetimeKilobytes": 4608000,
+                "lifetimeSeconds": 28800,
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604412838/ipsecsettings/005056A9-7483-0ed3-0000-012884902863"
+                },
+                "perfectForwardSecrecy": {
+                    "enabled": false
+                },
+                "tfcPackets": {
+                    "burstBytes": 0,
+                    "enabled": false,
+                    "payloadBytes": 0,
+                    "timeoutSeconds": 0
+                },
+                "type": "IPSecSetting",
+                "validateIncomingIcmpErrorMessage": false
+            },
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604412838"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "name": "a-rezeh"
+                },
+                "timestamp": 1716309821890
+            },
+            "name": "12.130.132.3",
+            "routeBased": false,
+            "topologyType": "POINT_TO_POINT",
+            "type": "FTDS2SVpn"
+        },
+        {
+            "advancedSettings": {
+                "advancedIkeSetting": {
+                    "cookieChallenge": "CUSTOM",
+                    "enableAggressiveMode": false,
+                    "enableNotificationOnTunnelDisconnect": false,
+                    "identitySentToPeer": "AUTO_OR_DN",
+                    "ikeKeepaliveSettings": {
+                        "ikeKeepalive": "ENABLED",
+                        "retryInterval": 2,
+                        "threshold": 10
+                    },
+                    "peerIdentityValidation": "REQUIRED",
+                    "percentageOfSAsAllowedInNegotiation": 100,
+                    "thresholdToChallengeIncomingCookies": 50
+                },
+                "advancedIpsecSetting": {
+                    "enableFragmentationBeforeEncryption": true,
+                    "maximumTransmissionUnitAging": {
+                        "enabled": false
+                    }
+                },
+                "advancedTunnelSetting": {
+                    "bypassAccessControlTrafficForDecryptedTraffic": false,
+                    "certificateMapSettings": {
+                        "useCertMapConfiguredInEndpointToDetermineTunnel": false,
+                        "useCertificateOuToDetermineTunnel": true,
+                        "useIkeIdentityOuToDetermineTunnel": true,
+                        "usePeerIpAddressToDetermineTunnel": true
+                    },
+                    "enableSpokeToSpokeConnectivityThroughHub": false,
+                    "natKeepaliveMessageTraversal": {
+                        "enabled": true,
+                        "intervalSeconds": 20
+                    }
+                },
+                "id": "005056A9-7483-0ed3-0000-012884902864",
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604412930/advancedSettings/005056A9-7483-0ed3-0000-012884902864"
+                },
+                "type": "AdvancedSetting"
+            },
+            "description": " ",
+            "endpoints": {
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604412930/endpoints"
+                },
+                "refType": "list",
+                "type": "EndPoint"
+            },
+            "id": "40CE2481-5D56-0ed3-0000-081604412930",
+            "ikeSettings": {
+                "id": "005056A9-7483-0ed3-0000-012884902862",
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604412930/ikesettings/005056A9-7483-0ed3-0000-012884902862"
+                },
+                "type": "IkeSetting"
+            },
+            "ikeV1Enabled": false,
+            "ikeV2Enabled": true,
+            "ipsecSettings": {
+                "cryptoMapType": "STATIC",
+                "doNotFragmentPolicy": "NONE",
+                "enableRRI": false,
+                "enableSaStrengthEnforcement": false,
+                "id": "005056A9-7483-0ed3-0000-012884902863",
+                "ikeV2IpsecProposal": [
+                    {
+                        "id": "40CE2481-5D56-0ed3-0000-081604414584",
+                        "name": "IKEV2-IPSec-AESSHA256",
+                        "type": "IKEv2IPsecProposal"
+                    }
+                ],
+                "ikeV2Mode": "TUNNEL",
+                "lifetimeKilobytes": 4608000,
+                "lifetimeSeconds": 28800,
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604412930/ipsecsettings/005056A9-7483-0ed3-0000-012884902863"
+                },
+                "perfectForwardSecrecy": {
+                    "enabled": true,
+                    "modulusGroup": 21
+                },
+                "tfcPackets": {
+                    "burstBytes": 0,
+                    "enabled": false,
+                    "payloadBytes": 0,
+                    "timeoutSeconds": 0
+                },
+                "type": "IPSecSetting",
+                "validateIncomingIcmpErrorMessage": false
+            },
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604412930"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "name": "fbarook"
+                },
+                "timestamp": 1625579420123
+            },
+            "name": "195.33.161.12",
+            "routeBased": false,
+            "topologyType": "POINT_TO_POINT",
+            "type": "FTDS2SVpn"
+        },
+        {
+            "advancedSettings": {
+                "advancedIkeSetting": {
+                    "cookieChallenge": "CUSTOM",
+                    "enableAggressiveMode": false,
+                    "enableNotificationOnTunnelDisconnect": false,
+                    "identitySentToPeer": "AUTO_OR_DN",
+                    "ikeKeepaliveSettings": {
+                        "ikeKeepalive": "ENABLED",
+                        "retryInterval": 2,
+                        "threshold": 10
+                    },
+                    "peerIdentityValidation": "REQUIRED",
+                    "percentageOfSAsAllowedInNegotiation": 100,
+                    "thresholdToChallengeIncomingCookies": 50
+                },
+                "advancedIpsecSetting": {
+                    "enableFragmentationBeforeEncryption": true,
+                    "maximumTransmissionUnitAging": {
+                        "enabled": false
+                    }
+                },
+                "advancedTunnelSetting": {
+                    "bypassAccessControlTrafficForDecryptedTraffic": false,
+                    "certificateMapSettings": {
+                        "useCertMapConfiguredInEndpointToDetermineTunnel": false,
+                        "useCertificateOuToDetermineTunnel": true,
+                        "useIkeIdentityOuToDetermineTunnel": true,
+                        "usePeerIpAddressToDetermineTunnel": true
+                    },
+                    "enableSpokeToSpokeConnectivityThroughHub": false,
+                    "natKeepaliveMessageTraversal": {
+                        "enabled": true,
+                        "intervalSeconds": 20
+                    }
+                },
+                "id": "005056A9-7483-0ed3-0000-012884902864",
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604410257/advancedSettings/005056A9-7483-0ed3-0000-012884902864"
+                },
+                "type": "AdvancedSetting"
+            },
+            "description": " ",
+            "endpoints": {
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604410257/endpoints"
+                },
+                "refType": "list",
+                "type": "EndPoint"
+            },
+            "id": "40CE2481-5D56-0ed3-0000-081604410257",
+            "ikeSettings": {
+                "id": "005056A9-7483-0ed3-0000-012884902862",
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604410257/ikesettings/005056A9-7483-0ed3-0000-012884902862"
+                },
+                "type": "IkeSetting"
+            },
+            "ikeV1Enabled": false,
+            "ikeV2Enabled": true,
+            "ipsecSettings": {
+                "cryptoMapType": "STATIC",
+                "doNotFragmentPolicy": "NONE",
+                "enableRRI": false,
+                "enableSaStrengthEnforcement": false,
+                "id": "005056A9-7483-0ed3-0000-012884902863",
+                "ikeV2IpsecProposal": [
+                    {
+                        "id": "40CE2481-5D56-0ed3-0000-081604414584",
+                        "name": "IKEV2-IPSec-AESSHA256",
+                        "type": "IKEv2IPsecProposal"
+                    }
+                ],
+                "ikeV2Mode": "TUNNEL",
+                "lifetimeKilobytes": 0,
+                "lifetimeSeconds": 86400,
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604410257/ipsecsettings/005056A9-7483-0ed3-0000-012884902863"
+                },
+                "perfectForwardSecrecy": {
+                    "enabled": false
+                },
+                "tfcPackets": {
+                    "burstBytes": 0,
+                    "enabled": false,
+                    "payloadBytes": 0,
+                    "timeoutSeconds": 0
+                },
+                "type": "IPSecSetting",
+                "validateIncomingIcmpErrorMessage": false
+            },
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604410257"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "name": "a-rezeh"
+                },
+                "timestamp": 1707261887586
+            },
+            "name": "198.52.89.254",
+            "routeBased": false,
+            "topologyType": "POINT_TO_POINT",
+            "type": "FTDS2SVpn"
+        },
+        {
+            "advancedSettings": {
+                "advancedIkeSetting": {
+                    "cookieChallenge": "CUSTOM",
+                    "enableAggressiveMode": false,
+                    "enableNotificationOnTunnelDisconnect": false,
+                    "identitySentToPeer": "AUTO_OR_DN",
+                    "ikeKeepaliveSettings": {
+                        "ikeKeepalive": "ENABLED",
+                        "retryInterval": 2,
+                        "threshold": 10
+                    },
+                    "peerIdentityValidation": "REQUIRED",
+                    "percentageOfSAsAllowedInNegotiation": 100,
+                    "thresholdToChallengeIncomingCookies": 50
+                },
+                "advancedIpsecSetting": {
+                    "enableFragmentationBeforeEncryption": true,
+                    "maximumTransmissionUnitAging": {
+                        "enabled": false
+                    }
+                },
+                "advancedTunnelSetting": {
+                    "bypassAccessControlTrafficForDecryptedTraffic": false,
+                    "certificateMapSettings": {
+                        "useCertMapConfiguredInEndpointToDetermineTunnel": false,
+                        "useCertificateOuToDetermineTunnel": true,
+                        "useIkeIdentityOuToDetermineTunnel": true,
+                        "usePeerIpAddressToDetermineTunnel": true
+                    },
+                    "enableSpokeToSpokeConnectivityThroughHub": false,
+                    "natKeepaliveMessageTraversal": {
+                        "enabled": true,
+                        "intervalSeconds": 20
+                    }
+                },
+                "id": "005056A9-7483-0ed3-0000-012884902864",
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604413877/advancedSettings/005056A9-7483-0ed3-0000-012884902864"
+                },
+                "type": "AdvancedSetting"
+            },
+            "description": " ",
+            "endpoints": {
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604413877/endpoints"
+                },
+                "refType": "list",
+                "type": "EndPoint"
+            },
+            "id": "40CE2481-5D56-0ed3-0000-081604413877",
+            "ikeSettings": {
+                "id": "005056A9-7483-0ed3-0000-012884902862",
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604413877/ikesettings/005056A9-7483-0ed3-0000-012884902862"
+                },
+                "type": "IkeSetting"
+            },
+            "ikeV1Enabled": false,
+            "ikeV2Enabled": true,
+            "ipsecSettings": {
+                "cryptoMapType": "STATIC",
+                "doNotFragmentPolicy": "NONE",
+                "enableRRI": false,
+                "enableSaStrengthEnforcement": false,
+                "id": "005056A9-7483-0ed3-0000-012884902863",
+                "ikeV2IpsecProposal": [
+                    {
+                        "id": "40CE2481-5D56-0ed3-0000-081604414584",
+                        "name": "IKEV2-IPSec-AESSHA256",
+                        "type": "IKEv2IPsecProposal"
+                    }
+                ],
+                "ikeV2Mode": "TUNNEL",
+                "lifetimeKilobytes": 4608000,
+                "lifetimeSeconds": 28800,
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604413877/ipsecsettings/005056A9-7483-0ed3-0000-012884902863"
+                },
+                "perfectForwardSecrecy": {
+                    "enabled": false
+                },
+                "tfcPackets": {
+                    "burstBytes": 0,
+                    "enabled": false,
+                    "payloadBytes": 0,
+                    "timeoutSeconds": 0
+                },
+                "type": "IPSecSetting",
+                "validateIncomingIcmpErrorMessage": false
+            },
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604413877"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "name": "fbarook"
+                },
+                "timestamp": 1625579575690
+            },
+            "name": "203.163.125.4",
+            "routeBased": false,
+            "topologyType": "POINT_TO_POINT",
+            "type": "FTDS2SVpn"
+        },
+        {
+            "advancedSettings": {
+                "advancedIkeSetting": {
+                    "cookieChallenge": "CUSTOM",
+                    "enableAggressiveMode": false,
+                    "enableNotificationOnTunnelDisconnect": false,
+                    "identitySentToPeer": "AUTO_OR_DN",
+                    "ikeKeepaliveSettings": {
+                        "ikeKeepalive": "ENABLED",
+                        "retryInterval": 2,
+                        "threshold": 10
+                    },
+                    "peerIdentityValidation": "REQUIRED",
+                    "percentageOfSAsAllowedInNegotiation": 100,
+                    "thresholdToChallengeIncomingCookies": 50
+                },
+                "advancedIpsecSetting": {
+                    "enableFragmentationBeforeEncryption": true,
+                    "maximumTransmissionUnitAging": {
+                        "enabled": false
+                    }
+                },
+                "advancedTunnelSetting": {
+                    "bypassAccessControlTrafficForDecryptedTraffic": false,
+                    "certificateMapSettings": {
+                        "useCertMapConfiguredInEndpointToDetermineTunnel": false,
+                        "useCertificateOuToDetermineTunnel": true,
+                        "useIkeIdentityOuToDetermineTunnel": true,
+                        "usePeerIpAddressToDetermineTunnel": true
+                    },
+                    "enableSpokeToSpokeConnectivityThroughHub": false,
+                    "natKeepaliveMessageTraversal": {
+                        "enabled": true,
+                        "intervalSeconds": 20
+                    }
+                },
+                "id": "005056A9-7483-0ed3-0000-012884902864",
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604413973/advancedSettings/005056A9-7483-0ed3-0000-012884902864"
+                },
+                "type": "AdvancedSetting"
+            },
+            "description": " ",
+            "endpoints": {
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604413973/endpoints"
+                },
+                "refType": "list",
+                "type": "EndPoint"
+            },
+            "id": "40CE2481-5D56-0ed3-0000-081604413973",
+            "ikeSettings": {
+                "id": "005056A9-7483-0ed3-0000-012884902862",
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604413973/ikesettings/005056A9-7483-0ed3-0000-012884902862"
+                },
+                "type": "IkeSetting"
+            },
+            "ikeV1Enabled": false,
+            "ikeV2Enabled": true,
+            "ipsecSettings": {
+                "cryptoMapType": "STATIC",
+                "doNotFragmentPolicy": "NONE",
+                "enableRRI": false,
+                "enableSaStrengthEnforcement": false,
+                "id": "005056A9-7483-0ed3-0000-012884902863",
+                "ikeV2IpsecProposal": [
+                    {
+                        "id": "40CE2481-5D56-0ed3-0000-081604414584",
+                        "name": "IKEV2-IPSec-AESSHA256",
+                        "type": "IKEv2IPsecProposal"
+                    }
+                ],
+                "ikeV2Mode": "TUNNEL",
+                "lifetimeKilobytes": 4608000,
+                "lifetimeSeconds": 28800,
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604413973/ipsecsettings/005056A9-7483-0ed3-0000-012884902863"
+                },
+                "perfectForwardSecrecy": {
+                    "enabled": false
+                },
+                "tfcPackets": {
+                    "burstBytes": 0,
+                    "enabled": false,
+                    "payloadBytes": 0,
+                    "timeoutSeconds": 0
+                },
+                "type": "IPSecSetting",
+                "validateIncomingIcmpErrorMessage": false
+            },
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/ftds2svpns/40CE2481-5D56-0ed3-0000-081604413973"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "lastUser": {
+                    "name": "admin"
+                },
+                "timestamp": 1635513565943
+            },
+            "name": "211.144.223.252",
+            "routeBased": false,
+            "topologyType": "POINT_TO_POINT",
+            "type": "FTDS2SVpn"
+        }
+    ]
+}
+
+PLAY RECAP *********************************************************************
+wa-fmc2500                 : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

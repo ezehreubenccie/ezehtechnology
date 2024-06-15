@@ -1,0 +1,21 @@
+- hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+
+    - name: Execute 'getExtendedAccessListModel' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getExtendedAccessListModel"
+        path_params:
+          objectId: "{{ object_id }}"
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: exacl_obj
+
+    - name: print
+      debug:
+        var: exacl_obj
+

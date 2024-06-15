@@ -1,0 +1,689 @@
+
+PLAY [wa-fmc2500] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Get Domain UUID] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Execute 'getAllDevice' operation] ****************************************
+ok: [wa-fmc2500]
+
+TASK [debug] *******************************************************************
+ok: [wa-fmc2500] => {
+    "devices": [
+        {
+            "accessPolicy": {
+                "id": "40ce2481-5d56-0ed3-0000-176094395451",
+                "name": "WC-FTD-ACP",
+                "type": "AccessPolicy"
+            },
+            "advanced": {
+                "enableOGS": false
+            },
+            "analyticsOnly": false,
+            "description": "NOT SUPPORTED",
+            "deviceGroup": {
+                "id": "e99bf994-e351-11ec-891b-ea962fa5b199",
+                "name": "WC-FTD",
+                "type": "DeviceGroup"
+            },
+            "ftdMode": "ROUTED",
+            "healthMessage": "0.2% of 506.2M used",
+            "healthPolicy": {
+                "id": "ab49235c-8658-11e7-8c5a-d42f8666362d",
+                "name": "UTD-HEALTH",
+                "type": "HealthPolicy"
+            },
+            "healthStatus": "green",
+            "hostName": "10.198.219.49",
+            "id": "fc952606-e34c-11ec-a2ed-f7c70bd2ec99",
+            "isConnected": true,
+            "keepLocalEvents": false,
+            "license_caps": [
+                "BASE",
+                "THREAT"
+            ],
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/fc952606-e34c-11ec-a2ed-f7c70bd2ec99"
+            },
+            "metadata": {
+                "chassisData": {
+                    "chassisSerialNo": "JMX2618X005",
+                    "chassisUrl": "https://wc-lan-fpr-sw0202.uptodate.com:443//",
+                    "securityModuleNo": 1
+                },
+                "clusterBootstrapSupported": false,
+                "containerDetails": {
+                    "id": "524cfa8a-e8dc-11ec-9da0-b7c58494cb0a",
+                    "name": "wc-lan-fpr-ha",
+                    "role": "SECONDARY",
+                    "status": "Active",
+                    "type": "DeviceHAPair"
+                },
+                "deviceSerialNumber": "FLM26020EC1",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "inventoryData": {
+                    "cpuCores": "1 CPU (24 cores)",
+                    "cpuType": "CPU Xeon 4100/6100/8100 series 2100 MHz",
+                    "memoryInMB": "48719 MB RAM"
+                },
+                "isMultiInstance": false,
+                "isPartOfContainer": true,
+                "lspVersion": "lsp-rel-20240529-1754",
+                "readOnly": {
+                    "state": false
+                },
+                "snortVersion": "3.1.21.501-27",
+                "vdbVersion": "Build 387 - 2024-05-24 19:34:42.0"
+            },
+            "model": "Cisco Firepower 4112 Threat Defense",
+            "modelId": "N",
+            "modelNumber": "76",
+            "modelType": "Sensor",
+            "name": "wc-lan-fpr-sw0202",
+            "prohibitPacketTransfer": false,
+            "snortEngine": "SNORT3",
+            "sw_version": "7.2.5.2",
+            "type": "Device"
+        },
+        {
+            "accessPolicy": {
+                "id": "40ce2481-5d56-0ed3-0000-025769804026",
+                "name": "IPS-POLICY",
+                "type": "AccessPolicy"
+            },
+            "advanced": {
+                "enableOGS": false
+            },
+            "analyticsOnly": false,
+            "deploymentStatus": "DEPLOYMENT_PENDING",
+            "description": "NOT SUPPORTED",
+            "deviceGroup": {
+                "id": "1a948850-2465-11e8-a6c9-9aafe39ed4e5",
+                "name": "PR",
+                "type": "DeviceGroup"
+            },
+            "healthMessage": "2.2% of 15.0M used",
+            "healthPolicy": {
+                "id": "ab49235c-8658-11e7-8c5a-d42f8666362d",
+                "name": "UTD-HEALTH",
+                "type": "HealthPolicy"
+            },
+            "healthStatus": "green",
+            "hostName": "10.25.54.250",
+            "id": "612cc62c-f505-11e7-82bf-99a352eafba0",
+            "isConnected": true,
+            "keepLocalEvents": false,
+            "license_caps": [
+                "CONTROL",
+                "PROTECT"
+            ],
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/612cc62c-f505-11e7-82bf-99a352eafba0"
+            },
+            "metadata": {
+                "clusterBootstrapSupported": false,
+                "deviceSerialNumber": "FCH2145JADW",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "readOnly": {
+                    "state": false
+                },
+                "snortVersion": "2.9.20-6102",
+                "vdbVersion": "Build 387 - 2024-05-24 19:34:42.0"
+            },
+            "model": "ASA5555",
+            "modelId": "I",
+            "modelNumber": "72",
+            "modelType": "Sensor",
+            "name": "pr-lan-fpr0100",
+            "sw_version": "6.6.1",
+            "type": "Device"
+        },
+        {
+            "accessPolicy": {
+                "id": "40ce2481-5d56-0ed3-0000-025769804026",
+                "name": "IPS-POLICY",
+                "type": "AccessPolicy"
+            },
+            "advanced": {
+                "enableOGS": false
+            },
+            "analyticsOnly": false,
+            "deploymentStatus": "DEPLOYMENT_PENDING",
+            "description": "NOT SUPPORTED",
+            "deviceGroup": {
+                "id": "79e70ea2-e1a5-11e7-9b82-e754ffd95c03",
+                "name": "SH",
+                "type": "DeviceGroup"
+            },
+            "healthMessage": "2.2% of 15.0M used",
+            "healthPolicy": {
+                "id": "ab49235c-8658-11e7-8c5a-d42f8666362d",
+                "name": "UTD-HEALTH",
+                "type": "HealthPolicy"
+            },
+            "healthStatus": "green",
+            "hostName": "10.35.54.250",
+            "id": "6970e8c6-d544-11e7-8908-a146ddb83fef",
+            "isConnected": true,
+            "keepLocalEvents": false,
+            "license_caps": [
+                "CONTROL",
+                "PROTECT"
+            ],
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/6970e8c6-d544-11e7-8908-a146ddb83fef"
+            },
+            "metadata": {
+                "clusterBootstrapSupported": false,
+                "deviceSerialNumber": "FCH21367PV0",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "readOnly": {
+                    "state": false
+                },
+                "snortVersion": "2.9.20-6102",
+                "vdbVersion": "Build 387 - 2024-05-24 19:34:42.0"
+            },
+            "model": "ASA5555",
+            "modelId": "I",
+            "modelNumber": "72",
+            "modelType": "Sensor",
+            "name": "sh-lan-fpr0100",
+            "sw_version": "6.6.1",
+            "type": "Device"
+        },
+        {
+            "accessPolicy": {
+                "id": "40ce2481-5d56-0ed3-0000-292057859955",
+                "name": "WA-LAN-FPR-INET",
+                "type": "AccessPolicy"
+            },
+            "advanced": {
+                "enableOGS": false
+            },
+            "analyticsOnly": false,
+            "deploymentStatus": "DEPLOYED",
+            "description": "NOT SUPPORTED",
+            "deviceGroup": {
+                "id": "b1927f94-b633-11ee-b109-935b856363f7",
+                "name": "WA-FTD-INET",
+                "type": "DeviceGroup"
+            },
+            "ftdMode": "ROUTED",
+            "healthMessage": "High availability status is normal",
+            "healthPolicy": {
+                "id": "ab49235c-8658-11e7-8c5a-d42f8666362d",
+                "name": "UTD-HEALTH",
+                "type": "HealthPolicy"
+            },
+            "healthStatus": "green",
+            "hostName": "10.198.208.140",
+            "id": "a6eddfc4-0bd5-11ee-9960-a6db2169469d",
+            "isConnected": true,
+            "keepLocalEvents": false,
+            "license_caps": [
+                "BASE",
+                "THREAT"
+            ],
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/a6eddfc4-0bd5-11ee-9960-a6db2169469d"
+            },
+            "metadata": {
+                "clusterBootstrapSupported": true,
+                "containerDetails": {
+                    "id": "f95144b4-bb97-11ee-aff3-f841316dd395",
+                    "name": "WA-LAN-FPR-FW100",
+                    "role": "PRIMARY",
+                    "status": "Active",
+                    "type": "DeviceHAPair"
+                },
+                "deviceSerialNumber": "FJZ2724ARZR",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "inventoryData": {
+                    "cpuCores": "1 CPU (24 cores)",
+                    "cpuType": "CPU Ryzen Zen 2 2900 MHz",
+                    "memoryInMB": "16384 MB RAM"
+                },
+                "isMultiInstance": false,
+                "isPartOfContainer": true,
+                "lspVersion": "lsp-rel-20240529-1754",
+                "readOnly": {
+                    "state": false
+                },
+                "snortVersion": "3.1.21.501-27",
+                "vdbVersion": "Build 387 - 2024-05-24 19:34:42.0"
+            },
+            "model": "Cisco Secure Firewall 3110 Threat Defense",
+            "modelId": "A",
+            "modelNumber": "80",
+            "modelType": "Sensor",
+            "name": "WA-LAN-FPR-FW100-1",
+            "prohibitPacketTransfer": true,
+            "snortEngine": "SNORT3",
+            "sw_version": "7.2.5.2",
+            "type": "Device"
+        },
+        {
+            "accessPolicy": {
+                "id": "40ce2481-5d56-0ed3-0000-025769804026",
+                "name": "IPS-POLICY",
+                "type": "AccessPolicy"
+            },
+            "advanced": {
+                "enableOGS": false
+            },
+            "analyticsOnly": false,
+            "deploymentStatus": "DEPLOYMENT_PENDING",
+            "description": "NOT SUPPORTED",
+            "deviceGroup": {
+                "id": "79e70ea2-e1a5-11e7-9b82-e754ffd95c03",
+                "name": "SH",
+                "type": "DeviceGroup"
+            },
+            "healthMessage": "2.2% of 15.0M used",
+            "healthPolicy": {
+                "id": "ab49235c-8658-11e7-8c5a-d42f8666362d",
+                "name": "UTD-HEALTH",
+                "type": "HealthPolicy"
+            },
+            "healthStatus": "green",
+            "hostName": "10.35.54.251",
+            "id": "2558aa92-d54a-11e7-b1fa-9339da4b6af9",
+            "isConnected": true,
+            "keepLocalEvents": false,
+            "license_caps": [
+                "CONTROL",
+                "PROTECT"
+            ],
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/2558aa92-d54a-11e7-b1fa-9339da4b6af9"
+            },
+            "metadata": {
+                "clusterBootstrapSupported": false,
+                "deviceSerialNumber": "FCH21367PQ8",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "readOnly": {
+                    "state": false
+                },
+                "snortVersion": "2.9.20-6102",
+                "vdbVersion": "Build 387 - 2024-05-24 19:34:42.0"
+            },
+            "model": "ASA5555",
+            "modelId": "I",
+            "modelNumber": "72",
+            "modelType": "Sensor",
+            "name": "sh-lan-fpr0200",
+            "sw_version": "6.6.1",
+            "type": "Device"
+        },
+        {
+            "accessPolicy": {
+                "id": "40ce2481-5d56-0ed3-0000-292057865814",
+                "name": "WA-LAN-FPR-S2S",
+                "type": "AccessPolicy"
+            },
+            "advanced": {
+                "enableOGS": false
+            },
+            "analyticsOnly": false,
+            "deploymentStatus": "DEPLOYED",
+            "description": "NOT SUPPORTED",
+            "deviceGroup": {
+                "id": "55b2a354-1707-11ef-8d90-af0d21f9e35e",
+                "name": "WA-LAN-FPR-FW200",
+                "type": "DeviceGroup"
+            },
+            "ftdMode": "ROUTED",
+            "healthMessage": "High availability status is normal",
+            "healthPolicy": {
+                "id": "ab49235c-8658-11e7-8c5a-d42f8666362d",
+                "name": "UTD-HEALTH",
+                "type": "HealthPolicy"
+            },
+            "healthStatus": "green",
+            "hostName": "10.198.208.142",
+            "id": "87f71aea-0bda-11ee-b635-b0d44974184b",
+            "isConnected": true,
+            "keepLocalEvents": false,
+            "license_caps": [
+                "BASE",
+                "THREAT"
+            ],
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/87f71aea-0bda-11ee-b635-b0d44974184b"
+            },
+            "metadata": {
+                "clusterBootstrapSupported": true,
+                "containerDetails": {
+                    "id": "79162d28-172c-11ef-9959-89c92e087eab",
+                    "name": "WA-LAN-FPR-FW200",
+                    "role": "PRIMARY",
+                    "status": "Active",
+                    "type": "DeviceHAPair"
+                },
+                "deviceSerialNumber": "FJZ2724AS8S",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "inventoryData": {
+                    "cpuCores": "1 CPU (24 cores)",
+                    "cpuType": "CPU Ryzen Zen 2 2900 MHz",
+                    "memoryInMB": "16384 MB RAM"
+                },
+                "isMultiInstance": false,
+                "isPartOfContainer": true,
+                "lspVersion": "lsp-rel-20240529-1754",
+                "readOnly": {
+                    "state": false
+                },
+                "snortVersion": "3.1.21.501-27",
+                "vdbVersion": "Build 387 - 2024-05-24 19:34:42.0"
+            },
+            "model": "Cisco Secure Firewall 3110 Threat Defense",
+            "modelId": "A",
+            "modelNumber": "80",
+            "modelType": "Sensor",
+            "name": "WA-LAN-FPR-0200-1",
+            "prohibitPacketTransfer": true,
+            "snortEngine": "SNORT3",
+            "sw_version": "7.2.5.2",
+            "type": "Device"
+        },
+        {
+            "accessPolicy": {
+                "id": "40ce2481-5d56-0ed3-0000-025769804026",
+                "name": "IPS-POLICY",
+                "type": "AccessPolicy"
+            },
+            "advanced": {
+                "enableOGS": false
+            },
+            "analyticsOnly": false,
+            "deploymentStatus": "DEPLOYMENT_PENDING",
+            "description": "NOT SUPPORTED",
+            "deviceGroup": {
+                "id": "64b60b5a-8656-11e7-af51-b0de462a5731",
+                "name": "NY1",
+                "type": "DeviceGroup"
+            },
+            "healthMessage": "2.2% of 15.0M used",
+            "healthPolicy": {
+                "id": "ab49235c-8658-11e7-8c5a-d42f8666362d",
+                "name": "UTD-HEALTH",
+                "type": "HealthPolicy"
+            },
+            "healthStatus": "green",
+            "hostName": "10.10.54.250",
+            "id": "0a493c0e-9304-11ec-a2e5-ad4e46de4dc7",
+            "isConnected": true,
+            "keepLocalEvents": false,
+            "license_caps": [
+                "CONTROL",
+                "PROTECT"
+            ],
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/0a493c0e-9304-11ec-a2e5-ad4e46de4dc7"
+            },
+            "metadata": {
+                "clusterBootstrapSupported": false,
+                "deviceSerialNumber": "FCH18037VC8",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "readOnly": {
+                    "state": false
+                },
+                "snortVersion": "2.9.20-6102",
+                "vdbVersion": "Build 387 - 2024-05-24 19:34:42.0"
+            },
+            "model": "ASA5555",
+            "modelId": "I",
+            "modelNumber": "72",
+            "modelType": "Sensor",
+            "name": "sb-lan-fpr0100",
+            "sw_version": "6.6.1",
+            "type": "Device"
+        },
+        {
+            "accessPolicy": {
+                "id": "40ce2481-5d56-0ed3-0000-025769804026",
+                "name": "IPS-POLICY",
+                "type": "AccessPolicy"
+            },
+            "advanced": {
+                "enableOGS": false
+            },
+            "analyticsOnly": false,
+            "deploymentStatus": "DEPLOYMENT_PENDING",
+            "description": "NOT SUPPORTED",
+            "deviceGroup": {
+                "id": "1a948850-2465-11e8-a6c9-9aafe39ed4e5",
+                "name": "PR",
+                "type": "DeviceGroup"
+            },
+            "healthMessage": "2.2% of 15.0M used",
+            "healthPolicy": {
+                "id": "ab49235c-8658-11e7-8c5a-d42f8666362d",
+                "name": "UTD-HEALTH",
+                "type": "HealthPolicy"
+            },
+            "healthStatus": "green",
+            "hostName": "10.25.54.251",
+            "id": "3e6f9864-f50d-11e7-a621-a666aef4b4d3",
+            "isConnected": true,
+            "keepLocalEvents": false,
+            "license_caps": [
+                "CONTROL",
+                "PROTECT"
+            ],
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/3e6f9864-f50d-11e7-a621-a666aef4b4d3"
+            },
+            "metadata": {
+                "clusterBootstrapSupported": false,
+                "deviceSerialNumber": "FCH2145JAE7",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "readOnly": {
+                    "state": false
+                },
+                "snortVersion": "2.9.20-6102",
+                "vdbVersion": "Build 387 - 2024-05-24 19:34:42.0"
+            },
+            "model": "ASA5555",
+            "modelId": "I",
+            "modelNumber": "72",
+            "modelType": "Sensor",
+            "name": "pr-lan-fpr0200",
+            "sw_version": "6.6.1",
+            "type": "Device"
+        },
+        {
+            "accessPolicy": {
+                "id": "40ce2481-5d56-0ed3-0000-292057865814",
+                "name": "WA-LAN-FPR-S2S",
+                "type": "AccessPolicy"
+            },
+            "advanced": {
+                "enableOGS": false
+            },
+            "analyticsOnly": false,
+            "deploymentStatus": "DEPLOYED",
+            "description": "NOT SUPPORTED",
+            "deviceGroup": {
+                "id": "55b2a354-1707-11ef-8d90-af0d21f9e35e",
+                "name": "WA-LAN-FPR-FW200",
+                "type": "DeviceGroup"
+            },
+            "ftdMode": "ROUTED",
+            "healthMessage": "High availability status is normal",
+            "healthPolicy": {
+                "id": "ab49235c-8658-11e7-8c5a-d42f8666362d",
+                "name": "UTD-HEALTH",
+                "type": "HealthPolicy"
+            },
+            "healthStatus": "green",
+            "hostName": "10.198.208.143",
+            "id": "e8d5077a-0bd8-11ee-a0f4-d86d5df5a9d6",
+            "isConnected": true,
+            "keepLocalEvents": false,
+            "license_caps": [
+                "BASE",
+                "THREAT"
+            ],
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/e8d5077a-0bd8-11ee-a0f4-d86d5df5a9d6"
+            },
+            "metadata": {
+                "clusterBootstrapSupported": true,
+                "containerDetails": {
+                    "id": "79162d28-172c-11ef-9959-89c92e087eab",
+                    "name": "WA-LAN-FPR-FW200",
+                    "role": "SECONDARY",
+                    "status": "Standby",
+                    "type": "DeviceHAPair"
+                },
+                "deviceSerialNumber": "FJZ2724ARBR",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "inventoryData": {
+                    "cpuCores": "1 CPU (24 cores)",
+                    "cpuType": "CPU Ryzen Zen 2 2900 MHz",
+                    "memoryInMB": "16384 MB RAM"
+                },
+                "isMultiInstance": false,
+                "isPartOfContainer": true,
+                "lspVersion": "lsp-rel-20240529-1754",
+                "readOnly": {
+                    "state": false
+                },
+                "snortVersion": "3.1.21.501-27",
+                "vdbVersion": "Build 387 - 2024-05-24 19:34:42.0"
+            },
+            "model": "Cisco Secure Firewall 3110 Threat Defense",
+            "modelId": "A",
+            "modelNumber": "80",
+            "modelType": "Sensor",
+            "name": "WA-LAN-FPR-0200-2",
+            "prohibitPacketTransfer": true,
+            "snortEngine": "SNORT3",
+            "sw_version": "7.2.5.2",
+            "type": "Device"
+        },
+        {
+            "accessPolicy": {
+                "id": "40ce2481-5d56-0ed3-0000-176094385740",
+                "name": "EU-FTD-ACP",
+                "type": "AccessPolicy"
+            },
+            "advanced": {
+                "enableOGS": false
+            },
+            "analyticsOnly": false,
+            "description": "NOT SUPPORTED",
+            "deviceGroup": {
+                "id": "e34792ba-e351-11ec-891b-ea962fa5b199",
+                "name": "EU-FTD",
+                "type": "DeviceGroup"
+            },
+            "ftdMode": "ROUTED",
+            "healthMessage": "0.2% of 506.2M used",
+            "healthPolicy": {
+                "id": "ab49235c-8658-11e7-8c5a-d42f8666362d",
+                "name": "UTD-HEALTH",
+                "type": "HealthPolicy"
+            },
+            "healthStatus": "green",
+            "hostName": "10.198.218.49",
+            "id": "b06acad6-e349-11ec-892d-aa74eb7a25c6",
+            "isConnected": true,
+            "keepLocalEvents": false,
+            "license_caps": [
+                "BASE",
+                "THREAT"
+            ],
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/devices/devicerecords/b06acad6-e349-11ec-892d-aa74eb7a25c6"
+            },
+            "metadata": {
+                "chassisData": {
+                    "chassisSerialNo": "JMX2618X097",
+                    "chassisUrl": "https://eu-lan-fpr-sw0205.uptodate.com:443//",
+                    "securityModuleNo": 1
+                },
+                "clusterBootstrapSupported": false,
+                "containerDetails": {
+                    "id": "6052f220-e8c7-11ec-9da0-b7c58494cb0a",
+                    "name": "eu-lan-fpr-ha",
+                    "role": "SECONDARY",
+                    "status": "Standby",
+                    "type": "DeviceHAPair"
+                },
+                "deviceSerialNumber": "FLM26020M9N",
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "inventoryData": {
+                    "cpuCores": "1 CPU (24 cores)",
+                    "cpuType": "CPU Xeon 4100/6100/8100 series 2100 MHz",
+                    "memoryInMB": "48719 MB RAM"
+                },
+                "isMultiInstance": false,
+                "isPartOfContainer": true,
+                "lspVersion": "lsp-rel-20240529-1754",
+                "readOnly": {
+                    "state": false
+                },
+                "snortVersion": "3.1.21.501-27",
+                "vdbVersion": "Build 387 - 2024-05-24 19:34:42.0"
+            },
+            "model": "Cisco Firepower 4112 Threat Defense",
+            "modelId": "N",
+            "modelNumber": "76",
+            "modelType": "Sensor",
+            "name": "eu-lan-fpr-sw0205",
+            "prohibitPacketTransfer": false,
+            "snortEngine": "SNORT3",
+            "sw_version": "7.2.5.2",
+            "type": "Device"
+        }
+    ]
+}
+
+PLAY RECAP *********************************************************************
+wa-fmc2500                 : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

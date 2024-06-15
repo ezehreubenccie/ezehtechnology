@@ -6,19 +6,15 @@
         operation: getAllDomain
         register_as: domain
 
-    - debug:
-        var: domain
 
-    - name: Get S2S VPNs
+    - name: Execute 'getVpnEndpoint' operation
       cisco.fmcansible.fmc_configuration:
-        operation: getAllFTDS2SVpnModel
-        path_params: 
+        operation: "getVpnEndpoint"
+        path_params:
+          objectId: 40CE2481-5D56-0ed3-0000-292059014290
+          containerUUID: 40CE2481-5D56-0ed3-0000-292059014286
           domainUUID: "{{ domain[0].uuid }}"
-        query_params:
-          offset: 0
-          limit: 100
-          expanded: True
-        register_as: s2s_vpns
+        register_as: endpt 
 
     - debug:
-        var: s2s_vpns
+        var: endpt

@@ -1,0 +1,3568 @@
+
+PLAY [wa-fmc2500] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Get Domain UUID] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Execute 'getAllExtendedAccessListModel' operation] ***********************
+ok: [wa-fmc2500]
+
+TASK [Print extended access list] **********************************************
+ok: [wa-fmc2500] => {
+    "eacl": [
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864600",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864599",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.31.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.101.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "192.168.0.0/16"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.31.254.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.254.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.254.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.29.254.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864421",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057863875",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.10.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094384952",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094384953",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864074",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094390203",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Host",
+                                "value": "10.1.111.167"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094390329",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057863876",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.0.0/16"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.71.0.0/18"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864687",
+                                "overridable": false,
+                                "type": "NetworkGroup"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.113.192/26"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094390293",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057865001",
+                                "overridable": false,
+                                "type": "NetworkGroup"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Host",
+                                "value": "10.1.110.199"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094384970",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057865010",
+                                "overridable": false,
+                                "type": "NetworkGroup"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.15.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057865028",
+                                "overridable": false,
+                                "type": "NetworkGroup"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864594",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176111825778",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057866256",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/extendedaccesslists/40CE2481-5D56-0ed3-0000-292057866256"
+            },
+            "name": "115",
+            "overridable": false,
+            "type": "ExtendedAccessList"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864601",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864597",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.20.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "192.168.0.0/16"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.20.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.31.254.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.20.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.254.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.20.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.29.254.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.20.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864421",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.20.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.0.0/16"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.20.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.71.0.0/18"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.20.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.170.48.0/20"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.20.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057866284",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/extendedaccesslists/40CE2481-5D56-0ed3-0000-292057866284"
+            },
+            "name": "120",
+            "overridable": false,
+            "type": "ExtendedAccessList"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864602",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864599",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.31.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.101.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "192.168.0.0/16"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.31.254.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.254.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.29.254.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864421",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057863875",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057863876",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094384952",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094384953",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "DENY",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.81.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "DENY",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.80.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.0.0/16"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.71.0.0/18"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864702",
+                                "overridable": false,
+                                "type": "NetworkGroup"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.113.192/26"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094390329",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094390293",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094390311",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864074",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094390203",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864716",
+                                "overridable": false,
+                                "type": "NetworkGroup"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Host",
+                                "value": "10.1.110.199"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057865005",
+                                "overridable": false,
+                                "type": "NetworkGroup"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094384970",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057865010",
+                                "overridable": false,
+                                "type": "NetworkGroup"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057863894",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.25.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176111825778",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057866332",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/extendedaccesslists/40CE2481-5D56-0ed3-0000-292057866332"
+            },
+            "name": "125",
+            "overridable": false,
+            "type": "ExtendedAccessList"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864603",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864599",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.31.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.101.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "192.168.0.0/16"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.31.254.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.254.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.29.254.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Host",
+                                "value": "195.33.161.12"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Host",
+                                "value": "198.52.89.2"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864421",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057863875",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094390329",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094384952",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094384953",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094390203",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.0.0/16"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.71.0.0/18"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864703",
+                                "overridable": false,
+                                "type": "NetworkGroup"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.113.192/26"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094390293",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094390311",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Host",
+                                "value": "10.1.110.199"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057865004",
+                                "overridable": false,
+                                "type": "NetworkGroup"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094384970",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057865010",
+                                "overridable": false,
+                                "type": "NetworkGroup"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.30.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176111825778",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057866381",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/extendedaccesslists/40CE2481-5D56-0ed3-0000-292057866381"
+            },
+            "name": "131-NotUsed-10Feb24",
+            "overridable": false,
+            "type": "ExtendedAccessList"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864604",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864599",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.31.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.101.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "192.168.0.0/16"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.31.254.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.254.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.29.254.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Host",
+                                "value": "195.33.161.12"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Host",
+                                "value": "198.52.89.2"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864421",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057863875",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057863876",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094390329",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094384952",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094384953",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864074",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094390203",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "DENY",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.81.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "DENY",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.80.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.0.0/16"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864459",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864704",
+                                "overridable": false,
+                                "type": "NetworkGroup"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.113.192/26"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094390293",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094390311",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Host",
+                                "value": "10.1.110.199"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057865006",
+                                "overridable": false,
+                                "type": "NetworkGroup"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-176094384970",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057865010",
+                                "overridable": false,
+                                "type": "NetworkGroup"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.35.0.0/16"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057863894",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057866511",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/extendedaccesslists/40CE2481-5D56-0ed3-0000-292057866511"
+            },
+            "name": "135",
+            "overridable": false,
+            "type": "ExtendedAccessList"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864683",
+                                "overridable": false,
+                                "type": "NetworkGroup"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864696",
+                                "overridable": false,
+                                "type": "NetworkGroup"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057866400",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/extendedaccesslists/40CE2481-5D56-0ed3-0000-292057866400"
+            },
+            "name": "140",
+            "overridable": false,
+            "type": "ExtendedAccessList"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864607",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864605",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.207.0/26"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.101.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.207.0/26"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.71.40.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.207.0/26"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.253.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.208.0/30"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.101.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.208.0/30"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.101.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.208.0/30"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.71.40.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.208.0/30"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.253.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.207.0/26"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.250.0/23"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057867421",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/extendedaccesslists/40CE2481-5D56-0ed3-0000-292057867421"
+            },
+            "name": "145",
+            "overridable": false,
+            "type": "ExtendedAccessList"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864607",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864605",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.207.0/26"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.101.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.207.0/26"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.71.40.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.207.0/26"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.253.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.208.4/30"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.1.101.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.208.4/30"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.101.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.208.4/30"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.71.40.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.208.4/30"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.253.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.208.0/29"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.101.0/24"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057867448",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/extendedaccesslists/40CE2481-5D56-0ed3-0000-292057867448"
+            },
+            "name": "150",
+            "overridable": false,
+            "type": "ExtendedAccessList"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864606",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864605",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.219.0/26"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.101.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.219.0/26"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.253.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.219.0/26"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.71.0.0/18"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.219.0/26"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.250.0/23"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057867394",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/extendedaccesslists/40CE2481-5D56-0ed3-0000-292057867394"
+            },
+            "name": "155",
+            "overridable": false,
+            "type": "ExtendedAccessList"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864608",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-292057864605",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.218.0/26"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.101.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.218.0/26"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.253.0/24"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.218.0/26"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.71.0.0/18"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "destinationNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.198.218.0/26"
+                            }
+                        ]
+                    },
+                    "logInterval": 300,
+                    "logLevel": "INFORMATIONAL",
+                    "logging": "DEFAULT",
+                    "sourceNetworks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.2.250.0/23"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057867471",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/extendedaccesslists/40CE2481-5D56-0ed3-0000-292057867471"
+            },
+            "name": "160",
+            "overridable": false,
+            "type": "ExtendedAccessList"
+        }
+    ]
+}
+
+PLAY RECAP *********************************************************************
+wa-fmc2500                 : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

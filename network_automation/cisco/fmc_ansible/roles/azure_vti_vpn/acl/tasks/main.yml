@@ -1,0 +1,1412 @@
+- name: Execute 'createExtendedAccessListModel' operation
+  cisco.fmcansible.fmc_configuration:
+    operation: "createExtendedAccessListModel"
+    data:
+      name: "{{ ex_acl_name }}"   
+      entries: [
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ UTD_dns_server }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "sourcePorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_53 }}",
+                        # "name": "obj_tcp_53",
+                        # "overridable": false,
+                        # "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ UTD_dns_server }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "sourcePorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_udp_53 }}",
+                        # "name": "obj_udp_53",
+                        # "overridable": false,
+                        # "protocol": "UDP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ UTD_dns_server }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "destinationPorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_53 }}",
+                        # "name": "obj_tcp_53",
+                        # "overridable": false,
+                        # "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ UTD_dns_server }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "destinationPorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_udp_53 }}",
+                        "name": "obj_udp_53",
+                        "overridable": false,
+                        "protocol": "UDP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ wal_end_users }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "sourcePorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_8161 }}",
+                        # "name": "obj_tcp_8161",
+                        # "overridable": false,
+                        # "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8080 }}",
+                        "name": "obj_tcp_8080",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_9300_9499 }}",
+                        "name": "obj_tcp_9300_9499",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8300_8499 }}",
+                        "name": "obj_tcp_8300_8499",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8443 }}",
+                        "name": "obj_tcp_8443",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_9600_9799 }}",
+                        "name": "obj_tcp_9600_9799",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8092 }}",
+                        "name": "obj_tcp_8092",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8095 }}",
+                        "name": "obj_tcp_8095",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_443 }}",
+                        "name": "obj_tcp_443",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_80 }}",
+                        "name": "obj_tcp_80",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ wal_openshift }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "sourcePorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_8080}}",
+                        "name": "obj_tcp_8080",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_9300_9499 }}",
+                        "name": "obj_tcp_9300_9499",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8300_8499 }}",
+                        "name": "obj_tcp_8300_8499",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8443}}",
+                        "name": "obj_tcp_8443",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8092 }}",
+                        "name": "obj_tcp_8092",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_9600_9799 }}",
+                        "name": "obj_tcp_9600_9799",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_80 }}",
+                        "name": "obj_tcp_80",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8095}}",
+                        "name": "obj_tcp_8095",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8161 }}",
+                        "name": "obj_tcp_8161",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_443 }}",
+                        "name": "obj_tcp_443",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ Waltham_Server_Subnets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "sourcePorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_8080 }}",
+                        "name": "obj_tcp_8080",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_9300_9499 }}",
+                        "name": "obj_tcp_9300_9499",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8300_8499 }}",
+                        "name": "obj_tcp_8300_8499",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8443 }}",
+                        "name": "obj_tcp_8443",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8092 }}",
+                        "name": "obj_tcp_8092",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_9600_9799 }}",
+                        "name": "obj_tcp_9600_9799",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_80 }}",
+                        "name": "obj_tcp_80",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8095 }}",
+                        "name": "obj_tcp_8095",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8161 }}",
+                        "name": "obj_tcp_8161",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_443 }}",
+                        "name": "obj_tcp_443",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ wal_openshift }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "destinationPorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_8080 }}",
+                        "name": "obj_tcp_8080",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_9300_9499 }}",
+                        "name": "obj_tcp_9300_9499",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8300_8499 }}",
+                        "name": "obj_tcp_8300_8499",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8443 }}",
+                        "name": "obj_tcp_8443",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8092 }}",
+                        "name": "obj_tcp_8092",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_9600_9799 }}",
+                        "name": "obj_tcp_9600_9799",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_80 }}",
+                        "name": "obj_tcp_80",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8095 }}",
+                        "name": "obj_tcp_8095",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8161 }}",
+                        "name": "obj_tcp_8161",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_443 }}",
+                        "name": "obj_tcp_443",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ Waltham_Server_Subnets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "destinationPorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_8080 }}",
+                        "name": "obj_tcp_8080",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_9300_9499 }}",
+                        "name": "obj_tcp_9300_9499",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8300_8499 }}",
+                        "name": "obj_tcp_8300_8499",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8443 }}",
+                        "name": "obj_tcp_8443",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8092 }}",
+                        "name": "obj_tcp_8092",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_9600_9799 }}",
+                        "name": "obj_tcp_9600_9799",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_80 }}",
+                        "name": "obj_tcp_80",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8095 }}",
+                        "name": "obj_tcp_8095",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8161 }}",
+                        "name": "obj_tcp_8161",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_443 }}",
+                        "name": "obj_tcp_443",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ wal_openshift }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "sourcePorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_8009 }}",
+                        "name": "obj_tcp_8009",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ Waltham_Server_Subnets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "sourcePorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_8009 }}",
+                        "name": "obj_tcp_8009",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ Waltham_Server_Subnets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "destinationPorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_8009 }}",
+                        "name": "obj_tcp_8009",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ wal_openshift }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "destinationPorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_8009 }}",
+                        "name": "obj_tcp_8009",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ wal_end_users }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                            "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "sourcePorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_5701 }}",
+                        "name": "obj_tcp_5701",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ wal_openshift }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "sourcePorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_5701 }}",
+                        "name": "obj_tcp_5701",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ Waltham_Server_Subnets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "sourcePorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_5701 }}",
+                        "name": "obj_tcp_5701",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ wal_openshift }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "destinationPorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_5701 }}",
+                        "name": "obj_tcp_5701",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ Waltham_Server_Subnets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "destinationPorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_5701 }}",
+                        "name": "obj_tcp_5701",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ wal_end_users }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "sourcePorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_22 }}",
+                        "name": "obj_tcp_22",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ wal_openshift }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "sourcePorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_22 }}",
+                        "name": "obj_tcp_22",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ Waltham_Server_Subnets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "sourcePorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_22 }}",
+                        "name": "obj_tcp_22",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ wal_end_users }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "sourcePorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_61617 }}",
+                        "name": "obj_tcp_61617",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ wal_openshift }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "sourcePorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_61617 }}",
+                        "name": "obj_tcp_61617",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ Waltham_Server_Subnets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "sourcePorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_61617 }}",
+                        "name": "obj_tcp_61617",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ wal_openshift }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "destinationPorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_61617 }}",
+                        "name": "obj_tcp_61617",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ Waltham_Server_Subnets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "destinationPorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_61617 }}",
+                        "name": "obj_tcp_61617",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ Waltham_Nexus_Server }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "destinationPorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_443 }}",
+                        "name": "obj_tcp_443",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ Waltham_LDAP_Servers }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "destinationPorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_3268 }}",
+                        "name": "obj_tcp_3268",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_389 }}",
+                        "name": "obj_tcp_389",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_636 }}",
+                        "name": "obj_tcp_636",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "PERMIT",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ Waltham_ELK_Servers_Production }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "destinationPorts": {
+                "objects": [
+                    {
+                        "id": "{{ obj_tcp_80 }}",
+                        "name": "obj_tcp_80",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_443 }}",
+                        "name": "obj_tcp_443",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_9200 }}",
+                        "name": "obj_tcp_9200",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8200 }}",
+                        "name": "obj_tcp_8200",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_8282 }}",
+                        "name": "obj_tcp_8282",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    },
+                    {
+                        "id": "{{ obj_tcp_6379 }}",
+                        "name": "obj_tcp_6379",
+                        "overridable": false,
+                        "protocol": "TCP",
+                        "type": "ProtocolPortObject"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "{{ source_nets }}",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            }
+        },
+        {
+            "action": "DENY",
+            "destinationNetworks": {
+                "objects": [
+                    {
+                        "id": "69fa2a3a-4487-4e3c-816f-4098f684826e",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            },
+            "logInterval": 300,
+            "logLevel": "INFORMATIONAL",
+            "logging": "DEFAULT",
+            "sourceNetworks": {
+                "objects": [
+                    {
+                        "id": "69fa2a3a-4487-4e3c-816f-4098f684826e",
+                        "overridable": false,
+                        "type": "NetworkGroup"
+                    }
+                ]
+            }
+        }
+        ]
+    path_params:
+      domainUUID: "{{ domain[0].uuid }}"

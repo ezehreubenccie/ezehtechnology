@@ -1,4 +1,5 @@
-- name: PLAY 1 - deploy object group
+---
+- name: PLAY 1 - get domainUUID
   hosts: wa-fmc2500
   connection: httpapi
   tasks:
@@ -7,11 +8,44 @@
         operation: getAllDomain
         register_as: domain
 
-    - debug:
-        var: domain
+    # - debug:
+    #     var: domain
 
 
-    - name: Import object group role
+    - name:  deploy network object group
       import_role: 
         name: azure_vti_vpn/og
       when: True
+
+    # - debug:
+    #     var: Network_azutdprod01_1.id
+
+    - name: Execute 'getAllNetworkGroup' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllNetworkGroup"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          filter: "nameOrValue:{{ netobj_name }}"
+        # offset: "{{ offset }}"
+        # limit: "{{ limit }}"
+        # expanded: "{{ expanded }}"
+        register_as: netog
+
+    # - debug:
+    #     var: netog[0].id
+
+    - set_fact:
+        source_net: "{{ netog[0].id }}"
+
+    
+    - name:  deploy extended access_list
+      import_role: 
+        name: azure_vti_vpn/acl
+      when: True    
+
+    - name:  deploy port object group
+      import_role: 
+        name: azure_vti_vpn/service
+      when: True
+

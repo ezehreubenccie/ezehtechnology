@@ -1,0 +1,529 @@
+
+PLAY [wa-fmc2500] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Get Domain UUID] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Execute 'getAllProtocolPortObject' operation] ****************************
+ok: [wa-fmc2500] => (item=obj_tcp_https)
+ok: [wa-fmc2500] => (item=obj_tcp_8080)
+ok: [wa-fmc2500] => (item=obj_tcp_8443)
+ok: [wa-fmc2500] => (item=obj_tcp_8092)
+ok: [wa-fmc2500] => (item=obj_tcp_8095)
+ok: [wa-fmc2500] => (item=obj_tcp_8161)
+ok: [wa-fmc2500] => (item=obj_tcp_8300-8499)
+ok: [wa-fmc2500] => (item=obj_tcp_9300-9499)
+ok: [wa-fmc2500] => (item=obj_tcp_9600-9799)
+
+TASK [debug] *******************************************************************
+ok: [wa-fmc2500] => {
+    "port": {
+        "changed": false,
+        "msg": "All items completed",
+        "results": [
+            {
+                "ansible_facts": {
+                    "port": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-176094395033",
+                            "links": {
+                                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/ports",
+                                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects/40CE2481-5D56-0ed3-0000-176094395033"
+                            },
+                            "name": "obj_tcp_https",
+                            "type": "ProtocolPortObject"
+                        }
+                    ]
+                },
+                "ansible_loop_var": "item",
+                "changed": false,
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "data": null,
+                        "filters": null,
+                        "operation": "getAllProtocolPortObject",
+                        "path_params": {
+                            "domainUUID": "e276abec-e0f2-11e3-8169-6d9ed49b625f"
+                        },
+                        "query_params": {
+                            "filter": "nameOrValue:obj_tcp_https"
+                        },
+                        "register_as": "port"
+                    }
+                },
+                "item": "obj_tcp_https",
+                "response": {
+                    "items": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-176094395033",
+                            "links": {
+                                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/ports",
+                                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects/40CE2481-5D56-0ed3-0000-176094395033"
+                            },
+                            "name": "obj_tcp_https",
+                            "type": "ProtocolPortObject"
+                        }
+                    ],
+                    "links": {
+                        "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects?offset=0&limit=25&filter=nameOrValue:obj_tcp_https"
+                    },
+                    "paging": {
+                        "count": 1,
+                        "limit": 25,
+                        "offset": 0,
+                        "pages": 1
+                    }
+                }
+            },
+            {
+                "ansible_facts": {
+                    "port": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-081604387515",
+                            "links": {
+                                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/ports",
+                                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects/40CE2481-5D56-0ed3-0000-081604387515"
+                            },
+                            "name": "obj_tcp_8080",
+                            "type": "ProtocolPortObject"
+                        }
+                    ]
+                },
+                "ansible_loop_var": "item",
+                "changed": false,
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "data": null,
+                        "filters": null,
+                        "operation": "getAllProtocolPortObject",
+                        "path_params": {
+                            "domainUUID": "e276abec-e0f2-11e3-8169-6d9ed49b625f"
+                        },
+                        "query_params": {
+                            "filter": "nameOrValue:obj_tcp_8080"
+                        },
+                        "register_as": "port"
+                    }
+                },
+                "item": "obj_tcp_8080",
+                "response": {
+                    "items": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-081604387515",
+                            "links": {
+                                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/ports",
+                                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects/40CE2481-5D56-0ed3-0000-081604387515"
+                            },
+                            "name": "obj_tcp_8080",
+                            "type": "ProtocolPortObject"
+                        }
+                    ],
+                    "links": {
+                        "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects?offset=0&limit=25&filter=nameOrValue:obj_tcp_8080"
+                    },
+                    "paging": {
+                        "count": 1,
+                        "limit": 25,
+                        "offset": 0,
+                        "pages": 1
+                    }
+                }
+            },
+            {
+                "ansible_facts": {
+                    "port": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-081604387194",
+                            "links": {
+                                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/ports",
+                                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects/40CE2481-5D56-0ed3-0000-081604387194"
+                            },
+                            "name": "obj_tcp_8443",
+                            "type": "ProtocolPortObject"
+                        }
+                    ]
+                },
+                "ansible_loop_var": "item",
+                "changed": false,
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "data": null,
+                        "filters": null,
+                        "operation": "getAllProtocolPortObject",
+                        "path_params": {
+                            "domainUUID": "e276abec-e0f2-11e3-8169-6d9ed49b625f"
+                        },
+                        "query_params": {
+                            "filter": "nameOrValue:obj_tcp_8443"
+                        },
+                        "register_as": "port"
+                    }
+                },
+                "item": "obj_tcp_8443",
+                "response": {
+                    "items": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-081604387194",
+                            "links": {
+                                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/ports",
+                                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects/40CE2481-5D56-0ed3-0000-081604387194"
+                            },
+                            "name": "obj_tcp_8443",
+                            "type": "ProtocolPortObject"
+                        }
+                    ],
+                    "links": {
+                        "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects?offset=0&limit=25&filter=nameOrValue:obj_tcp_8443"
+                    },
+                    "paging": {
+                        "count": 1,
+                        "limit": 25,
+                        "offset": 0,
+                        "pages": 1
+                    }
+                }
+            },
+            {
+                "ansible_facts": {
+                    "port": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-081604387359",
+                            "links": {
+                                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/ports",
+                                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects/40CE2481-5D56-0ed3-0000-081604387359"
+                            },
+                            "name": "obj_tcp_8092",
+                            "type": "ProtocolPortObject"
+                        }
+                    ]
+                },
+                "ansible_loop_var": "item",
+                "changed": false,
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "data": null,
+                        "filters": null,
+                        "operation": "getAllProtocolPortObject",
+                        "path_params": {
+                            "domainUUID": "e276abec-e0f2-11e3-8169-6d9ed49b625f"
+                        },
+                        "query_params": {
+                            "filter": "nameOrValue:obj_tcp_8092"
+                        },
+                        "register_as": "port"
+                    }
+                },
+                "item": "obj_tcp_8092",
+                "response": {
+                    "items": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-081604387359",
+                            "links": {
+                                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/ports",
+                                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects/40CE2481-5D56-0ed3-0000-081604387359"
+                            },
+                            "name": "obj_tcp_8092",
+                            "type": "ProtocolPortObject"
+                        }
+                    ],
+                    "links": {
+                        "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects?offset=0&limit=25&filter=nameOrValue:obj_tcp_8092"
+                    },
+                    "paging": {
+                        "count": 1,
+                        "limit": 25,
+                        "offset": 0,
+                        "pages": 1
+                    }
+                }
+            },
+            {
+                "ansible_facts": {
+                    "port": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057865131",
+                            "links": {
+                                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/ports",
+                                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects/40CE2481-5D56-0ed3-0000-292057865131"
+                            },
+                            "name": "obj_tcp_8095",
+                            "type": "ProtocolPortObject"
+                        }
+                    ]
+                },
+                "ansible_loop_var": "item",
+                "changed": false,
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "data": null,
+                        "filters": null,
+                        "operation": "getAllProtocolPortObject",
+                        "path_params": {
+                            "domainUUID": "e276abec-e0f2-11e3-8169-6d9ed49b625f"
+                        },
+                        "query_params": {
+                            "filter": "nameOrValue:obj_tcp_8095"
+                        },
+                        "register_as": "port"
+                    }
+                },
+                "item": "obj_tcp_8095",
+                "response": {
+                    "items": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057865131",
+                            "links": {
+                                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/ports",
+                                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects/40CE2481-5D56-0ed3-0000-292057865131"
+                            },
+                            "name": "obj_tcp_8095",
+                            "type": "ProtocolPortObject"
+                        }
+                    ],
+                    "links": {
+                        "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects?offset=0&limit=25&filter=nameOrValue:obj_tcp_8095"
+                    },
+                    "paging": {
+                        "count": 1,
+                        "limit": 25,
+                        "offset": 0,
+                        "pages": 1
+                    }
+                }
+            },
+            {
+                "ansible_facts": {
+                    "port": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057865127",
+                            "links": {
+                                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/ports",
+                                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects/40CE2481-5D56-0ed3-0000-292057865127"
+                            },
+                            "name": "obj_tcp_8161",
+                            "type": "ProtocolPortObject"
+                        }
+                    ]
+                },
+                "ansible_loop_var": "item",
+                "changed": false,
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "data": null,
+                        "filters": null,
+                        "operation": "getAllProtocolPortObject",
+                        "path_params": {
+                            "domainUUID": "e276abec-e0f2-11e3-8169-6d9ed49b625f"
+                        },
+                        "query_params": {
+                            "filter": "nameOrValue:obj_tcp_8161"
+                        },
+                        "register_as": "port"
+                    }
+                },
+                "item": "obj_tcp_8161",
+                "response": {
+                    "items": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057865127",
+                            "links": {
+                                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/ports",
+                                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects/40CE2481-5D56-0ed3-0000-292057865127"
+                            },
+                            "name": "obj_tcp_8161",
+                            "type": "ProtocolPortObject"
+                        }
+                    ],
+                    "links": {
+                        "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects?offset=0&limit=25&filter=nameOrValue:obj_tcp_8161"
+                    },
+                    "paging": {
+                        "count": 1,
+                        "limit": 25,
+                        "offset": 0,
+                        "pages": 1
+                    }
+                }
+            },
+            {
+                "ansible_facts": {
+                    "port": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057865132",
+                            "links": {
+                                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/ports",
+                                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects/40CE2481-5D56-0ed3-0000-292057865132"
+                            },
+                            "name": "obj_tcp_8300-8499",
+                            "type": "ProtocolPortObject"
+                        }
+                    ]
+                },
+                "ansible_loop_var": "item",
+                "changed": false,
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "data": null,
+                        "filters": null,
+                        "operation": "getAllProtocolPortObject",
+                        "path_params": {
+                            "domainUUID": "e276abec-e0f2-11e3-8169-6d9ed49b625f"
+                        },
+                        "query_params": {
+                            "filter": "nameOrValue:obj_tcp_8300-8499"
+                        },
+                        "register_as": "port"
+                    }
+                },
+                "item": "obj_tcp_8300-8499",
+                "response": {
+                    "items": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057865132",
+                            "links": {
+                                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/ports",
+                                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects/40CE2481-5D56-0ed3-0000-292057865132"
+                            },
+                            "name": "obj_tcp_8300-8499",
+                            "type": "ProtocolPortObject"
+                        }
+                    ],
+                    "links": {
+                        "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects?offset=0&limit=25&filter=nameOrValue:obj_tcp_8300-8499"
+                    },
+                    "paging": {
+                        "count": 1,
+                        "limit": 25,
+                        "offset": 0,
+                        "pages": 1
+                    }
+                }
+            },
+            {
+                "ansible_facts": {
+                    "port": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057865133",
+                            "links": {
+                                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/ports",
+                                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects/40CE2481-5D56-0ed3-0000-292057865133"
+                            },
+                            "name": "obj_tcp_9300-9499",
+                            "type": "ProtocolPortObject"
+                        }
+                    ]
+                },
+                "ansible_loop_var": "item",
+                "changed": false,
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "data": null,
+                        "filters": null,
+                        "operation": "getAllProtocolPortObject",
+                        "path_params": {
+                            "domainUUID": "e276abec-e0f2-11e3-8169-6d9ed49b625f"
+                        },
+                        "query_params": {
+                            "filter": "nameOrValue:obj_tcp_9300-9499"
+                        },
+                        "register_as": "port"
+                    }
+                },
+                "item": "obj_tcp_9300-9499",
+                "response": {
+                    "items": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057865133",
+                            "links": {
+                                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/ports",
+                                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects/40CE2481-5D56-0ed3-0000-292057865133"
+                            },
+                            "name": "obj_tcp_9300-9499",
+                            "type": "ProtocolPortObject"
+                        }
+                    ],
+                    "links": {
+                        "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects?offset=0&limit=25&filter=nameOrValue:obj_tcp_9300-9499"
+                    },
+                    "paging": {
+                        "count": 1,
+                        "limit": 25,
+                        "offset": 0,
+                        "pages": 1
+                    }
+                }
+            },
+            {
+                "ansible_facts": {
+                    "port": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057865134",
+                            "links": {
+                                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/ports",
+                                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects/40CE2481-5D56-0ed3-0000-292057865134"
+                            },
+                            "name": "obj_tcp_9600-9799",
+                            "type": "ProtocolPortObject"
+                        }
+                    ]
+                },
+                "ansible_loop_var": "item",
+                "changed": false,
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "data": null,
+                        "filters": null,
+                        "operation": "getAllProtocolPortObject",
+                        "path_params": {
+                            "domainUUID": "e276abec-e0f2-11e3-8169-6d9ed49b625f"
+                        },
+                        "query_params": {
+                            "filter": "nameOrValue:obj_tcp_9600-9799"
+                        },
+                        "register_as": "port"
+                    }
+                },
+                "item": "obj_tcp_9600-9799",
+                "response": {
+                    "items": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057865134",
+                            "links": {
+                                "parent": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/ports",
+                                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects/40CE2481-5D56-0ed3-0000-292057865134"
+                            },
+                            "name": "obj_tcp_9600-9799",
+                            "type": "ProtocolPortObject"
+                        }
+                    ],
+                    "links": {
+                        "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/protocolportobjects?offset=0&limit=25&filter=nameOrValue:obj_tcp_9600-9799"
+                    },
+                    "paging": {
+                        "count": 1,
+                        "limit": 25,
+                        "offset": 0,
+                        "pages": 1
+                    }
+                }
+            }
+        ],
+        "skipped": false
+    }
+}
+
+PLAY RECAP *********************************************************************
+wa-fmc2500                 : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

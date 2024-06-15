@@ -1,0 +1,49 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+
+    - name: Execute 'createMultipleSecurityZoneObject' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createMultipleSecurityZoneObject"
+        data:
+          type: SecurityZone
+          name: test25
+          interfaceMode: ROUTED
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: seczone
+
+    - debug:
+        var: seczone.id
+
+    - set_fact:
+        sec_zone_id: "{{ seczone.id }}"
+        
+
+
+    - name: Execute 'createMultipleFTDVTIInterface' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createMultipleFTDVTIInterface"
+        data:
+          type: VTIInterface
+          tunnelSource: {'name': 'Port-channel1.100', 'type': 'SubInterface', "id": "40CE2481-5D56-0ed3-0000-300647879743"}
+          tunnelType: STATIC
+          tunnelId: 25
+          enabled: True
+          ifname: test25
+          ipv4: {'static': {'address': '169.254.100.1', 'netmask': '255.255.255.252'}}
+          # metadata: { "destinationIpAddress": "75.75.75.18"}
+          # vpnTopologyName: "WA-LAN-ASA0200_75.75.75.18"
+          securityZone: { "id": "{{ sec_zone_id }}"}
+          ipsecMode: ipv4
+        path_params:
+          containerUUID: 87f71aea-0bda-11ee-b635-b0d44974184b
+          domainUUID: "{{ domain[0].uuid }}"
+    
+

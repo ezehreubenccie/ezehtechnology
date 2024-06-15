@@ -1,4 +1,4 @@
-- name: "Create first network object for {{ og_name }}"
+- name: "Create first network object for {{ netog_name }}"
   cisco.fmcansible.fmc_configuration:
     operation: upsertNetworkObject
     #operation: createMultipleNetworkObject
@@ -11,7 +11,7 @@
     path_params:
       domainUUID: '{{ domain[0].uuid }}'
 
-- name: "Create second network object for {{ og_name }}"
+- name: "Create second network object for {{ netog_name }}"
   cisco.fmcansible.fmc_configuration:
     operation: upsertNetworkObject
     #operation: createMultipleNetworkObject
@@ -24,11 +24,11 @@
     path_params:
       domainUUID: '{{ domain[0].uuid }}'
 
-- name: Create a Cisco network group
+- name: "Create the network object group, {{ netog_name }}"
   cisco.fmcansible.fmc_configuration:
     operation: createMultipleNetworkGroup
     data:
-      name: "{{ og_name }}"
+      name: "{{ netog_name }}"
       type: networkgroup
       objects:
         - id: '{{ Network_azutdprod01_1.id }}'
