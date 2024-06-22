@@ -1,0 +1,65 @@
+- hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+    - name: "Create network object"
+      cisco.fmcansible.fmc_configuration:
+        operation: upsertNetworkObject
+        #operation: createMultipleNetworkObject
+        #operation: updateNetworkObject
+        data:
+          name: "{{ item.net }}"
+          value: "{{ item.net }}"
+          # description: "{{ description }}"
+          type: Network
+        path_params:
+          domainUUID: '{{ domain[0].uuid }}'
+        register_as: net
+      loop: "{{ og_name }}"
+
+    - debug:
+        var: net
+
+
+    - name: "Execute getAllNetworkGroup operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllNetworkGroup"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          filter: "nameOrValue:{{ item.name }}"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: netog_id
+      loop: "{{ og_name }}"
+      # register: netog_id
+    
+
+    - debug:
+        var: netog_id
+
+    # - set_fact:
+    #     netog_id: "{{ netog_id[0].id }}"
+      
+ 
+
+    # - name: Execute 'updateNetworkGroup' operation
+    #   cisco.fmcansible.fmc_configuration:
+    #     operation: "updateNetworkGroup"
+    #     data:
+    #       #id: networkGroup1UUID
+    #       name: "{{ item.name }}"
+    #       type: NetworkGroup
+    #       #objects: [{'type': 'Network', 'id': 'NetworkObjectUUID'}, {'type': 'Host', 'id': 'HostObjectUUID'}, {'type': 'Range', 'id': 'RangeObjectUUID'}]
+    #       literals: [{'type': 'Network', 'value': '10.100.204.0/22'}]
+    #     path_params:
+    #       objectId: "{{ netog_id }}"
+    #       domainUUID: "{{ domain[0].uuid }}"
+    #     query_params:
+    #       action: "{{ item.action }}"
+    #   loop: "{{ og_name }}"

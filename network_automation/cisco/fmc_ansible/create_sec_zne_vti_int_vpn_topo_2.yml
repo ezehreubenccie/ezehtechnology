@@ -70,18 +70,34 @@
         var: vpn_topo.id
       tags: endpt, vpn
 
-    - name: Execute 'updateFTDS2SVpnModel' operation
+    - debug:
+        var: vpn_topo.ikeSettings.id
+      tags: endpt, vpn
+    
+    - name: Execute 'updateVpnIkeSettings' operation
       cisco.fmcansible.fmc_configuration:
-        operation: "updateFTDS2SVpnModel"
+        operation: "updateVpnIkeSettings"
         data:
-          "name": "WA-LAN-ASA0200_75.75.75.18"
-          "type": FTDS2SVpn
-          "authenticationType": "MANUAL_PRE_SHARED_KEY"
-          "manualPreSharedKey": "T3nb3llWvN"
+          id: 005056A9-7483-0ed3-0000-012884902862
+          type: IkeSettings
+          ikeV2Settings: {"authenticationType": "MANUAL_PRE_SHARED_KEY","manualPreSharedKey": T3nb3llWvN}
         path_params:
-          objectId: "{{ vpn_topo.id }}"
+          objectId: "{{ vpn_topo.ikeSettings.id }}"
+          containerUUID: "{{ vpn_topo.id }}"
           domainUUID: "{{ domain[0].uuid }}"
       tags: endpt,vpn
+
+    # - name: Execute 'updateFTDS2SVpnModel' operation
+    #   cisco.fmcansible.fmc_configuration:
+    #     operation: "updateFTDS2SVpnModel"
+    #     data:
+    #       "name": "WA-LAN-ASA0200_75.75.75.18"
+    #       "type": FTDS2SVpn
+    #       "ikev2settings": {"authenticationType": "MANUAL_PRE_SHARED_KEY","manualPreSharedKey": T3nb3llWvN }
+    #     path_params:
+    #       objectId: "{{ vpn_topo.id }}"
+    #       domainUUID: "{{ domain[0].uuid }}"
+    #   tags: endpt,vpn
 
     - name: Create Node A Endpoint
       cisco.fmcansible.fmc_configuration:
