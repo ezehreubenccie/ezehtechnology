@@ -1,0 +1,43 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+      tags: endpt, vpn
+
+
+    - name: Execute 'getAllIkev2PolicyObject' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllIkev2PolicyObject"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: ikev2objs
+
+
+    # - debug:
+    #     var: ikev2objs
+
+    - set_fact:
+        ikev2_pol_id: "{{ item.id }}"
+        ikev2_pol_name: "{{ item.name }}"
+      when: item.name == "WA-LAN-ASA0200_ikev2_policy_50"
+      loop: "{{ ikev2objs }}"
+      loop_control: 
+        label: "{{ item.name }}"
+      
+
+    - debug:
+        msg:
+          - "{{ ikev2_pol_id }}"
+          - "{{ ikev2_pol_name }}"
+
+
+
+

@@ -1,0 +1,42 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+      tags: endpt, vpn
+
+
+    - name: Execute 'getAllIKEv2IPsecProposal' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllIKEv2IPsecProposal"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: ikev2proposals
+
+
+    - debug:
+        var: ikev2proposals
+
+    - set_fact:
+        ikev2_proposal_id: "{{ item.id }}"
+        ikev2_proposal_name: "{{ item.name }}"
+      when: item.name == "Azure-UTD-Prod01-Test-proposal-75.75.75.18"
+      loop: "{{ ikev2proposals }}"
+      loop_control: 
+        label: "{{ item.name }}"
+      
+
+    - debug:
+        msg:
+          - "{{ ikev2_proposal_id }}"
+          - "{{ ikev2_proposal_name }}"
+
+
+

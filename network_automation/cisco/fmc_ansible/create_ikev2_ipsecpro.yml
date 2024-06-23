@@ -1,0 +1,35 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+      tags: endpt, vpn
+
+
+    - name: Execute 'createIKEv2IPsecProposal' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createIKEv2IPsecProposal"
+        data:
+          name: "{{ ikev2_ipsec_pro_name }}"
+          #id: ikev2ipsecproposalUUID
+          encryptionAlgorithms: ['AES-256']
+          integrityAlgorithms: ['SHA-256']
+          type: IKEv2IPsecProposal
+          description: IKEv2 IPsec object description
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: ikev2_ipsecpro
+
+
+    - debug:
+        var: ikev2_ipsecpro
+
+
+    - set_fact:
+        ikev2ipsecpro_name: "{{ ikev2_ipsecpro.name }}"
+        ikev2ipsecpro_id: "{{ ikev2_ipsecpro.id }}"
+
+

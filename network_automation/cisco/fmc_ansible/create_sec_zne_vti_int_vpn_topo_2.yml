@@ -67,25 +67,35 @@
       tags: endpt,vpn
 
     - debug:
+        var: vpn_topo
+      tags: endpt,vpn
+
+    - debug:
         var: vpn_topo.id
       tags: endpt, vpn
 
     - debug:
         var: vpn_topo.ikeSettings.id
       tags: endpt, vpn
-    
-    - name: Execute 'updateVpnIkeSettings' operation
-      cisco.fmcansible.fmc_configuration:
-        operation: "updateVpnIkeSettings"
-        data:
-          id: 005056A9-7483-0ed3-0000-012884902862
-          type: IkeSettings
-          ikeV2Settings: {"authenticationType": "MANUAL_PRE_SHARED_KEY","manualPreSharedKey": T3nb3llWvN}
-        path_params:
-          objectId: "{{ vpn_topo.ikeSettings.id }}"
-          containerUUID: "{{ vpn_topo.id }}"
-          domainUUID: "{{ domain[0].uuid }}"
-      tags: endpt,vpn
+
+    - debug:
+        var: vpn_topo.ikeV2IpsecProposal.id
+      tags: endpt, vpn
+
+    # - debug:
+    #     var: 
+    # - name: Execute 'updateVpnIkeSettings' operation
+    #   cisco.fmcansible.fmc_configuration:
+    #     operation: "updateVpnIkeSettings"
+    #     data:
+    #       id: 005056A9-7483-0ed3-0000-012884902862
+    #       type: IkeSettings
+    #       ikeV2Settings: {"authenticationType": "MANUAL_PRE_SHARED_KEY","manualPreSharedKey": T3nb3llWvN}
+    #     path_params:
+    #       objectId: "{{ vpn_topo.ikeSettings.id }}"
+    #       containerUUID: "{{ vpn_topo.id }}"
+    #       domainUUID: "{{ domain[0].uuid }}"
+    #   tags: endpt,vpn
 
     # - name: Execute 'updateFTDS2SVpnModel' operation
     #   cisco.fmcansible.fmc_configuration:
@@ -99,48 +109,48 @@
     #       domainUUID: "{{ domain[0].uuid }}"
     #   tags: endpt,vpn
 
-    - name: Create Node A Endpoint
-      cisco.fmcansible.fmc_configuration:
-        operation: "createVpnEndpoint"
-        data:
-          peerType: PEER
-          device: {'name': 'WA-LAN-FPR-FW200', 'id': '79162d28-172c-11ef-9959-89c92e087eab', 'type': 'DeviceHAPair'}
-          interface: {'name': 'test25', 'id': '40CE2481-5D56-0ed3-0000-300648228661', 'type': 'VTI'}
-          connectionType: BIDIRECTIONAL
-          isLocalTunnelIdEnabled: False
-          type: EndPoint
-          overrideRemoteVpnFilter: False
-        path_params:
-          containerUUID: 40CE2481-5D56-0ed3-0000-300648223256
-          domainUUID: "{{ domain[0].uuid }}"
-        register_as: endpointA
-      tags: endpt
+    # - name: Create Node A Endpoint
+    #   cisco.fmcansible.fmc_configuration:
+    #     operation: "createVpnEndpoint"
+    #     data:
+    #       peerType: PEER
+    #       device: {'name': 'WA-LAN-FPR-FW200', 'id': '79162d28-172c-11ef-9959-89c92e087eab', 'type': 'DeviceHAPair'}
+    #       interface: {'name': 'test25', 'id': '40CE2481-5D56-0ed3-0000-300648228661', 'type': 'VTI'}
+    #       connectionType: BIDIRECTIONAL
+    #       isLocalTunnelIdEnabled: False
+    #       type: EndPoint
+    #       overrideRemoteVpnFilter: False
+    #     path_params:
+    #       containerUUID: 40CE2481-5D56-0ed3-0000-300648223256
+    #       domainUUID: "{{ domain[0].uuid }}"
+    #     register_as: endpointA
+    #   tags: endpt
 
-    - debug:
-        var: endpointA.id
-      tags: endpt
+    # - debug:
+    #     var: endpointA.id
+    #   tags: endpt
 
-    - name: Create Node B Endpoint
-      cisco.fmcansible.fmc_configuration:
-        operation: "createVpnEndpoint"
-        data:
-          peerType: PEER
-          extranet: true
-          connectionType: ORIGINATE_ONLY
-          extranetInfo: {"ipAddress": "75.75.75.18", "isDynamicIP": false, "name": "Extranet"}
-          extranetType: "GENERIC"
-          isLocalTunnelIdEnabled: False
-          type: EndPoint
-          overrideRemoteVpnFilter: False
-        path_params:
-            containerUUID: 40CE2481-5D56-0ed3-0000-300648223256
-            domainUUID: "{{ domain[0].uuid }}"
-        register_as: endpointB
-      tags: endpt
+    # - name: Create Node B Endpoint
+    #   cisco.fmcansible.fmc_configuration:
+    #     operation: "createVpnEndpoint"
+    #     data:
+    #       peerType: PEER
+    #       extranet: true
+    #       connectionType: ORIGINATE_ONLY
+    #       extranetInfo: {"ipAddress": "75.75.75.18", "isDynamicIP": false, "name": "Extranet"}
+    #       extranetType: "GENERIC"
+    #       isLocalTunnelIdEnabled: False
+    #       type: EndPoint
+    #       overrideRemoteVpnFilter: False
+    #     path_params:
+    #         containerUUID: 40CE2481-5D56-0ed3-0000-300648223256
+    #         domainUUID: "{{ domain[0].uuid }}"
+    #     register_as: endpointB
+    #   tags: endpt
 
-    - debug:
-        var: endpointB.id
-      tags: endpt
+    # - debug:
+    #     var: endpointB.id
+    #   tags: endpt
 
     
     
