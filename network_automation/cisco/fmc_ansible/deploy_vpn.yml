@@ -7,6 +7,7 @@
       cisco.fmcansible.fmc_configuration:
         operation: getAllDomain
         register_as: domain
+      tags: net
 
     # - debug:
     #     var: domain
@@ -16,6 +17,7 @@
       import_role: 
         name: azure_vti_vpn/og
       when: True
+      tags: netog
 
     # - debug:
     #     var: Network_azutdprod01_1.id
@@ -31,21 +33,26 @@
         # limit: "{{ limit }}"
         # expanded: "{{ expanded }}"
         register_as: netog
+      tags: net
 
-    # - debug:
-    #     var: netog[0].id
+
+    - debug:
+        var: netog[0].id
+      tags: net
 
     - set_fact:
-        source_net: "{{ netog[0].id }}"
+        source_nets: "{{ netog[0].id }}"
+      tags: net
 
     
     - name:  deploy extended access_list
       import_role: 
         name: azure_vti_vpn/acl
-      when: True    
+      when: True 
+      tags: net   
 
-    - name:  deploy port object group
-      import_role: 
-        name: azure_vti_vpn/service
-      when: True
+    # - name:  deploy port object group
+    #   import_role: 
+    #     name: azure_vti_vpn/service
+    #   when: True
 

@@ -1,0 +1,274 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+      tags: endpt, vpn
+
+
+    - name: Execute 'createMultipleSecurityZoneObject' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createMultipleSecurityZoneObject"
+        data:
+          type: SecurityZone
+          name: "{{ sec_zone_name }}"
+          interfaceMode: ROUTED
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: seczone
+
+    - debug:
+        var: seczone.id
+
+    - set_fact:
+        sec_zone_id: "{{ seczone.id }}"
+        
+
+
+    - name: Execute 'createMultipleFTDVTIInterface' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createMultipleFTDVTIInterface"
+        data:
+          type: VTIInterface
+          tunnelSource: {'name': 'Port-channel1.100', 'type': 'SubInterface', "id": "40CE2481-5D56-0ed3-0000-300647879743"}
+          tunnelType: STATIC
+          tunnelId: "{{ vti_tunnel_id }}"
+          enabled: True
+          ifname: "{{ vti_ifname }}"
+          ipv4: {'static': {'address': "{{ vti_ipaddr }}", 'netmask': "{{ vti_ipaddr_mask }}"}}
+          # metadata: { "destinationIpAddress": "75.75.75.18"}
+          # vpnTopologyName: "WA-LAN-ASA0200_75.75.75.18"
+          securityZone: { "id": "{{ sec_zone_id }}"}
+          ipsecMode: ipv4
+        path_params:
+          containerUUID: 87f71aea-0bda-11ee-b635-b0d44974184b
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: vti_int
+      tags: endpt
+
+    - debug:
+        var: vti_int
+
+    - set_fact:
+        vti_id: "{{ vti_int.id }}"
+        vti_name: "{{ vti_int.name }}"
+      tags: endpt
+
+    - name: Execute 'getAllIkev2PolicyObject' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllIkev2PolicyObject"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: ikev2objs
+      tags: endpt,vpn
+
+
+  # - debug:
+  #     var: ikev2objs
+    - name: set ikev2 policy settings
+      set_fact:
+        ikev2_pol_id: "{{ item.id }}"
+        ikev2_pol_name: "{{ item.name }}"
+      when: item.name == "WA-LAN-ASA0200_ikev2_policy_50"
+      loop: "{{ ikev2objs }}"
+      loop_control: 
+        label: "{{ item.name }}"
+      tags: endpt,vpn
+      
+
+    - debug:
+        msg:
+          - "{{ ikev2_pol_id }}"
+          - "{{ ikev2_pol_name }}"
+      tags: endpt,vpn
+
+
+    - name: Execute 'createIKEv2IPsecProposal' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createIKEv2IPsecProposal"
+        data:
+          name: "{{ ikev2_ipsec_pro_name }}"
+          #id: ikev2ipsecproposalUUID
+          encryptionAlgorithms: ['AES-256']
+          integrityAlgorithms: ['SHA-256']
+          type: IKEv2IPsecProposal
+          description: IKEv2 IPsec object description
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: ikev2_ipsecpro
+
+
+    - debug:
+        var: ikev2_ipsecpro
+
+
+    - set_fact:
+        ikev2_proposal_name: "{{ ikev2_ipsecpro.name }}"
+        ikev2_proposal_id: "{{ ikev2_ipsecpro.id }}"
+
+    - debug:
+        msg:
+          - "{{ ikev2_proposal_id }}"
+          - "{{ ikev2_proposal_name }}"
+      tags: endpt,vpn
+    
+    # - name: Execute 'getAllIKEv2IPsecProposal' operation
+    #   cisco.fmcansible.fmc_configuration:
+    #     operation: "getAllIKEv2IPsecProposal"
+    #     path_params:
+    #       domainUUID: "{{ domain[0].uuid }}"
+    #     query_params:
+    #       offset: "{{ offset }}"
+    #       limit: "{{ limit }}"
+    #       expanded: "{{ expanded }}"
+    #     register_as: ikev2proposals
+    #   tags: endpt,vpn
+
+
+
+    # - debug:
+    #     var: ikev2proposals
+
+    # - set_fact:
+    #     ikev2_proposal_id: "{{ item.id }}"
+    #     ikev2_proposal_name: "{{ item.name }}"
+    #   when: item.name == "Azure-UTD-Prod01-Test-proposal-75.75.75.18"
+    #   loop: "{{ ikev2proposals }}"
+    #   loop_control: 
+    #     label: "{{ item.name }}"
+    #   tags: endpt,vpn
+      
+
+    # - debug:
+    #     msg:
+    #       - "{{ ikev2_proposal_id }}"
+    #       - "{{ ikev2_proposal_name }}"
+    #   tags: endpt,vpn
+
+
+    - name: Execute 'createFTDS2SVpnModel' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createFTDS2SVpnModel"
+        data:
+          "name": "{{ vpn_topo_name }}"
+          "type": "FTDS2SVpn"
+          "topologyType": "POINT_TO_POINT"
+          "ikeV1Enabled": false
+          "ikeV2Enabled": true
+          "routeBased": true
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: vpn_topo
+      tags: endpt,vpn
+
+    - debug:
+        var: vpn_topo
+      tags: endpt,vpn
+
+    - debug:
+        var: vpn_topo.id
+      tags: endpt,vpn
+
+    - debug:
+        var: vpn_topo.ikeSettings.id
+      tags: endpt, vpn
+
+    - debug:
+        var: vpn_topo.ipsecSettings.ikeV2IpsecProposal[0].id
+      tags: endpt, vpn
+
+    - debug:
+        var: vpn_topo.ipsecSettings.id
+
+    # - debug:
+    #     var: 
+    - name: Execute 'updateVpnIkeSettings' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "updateVpnIkeSettings"
+        data:
+          id: 005056A9-7483-0ed3-0000-012884902862
+          type: IkeSettings
+          ikeV2Settings: {"authenticationType": "MANUAL_PRE_SHARED_KEY","manualPreSharedKey": "{{ pre_shared_key }}", 'policies': [{'name': "{{ ikev2_pol_name }}", 'id': "{{ ikev2_pol_id }}", 'type': 'Ike2'}]}
+        path_params:
+          objectId: "{{ vpn_topo.ikeSettings.id }}"
+          containerUUID: "{{ vpn_topo.id }}"
+          domainUUID: "{{ domain[0].uuid }}"
+      tags: endpt,vpn
+
+    - name: Execute 'updateVpnIPSecSettings' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "updateVpnIPSecSettings"
+        data:
+          id: 005056A9-7483-0ed3-0000-012884902863
+          ikeV2IpsecProposal: [{'name': '{{ ikev2_proposal_name }}', 'id': "{{ ikev2_proposal_id }}", 'type': 'IKEv2IPsecProposal'}]
+        path_params:
+          objectId: "{{ vpn_topo.ipsecSettings.id }}"
+          containerUUID: "{{ vpn_topo.id }}"
+          domainUUID: "{{ domain[0].uuid }}"
+      tags: endpt,vpn
+
+    # - name: Execute 'updateFTDS2SVpnModel' operation
+    #   cisco.fmcansible.fmc_configuration:
+    #     operation: "updateFTDS2SVpnModel"
+    #     data:
+    #       "name": "WA-LAN-ASA0200_75.75.75.18"
+    #       "type": FTDS2SVpn
+    #       "ikev2settings": {"authenticationType": "MANUAL_PRE_SHARED_KEY","manualPreSharedKey": T3nb3llWvN }
+    #     path_params:
+    #       objectId: "{{ vpn_topo.id }}"
+    #       domainUUID: "{{ domain[0].uuid }}"
+    #   tags: endpt,vpn
+
+    - name: Create Node A Endpoint
+      cisco.fmcansible.fmc_configuration:
+        operation: "createVpnEndpoint"
+        data:
+          peerType: PEER
+          device: {'name': 'WA-LAN-FPR-FW200', 'id': '79162d28-172c-11ef-9959-89c92e087eab', 'type': 'DeviceHAPair'}
+          interface: {'name': '{{ vti_name }}', 'id': "{{ vti_id }}", 'type': 'VTI'}
+          connectionType: BIDIRECTIONAL
+          isLocalTunnelIdEnabled: False
+          type: EndPoint
+          overrideRemoteVpnFilter: False
+        path_params:
+          containerUUID: "{{ vpn_topo.id }}"
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: endpointA
+      tags: endpt
+
+    - debug:
+        var: endpointA.id
+      tags: endpt
+
+    - name: Create Node B Endpoint
+      cisco.fmcansible.fmc_configuration:
+        operation: "createVpnEndpoint"
+        data:
+          peerType: PEER
+          extranet: true
+          connectionType: ORIGINATE_ONLY
+          extranetInfo: {"ipAddress": "{{ extranet_ip }}", "isDynamicIP": false, "name": "{{ extranet_name }}"}
+          extranetType: "GENERIC"
+          isLocalTunnelIdEnabled: False
+          type: EndPoint
+          overrideRemoteVpnFilter: False
+        path_params:
+            containerUUID: "{{ vpn_topo.id }}"
+            domainUUID: "{{ domain[0].uuid }}"
+        register_as: endpointB
+      tags: endpt
+
+    - debug:
+        var: endpointB.id
+      tags: endpt
+
+    
+    
+
