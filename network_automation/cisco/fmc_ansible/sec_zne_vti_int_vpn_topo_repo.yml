@@ -1,0 +1,12 @@
+sec_zone_name: yyy 
+vti_ifname: xxxxx
+vti_ipaddr: "172.x.y.z"
+vti_ipaddr_mask: "255.255.255.252"
+vti_tunnel_id: xx
+ikev2_pol_name: WA-LAN-ASA0200_ikev2_policy_50
+vpn_topo_name: "WA-LAN-ASA0200_x.x.y.y"
+extranet_ip: "x.x.x.x"
+extranet_name: "x.x.x.x"
+ikev2_ipsec_pro_name: "Azure-CECS-NonProd02-Proposal-xxx"
+preflist_name: Waltham-to-Azure-CECS-NonProd02
+pre_shared_key: xxx
