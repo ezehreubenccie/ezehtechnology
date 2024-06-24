@@ -151,6 +151,9 @@
         var: vpn_topo.ipsecSettings.ikeV2IpsecProposal[0].id
       tags: endpt, vpn
 
+    - debug:
+        var: vpn_topo.ipsecSettings.id
+
     # - debug:
     #     var: 
     - name: Execute 'updateVpnIkeSettings' operation
@@ -173,7 +176,7 @@
           id: 005056A9-7483-0ed3-0000-012884902863
           ikeV2IpsecProposal: [{'name': '{{ ikev2_proposal_name }}', 'id': "{{ ikev2_proposal_id }}", 'type': 'IKEv2IPsecProposal'}]
         path_params:
-          objectId: 005056A9-7483-0ed3-0000-012884902863
+          objectId: "{{ vpn_topo.ipsecSettings.id }}"
           containerUUID: "{{ vpn_topo.id }}"
           domainUUID: "{{ domain[0].uuid }}"
       tags: endpt,vpn
@@ -218,7 +221,7 @@
           peerType: PEER
           extranet: true
           connectionType: ORIGINATE_ONLY
-          extranetInfo: {"ipAddress": "75.75.75.18", "isDynamicIP": false, "name": "Extranet"}
+          extranetInfo: {"ipAddress": "75.75.75.18", "isDynamicIP": false, "name": "75.75.75.18"}
           extranetType: "GENERIC"
           isLocalTunnelIdEnabled: False
           type: EndPoint
