@@ -37,27 +37,27 @@ Interface GigabitEthernet0/0 "outside", is up, line protocol is up
 	Description: outside interface
 	MAC address 2cd0.2d12.f059, MTU 1500
 	IP address 63.240.21.174, subnet mask 255.255.255.248
-	78374073 packets input, 18678336543 bytes, 0 no buffer
-	Received 29 broadcasts, 0 runts, 0 giants
+	15853716 packets input, 4298273126 bytes, 0 no buffer
+	Received 121 broadcasts, 0 runts, 0 giants
 	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
 	0 L2 decode drops
-	107711890 packets output, 66903053369 bytes, 0 underruns
+	19609021 packets output, 8157200091 bytes, 0 underruns
 	0 pause output, 0 resume output
 	0 output errors, 0 collisions, 1 interface resets
 	0 late collisions, 0 deferred
 	0 input reset drops, 0 output reset drops
-	input queue (blocks free curr/low): hardware (494/363)
-	output queue (blocks free curr/low): hardware (496/367)
+	input queue (blocks free curr/low): hardware (492/440)
+	output queue (blocks free curr/low): hardware (452/414)
   Traffic Statistics for "outside":
-	78373885 packets input, 16994998189 bytes
-	107711890 packets output, 64710917468 bytes
-	6748978 packets dropped
-      1 minute input rate 4 pkts/sec,  1704 bytes/sec
-      1 minute output rate 6 pkts/sec,  2613 bytes/sec
+	15853707 packets input, 3973875127 bytes
+	19609021 packets output, 7769008854 bytes
+	890571 packets dropped
+      1 minute input rate 5 pkts/sec,  662 bytes/sec
+      1 minute output rate 6 pkts/sec,  3075 bytes/sec
       1 minute drop rate, 0 pkts/sec
-      5 minute input rate 3 pkts/sec,  1198 bytes/sec
-      5 minute output rate 4 pkts/sec,  1867 bytes/sec
+      5 minute input rate 6 pkts/sec,  707 bytes/sec
+      5 minute output rate 6 pkts/sec,  3402 bytes/sec
       5 minute drop rate, 0 pkts/sec
 Interface GigabitEthernet0/1 "Inside2058", is up, line protocol is up
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
@@ -66,27 +66,27 @@ Interface GigabitEthernet0/1 "Inside2058", is up, line protocol is up
 	Description: inside interface
 	MAC address 2cd0.2d12.f055, MTU 1500
 	IP address 10.20.58.4, subnet mask 255.255.255.0
-	74495968 packets input, 52777320749 bytes, 0 no buffer
-	Received 27 broadcasts, 0 runts, 0 giants
+	7682767 packets input, 2510878951 bytes, 0 no buffer
+	Received 232 broadcasts, 0 runts, 0 giants
 	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
 	0 L2 decode drops
-	231729282 packets output, 47638321172 bytes, 0 underruns
+	42537382 packets output, 9363645953 bytes, 0 underruns
 	0 pause output, 0 resume output
 	0 output errors, 0 collisions, 1 interface resets
 	0 late collisions, 0 deferred
 	0 input reset drops, 0 output reset drops
-	input queue (blocks free curr/low): hardware (499/382)
-	output queue (blocks free curr/low): hardware (467/191)
+	input queue (blocks free curr/low): hardware (504/444)
+	output queue (blocks free curr/low): hardware (448/342)
   Traffic Statistics for "Inside2058":
-	74495978 packets input, 51383580680 bytes
-	231729282 packets output, 43386109645 bytes
-	503522 packets dropped
-      1 minute input rate 2 pkts/sec,  1282 bytes/sec
-      1 minute output rate 11 pkts/sec,  2789 bytes/sec
+	7682767 packets input, 2360778518 bytes
+	42537382 packets output, 8595302141 bytes
+	57549 packets dropped
+      1 minute input rate 0 pkts/sec,  19 bytes/sec
+      1 minute output rate 7 pkts/sec,  1214 bytes/sec
       1 minute drop rate, 0 pkts/sec
-      5 minute input rate 1 pkts/sec,  864 bytes/sec
-      5 minute output rate 8 pkts/sec,  2014 bytes/sec
+      5 minute input rate 0 pkts/sec,  38 bytes/sec
+      5 minute output rate 8 pkts/sec,  1427 bytes/sec
       5 minute drop rate, 0 pkts/sec
 Interface GigabitEthernet0/2 "", is administratively down, line protocol is down
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
@@ -210,11 +210,11 @@ Interface Management0/0 "", is down, line protocol is down
 	Available but not configured via nameif
 	MAC address 2cd0.2d12.f054, MTU not set
 	IP address unassigned
-	1456555 packets input, 61175610 bytes, 0 no buffer
+	162664 packets input, 6832188 bytes, 0 no buffer
 	Received 0 broadcasts, 0 runts, 0 giants
 	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
-	1456555 L2 decode drops
+	162664 L2 decode drops
 	0 packets output, 0 bytes, 0 underruns
 	0 pause output, 0 resume output
 	0 output errors, 0 collisions, 1 interface resets
@@ -327,7 +327,6 @@ banner asdm monitored and recorded.  Anyone using this system expressly
 banner asdm consents to such monitoring and to all appropriate disclosure
 banner asdm of any evidence of violation of the Firm's rules including,
 banner asdm but not limited to, criminal activity.
-boot system disk0:/asa9-14-4-24-smp-k8.bin
 boot system disk0:/asa9-12-4-41-smp-k8.bin
 ftp mode passive
 dns server-group DefaultDNS
@@ -2380,7 +2379,7 @@ access-list ny2-to-ny1 standard permit 10.20.50.0 255.255.255.0
 access-list ny2-to-ny1 standard permit 10.20.54.0 255.255.255.0 
 access-list ny2-to-ny1 standard permit 10.20.56.0 255.255.255.0 
 access-list ny2-to-ny1 standard permit 10.20.64.0 255.255.255.0 
-no pager
+pager lines 25
 logging enable
 logging emblem
 logging buffer-size 16384
@@ -2757,6 +2756,7 @@ webvpn
  cache
   disable
  error-recovery disable
+ hostscan data-limit 10000
 group-policy DfltGrpPolicy attributes
  banner value 
  banner value * * * AUTHORIZED ACCESS ONLY * * *
@@ -2888,7 +2888,7 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname context 
 no call-home reporting anonymous
-Cryptochecksum:26cdb54bbd803af5bccef7dbdc5be874
+Cryptochecksum:567a36c0233c319dfb24f2b8e4f5bbd2
 : end
 
 
@@ -2899,12 +2899,10 @@ VPN Session Summary
 ---------------------------------------------------------------------------
                                Active : Cumulative : Peak Concur : Inactive
                              ----------------------------------------------
-AnyConnect Client            :      0 :        242 :           7 :        0
-  SSL/TLS/DTLS               :      0 :        242 :           7 :        0
-Clientless VPN               :      0 :          3 :           1
-  Browser                    :      0 :          3 :           1
+AnyConnect Client            :      0 :         10 :           2 :        0
+  SSL/TLS/DTLS               :      0 :         10 :           2 :        0
 ---------------------------------------------------------------------------
-Total Active and Inactive    :      0             Total Cumulative :    245
+Total Active and Inactive    :      0             Total Cumulative :     10
 Device Total VPN Capacity    :   2500
 Device Load                  :     0%
 ---------------------------------------------------------------------------
@@ -2914,12 +2912,11 @@ Tunnels Summary
 ---------------------------------------------------------------------------
                                Active : Cumulative : Peak Concurrent   
                              ----------------------------------------------
-Clientless                   :      0 :          3 :               1
-AnyConnect-Parent            :      0 :        242 :               7
-SSL-Tunnel                   :      0 :        947 :               7
-DTLS-Tunnel                  :      0 :        777 :               7
+AnyConnect-Parent            :      0 :         10 :               2
+SSL-Tunnel                   :      0 :         13 :               2
+DTLS-Tunnel                  :      0 :         13 :               2
 ---------------------------------------------------------------------------
-Totals                       :      0 :       1969
+Totals                       :      0 :         36
 ---------------------------------------------------------------------------
 
 
