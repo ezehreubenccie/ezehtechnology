@@ -2,9 +2,9 @@
 
 : 
 : Serial Number: FCH20457D1B
-: Hardware:   ASA5545, 12288 MB RAM, CPU Lynnfield 2659 MHz, 1 CPU (8 cores)
+: Hardware:   ASA5545, 12288 MB RAM, CPU Lynnfield 2660 MHz, 1 CPU (8 cores)
 :
-ASA Version 9.12(4)41 
+ASA Version 9.12(4)67 
 !
 terminal width 511
 hostname ec-lan-asa0803
@@ -99,7 +99,7 @@ banner asdm monitored and recorded.  Anyone using this system expressly
 banner asdm consents to such monitoring and to all appropriate disclosure
 banner asdm of any evidence of violation of the Firm's rules including,
 banner asdm but not limited to, criminal activity.
-boot system disk0:/asa9-14-4-24-smp-k8.bin
+boot system disk0:/asa9-12-4-67-smp-k8.bin
 boot system disk0:/asa9-12-4-41-smp-k8.bin
 ftp mode passive
 dns server-group DefaultDNS
@@ -2237,12 +2237,26 @@ aaa-server ISE-TACACS (Inside2058) host 10.1.101.78
  key *****
 aaa-server ISE-TACACS (Inside2058) host 10.1.101.79
  key *****
+aaa-server RSA-RADIUS protocol radius
+aaa-server RSA-RADIUS (Inside2058) host 10.20.56.7
+ timeout 60
+ key *****
+ authentication-port 1812
+ accounting-port 1812
+ radius-common-pw *****
+ proxy-auth_map sdi next-code "Wait for token to change"
+ proxy-auth_map sdi new-pin-sup "Are you satisfied with"
+ proxy-auth_map sdi new-pin-meth "Do you want"
+ proxy-auth_map sdi new-pin-req "Enter a new PIN"
+ proxy-auth_map sdi new-pin-reenter "re-enter"
+ proxy-auth_map sdi next-ccode-and-reauth "PIN Accepted"
+ proxy-auth_map sdi ready-for-sys-pin "ARE YOU PREPARED"
 user-identity default-domain LOCAL
 aaa authentication enable console ISE-TACACS LOCAL
 aaa authentication http console ISE-TACACS LOCAL
 aaa authentication ssh console ISE-TACACS LOCAL
 aaa authentication telnet console ISE-TACACS LOCAL
-aaa authentication serial console LOCAL 
+aaa authentication serial console ISE-TACACS LOCAL
 aaa authorization command ISE-TACACS LOCAL
 aaa authorization exec authentication-server auto-enable
 aaa authentication login-history
@@ -2661,5 +2675,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname context 
 no call-home reporting anonymous
-Cryptochecksum:38d767dedac9bbd7d08fb699d0d1c286
+Cryptochecksum:aa84989a2ffcc897942ef9fe989b797c
 : end
