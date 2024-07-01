@@ -1,0 +1,21 @@
+Serial Number,Device Name,Device Model,Software Version,Verdict,UpgradeTO,DaysSincelastUpgrade,Tags,Notes
+FLM270400XP,WA-LAN-CAB03-0100,Nexus9000 C92348GC-X Chassis,10.2(6),non-compliant,10.2(6),35,10.198.208.138,1st Floor Data Center Cabinet 03 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FLM272005NM,WA-LAN-CAB04-0100,Nexus9000 C9348GC-FXP Chassis,10.2(6),non-compliant,N/A,21,10.198.208.144,1st Floor Data Center Cabinet 04 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FLM270400Y0,WA-LAN-CAB03-0200,Nexus9000 C92348GC-X Chassis,10.2(6),non-compliant,10.2(6),35,10.198.208.139,1st Floor Data Center Cabinet 03 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FLM2720088S,WA-LAN-CAB05-0100,Nexus9000 C9348GC-FXP Chassis,10.2(6),non-compliant,N/A,21,10.198.208.145,1st Floor Data Center Cabinet 05 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FLM271905CQ,WA-LAN-CAB06-0100,Nexus9000 C9348GC-FXP Chassis,10.2(6),non-compliant,N/A,25,10.198.208.146,1st Floor Data Center Cabinet 06 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FLM272008CD,WA-LAN-CAB08-0100,Nexus9000 C9348GC-FXP Chassis,10.2(6),non-compliant,N/A,28,10.198.208.148,1st Floor Data Center Cabinet 08 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FLM272005SW,WA-LAN-CAB07-0100,Nexus9000 C9348GC-FXP Chassis,10.2(6),non-compliant,N/A,25,10.198.208.147,1st Floor Data Center Cabinet 07 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FLM272008AU,WA-LAN-CAB11-0100,Nexus9000 C9348GC-FXP Chassis,10.2(6),non-compliant,N/A,29,10.198.208.151,1st Floor Data Center Cabinet 11 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FLM272005RF,WA-LAN-CAB09-0100,Nexus9000 C9348GC-FXP Chassis,10.2(6),non-compliant,N/A,28,10.198.208.149,1st Floor Data Center Cabinet 09 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FLM272005RB,WA-LAN-CAB10-0100,Nexus9000 C9348GC-FXP Chassis,10.2(6),non-compliant,N/A,29,10.198.208.150,1st Floor Data Center Cabinet 10 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FLM2720088T,WA-LAN-CAB13-0100,Nexus9000 C9348GC-FXP Chassis,10.2(6),non-compliant,N/A,30,10.198.208.152,1st Floor Data Center Cabinet 13 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FLM272005RU,WA-LAN-CAB15-0100,Nexus9000 C9348GC-FXP Chassis,10.2(6),non-compliant,N/A,21,10.198.208.154,1st Floor Data Center Cabinet 15 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FLM272005SK,WA-LAN-CAB14-0100,Nexus9000 C9348GC-FXP Chassis,10.2(6),non-compliant,N/A,30,10.198.208.153,1st Floor Data Center Cabinet 14 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FLM272008AC,WA-LAN-CAB16-0100,Nexus9000 C9348GC-FXP Chassis,10.2(6),non-compliant,N/A,25,10.198.208.155,1st Floor Data Center Cabinet 16 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FLM272008AL,WA-LAN-CAB17-0100,Nexus9000 C9348GC-FXP Chassis,10.2(6),non-compliant,N/A,21,10.198.208.156,1st Floor Data Center Cabinet 17 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FLM272001QN,WA-LAN-CAB18-0100,Nexus9000 C9348GC-FXP Chassis,10.2(6),non-compliant,N/A,21,10.198.208.157,1st Floor Data Center Cabinet 18 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FLM2720089H,WA-LAN-CAB20-0100,Nexus9000 C9348GC-FXP Chassis,10.2(6),non-compliant,N/A,31,10.198.208.159,1st Floor Data Center Cabinet 20 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FLM272005RR,WA-LAN-CAB19-0100,Nexus9000 C9348GC-FXP Chassis,10.2(6),non-compliant,N/A,31,10.198.208.158,1st Floor Data Center Cabinet 19 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FOC2709R2PD,WA-LAN-AGGSW0100,Nexus3500 C3548P-10GX Chassis,10.2(6),non-compliant,9.3(12),20,10.198.208.132,1st Floor Data Center Cabinet 03 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+FOC2711R173,WA-LAN-AGGSW0200,Nexus3500 C3548P-10GX Chassis,10.2(6),non-compliant,9.3(12),20,10.198.208.133,1st Floor Data Center Cabinet 03 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453

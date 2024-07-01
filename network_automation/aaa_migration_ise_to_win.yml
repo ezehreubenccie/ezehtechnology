@@ -1,0 +1,20 @@
+---
+- name: AAA MIGRATION
+  hosts: nyc9300sw:nyc2960xsw
+  gather_facts: false
+
+  vars:
+
+
+
+
+  tasks:
+    - name: Get AAA config
+      ios_command:
+        commands:
+          - command: sh run aaa | in enable|console|ISE-TACACS
+      register: output
+
+    - name: PRINT OUTPUT
+      debug:
+        var: output

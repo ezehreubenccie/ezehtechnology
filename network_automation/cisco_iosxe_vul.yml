@@ -1,0 +1,19 @@
+- name: "PLAY 1: BUILD CISCO 9300 9200 3850 IOS-XE SWITCH  COMPLIANCE REPORT"
+  hosts: wac9200l48t4gsw:wawsc385048tsw:sjc9300l48t4xsw:tkyc930048tsw:shwsc385048tsw:shc930048tsw:nyc9300sw:tkyws385048tsw:ffc9300l48t4xsw:njc9200l24t4xsw:ffc9300l48t4xsw:wainetsw:wainetrtr
+  gather_facts: false
+
+  tasks:
+    - name: Cisco IOS XE Vul check
+      ios_command:
+        commands:
+          # - show run | inc router lisp
+          # - show running-config | section router isis
+          # - show running-config | include ospf|distribute link-state
+          # - show running-config | include crypto isakmp fragmentation
+          # - show udp
+          # - show running-config | include buffers huge
+          - show running-config | include dhcp snooping vlan
+      register: output
+
+    - debug:
+        var: output

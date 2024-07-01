@@ -1,0 +1,14 @@
+---
+- name: Exercise 3a2
+  hosts: walthamnexusswitches:sanjosenexusswitches
+  gather_facts: false
+  tasks:
+    - name: Gather output
+      cisco.nxos.nxos_command:
+        commands: 
+          - show version
+          - show lldp neighbors
+      register: show_output
+
+    - debug:
+        var: show_output['stdout_lines'][1]

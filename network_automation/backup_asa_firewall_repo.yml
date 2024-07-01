@@ -1,0 +1,88 @@
+---
+- name: "PLAY 1: Backup config of utd devices"
+  hosts: waasas:wanexus5672upsw:wac9200l48t4gsw:wawsc385048tsw:wa4500coresw:wainetsw:wainetrtr:nycasas:nyc9300sw:nyc2960xsw:tkyasas:tkyc930048tsw:tkywsc2960x24tslsw:tkyws385048tsw:shasas:shwsc3750x24sw:shwsc2960x24tslsw:shwsc385048tsw:shc930048tsw
+  gather_facts: False
+
+  vars: 
+    source_file: running-config
+    ftp_ip: 'xxxxx'
+    ftp_user: 'xxxxx'
+    ftp_pass: 'xxxxx'
+
+  tasks:
+    - name: "TASK 1: get timestamp"
+      command: date +%Y-%m-%d_%H_%M_%S
+      register: timestamp
+      tags:
+        - backup_to_ansible_node
+        - backup_to_file_server
+        - backup_to_disk
+#
+#    - debug:
+#        var: timestamp
+
+    - name: "TASK 2: set destination file name"
+      set_fact:
+        dest_file: 'UTD_Net_Device_Backups/2023/{{ inventory_hostname }}/{{ inventory_hostname }}-running-config-{{ timestamp.stdout }}.txt'
+      tags:
+        - backup_to_ansible_node
+        - backup_to_file_server
+
+    - name: "TASK 3: set destination file name for local disk"
+      set_fact:
+        dest_file_disk: '{{ inventory_hostname }}-running-config-{{ timestamp.stdout }}.cfg'
+      tags:
+        - backup_to_disk
+      
+        
+    - name: "TASK 4: Create folder"
+      file: 
+        path: '../UTD_Backups/2023'
+        state: directory
+      run_once: true
+      tags: backup_to_ansible_node      
+
+    - name: "TASK 5: backup device config"
+      asa_config:
+        backup: yes
+        backup_options:
+          filename: '{{ inventory_hostname }}-running-config-{{ timestamp.stdout }}.txt'
+          dir_path: "../UTD_Backups/2023/{{ inventory_hostname }}"
+      tags: backup_to_ansible_node
+
+    - name: "TASK 6: bacup asa config to file server"
+      cli_command:
+        command: 'copy  {{ source_file }}  ftp://{{ ftp_user }}:{{ ftp_pass }}@{{ ftp_ip }}/{{ dest_file }}'
+        prompt:
+          - Source filename
+          - Address or name of remote host
+          - Destination username
+          - Destination password
+          - Destination filename
+        #  - Warning
+        answer:
+          - '{{ source_file }}'
+          - '{{ ftp_ip }}'
+          - '{{ ftp_user }}'
+          - '{{ ftp_pass }}'
+          - '{{ dest_file }}'
+        #  - 'n'
+        check_all: True
+      tags: backup_to_file_server
+
+    - name: "TASK 7: backup asa to local disk"
+      cli_command:
+        command: 'copy  {{ source_file }}  disk0:/{{ dest_file_disk }}'
+        prompt:
+          - Source filename
+          - Destination filename
+        answer:
+          - '{{ source_file }}'
+          - '{{ dest_file_disk }}'
+        check_all: True
+      tags:
+        - backup_to_disk
+        
+
+    
+      

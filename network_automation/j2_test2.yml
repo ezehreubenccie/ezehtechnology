@@ -1,0 +1,9 @@
+---
+- name: config using j2
+  hosts: walthamfirewalls
+  gather_facts: False
+
+  tasks: 
+    - template:
+        src: waltham_s2s_firewall_template.j2
+        dest: CFGS/{{ inventory_hostname }}-config.txt

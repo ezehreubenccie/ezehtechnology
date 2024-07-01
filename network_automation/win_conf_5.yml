@@ -1,0 +1,13 @@
+---
+- name: "PLAY 1: Create folder in windows"
+  hosts: netbackup
+  gather_facts: false
+ 
+
+
+  tasks:
+    - name: Create directory structure
+      ansible.windows.win_file:
+        path: "D:/UTD_Backups/2023/{{ item }}"
+        state: directory
+      loop: "{{ query('inventory_hostnames', 'wanexus5672upsw', 'wac9200l48t4gsw', 'wawsc385048tsw', 'wa4500coresw', 'waasas', 'wainetsw', 'wainetrtr', 'sjcorenexusc3548p10gxsw', 'sjnexusc92348gcxsw', 'sjc9300l48t4xsw', 'nycasas', 'nyc9300sw', 'nyc2960xsw', 'njbcdrasa', 'njnexusc92348gcxsw', 'tkyasas', 'tkyc930048tsw', 'tkywsc2960x24tslsw', 'tkyws385048tsw', 'shasas', 'shwsc3750x24sw', 'shwsc2960x24tslsw', 'shwsc385048tsw', 'shc930048tsw', 'ffnexusc92348gcxsw', 'ffnexus3548sw') }}"

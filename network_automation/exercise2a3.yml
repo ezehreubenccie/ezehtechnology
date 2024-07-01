@@ -1,0 +1,22 @@
+---
+- name: get info from nexus switch
+  hosts: walthamnexusswitches
+  gather_facts: False
+
+  tasks:
+    - name: get vlans from nexus
+      nxos_command:
+        commands: 'show vlan id {{ item }}'
+      loop:
+        - 101
+        - 110
+        - 111
+        - 112
+        - 113
+        - 114
+      register: vlans
+
+
+    - debug:
+        var: vlans['results']
+  

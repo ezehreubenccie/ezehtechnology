@@ -1,0 +1,101 @@
+
+---
+- name: 2960X SWITCH RELOAD
+  hosts: tkyc930048tsw
+  gather_facts: false
+  connection: network_cli
+
+  vars:
+    switch:
+        switch_target_version: "15.2(7)E9"
+        switch_image: "c2960x-universalk9-mz.152-7.E9.bin"
+   
+
+  tasks:
+     - name: SAVE CONFIG
+       ios_command:
+         commands: 'write memory'
+       register: config_save_output
+
+     - debug:
+         var: config_save_output
+
+
+     - name: Email start of process on Switch Name
+       mail:
+         subject: Reloading {{ inventory_hostname }}
+         host: 10.2.101.199
+         port: 25
+         to: 
+           - reuben.ezeh@wolterskluwer.com
+           - vivek.arora@wolterskluwer.com
+           - Michael.Keller@wolterskluwer.com
+           - deepak.goswami@wolterskluwer.com
+           - yousef.ayyub@wolterskluwer.com
+         from: ansible-reload@wolterskluwer.com
+       delegate_to: localhost
+       tags:
+         - email
+         - reload
+
+     - name: Reload Switch
+       ios_command:
+         commands:
+           - command: reload
+             prompt: "Proceed with reload?"
+             answer: 'y'
+       tags:
+         - reload
+
+     - name: reset the connection
+       meta: reset_connection
+    
+     - name: Wait for the Switch to return
+       wait_for_connection:
+         #host: "{{ ansible_host }}"
+         #port: 22
+         delay: 2
+         timeout: 3600
+       #delegate_to: localhost
+       #tags:
+         #- reload
+         #- check_online
+    
+     - name: Email Switch name back online
+       mail:
+         subject: Back Online {{ inventory_hostname }}
+         host: 10.2.0.105
+         port: 25
+         to: 
+           - reuben.ezeh@wolterskluwer.com
+           - vivek.arora@wolterskluwer.com
+           - Michael.Keller@wolterskluwer.com
+           - deepak.goswami@wolterskluwer.com
+           - yousef.ayyub@wolterskluwer.com
+         from: ansible-reload@wolterskluwer.com
+       delegate_to: localhost
+       tags:
+          - email
+          - reload
+
+     - name: Gather all legacy facts
+       ios_facts:
+         gather_subset: hardware
+       tags:
+         - facts
+    
+     - name: Asset that the IOS version is the correct one
+       assert:
+         that:
+           - ansible_net_version == switch['switch_target_version']
+         fail_msg: '{{ inventory_hostname }} ios version is {{ ansible_net_version }} switch upgrade was not successfull!. :( :( :('
+         success_msg: '{{ inventory_hostname }} ios version is {{ ansible_net_version }} switch upgrade was successfull. Yayyyy!!'
+       tags:
+         - facts
+    
+
+
+
+
+    
+        

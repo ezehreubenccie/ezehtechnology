@@ -1,0 +1,91 @@
+---
+- name: get facts from asa
+  hosts:  tky5555xasas:sh5555xasas:wa5525xasas:nyc5555xasas:njbcdrasa
+  connection: network_cli
+  gather_facts: no
+
+  vars:
+    hostname:
+    version:
+    serialnum:
+    ipaddress:
+    physicaladdress:
+    verdict:
+    upgradeto:
+    compliant_version: 9.14(4)24
+    lastUpgradeTime:
+
+  tasks:
+    - name: asa facts
+      asa_command:
+        commands:
+          - show run hostname
+          - show version
+          - show inventory
+          - show ip | in INSIDE|inside|Data|guestwifi|DATA|FW|Inside2558|Inside3558|DMZ1054|Inside2058
+          - sh run snmp-server | grep location
+      register: asa_vars
+
+#    - debug:
+#        var: asa_vars
+
+    - name: Get Hostname of ASA
+      asa_command:
+        commands:
+          - show hostname
+      register: hostname
+
+    - name: Get Firewall Uptime
+      asa_command:
+        commands:
+          - "show version | grep {{ hostname.stdout_lines[0][0] }}"
+      register: asauptime
+
+
+    - name: asa set facts
+      set_fact:
+        hostname: "{{ asa_vars.stdout_lines[0][0].split()[-1] }}"
+        version: "{{ asa_vars.stdout_lines[1][0].split()[-1] }}"
+        serialnum: "{{ asa_vars.stdout_lines[2][1].split()[-1] }}"
+        ipaddress: "{{ asa_vars.stdout_lines[3][1].split()[2] }}"
+       # asdmversion: "{{ asa_vars.stdout_lines[1][2].split()[-1] }}"
+#        physicaladdress: "{{ asa_vars.stdout[4][21:].replace(',','') }}"
+        physicaladdress: "{{ asa_vars.stdout_lines[4][0].split('snmp-server location ')[-1].replace(',','') }}"
+        lastUpgradeTime: "{{ asauptime.stdout_lines[0][0].split()[2] + asauptime.stdout_lines[0][0].split()[3] + ' ' + asauptime.stdout_lines[0][0].split()[4] + asauptime.stdout_lines[0][0].split()[5] }}"    
+
+
+    - name: set fact 2
+      set_fact:
+        verdict: 'compliant'
+      when: version  == compliant_version
+
+    - name: set fact 3
+      set_fact:
+        verdict: 'non-compliant'
+      when: version  != compliant_version
+
+    - name: set fact 4
+      set_fact: 
+        upgradeto: 'N/A'
+      when: version  == compliant_version
+
+    - name: set fact 5
+      set_fact:
+        upgradeto: '{{ compliant_version }}'
+      when: version != compliant_version
+
+
+    - name: Display facts
+      debug:
+        msg: "The software version for {{ hostname }} is {{ version }} on platform {{ serialnum }} with ip address {{ ipaddress }} installed at {{ physicaladdress }}"
+
+  
+
+    - name: Write mydevices.csv
+      run_once: true
+      shell: echo Serial Number,Device Name,Software Version,Verdict,UpgradeTO,LastUpgradeTime,Tags,Notes  > FirewallComplianceReport.csv
+
+
+    - name: Write My Devices CSV File
+      shell: echo "{{ serialnum }},{{ hostname }},{{ version }},{{ verdict }},{{ upgradeto }},{{ lastUpgradeTime }},{{ ipaddress }},{{ physicaladdress }}" >> FirewallComplianceReport.csv
+      delegate_to: localhost

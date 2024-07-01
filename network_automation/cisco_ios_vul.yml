@@ -1,0 +1,17 @@
+- name: BUILD CISCO 2960X SWITCHES INVENTORY
+  connection: network_cli
+  hosts: tkywsc2960x24tslsw:nyc2960xsw:shwsc2960x24tslsw:shwsc3750x24tssw
+  gather_facts: false
+
+  tasks:
+    - name: check vul
+      ios_command:
+        commands:
+          # - show run | inc router lisp
+          - show running-config | include crypto isakmp fragmentation
+          - show udp
+          - show running-config | include buffers huge
+      register: output
+
+    - debug:
+        var: output

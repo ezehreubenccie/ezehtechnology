@@ -1,0 +1,126 @@
+- name : GATHER  NEXUS SWITCH FACTS
+  connection: network_cli
+  hosts: wan9k:ffnexusc92348gcxsw
+  gather_facts: false
+
+
+  vars:
+    sw_version: 10.2(6)
+    sw_image: nxos64-cs.10.2.6.M.bin
+    sw_image_size_kb: 3000000
+    scp_server: '10.1.101.130'
+    protocol: 'scp'
+    scp_user: 'rezeh'
+    file_path: "home/rezeh/VENV/python_netauto/paramiko"
+    vrf: management
+    # ftp_pass: !vault |
+    #       $ANSIBLE_VAULT;1.2;AES256;reuben3010
+    #       31363263333639336166396434356436353631316464623736303862353264396462386635663939
+    #       3635373433303562613031353532636131613465383063640a343566396531646465643733386564
+    #       39333033656161323435326464373132323537336333336461343035366162376462623434303431
+    #       3361343166313233350a326231393665383631366538373238303330373132626539313530653239
+    #       6232
+
+  # vars_prompt:
+  #   - name: "scp_password"
+  #     prompt: "Enter SCP Password"
+  #     private: yes
+    
+
+  tasks:
+    - name: Gather all 5672UP Nexus Switch Hardware facts
+      nxos_facts:
+        gather_subset: hardware
+      register: output
+
+    - name: Check if Nexus Switch Software was copied successfully to the flash
+      nxos_command:
+        commands: "dir  bootflash: | include {{ sw_image }}"
+      register: dir_bootflash
+      tags: check_flash,copy_image
+
+    - debug:
+        var: dir_bootflash.stdout_lines[0][0]
+        # var: dir_bootflash
+      tags: check_flash
+
+    - name: Get Free Space on Nexus Switch
+      nxos_command:
+        commands: "dir"
+      register: free
+      tags: check_flash,copy_image
+
+#    - debug:
+#        var: free.stdout_lines[0][-3:][1].split()[0]
+
+    - name: Get free space and convert to float and KB
+      set_fact:
+        free_space_KB: "{{ free.stdout_lines[0][-3:][1].split()[0]|float / 1000 }}"
+      tags: check_flash,copy_image
+
+    - debug:
+        msg: "Free space on {{ inventory_hostname }} is {{ free_space_KB }} KB."
+      tags: check_flash,copy_image
+
+    - name: Check that there is enough space for upload
+      assert:
+        that:
+          - free_space_KB|float > sw_image_size_kb|float
+        fail_msg: 'There is not enough space left on {{ inventory_hostname }} flash'
+        success_msg: '{{ inventory_hostname }} has enough space left on flash. Software Image can be copied to Flash Now!!'
+      when:
+        - sw_image not in dir_bootflash.stdout_lines[0][0]
+      tags: check_flash,copy_image
+
+    # - name: SCP Password
+    #   pause: 
+    #     prompt: "Please Enter the SCP Password: "
+    #     echo: no
+    #   register: result
+    #   tags: copy_image
+    #   # when: sw_image not in dir_bootflash.stdout_lines[0][0]
+
+    # - name: Set SCP password as fact
+    #   set_fact:
+    #     scp_pass: "{{ result.user_input }}"
+    #   tags: copy_image
+    #   when: sw_image not in dir_bootflash.stdout_lines[0][0]
+
+
+    - name: Start Image Copy from SCP Server
+      nxos_command:
+        commands:
+          - command: 'clear ssh hosts'
+          - command: 'copy {{ protocol }}://{{ scp_user }}@{{ scp_server }}/{{ file_path }}/{{ sw_image }} bootflash: vrf {{ vrf }} use-kstack'
+            check_all: True
+            prompt:
+              - "Are you sure you want to continue connecting (yes/no)?"
+              - "Password:"
+            answer:
+              - 'yes'
+              - "{{ scp_pass }}"
+      no_log: false
+      register: image_copy
+      when:
+        - sw_image not in dir_bootflash.stdout_lines[0][0]
+        - free_space_KB|float > sw_image_size_kb|float
+      vars:
+        ansible_command_timeout: 4200
+      tags: copy_image
+
+    
+    - name: Check if Nexus Switch Software was copied successfully to the flash
+      nxos_command:
+        commands: "dir  bootflash: | include {{ sw_image }}"
+      register: dir_bootflash
+      tags: copy_image
+
+
+    - name: Assert that Nexus software Image is in Switch flash
+      assert:
+        that:
+          - sw_image in dir_bootflash.stdout_lines[0][0]
+        fail_msg: 'Target software {{ sw_image }} was not copied successfully to {{ inventory_hostname }} flash. Please troubleshoot!!'
+        success_msg: 'Hooray!!..Target software {{ sw_image }} was  copied successfully to {{ inventory_hostname }} flash.'
+      tags: copy_image
+

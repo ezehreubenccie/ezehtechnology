@@ -1,0 +1,13 @@
+- name: "PLAY 1: BUILD CISCO 9300 9200 3850 IOS-XE SWITCH  COMPLIANCE REPORT"
+  hosts: wac9200l48t4gsw:wawsc385048tsw:sjc9300l48t4xsw:tkyc930048tsw:shwsc385048tsw:shc930048tsw:nyc9300sw:tkyws385048tsw:ffc9300l48t4xsw:njc9200l24t4xsw:njwsc385048tsw:ffc9300l48t4xsw:wainetsw:wainetrtr
+  gather_facts: false
+
+  tasks:
+    - name: Cisco IOS and IOS XE Software Locator ID Separation Protocol Denial of Service Vulnerability
+      ios_command:
+        commands:
+          - show run | inc router lisp
+      register: output
+
+    - debug:
+        var: output

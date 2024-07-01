@@ -1,0 +1,11 @@
+---
+- name: Jinja firewall config tests
+  hosts: walthamfirewalls
+  gather_facts: False
+
+  #vars_files:  waltham_002_fw.yml 
+
+  tasks:
+    - template:
+        src: waltham_s2s_firewall_template.j2
+        dest: CFGS/{{ inventory_hostname }}-config.txt

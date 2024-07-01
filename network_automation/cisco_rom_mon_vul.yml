@@ -1,0 +1,29 @@
+- name: "PLAY 1: BUILD CISCO 9300 9200 3850 IOS-XE SWITCH  COMPLIANCE REPORT"
+  hosts: wac9200l48t4gsw:wawsc385048tsw:sjc9300l48t4xsw:tkyc930048tsw:shwsc385048tsw:shc930048tsw:nyc9300sw:tkyws385048tsw:ffc9300l48t4xsw:njc9200l24t4xsw:njwsc385048tsw:ffc9300l48t4xsw:wainetsw
+  gather_facts: false
+
+
+
+  tasks:
+    - name: Determine the Cisco IOS XE ROMMON Software Release
+      ios_command:
+        commands:
+          - show version | include BOOTLDR
+          - show romvar | include SWITCH_DISABLE_PASSWORD_RECOVERY
+      register: output
+#        wait_for:
+#          - result[0] 
+#          - result[1] contains authorization
+    # - name: ios facts
+    #   ios_facts:
+    #     gather_subset: hardware
+    #   register: output
+
+    - name: debug
+      debug:
+        var: output
+
+     
+    # - name: debug
+    #   debug: 
+    #     var: output

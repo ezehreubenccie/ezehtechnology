@@ -1,0 +1,21 @@
+- name : GET BOOT SYSTEM FOR 2960X SWITCHES
+  connection: network_cli
+  hosts: tkywsc2960x24tslsw
+  gather_facts: false
+
+
+
+  
+
+
+
+
+
+  tasks:
+    - name: Check Boot path
+      ios_command:
+        commands: 'show boot | i BOOT'
+      register: bootvar
+
+    - debug: 
+        var: bootvar

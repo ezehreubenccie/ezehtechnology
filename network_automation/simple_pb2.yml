@@ -1,0 +1,6 @@
+---
+- name: Hello we are going to print this to the screen
+  hosts: walthamfirewalls 
+  gather_facts: False
+  tasks:
+    - ping:

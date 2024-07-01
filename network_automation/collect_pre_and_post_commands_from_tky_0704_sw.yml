@@ -1,0 +1,33 @@
+---
+- name: "COLLECT OUTPUT FROM 0704"
+  hosts: pr-lan-sw0704
+  gather_facts: false
+  connection: network_cli
+
+
+
+
+  tasks:
+     - name: SAVE CONFIG
+       ios_command:
+         commands:
+           - term length 0 
+           - show mac address-table
+           - show cdp neighbors
+           - show vlan brief
+           - show ip inter brief
+           - show spanning-tree
+           - show interfaces
+           - show ip route
+           - show ver | in Soft
+           - show ip route
+           - show int status
+           - show switch
+           - show switch detail
+           - show etherchannel summary
+           - show etherchannel detail
+
+       register: config_save_output
+
+     - debug:
+         var: config_save_output.stdout_lines
