@@ -1,3 +1,2 @@
 Serial Number,Device Name,Software Version,Verdict,UpgradeTO,TimeUpgraded,TimeZoneOfUpgrade,DayOfUpgrade,DateUpgraded,Tags,Notes
-FOC2220Z0H4,FTMFL-9300-SW01,16.12.04,compliant,N/A,15:13:13,EST,Thu,Dec 17 2020,172.28.4.45,13350 Metro Parkway Suite 301 Fort Myers FL 33966
-FCW2215L1DN,SATX-SW-CI-CORE-01,16.12.04,compliant,N/A,19:13:57,CDT,Thu,Apr 1 2021,192.168.158.2,3510 N Loop 1604 E San Antonio TX 78247
+FJC261017NA,wc-lan-oob-sw0102,17.06.03,non-compliant,17.09.04,15:32:37,PDT,Tue,Jul 26 2022,10.198.219.2,Equinix SV3 Cage SV3:01:003060:Wolters 1735 Lundy Ave San Jose CA 95131 US

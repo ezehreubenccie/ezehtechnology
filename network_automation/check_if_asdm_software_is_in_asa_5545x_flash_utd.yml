@@ -1,11 +1,11 @@
 - name : CHECK IF TARGET SOFTWARE IS PRESENT IN ASA 5506X FIREWALL FLASH
   connection: network_cli
-  hosts: walthamfirewalls
+  hosts: wa5525xasas:nyc5555xasas:tky5555xasas:ec-lan-asa0803:sh5555xasas
   gather_facts: false
 
 
   vars:
-    asdm_image: asdm-7131-101.bin
+    asdm_image: asdm-7181-161.bin
 
 
   tasks:

@@ -1,12 +1,13 @@
 - name : CHANGE BOOT VARIABLE OR SYSTEM ON 5508X ASA FOR DEVICES THAT HAVE SINGLE BOOT SYSTEM
   connection: network_cli
-  hosts: walthamfirewalls
+  hosts: ec-lan-asa0803
   gather_facts: false
 
   vars:
-    asa_target_version: "9.12(4)41"
-    asa_image: "asa9-12-4-41-smp-k8.bin"
-    asa_md5: bdd1c5b2d6f2246ed64b99adc43b5810
+    asa_target_version: "9.14(4)24"
+    asa_image: "asa9-14-4-24-smp-k8.bin"
+    asa_md5: 546d9f5a20fcd595612efcd058bc8ffb
+    asa_compliant_ver: 9.14(4)24
     version:
 
 
@@ -94,9 +95,8 @@
         that:
           - asa_image in bootvar['stdout'][0]
         fail_msg: "Primary boot system is not set correctly. it is {{ bootvar['stdout'][0].split()[2] }}. Please troubleshoot!"
-        success_msg: "Hooray!!..Primary boot system is set correctly. it is {{ bootvar['stdout'][0].split('\n')[0][0] }}" # and secondary boot system is {{ bootvar['stdout'][0].split('\n')[1] }}. Please reload {{ inventory_hostname }} to upgrade to compliant version"
-     # when:
+        success_msg: "Hooray!!..Primary boot system is set correctly. it is {{ bootvar['stdout'][0].split('\n')[0] }} and secondary boot system is {{ bootvar['stdout'][0].split('\n')[1] }}. Please reload {{ inventory_hostname }} to upgrade to compliant version"
+      when:
        # - asa_image in dir_flash['stdout'][0]
        # - asa_md5 not in md5_result['stdout'][0].split()
-       # - version != asa_target_version
-       # - bootvar['stdout'][0].split('\n')[1]
+        - version != asa_target_version

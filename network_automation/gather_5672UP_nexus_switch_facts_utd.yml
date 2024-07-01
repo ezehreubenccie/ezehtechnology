@@ -1,16 +1,16 @@
-- name : GATHER 5672UP NEXUS SWITCH FACTS
+- name : GATHER NEXUS SWITCH FACTS
   connection: network_cli
-  hosts: sanjosenexusswitches
+  hosts: wan9k:ffnexusc92348gcxsw
   gather_facts: false
 
 
 
 
   vars:
-    switch_compliant_ver: 7.3(8)N1(1)
+    switch_compliant_ver: 10.3(4a)
 
   tasks:
-    - name: Gather all 5672UP Nexus Switch Hardware facts
+    - name: Gather all Nexus Switch Hardware facts
       nxos_facts:
         gather_subset: hardware
       register: output
@@ -19,7 +19,7 @@
       debug:
         var: output
 
-    - name: Assert that Switch IOS Version is the Compliant Version
+    - name: Assert that Switch NXOS Version is the Compliant Version
       assert:
         that:
           - ansible_net_version == switch_compliant_ver

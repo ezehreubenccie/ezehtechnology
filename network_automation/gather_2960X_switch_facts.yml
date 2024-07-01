@@ -1,13 +1,13 @@
 - name : GATHER 2960X SWITCH FACTS
   connection: network_cli
-  hosts: usap2960xswitches
+  hosts: usap2960xswitches:tkywsc2960x24tslsw
   gather_facts: false
 
 
 
 
   vars:
-    switch_compliant_ver: 15.2(7)E5
+    switch_compliant_ver: 15.2(7)E9
 
   tasks:
     - name: Gather all 2960X Switch Hardware facts

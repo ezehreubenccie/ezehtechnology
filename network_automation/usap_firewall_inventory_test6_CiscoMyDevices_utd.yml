@@ -41,9 +41,9 @@
 
     - name: Write mydevices.csv
       run_once: true
-      shell: echo Serial Number,Device Name,Software Version,Tags,Notes  > Ciscomydevicesfirewalls.csv
+      shell: echo Serial Number,Device Name/Hostname,Tags,Notes,Software Version  > Ciscomydevicesfirewalls.csv
 
 
     - name: Write My Devices CSV File
-      shell: echo "{{ serialnum }},{{ hostname }},{{ version }} Interim,{{ ipaddress }},{{ physicaladdress }}" >> Ciscomydevicesfirewalls.csv
+      shell: echo "{{ serialnum }},{{ hostname }},{{ ipaddress }},{{ physicaladdress }},{{version}}" >> Ciscomydevicesfirewalls.csv
       delegate_to: localhost

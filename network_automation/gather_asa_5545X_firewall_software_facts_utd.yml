@@ -1,6 +1,6 @@
 ---
 - name: get facts from asa
-  hosts: walthamfirewalls:tokyoasas:shanghaiasas 
+  hosts: wa5525xasas:nyc5555xasas:tky5555xasas:ec-lan-asa0803:sh5555xasas
   connection: network_cli
   gather_facts: no
 
@@ -9,8 +9,8 @@
     version:
     serialnum:
     ipaddress:
-    asa_compliant_ver: 9.12(4)41
-    asdm_compatible_ver: 7.13(1)
+    asa_compliant_ver: 9.14(4)24
+    asdm_compatible_ver: 7.18(1)161
 
   tasks:
     - name: asa facts
@@ -19,7 +19,7 @@
           - show run hostname
           - show version
           - show inventory
-          - show ip | in INSIDE|inside|Data|guestwifi|DATA|FW|Inside2558|Inside3558
+          - show ip | in INSIDE|inside|Data|guestwifi|DATA|FW|Inside2558|Inside3558|DMZ1054|Inside2058
           - show run asdm | grep image
       register: asa_vars
 
@@ -31,7 +31,7 @@
         hostname: "{{ asa_vars.stdout_lines[0][0].split()[-1] }}"
         version: "{{ asa_vars.stdout_lines[1][0].split()[-1] }}"
         serialnum: "{{ asa_vars.stdout_lines[2][1].split()[-1] }}"
-        ipaddress: "{{ asa_vars.stdout_lines[3][0].split()[2] }}"
+        ipaddress: "{{ asa_vars.stdout_lines[3][1].split()[2] }}"
         #asdmversion: "{{ asa_vars.stdout_lines[1][2].split()[-1] }}"
 
     - name: Display facts

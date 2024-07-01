@@ -10,31 +10,32 @@
 
     - name: set fact
       set_fact: 
-        today: '{{ ansible_date_time.date }}'
+        date: '{{ ansible_date_time.date }}'
 
     - debug:
-        var: today
+        var: date
 
-#    - name: Create directory {{hostvars.localhost.today}} 
-#      file: 
-#        path: ../backups/{{hostvars.localhost.today}}
-#        state: directory
-#  run_once: true
+    - name: Create directory {{hostvars.localhost.date}} 
+      file: 
+        path: ../backups/{{hostvars.localhost.date}}
+        state: directory
+  run_once: true
+
 #
-#
-### Backup running config 
-#
-#- hosts: walthamfirewalls
-#  
-#  tasks:
-#    - name: Backup Firewall Running Config
-#      asa_command:
-#        commands: show run
-#      register: config 
-#
-#    - name: Save output to ../backups
-#      copy:
-#        content: "{{config.stdout[0]}}"
-#        dest: '../backups/{{hostvars.localhost.today}}/{{ inventory_hostname }}-{{hostvars.localhost.today}}-config.txt'
-#      
-#
+## Backup running config 
+
+- hosts: walthamfirewalls
+  gather_facts: False
+  
+  tasks:
+    - name: Backup Firewall Running Config
+      asa_command:
+        commands: show run
+      register: config 
+
+    - name: Save output to ../backups
+      copy:
+        content: "{{config.stdout[0]}}"
+        dest: '../backups/{{hostvars.localhost.date}}/{{ inventory_hostname }}-{{hostvars.localhost.date}}-config.txt'
+      
+

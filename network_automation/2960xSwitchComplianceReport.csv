@@ -1,3 +1,2 @@
-Serial Number,Device Name,Software Version,Verdict,UpgradeTO,TimeUpgraded,TimeZoneOfUpgrade,DayOfUpgrade,DateUpgraded,Tags,Notes
-FJC2226W101,CMD-2960X-SW-STACK,15.2(2)E7,non-compliant,15.2(7)E4,17:17:02,EST,Wed,Nov 17 2021,172.28.14.2,10400 Little Patuxent Parkway Suite 240 Columbia Maryland 21044
-FJC2222W11D,CMD-2960X-SW-STACK,15.2(2)E7,non-compliant,15.2(7)E4,17:17:02,EST,Wed,Nov 17 2021,172.28.14.2,10400 Little Patuxent Parkway Suite 240 Columbia Maryland 21044
+Serial Number,Device Name,Device Model,Software Version,Verdict,UpgradeTO,TimeUpgraded,TimeZoneOfUpgrade,DayOfUpgrade,DateUpgraded,Tags,Notes
+FOC2021W15L,sb-lan-sw0501,WS-C2960X-24TS-L,15.2(7)E4,non-compliant,15.2(7)E7,22:03:59,EDT,Sat,Aug 3 2002,10.10.48.20,East Coast IDC1

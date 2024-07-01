@@ -1,13 +1,13 @@
 - name : VERIFY MD5 HASH OF ASA TARGET SOFTWARE COPIED TO ASA 5506X FIREWALLS
   connection: network_cli
-  hosts: walthamfirewalls:tokyoasas:shanghaiasas
+  hosts: wa5525xasas:nyc5555xasas:tky5555xasas:ec-lan-asa0803:sh5555xasas
   gather_facts: false
 
 
   vars:
-    asa_target_version: "9.12(4)41"
-    asa_image: "asa9-12-4-41-smp-k8.bin"
-    asa_md5: bdd1c5b2d6f2246ed64b99adc43b5810
+    asa_target_version: "9.12(4)67"
+    asa_image: "asa9-12-4-67-smp-k8.bin"
+    asa_md5: 47fe5b1a8bdc555a15731946bc80bf79
 
 
   tasks:

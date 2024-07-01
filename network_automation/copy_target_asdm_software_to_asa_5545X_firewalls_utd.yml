@@ -1,24 +1,25 @@
 - name : COPY TARGET ASDM SOFTWARE TO CISCO 5506X ASA
   connection: network_cli
-  hosts: walthamfirewalls
+  hosts: wa5525xasas:nyc5555xasas:tky5555xasas:ec-lan-asa0803:sh5555xasas
   gather_facts: false
 
 
 
   vars:
-    asdm_image_size_bytes: 36000000
-    ftp_ip: '10.2.101.117'
+    asdm_image_size_bytes: 200000000
+    ftp_ip: '10.25.50.80'
+    #ftp_ip: '10.1.101.69'
     protocol: 'ftp'
-    ftp_user: 'a-rezeh'
-    ftp_pass: !vault |
-          $ANSIBLE_VAULT;1.2;AES256;a-rezeh
-          38306665633964656230363566343634393839386165316232353133623138633539353763373465
-          3761656430333237613437666563323731303561343664360a386634323033663762323862626239
-          33303436656535373236613163366237306636373466393334346361336635326364313238306137
-          6531343733633138610a323838623266346662353465326534356334363938373038633163393238
-          6664
-    source_file: asdm-7131-101.bin
-    dest_file: asdm-7131-101.bin
+    ftp_user: 'ftpuser'
+#    ftp_pass: !vault |
+#          $ANSIBLE_VAULT;1.2;AES256;reuben3010
+#          36373037643461376333393863323262356639656135313633646637383131373732326262646430
+#          6231333532313535393436396438643261346537616366640a373664316132393463656562313935
+#          64366165663239343065353362626337656132316230646639326265333331373930356333613136
+#          3039656333316233300a323132376261663739313564663464303335633635383136653931366464
+#          6664
+    source_file: asdm-7181-161.bin
+    dest_file: asdm-7181-161.bin
 
 
   tasks:
@@ -28,6 +29,12 @@
           asa_command: 
             commands: 'show disk0: | in bytes'
           register: flash_facts
+          tags: get_disk
+
+        - debug:
+            var: flash_facts
+          tags: get_disk        
+
         - set_fact:
             free_space: "{{ flash_facts['stdout'][0].split()[3][1:11] }}"
         #- debug:
@@ -47,7 +54,7 @@
         
         - name: Upload Software from FTP Server to ASA flash
           cli_command:
-            command: 'copy ftp://{{ ftp_user }}:{{ ftp_pass }}@{{ ftp_ip }}/{{ source_file }} disk0:/{{ source_file }}'
+            command: 'copy ftp://{{ ftp_user }}:{{ ftp_pass }}@{{ ftp_ip }}/{{ source_file }}   disk0:/{{ source_file }}'
             prompt:
               - Address or name of remote host
               - Source username

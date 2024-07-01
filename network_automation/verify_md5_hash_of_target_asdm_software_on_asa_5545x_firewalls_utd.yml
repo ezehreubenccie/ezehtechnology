@@ -1,13 +1,13 @@
-- name : VERIFY MD5 HASH OF ASDM SOFTWARE COPIED TO ASA 5545X FIREWALLS
+- name : VERIFY MD5 HASH OF ASA TARGET SOFTWARE COPIED TO ASA 5545X FIREWALLS
   connection: network_cli
-  hosts: walthamfirewalls:tokyoasas:shanghaiasas
+  hosts: wa5525xasas:nyc5555xasas:tky5555xasas:ec-lan-asa0803:sh5555xasas
   gather_facts: false
 
 
   vars:
-    asdm_target_version: "7.13(1)101"
-    asdm_image: "asdm-7131-101.bin"
-    asdm_md5: fac75582056ebb9599d03f1ca354073c
+    asdm_target_version: "7.18(1)161"
+    asdm_image: "asdm-7181-161.bin"
+    asdm_md5: 14534d49c09806b2832fb1e54c788d65
 
 
   tasks:

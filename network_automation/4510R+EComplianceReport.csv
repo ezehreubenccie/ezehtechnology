@@ -1,2 +1,2 @@
-Serial Number,Device Name,Software Version,Verdict,UpgradeTO,TimeUpgraded,TimeZoneOfUpgrade,DayOfUpgrade,DateUpgraded,Tags,Notes
-FXS2026Q222,DCO_4510_SW01,03.11.03a.E,compliant,N/A,19:20:28,MDT,Thu,Apr 22 2021,10.64.0.1,8000 E MAPLE WOOD AVE BUILDING #5 SUITE #200 Denver CO 80111
+Serial Number,Device Name,Device Model,Software Version,Verdict,UpgradeTO,TimeUpgraded,TimeZoneOfUpgrade,DayOfUpgrade,DateUpgraded,Tags,Notes
+JAE19040B25,WA-LAN-CORE0100,WS-C4500X-32,03.06.01.E,non-compliant,03.11.07.E,14:07:10,EST,Sat,Jan 26 2019,10.2.0.0,CityPoint

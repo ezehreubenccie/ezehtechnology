@@ -1,12 +1,12 @@
 - name : CHECK IF TARGET SOFTWARE IS PRESENT IN ASA 5545X FIREWALL FLASH
   connection: network_cli
-  hosts: walthamfirewalls:tokyoasas:shanghaiasas
+  hosts: wa5525xasas:nyc5555xasas:tky5555xasas:ec-lan-asa0803:sh5555xasas
   gather_facts: false
 
 
   vars:
-    asa_image: asa9-12-4-41-smp-k8.bin
-    asdm_image: asdm-7131-101.bin
+    asa_image: asa9-14-4-24-smp-k8.bin
+    asdm_image: asdm-openjre-7181-161.bin
 
 
   tasks:
