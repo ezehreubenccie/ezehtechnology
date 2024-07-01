@@ -8,11 +8,15 @@
   vars:
     ios_version: 17.09.04a
     ios_3850X_version: 16.12.10a
+    ios_lite_version: 17.09.04a
     ios_binary: cat9k_iosxe.17.09.04a.SPA.bin
     ios_3850X_binary: cat3k_caa-universalk9.16.12.10a.SPA.bin
+    ios_binary_lite: cat9k_lite_iosxe.17.09.04a.SPA.bin
     ios_size_kb: 1990000
     ios_3850X_size_kb: 1000000
-    ftp_server: '10.25.50.80'
+    ios_size_kb_Lite: 1990000
+    # ftp_server: '10.25.50.80'
+    ftp_server: '10.1.101.69'
     protocol: 'ftp'
     ftp_user: 'ftpuser'
     # ftp_pass: !vault |
@@ -32,7 +36,7 @@
 
     - name: Check if IOS Software is present in the flash
       ios_command:
-        commands: "dir  flash: | include {{ ios_binary }}|{{ ios_3850X_binary }}"
+        commands: "dir  flash: | include {{ ios_binary }}|{{ ios_3850X_binary }}|{{ ios_binary_lite }}"
       register: dir_flash
       tags: check_flash
 
@@ -57,6 +61,19 @@
         - ios_3850X_binary not in dir_flash.stdout[0]
         - "'WS-C3850' in ansible_net_model"
       tags: check_flash
+
+    
+    - name: Check that there is enough space for upload to C9200 SW flash
+      assert:
+        that:
+          - ansible_net_filesystems_info['flash:']['spacefree_kb'] > ios_size_kb_Lite
+        fail_msg: 'There is not enough space left on {{ inventory_hostname }} flash'
+        success_msg: '{{ inventory_hostname }} has enough space left on flash.'
+      when:
+        - ios_binary_lite not in dir_flash.stdout[0]
+        - "'C9200' in ansible_net_model"
+      tags: check_flash
+
 
 
 
@@ -86,9 +103,23 @@
       vars:
         ansible_command_timeout: 4200
 
+
+    - name: Start C9200 Image Copy from FTP Server
+      ios_command:
+         commands:
+          - command: 'copy {{ protocol }}://{{ ftp_user }}:{{ ftp_pass }}@{{ ftp_server }}/{{ ios_binary_lite }}  flash:/'
+            prompt: 'Destination filename \[{{ ios_binary_lite }}\]?'
+            answer: '{{ ios_binary_lite }}'
+      when:
+        - ios_binary_lite not in dir_flash.stdout[0]
+        - ansible_net_filesystems_info['flash:']['spacefree_kb'] > ios_size_kb_Lite 
+        - "'WS-C9200' in ansible_net_model"
+      vars:
+        ansible_command_timeout: 4200
+
     - name: Check if IOS Software was copied successfully to the flash
       ios_command:
-        commands: "dir  flash: | include {{ ios_binary }}|{{ ios_3850X_binary }}"
+        commands: "dir  flash: | include {{ ios_binary }}|{{ ios_3850X_binary }}|{{ ios_binary_lite }}"
       register: dir_flash
 
     - name: Assert that software BIN is in 9300 switch flash
@@ -106,3 +137,12 @@
         fail_msg: 'Target software {{ ios_3850X_binary }} was not copied successfully to {{ inventory_hostname }} flash. Please troubleshoot!!'
         success_msg: 'Hooray!!..Target software {{ ios_3850X_binary }} was  copied successfully to {{ inventory_hostname }} flash.'
       when: "'WS-C3850' in ansible_net_model"
+
+    
+    - name: Assert that software BIN is in C9200 switch flash
+      assert:
+        that:
+          - ios_binary_lite in dir_flash['stdout'][0]
+        fail_msg: 'Target software {{ ios_binary_lite }} was not copied successfully to {{ inventory_hostname }} flash. Please troubleshoot!!'
+        success_msg: 'Hooray!!..Target software {{ ios_binary_lite }} was  copied successfully to {{ inventory_hostname }} flash.'
+      when: "'C9200' in ansible_net_model"

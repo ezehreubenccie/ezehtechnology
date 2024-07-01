@@ -8,6 +8,7 @@
   vars:
     ios_binary: cat9k_iosxe.17.09.04a.SPA.bin
     ios_3850X_binary: cat3k_caa-universalk9.16.12.10a.SPA.bin
+    ios_binary_lite: "cat9k_lite_iosxe.17.09.04a.SPA.bin"
     
 
 
@@ -20,7 +21,7 @@
 
     - name: Check if IOS is already present on the flash
       ios_command:
-        commands: "dir | include {{ ios_binary }}|{{ ios_3850X_binary }}"
+        commands: "dir | include {{ ios_binary }}|{{ ios_3850X_binary }}|{{ios_binary_lite}}"
       vars:
         ansible_command_timeout: 1800
       register: show_flash
@@ -48,3 +49,13 @@
       tags:
         - flash
       when: "'WS-C3850' in ansible_net_model"
+
+    - name: Assert that target software is present in flash
+      assert:
+        that:
+          - ios_binary_lite in show_flash['stdout'][0]
+        fail_msg: "Compliant Software {{ ios_binary_lite }} not present in {{inventory_hostname}}'s flash"
+        success_msg: "Compliant Software {{ ios_binary_lite }}  is  present in {{inventory_hostname}}'s flash"
+      tags:
+        - flash
+      when: "'C9200' in ansible_net_model"
