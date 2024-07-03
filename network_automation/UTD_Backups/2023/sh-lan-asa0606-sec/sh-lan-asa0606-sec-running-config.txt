@@ -722,6 +722,16 @@ object network sh-esxunity-10.35.56.102
 object network obj-10.1.101.249
  host 10.1.101.249
  description IS-7121
+object network obj-10.35.50.170
+ host 10.35.50.170
+object network obj-10.35.50.190
+ host 10.35.50.190
+object network obj-211.147.88.117
+ host 211.147.88.117
+ description CECR-6042 Reuben E
+object network obj-211.147.88.118
+ host 211.147.88.118
+ description CECR-6042
 object-group network Tomcat-Servers
  network-object object ecapp0506p
  network-object object ecapp0606p
@@ -5334,6 +5344,8 @@ nat (DMZ3554,outside) source static DMZ3554 DMZ3554 destination static VPN-NONAT
 nat (DMZ3550,outside) source static SH-NETWORKS SH-NETWORKS destination static EC-DMZ2064 EC-DMZ2064 no-proxy-arp route-lookup
 nat (DMZ3554,outside) source static SH-NETWORKS SH-NETWORKS destination static EC-DMZ2064 EC-DMZ2064 no-proxy-arp route-lookup
 nat (DMZ3556,outside) source static SH-NETWORKS SH-NETWORKS destination static EC-DMZ2064 EC-DMZ2064 no-proxy-arp route-lookup
+nat (any,any) source static obj-10.35.50.170 obj-211.147.88.117 inactive description CECR-6042 Reuben E
+nat (any,any) source static obj-10.35.50.190 obj-211.147.88.118 inactive description CECR-6042 Reuben E
 !
 object network obj-10.35.50.101
  nat (DMZ3550,outside) static 211.147.88.113
@@ -5716,5 +5728,5 @@ call-home
   subscribe-to-alert-group inventory periodic monthly
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
-Cryptochecksum:8f1f5b2c51d5d50e9d411a37a5af3bc4
+Cryptochecksum:c203d9475557f16b935d86c765b7ede0
 : end
