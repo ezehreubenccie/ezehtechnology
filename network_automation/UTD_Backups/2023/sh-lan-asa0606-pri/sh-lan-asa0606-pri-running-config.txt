@@ -732,6 +732,12 @@ object network obj-211.147.88.117
 object network obj-211.147.88.118
  host 211.147.88.118
  description CECR-6042
+object network 10.35.50.170
+ host 10.35.50.170
+ description CECR-6042 Reuben E
+object network 10.35.50.190
+ host 10.35.50.190
+ description CECR-6042 Reuben E
 object-group network Tomcat-Servers
  network-object object ecapp0506p
  network-object object ecapp0606p
@@ -1165,6 +1171,8 @@ object-group network WebServers-INET_1
  network-object host 10.35.50.200
  network-object host 10.35.50.230
  network-object host 10.35.50.101
+ network-object object 10.35.50.170
+ network-object object 10.35.50.190
 object-group network BigIPNATServers-INET_1
  network-object host eclb0106p
  network-object host eclb0206p
@@ -5344,8 +5352,8 @@ nat (DMZ3554,outside) source static DMZ3554 DMZ3554 destination static VPN-NONAT
 nat (DMZ3550,outside) source static SH-NETWORKS SH-NETWORKS destination static EC-DMZ2064 EC-DMZ2064 no-proxy-arp route-lookup
 nat (DMZ3554,outside) source static SH-NETWORKS SH-NETWORKS destination static EC-DMZ2064 EC-DMZ2064 no-proxy-arp route-lookup
 nat (DMZ3556,outside) source static SH-NETWORKS SH-NETWORKS destination static EC-DMZ2064 EC-DMZ2064 no-proxy-arp route-lookup
-nat (any,any) source static obj-10.35.50.170 obj-211.147.88.117 inactive description CECR-6042 Reuben E
-nat (any,any) source static obj-10.35.50.190 obj-211.147.88.118 inactive description CECR-6042 Reuben E
+nat (any,any) source static obj-10.35.50.170 obj-211.147.88.117 description CECR-6042 Reuben E
+nat (any,any) source static obj-10.35.50.190 obj-211.147.88.118 description CECR-6042 Reuben E
 !
 object network obj-10.35.50.101
  nat (DMZ3550,outside) static 211.147.88.113
@@ -5355,10 +5363,6 @@ object network eclb0206p
  nat (DMZ3550,outside) static 211.147.88.115
 object network 10.35.50.151
  nat (DMZ3550,outside) static 211.147.88.116
-object network obj-10.35.50.200
- nat (DMZ3550,outside) static 211.147.88.117
-object network obj-10.35.50.230
- nat (DMZ3550,outside) static 211.147.88.118
 object network ecmon0906p-ft
  nat (DMZ3550,outside) static 211.147.88.119
 object network obj-10.35.48.0
@@ -5728,5 +5732,5 @@ call-home
   subscribe-to-alert-group inventory periodic monthly
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
-Cryptochecksum:83bff2e0a4d2d7eb1d55d4ec736ebc0b
+Cryptochecksum:7b4e57ea9ca762c1ce47a20301564730
 : end
