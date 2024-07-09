@@ -5305,11 +5305,10 @@ access-list outside_cryptomap_24 extended permit ip object-group local_nets obje
 pager lines 24
 logging enable
 logging asdm-buffer-size 512
+logging monitor debugging
 logging buffered debugging
-logging trap informational
 logging asdm critical
 logging host Inside3558 10.2.101.95 17/1544
-logging debug-trace
 flow-export destination DMZ3554 ecmon0906p-bk 5569
 mtu outside 1500
 mtu Outside_mng 1500
@@ -5732,5 +5731,5 @@ call-home
   subscribe-to-alert-group inventory periodic monthly
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
-Cryptochecksum:7b4e57ea9ca762c1ce47a20301564730
+Cryptochecksum:88a7ad7f863b1759ad328a1386681b75
 : end
