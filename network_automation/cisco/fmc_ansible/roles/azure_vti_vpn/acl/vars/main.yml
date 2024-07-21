@@ -1,5 +1,7 @@
+# Network obj group name
+# source_nets: Azure-CECS-NonProd02-Subnets
 # EX_ACL Name
-"ex_acl_name": exacl-test
+"ex_acl_name": Filter-Azure-CECS-Prod02
 
 # DNS - Waltham to AZ and AZ to Waltham
 # "source_nets": 40CE2481-5D56-0ed3-0000-300647966575

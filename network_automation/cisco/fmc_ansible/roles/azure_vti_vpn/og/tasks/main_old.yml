@@ -1,0 +1,58 @@
+- name: "Create first network object for {{ netog_name }}"
+  cisco.fmcansible.fmc_configuration:
+    operation: upsertNetworkObject
+    #operation: createMultipleNetworkObject
+    #operation: updateNetworkObject
+    data:
+      name: "{{ net_1 }}"
+      value: "{{ net_1 }}"
+      # description: "{{ description }}"
+      type: Network
+    path_params:
+      domainUUID: '{{ domain[0].uuid }}'
+    register_as: net1
+
+- debug:
+    var: net1
+
+# - name: "Create second network object for {{ netog_name }}"
+#   cisco.fmcansible.fmc_configuration:
+#     operation: upsertNetworkObject
+#     #operation: createMultipleNetworkObject
+#     #operation: updateNetworkObject
+#     data:
+#       name: "{{ net_2 }}"
+#       value: "{{ net_2 }}"
+#       # description: "{{ description }}"
+#       type: Network
+#     path_params:
+#       domainUUID: '{{ domain[0].uuid }}'
+#     register_as: net2
+
+# - name: "Create Third network object for {{ netog_name }}"
+#   cisco.fmcansible.fmc_configuration:
+#     operation: upsertNetworkObject
+#     #operation: createMultipleNetworkObject
+#     #operation: updateNetworkObject
+#     data:
+#       name: "{{ net_3 }}"
+#       value: "{{ net_3 }}"
+#       # description: "{{ description }}"
+#       type: Network
+#     path_params:
+#       domainUUID: '{{ domain[0].uuid }}'
+#     register_as: net3
+
+# - name: "Create the network object group, {{ netog_name }}"
+#   cisco.fmcansible.fmc_configuration:
+#     operation: createMultipleNetworkGroup
+#     data:
+#       name: "{{ netog_name }}"
+#       type: networkgroup
+#       objects:
+#         - id: '{{ Network_azutdprod01_1.id }}'
+#           type: '{{ Network_azutdprod01_1.type }}'
+#         - id: '{{ Network_azutdprod01_2.id }}'
+#           type: '{{ Network_azutdprod01_2.type }}'
+#     path_params:
+#       domainUUID: '{{ domain[0].uuid }}'

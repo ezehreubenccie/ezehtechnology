@@ -1,4 +1,5 @@
-netog_name: Azure-UTD-Prod01-Test
-net_1: 1.1.1.0/24
-net_2: 2.2.2.0/24
-description: "{{ netog_name }} networks"
+netobj_name: Azure-CECS-Prod02-Subnets
+net_1: 10.177.156.0/22
+net_2: 10.177.160.0/21
+net_3: 10.177.168.0/22
+description: "Azure CECS Prod02 Networks"

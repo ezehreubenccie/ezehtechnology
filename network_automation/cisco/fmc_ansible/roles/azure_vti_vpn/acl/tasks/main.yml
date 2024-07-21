@@ -1,3 +1,26 @@
+# - name: Execute 'getAllNetworkGroup' operation
+#   cisco.fmcansible.fmc_configuration:
+#     operation: "getAllNetworkGroup"
+#     path_params:
+#       domainUUID: "{{ domain[0].uuid }}"
+#     query_params:
+#       filter: "nameOrValue:{{ netobj_name }}"
+#   # offset: "{{ offset }}"
+#   # limit: "{{ limit }}"
+#   # expanded: "{{ expanded }}"
+#     register_as: netog
+#   #tags: net
+
+
+# - debug:
+#     var: netog[0].name
+# #   tags: net
+
+# - set_fact:
+#     source_nets: "{{ netog[0].name }}"
+#     # tags: net
+
+
 - name: Execute 'createExtendedAccessListModel' operation
   cisco.fmcansible.fmc_configuration:
     operation: "createExtendedAccessListModel"
