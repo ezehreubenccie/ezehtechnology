@@ -1,0 +1,5 @@
+httpog: Azure-UTD-Prod01-HTTP-Ports_test
+hazelcastog: Azure-UTD-Prod01-Hazelcast-Ports_test
+apachejservog: Azure-UTD-Prod01-AJP-Ports_test
+sshog: Azure-UTD-Prod01-SSH-Ports_test
+activemqopenwireog: Azure-UTD-Prod01-OpenWire-Ports_test
