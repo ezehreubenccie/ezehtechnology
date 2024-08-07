@@ -1,0 +1,407 @@
+
+PLAY [wa-fmc2500] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Get Domain UUID] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [debug] *******************************************************************
+ok: [wa-fmc2500] => {
+    "domain": [
+        {
+            "name": "Global",
+            "type": "Domain",
+            "uuid": "e276abec-e0f2-11e3-8169-6d9ed49b625f"
+        }
+    ]
+}
+
+TASK [Get Access Policy] *******************************************************
+ok: [wa-fmc2500]
+
+TASK [debug] *******************************************************************
+ok: [wa-fmc2500] => {
+    "access_policy": [
+        {
+            "defaultAction": {
+                "action": "BLOCK",
+                "enableSyslog": true,
+                "id": "40CE2481-5D56-0ed3-0000-000268438536",
+                "logBegin": true,
+                "logEnd": false,
+                "sendEventsToFMC": true,
+                "type": "AccessPolicyDefaultAction"
+            },
+            "description": "FTD policy for EC-LAN FTD",
+            "id": "40CE2481-5D56-0ed3-0000-081604388814",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-081604388814"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "inherit": false,
+                "lastUser": {
+                    "name": "a-dgoswami"
+                },
+                "lockingStatus": {
+                    "status": "UNLOCKED"
+                },
+                "timestamp": 1722433619048
+            },
+            "name": "ACP-EC-LAN",
+            "prefilterPolicySetting": {
+                "id": "4897c8f4-e211-4661-b0a4-25b0826cded9",
+                "name": "Default Prefilter Policy",
+                "type": "PrefilterPolicy"
+            },
+            "rules": {
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-081604388814/accessrules"
+                },
+                "refType": "list",
+                "type": "AccessRule"
+            },
+            "securityIntelligence": {
+                "id": "40CE2481-5D56-0ed3-0000-081604388858",
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-081604388814/securityintelligencepolicies/40CE2481-5D56-0ed3-0000-081604388858"
+                },
+                "type": "SecurityIntelligencePolicy"
+            },
+            "type": "AccessPolicy"
+        },
+        {
+            "defaultAction": {
+                "action": "BLOCK",
+                "enableSyslog": false,
+                "id": "40CE2481-5D56-0ed3-0000-000268441602",
+                "logBegin": false,
+                "logEnd": false,
+                "sendEventsToFMC": false,
+                "type": "AccessPolicyDefaultAction"
+            },
+            "description": "Policy created from source with hostname eu-lan-asa0605",
+            "id": "40CE2481-5D56-0ed3-0000-176094385740",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-176094385740"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "inherit": false,
+                "lastUser": {
+                    "name": "a-varora"
+                },
+                "lockingStatus": {
+                    "status": "UNLOCKED"
+                },
+                "timestamp": 1722464881808
+            },
+            "name": "EU-FTD-ACP",
+            "prefilterPolicySetting": {
+                "id": "4897c8f4-e211-4661-b0a4-25b0826cded9",
+                "name": "Default Prefilter Policy",
+                "type": "PrefilterPolicy"
+            },
+            "rules": {
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-176094385740/accessrules"
+                },
+                "refType": "list",
+                "type": "AccessRule"
+            },
+            "securityIntelligence": {
+                "id": "40CE2481-5D56-0ed3-0000-176094385784",
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-176094385740/securityintelligencepolicies/40CE2481-5D56-0ed3-0000-176094385784"
+                },
+                "type": "SecurityIntelligencePolicy"
+            },
+            "type": "AccessPolicy"
+        },
+        {
+            "defaultAction": {
+                "action": "NETWORK_DISCOVERY",
+                "enableSyslog": false,
+                "id": "40CE2481-5D56-0ed3-0000-000268446720",
+                "logBegin": false,
+                "logEnd": false,
+                "sendEventsToFMC": false,
+                "type": "AccessPolicyDefaultAction"
+            },
+            "description": " ",
+            "id": "40CE2481-5D56-0ed3-0000-292057833336",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-292057833336"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "inherit": false,
+                "lastUser": {
+                    "name": "Firepower System"
+                },
+                "lockingStatus": {
+                    "status": "UNLOCKED"
+                },
+                "timestamp": 1722402098556
+            },
+            "name": "Initial-Blank",
+            "prefilterPolicySetting": {
+                "id": "4897c8f4-e211-4661-b0a4-25b0826cded9",
+                "name": "Default Prefilter Policy",
+                "type": "PrefilterPolicy"
+            },
+            "rules": {
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-292057833336/accessrules"
+                },
+                "refType": "list",
+                "type": "AccessRule"
+            },
+            "securityIntelligence": {
+                "id": "40CE2481-5D56-0ed3-0000-292057833384",
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-292057833336/securityintelligencepolicies/40CE2481-5D56-0ed3-0000-292057833384"
+                },
+                "type": "SecurityIntelligencePolicy"
+            },
+            "type": "AccessPolicy"
+        },
+        {
+            "defaultAction": {
+                "action": "PERMIT",
+                "enableSyslog": false,
+                "id": "40CE2481-5D56-0ed3-0000-000268434432",
+                "intrusionPolicy": {
+                    "id": "3ae137be-7a1c-11ec-b95a-3266d69b15b2",
+                    "inspectionMode": "DETECTION",
+                    "name": "WA-INET",
+                    "type": "IntrusionPolicy"
+                },
+                "logBegin": true,
+                "logEnd": false,
+                "sendEventsToFMC": true,
+                "type": "AccessPolicyDefaultAction",
+                "variableSet": {
+                    "id": "f0c39cbe-8667-11e7-b1f4-937711c4add3",
+                    "name": "WA-INET",
+                    "type": "VariableSet"
+                }
+            },
+            "description": " ",
+            "id": "40CE2481-5D56-0ed3-0000-025769804026",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-025769804026"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "inherit": false,
+                "lastUser": {
+                    "name": "Firepower System"
+                },
+                "lockingStatus": {
+                    "status": "UNLOCKED"
+                },
+                "timestamp": 1721889192742
+            },
+            "name": "IPS-POLICY",
+            "prefilterPolicySetting": {
+                "id": "4897c8f4-e211-4661-b0a4-25b0826cded9",
+                "name": "Default Prefilter Policy",
+                "type": "PrefilterPolicy"
+            },
+            "rules": {
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-025769804026/accessrules"
+                },
+                "refType": "list",
+                "type": "AccessRule"
+            },
+            "securityIntelligence": {
+                "id": "40CE2481-5D56-0ed3-0000-025769804066",
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-025769804026/securityintelligencepolicies/40CE2481-5D56-0ed3-0000-025769804066"
+                },
+                "type": "SecurityIntelligencePolicy"
+            },
+            "type": "AccessPolicy"
+        },
+        {
+            "defaultAction": {
+                "action": "BLOCK",
+                "enableSyslog": true,
+                "id": "40CE2481-5D56-0ed3-0000-000268446722",
+                "logBegin": true,
+                "logEnd": false,
+                "sendEventsToFMC": true,
+                "type": "AccessPolicyDefaultAction"
+            },
+            "description": " ",
+            "id": "40CE2481-5D56-0ed3-0000-292057859955",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-292057859955"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "inherit": false,
+                "lastUser": {
+                    "name": "Firepower System"
+                },
+                "lockingStatus": {
+                    "status": "UNLOCKED"
+                },
+                "timestamp": 1722402098556
+            },
+            "name": "WA-LAN-FPR-INET",
+            "prefilterPolicySetting": {
+                "id": "4897c8f4-e211-4661-b0a4-25b0826cded9",
+                "name": "Default Prefilter Policy",
+                "type": "PrefilterPolicy"
+            },
+            "rules": {
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-292057859955/accessrules"
+                },
+                "refType": "list",
+                "type": "AccessRule"
+            },
+            "securityIntelligence": {
+                "id": "40CE2481-5D56-0ed3-0000-292057860003",
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-292057859955/securityintelligencepolicies/40CE2481-5D56-0ed3-0000-292057860003"
+                },
+                "type": "SecurityIntelligencePolicy"
+            },
+            "type": "AccessPolicy"
+        },
+        {
+            "defaultAction": {
+                "action": "BLOCK",
+                "enableSyslog": true,
+                "id": "40CE2481-5D56-0ed3-0000-000268446748",
+                "logBegin": true,
+                "logEnd": false,
+                "sendEventsToFMC": true,
+                "type": "AccessPolicyDefaultAction"
+            },
+            "description": " ",
+            "id": "40CE2481-5D56-0ed3-0000-292057865814",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-292057865814"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "inherit": false,
+                "lastUser": {
+                    "name": "a-rezeh"
+                },
+                "lockingStatus": {
+                    "status": "UNLOCKED"
+                },
+                "timestamp": 1722529118111
+            },
+            "name": "WA-LAN-FPR-S2S",
+            "prefilterPolicySetting": {
+                "id": "4897c8f4-e211-4661-b0a4-25b0826cded9",
+                "name": "Default Prefilter Policy",
+                "type": "PrefilterPolicy"
+            },
+            "rules": {
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-292057865814/accessrules"
+                },
+                "refType": "list",
+                "type": "AccessRule"
+            },
+            "securityIntelligence": {
+                "id": "40CE2481-5D56-0ed3-0000-292057865862",
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-292057865814/securityintelligencepolicies/40CE2481-5D56-0ed3-0000-292057865862"
+                },
+                "type": "SecurityIntelligencePolicy"
+            },
+            "type": "AccessPolicy"
+        },
+        {
+            "defaultAction": {
+                "action": "BLOCK",
+                "enableSyslog": false,
+                "id": "40CE2481-5D56-0ed3-0000-000268441800",
+                "logBegin": false,
+                "logEnd": false,
+                "sendEventsToFMC": false,
+                "type": "AccessPolicyDefaultAction"
+            },
+            "description": "Policy created from source with hostname wc-lan-asa0602",
+            "id": "40CE2481-5D56-0ed3-0000-176094395451",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-176094395451"
+            },
+            "metadata": {
+                "domain": {
+                    "id": "e276abec-e0f2-11e3-8169-6d9ed49b625f",
+                    "name": "Global",
+                    "type": "Domain"
+                },
+                "inherit": false,
+                "lastUser": {
+                    "name": "Firepower System"
+                },
+                "lockingStatus": {
+                    "status": "UNLOCKED"
+                },
+                "timestamp": 1722402098556
+            },
+            "name": "WC-FTD-ACP",
+            "prefilterPolicySetting": {
+                "id": "4897c8f4-e211-4661-b0a4-25b0826cded9",
+                "name": "Default Prefilter Policy",
+                "type": "PrefilterPolicy"
+            },
+            "rules": {
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-176094395451/accessrules"
+                },
+                "refType": "list",
+                "type": "AccessRule"
+            },
+            "securityIntelligence": {
+                "id": "40CE2481-5D56-0ed3-0000-176094395495",
+                "links": {
+                    "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/40CE2481-5D56-0ed3-0000-176094395451/securityintelligencepolicies/40CE2481-5D56-0ed3-0000-176094395495"
+                },
+                "type": "SecurityIntelligencePolicy"
+            },
+            "type": "AccessPolicy"
+        }
+    ]
+}
+
+PLAY RECAP *********************************************************************
+wa-fmc2500                 : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

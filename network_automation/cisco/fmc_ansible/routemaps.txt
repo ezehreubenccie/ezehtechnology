@@ -1,0 +1,639 @@
+
+PLAY [wa-fmc2500] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Get Domain UUID] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Execute 'getAllRouteMap' operation] **************************************
+ok: [wa-fmc2500]
+
+TASK [debug] *******************************************************************
+ok: [wa-fmc2500] => {
+    "routemaps": [
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "extendedCommunityAdditive": false,
+                    "ipv4AccessListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-300647905857",
+                            "name": "BGP-OSPF",
+                            "type": "StandardAccessList"
+                        }
+                    ],
+                    "sequence": 10,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057880579",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-292057880579"
+            },
+            "name": "BGP-_OSPF",
+            "overridable": false,
+            "type": "RouteMap"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "extendedCommunityAdditive": false,
+                    "ipv4PrefixListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057880147",
+                            "name": "Clrdata-east2-to-Uptodate",
+                            "type": "IPV4PrefixList"
+                        }
+                    ],
+                    "sequence": 5,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ],
+                    "weightSetting": 500
+                },
+                {
+                    "action": "PERMIT",
+                    "extendedCommunityAdditive": false,
+                    "sequence": 10,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057880674",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-292057880674"
+            },
+            "name": "Clrdata-east2-to-Uptodate",
+            "overridable": false,
+            "type": "RouteMap"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "extendedCommunityAdditive": false,
+                    "ipv4PrefixListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057880168",
+                            "name": "Clrdata-west2-to-Uptodate",
+                            "type": "IPV4PrefixList"
+                        }
+                    ],
+                    "sequence": 5,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ],
+                    "weightSetting": 500
+                },
+                {
+                    "action": "PERMIT",
+                    "extendedCommunityAdditive": false,
+                    "sequence": 10,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057880713",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-292057880713"
+            },
+            "name": "Clrdata-west2-to-Uptodate",
+            "overridable": false,
+            "type": "RouteMap"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "extendedCommunityAdditive": false,
+                    "ipv4AccessListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-176097295194",
+                            "name": "connected-to-ospf",
+                            "type": "StandardAccessList"
+                        }
+                    ],
+                    "sequence": 10,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-176097295212",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-176097295212"
+            },
+            "name": "connected-to-ospf",
+            "overridable": false,
+            "type": "RouteMap"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "extendedCommunityAdditive": false,
+                    "ipv4AccessListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-300647903860",
+                            "name": "STATIC-TO-OSPF",
+                            "type": "StandardAccessList"
+                        }
+                    ],
+                    "sequence": 10,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                },
+                {
+                    "action": "DENY",
+                    "extendedCommunityAdditive": false,
+                    "sequence": 20,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057880502",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-292057880502"
+            },
+            "name": "STATIC-TO-OSPF",
+            "overridable": false,
+            "type": "RouteMap"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "extendedCommunityAdditive": false,
+                    "ipv4PrefixListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057880239",
+                            "name": "Uptodate-to-Clrdata-east-1",
+                            "type": "IPV4PrefixList"
+                        }
+                    ],
+                    "sequence": 5,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057880617",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-292057880617"
+            },
+            "name": "Uptodate-to-Clrdata-east-1",
+            "overridable": false,
+            "type": "RouteMap"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "asPathPrependASPath": [
+                        64889,
+                        64889
+                    ],
+                    "extendedCommunityAdditive": false,
+                    "ipv4PrefixListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057880267",
+                            "name": "Uptodate-to-Clrdata-east-2",
+                            "type": "IPV4PrefixList"
+                        }
+                    ],
+                    "sequence": 5,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057880598",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-292057880598"
+            },
+            "name": "Uptodate-to-Clrdata-east-2",
+            "overridable": false,
+            "type": "RouteMap"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "asPathPrependASPath": [
+                        64889,
+                        64889,
+                        64889
+                    ],
+                    "extendedCommunityAdditive": false,
+                    "ipv4PrefixListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057880295",
+                            "name": "Uptodate-to-Clrdata-west-1",
+                            "type": "IPV4PrefixList"
+                        }
+                    ],
+                    "sequence": 5,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057880636",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-292057880636"
+            },
+            "name": "Uptodate-to-Clrdata-west-1",
+            "overridable": false,
+            "type": "RouteMap"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "asPathPrependASPath": [
+                        64889,
+                        64889
+                    ],
+                    "extendedCommunityAdditive": false,
+                    "ipv4PrefixListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057880323",
+                            "name": "Uptodate-to-Clrdata-west-2",
+                            "type": "IPV4PrefixList"
+                        }
+                    ],
+                    "sequence": 5,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057880655",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-292057880655"
+            },
+            "name": "Uptodate-to-Clrdata-west-2",
+            "overridable": false,
+            "type": "RouteMap"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "extendedCommunityAdditive": false,
+                    "ipv4PrefixListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057880351",
+                            "name": "Uptodate-to-Emmi",
+                            "type": "IPV4PrefixList"
+                        }
+                    ],
+                    "sequence": 10,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057880522",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-292057880522"
+            },
+            "name": "Uptodate-to-Emmi",
+            "overridable": false,
+            "type": "RouteMap"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "extendedCommunityAdditive": false,
+                    "ipv4PrefixListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292058800955",
+                            "name": "Waltham-to-Azure-CECS-NonProd01",
+                            "type": "IPV4PrefixList"
+                        }
+                    ],
+                    "sequence": 10,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292058800982",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-292058800982"
+            },
+            "name": "Waltham-to-Azure-CECS-NonProd01",
+            "overridable": false,
+            "type": "RouteMap"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "extendedCommunityAdditive": false,
+                    "ipv4PrefixListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-300648407317",
+                            "name": "Waltham-to-Azure-CECS-NonProd02",
+                            "type": "IPV4PrefixList"
+                        }
+                    ],
+                    "sequence": 10,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-300648428615",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-300648428615"
+            },
+            "name": "Waltham-to-Azure-CECS-NonProd02",
+            "overridable": false,
+            "type": "RouteMap"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "extendedCommunityAdditive": false,
+                    "ipv4PrefixListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-300648427913",
+                            "name": "Waltham-to-Azure-CECS-Prod01",
+                            "type": "IPV4PrefixList"
+                        }
+                    ],
+                    "sequence": 10,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-300648427940",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-300648427940"
+            },
+            "name": "Waltham-to-Azure-CECS-Prod01",
+            "overridable": false,
+            "type": "RouteMap"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "extendedCommunityAdditive": false,
+                    "ipv4PrefixListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-300648423663",
+                            "name": "Waltham-to-Azure-CECS-Prod02",
+                            "type": "IPV4PrefixList"
+                        }
+                    ],
+                    "sequence": 10,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-300648423690",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-300648423690"
+            },
+            "name": "Waltham-to-Azure-CECS-Prod02",
+            "overridable": false,
+            "type": "RouteMap"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "extendedCommunityAdditive": false,
+                    "ipv4PrefixListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057880375",
+                            "name": "Waltham-to-Azure-UTD-NonProd01",
+                            "type": "IPV4PrefixList"
+                        }
+                    ],
+                    "sequence": 10,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057880541",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-292057880541"
+            },
+            "name": "Waltham-to-Azure-UTD-NonProd01",
+            "overridable": false,
+            "type": "RouteMap"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "extendedCommunityAdditive": false,
+                    "ipv4PrefixListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292059014364",
+                            "name": "Waltham-to-Azure-UTD-Prod01",
+                            "type": "IPV4PrefixList"
+                        }
+                    ],
+                    "sequence": 10,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-296352755759",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-296352755759"
+            },
+            "name": "Waltham-to-Azure-UTD-Prod01",
+            "overridable": false,
+            "type": "RouteMap"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "extendedCommunityAdditive": false,
+                    "ipv4PrefixListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057880402",
+                            "name": "Waltham-to-Azure-UTD-Sandbox",
+                            "type": "IPV4PrefixList"
+                        }
+                    ],
+                    "sequence": 10,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057880483",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-292057880483"
+            },
+            "name": "Waltham-to-Azure-UTD-Sandbox",
+            "overridable": false,
+            "type": "RouteMap"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "extendedCommunityAdditive": false,
+                    "ipv4PrefixListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057880429",
+                            "name": "Waltham-to-Azure-UTD-ToolsNonProd",
+                            "type": "IPV4PrefixList"
+                        }
+                    ],
+                    "sequence": 10,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057880694",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-292057880694"
+            },
+            "name": "Waltham-to-Azure-UTD-ToolsNonProd",
+            "overridable": false,
+            "type": "RouteMap"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "extendedCommunityAdditive": false,
+                    "ipv4PrefixListAddresses": [
+                        {
+                            "id": "40CE2481-5D56-0ed3-0000-292057880456",
+                            "name": "Waltham-to-Azure-UTD-ToolsProd",
+                            "type": "IPV4PrefixList"
+                        }
+                    ],
+                    "sequence": 10,
+                    "specificIPsIPV4Setting": [
+                        " "
+                    ],
+                    "specificIPsIPV6Setting": [
+                        " "
+                    ]
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-292057880560",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/routemaps/40CE2481-5D56-0ed3-0000-292057880560"
+            },
+            "name": "Waltham-to-Azure-UTD-ToolsProd",
+            "overridable": false,
+            "type": "RouteMap"
+        }
+    ]
+}
+
+PLAY RECAP *********************************************************************
+wa-fmc2500                 : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

@@ -1,0 +1,26 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+
+
+
+    - name: Execute 'createAccessPolicy' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createAccessPolicy"
+        data:
+          type: AccessPolicy
+          name: TEST
+          defaultAction: {'action': 'BLOCK'}
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: acp
+
+
+    - debug:
+        var: acp

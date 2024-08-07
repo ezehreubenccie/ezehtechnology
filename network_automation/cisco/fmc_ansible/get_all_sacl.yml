@@ -1,26 +1,25 @@
-- hosts: wa-fmc2500
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
   connection: httpapi
   tasks:
     - name: Get Domain UUID
       cisco.fmcansible.fmc_configuration:
         operation: getAllDomain
         register_as: domain
+      tags: endpt, vpn
 
-    - debug:
-        var: domain
 
-    - name: Get Access Policy
+
+    - name: Execute 'getAllStandardACL' operation
       cisco.fmcansible.fmc_configuration:
-        operation: getAllAccessPolicy
-        path_params: 
+        operation: "getAllStandardACL"
+        path_params:
           domainUUID: "{{ domain[0].uuid }}"
         query_params:
-          name: "TEST"
-          # filter: "nameOrValue:TEST"
           offset: "{{ offset }}"
           limit: "{{ limit }}"
           expanded: "{{ expanded }}"
-        register_as: access_policy
+        register_as: sacl
 
     - debug:
-        var: access_policy
+        var: sacl

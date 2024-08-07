@@ -10,13 +10,12 @@
       cisco.fmcansible.fmc_configuration:
         operation: "createMultiplePortObjectGroup"
         data:
-          name: portgroup_obj1
+          name: "{{ httpog }}"
           objects: [
             {
               'id': "{{ httpports.portid1 }}", 
               'type': 'ProtocolPortObject'
-            },
-            
+            },        
             {
               'id': '{{ httpports.portid2 }}', 
               'type': 'ProtocolPortObject'
@@ -27,6 +26,30 @@
             },
             {
               'id': '{{ httpports.portid4 }}', 
+              'type': 'ProtocolPortObject'
+            },
+            {
+              'id': '{{ httpports.portid5 }}', 
+              'type': 'ProtocolPortObject'
+            },
+            {
+              'id': '{{ httpports.portid6 }}', 
+              'type': 'ProtocolPortObject'
+            },
+            {
+              'id': '{{ httpports.portid7 }}', 
+              'type': 'ProtocolPortObject'
+            },
+            {
+              'id': '{{ httpports.portid8 }}', 
+              'type': 'ProtocolPortObject'
+            },
+            {
+              'id': '{{ httpports.portid9 }}', 
+              'type': 'ProtocolPortObject'
+            },
+            {
+              'id': '{{ httpports.portid10 }}', 
               'type': 'ProtocolPortObject'
             },
           ]

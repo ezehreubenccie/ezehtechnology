@@ -1,0 +1,79 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+      tags: endpt, vpn
+
+
+    - name: Execute 'createIPv4PrefixList' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createIPv4PrefixList"
+        data:
+          name: "{{ preflist_name }}"
+          entries: [
+              {'ipAddress': '10.1.101.0/24', 'sequence': 15,'action': 'PERMIT'},
+              {'ipAddress': '10.1.110.0/24', 'sequence': 20,'action': 'PERMIT'},
+              {'ipAddress': '10.1.111.0/24', 'sequence': 25,'action': 'PERMIT'},
+              {'ipAddress': '10.1.112.0/24', 'sequence': 30,'action': 'PERMIT'},
+              {'ipAddress': '10.1.113.0/24', 'sequence': 35,'action': 'PERMIT'},
+              {'ipAddress': '10.1.114.0/24', 'sequence': 40,'action': 'PERMIT'},
+              {'ipAddress': '10.2.101.0/24', 'sequence': 45,'action': 'PERMIT'},
+              {'ipAddress': '10.2.250.0/23', 'sequence': 50,'action': 'PERMIT'},
+              {'ipAddress': '10.71.0.0/18', 'sequence': 55,'action': 'PERMIT'}
+              ]
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: preflist
+
+
+    - debug:
+        var: preflist
+
+    - name: SET FACT 1
+      set_fact:
+        preflist_id: "{{ preflist.id }}"
+        preflist_name: "{{ preflist.name }}"
+
+
+    - name: Execute 'createRouteMap' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createRouteMap"
+        data:
+          entries: [
+             {
+                 "action": "PERMIT",
+                 "extendedCommunityAdditive": false,
+                 "ipv4PrefixListAddresses": [
+                     {
+                         "id": "{{ preflist_id }}",
+                         "name": "{{ preflist_name }}",
+                         "type": "IPV4PrefixList"
+                     }
+                 ],
+                 "sequence": 10,
+                 "specificIPsIPV4Setting": [
+                     " "
+                 ],
+                 "specificIPsIPV6Setting": [
+                     " "
+                 ]
+             }
+          ]
+          type: RouteMap
+          name: "{{ preflist_name }}"
+          overridable: False
+          description:  "{{ description }}"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: routemap
+
+
+    - name: Debug route map
+      debug:
+        var: routemap
+
+

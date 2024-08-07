@@ -16,7 +16,7 @@
           filter: "nameOrValue:{{ item }}"
 #        register_as: port
       loop:
-        - obj_tcp_www
+        # - obj_tcp_www
         # - obj_tcp_https
         # - obj_tcp_8080
         # - obj_tcp_8443
@@ -26,20 +26,21 @@
         # - obj_tcp_8300-8499
         # - obj_tcp_9300-9499
         # - obj_tcp_9600-9799
+        - any
       register: portobj
 
-    # - debug:
-    #     msg: "{{ portobj }}"
+    - debug:
+        msg: "{{ portobj }}"
 
-    - name: Execute 'createMultiplePortObjectGroup' operation
-      cisco.fmcansible.fmc_configuration:
-        operation: "createMultiplePortObjectGroup"
-        data:
-          name: portgroup_obj1
-          objects: [{'id': '{{ Protocol_obj_tcp_www.id }}', 'type': 'ProtocolPortObject'}]
-          type: PortObjectGroup
-        path_params:
-          domainUUID: "{{ domain[0].uuid }}"
+    # - name: Execute 'createMultiplePortObjectGroup' operation
+    #   cisco.fmcansible.fmc_configuration:
+    #     operation: "createMultiplePortObjectGroup"
+    #     data:
+    #       name: portgroup_obj1
+    #       objects: [{'id': '{{ Protocol_obj_tcp_www.id }}', 'type': 'ProtocolPortObject'}]
+    #       type: PortObjectGroup
+    #     path_params:
+    #       domainUUID: "{{ domain[0].uuid }}"
 
 
 #    - debug:

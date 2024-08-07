@@ -1,0 +1,41 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+      tags: endpt, vpn
+
+
+    - name: Execute 'getAllAccessRule' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllAccessRule"
+        path_params:
+          containerUUID: "40CE2481-5D56-0ed3-0000-292057865814"
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          #filter: "{{ filter }}"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: access_rule
+
+    - debug:
+        var: access_rule
+
+    - set_fact:
+        number_of_element: "{{ access_rule|length }}"
+
+    - debug:
+        var: number_of_element
+
+    # - debug:
+    #     var: access_rule[0].metadata.ruleIndex
+
+    # - debug:
+    #     var: "{{ item.metadata.ruleIndex }}"
+    #   loop: "{{ access_rule }}"
+    #   loop_control:
+    #     label: "{{ item.metadata.ruleIndex }}"

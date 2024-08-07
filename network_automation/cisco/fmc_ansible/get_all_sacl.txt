@@ -1,0 +1,500 @@
+
+PLAY [PLAY 1 - get domainUUID] *************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Get Domain UUID] *********************************************************
+ok: [wa-fmc2500]
+
+TASK [Execute 'getAllStandardACL' operation] ***********************************
+ok: [wa-fmc2500]
+
+TASK [debug] *******************************************************************
+ok: [wa-fmc2500] => {
+    "sacl": [
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "networks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "10.103.180.0/22"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.103.184.0/22"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.109.176.0/22"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.133.0.0/22"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.133.8.0/22"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.139.240.0/20"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.141.80.0/20"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.141.104.0/21"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.141.136.0/21"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.145.20.0/22"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.145.24.0/22"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.145.252.0/22"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.161.248.0/22"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.162.80.0/23"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.240.0.0/21"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.240.16.0/21"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.240.32.0/21"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.240.40.0/21"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.240.76.0/22"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.240.136.0/22"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.150.20.0/22"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.150.80.0/21"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.150.196.0/22"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.150.248.0/21"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.192.152.0/21"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.128.204.0/22"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.171.12.0/22"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.171.64.0/21"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.171.72.0/22"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.177.156.0/22"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.177.160.0/21"
+                            },
+                            {
+                                "type": "Network",
+                                "value": "10.177.168.0/22"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-300647905857",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/standardaccesslists/40CE2481-5D56-0ed3-0000-300647905857"
+            },
+            "name": "BGP-OSPF",
+            "overridable": false,
+            "type": "StandardAccessList"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "networks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300648007287",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300648007269",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300648007323",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300648007305",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300648007341",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-300648007361",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/standardaccesslists/40CE2481-5D56-0ed3-0000-300648007361"
+            },
+            "name": "ClearData_Networks",
+            "overridable": false,
+            "type": "StandardAccessList"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "DENY",
+                    "networks": {
+                        "literals": [
+                            {
+                                "type": "Network",
+                                "value": "63.240.21.168/29"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "PERMIT",
+                    "networks": {
+                        "objects": [
+                            {
+                                "id": "cb7116e8-66a6-480b-8f9b-295191a0940a",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-176097295194",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/standardaccesslists/40CE2481-5D56-0ed3-0000-176097295194"
+            },
+            "name": "connected-to-ospf",
+            "overridable": false,
+            "type": "StandardAccessList"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "networks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-081604409634",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-081604409616",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-081604409670",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-081604409652",
+                                "overridable": false,
+                                "type": "Network"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-176095964574",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/standardaccesslists/40CE2481-5D56-0ed3-0000-176095964574"
+            },
+            "name": "sh-to-ny",
+            "overridable": false,
+            "type": "StandardAccessList"
+        },
+        {
+            "description": " ",
+            "entries": [
+                {
+                    "action": "PERMIT",
+                    "networks": {
+                        "objects": [
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905668",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647902917",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647903750",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647903878",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905542",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905344",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905740",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647903822",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905614",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905416",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905290",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905686",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647902935",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905488",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905362",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647903123",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905308",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647903768",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647903896",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905560",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905434",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905380",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647903840",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905632",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905506",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905452",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905326",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905704",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647903786",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647903914",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905578",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905524",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905398",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905650",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647903804",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905596",
+                                "overridable": false,
+                                "type": "Host"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905470",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905272",
+                                "overridable": false,
+                                "type": "Network"
+                            },
+                            {
+                                "id": "40CE2481-5D56-0ed3-0000-300647905722",
+                                "overridable": false,
+                                "type": "Host"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "id": "40CE2481-5D56-0ed3-0000-300647903860",
+            "links": {
+                "self": "https://wa-fmc2500/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/standardaccesslists/40CE2481-5D56-0ed3-0000-300647903860"
+            },
+            "name": "STATIC-TO-OSPF",
+            "overridable": false,
+            "type": "StandardAccessList"
+        }
+    ]
+}
+
+PLAY RECAP *********************************************************************
+wa-fmc2500                 : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

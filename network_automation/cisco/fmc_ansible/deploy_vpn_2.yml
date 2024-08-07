@@ -45,6 +45,7 @@
 
     - set_fact:
         source_nets: "{{ netog[0].id }}"
+        source_name: "{{ netog[0].name }}"
       tags: net
 
     

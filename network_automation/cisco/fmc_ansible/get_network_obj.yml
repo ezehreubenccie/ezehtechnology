@@ -1,0 +1,25 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+      tags: endpt, vpn
+
+
+    - name: Execute 'getNetworkObject' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getNetworkObject"
+        path_params:
+          objectId: "40CE2481-5D56-0ed3-0000-300647905272"
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          # overrideTargetId: "{{ override_target_id }}"
+        register_as: net_obj
+
+    
+    - name: debug netobj
+      debug:
+        var: net_obj

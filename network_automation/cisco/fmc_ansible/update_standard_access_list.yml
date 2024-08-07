@@ -1,0 +1,72 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+      tags: endpt, vpn
+
+
+
+    #- name: Get network objects to add to SACL
+
+    - name: Execute 'getAllStandardACL' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllStandardACL"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: sacl
+
+    # - debug:
+    #     var: sacl
+   
+    - name: Extract interested SACL
+      set_fact:
+        sacl_id: "{{ item.id }}"
+        sacl_name: "{{ item.name}}"
+      when: "item.name == interested_sacl"
+      loop: "{{ sacl }}"
+      loop_control: 
+        label: "{{ item.name }}"
+
+    - name: Show Extracted info
+      debug:
+        msg: 
+          - "{{ sacl_id }}"
+          - "{{ sacl_name }}"
+      
+    - name: Execute 'updateStandardACL' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "upsertStandardACL"
+        data:
+          id: "{{ sacl_id }}"
+          name: "{{ sacl_name }}"
+          entries: [{'action': 'PERMIT', 'networks': {'literals': [{'type': "Network", "value": '1.1.1.0/22'}, {'type': "host", "value": '2.2.2.0'}]}}]
+        path_params:
+          objectId: "{{ sacl_id }}"
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: updated_sacl
+
+
+    - name: Print Updated SACL
+      debug:
+        var: updated_sacl
+
+
+
+
+
+
+
+
+
+
+
+
+
