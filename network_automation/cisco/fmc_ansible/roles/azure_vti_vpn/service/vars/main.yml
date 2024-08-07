@@ -1,8 +1,14 @@
-httpog: HTTP-Ports_test
-hazelcastog: Hazelcast-Ports_test
-apachejservog: AJP-Ports_test
-sshog: SSH-Ports_test
-activemqopenwireog: OpenWire-Ports_test
+# httpog: HTTP-Ports_test
+# hazelcastog: Hazelcast-Ports_test
+# apachejservog: AJP-Ports_test
+# sshog: SSH-Ports_test
+# activemqopenwireog: OpenWire-Ports_test
+
+httpog: Azure-UTD-Prod01-HTTP-Ports_test_2
+# hazelcastog: Azure-UTD-Prod01-Hazelcast-Ports_test
+# apachejservog: Azure-UTD-Prod01-AJP-Ports_test
+# sshog: Azure-UTD-Prod01-SSH-Ports_test
+# activemqopenwireog: Azure-UTD-Prod01-OpenWire-Ports_test
 
 httpports:
   portid1: 40CE2481-5D56-0ed3-0000-081604387515
@@ -16,14 +22,14 @@ httpports:
   portid9: 40CE2481-5D56-0ed3-0000-292057865134
   portid10: 40CE2481-5D56-0ed3-0000-081604387193
 
-hazelports:
-  portid1: 40CE2481-5D56-0ed3-0000-292057865138
+# hazelports:
+#   portid1: 40CE2481-5D56-0ed3-0000-292057865138
 
-apacheports:
-  portid1: 40CE2481-5D56-0ed3-0000-292057865139
+# apacheports:
+#   portid1: 40CE2481-5D56-0ed3-0000-292057865139
 
-sshports:
-  portid1: 40CE2481-5D56-0ed3-0000-176094395034
+# sshports:
+#   portid1: 40CE2481-5D56-0ed3-0000-176094395034
 
-activemqports:
-  portid1: 40CE2481-5D56-0ed3-0000-292057865135
+# activemqports:
+#   portid1: 40CE2481-5D56-0ed3-0000-292057865135

@@ -6,7 +6,7 @@
       literals: [
          {'type': 'Network', 'value': "{{ net_1 }}"},
          {'type': 'Network', 'value': "{{ net_2 }}"}, 
-         {'type': 'Network', 'value': "{{ net_3 }}"}
+        #  {'type': 'Network', 'value': "{{ net_3 }}"}
         ]
       type: NetworkGroup
     path_params:
