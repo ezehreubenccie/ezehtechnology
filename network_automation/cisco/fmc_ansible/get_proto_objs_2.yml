@@ -28,7 +28,7 @@
 
     - name: Execute 'getAllProtocolPortObject' operation
       cisco.fmcansible.fmc_configuration:
-        operation: "getAllProtocolPortObject"
+        operation: "getAllPortObjectGroup"
         path_params:
           domainUUID: "{{ domain[0].uuid }}"
         query_params:

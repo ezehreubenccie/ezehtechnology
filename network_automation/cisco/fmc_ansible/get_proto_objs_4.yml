@@ -9,25 +9,13 @@
 
     - name: Execute 'getAllProtocolPortObject' operation
       cisco.fmcansible.fmc_configuration:
-        operation: "getPortObject"
+        operation: "getAllPortObjectGroup"
         path_params:
           domainUUID: "{{ domain[0].uuid }}"
         query_params:
-          filter: "nameOrValue:{{ item }}"
-#        register_as: port
-      loop:
-        # - obj_tcp_www
-        # - obj_tcp_https
-        # - obj_tcp_8080
-        # - obj_tcp_8443
-        # - obj_tcp_8092
-        # - obj_tcp_8095
-        # - obj_tcp_8161
-        # - obj_tcp_8300-8499
-        # - obj_tcp_9300-9499
-        # - obj_tcp_9600-9799
-        - any
-      register: portobj
+          filter: "nameOrValue:Azure-CE-DHA-HTTP-Ports"
+        register_as: portobj
+
 
     - debug:
         msg: "{{ portobj }}"
