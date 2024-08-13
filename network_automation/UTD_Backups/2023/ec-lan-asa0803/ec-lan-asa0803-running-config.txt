@@ -2308,6 +2308,12 @@ crypto ca trustpoint SSL_EXTERNAL_2023_3
  subject-name CN=srany.uptodate.com
  keypair SSL_EXTERNAL_2023_3
  crl configure
+crypto ca trustpoint SSL_EXTERNAL_2024
+ enrollment terminal
+ fqdn srany.uptodate.com
+ subject-name CN=srany.uptodate.com
+ keypair SSL_EXTERNAL_2024
+ crl configure
 crypto ca trustpool policy
 crypto ca certificate chain ASDM_TrustPoint1
  certificate ca 07
@@ -2675,5 +2681,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname context 
 no call-home reporting anonymous
-Cryptochecksum:aa84989a2ffcc897942ef9fe989b797c
+Cryptochecksum:c0129df5dbe3fa03a080b162781e8ccb
 : end
