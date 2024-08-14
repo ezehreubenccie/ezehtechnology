@@ -1,9 +1,9 @@
 Building configuration...
 
-Current configuration : 27536 bytes
+Current configuration : 27577 bytes
 !
-! Last configuration change at 17:31:17 EDT Sat Mar 16 2024 by a-rezeh
-! NVRAM config last updated at 10:35:54 EST Tue Feb 27 2024
+! Last configuration change at 17:31:53 EDT Tue Aug 13 2024 by a-varora
+! NVRAM config last updated at 17:31:55 EDT Tue Aug 13 2024 by a-varora
 !
 version 16.9
 service nagle
@@ -891,6 +891,7 @@ ip access-list standard VTY_ACL
 ip radius source-interface Vlan203 
 logging trap notifications
 logging source-interface Vlan203
+logging host 10.145.248.200
 !
 snmp-server community 95utd453 RO SNMP_RO_ACL
 snmp-server trap-source Vlan203

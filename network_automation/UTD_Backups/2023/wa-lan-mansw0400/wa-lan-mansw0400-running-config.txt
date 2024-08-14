@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 28345 bytes
+Current configuration : 28374 bytes
 !
-! Last configuration change at 17:43:01 EDT Sat Mar 16 2024 by a-rezeh
+! Last configuration change at 17:31:05 EDT Tue Aug 13 2024 by a-varora
 !
 version 16.9
 service nagle
@@ -907,6 +907,7 @@ ip access-list extended limited_access
 ip radius source-interface Vlan203 
 logging trap notifications
 logging source-interface Vlan203
+logging host 10.145.248.200
 !
 snmp-server community 95utd453 RO SNMP_RO_ACL
 snmp-server trap-source Vlan203
