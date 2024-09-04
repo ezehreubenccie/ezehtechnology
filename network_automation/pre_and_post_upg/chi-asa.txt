@@ -1733,6 +1733,8 @@ object network 10.141.130.41
 object network 10.141.130.40
  host 10.141.130.40
  description RITM1280064
+object network object_any
+ subnet 0.0.0.0 0.0.0.0
 object-group network azr_j2c_prod
  network-object object net-azr-j2c_ite
  network-object object net-azr-j2c_prod
@@ -5830,6 +5832,10 @@ object-group network Private_Azr_Sub
  network-object object 10.141.130.41
  network-object object 10.141.138.40
  network-object object 10.141.138.41
+object-group network n-GP-RFC-1918
+ network-object 10.0.0.0 255.0.0.0
+ network-object 172.16.0.0 255.240.0.0
+ network-object 192.168.0.0 255.255.0.0
 access-list crypto_wa_b2b extended permit ip object net-chi-corp_servers_old object net-wal-10.1.101.0 
 access-list crypto_wa_b2b extended permit ip object net-chi-chicago object net-wal-10.1.101.0 
 access-list crypto_wa_b2b extended permit ip object net-chi-dev_old object net-wal-10.1.101.0 
@@ -8010,6 +8016,10 @@ no monitor-interface vlan_load_legacy
 no monitor-interface vlan_load_db
 no monitor-interface p2p_corpedge
 icmp unreachable rate-limit 1 burst-size 1
+icmp permit any echo-reply external
+icmp deny any external
+icmp permit any echo-reply p2p_comcast
+icmp deny any p2p_comcast
 asdm image disk0:/asdm-7181-161.bin
 asdm history enable
 arp timeout 14400
@@ -8061,6 +8071,7 @@ nat (external,external) source dynamic rng-chi-vpn_emmi ext-104.129.79.1 destina
 nat (external,external) source dynamic rng-chi-vpn_emmi ext-104.129.79.1 destination static ext-104.129.79.203 ext-104.129.79.203 description hdreq-13178
 nat (external,external) source dynamic rng-chi-vpn_emmi ext-104.129.79.1 destination static ext-104.129.79.204 ext-104.129.79.204 description hdreq-13178
 nat (vlan_corp_servers,external) source static 10.82.2.226 ext-104.129.79.226 no-proxy-arp description IS-7476
+nat (any,any) source static n-GP-RFC-1918 n-GP-RFC-1918 destination static n-GP-RFC-1918 n-GP-RFC-1918 no-proxy-arp
 !
 object network net-chi-dmz_old
  nat (any,external) dynamic ext-104.129.79.1
@@ -8110,6 +8121,10 @@ object network hst-chi-rapid7
  nat (vlan_corp_servers,external) static ext-104.129.79.34 no-proxy-arp
 object network hst-chi-sentinel
  nat (vlan_corp_servers,external) static ext-104.129.79.32 no-proxy-arp
+object network object_any
+ nat (any,p2p_comcast) dynamic interface
+!
+nat (p2p_comcast,p2p_comcast) after-auto source dynamic n-GP-RFC-1918 interface
 access-group external_in in interface external
 access-group p2p_comcast_in in interface p2p_comcast
 access-group vlan_corp_servers_in in interface vlan_corp_servers
@@ -8309,10 +8324,14 @@ http 10.82.8.0 255.255.254.0 p2p_corpedge
 snmp-server group GBS v3 priv 
 snmp-server user wklslrmgt GBS v3 engineID 80000009fe2c6e95384f10ca69fc398eba6c2840f2ef888b04 encrypted auth md5 a9:2a:d0:79:c1:e1:99:6d:92:1f:81:a8:c2:39:36:bc priv aes 256 a9:2a:d0:79:c1:e1:99:6d:92:1f:81:a8:c2:39:36:bc:86:70:6f:ba:21:75:e0:99:bc:50:da:2a:8d:79:18:9c 
 snmp-server host vlan_corp_servers chi-mon poll community ***** version 2c
-snmp-server host p2p_corpedge 10.232.124.14 version 3 wklslrmgt
+snmp-server host p2p_corpedge 10.232.124.29 version 3 wklslrmgt
 snmp-server location Chicago
 snmp-server contact fred.tesche@wolterskluwer.com
 snmp-server community *****
+sla monitor 1
+ type echo protocol ipIcmpEcho 64.72.75.157 interface external
+ frequency 10
+sla monitor schedule 1 life forever start-time now
 crypto ipsec ikev1 transform-set ESP-AES-256-MD5 esp-aes-256 esp-md5-hmac 
 crypto ipsec ikev1 transform-set ESP-DES-SHA esp-des esp-sha-hmac 
 crypto ipsec ikev1 transform-set ESP-3DES-SHA esp-3des esp-sha-hmac 
@@ -8869,6 +8888,8 @@ crypto ikev1 policy 140
  hash sha
  group 2
  lifetime 86400
+!
+track 1 rtr 1 reachability
 telnet timeout 5
 ssh scopy enable
 ssh stricthostkeycheck
@@ -8881,6 +8902,7 @@ ssh 10.82.2.199 255.255.255.255 vlan_corp_servers_old
 ssh 10.232.124.18 255.255.255.255 p2p_corpedge
 ssh 10.82.10.0 255.255.254.0 p2p_corpedge
 ssh 10.82.8.0 255.255.254.0 p2p_corpedge
+ssh 10.232.124.29 255.255.255.255 p2p_corpedge
 console timeout 0
 no vpn-addr-assign aaa
 no vpn-addr-assign dhcp
@@ -8941,6 +8963,7 @@ ssl trust-point wildcard-2025 vlan_load_db
 ssl trust-point wildcard-2025 p2p_corpedge
 webvpn
  enable external
+ enable p2p_comcast
  http-headers
   hsts-server
    enable
@@ -9242,7 +9265,7 @@ privilege clear level 3 mode configure command aaa-server
 prompt hostname context 
 no call-home reporting anonymous
 hpm topN enable
-Cryptochecksum:9887f527dca950d4d3fc6b5bff3dd9aa
+Cryptochecksum:94b2f8a4195df39dcc444a7fc26f9c2b
 : end
 
 
