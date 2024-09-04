@@ -2584,8 +2584,8 @@ ssl cipher tlsv1 custom "RC4-SHA:AES128-SHA:AES256-SHA:DES-CBC3-SHA"
 ssl cipher tlsv1.2 custom "AES128-SHA:AES256-SHA:AES128-SHA256:AES256-SHA256"
 ssl cipher dtlsv1 custom "AES128-SHA:AES256-SHA:AES128-SHA256:AES256-SHA256"
 ssl trust-point SSL2022
-ssl trust-point SSL_EXTERNAL_2023_3 outside
-ssl trust-point SSL_EXTERNAL_2023_3 Inside2058
+ssl trust-point SSL_EXTERNAL_2024 outside
+ssl trust-point SSL_EXTERNAL_2024 Inside2058
 webvpn
  enable outside
  hsts
@@ -2738,5 +2738,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname context 
 no call-home reporting anonymous
-Cryptochecksum:d75a17e94e75442e899e3464a320a9d5
+Cryptochecksum:3d1b4e082ff98798eb1461dd87d79d8d
 : end
