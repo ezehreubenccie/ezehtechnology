@@ -1,0 +1,2355 @@
+====================term length 0===================================================================
+
+
+
+====================show mac address-table==========================================================
+
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+ All    0100.0ccc.cccc    STATIC      CPU
+ All    0100.0ccc.cccd    STATIC      CPU
+ All    0180.c200.0000    STATIC      CPU
+ All    0180.c200.0001    STATIC      CPU
+ All    0180.c200.0002    STATIC      CPU
+ All    0180.c200.0003    STATIC      CPU
+ All    0180.c200.0004    STATIC      CPU
+ All    0180.c200.0005    STATIC      CPU
+ All    0180.c200.0006    STATIC      CPU
+ All    0180.c200.0007    STATIC      CPU
+ All    0180.c200.0008    STATIC      CPU
+ All    0180.c200.0009    STATIC      CPU
+ All    0180.c200.000a    STATIC      CPU
+ All    0180.c200.000b    STATIC      CPU
+ All    0180.c200.000c    STATIC      CPU
+ All    0180.c200.000d    STATIC      CPU
+ All    0180.c200.000e    STATIC      CPU
+ All    0180.c200.000f    STATIC      CPU
+ All    0180.c200.0010    STATIC      CPU
+ All    0180.c200.0021    STATIC      CPU
+ All    ffff.ffff.ffff    STATIC      CPU
+   1    5488.de1a.fd9b    DYNAMIC     Po1
+   1    5488.de1a.fd9c    DYNAMIC     Po1
+2047    0000.0c07.ac01    DYNAMIC     Po1
+2047    00a6.ca0a.ec03    DYNAMIC     Po1
+2047    44b6.be73.bf6c    DYNAMIC     Te1/1/1
+2047    5488.de1a.fd9b    DYNAMIC     Po1
+2047    7070.8be7.4183    DYNAMIC     Gi1/0/1
+2047    bce7.12f7.602c    DYNAMIC     Po1
+ 156    5488.de1a.fd9b    DYNAMIC     Po1
+ 156    f4cc.5582.c7c1    DYNAMIC     Gi1/0/24
+ 152    5488.de1a.fd9b    DYNAMIC     Po1
+3001    44b6.be73.bf6c    DYNAMIC     Te1/1/1
+3001    5488.de1a.fd9b    DYNAMIC     Po1
+3001    fc96.4310.52d3    DYNAMIC     Po1
+3002    44b6.be73.bf6c    DYNAMIC     Te1/1/1
+3002    5488.de1a.fd9b    DYNAMIC     Po1
+3002    c8fe.6abb.cf6b    DYNAMIC     Te1/1/2
+3011    44b6.be73.bf6c    DYNAMIC     Te1/1/1
+3011    5488.de1a.fd9b    DYNAMIC     Po1
+3011    d46a.359f.a8eb    DYNAMIC     Po1
+3012    44b6.be73.bf6c    DYNAMIC     Te1/1/1
+3012    5488.de1a.fd9b    DYNAMIC     Po1
+3012    94ae.f0ef.d4ee    DYNAMIC     Te1/1/2
+Total Mac Addresses for this criterion: 44
+
+====================show cdp neighbors==============================================================
+
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone, 
+                  D - Remote, C - CVTA, M - Two-port Mac Relay 
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+ec-lan-ds-sw0403-1.utd.com
+                 Ten 1/1/3         171              S I   C9200L-24 Ten 1/1/3
+ec-lan-ds-sw0403-1.utd.com
+                 Ten 1/1/4         126              S I   C9200L-24 Ten 1/1/4
+ec-lan-mgt-sw0403-1.na.wkglobal.com
+                 Gig 0/0           129             R S I  C9300-48T Gig 1/0/4
+
+Total cdp entries displayed : 3
+
+====================show vlan brief=================================================================
+
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    
+152  EC_149.97.227.152-30             active    
+156  EC_149.97.227.156-30             active    Gi1/0/24
+1002 fddi-default                     act/unsup 
+1003 token-ring-default               act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trnet-default                    act/unsup 
+2047 AT&T_Internet                    active    Gi1/0/1
+3001 AZ_USEast1_Primary               active    
+3002 AZ_USEast1_Secondary             active    
+3011 GCP_USEast1_Primary              active    
+3012 GCP_USEast1_Sec                  active    
+
+====================show ip inter brief=============================================================
+
+Interface              IP-Address      OK? Method Status                Protocol
+Vlan1                  unassigned      YES NVRAM  administratively down down    
+GigabitEthernet0/0     10.198.207.51   YES NVRAM  up                    up      
+GigabitEthernet1/0/1   unassigned      YES unset  up                    up      
+GigabitEthernet1/0/2   unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/3   unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/4   unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/5   unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/6   unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/7   unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/8   unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/9   unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/10  unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/11  unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/12  unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/13  unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/14  unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/15  unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/16  unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/17  unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/18  unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/19  unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/20  unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/21  unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/22  unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/23  unassigned      YES unset  administratively down down    
+GigabitEthernet1/0/24  unassigned      YES unset  up                    up      
+Te1/1/1                unassigned      YES unset  up                    up      
+Te1/1/2                unassigned      YES unset  up                    up      
+Te1/1/3                unassigned      YES unset  up                    up      
+Te1/1/4                unassigned      YES unset  up                    up      
+Port-channel1          unassigned      YES unset  up                    up      
+
+====================show spanning-tree==============================================================
+
+
+VLAN0001
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    4097
+             Address     5488.de1a.fd80
+             Cost        1000
+             Port        2281 (Port-channel1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    8193   (priority 8192 sys-id-ext 1)
+             Address     5488.de20.8000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Po1                 Root FWD 1000      128.2281 P2p 
+
+
+
+VLAN0152
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    4248
+             Address     5488.de1a.fd80
+             Cost        1000
+             Port        2281 (Port-channel1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    8344   (priority 8192 sys-id-ext 152)
+             Address     5488.de20.8000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Po1                 Root FWD 1000      128.2281 P2p 
+
+
+
+VLAN0156
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    4252
+             Address     5488.de1a.fd80
+             Cost        1000
+             Port        2281 (Port-channel1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    8348   (priority 8192 sys-id-ext 156)
+             Address     5488.de20.8000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi1/0/24            Desg FWD 200000    128.24   P2p Edge 
+Te1/1/1             Desg FWD 2000      128.25   P2p Edge 
+Po1                 Root FWD 1000      128.2281 P2p 
+
+
+
+VLAN2047
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    6143
+             Address     5488.de1a.fd80
+             Cost        1000
+             Port        2281 (Port-channel1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    10239  (priority 8192 sys-id-ext 2047)
+             Address     5488.de20.8000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi1/0/1             Desg FWD 20000     128.1    P2p 
+Te1/1/1             Desg FWD 2000      128.25   P2p Edge 
+Po1                 Root FWD 1000      128.2281 P2p 
+
+
+
+VLAN3001
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    7097
+             Address     5488.de1a.fd80
+             Cost        1000
+             Port        2281 (Port-channel1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    11193  (priority 8192 sys-id-ext 3001)
+             Address     5488.de20.8000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Te1/1/1             Desg FWD 2000      128.25   P2p Edge 
+Te1/1/2             Desg FWD 2000      128.26   P2p 
+Po1                 Root FWD 1000      128.2281 P2p 
+
+
+
+VLAN3002
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    7098
+             Address     5488.de1a.fd80
+             Cost        1000
+             Port        2281 (Port-channel1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    11194  (priority 8192 sys-id-ext 3002)
+             Address     5488.de20.8000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Te1/1/1             Desg FWD 2000      128.25   P2p Edge 
+Te1/1/2             Desg FWD 2000      128.26   P2p 
+Po1                 Root FWD 1000      128.2281 P2p 
+
+
+
+VLAN3011
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    7107
+             Address     5488.de1a.fd80
+             Cost        1000
+             Port        2281 (Port-channel1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    11203  (priority 8192 sys-id-ext 3011)
+             Address     5488.de20.8000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Te1/1/1             Desg FWD 2000      128.25   P2p Edge 
+Te1/1/2             Desg FWD 2000      128.26   P2p 
+Po1                 Root FWD 1000      128.2281 P2p 
+
+
+
+VLAN3012
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    7108
+             Address     5488.de1a.fd80
+             Cost        1000
+             Port        2281 (Port-channel1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    11204  (priority 8192 sys-id-ext 3012)
+             Address     5488.de20.8000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Te1/1/1             Desg FWD 2000      128.25   P2p Edge 
+Te1/1/2             Desg FWD 2000      128.26   P2p 
+Po1                 Root FWD 1000      128.2281 P2p 
+
+
+
+====================show interface==================================================================
+
+Vlan1 is administratively down, line protocol is down , Autostate Enabled
+  Hardware is Ethernet SVI, address is 5488.de20.8047 (bia 5488.de20.8047)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive not supported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 1 interface resets
+     0 unknown protocol drops
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet0/0 is up, line protocol is up 
+  Hardware is RP management port, address is 5488.de20.8000 (bia 5488.de20.8000)
+  Description: Management Interface
+  Internet address is 10.198.207.51/26
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is RJ45
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:00, output 00:00:00, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 2000 bits/sec, 3 packets/sec
+  5 minute output rate 1000 bits/sec, 1 packets/sec
+     305635103 packets input, 35893382164 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     223801547 packets output, 47026709753 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     9 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/1 is up, line protocol is up (connected) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8001 (bia 5488.de20.8001)
+  Description: AT&T Router #2, Circuit ID  IZEC.693020. .ATI 
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 12/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full-duplex, 1000Mb/s, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 00:02:00
+  Last input never, output 00:00:01, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 3450
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 47685000 bits/sec, 16709 packets/sec
+  5 minute output rate 5000 bits/sec, 10 packets/sec
+     1283333956815 packets input, 584364505145264 bytes, 0 no buffer
+     Received 42169124 broadcasts (41146743 multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 41146743 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     541497498 packets output, 82820607093 bytes, 0 underruns
+     Output 684856 broadcasts (0 multicasts)
+     0 output errors, 0 collisions, 1 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/2 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8056 (bia 5488.de20.8056)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/3 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8058 (bia 5488.de20.8058)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/4 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8076 (bia 5488.de20.8076)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/5 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8064 (bia 5488.de20.8064)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/6 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8056 (bia 5488.de20.8056)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/7 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8040 (bia 5488.de20.8040)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/8 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8067 (bia 5488.de20.8067)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/9 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8077 (bia 5488.de20.8077)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/10 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8047 (bia 5488.de20.8047)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/11 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8057 (bia 5488.de20.8057)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/12 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8066 (bia 5488.de20.8066)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/13 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8074 (bia 5488.de20.8074)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output 3y9w, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     44806 packets output, 3389894 bytes, 0 underruns
+     Output 33347 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 2 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/14 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8046 (bia 5488.de20.8046)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/15 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8050 (bia 5488.de20.8050)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/16 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8077 (bia 5488.de20.8077)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/17 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8047 (bia 5488.de20.8047)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/18 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8057 (bia 5488.de20.8057)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/19 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8067 (bia 5488.de20.8067)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/20 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8077 (bia 5488.de20.8077)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/21 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8047 (bia 5488.de20.8047)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/22 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8057 (bia 5488.de20.8057)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/23 is administratively down, line protocol is down (disabled) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8067 (bia 5488.de20.8067)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet1/0/24 is up, line protocol is up (connected) 
+  Hardware is Gigabit Ethernet, address is 5488.de20.8018 (bia 5488.de20.8018)
+  Description: Equinix Connect 149.97.227.156_30
+  MTU 1500 bytes, BW 100000 Kbit/sec, DLY 100 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full-duplex, 100Mb/s, media type is 10/100/1000BaseTX
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output 00:00:01, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     36430142 packets input, 2331547753 bytes, 0 no buffer
+     Received 36429532 broadcasts (0 multicasts)
+     0 runts, 0 giants, 0 throttles 
+     7 input errors, 7 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     13425306 packets output, 2001399742 bytes, 0 underruns
+     Output 1 broadcasts (0 multicasts)
+     0 output errors, 0 collisions, 1 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+TenGigabitEthernet1/1/1 is up, line protocol is up (connected) 
+  Hardware is Ten Gigabit Ethernet, address is 5488.de20.8019 (bia 5488.de20.8019)
+  Description: ec-lan-fpw-0403-2 Ethernet 1/1
+  MTU 1500 bytes, BW 10000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 6/255
+  Encapsulation ARPA, loopback not set
+  Keepalive not set
+  Full-duplex, 10Gb/s, link type is auto, media type is SFP-10GBase-CX1
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output 00:00:00, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 268808000 bits/sec, 31483 packets/sec
+  5 minute output rate 56294000 bits/sec, 18127 packets/sec
+     1938121764489 packets input, 2269234333485538 bytes, 0 no buffer
+     Received 246157 broadcasts (0 multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     1096120174077 packets output, 508039795777213 bytes, 0 underruns
+     Output 38249055 broadcasts (0 multicasts)
+     0 output errors, 0 collisions, 1 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+TenGigabitEthernet1/1/2 is up, line protocol is up (connected) 
+  Hardware is Ten Gigabit Ethernet, address is 5488.de20.801a (bia 5488.de20.801a)
+  Description: Equinix 552979-NY2-CX-SEC-01 - CIDB 22927925-A
+  MTU 1500 bytes, BW 10000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive not set
+  Full-duplex, 10Gb/s, link type is auto, media type is SFP-10GBase-LR
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output 00:00:00, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 1000 bits/sec, 3 packets/sec
+     1045520 packets input, 79915736 bytes, 0 no buffer
+     Received 237093 broadcasts (0 multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     4513470 packets output, 377838882 bytes, 0 underruns
+     Output 445827 broadcasts (0 multicasts)
+     0 output errors, 0 collisions, 1 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+TenGigabitEthernet1/1/3 is up, line protocol is up (connected) 
+  Hardware is Ten Gigabit Ethernet, address is 5488.de20.801b (bia 5488.de20.801b)
+  Description: EC-LAN-DS-SW0403-1 TE1/1/3
+  MTU 1500 bytes, BW 10000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive not set
+  Full-duplex, 10Gb/s, link type is auto, media type is SFP-10GBase-CX1
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:04, output 00:00:05, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 3000 bits/sec, 5 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     1185552999 packets input, 382806301442 bytes, 0 no buffer
+     Received 264408849 broadcasts (263523896 multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 263523896 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     51828508 packets output, 5688590365 bytes, 0 underruns
+     Output 36431132 broadcasts (0 multicasts)
+     0 output errors, 0 collisions, 2 interface resets
+     1 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+TenGigabitEthernet1/1/4 is up, line protocol is up (connected) 
+  Hardware is Ten Gigabit Ethernet, address is 5488.de20.801c (bia 5488.de20.801c)
+  Description: EC-LAN-DS-SW0403-1 TE1/1/4
+  MTU 1500 bytes, BW 10000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 6/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive not set
+  Full-duplex, 10Gb/s, link type is auto, media type is SFP-10GBase-CX1
+  input flow-control is on, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:21, output 00:00:06, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 7757000 bits/sec, 1300 packets/sec
+  5 minute output rate 268811000 bits/sec, 31482 packets/sec
+     16870158023 packets input, 4898350740389 bytes, 0 no buffer
+     Received 46251610 broadcasts (46248180 multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 46248180 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     2142962402051 packets output, 2355919245053208 bytes, 0 underruns
+     Output 1466057 broadcasts (0 multicasts)
+     0 output errors, 0 collisions, 2 interface resets
+     1 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+Port-channel1 is up, line protocol is up (connected) 
+  Hardware is EtherChannel, address is 5488.de20.801c (bia 5488.de20.801c)
+  Description: EC-LAN-DS-SW0403-1 PO1
+  MTU 1500 bytes, BW 20000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 3/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full-duplex, 10Gb/s, link type is auto, media type is N/A
+  input flow-control is on, output flow-control is unsupported 
+  Members in this channel: Te1/1/3 Te1/1/4 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:00, output 2w2d, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 7760000 bits/sec, 1305 packets/sec
+  5 minute output rate 268812000 bits/sec, 31482 packets/sec
+     18055711022 packets input, 5281157041831 bytes, 0 no buffer
+     Received 310660459 broadcasts (309772076 multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 309772076 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     2143014230559 packets output, 2355924933643573 bytes, 0 underruns
+     Output 37897189 broadcasts (0 multicasts)
+     0 output errors, 0 collisions, 1 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+
+====================show log========================================================================
+
+Syslog logging: enabled (0 messages dropped, 223 messages rate-limited, 0 flushes, 2 overruns, xml disabled, filtering disabled)
+
+No Active Message Discriminator.
+
+
+
+No Inactive Message Discriminator.
+
+
+    Console logging: level emergencies, 0 messages logged, xml disabled,
+                     filtering disabled
+    Monitor logging: level debugging, 0 messages logged, xml disabled,
+                     filtering disabled
+    Buffer logging:  level notifications, 13343 messages logged, xml disabled,
+                    filtering disabled
+    Exception Logging: size (4096 bytes)
+    Count and timestamp logging messages: disabled
+    File logging: disabled
+    Persistent logging: disabled
+
+No active filter modules.
+
+    Trap logging: level informational, 16161 message lines logged
+        Logging to 10.232.124.16  (Mgmt-vrf) (udp port 514, audit disabled,
+              link up),
+              16159 message lines logged, 
+              0 message lines rate-limited, 
+              0 message lines dropped-by-MD, 
+              xml disabled, sequence number disabled
+              filtering disabled
+        Logging to 10.219.2.132  (Mgmt-vrf) (udp port 514, audit disabled,
+              link up),
+              16161 message lines logged, 
+              0 message lines rate-limited, 
+              0 message lines dropped-by-MD, 
+              xml disabled, sequence number disabled
+              filtering disabled
+        Logging to 10.232.124.18  (Mgmt-vrf) (udp port 514, audit disabled,
+              link up),
+              16161 message lines logged, 
+              0 message lines rate-limited, 
+              0 message lines dropped-by-MD, 
+              xml disabled, sequence number disabled
+              filtering disabled
+        Logging to 10.145.248.200  (Mgmt-vrf) (udp port 514, audit disabled,
+              link up),
+              4567 message lines logged, 
+              0 message lines rate-limited, 
+              0 message lines dropped-by-MD, 
+              xml disabled, sequence number disabled
+              filtering disabled
+        Logging Source-Interface:       VRF Name:
+
+Log Buffer (65535 bytes):
+eh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 15:57:12 UTC Mon Jul 1 2024
+223459: Jul  1 15:57:44.805 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 15:57:44 UTC Mon Jul 1 2024
+223461: Jul  1 15:58:49.133 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 15:58:49 UTC Mon Jul 1 2024
+223464: Jul  1 15:59:19.621 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 15:59:19 UTC Mon Jul 1 2024
+223466: Jul  1 16:00:12.813 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 16:00:12 UTC Mon Jul 1 2024
+223468: Jul  1 16:00:37.177 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 16:00:37 UTC Mon Jul 1 2024
+223471: Jul  1 16:07:13.426 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 16:07:13 UTC Mon Jul 1 2024
+223473: Jul  1 16:08:29.241 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 16:08:29 UTC Mon Jul 1 2024
+223475: Jul  1 16:11:34.984 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 16:11:34 UTC Mon Jul 1 2024
+223478: Jul  1 16:15:17.985 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 16:15:17 UTC Mon Jul 1 2024
+223486: Jul  1 17:05:00.426 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 17:05:00 UTC Mon Jul 1 2024
+223487: Jul  1 17:05:08.325 UTC: %INSTALL-5-INSTALL_START_INFO: Switch 1 R0/0: install_engine: Started install remove
+223489: Jul  1 17:07:28.321 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 17:07:28 UTC Mon Jul 1 2024
+223490: Jul  1 17:07:35.131 UTC: %INSTALL-5-INSTALL_START_INFO: Switch 1 R0/0: install_engine: Started install remove
+223496: Jul  1 17:34:27.906 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 17:34:27 UTC Mon Jul 1 2024
+223498: Jul  1 17:35:56.281 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 17:35:56 UTC Mon Jul 1 2024
+223505: Jul  1 18:13:37.487 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+223695: Jul  2 18:13:46.510 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+223884: Jul  3 18:13:55.534 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+224033: Jul  4 13:05:49.420 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 13:05:49 UTC Thu Jul 4 2024
+224036: Jul  4 13:08:23.893 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 13:08:23 UTC Thu Jul 4 2024
+224039: Jul  4 13:18:15.042 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 13:18:15 UTC Thu Jul 4 2024
+224041: Jul  4 13:21:02.070 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 13:21:02 UTC Thu Jul 4 2024
+224060: Jul  4 15:27:36.977 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Communications failure 
+224083: Jul  4 18:14:04.558 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+224272: Jul  5 18:14:13.582 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+224461: Jul  6 18:14:22.602 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+224651: Jul  7 18:14:31.623 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+224840: Jul  8 18:14:40.647 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+225030: Jul  9 18:14:49.666 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+225219: Jul 10 18:14:58.686 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+225387: Jul 11 15:27:37.527 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Communications failure 
+225410: Jul 11 18:15:07.710 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+225599: Jul 12 18:15:16.734 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+225789: Jul 13 18:15:25.753 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+225978: Jul 14 18:15:34.773 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+226167: Jul 15 18:15:43.798 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+226357: Jul 16 18:15:52.823 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+226546: Jul 17 18:16:01.847 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+226714: Jul 18 15:27:37.995 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Communications failure 
+226737: Jul 18 18:16:10.866 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+226927: Jul 19 18:16:19.886 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+227117: Jul 20 18:16:28.902 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+227306: Jul 21 18:16:37.922 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+227491: Jul 22 17:39:31.305 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 17:39:31 UTC Mon Jul 22 2024
+227494: Jul 22 17:46:33.046 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 17:46:33 UTC Mon Jul 22 2024
+227498: Jul 22 18:01:11.468 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 18:01:11 UTC Mon Jul 22 2024
+227501: Jul 22 18:08:25.778 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 18:08:25 UTC Mon Jul 22 2024
+227503: Jul 22 18:11:26.185 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 18:11:26 UTC Mon Jul 22 2024
+227506: Jul 22 18:15:44.260 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 18:15:44 UTC Mon Jul 22 2024
+227508: Jul 22 18:16:46.945 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+227510: Jul 22 18:29:44.781 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 18:29:44 UTC Mon Jul 22 2024
+227513: Jul 22 18:36:01.724 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 18:36:01 UTC Mon Jul 22 2024
+227516: Jul 22 18:42:27.009 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 18:42:27 UTC Mon Jul 22 2024
+227521: Jul 22 19:06:29.585 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 19:06:29 UTC Mon Jul 22 2024
+227524: Jul 22 19:09:14.453 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 19:09:14 UTC Mon Jul 22 2024
+227527: Jul 22 19:18:06.606 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 19:18:06 UTC Mon Jul 22 2024
+227532: Jul 22 19:43:09.741 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 19:43:09 UTC Mon Jul 22 2024
+227534: Jul 22 19:44:10.266 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 19:44:10 UTC Mon Jul 22 2024
+227537: Jul 22 19:53:45.302 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 19:53:45 UTC Mon Jul 22 2024
+227540: Jul 22 19:59:54.946 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 19:59:54 UTC Mon Jul 22 2024
+227542: Jul 22 20:00:42.113 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 20:00:42 UTC Mon Jul 22 2024
+227546: Jul 22 20:10:48.744 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 20:10:48 UTC Mon Jul 22 2024
+227548: Jul 22 20:11:34.234 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 20:11:34 UTC Mon Jul 22 2024
+227723: Jul 23 18:16:55.966 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+227912: Jul 24 18:17:04.989 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+228080: Jul 25 15:27:38.457 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Communications failure 
+228103: Jul 25 18:17:14.010 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+228292: Jul 26 18:17:23.029 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+228482: Jul 27 18:17:32.050 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+228671: Jul 28 18:17:41.074 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+228861: Jul 29 18:17:50.098 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+229050: Jul 30 18:17:59.122 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+229239: Jul 31 18:18:08.142 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+229407: Aug  1 15:27:38.929 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Communications failure 
+229430: Aug  1 18:18:17.165 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+229619: Aug  2 18:18:26.187 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+229809: Aug  3 18:18:35.210 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+229998: Aug  4 18:18:44.231 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+230188: Aug  5 18:18:53.251 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+230377: Aug  6 18:19:02.274 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+230567: Aug  7 18:19:11.298 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+230734: Aug  8 15:27:39.398 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Communications failure 
+230757: Aug  8 18:19:20.323 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+230947: Aug  9 18:19:29.343 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+231137: Aug 10 18:19:38.362 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+231326: Aug 11 18:19:47.383 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+231515: Aug 12 18:19:56.407 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+231705: Aug 13 18:20:05.430 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+231740: Aug 13 22:36:04.273 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: na\vivek.arora] [Source: 10.2.250.233] [localport: 22] at 22:36:04 UTC Tue Aug 13 2024
+231741: Aug 13 22:36:34.578 UTC: %SYS-5-CONFIG_I: Configured from console by na\vivek.arora on vty0 (10.2.250.233)
+231897: Aug 14 18:20:14.450 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+231965: Aug 15 02:50:35.541 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:50:35 UTC Thu Aug 15 2024
+231967: Aug 15 02:51:09.453 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:51:09 UTC Thu Aug 15 2024
+231969: Aug 15 02:51:45.137 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:51:45 UTC Thu Aug 15 2024
+231971: Aug 15 02:51:57.730 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:51:57 UTC Thu Aug 15 2024
+231972: Aug 15 02:51:59.846 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:51:59 UTC Thu Aug 15 2024
+231973: Aug 15 02:52:03.001 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:52:03 UTC Thu Aug 15 2024
+231974: Aug 15 02:52:05.114 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:52:05 UTC Thu Aug 15 2024
+231975: Aug 15 02:52:13.338 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:52:13 UTC Thu Aug 15 2024
+231976: Aug 15 02:52:13.338 UTC: %SEC_LOGIN-1-QUIET_MODE_ON: Still timeleft for watching failures is 4 secs, [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] [ACL: SSH_QUIET_MODE] at 02:52:13 UTC Thu Aug 15 2024
+231977: Aug 15 02:52:43.337 UTC: %SEC_LOGIN-5-QUIET_MODE_OFF: Quiet Mode is OFF, because block period timed out at 02:52:43 UTC Thu Aug 15 2024
+231978: Aug 15 02:52:46.802 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: admin] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:52:46 UTC Thu Aug 15 2024
+231979: Aug 15 02:52:48.918 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: admin] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:52:48 UTC Thu Aug 15 2024
+232079: Aug 15 15:27:39.874 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Communications failure 
+232103: Aug 15 18:20:23.469 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+232116: Aug 15 19:51:54.390 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: na\michael.keller] [Source: 10.235.215.167] [localport: 22] at 19:51:54 UTC Thu Aug 15 2024
+232117: Aug 15 19:52:01.572 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:vlan 3001
+232118: Aug 15 19:52:17.658 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:name AZ_USEast1_Primary
+232119: Aug 15 19:52:25.471 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:vlan 3002
+232120: Aug 15 19:52:27.050 UTC: %SPANTREE-5-ROOTCHANGE: Root Changed for vlan 3001: New Root Port is Port-channel1. New Root Mac Address is 5488.de1a.fd80
+232121: Aug 15 19:52:27.051 UTC: %SPANTREE-5-TOPOTRAP: Topology Change Trap for vlan 3001
+232122: Aug 15 19:52:32.144 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:name AZ_USEast1_Secondary
+232123: Aug 15 19:52:39.893 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:exit 
+232124: Aug 15 19:52:41.023 UTC: %SPANTREE-5-ROOTCHANGE: Root Changed for vlan 3002: New Root Port is Port-channel1. New Root Mac Address is 5488.de1a.fd80
+232125: Aug 15 19:52:41.024 UTC: %SPANTREE-5-TOPOTRAP: Topology Change Trap for vlan 3002
+232126: Aug 15 19:52:51.524 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:interface TenGigabitEthernet1/1/1 
+232127: Aug 15 19:53:04.436 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:switchport trunk allowed vlan add 3001-3002
+232128: Aug 15 19:53:48.353 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:exit 
+232129: Aug 15 19:53:53.648 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:interface TenGigabitEthernet1/1/2 
+232130: Aug 15 19:53:59.071 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:switchport 
+232131: Aug 15 19:54:23.502 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:description EquinixB 552979-NY2-CX-SEC-01 - CIDB 22927925-A
+232132: Aug 15 19:54:28.334 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:switchport mode trunk 
+232133: Aug 15 19:54:30.048 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:switchport nonegotiate 
+232134: Aug 15 19:54:40.561 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:switchport trunk allowed vlan add 3001-3002
+232135: Aug 15 19:54:57.502 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:spanning-tree bpduguard enable 
+232136: Aug 15 19:55:23.278 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:spanning-tree guard root 
+232137: Aug 15 19:55:24.831 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:no shutdown 
+232138: Aug 15 19:55:25.741 UTC: %SYS-5-CONFIG_I: Configured from console by na\michael.keller on vty0 (10.235.215.167)
+232139: Aug 15 19:55:26.828 UTC: %LINK-3-UPDOWN: Interface TenGigabitEthernet1/1/2, changed state to down
+232140: Aug 15 19:55:33.046 UTC: %LINK-3-UPDOWN: Interface TenGigabitEthernet1/1/2, changed state to up
+232141: Aug 15 19:55:34.046 UTC: %LINEPROTO-5-UPDOWN: Line protocol on Interface TenGigabitEthernet1/1/2, changed state to up
+232142: Aug 15 19:56:01.098 UTC: %SPANTREE-5-TOPOTRAP: Topology Change Trap for vlan 1
+232144: Aug 15 19:56:30.486 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:interface TenGigabitEthernet1/1/2 
+232145: Aug 15 19:56:37.086 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:switchport trunk allowed vlan 3001-3002
+232146: Aug 15 19:56:38.248 UTC: %SYS-5-CONFIG_I: Configured from console by na\michael.keller on vty0 (10.235.215.167)
+232148: Aug 15 20:00:59.609 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: na\michael.keller] [Source: 10.235.215.167] [localport: 22] at 20:00:59 UTC Thu Aug 15 2024
+232149: Aug 15 20:01:10.645 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:interface TenGigabitEthernet1/1/2 
+232150: Aug 15 20:01:25.774 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:description EquinixB 552979-NY2-CX-SEC-01 - CIDB 22927925-A
+232151: Aug 15 20:01:35.688 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:description Equinix 552979-NY2-CX-SEC-01 - CIDB 22927925-A
+232152: Aug 15 20:01:37.794 UTC: %SYS-5-CONFIG_I: Configured from console by na\michael.keller on vty0 (10.235.215.167)
+232206: Aug 16 02:37:16.486 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:37:16 UTC Fri Aug 16 2024
+232209: Aug 16 02:47:45.509 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:47:45 UTC Fri Aug 16 2024
+232212: Aug 16 02:51:49.808 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:51:49 UTC Fri Aug 16 2024
+232214: Aug 16 02:51:56.721 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:51:56 UTC Fri Aug 16 2024
+232215: Aug 16 02:51:58.838 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:51:58 UTC Fri Aug 16 2024
+232216: Aug 16 02:52:01.873 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:52:01 UTC Fri Aug 16 2024
+232217: Aug 16 02:52:03.988 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:52:03 UTC Fri Aug 16 2024
+232218: Aug 16 02:52:06.952 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:52:06 UTC Fri Aug 16 2024
+232219: Aug 16 02:52:06.952 UTC: %SEC_LOGIN-1-QUIET_MODE_ON: Still timeleft for watching failures is 13 secs, [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] [ACL: SSH_QUIET_MODE] at 02:52:06 UTC Fri Aug 16 2024
+232220: Aug 16 02:52:36.952 UTC: %SEC_LOGIN-5-QUIET_MODE_OFF: Quiet Mode is OFF, because block period timed out at 02:52:36 UTC Fri Aug 16 2024
+232342: Aug 16 18:20:32.495 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+232532: Aug 17 18:20:41.519 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+232599: Aug 18 02:45:06.714 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:45:06 UTC Sun Aug 18 2024
+232602: Aug 18 02:50:17.102 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:50:17 UTC Sun Aug 18 2024
+232604: Aug 18 02:50:53.554 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:50:53 UTC Sun Aug 18 2024
+232606: Aug 18 02:51:02.057 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:51:02 UTC Sun Aug 18 2024
+232607: Aug 18 02:51:04.173 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:51:04 UTC Sun Aug 18 2024
+232608: Aug 18 02:51:08.213 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:51:08 UTC Sun Aug 18 2024
+232609: Aug 18 02:51:10.330 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:51:10 UTC Sun Aug 18 2024
+232610: Aug 18 02:51:13.761 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:51:13 UTC Sun Aug 18 2024
+232611: Aug 18 02:51:13.761 UTC: %SEC_LOGIN-1-QUIET_MODE_ON: Still timeleft for watching failures is 18 secs, [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] [ACL: SSH_QUIET_MODE] at 02:51:13 UTC Sun Aug 18 2024
+232612: Aug 18 02:51:43.761 UTC: %SEC_LOGIN-5-QUIET_MODE_OFF: Quiet Mode is OFF, because block period timed out at 02:51:43 UTC Sun Aug 18 2024
+232734: Aug 18 18:20:50.542 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+232924: Aug 19 18:20:59.566 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+232965: Aug 19 23:30:38.189 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] [Reason: Login Authentication Failed] at 23:30:38 UTC Mon Aug 19 2024
+232966: Aug 19 23:30:40.413 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] [Reason: Login Authentication Failed] at 23:30:40 UTC Mon Aug 19 2024
+232993: Aug 20 02:47:42.541 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:47:42 UTC Tue Aug 20 2024
+232995: Aug 20 02:49:34.681 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:49:34 UTC Tue Aug 20 2024
+232997: Aug 20 02:50:05.229 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:50:05 UTC Tue Aug 20 2024
+232999: Aug 20 02:50:12.081 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:50:12 UTC Tue Aug 20 2024
+233000: Aug 20 02:50:17.281 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:50:17 UTC Tue Aug 20 2024
+233001: Aug 20 02:50:20.512 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:50:20 UTC Tue Aug 20 2024
+233002: Aug 20 02:50:22.625 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:50:22 UTC Tue Aug 20 2024
+233003: Aug 20 02:50:25.581 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:50:25 UTC Tue Aug 20 2024
+233004: Aug 20 02:50:25.581 UTC: %SEC_LOGIN-1-QUIET_MODE_ON: Still timeleft for watching failures is 14 secs, [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] [ACL: SSH_QUIET_MODE] at 02:50:25 UTC Tue Aug 20 2024
+233005: Aug 20 02:50:55.582 UTC: %SEC_LOGIN-5-QUIET_MODE_OFF: Quiet Mode is OFF, because block period timed out at 02:50:55 UTC Tue Aug 20 2024
+233128: Aug 20 18:21:08.581 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+233134: Aug 20 18:58:46.596 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] [Reason: Login Authentication Failed] at 18:58:46 UTC Tue Aug 20 2024
+233135: Aug 20 18:58:48.797 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] [Reason: Login Authentication Failed] at 18:58:48 UTC Tue Aug 20 2024
+233138: Aug 20 19:14:05.482 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] [Reason: Login Authentication Failed] at 19:14:05 UTC Tue Aug 20 2024
+233139: Aug 20 19:14:07.684 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] [Reason: Login Authentication Failed] at 19:14:07 UTC Tue Aug 20 2024
+233141: Aug 20 19:19:12.237 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 19:19:12 UTC Tue Aug 20 2024
+233145: Aug 20 19:33:59.813 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 19:33:59 UTC Tue Aug 20 2024
+233173: Aug 20 22:54:45.018 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 22:54:45 UTC Tue Aug 20 2024
+233174: Aug 20 22:55:09.364 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:reuben.ezeh@wolterskluwer.com  logged command:vlan 3011
+233175: Aug 20 22:55:09.411 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:reuben.ezeh@wolterskluwer.com  logged command:name GCP_USEast1_Primary
+233176: Aug 20 22:55:09.445 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:reuben.ezeh@wolterskluwer.com  logged command:vlan 3012
+233177: Aug 20 22:55:09.515 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:reuben.ezeh@wolterskluwer.com  logged command:name GCP_USEast1_Sec
+233178: Aug 20 22:55:10.230 UTC: %SPANTREE-5-ROOTCHANGE: Root Changed for vlan 3011: New Root Port is Port-channel1. New Root Mac Address is 5488.de1a.fd80
+233179: Aug 20 22:55:10.231 UTC: %SPANTREE-5-TOPOTRAP: Topology Change Trap for vlan 3011
+233180: Aug 20 22:56:01.288 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:reuben.ezeh@wolterskluwer.com  logged command:interface TenGigabitEthernet1/1/1 
+233181: Aug 20 22:56:03.233 UTC: %SPANTREE-5-ROOTCHANGE: Root Changed for vlan 3012: New Root Port is Port-channel1. New Root Mac Address is 5488.de1a.fd80
+233182: Aug 20 22:56:03.234 UTC: %SPANTREE-5-TOPOTRAP: Topology Change Trap for vlan 3012
+233183: Aug 20 22:56:05.728 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:reuben.ezeh@wolterskluwer.com  logged command:switchport trunk allowed vlan add 3011-3012
+233184: Aug 20 22:56:20.323 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:reuben.ezeh@wolterskluwer.com  logged command:interface TenGigabitEthernet1/1/2 
+233185: Aug 20 22:56:29.600 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:reuben.ezeh@wolterskluwer.com  logged command:switchport trunk allowed vlan add 3011-3012
+233186: Aug 20 22:56:59.598 UTC: %SPANTREE-5-TOPOTRAP: Topology Change Trap for vlan 3011
+233192: Aug 20 23:17:14.269 UTC: %SYS-5-CONFIG_I: Configured from console by reuben.ezeh@wolterskluwer.com on vty0 (10.1.101.130)
+233195: Aug 20 23:30:32.909 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 23:30:32 UTC Tue Aug 20 2024
+233221: Aug 21 02:41:01.398 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:41:01 UTC Wed Aug 21 2024
+233226: Aug 21 02:58:59.708 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:58:59 UTC Wed Aug 21 2024
+233228: Aug 21 03:03:07.726 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 03:03:07 UTC Wed Aug 21 2024
+233230: Aug 21 03:03:14.542 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 03:03:14 UTC Wed Aug 21 2024
+233231: Aug 21 03:03:16.658 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 03:03:16 UTC Wed Aug 21 2024
+233232: Aug 21 03:03:19.713 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 03:03:19 UTC Wed Aug 21 2024
+233233: Aug 21 03:03:21.829 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 03:03:21 UTC Wed Aug 21 2024
+233234: Aug 21 03:03:24.937 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 03:03:24 UTC Wed Aug 21 2024
+233235: Aug 21 03:03:24.937 UTC: %SEC_LOGIN-1-QUIET_MODE_ON: Still timeleft for watching failures is 13 secs, [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] [ACL: SSH_QUIET_MODE] at 03:03:24 UTC Wed Aug 21 2024
+233236: Aug 21 03:03:54.937 UTC: %SEC_LOGIN-5-QUIET_MODE_OFF: Quiet Mode is OFF, because block period timed out at 03:03:54 UTC Wed Aug 21 2024
+233357: Aug 21 18:21:17.603 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+233399: Aug 21 23:30:38.197 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 23:30:38 UTC Wed Aug 21 2024
+233426: Aug 22 02:44:09.685 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:44:09 UTC Thu Aug 22 2024
+233429: Aug 22 02:48:34.365 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:48:34 UTC Thu Aug 22 2024
+233431: Aug 22 02:49:05.310 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:49:05 UTC Thu Aug 22 2024
+233433: Aug 22 02:49:14.046 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:49:14 UTC Thu Aug 22 2024
+233434: Aug 22 02:49:16.161 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:49:16 UTC Thu Aug 22 2024
+233435: Aug 22 02:49:19.108 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:49:19 UTC Thu Aug 22 2024
+233436: Aug 22 02:49:21.225 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:49:21 UTC Thu Aug 22 2024
+233437: Aug 22 02:49:24.201 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:49:24 UTC Thu Aug 22 2024
+233438: Aug 22 02:49:24.201 UTC: %SEC_LOGIN-1-QUIET_MODE_ON: Still timeleft for watching failures is 1 secs, [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] [ACL: SSH_QUIET_MODE] at 02:49:24 UTC Thu Aug 22 2024
+233439: Aug 22 02:49:54.201 UTC: %SEC_LOGIN-5-QUIET_MODE_OFF: Quiet Mode is OFF, because block period timed out at 02:49:54 UTC Thu Aug 22 2024
+233539: Aug 22 15:27:40.345 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Communications failure 
+233563: Aug 22 18:21:26.622 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+233604: Aug 22 23:30:39.045 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 23:30:39 UTC Thu Aug 22 2024
+233633: Aug 23 02:52:06.670 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:52:06 UTC Fri Aug 23 2024
+233635: Aug 23 02:53:19.756 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:53:19 UTC Fri Aug 23 2024
+233637: Aug 23 02:53:58.384 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:53:58 UTC Fri Aug 23 2024
+233639: Aug 23 02:54:05.989 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:54:05 UTC Fri Aug 23 2024
+233640: Aug 23 02:54:08.210 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:54:08 UTC Fri Aug 23 2024
+233641: Aug 23 02:54:11.650 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:54:11 UTC Fri Aug 23 2024
+233642: Aug 23 02:54:13.761 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:54:13 UTC Fri Aug 23 2024
+233643: Aug 23 02:54:16.777 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:54:16 UTC Fri Aug 23 2024
+233644: Aug 23 02:54:16.777 UTC: %SEC_LOGIN-1-QUIET_MODE_ON: Still timeleft for watching failures is 8 secs, [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] [ACL: SSH_QUIET_MODE] at 02:54:16 UTC Fri Aug 23 2024
+233645: Aug 23 02:54:46.778 UTC: %SEC_LOGIN-5-QUIET_MODE_OFF: Quiet Mode is OFF, because block period timed out at 02:54:46 UTC Fri Aug 23 2024
+233767: Aug 23 18:21:35.641 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+233809: Aug 23 23:30:35.028 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 23:30:35 UTC Fri Aug 23 2024
+233837: Aug 24 02:52:50.030 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:52:50 UTC Sat Aug 24 2024
+233840: Aug 24 02:56:18.981 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:56:18 UTC Sat Aug 24 2024
+233842: Aug 24 02:57:38.258 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:57:38 UTC Sat Aug 24 2024
+233844: Aug 24 02:57:49.877 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:57:49 UTC Sat Aug 24 2024
+233845: Aug 24 02:57:51.989 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:57:51 UTC Sat Aug 24 2024
+233846: Aug 24 02:57:55.018 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:57:55 UTC Sat Aug 24 2024
+233847: Aug 24 02:57:57.125 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:57:57 UTC Sat Aug 24 2024
+233848: Aug 24 02:58:00.166 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:58:00 UTC Sat Aug 24 2024
+233849: Aug 24 02:58:00.166 UTC: %SEC_LOGIN-1-QUIET_MODE_ON: Still timeleft for watching failures is 17 secs, [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] [ACL: SSH_QUIET_MODE] at 02:58:00 UTC Sat Aug 24 2024
+233850: Aug 24 02:58:30.165 UTC: %SEC_LOGIN-5-QUIET_MODE_OFF: Quiet Mode is OFF, because block period timed out at 02:58:30 UTC Sat Aug 24 2024
+233972: Aug 24 18:21:44.662 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+234013: Aug 24 23:30:31.418 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 23:30:31 UTC Sat Aug 24 2024
+234165: Aug 25 18:21:53.681 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+234207: Aug 25 23:30:34.546 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 23:30:34 UTC Sun Aug 25 2024
+234235: Aug 26 02:50:09.114 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:50:09 UTC Mon Aug 26 2024
+234237: Aug 26 02:50:50.422 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:50:50 UTC Mon Aug 26 2024
+234239: Aug 26 02:51:26.820 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:51:26 UTC Mon Aug 26 2024
+234241: Aug 26 02:51:41.573 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:51:41 UTC Mon Aug 26 2024
+234242: Aug 26 02:51:43.682 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:51:43 UTC Mon Aug 26 2024
+234243: Aug 26 02:51:46.742 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:51:46 UTC Mon Aug 26 2024
+234244: Aug 26 02:51:48.853 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:51:48 UTC Mon Aug 26 2024
+234245: Aug 26 02:51:51.917 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:51:51 UTC Mon Aug 26 2024
+234246: Aug 26 02:51:51.917 UTC: %SEC_LOGIN-1-QUIET_MODE_ON: Still timeleft for watching failures is 11 secs, [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] [ACL: SSH_QUIET_MODE] at 02:51:51 UTC Mon Aug 26 2024
+234247: Aug 26 02:52:21.918 UTC: %SEC_LOGIN-5-QUIET_MODE_OFF: Quiet Mode is OFF, because block period timed out at 02:52:21 UTC Mon Aug 26 2024
+234370: Aug 26 18:22:02.703 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+234411: Aug 26 23:30:38.654 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 23:30:38 UTC Mon Aug 26 2024
+234440: Aug 27 02:53:39.689 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:53:39 UTC Tue Aug 27 2024
+234442: Aug 27 02:54:13.888 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:54:13 UTC Tue Aug 27 2024
+234444: Aug 27 02:54:54.093 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:54:54 UTC Tue Aug 27 2024
+234446: Aug 27 02:55:05.690 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:55:05 UTC Tue Aug 27 2024
+234447: Aug 27 02:55:07.809 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:55:07 UTC Tue Aug 27 2024
+234448: Aug 27 02:55:14.674 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:55:14 UTC Tue Aug 27 2024
+234449: Aug 27 02:55:16.789 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:55:16 UTC Tue Aug 27 2024
+234450: Aug 27 02:55:21.613 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:55:21 UTC Tue Aug 27 2024
+234451: Aug 27 02:55:21.613 UTC: %SEC_LOGIN-1-QUIET_MODE_ON: Still timeleft for watching failures is 1 secs, [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] [ACL: SSH_QUIET_MODE] at 02:55:21 UTC Tue Aug 27 2024
+234452: Aug 27 02:55:51.612 UTC: %SEC_LOGIN-5-QUIET_MODE_OFF: Quiet Mode is OFF, because block period timed out at 02:55:51 UTC Tue Aug 27 2024
+234574: Aug 27 18:22:11.737 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+234615: Aug 27 23:30:31.781 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 23:30:31 UTC Tue Aug 27 2024
+234644: Aug 28 02:54:11.473 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:54:11 UTC Wed Aug 28 2024
+234647: Aug 28 03:00:57.058 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 03:00:57 UTC Wed Aug 28 2024
+234649: Aug 28 03:02:13.422 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 03:02:13 UTC Wed Aug 28 2024
+234651: Aug 28 03:02:22.530 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 03:02:22 UTC Wed Aug 28 2024
+234652: Aug 28 03:02:24.640 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 03:02:24 UTC Wed Aug 28 2024
+234653: Aug 28 03:02:28.400 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 03:02:28 UTC Wed Aug 28 2024
+234654: Aug 28 03:02:30.509 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 03:02:30 UTC Wed Aug 28 2024
+234655: Aug 28 03:02:34.133 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 03:02:34 UTC Wed Aug 28 2024
+234656: Aug 28 03:02:34.133 UTC: %SEC_LOGIN-1-QUIET_MODE_ON: Still timeleft for watching failures is 18 secs, [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] [ACL: SSH_QUIET_MODE] at 03:02:34 UTC Wed Aug 28 2024
+234657: Aug 28 03:03:04.133 UTC: %SEC_LOGIN-5-QUIET_MODE_OFF: Quiet Mode is OFF, because block period timed out at 03:03:04 UTC Wed Aug 28 2024
+234779: Aug 28 18:22:20.763 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+234820: Aug 28 23:30:38.165 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 23:30:38 UTC Wed Aug 28 2024
+234866: Aug 29 05:10:17.944 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 05:10:17 UTC Thu Aug 29 2024
+234868: Aug 29 05:10:56.609 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 05:10:56 UTC Thu Aug 29 2024
+234871: Aug 29 05:11:10.261 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 05:11:10 UTC Thu Aug 29 2024
+234872: Aug 29 05:11:12.373 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 05:11:12 UTC Thu Aug 29 2024
+234873: Aug 29 05:11:15.549 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 05:11:15 UTC Thu Aug 29 2024
+234874: Aug 29 05:11:17.673 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 05:11:17 UTC Thu Aug 29 2024
+234875: Aug 29 05:11:20.802 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 05:11:20 UTC Thu Aug 29 2024
+234876: Aug 29 05:11:20.802 UTC: %SEC_LOGIN-1-QUIET_MODE_ON: Still timeleft for watching failures is 14 secs, [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] [ACL: SSH_QUIET_MODE] at 05:11:20 UTC Thu Aug 29 2024
+234877: Aug 29 05:11:50.800 UTC: %SEC_LOGIN-5-QUIET_MODE_OFF: Quiet Mode is OFF, because block period timed out at 05:11:50 UTC Thu Aug 29 2024
+234958: Aug 29 15:27:40.899 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Communications failure 
+234982: Aug 29 18:22:29.791 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name 
+235005: Aug 29 21:13:46.361 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: na\michael.keller] [Source: 10.235.215.167] [localport: 22] at 21:13:46 UTC Thu Aug 29 2024
+235006: Aug 29 21:13:56.644 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:ip domain lookup 
+235008: Aug 29 21:14:11.021 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:ip name-server vrf Mgmt-vrf 10.226.76.48 10.243.160.99 10.1.101.100 10.2.101.100
+235009: Aug 29 21:14:11.141 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:ip domain lookup vrf Mgmt-vrf source-interface GigabitEthernet0/0 
+235010: Aug 29 21:14:14.008 UTC: %SYS-5-CONFIG_I: Configured from console by na\michael.keller on vty0 (10.235.215.167)
+235011: Aug 29 21:14:34.055 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:license smart url default 
+235012: Aug 29 21:14:34.233 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:license smart url smart https://smartreceiver.cisco.com/licservice/license
+235013: Aug 29 21:14:34.436 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:license smart transport smart 
+235014: Aug 29 21:14:34.584 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:call-home 
+235015: Aug 29 21:14:34.791 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:contact-email-addr GBSNetworkOperationsServices@wolterskluwer.com
+235016: Aug 29 21:14:34.835 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:no http secure server-identity-check 
+235017: Aug 29 21:14:34.869 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:profile "CiscoTAC-1"
+235018: Aug 29 21:14:34.883 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:active 
+235019: Aug 29 21:14:36.026 UTC: %PARSER-5-CFGLOG_LOGGEDCMD: User:na\michael.keller  logged command:destination transport-method http 
+235020: Aug 29 21:14:37.159 UTC: %SYS-5-CONFIG_I: Configured from console by na\michael.keller on vty0 (10.235.215.167)
+235022: Aug 29 21:14:57.403 UTC: %CRYPTO_ENGINE-5-KEY_ADDITION: A key named SLA-KeyPair has been generated or imported by crypto-engine
+235023: Aug 29 21:14:57.816 UTC: %PKI-4-NOCONFIGAUTOSAVE: Configuration was modified.  Issue "write memory" to save new IOS PKI configuration
+235024: Aug 29 21:14:58.213 UTC: %SMART_LIC-3-COMM_FAILED: Communications failure with the Cisco Smart Software Manager (CSSM) : No detailed information given 
+235026: Aug 29 21:15:30.270 UTC: %CRYPTO_ENGINE-5-KEY_ADDITION: A key named SLA-KeyPair2 has been generated or imported by crypto-engine
+235028: Aug 29 21:15:32.094 UTC: %SMART_LIC-5-COMM_RESTORED: Communications with Cisco Smart Software Manager (CSSM) restored
+235048: Aug 29 23:30:35.145 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 23:30:35 UTC Thu Aug 29 2024
+235239: Aug 30 23:30:34.528 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 23:30:34 UTC Fri Aug 30 2024
+235430: Aug 31 23:30:39.165 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 23:30:39 UTC Sat Aug 31 2024
+235457: Sep  1 02:44:27.133 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:44:27 UTC Sun Sep 1 2024
+235460: Sep  1 02:54:31.297 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:54:31 UTC Sun Sep 1 2024
+235462: Sep  1 02:55:01.922 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:55:01 UTC Sun Sep 1 2024
+235464: Sep  1 02:55:09.433 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:55:09 UTC Sun Sep 1 2024
+235465: Sep  1 02:55:11.578 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:55:11 UTC Sun Sep 1 2024
+235466: Sep  1 02:55:14.689 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:55:14 UTC Sun Sep 1 2024
+235467: Sep  1 02:55:16.800 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:55:16 UTC Sun Sep 1 2024
+235468: Sep  1 02:55:20.370 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:55:20 UTC Sun Sep 1 2024
+235469: Sep  1 02:55:20.370 UTC: %SEC_LOGIN-1-QUIET_MODE_ON: Still timeleft for watching failures is 2 secs, [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] [ACL: SSH_QUIET_MODE] at 02:55:20 UTC Sun Sep 1 2024
+235470: Sep  1 02:55:50.369 UTC: %SEC_LOGIN-5-QUIET_MODE_OFF: Quiet Mode is OFF, because block period timed out at 02:55:50 UTC Sun Sep 1 2024
+235633: Sep  1 23:30:34.553 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 23:30:34 UTC Sun Sep 1 2024
+235823: Sep  2 23:30:34.465 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 23:30:34 UTC Mon Sep 2 2024
+235852: Sep  3 02:53:21.573 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:53:21 UTC Tue Sep 3 2024
+235854: Sep  3 02:54:01.618 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:54:01 UTC Tue Sep 3 2024
+235856: Sep  3 02:54:39.249 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:54:39 UTC Tue Sep 3 2024
+235858: Sep  3 02:54:50.201 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:54:50 UTC Tue Sep 3 2024
+235859: Sep  3 02:54:52.317 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:54:52 UTC Tue Sep 3 2024
+235860: Sep  3 02:54:55.257 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:54:55 UTC Tue Sep 3 2024
+235861: Sep  3 02:54:57.378 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:54:57 UTC Tue Sep 3 2024
+235862: Sep  3 02:55:00.530 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:55:00 UTC Tue Sep 3 2024
+235863: Sep  3 02:55:00.530 UTC: %SEC_LOGIN-1-QUIET_MODE_ON: Still timeleft for watching failures is 19 secs, [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] [ACL: SSH_QUIET_MODE] at 02:55:00 UTC Tue Sep 3 2024
+235864: Sep  3 02:55:30.528 UTC: %SEC_LOGIN-5-QUIET_MODE_OFF: Quiet Mode is OFF, because block period timed out at 02:55:30 UTC Tue Sep 3 2024
+236027: Sep  3 23:30:39.644 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 23:30:39 UTC Tue Sep 3 2024
+236054: Sep  4 02:39:28.710 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:39:28 UTC Wed Sep 4 2024
+236057: Sep  4 02:46:43.005 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:46:43 UTC Wed Sep 4 2024
+236059: Sep  4 02:48:03.128 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:48:03 UTC Wed Sep 4 2024
+236061: Sep  4 02:48:12.930 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:48:12 UTC Wed Sep 4 2024
+236062: Sep  4 02:48:20.065 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:48:20 UTC Wed Sep 4 2024
+236063: Sep  4 02:48:23.645 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:48:23 UTC Wed Sep 4 2024
+236064: Sep  4 02:48:25.753 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:48:25 UTC Wed Sep 4 2024
+236065: Sep  4 02:48:29.634 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:48:29 UTC Wed Sep 4 2024
+236066: Sep  4 02:48:29.634 UTC: %SEC_LOGIN-1-QUIET_MODE_ON: Still timeleft for watching failures is 2 secs, [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] [ACL: SSH_QUIET_MODE] at 02:48:29 UTC Wed Sep 4 2024
+236067: Sep  4 02:48:59.633 UTC: %SEC_LOGIN-5-QUIET_MODE_OFF: Quiet Mode is OFF, because block period timed out at 02:48:59 UTC Wed Sep 4 2024
+236230: Sep  4 23:30:34.453 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 23:30:34 UTC Wed Sep 4 2024
+236257: Sep  5 02:42:22.196 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:42:22 UTC Thu Sep 5 2024
+236260: Sep  5 02:50:08.877 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:50:08 UTC Thu Sep 5 2024
+236263: Sep  5 02:50:42.765 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: NA-S-Solarwinds-SVC@wolterskluwer.com] [Source: 10.232.124.29] [localport: 22] at 02:50:42 UTC Thu Sep 5 2024
+236265: Sep  5 02:50:54.302 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:50:54 UTC Thu Sep 5 2024
+236266: Sep  5 02:50:56.430 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: gbs-network] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:50:56 UTC Thu Sep 5 2024
+236267: Sep  5 02:50:59.837 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:50:59 UTC Thu Sep 5 2024
+236268: Sep  5 02:51:01.949 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: W0lt3rS!] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:51:01 UTC Thu Sep 5 2024
+236269: Sep  5 02:51:04.946 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] at 02:51:04 UTC Thu Sep 5 2024
+236270: Sep  5 02:51:04.946 UTC: %SEC_LOGIN-1-QUIET_MODE_ON: Still timeleft for watching failures is 19 secs, [user: mima_wkl] [Source: 10.232.124.29] [localport: 22] [Reason: Login Authentication Failed] [ACL: SSH_QUIET_MODE] at 02:51:04 UTC Thu Sep 5 2024
+236271: Sep  5 02:51:34.945 UTC: %SEC_LOGIN-5-QUIET_MODE_OFF: Quiet Mode is OFF, because block period timed out at 02:51:34 UTC Thu Sep 5 2024
+236434: Sep  5 23:30:35.193 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 23:30:35 UTC Thu Sep 5 2024
+236590: Sep  6 19:01:08.209 UTC: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: reuben.ezeh] [Source: 10.1.101.130] [localport: 22] [Reason: Login Authentication Failed] at 19:01:08 UTC Fri Sep 6 2024
+236591: Sep  6 19:04:45.014 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: reuben.ezeh@wolterskluwer.com] [Source: 10.1.101.130] [localport: 22] at 19:04:45 UTC Fri Sep 6 2024
+
+====================show run========================================================================
+
+Building configuration...
+
+Current configuration : 12893 bytes
+!
+! Last configuration change at 21:14:37 UTC Thu Aug 29 2024 by na\michael.keller
+! NVRAM config last updated at 21:18:38 UTC Thu Aug 29 2024 by na\michael.keller
+!
+version 17.3
+service nagle
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+service password-encryption
+service compress-config
+service sequence-numbers
+service counters max age 10
+service call-home
+no platform punt-keepalive disable-kernel-core
+!
+hostname ec-lan-ds-sw0403-2
+!
+!
+vrf definition Mgmt-vrf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+logging buffered 65535 notifications
+logging console emergencies
+enable secret 9 $9$Pmbo.Y3Ua8yt1E$MZPxl1jdn4cFasQ0x.2ber4Cqo6B4Lr0UpbO0L9p2SM
+!
+!
+!
+!
+aaa new-model
+!
+!
+aaa group server radius GBS_RADIUS
+ server name NPS-AWS
+ server name NPS-AZURE
+ ip vrf forwarding Mgmt-vrf
+ ip radius source-interface GigabitEthernet0/0
+!
+aaa authentication login default group GBS_RADIUS local
+aaa authentication login CONSOLE local
+aaa authorization exec default group GBS_RADIUS 
+!
+!
+!
+!
+!
+!
+aaa session-id common
+switch 1 provision c9200l-24t-4x
+!
+!
+!
+!
+vtp domain ny2-aggregation
+vtp mode transparent
+!
+!
+!
+!
+!
+no ip gratuitous-arps
+!
+ip name-server vrf Mgmt-vrf 10.226.76.48 10.243.160.99 10.1.101.100 10.2.101.100
+ip domain lookup vrf Mgmt-vrf source-interface GigabitEthernet0/0
+ip domain name utd.com
+!
+!
+!
+login block-for 30 attempts 5 within 30
+login delay 2
+login quiet-mode access-class SSH_QUIET_MODE
+login on-failure log
+login on-success log
+udld aggressive
+
+no device-tracking logging theft
+password encryption aes
+!
+crypto pki trustpoint SLA-TrustPoint
+ enrollment terminal
+ revocation-check crl
+!
+!
+crypto pki certificate chain SLA-TrustPoint
+!
+crypto pki certificate pool
+ cabundle nvram:ios_core.p7b
+!
+license boot level network-essentials addon dna-essentials
+license smart url https://smartreceiver.cisco.com/licservice/license
+license smart url smart https://smartreceiver.cisco.com/licservice/license
+license smart transport smart
+!
+!
+diagnostic bootup level minimal
+!
+spanning-tree mode rapid-pvst
+spanning-tree logging
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+spanning-tree uplinkfast
+spanning-tree backbonefast
+spanning-tree pathcost method long
+spanning-tree vlan 1-4094 priority 8192
+archive
+ log config
+  logging enable
+  logging size 200
+  notify syslog contenttype plaintext
+ path flash:ec-lan-sw0403-backup-
+ maximum 14
+ write-memory
+memory free low-watermark processor 10070
+!
+errdisable recovery cause udld
+errdisable recovery cause bpduguard
+errdisable recovery cause link-flap
+errdisable recovery cause sfp-config-mismatch
+errdisable recovery cause storm-control
+errdisable recovery interval 60
+username Support privilege 15 secret 9 $9$T9uorjRZWXc2DU$SwpTmQWqbeKtTG2GJ8efFgj6oSdzMMtwFdKLT0fISFA
+!
+redundancy
+ mode sso
+!
+!
+transceiver type all
+ monitoring
+!
+vlan 152
+ name EC_149.97.227.152-30
+!
+vlan 156
+ name EC_149.97.227.156-30
+!
+vlan 2047
+ name AT&T_Internet
+!
+vlan 3001
+ name AZ_USEast1_Primary
+!
+vlan 3002
+ name AZ_USEast1_Secondary
+!
+vlan 3011
+ name GCP_USEast1_Primary
+!
+vlan 3012
+ name GCP_USEast1_Sec
+lldp run
+!
+!
+class-map match-any system-cpp-police-ewlc-control
+  description EWLC Control 
+class-map match-any system-cpp-police-topology-control
+  description Topology control
+class-map match-any system-cpp-police-sw-forward
+  description Sw forwarding, L2 LVX data packets, LOGGING, Transit Traffic
+class-map match-any system-cpp-default
+  description EWLC data, Inter FED Traffic 
+class-map match-any system-cpp-police-sys-data
+  description Openflow, Exception, EGR Exception, NFL Sampled Data, RPF Failed
+class-map match-any system-cpp-police-punt-webauth
+  description Punt Webauth
+class-map match-any system-cpp-police-l2lvx-control
+  description L2 LVX control packets
+class-map match-any system-cpp-police-forus
+  description Forus Address resolution and Forus traffic
+class-map match-any system-cpp-police-multicast-end-station
+  description MCAST END STATION
+class-map match-any system-cpp-police-high-rate-app
+  description High Rate Applications 
+class-map match-any system-cpp-police-multicast
+  description MCAST Data
+class-map match-any system-cpp-police-l2-control
+  description L2 control
+class-map match-any system-cpp-police-dot1x-auth
+  description DOT1X Auth
+class-map match-any system-cpp-police-data
+  description ICMP redirect, ICMP_GEN and BROADCAST
+class-map match-any system-cpp-police-stackwise-virt-control
+  description Stackwise Virtual OOB
+class-map match-any non-client-nrt-class
+class-map match-any system-cpp-police-routing-control
+  description Routing control and Low Latency
+class-map match-any system-cpp-police-protocol-snooping
+  description Protocol snooping
+class-map match-any system-cpp-police-dhcp-snooping
+  description DHCP snooping
+class-map match-any system-cpp-police-ios-routing
+  description L2 control, Topology control, Routing control, Low Latency
+class-map match-any system-cpp-police-system-critical
+  description System Critical and Gold Pkt
+class-map match-any system-cpp-police-ios-feature
+  description ICMPGEN,BROADCAST,ICMP,L2LVXCntrl,ProtoSnoop,PuntWebauth,MCASTData,Transit,DOT1XAuth,Swfwd,LOGGING,L2LVXData,ForusTraffic,ForusARP,McastEndStn,Openflow,Exception,EGRExcption,NflSampled,RpfFailed
+!
+policy-map system-cpp-policy
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Port-channel1
+ description EC-LAN-DS-SW0403-1 PO1
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface GigabitEthernet0/0
+ description Management Interface
+ vrf forwarding Mgmt-vrf
+ ip address 10.198.207.51 255.255.255.192
+ no ip redirects
+ no ip proxy-arp
+ negotiation auto
+!
+interface GigabitEthernet1/0/1
+ description AT&T Router #2, Circuit ID  IZEC.693020. .ATI 
+ switchport access vlan 2047
+ switchport mode access
+ switchport nonegotiate
+ ip arp inspection trust
+ no cdp enable
+ arp timeout 120
+ spanning-tree bpdufilter enable
+ spanning-tree bpduguard enable
+ spanning-tree guard root
+!
+interface GigabitEthernet1/0/2
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/3
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/4
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/5
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/6
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/7
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/8
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/9
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/10
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/11
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/12
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/13
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/14
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/15
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/16
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/17
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/18
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/19
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/20
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/21
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/22
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/23
+ no switchport
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/24
+ description Equinix Connect 149.97.227.156_30
+ switchport access vlan 156
+ switchport mode access
+ switchport nonegotiate
+ speed 100
+ duplex full
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpdufilter enable
+ spanning-tree bpduguard enable
+ spanning-tree guard root
+!
+interface TenGigabitEthernet1/1/1
+ description ec-lan-fpw-0403-2 Ethernet 1/1
+ switchport trunk allowed vlan 156,2047,3001,3002,3011,3012
+ switchport mode trunk
+ switchport nonegotiate
+ spanning-tree portfast trunk
+ spanning-tree bpduguard enable
+ spanning-tree link-type point-to-point
+ spanning-tree guard root
+!
+interface TenGigabitEthernet1/1/2
+ description Equinix 552979-NY2-CX-SEC-01 - CIDB 22927925-A
+ switchport trunk allowed vlan 3001,3002,3011,3012
+ switchport mode trunk
+ switchport nonegotiate
+ spanning-tree bpduguard enable
+ spanning-tree guard root
+!
+interface TenGigabitEthernet1/1/3
+ description EC-LAN-DS-SW0403-1 TE1/1/3
+ switchport mode trunk
+ switchport nonegotiate
+ channel-protocol lacp
+ channel-group 1 mode active
+!
+interface TenGigabitEthernet1/1/4
+ description EC-LAN-DS-SW0403-1 TE1/1/4
+ switchport mode trunk
+ switchport nonegotiate
+ channel-protocol lacp
+ channel-group 1 mode active
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip forward-protocol nd
+no ip http server
+ip http authentication local
+no ip http secure-server
+ip http client source-interface GigabitEthernet0/0
+ip route vrf Mgmt-vrf 0.0.0.0 0.0.0.0 10.198.207.1
+ip tacacs source-interface GigabitEthernet0/0 
+ip ssh time-out 20
+ip ssh authentication-retries 2
+ip ssh source-interface GigabitEthernet0/0
+ip ssh version 2
+ip ssh dscp 18
+ip ssh stricthostkeycheck
+ip scp server enable
+!
+!
+ip access-list standard SNMP_RO_ACL
+ 10 permit 10.1.101.69
+ 20 permit 10.1.101.193
+ 30 permit 10.232.124.0 0.0.0.127
+ip access-list standard VTY_ACL
+ 10 permit any
+!
+ip radius source-interface GigabitEthernet0/0 vrf Mgmt-vrf
+logging host 10.232.124.16 vrf Mgmt-vrf
+logging host 10.219.2.132 vrf Mgmt-vrf
+logging host 10.232.124.18 vrf Mgmt-vrf
+logging host 10.145.248.200 vrf Mgmt-vrf
+!
+snmp-server group w0lt3rs! v3 auth 
+snmp-server group w0lt3rs! v3 priv read ViewDefault 
+snmp-server group wklslrmgt v3 auth read ViewDefault 
+snmp-server group wklslrmgt v3 priv read ViewDefault 
+snmp-server view ViewDefault iso included
+snmp-server view ViewDefault mib-2 included
+snmp-server trap-source GigabitEthernet0/0
+snmp-server source-interface informs GigabitEthernet0/0
+snmp-server location Equinix NY2 Cage NY2:01:003140 Cage 3140 275 Hartz Way Secaucus, NJ 07094-1908
+snmp-server contact Wolters Kluwer IT Service Desk 1-888-995-3375 it-servicedesk@wolterskluwer.com
+snmp-server enable traps snmp authentication linkdown linkup coldstart
+snmp-server enable traps syslog
+snmp-server host 10.1.101.69 version 3 auth w0lt3rs! 
+snmp-server host 10.232.124.12 version 3 auth w0lt3rs! 
+snmp-server host 10.232.124.13 version 3 auth w0lt3rs! 
+snmp-server host 10.232.124.18 version 3 auth w0lt3rs! 
+tacacs server ISE1-TACACS
+ address ipv4 10.1.101.78
+ key 7 073731411D020E3D4034232F2A79133C2E
+ single-connection
+tacacs server ISE2-TACACS
+ address ipv4 10.1.101.79
+ key 7 073731411D020E3D4034232F2A79133C2E
+ single-connection
+!
+radius server NPS-AWS
+ address ipv4 10.231.7.7 auth-port 1812 acct-port 1813
+ key 7 015C2858752F3A49775614123F503A55581712716305
+!
+radius server NPS-AZURE
+ address ipv4 10.226.2.132 auth-port 1812 acct-port 1813
+ key 7 0414255A210570085F035F0C345E2143793032737B14
+!
+!
+!
+control-plane
+ service-policy input system-cpp-policy
+!
+banner motd ^C
+************************* WARNING ***************************
+* THIS SYSTEM IS FOR THE USE OF AUTHORIZED PERSONNEL ONLY!  *
+* ACCESS IS RESTRICTED TO AUTHORIZED USERS ONLY!            *
+* UNAUTHORIZED ACCESS IS A VIOLATION OF STATE AND FEDERAL,  *
+* CIVIL AND CRIMINAL LAWS.  VIOLATORS WILL BE PROSECUTED.   *
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *                   
+* ALL ACTIVITY ON THIS COMPUTER SYSTEM IS MONITORED BY      *
+* SYSTEM SECURITY PERSONNEL. BY USING THIS COMPUTER SYSTEM  *
+* YOU CONSENT TO THIS MONITORING. INDIVIDUALS DETERMINED TO *
+* BE USING THIS COMPUTER NETWORK SYSTEM WITHOUT PROPER      *
+* AUTHORIZATION, OR IN EXCESS OF THEIR AUTHORIZATION MAY    *
+* HAVE THEIR ACTIVITY RECORD SUBMITTED TO LEGAL AUTHORITIES *
+* AND LEGAL AND CRIMINAL CHARGES MAY FOLLOW.                *
+*************************************************************
+^C
+!
+line con 0
+ logging synchronous
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ access-class VTY_ACL in vrf-also
+ exec-timeout 15 0
+ logging synchronous
+ length 0
+ history size 256
+ transport preferred none
+ transport input ssh
+line vty 5 15
+ access-class VTY_ACL in vrf-also
+ exec-timeout 15 0
+ logging synchronous
+ history size 256
+ transport preferred none
+ transport input ssh
+!
+ntp logging
+ntp source GigabitEthernet0/0
+ntp server vrf Mgmt-vrf 10.198.208.1 prefer
+ntp server vrf Mgmt-vrf 10.1.254.1
+ntp server vrf Mgmt-vrf 10.245.22.6
+call-home
+ contact-email-addr GBSNetworkOperationsServices@wolterskluwer.com
+ no http secure server-identity-check
+ profile "CiscoTAC-1"
+  active
+  destination transport-method http
+!
+!
+!
+!
+!
+!
+end
+
+
+====================show ver | in Soft==============================================================
+
+Cisco IOS XE Software, Version 17.03.03
+Cisco IOS Software [Amsterdam], Catalyst L3 Switch Software (CAT9K_LITE_IOSXE), Version 17.3.3, RELEASE SOFTWARE (fc7)
+
+====================show ip route===================================================================
+
+Extended Host Mode is enabled
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, m - OMP
+       n - NAT, Ni - NAT inside, No - NAT outside, Nd - NAT DIA
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       H - NHRP, G - NHRP registered, g - NHRP registration summary
+       o - ODR, P - periodic downloaded static route, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+       & - replicated local route overrides by connected
+
+Gateway of last resort is not set
+
+
+====================show int status=================================================================
+
+
+Port         Name               Status       Vlan       Duplex  Speed Type
+Gi1/0/1      AT&T Router #2, Ci connected    2047       a-full a-1000 10/100/1000BaseTX
+Gi1/0/2                         disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/3                         disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/4                         disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/5                         disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/6                         disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/7                         disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/8                         disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/9                         disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/10                        disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/11                        disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/12                        disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/13                        disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/14                        disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/15                        disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/16                        disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/17                        disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/18                        disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/19                        disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/20                        disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/21                        disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/22                        disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/23                        disabled     routed       auto   auto 10/100/1000BaseTX
+Gi1/0/24     Equinix Connect 14 connected    156          full    100 10/100/1000BaseTX
+Te1/1/1      ec-lan-fpw-0403-2  connected    trunk        full    10G SFP-10GBase-CX1
+Te1/1/2      Equinix 552979-NY2 connected    trunk        full    10G SFP-10GBase-LR
+Te1/1/3      EC-LAN-DS-SW0403-1 connected    trunk        full    10G SFP-10GBase-CX1
+Te1/1/4      EC-LAN-DS-SW0403-1 connected    trunk        full    10G SFP-10GBase-CX1
+Po1          EC-LAN-DS-SW0403-1 connected    trunk      a-full  a-10G N/A
+
+====================show switch=====================================================================
+
+Switch/Stack Mac Address : 5488.de20.8000 - Local Mac Address
+Mac persistency wait time: Indefinite
+                                             H/W   Current
+Switch#   Role    Mac Address     Priority Version  State 
+-------------------------------------------------------------------------------------
+*1       Active   5488.de20.8000     1      V01     Ready                               
+
+
+
+
+====================show switch detail==============================================================
+
+Switch/Stack Mac Address : 5488.de20.8000 - Local Mac Address
+Mac persistency wait time: Indefinite
+                                             H/W   Current
+Switch#   Role    Mac Address     Priority Version  State 
+-------------------------------------------------------------------------------------
+*1       Active   5488.de20.8000     1      V01     Ready                               
+
+
+
+         Stack Port Status             Neighbors     
+Switch#  Port 1     Port 2           Port 1   Port 2 
+--------------------------------------------------------
+  1       DOWN       DOWN             None     None
+
+
+====================show etherchannel summary=======================================================
+
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      f - failed to allocate aggregator
+
+        M - not in use, minimum links not met
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+        A - formed by Auto LAG
+
+
+Number of channel-groups in use: 1
+Number of aggregators:           1
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+1      Po1(SU)         LACP        Te1/1/3(P)      Te1/1/4(P)      
+
+
+====================show etherchannel detail========================================================
+
+		Channel-group listing: 
+		----------------------
+
+Group: 1 
+----------
+Group state = L2 
+Ports: 2   Maxports = 16
+Port-channels: 1 Max Port-channels = 16
+Protocol:   LACP
+Minimum Links: 0
+
+
+		Ports in the group:
+		-------------------
+Port: Te1/1/3
+------------
+
+Port state    = Up Mstr Assoc In-Bndl 
+Channel group = 1           Mode = Active          Gcchange = -
+Port-channel  = Po1         GC   =   -             Pseudo port-channel = Po1
+Port index    = 0           Load = 0x00            Protocol =   LACP
+
+Flags:  S - Device is sending Slow LACPDUs   F - Device is sending fast LACPDUs.
+        A - Device is in active mode.        P - Device is in passive mode.
+
+Local information:
+                                LACP port    Admin     Oper    Port        Port
+Port          Flags   State     Priority     Key       Key     Number      State
+Te1/1/3       SA      bndl      32768        0x1       0x1     0x11C       0x3D  
+
+ Partner's information:
+
+                     LACP port                      Admin  Oper   Port    Port
+Port          Flags  Priority  Dev ID          Age  key    Key    Number  State
+Te1/1/3       SA     32768     5488.de1a.fd80   7s  0x0    0x1    0x11C   0x3D  
+
+Age of the port in the current state: 1164d:03h:37m:32s
+
+Port: Te1/1/4
+------------
+
+Port state    = Up Mstr Assoc In-Bndl 
+Channel group = 1           Mode = Active          Gcchange = -
+Port-channel  = Po1         GC   =   -             Pseudo port-channel = Po1
+Port index    = 0           Load = 0x00            Protocol =   LACP
+
+Flags:  S - Device is sending Slow LACPDUs   F - Device is sending fast LACPDUs.
+        A - Device is in active mode.        P - Device is in passive mode.
+
+Local information:
+                                LACP port    Admin     Oper    Port        Port
+Port          Flags   State     Priority     Key       Key     Number      State
+Te1/1/4       SA      bndl      32768        0x1       0x1     0x11D       0x3D  
+
+ Partner's information:
+
+                     LACP port                      Admin  Oper   Port    Port
+Port          Flags  Priority  Dev ID          Age  key    Key    Number  State
+Te1/1/4       SA     32768     5488.de1a.fd80  24s  0x0    0x1    0x11D   0x3D  
+
+Age of the port in the current state: 1164d:03h:37m:33s
+
+		Port-channels in the group: 
+		---------------------------
+
+Port-channel: Po1    (Primary Aggregator)
+
+------------
+
+Age of the Port-channel   = 1164d:03h:38m:12s
+Logical slot/port   = 31/1          Number of ports = 2
+HotStandBy port = null 
+Port state          = Port-channel Ag-Inuse 
+Protocol            =   LACP
+Port security       = Disabled
+Fast-switchover     = disabled
+Fast-switchover Dampening = disabled
+
+Ports in the Port-channel: 
+
+Index   Load   Port        EC state        No of bits
+------+------+------+------------------+-----------
+  0     00     Te1/1/3        Active             0
+  0     00     Te1/1/4        Active             0
+
+Time since last port bundled:    1164d:03h:37m:32s     Te1/1/3
+
+
