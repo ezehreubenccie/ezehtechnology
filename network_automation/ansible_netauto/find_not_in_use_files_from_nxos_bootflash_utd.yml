@@ -1,0 +1,147 @@
+- name: DELETE FILES THAT ARE NOT IN USE FROM CISCO NEXUS FLASH
+  hosts: ffnexusc92348gcxsw:wan9k:njnexusc92348gcxsw:njnexus3548p10gsw
+  connection: network_cli
+  gather_facts: false
+
+  vars: 
+    target_system_image_file: "nxos.9.3.13.bin"
+    file_type: '.bin'
+    current_system_image_file: "nxos.9.3.7.bin"
+    empty_string: ''
+    spacefree_before:
+    spacefree_after:
+
+  tasks:
+    # - name: Gather all NXOS SWITCHES Hardware facts
+    #   nxos_facts:
+    #     gather_subset: hardware
+
+    # - name: Gather all NEXUS SWITCHES Hardware facts
+    #   cisco.nxos.nxos_command:
+    #     commands:
+    #       - command: show version | json
+    #   register: system_image_file
+
+    - name: Gather all NEXUS SWITCHES bootflash facts
+      cisco.nxos.nxos_command:
+        commands:
+          - command: dir | json
+      register: dir_bootflash
+
+    # - name: 
+    #   debug:
+    #     var: dir_bootflash
+
+    # - name: PRINT OUTPUT
+    #   debug:
+    #     var: system_image_file.stdout_lines
+
+    # - name: PRINT BOOTFLASH OUTPUT
+    #   debug:
+    #     var: dir_bootflash.stdout_lines[0].TABLE_dir.ROW_dir[16].fname
+      
+      
+
+    - name: Set fact before delete
+      set_fact:
+        spacefree_before: "{{ dir_bootflash.stdout_lines[0]['bytesfree'] }}"
+
+    - debug:
+        var: spacefree_before
+      
+
+    
+    - name: DISPLAY FREE SPACE BEFORE DELETE
+      debug:
+        msg: "Free space is  {{ (spacefree_before|float / 1000000000) | round(3) }} GB for {{ inventory_hostname }} before delete task."
+      tags: spacefree
+
+    # - name: DISPLAY CONTENTS OF FLASH
+    #   debug:
+    #     var: dir_bootflash.stdout_lines[0].TABLE_dir.ROW_dir
+
+    - name: set fact 1
+      set_fact:
+        list1: "{{ dir_bootflash.stdout_lines[0].TABLE_dir.ROW_dir }}"
+
+    # - debug:
+    #     var: list1
+
+    - name: DELETE FLASH FILES NOT IN USE - Output only
+      debug:
+        msg: " File to delete is  {{ item.fname }}" 
+      loop: '{{ list1 }}'
+      loop_control: 
+        label: "{{ item.fsize }}, {{ item.fname }}"
+      when:
+        - 'file_type in  item.fname'
+        - 'item.fname  !=  current_system_image_file'
+        - 'item.fname  !=  target_system_image_file'
+
+  #   - name: DISPLAY CONTENTS OF FLASH
+  #     ios_command:
+  #       commands:
+  #         - command: dir
+  #     register: flash_contents
+
+  #  # - debug:
+  #       #var: flash_contents.stdout_lines[0][1]
+
+  #   - name: set fact 1
+  #     set_fact:
+  #       list1: "{{ flash_contents.stdout_lines[0][2:-2] }}"
+
+  #   #- debug:
+  #       #var: list1[4].split()[-1]
+
+    - name: DELETE FLASH FILES NOT IN USE
+      nxos_command: 
+        commands:
+          - command: delete  bootflash:{{ item.fname }}
+            prompt: Do you want to delete \"\/{{ item.fname }}\" ?
+            answer: 'y'
+      loop: '{{ list1 }}'
+      loop_control: 
+        label: "{{ item.fsize }}, {{ item.fname }}"
+      when:
+        - 'file_type in  item.fname'
+        - 'item.fname  !=  current_system_image_file'
+        - 'item.fname  !=  target_system_image_file'
+  #        #- 'item != empty_string'
+
+    - name: Gather all NEXUS SWITCHES bootflash facts
+      cisco.nxos.nxos_command:
+        commands:
+          - command: dir | json
+      register: dir_bootflash
+
+    
+    - name: GET FREE SPACE AFTER DELETE
+      set_fact:
+        spacefree_after: "{{ dir_bootflash.stdout_lines[0]['bytesfree'] }}"
+
+  #   - name: GET FREE SPACE AFTER DELETE
+  #     ios_facts:
+  #       gather_subset: hardware
+  #     tags: spacefree
+
+  #   - name: Set fact after delete
+  #     set_fact:
+  #       spacefree_after: "{{ ansible_net_filesystems_info['bootflash:']['spacefree_kb'] }}"
+  #     tags: spacefree  
+
+    - debug:
+        msg: "Free space is  {{ (spacefree_after|float / 1000000000) | round(3) }}GB for {{ inventory_hostname }} after delete task. {{ spacefree_after|float / 1000000000 -  spacefree_before|float / 1000000000 }}GB was recovered!."
+
+    - name: Write cleanup.csv
+      run_once: true
+      shell: echo Device Name,space bfore cleanup \(GB\),space after cleanup \(GB\),total disk space recovered  \(GB\) > cleanup.csv
+      
+
+
+    - name: Write Clean UP CSV File
+      shell: echo "{{ inventory_hostname }},{{ (spacefree_before|float / 1000000000) | round(3) }},{{ (spacefree_after|float / 1000000000) | round(3) }},{{ (spacefree_after|float / 1000000000 -  spacefree_before|float / 1000000000) | round(3) }}" >> cleanup.csv
+      delegate_to: localhost
+
+
+   
