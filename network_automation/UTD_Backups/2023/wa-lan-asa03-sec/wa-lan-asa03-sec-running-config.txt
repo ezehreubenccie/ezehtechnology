@@ -3413,6 +3413,9 @@ object-group network BlockOut
  network-object host 146.0.77.15
  network-object host 23.106.223.97
  network-object host 104.21.56.113
+ network-object host 77.221.146.4
+ network-object 194.26.69.0 255.255.255.0
+ network-object 194.26.25.0 255.255.255.0
 object-group protocol TCPUDP
  protocol-object udp
  protocol-object tcp
@@ -3809,6 +3812,7 @@ access-list inside_access_in_1 extended permit ip any any
 pager lines 24
 logging enable
 logging timestamp
+no logging hide username
 logging buffer-size 20000
 logging buffered informational
 logging trap informational
@@ -3950,7 +3954,7 @@ ldap attribute-map UpToDate-LDAP-Map
 aaa-server RSA protocol sdi
 aaa-server RSA (inside) host 10.1.120.44
 aaa-server AD protocol ldap
-aaa-server AD (inside) host 10.2.101.100
+aaa-server AD (inside) host 10.1.101.100
  server-port 636
  ldap-base-dn DC=utd,DC=com
  ldap-scope subtree
@@ -3960,7 +3964,7 @@ aaa-server AD (inside) host 10.2.101.100
  ldap-over-ssl enable
  server-type microsoft
  ldap-attribute-map UpToDate-LDAP-Map
-aaa-server AD (inside) host 10.1.101.100
+aaa-server AD (inside) host 10.2.101.100
  server-port 636
  ldap-base-dn DC=utd,DC=com
  ldap-scope subtree
@@ -4619,8 +4623,11 @@ no vpn-addr-assign dhcp
 vpn-addr-assign local reuse-delay 5
 dhcprelay timeout 60
 threat-detection basic-threat
-threat-detection statistics access-list
-no threat-detection statistics tcp-intercept
+threat-detection scanning-threat shun except ip-address 10.2.250.0 255.255.254.0
+threat-detection scanning-threat shun except ip-address 10.1.101.0 255.255.255.0
+threat-detection scanning-threat shun duration 3600
+threat-detection statistics
+threat-detection statistics tcp-intercept rate-interval 30 burst-rate 400 average-rate 200
 ntp server 172.16.31.1
 ssl server-version tlsv1.2
 ssl client-version tlsv1.2
@@ -5148,6 +5155,8 @@ policy-map global_policy
   inspect icmp error 
  class global-class
   flow-export event-type all destination 10.1.101.69
+ class class-default
+  user-statistics accounting
 policy-map type inspect dns migrated_dns_map_1
  parameters
   message-length maximum client auto
@@ -5168,5 +5177,6 @@ call-home
   subscribe-to-alert-group inventory periodic monthly
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
-Cryptochecksum:c5bbe52ba4aeecac296d8a4c8705badd
+hpm topN enable
+Cryptochecksum:b427720e778131d38348986c0087d3b7
 : end
