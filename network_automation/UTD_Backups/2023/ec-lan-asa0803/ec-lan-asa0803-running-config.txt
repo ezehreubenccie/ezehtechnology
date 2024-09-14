@@ -2160,6 +2160,7 @@ access-list ny2-to-ny1 standard permit 10.20.56.0 255.255.255.0
 access-list ny2-to-ny1 standard permit 10.20.64.0 255.255.255.0 
 pager lines 24
 logging enable
+no logging hide username
 logging emblem
 logging buffer-size 16384
 logging buffered debugging
@@ -2746,5 +2747,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname context 
 no call-home reporting anonymous
-Cryptochecksum:2b035f3d0edc228fe1bbd3022b022eed
+Cryptochecksum:1ca2bf4ab92e56d78efe8a85ffc94044
 : end
