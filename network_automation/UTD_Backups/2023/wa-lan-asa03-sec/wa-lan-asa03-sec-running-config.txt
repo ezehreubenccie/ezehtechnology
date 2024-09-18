@@ -4687,7 +4687,7 @@ group-policy DfltGrpPolicy attributes
  split-tunnel-policy tunnelspecified
  split-tunnel-network-list value acl-split-tunnel1
  default-domain value utd.com
- split-dns value utd.com utdlab.com emmi.local emmidev.com emmiload.com emmiqa.com emmirc.com emmisolutions.com emmisolutions.local emmistg.com lexi.wkce.app wkglobal.com wkrainier.com wolterskluwercdi.com lab.wkce.app utd.wkce.app privatelink.eastus2.azmk8s.io privatelink.southcentralus.azmk8s.io privatelink.eastus.azmk8s.io privatelink.westus.azmk8s.io emmi.wkce.app ce.wkce.app cecs.wkce.app
+ split-dns value utd.com utdlab.com emmi.local emmidev.com emmiload.com emmiqa.com emmirc.com emmisolutions.com emmisolutions.local emmistg.com lexi.wkce.app wkglobal.com wkrainier.com wolterskluwercdi.com lab.wkce.app utd.wkce.app privatelink.eastus2.azmk8s.io privatelink.southcentralus.azmk8s.io privatelink.eastus.azmk8s.io privatelink.westus.azmk8s.io emmi.wkce.app ce.wkce.app cecs.wkce.app p.googleapis.com dha.wkce.app
  split-tunnel-all-dns enable
  address-pools value ssl-vpn-pool1
  webvpn
@@ -5178,5 +5178,5 @@ call-home
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
 hpm topN enable
-Cryptochecksum:b427720e778131d38348986c0087d3b7
+Cryptochecksum:97c5461ab286d93e1267d80740f2410c
 : end
