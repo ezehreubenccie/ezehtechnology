@@ -5205,7 +5205,6 @@ http 24.60.87.13 255.255.255.255 outside
 http 24.60.34.199 255.255.255.255 outside
 snmp-server group WKSNMPGROUP v3 priv 
 snmp-server user WKUTDSNMP WKSNMPGROUP v3 engineID 80000009feaca27a776f7e96f3799a339b2baf0c71f902ca1c encrypted auth sha f6:fc:c1:11:5d:f8:88:bf:e0:b0:9b:e5:06:6e:70:62:f8:3c:72:23 priv aes 128 f6:fc:c1:11:5d:f8:88:bf:e0:b0:9b:e5:06:6e:70:62 
-snmp-server user wklslrmgt WKSNMPGROUP v3 engineID 80000009feaca27a776f7e96f3799a339b2baf0c71f902ca1c encrypted auth sha 15:c3:46:fd:b0:32:c6:10:74:e3:cf:ce:2a:83:d6:28:0c:64:a8:43 priv aes 128 15:c3:46:fd:b0:32:c6:10:74:e3:cf:ce:2a:83:d6:28 
 snmp-server host Inside2558 10.1.101.69 version 3 WKUTDSNMP
 snmp-server host Inside2558 oradb03p version 3 WKUTDSNMP
 snmp-server location East Coast IDC
