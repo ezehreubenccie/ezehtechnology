@@ -1,34 +1,38 @@
 - hosts: wa-fmc2500
   connection: httpapi
   tasks:
-    - name: Get Domain UUID
+    - name: "TASK 1: Get Domain UUID"
       cisco.fmcansible.fmc_configuration:
         operation: getAllDomain
         register_as: domain
 
-    - debug:
+    - name: "TASK 2: PRINT OUT Domain UUID"
+      debug:
         var: domain
 
-    # - name: Get Access Policy
+    # - name: "TASK 3: Get Access Policy"
     #   cisco.fmcansible.fmc_configuration:
     #     operation: getAllAccessPolicy
     #     path_params: 
     #       domainUUID: "{{ domain[0].uuid }}"
     #     query_params:
-    #       name: "TEST"
+    #       name: "{{ acp_name }}"
     #       # filter: "nameOrValue:TEST"
     #       offset: "{{ offset }}"
     #       limit: "{{ limit }}"
     #       expanded: "{{ expanded }}"
     #     register_as: access_policy
 
-    # - debug:
-    #     var: access_policy[0].id
+    # - name: "TASK 4: PRINT ACP NAME AND ID"
+    #   debug:
+    #     msg: 
+    #       - "{{ access_policy[0].id }}"
+    #       - "{{ access_policy[0].name }}"
 
 
 
 
-    - name: Execute 'getAllSecurityZoneObject' operation
+    - name: "TASK 5: GET SOURCE SECURITY ZONE - Execute 'getAllSecurityZoneObject' operation"
       cisco.fmcansible.fmc_configuration:
         operation: "getAllSecurityZoneObject"
         path_params:
@@ -40,42 +44,45 @@
         register_as: sec_zne
 
 
-    # - debug:
+    # - name: "TASK 6: PRINT SOURCE SECURITY ZONE"
+    #   debug:
     #     var: sec_zne
 
 
-    # - name: Extract Source Zone
-    #   set_fact:
-    #     sz_name: "{{ item.name }}"
-    #     sz_id: "{{item.id}}"
-    #   when: "src_zone == item.name"
-    #   loop: "{{ sec_zne }}"
-    #   loop_control: 
-    #     label: "{{ item.name }}"
-    #     pause: 1
+    - name: "TASK 7: Extract Source Zone NAME AND ID"
+      set_fact:
+        sz_name: "{{ item.name }}"
+        sz_id: "{{ item.id}}"
+      when: "src_zone == item.name"
+      loop: "{{ sec_zne }}"
+      loop_control: 
+        label: "{{ item.name }}"
+        pause: 0.5
 
-    # - debug:
-    #     msg:
-    #       - "{{ sz_name }}"
-    #       - "{{ sz_id }}"
+    - name: "TASK 8: PRINT EXTRACTED SOURCE SECURITY ZONE NAME AND ID"
+      debug:
+        msg:
+          - "{{ sz_name }}"
+          - "{{ sz_id }}"
 
 
-    # - name: Extract Destination Zone
-    #   set_fact:
-    #     dz_name: "{{ item.name }}"
-    #     dz_id: "{{item.id}}"
-    #   when: "dest_zone == item.name"
-    #   loop: "{{ sec_zne }}"
-    #   loop_control: 
-    #     label: "{{ item.name }}"
-    #     pause: 0.5
+    - name: "TASK 9: Extract Destination SECURITY ZONE"
+      set_fact:
+        dz_name: "{{ item.name }}"
+        dz_id: "{{item.id}}"
+      when: "dest_zone == item.name"
+      loop: "{{ sec_zne }}"
+      loop_control: 
+        label: "{{ item.name }}"
+        pause: 0.5
 
-    # - debug:
-    #     msg:
-    #       - "{{ dz_name }}"
-    #       - "{{ dz_id }}"
+    - name: "TASK 10: PRINT Extracted Destination SECURITY ZONE NAME AND ID"
+      debug:
+        msg:
+          - "{{ dz_name }}"
+          - "{{ dz_id }}"
 
-    - name: Execute 'getAllNetworkGroup' operation
+    - name: "TASK 11: Execute 'getAllNetworkGroup' operation"
       cisco.fmcansible.fmc_configuration:
         operation: "getAllNetworkGroup"
         path_params:
@@ -90,93 +97,118 @@
     # - debug:
     #     var: src_netog
 
-    # - name: Extract Source Network
-    #   set_fact:
-    #     src_netog_id: "{{ src_netog[0].id }}"
-    #     src_netog_name: "{{ src_nets }}"
+    - name: "TASK 12: Extract Source Network"
+      set_fact:
+        src_netog_id: "{{ src_netog[0].id }}"
+        src_netog_name: "{{ src_nets }}"
 
-    # - debug:
-    #     msg:
-    #       - "{{ src_netog_id }}"
-    #       - "{{ src_netog_name }}"
+    - name: "TASK 13: DEBUG EXTRACTED SOURCE NET AND ID"
+      debug:
+        msg:
+          - "{{ src_netog_id }}"
+          - "{{ src_netog_name }}"
 
-
-    # - name: Execute 'getAllNetworkGroup' operation
-    #   cisco.fmcansible.fmc_configuration:
-    #     operation: "getAllNetworkGroup"
-    #     path_params:
-    #       domainUUID: "{{ domain[0].uuid }}"
-    #     query_params:
-    #       filter: "nameOrValue:{{ elk_dest_nets }}"
-    #       offset: "{{ offset }}"
-    #       limit: "{{ limit }}"
-    #       expanded: "{{ expanded }}"
-    #     register_as: elk_netog
-
-    # - name: Execute 'getAllProtocolPortObject' operation
-    #   cisco.fmcansible.fmc_configuration:
-    #     operation: "getAllPortObjectGroup"
-    #     path_params:
-    #       domainUUID: "{{ domain[0].uuid }}"
-    #     query_params:
-    #       filter: "nameOrValue:{{ elk_dest_port }}"
-    #     register_as: elk_portog
-
-    # - debug:
-    #     var: elk_netog
-
-    # - debug:
-    #     var: elk_portog
-    
-
-    # - name: Extract ELK Network ID
-    #   set_fact:
-    #     elk_netog_id: "{{ elk_netog[0].id }}"
-    #     elk_netog_name: "{{ elk_dest_nets }}"
-    #     elk_portog_id: "{{ elk_portog[0].id }}"
-    #     elk_portog_name: "{{ elk_dest_port }}"
-
-    # - debug:
-    #     msg:
-    #       - "{{ elk_netog_id }}"
-    #       - "{{ elk_netog_name }}"
-    #       - "{{ elk_portog_id }}"
-    #       - "{{ elk_portog_name }}"
 
     
-    # - name: Execute 'getAllNetworkGroup' operation
-    #   cisco.fmcansible.fmc_configuration:
-    #     operation: "getAllNetworkGroup"
-    #     path_params:
-    #       domainUUID: "{{ domain[0].uuid }}"
-    #     query_params:
-    #       filter: "nameOrValue:{{ http_dest_nets_1 }}"
-    #       offset: "{{ offset }}"
-    #       limit: "{{ limit }}"
-    #       expanded: "{{ expanded }}"
-    #     register_as: http1_netog
+    
+    - name: "TASK 14: DNS DEST NETS - Execute 'getAllNetworkGroup' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllNetworkGroup"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          filter: "nameOrValue:{{ dns_dest_nets }}"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: dns_netog
+
+    - name: "TASK 15: TCP DNS PORTS - Execute 'getAllProtocolPortObject' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllPortObjectGroup"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          filter: "nameOrValue:{{ dns_dest_port_tcp }}"
+        register_as: dns_tcp_portog
+
+    - name: "TASK 16: UDP DNS PORTS -Execute 'getAllProtocolPortObject' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllPortObjectGroup"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          filter: "nameOrValue:{{ dns_dest_port_udp }}"
+        register_as: dns_udp_portog
+
+    # - name: "TASK 17: DEBUG DNS INFO"
+    #   debug:
+    #     msg: 
+    #       - "{{ dns_netog }}"
+    #       - "{{ dns_tcp_portog }}"
+    #       - "{{ dns_udp_portog }}"
+          
+    
+    # - name: "DEBUG DNS NETOG"
+    #   debug:
+    #     var: dns_tcp_portog
+
+    # - debug:
+    #     var: dns_udp_portog
+
+    - name: "TASK 18: Extract DNS NET AND PORT ID"
+      set_fact:
+        dns_netog_id: "{{ dns_netog[0].id }}"
+        dns_netog_name: "{{ dns_dest_nets }}"
+        dns_tcp_portog_id: "{{ dns_tcp_portog[0].id }}"
+        dns_tcp_portog_name: "{{ dns_dest_port_tcp }}"
+        dns_udp_portog_id: "{{ dns_udp_portog[0].id }}"
+        dns_udp_portog_name: "{{ dns_dest_port_udp }}"
+
+    - name: "TASK 19: DEBUG Extracted DNS NET AND PORT ID"
+      debug:
+        msg:
+          - "{{ dns_netog_id }}"
+          - "{{ dns_netog_name }}"
+          - "{{ dns_tcp_portog_id }}"
+          - "{{ dns_tcp_portog_name }}"
+          - "{{ dns_udp_portog_id }}"
+          - "{{ dns_udp_portog_name }}"
 
 
-    # - name: Execute 'getAllNetworkGroup' operation
-    #   cisco.fmcansible.fmc_configuration:
-    #     operation: "getAllNetworkGroup"
-    #     path_params:
-    #       domainUUID: "{{ domain[0].uuid }}"
-    #     query_params:
-    #       filter: "nameOrValue:{{ http_dest_nets_2 }}"
-    #       offset: "{{ offset }}"
-    #       limit: "{{ limit }}"
-    #       expanded: "{{ expanded }}"
-    #     register_as: http2_netog
+    - name: "TASK 20: Execute 'getAllNetworkGroup' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllNetworkGroup"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          filter: "nameOrValue:{{ http_dest_nets_1 }}"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: http1_netog
 
-    # - name: Execute 'getAllPortObjectGroup' operation
-    #   cisco.fmcansible.fmc_configuration:
-    #     operation: "getAllPortObjectGroup"
-    #     path_params:
-    #       domainUUID: "{{ domain[0].uuid }}"
-    #     query_params:
-    #       filter: "nameOrValue:{{ http_dest_port }}"
-    #     register_as: http_portog
+
+    - name: "TASK 21: Execute 'getAllNetworkGroup' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllNetworkGroup"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          filter: "nameOrValue:{{ http_dest_nets_2 }}"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: http2_netog
+
+    - name: "TASK 22: Execute 'getAllPortObjectGroup' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllPortObjectGroup"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          filter: "nameOrValue:{{ http_dest_port }}"
+        register_as: http_portog
 
     # - debug:
     #     var: http1_netog
@@ -187,84 +219,26 @@
     # - debug:
     #     var: http_portog
 
-    # - name: Extract HTTP Network AND PORT ID
-    #   set_fact:
-    #     http1_netog_id: "{{ http1_netog[0].id }}"
-    #     http1_netog_name: "{{ http_dest_nets_1 }}"
-    #     http2_netog_id: "{{ http2_netog[0].id }}"
-    #     http2_netog_name: "{{ http_dest_nets_2 }}"
-    #     http_portog_id: "{{ http_portog[0].id }}"
-    #     http_portog_name: "{{ http_dest_port }}"
+    - name: "TASK 23: Extract HTTP Network AND PORT ID"
+      set_fact:
+        http1_netog_id: "{{ http1_netog[0].id }}"
+        http1_netog_name: "{{ http_dest_nets_1 }}"
+        http2_netog_id: "{{ http2_netog[0].id }}"
+        http2_netog_name: "{{ http_dest_nets_2 }}"
+        http_portog_id: "{{ http_portog[0].id }}"
+        http_portog_name: "{{ http_dest_port }}"
 
-    # - debug:
-    #     msg:
-    #       - "{{ http1_netog_id }}"
-    #       - "{{ http1_netog_name }}"
-    #       - "{{ http2_netog_id }}"
-    #       - "{{ http2_netog_name }}"
-    #       - "{{ http_portog_id }}"
-    #       - "{{ http_portog_name }}"
+    - name: "TASK 24: DEBUG Extracted HTTP NET AND PORT ID"
+      debug:
+        msg:
+          - "{{ http1_netog_id }}"
+          - "{{ http1_netog_name }}"
+          - "{{ http2_netog_id }}"
+          - "{{ http2_netog_name }}"
+          - "{{ http_portog_id }}"
+          - "{{ http_portog_name }}"
 
-    
-    # - name: Execute 'getAllNetworkGroup' operation
-    #   cisco.fmcansible.fmc_configuration:
-    #     operation: "getAllNetworkGroup"
-    #     path_params:
-    #       domainUUID: "{{ domain[0].uuid }}"
-    #     query_params:
-    #       filter: "nameOrValue:{{ dns_dest_nets }}"
-    #       offset: "{{ offset }}"
-    #       limit: "{{ limit }}"
-    #       expanded: "{{ expanded }}"
-    #     register_as: dns_netog
-
-    # - name: Execute 'getAllProtocolPortObject' operation
-    #   cisco.fmcansible.fmc_configuration:
-    #     operation: "getAllPortObjectGroup"
-    #     path_params:
-    #       domainUUID: "{{ domain[0].uuid }}"
-    #     query_params:
-    #       filter: "nameOrValue:{{ dns_dest_port_tcp }}"
-    #     register_as: dns_tcp_portog
-
-    # - name: Execute 'getAllProtocolPortObject' operation
-    #   cisco.fmcansible.fmc_configuration:
-    #     operation: "getAllPortObjectGroup"
-    #     path_params:
-    #       domainUUID: "{{ domain[0].uuid }}"
-    #     query_params:
-    #       filter: "nameOrValue:{{ dns_dest_port_udp }}"
-    #     register_as: dns_udp_portog
-
-    # - debug:
-    #     var: dns_netog
-    
-    # - debug:
-    #     var: dns_tcp_portog
-
-    # - debug:
-    #     var: dns_udp_portog
-
-    # - name: Extract DNS NET AND PORT ID
-    #   set_fact:
-    #     dns_netog_id: "{{ dns_netog[0].id }}"
-    #     dns_netog_name: "{{ dns_dest_nets }}"
-    #     dns_tcp_portog_id: "{{ dns_tcp_portog[0].id }}"
-    #     dns_tcp_portog_name: "{{ dns_dest_port_tcp }}"
-    #     dns_udp_portog_id: "{{ dns_udp_portog[0].id }}"
-    #     dns_udp_portog_name: "{{ dns_dest_port_udp }}"
-
-    # - debug:
-    #     msg:
-    #       - "{{ dns_netog_id }}"
-    #       - "{{ dns_netog_name }}"
-    #       - "{{ dns_tcp_portog_id }}"
-    #       - "{{ dns_tcp_portog_name }}"
-    #       - "{{ dns_udp_portog_id }}"
-    #       - "{{ dns_udp_portog_name }}"
-
-    
-    - name: Execute 'getAllNetworkGroup' operation
+    - name: "TASK 25: Execute 'getAllNetworkGroup' operation"
       cisco.fmcansible.fmc_configuration:
         operation: "getAllNetworkGroup"
         path_params:
@@ -276,7 +250,7 @@
           expanded: "{{ expanded }}"
         register_as: ldap_netog
 
-    - name: Execute 'getAllProtocolPortObject' operation
+    - name: "TASK 26: Execute 'getAllProtocolPortObject' operation"
       cisco.fmcansible.fmc_configuration:
         operation: "getAllPortObjectGroup"
         path_params:
@@ -286,13 +260,13 @@
         register_as: ldap_portog
 
 
-    - debug:
-        var: ldap_netog
+    # - debug:
+    #     var: ldap_netog
     
-    - debug:
-        var: ldap_portog
+    # - debug:
+    #     var: ldap_portog
 
-    - name: Extract LDAP NET AND PORT ID
+    - name: "TASK 27: Extract LDAP NET AND PORT ID"
       set_fact:
         ldap_netog_id: "{{ ldap_netog[0].id }}"
         ldap_netog_name: "{{ ldap_dest_nets }}"
@@ -300,110 +274,232 @@
         ldap_portog_name: "{{ ldap_dest_port }}"
 
 
-    - debug:
+    - name: "TASK 28: DEBUG EXTRACTED LDAP NET AND PORT ID"
+      debug:
         msg:
           - "{{ ldap_netog_id }}"
           - "{{ ldap_netog_name }}"
           - "{{ ldap_portog_id }}"
           - "{{ ldap_portog_name }}"
-    
-
-        
 
 
+    - name: "TASK 29: Execute 'getAllNetworkGroup' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllNetworkGroup"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          filter: "nameOrValue:{{ elk_dest_nets }}"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: elk_netog
 
-
-
-
-
-
-
-
-
-
-
-
-    # - name: Execute 'getAllProtocolPortObject' operation
-    #   cisco.fmcansible.fmc_configuration:
-    #     operation: "getPortObject"
-    #     path_params:
-    #       domainUUID: "{{ domain[0].uuid }}"
-    #     query_params:
-    #       filter: "nameOrValue:{{ item }}"
-
-
-    # - name: Execute 'getAllPortObjectGroup' operation
-    #   cisco.fmcansible.fmc_configuration:
-    #     operation: "getAllPortObjectGroup"
-    #     path_params:
-    #       domainUUID: "{{ domain[0].uuid }}"
-    #     query_params:
-    #       #filter: "{{ filter }}"
-    #       offset: "{{ offset }}"
-    #       limit: "{{ limit }}"
-    #       expanded: "{{ expanded }}"
-    #     register_as: portobjgrp
-
-
-    # - name: Get ELK port group
-    #   set_fact:
-    #     elk_port_grp_name: "{{ portobjgrp.name }}"   
-    #     elk_port_grp_id: "{{ portobjgrp.id }}"
-    #   when: "Waltham-ELK-Ports == portobjgrp.name"
-
+    - name: "TASK 30: Execute 'getAllProtocolPortObject' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllPortObjectGroup"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          filter: "nameOrValue:{{ elk_dest_port }}"
+        register_as: elk_portog
 
     # - debug:
-    #     msg:
-    #       - "{{elk_port_grp_name}}"
-    #       - "{{elk_port_grp_id}}"
-   
- 
-        
+    #     var: elk_netog
+
+    # - debug:
+    #     var: elk_portog
+    
+
+    - name: "TASK 31: Extract ELK Network ID"
+      set_fact:
+        elk_netog_id: "{{ elk_netog[0].id }}"
+        elk_netog_name: "{{ elk_dest_nets }}"
+        elk_portog_id: "{{ elk_portog[0].id }}"
+        elk_portog_name: "{{ elk_dest_port }}"
+
+    - name: "TASK 32: DEBUG EXTRACTED ELK NET AND PORT ID"
+      debug:
+        msg:
+          - "{{ elk_netog_id }}"
+          - "{{ elk_netog_name }}"
+          - "{{ elk_portog_id }}"
+          - "{{ elk_portog_name }}"
+
+    - name: "TASK 33: Get Access Policy"
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllAccessPolicy
+        path_params: 
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          name: "{{ accesspolicy_name }}"
+          # filter: "nameOrValue:TEST"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: access_policy
+
+    # - debug:
+    #     var: access_policy
+
+    - name: "TASK 34: Extract ACCESS POLICY NAME AND ID"
+      set_fact:
+        acp_name: "{{ access_policy[0].name }}"
+        acp_id: "{{ access_policy[0].id }}"
+
+    - name: "TASK 35: DEBUG EXTRACTED ACP NAME AND ID"
+      debug:
+        msg:
+          - "{{ acp_name }}"
+          - "{{ acp_id }}"
+
+    - name: "TASK 36: Execute 'getAllAccessRule' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllAccessRule"
+        path_params:
+          containerUUID: "{{ acp_id }}"
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          #filter: "{{ filter }}"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: access_rule
+
+    # - debug:
+    #     var: access_rule
+
+    - name: "TASK 37: GET LENGHT OF ACCESS RULE ENTRIES"
+      set_fact:
+        number_of_rules: "{{ access_rule|length }}"
+
+    - name: "TASK 36: DEBUG LENGHT OF ACCESS RULE ENTRIES"
+      debug:
+        var: number_of_rules
+    
+    # - debug:
+    #     var: access_rule[0]
 
 
+    
+  
 
 
+    - name: "TASK 38: Create DNS RULE - Execute 'createMultipleAccessRule' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "createMultipleAccessRule"
+        data:
+          action: ALLOW
+          enabled: True
+          type: AccessRule
+          name: "{{ dns_rule_name }}"
+          sendEventsToFMC: True
+          logFiles: False
+          logBegin: True
+          logEnd: True
+          #variableSet: {'name': 'FTD-IPS', 'id': 'VariableSetUUID', 'type': 'VariableSet'}
+          #vlanTags: {'objects': [{'type': 'VlanTag', 'name': 'vlan_tag_1', 'id': 'VlanTagUUID1'}, {'type': 'VlanTag', 'name': 'vlan_tag_2', 'id': 'VlanTagUUID2'}]}
+          #urls: {'urlCategoriesWithReputation': [{'type': 'UrlCategoryAndReputation', 'category': {'name': 'Weapons', 'id': 'URLCategoryUUID', 'type': 'URLCategory'}, 'reputation': 'BENIGN_SITES_WITH_SECURITY_RISKS'}]}
+          sourceZones: {'objects': [{'name': '{{ sz_name }}', 'id': '{{ sz_id}}', 'type': 'SecurityZone'}]}
+          destinationZones: {'objects': [{"name": "{{ dz_name }}", "id": "{{ dz_id }}", "type": "SecurityZone"}]}
+          #sourcePorts: {'objects': [{'type': 'PortObjectGroup', 'name': 'Waltham-LDAP-Ports', 'id': 'ProtocolPortObjectUUID'}]}
+          sourceDynamicObjects: {}
+          sourceNetworks: {'objects': [{"name": "{{ src_netog_name }}", "id": "{{ src_netog_id }}", "type": "NetworkGroup"}]}
+          destinationNetworks: {'objects': [{"name": "{{ dns_netog_name }}", "id": "{{ dns_netog_id }}", "type": "NetworkGroup"}]}
+          destinationDynamicObjects: {}
+          destinationPorts: {'objects': [{"type": "PortObjectGroup", "name": "{{ dns_tcp_portog_name }}", 'id': '{{ dns_tcp_portog_id }}'}, {"type": "PortObjectGroup", "name": "{{ dns_udp_portog_name }}", 'id': '{{ dns_udp_portog_id }}'}]}
+          #ipsPolicy: {'type': 'IntrusionPolicy', 'id': 'ipsPolicyUuid', 'name': 'ipsPlicyName'}
+          #filePolicy: {'type': 'FilePolicy', 'id': 'filePolicyUuid', 'name': 'filePolicyName'}
+          #snmpConfig: {'id': 'snmpConfigUuid', 'name': 'snmp_alert1', 'type': 'SNMPAlert'}
+          #syslogConfig: {'id': 'syslogConfigUuid', 'name': 'syslog_alert1', 'type': 'SyslogAlert'}
+          #newComments: ['comment1', 'comment2']
+        path_params:
+          containerUUID: "{{ acp_id }}"
+          domainUUID: "{{ domain[0].uuid }}"
+        # query_params:
+          # bulk: "{{ bulk }}"
+          # insertAfter: "{{ number_of_rules }}"
+          # insertBefore: "{{ insert_before }}"
+          # section: "{{ section }}"
+          # category: "{{ category }}"
 
+    - name: "TASK 39: Create HTTP RULE - Execute 'createMultipleAccessRule' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "createMultipleAccessRule"
+        data:
+          action: ALLOW
+          enabled: True
+          type: AccessRule
+          name: "{{ http_rule_name }}"
+          sendEventsToFMC: True
+          logFiles: False
+          logBegin: True
+          logEnd: True
+          #variableSet: {'name': 'FTD-IPS', 'id': 'VariableSetUUID', 'type': 'VariableSet'}
+          #vlanTags: {'objects': [{'type': 'VlanTag', 'name': 'vlan_tag_1', 'id': 'VlanTagUUID1'}, {'type': 'VlanTag', 'name': 'vlan_tag_2', 'id': 'VlanTagUUID2'}]}
+          #urls: {'urlCategoriesWithReputation': [{'type': 'UrlCategoryAndReputation', 'category': {'name': 'Weapons', 'id': 'URLCategoryUUID', 'type': 'URLCategory'}, 'reputation': 'BENIGN_SITES_WITH_SECURITY_RISKS'}]}
+          sourceZones: {'objects': [{'name': '{{ sz_name }}', 'id': '{{ sz_id}}', 'type': 'SecurityZone'}]}
+          destinationZones: {'objects': [{"name": "{{ dz_name }}", "id": "{{ dz_id }}", "type": "SecurityZone"}]}
+          #sourcePorts: {'objects': [{'type': 'PortObjectGroup', 'name': 'Waltham-LDAP-Ports', 'id': 'ProtocolPortObjectUUID'}]}
+          sourceDynamicObjects: {}
+          sourceNetworks: {'objects': [{"name": "{{ src_netog_name }}", "id": "{{ src_netog_id }}", "type": "NetworkGroup"}]}
+          destinationNetworks: {'objects': [{"name": "{{ http1_netog_name }}", "id": "{{ http1_netog_id }}", "type": "NetworkGroup"}, {"name": "{{ http2_netog_name }}", "id": "{{ http2_netog_id }}", "type": "NetworkGroup"}]}
+          destinationDynamicObjects: {}
+          destinationPorts: {'objects': [{"type": "PortObjectGroup", "name": "{{ http_portog_name }}", 'id': '{{ http_portog_id }}'}]}
+          #ipsPolicy: {'type': 'IntrusionPolicy', 'id': 'ipsPolicyUuid', 'name': 'ipsPlicyName'}
+          #filePolicy: {'type': 'FilePolicy', 'id': 'filePolicyUuid', 'name': 'filePolicyName'}
+          #snmpConfig: {'id': 'snmpConfigUuid', 'name': 'snmp_alert1', 'type': 'SNMPAlert'}
+          #syslogConfig: {'id': 'syslogConfigUuid', 'name': 'syslog_alert1', 'type': 'SyslogAlert'}
+          #newComments: ['comment1', 'comment2']
+        path_params:
+          containerUUID: "{{ acp_id }}"
+          domainUUID: "{{ domain[0].uuid }}"
+        # query_params:
+          # bulk: "{{ bulk }}"
+          # insertAfter: "{{ number_of_rules }}"
+          # insertBefore: "{{ insert_before }}"
+          # section: "{{ section }}"
+          # category: "{{ category }}"
 
-
-    # - name: Execute 'createMultipleAccessRule' operation
-    #   cisco.fmcansible.fmc_configuration:
-    #     operation: "createMultipleAccessRule"
-    #     data:
-    #       action: ALLOW
-    #       enabled: True
-    #       type: AccessRule
-    #       name: "{{ item.rule_name }}"
-    #       sendEventsToFMC: True
-    #       logFiles: False
-    #       logBegin: True
-    #       logEnd: True
-    #       #variableSet: {'name': 'FTD-IPS', 'id': 'VariableSetUUID', 'type': 'VariableSet'}
-    #       #vlanTags: {'objects': [{'type': 'VlanTag', 'name': 'vlan_tag_1', 'id': 'VlanTagUUID1'}, {'type': 'VlanTag', 'name': 'vlan_tag_2', 'id': 'VlanTagUUID2'}]}
-    #       #urls: {'urlCategoriesWithReputation': [{'type': 'UrlCategoryAndReputation', 'category': {'name': 'Weapons', 'id': 'URLCategoryUUID', 'type': 'URLCategory'}, 'reputation': 'BENIGN_SITES_WITH_SECURITY_RISKS'}]}
-    #       sourceZones: {'objects': [{'name': '{{ item.src_zone }}', 'id': '{{ securityzone_id}}', 'type': 'SecurityZone'}]}
-    #       destinationZones: {'objects': [{"name": "{{ item.dest_zone}}", "id": "{{ inside_seczone_id }}", "type": "SecurityZone"}]}
-    #       #sourcePorts: {'objects': [{'type': 'PortObjectGroup', 'name': 'Waltham-LDAP-Ports', 'id': 'ProtocolPortObjectUUID'}]}
-    #       sourceDynamicObjects: {}
-    #       sourceNetworks: {'objects': [{"name": "{{ item.src_nets }}", "id": "{{ netog.id}}", "type": "NetworkGroup"}]}
-    #       destinationNetworks: {'objects': [{"name": "{{ item.dest_nets }}", "id": "{{ netog.id}}", "type": "NetworkGroup"}]}
-    #       destinationDynamicObjects: {}
-    #       destinationPorts: {'objects': [{"type": "PortObjectGroup", "name": "Waltham-LDAP-Ports", 'id': '40CE2481-5D56-0ed3-0000-292057865381'}]}
-    #       #ipsPolicy: {'type': 'IntrusionPolicy', 'id': 'ipsPolicyUuid', 'name': 'ipsPlicyName'}
-    #       #filePolicy: {'type': 'FilePolicy', 'id': 'filePolicyUuid', 'name': 'filePolicyName'}
-    #       #snmpConfig: {'id': 'snmpConfigUuid', 'name': 'snmp_alert1', 'type': 'SNMPAlert'}
-    #       #syslogConfig: {'id': 'syslogConfigUuid', 'name': 'syslog_alert1', 'type': 'SyslogAlert'}
-    #       #newComments: ['comment1', 'comment2']
-    #     path_params:
-    #       containerUUID: access_policy[0].id
-    #       domainUUID: "{{ domain[0].uuid }}"
-    #     query_params:
-    #       bulk: "{{ bulk }}"
-    #       insertAfter: "{{ insert_after }}"
-    #       insertBefore: "{{ insert_before }}"
-    #       section: "{{ section }}"
-    #       category: "{{ category }}"
-    #   loop: "{{ rules }}"
+    - name: "TASK 40: Create LDAP RULE - Execute 'createMultipleAccessRule' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "createMultipleAccessRule"
+        data:
+          action: ALLOW
+          enabled: True
+          type: AccessRule
+          name: "{{ ldap_rule_name}}"
+          sendEventsToFMC: True
+          logFiles: False
+          logBegin: True
+          logEnd: True
+          #variableSet: {'name': 'FTD-IPS', 'id': 'VariableSetUUID', 'type': 'VariableSet'}
+          #vlanTags: {'objects': [{'type': 'VlanTag', 'name': 'vlan_tag_1', 'id': 'VlanTagUUID1'}, {'type': 'VlanTag', 'name': 'vlan_tag_2', 'id': 'VlanTagUUID2'}]}
+          #urls: {'urlCategoriesWithReputation': [{'type': 'UrlCategoryAndReputation', 'category': {'name': 'Weapons', 'id': 'URLCategoryUUID', 'type': 'URLCategory'}, 'reputation': 'BENIGN_SITES_WITH_SECURITY_RISKS'}]}
+          sourceZones: {'objects': [{'name': '{{ sz_name }}', 'id': '{{ sz_id}}', 'type': 'SecurityZone'}]}
+          destinationZones: {'objects': [{"name": "{{ dz_name }}", "id": "{{ dz_id }}", "type": "SecurityZone"}]}
+          #sourcePorts: {'objects': [{'type': 'PortObjectGroup', 'name': 'Waltham-LDAP-Ports', 'id': 'ProtocolPortObjectUUID'}]}
+          sourceDynamicObjects: {}
+          sourceNetworks: {'objects': [{"name": "{{ src_netog_name }}", "id": "{{ src_netog_id }}", "type": "NetworkGroup"}]}
+          destinationNetworks: {'objects': [{"name": "{{ ldap_netog_name }}", "id": "{{ ldap_netog_id }}", "type": "NetworkGroup"}, {"name": "{{ http2_netog_name }}", "id": "{{ http2_netog_id }}", "type": "NetworkGroup"}]}
+          destinationDynamicObjects: {}
+          destinationPorts: {'objects': [{"type": "PortObjectGroup", "name": "{{ ldap_portog_name }}", 'id': '{{ ldap_portog_id }}'}]}
+          #ipsPolicy: {'type': 'IntrusionPolicy', 'id': 'ipsPolicyUuid', 'name': 'ipsPlicyName'}
+          #filePolicy: {'type': 'FilePolicy', 'id': 'filePolicyUuid', 'name': 'filePolicyName'}
+          #snmpConfig: {'id': 'snmpConfigUuid', 'name': 'snmp_alert1', 'type': 'SNMPAlert'}
+          #syslogConfig: {'id': 'syslogConfigUuid', 'name': 'syslog_alert1', 'type': 'SyslogAlert'}
+          #newComments: ['comment1', 'comment2']
+        path_params:
+          containerUUID: "{{ acp_id }}"
+          domainUUID: "{{ domain[0].uuid }}"
+        # query_params:
+          # bulk: "{{ bulk }}"
+          # insertAfter: "{{ number_of_rules }}"
+          # insertBefore: "{{ insert_before }}"
+          # section: "{{ section }}"
+          # category: "{{ category }}"
+      
+      
 
 
 

@@ -6,21 +6,20 @@
         operation: getAllDomain
         register_as: domain
 
-    - debug:
-        var: domain
 
-    - name: Get Access Policy
+
+
+    - name: Execute 'getAllDeviceLicense' operation
       cisco.fmcansible.fmc_configuration:
-        operation: getAllAccessPolicy
-        path_params: 
-          domainUUID: "{{ domain[0].uuid }}"
+        operation: "getAllDeviceLicense"
         query_params:
-          name: "WA-LAN-FPR-INET"
-          # filter: "nameOrValue:TEST"
+          #filter: "{{ filter }}"
           offset: "{{ offset }}"
           limit: "{{ limit }}"
           expanded: "{{ expanded }}"
-        register_as: access_policy
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: licenses
 
     - debug:
-        var: access_policy
+        var: licenses

@@ -1,0 +1,18 @@
+- hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+
+
+
+    - name: Execute 'getAccessRule' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAccessRule"
+        path_params:
+          objectId: "268446730"
+          containerUUID: "a6eddfc4-0bd5-11ee-9960-a6db2169469d"
+          domainUUID: "{{ domain[0].uuid }}"

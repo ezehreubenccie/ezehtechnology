@@ -1,0 +1,14 @@
+sec_zone_name: vti-{{ s2s_vpn_req_name }}
+vti_ifname: "{{ sec_zone_name }}"
+vti_ipaddr: "172.23.0.62"
+vti_ipaddr_mask: "255.255.255.252"
+vti_tunnel_id: 20
+ikev2_pol_name: WA-LAN-ASA0200_ikev2_policy_50
+vpn_topo_name: "WA-LAN-ASA0200_{{ extranet_ip }}"
+extranet_ip: "4.236.28.195"
+extranet_name: "{{ extranet_ip }}"
+ikev2_ipsec_pro_name: "{{ s2s_vpn_req_name }}-Proposal-{{ extranet_ip }}"
+preflist_name: "Waltham-to-{{ s2s_vpn_req_name }}"
+pre_shared_key: W(KrsPJvPRfHqtDJG}oC4zxrwC)T8{zn
+description: "Route-Based VPN to {{ s2s_vpn_req_name }}"
+s2s_vpn_req_name: Azure-CE-Central-Hub-W3

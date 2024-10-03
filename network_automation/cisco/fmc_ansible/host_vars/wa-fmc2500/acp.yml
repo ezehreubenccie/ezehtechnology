@@ -1,0 +1,68 @@
+rules:
+    - rule_name: "{{ dns_rule_name }}"
+      src_zone: "{{ src_zone }}"
+      # src_nets: "{{ src_nets }}"
+      dest_nets: "{{ dns_dest_nets }}"
+      dest_port_tcp: "{{ dns_dest_port_tcp }}"
+      dest_port_udp: "{{ dns_dest_port_udp }}"
+      action: "{{ action }}"
+    - rule_name: "{{ http_rule_name }}"
+      dest_zone: "{{ dest_zone }}"
+      src_zone: "{{ src_zone }}"
+      # src_nets: "{{ src_nets }}"
+      dest_nets_1: "{{ http_dest_nets_1 }}"
+      dest_nets_2: "{{ http_dest_nets_2 }}"
+      dest_port: "{{ http_dest_port }}"
+      action: "{{ action }}"
+    - rule_name: "{{ ldap_rule_name }}"
+      dest_zone: "{{ dest_zone }}"
+      src_zone: "{{ src_zone }}"
+      # src_nets: "{{ src_nets }}"
+      dest_nets: "{{ ldap_dest_nets }}"
+      dest_port: "{{ ldap_dest_port }}"
+      action: "{{ action }}"
+    - rule_name: "{{ elk_rule_name }}"
+      dest_zone: "{{ dest_zone }}"
+      src_zone: "{{ src_zone }}"
+      # src_nets: "{{ src_nets }}"
+      dest_nets: "{{ elk_dest_nets }}"
+      dest_port: "{{ elk_dest_port }}"
+      action: "{{ action }}"
+
+    
+    
+
+
+
+action: ALLOW
+src_zone: test25
+src_nets: test_1
+dest_zone: INSIDE
+acp_name: TEST
+
+elk_dest_zone: "{{ dest_zone }}"
+elk_dest_nets: Waltham-ELK-Servers-Production
+elk_rule_name: "Tunnel{{ vti_tunnel_id }}-{{ src_zone }}-ELK"
+elk_dest_port: Waltham-ELK-Ports
+
+
+http_dest_zone: "{{ dest_zone }}"
+http_rule_name: "Tunnel{{ vti_tunnel_id }}-{{ src_zone }}-HTTP"
+http_dest_nets_1: wal-openshift
+http_dest_nets_2: Waltham-Server-Subnets
+http_dest_port: Azure-UTD-Prod01-HTTP-Ports_test
+
+
+dns_dest_zone: "{{ dest_zone }}"
+dns_rule_name: "Tunnel{{ vti_tunnel_id }}-{{ src_zone }}-DNS"
+dns_dest_nets: UTD-dns-server
+dns_dest_port_tcp: DNS-ports_tcp
+dns_dest_port_udp: DNS-ports_udp
+
+ldap_dest_zone: "{{ dest_zone }}"
+ldap_rule_name: "Tunnel{{ vti_tunnel_id }}-{{ src_zone }}-LDAP"
+ldap_dest_nets: Waltham-LDAP-Servers
+ldap_dest_port: Waltham-LDAP-Ports
+accesspolicy_name: TEST
+#test_http_dest_port_udp: DNS-ports_tcp
+

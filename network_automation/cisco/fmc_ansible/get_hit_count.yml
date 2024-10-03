@@ -6,21 +6,23 @@
         operation: getAllDomain
         register_as: domain
 
-    - debug:
-        var: domain
 
-    - name: Get Access Policy
+
+
+    - name: Execute 'getHitCount' operation
       cisco.fmcansible.fmc_configuration:
-        operation: getAllAccessPolicy
-        path_params: 
+        operation: "getHitCount"
+        path_params:
+          containerUUID: "40CE2481-5D56-0ed3-0000-292057859955"
           domainUUID: "{{ domain[0].uuid }}"
         query_params:
-          name: "WA-LAN-FPR-INET"
-          # filter: "nameOrValue:TEST"
+          filter: "deviceId:a6eddfc4-0bd5-11ee-9960-a6db2169469d"
           offset: "{{ offset }}"
           limit: "{{ limit }}"
           expanded: "{{ expanded }}"
-        register_as: access_policy
+        register_as: hit_count
+
 
     - debug:
-        var: access_policy
+        var: hit_count
+

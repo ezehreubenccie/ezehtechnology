@@ -22,14 +22,17 @@
           expanded: "{{ expanded }}"
         register_as: access_rule
 
-    - debug:
-        var: access_rule
+    # - debug:
+    #     var: access_rule
 
     - set_fact:
         number_of_element: "{{ access_rule|length }}"
 
     - debug:
         var: number_of_element
+
+    - debug:
+        var: access_rule[97]
 
     # - debug:
     #     var: access_rule[0].metadata.ruleIndex

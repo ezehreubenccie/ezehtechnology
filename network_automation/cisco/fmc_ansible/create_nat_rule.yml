@@ -1,0 +1,94 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: "TASK 1: Get Domain UUID"
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+      tags: endpt, vpn
+
+    - name: "TASK 2: Execute 'getAllNetworkGroup' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllNetworkGroup"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          filter: "nameOrValue:{{ original_source_nets }}"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: nat_src_nets
+
+    
+    - name: "TASK 3: Extract Source Network"
+      set_fact:
+        nat_nets_id: "{{ nat_src_nets[0].id }}"
+        nat_nets_name: "{{ nat_src_nets[0].name }}"
+
+    - name: "TASK 4: DEBUG EXTRACTED SOURCE NET AND ID"
+      debug:
+        msg:
+          - "{{ nat_nets_id }}"
+          - "{{ nat_nets_name }}"
+
+    
+    - name: "TASK 5: Execute 'getAllNetworkGroup' operation - DEST NETS"
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllNetworkGroup"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          filter: "nameOrValue:{{ original_dest_nets }}"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: nat_dest_nets
+
+    
+    - name: "TASK 6: Extract Source Network"
+      set_fact:
+        nat_dest_nets_id: "{{ nat_dest_nets[0].id }}"
+        nat_dest_nets_name: "{{ nat_dest_nets[0].name }}"
+
+    - name: "TASK 7: DEBUG EXTRACTED SOURCE NET AND ID"
+      debug:
+        msg:
+          - "{{ nat_dest_nets_id }}"
+          - "{{ nat_dest_nets_name }}"
+
+
+
+    - name: "TASK 8: Execute 'createMultipleFTDManualNatRule' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "createMultipleFTDManualNatRule"
+        data:
+          # originalDestinationPort: {'type': 'ProtocolPortObject', 'id': 'protocol port object uuid'}
+          originalSource: {'type': 'Network', 'id': '{{ nat_nets_id }}'}
+          # originalSourcePort: {'type': 'ProtocolPortObject', 'id': 'protocol port object uuid'}
+          translatedDestination: {'type': 'Network', 'id': "{{ translated_dest_nets }}"}
+          # translatedDestinationPort: {'type': 'ProtocolPortObject', 'id': 'protocol port object uuid'}
+          translatedSource: {'type': 'Network', 'id': '{{ translated_source_nets }}'}
+          # translatedSourcePort: {'type': 'ProtocolPortObject', 'id': 'protocol port object uuid'}
+          unidirectional: False
+          originalDestination: {'type': 'Network', 'id': '{{ nat_dest_nets_id }}'}
+          interfaceInOriginalDestination: False
+          type: FTDManualNatRule
+          enabled: True
+          natType: STATIC
+          interfaceIpv6: False
+          fallThrough: False
+          dns: False
+          routeLookup: True
+          noProxyArp: True
+          netToNet: False
+          sourceInterface: {'id': 'security zone uuid', 'type': 'SecurityZone'}
+          destinationInterface: {'id': 'security zone uuid', 'type': 'SecurityZone'}
+          description: description of nat rule
+        path_params:
+          containerUUID: "{{ container_uuid }}"
+          domainUUID: "{{ domain_uuid }}"
+        query_params:
+          bulk: "{{ bulk }}"
+          section: "{{ section }}"
+          targetIndex: "{{ target_index }}"

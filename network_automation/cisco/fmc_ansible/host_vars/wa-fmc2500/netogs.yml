@@ -1,0 +1,19 @@
+og_name:
+  - name: Azure_CECS_Prod01
+    net_obj_name: 10.128.204.0_22
+    net: 10.128.204.0/22
+    action: add
+  - name: Azure-CECS-NonProd01-Subnets
+    net_obj_name: 10.193.4.0_22
+    net: 10.193.4.0/22
+    action: add
+  - name: Azure-UTD-Prod01-Test
+    net_obj_name: 10.100.204.0_22
+    net: 10.100.204.0/22
+    action: add
+  - name: Azure-UTD-Prod01-Test
+    net_obj_name: 10.111.204.0_22
+    net: 10.111.204.0/22
+    action: add
+    
+    

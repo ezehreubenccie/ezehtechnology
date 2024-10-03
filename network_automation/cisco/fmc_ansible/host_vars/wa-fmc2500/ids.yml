@@ -1,0 +1,38 @@
+# httpports:
+#   portid1: 40CE2481-5D56-0ed3-0000-081604387515
+#   portid2: 40CE2481-5D56-0ed3-0000-176094395033
+#   portid3: 40CE2481-5D56-0ed3-0000-081604387194
+#   portid4: 40CE2481-5D56-0ed3-0000-081604387359
+
+
+httpog: Azure-CE-Central-HTTP-Ports
+# hazelcastog: Azure-UTD-Prod01-Hazelcast-Ports_test
+# apachejservog: Azure-UTD-Prod01-AJP-Ports_test
+# sshog: Azure-UTD-Prod01-SSH-Ports_test
+# activemqopenwireog: Azure-UTD-Prod01-OpenWire-Ports_test
+
+httpports:
+  portid1: 40CE2481-5D56-0ed3-0000-081604387515
+  portid2: 40CE2481-5D56-0ed3-0000-176094395033
+  portid3: 40CE2481-5D56-0ed3-0000-081604387194
+  portid4: 40CE2481-5D56-0ed3-0000-081604387359
+  portid5: 40CE2481-5D56-0ed3-0000-292057865131
+  portid6: 40CE2481-5D56-0ed3-0000-292057865127
+  portid7: 40CE2481-5D56-0ed3-0000-292057865132
+  portid8: 40CE2481-5D56-0ed3-0000-292057865133
+  portid9: 40CE2481-5D56-0ed3-0000-292057865134
+  portid10: 40CE2481-5D56-0ed3-0000-081604387193
+
+# hazelports:
+#   portid1: 40CE2481-5D56-0ed3-0000-292057865138
+
+# apacheports:
+#   portid1: 40CE2481-5D56-0ed3-0000-292057865139
+
+# sshports:
+#   portid1: 40CE2481-5D56-0ed3-0000-176094395034
+
+# activemqports:
+#   portid1: 40CE2481-5D56-0ed3-0000-292057865135
+
+

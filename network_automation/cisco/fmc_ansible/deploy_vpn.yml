@@ -48,11 +48,11 @@
       tags: net
 
     
-    - name:  deploy extended access_list
-      import_role: 
-        name: azure_vti_vpn/acl
-      when: True 
-      tags: exacl  
+    # - name:  deploy extended access_list
+    #   import_role: 
+    #     name: azure_vti_vpn/acl
+    #   when: True 
+    #   tags: exacl  
 
     # - name:  deploy port object group
     #   import_role: 
