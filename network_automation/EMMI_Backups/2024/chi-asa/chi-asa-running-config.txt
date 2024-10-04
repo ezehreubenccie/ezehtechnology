@@ -8175,7 +8175,11 @@ router bgp 65514
   no synchronization
  exit-address-family
 !
-route external 0.0.0.0 0.0.0.0 64.72.75.157 1
+route external 0.0.0.0 0.0.0.0 64.72.75.157 2 track 1
+route p2p_comcast 0.0.0.0 0.0.0.0 50.233.217.121 3 track 2
+route external 0.0.0.0 0.0.0.0 64.72.75.157 10
+route external 1.1.1.1 255.255.255.255 64.72.75.157 1
+route p2p_comcast 8.8.8.8 255.255.255.255 50.233.217.121 1
 route p2p_corpedge 10.65.10.0 255.255.255.0 10.82.0.10 1
 route p2p_corpedge 10.65.15.0 255.255.255.0 10.82.0.10 1
 route p2p_corpedge 10.67.10.0 255.255.255.0 10.82.0.10 1
@@ -8323,9 +8327,15 @@ snmp-server location Chicago
 snmp-server contact fred.tesche@wolterskluwer.com
 snmp-server community *****
 sla monitor 1
- type echo protocol ipIcmpEcho 64.72.75.157 interface external
+ type echo protocol ipIcmpEcho 1.1.1.1 interface external
+ num-packets 3
  frequency 10
 sla monitor schedule 1 life forever start-time now
+sla monitor 2
+ type echo protocol ipIcmpEcho 8.8.8.8 interface p2p_comcast
+ num-packets 3
+ frequency 10
+sla monitor schedule 2 life forever start-time now
 crypto ipsec ikev1 transform-set ESP-AES-256-MD5 esp-aes-256 esp-md5-hmac 
 crypto ipsec ikev1 transform-set ESP-DES-SHA esp-des esp-sha-hmac 
 crypto ipsec ikev1 transform-set ESP-3DES-SHA esp-3des esp-sha-hmac 
@@ -8884,6 +8894,8 @@ crypto ikev1 policy 140
  lifetime 86400
 !
 track 1 rtr 1 reachability
+!
+track 2 rtr 2 reachability
 telnet timeout 5
 ssh scopy enable
 ssh stricthostkeycheck
@@ -9258,5 +9270,5 @@ privilege clear level 3 mode configure command aaa-server
 prompt hostname context 
 no call-home reporting anonymous
 hpm topN enable
-Cryptochecksum:7c266c0f2972b09e3ba56ae963a35c43
+Cryptochecksum:4b1fa191854738e67811cc5404b886c7
 : end
