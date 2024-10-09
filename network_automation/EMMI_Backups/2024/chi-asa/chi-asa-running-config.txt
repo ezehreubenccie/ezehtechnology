@@ -6239,6 +6239,8 @@ access-list vpn_dap_product_dept extended permit object-group web_common object 
 access-list vpn_dap_product_dept extended permit object-group web_common object rng-chi-vpn_emmi host 10.141.127.44 
 access-list vpn_dap_product_dept extended permit object svc-ssh object rng-chi-vpn_emmi object hst-eat-emmi-ite-ft1.emmilab.com 
 access-list vlan_infmgmt_in extended deny ip object net-chi-infmgmt object-group blocked 
+access-list vlan_infmgmt_in remark CECR-6645 Reuben Ezeh
+access-list vlan_infmgmt_in extended permit udp object net-chi-infmgmt host 10.232.124.29 eq snmp 
 access-list vlan_infmgmt_in extended permit icmp object net-chi-infmgmt any 
 access-list vlan_infmgmt_in extended permit object svc-ntp object net-chi-infmgmt any 
 access-list vlan_infmgmt_in extended permit ip object net-chi-infmgmt object-group Internet 
@@ -6259,8 +6261,6 @@ access-list vlan_infmgmt_in remark hdreq-12797
 access-list vlan_infmgmt_in extended permit object svc-smtp_587 object net-chi-infmgmt object hst-chi-seg01 
 access-list vlan_infmgmt_in extended permit object-group MS_CA object net-chi-infmgmt object hst-chi-certserver 
 access-list vlan_infmgmt_in extended permit object-group radius object net-chi-infmgmt object-group radius_servers 
-access-list vlan_infmgmt_in remark CECR-
-access-list vlan_infmgmt_in extended permit ip object net-chi-infmgmt host 10.232.124.29 
 access-list vlan_infmgmt_in extended permit ip object hst-chi-fpmc object-group chicago_nets 
 access-list vlan_infmgmt_in extended permit ip object hst-chi-doorcontrol1200 object hst-chi-premisys 
 access-list vpn_dap_technology_dept extended deny ip object rng-chi-vpn_emmi object-group blocked 
@@ -8325,6 +8325,7 @@ snmp-server group GBS v3 priv
 snmp-server user wklslrmgt GBS v3 engineID 80000009fe2c6e95384f10ca69fc398eba6c2840f2ef888b04 encrypted auth md5 a9:2a:d0:79:c1:e1:99:6d:92:1f:81:a8:c2:39:36:bc priv aes 256 a9:2a:d0:79:c1:e1:99:6d:92:1f:81:a8:c2:39:36:bc:86:70:6f:ba:21:75:e0:99:bc:50:da:2a:8d:79:18:9c 
 snmp-server host vlan_corp_servers chi-mon poll community ***** version 2c
 snmp-server host p2p_corpedge 10.232.124.29 version 3 wklslrmgt
+snmp-server host vti-azure-20.94.168.27 10.1.101.69 version 3 wklslrmgt
 snmp-server location Chicago
 snmp-server contact fred.tesche@wolterskluwer.com
 snmp-server community *****
@@ -9272,5 +9273,5 @@ privilege clear level 3 mode configure command aaa-server
 prompt hostname context 
 no call-home reporting anonymous
 hpm topN enable
-Cryptochecksum:a073d53504ec86235baa38182f5de421
+Cryptochecksum:a76a47c5b0446fd9e24d5771a683d6ab
 : end
