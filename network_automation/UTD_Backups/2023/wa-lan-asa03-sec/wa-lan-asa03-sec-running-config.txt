@@ -1,11 +1,12 @@
 : Saved
 
 : 
-: Serial Number: FCH223875ZU
+: Serial Number: FCH2238758H
 : Hardware:   ASA5525, 8192 MB RAM, CPU Lynnfield 2400 MHz, 1 CPU (4 cores)
 :
-ASA Version 9.12(4)41 
+ASA Version 9.12(4)67 
 !
+terminal width 511
 hostname WA-LAN-ASA0300
 domain-name utd.com
 enable password ***** pbkdf2
@@ -110,6 +111,7 @@ banner asdm monitored and recorded.  Anyone using this system expressly
 banner asdm consents to such monitoring and to all appropriate disclosure
 banner asdm of any evidence of violation of the Firm's rules including,
 banner asdm but not limited to, criminal activity.
+boot system disk0:/asa9-12-4-67-smp-k8.bin
 boot system disk0:/asa9-12-4-41-smp-k8.bin
 ftp mode passive
 clock timezone EST -5
@@ -3837,7 +3839,7 @@ flow-export active refresh-interval 5
 mtu outside 1500
 mtu inside 1500
 failover
-failover lan unit primary
+failover lan unit secondary
 failover lan interface FAILOVER GigabitEthernet0/3
 failover link FAILOVER GigabitEthernet0/3
 failover interface ip FAILOVER 10.8.0.9 255.255.255.252 standby 10.8.0.10
@@ -5178,5 +5180,5 @@ call-home
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
 hpm topN enable
-Cryptochecksum:97c5461ab286d93e1267d80740f2410c
+Cryptochecksum:1fcfc33963fd2999602d753ec0f60bf6
 : end
