@@ -55,7 +55,6 @@ interface GigabitEthernet0/3
  description LAN/STATE Failover Interface
 !
 interface GigabitEthernet0/4
- shutdown
  no nameif
  no security-level
  no ip address
@@ -5180,5 +5179,5 @@ call-home
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
 hpm topN enable
-Cryptochecksum:a4cd6c0279b55f887932430416e10153
+Cryptochecksum:a0c7e1cc4236c4b44352a8a57bd7f3d5
 : end
