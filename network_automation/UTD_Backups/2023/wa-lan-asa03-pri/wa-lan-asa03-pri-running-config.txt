@@ -3417,6 +3417,9 @@ object-group network BlockOut
  network-object host 77.221.146.4
  network-object 194.26.69.0 255.255.255.0
  network-object 194.26.25.0 255.255.255.0
+ network-object host 77.221.146.125
+ network-object host 77.221.146.247
+ network-object host 77.221.146.44
 object-group protocol TCPUDP
  protocol-object udp
  protocol-object tcp
@@ -5179,5 +5182,5 @@ call-home
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
 hpm topN enable
-Cryptochecksum:a0c7e1cc4236c4b44352a8a57bd7f3d5
+Cryptochecksum:404e28960918c00dd3ec43e294da78ea
 : end
