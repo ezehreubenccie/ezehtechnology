@@ -60,10 +60,9 @@ interface GigabitEthernet0/4
  no ip address
 !
 interface GigabitEthernet0/5
- shutdown
- no nameif
- no security-level
- no ip address
+ nameif sentinel_logging
+ security-level 100
+ ip address 10.198.208.162 255.255.255.128 standby 10.198.208.163 
 !
 interface GigabitEthernet0/6
  shutdown
@@ -3822,6 +3821,7 @@ logging buffered informational
 logging trap informational
 logging asdm critical
 logging host inside 10.2.101.95
+logging host sentinel_logging 10.145.248.200
 no logging message 106015
 no logging message 313001
 no logging message 313008
@@ -3840,6 +3840,7 @@ flow-export destination inside 10.1.101.69 5567
 flow-export active refresh-interval 5
 mtu outside 1500
 mtu inside 1500
+mtu sentinel_logging 1500
 failover
 failover lan unit primary
 failover lan interface FAILOVER GigabitEthernet0/3
@@ -3885,6 +3886,7 @@ route inside 10.138.80.0 255.255.248.0 172.16.31.25 1
 route inside 10.138.82.3 255.255.255.255 172.16.31.25 1
 route inside 10.138.88.0 255.255.248.0 172.16.31.25 1
 route inside 10.141.140.0 255.255.254.0 172.16.31.25 1
+route sentinel_logging 10.145.248.200 255.255.255.255 10.198.208.130 1
 route inside 10.170.42.0 255.255.254.0 172.16.31.25 1
 route inside 10.170.44.0 255.255.254.0 172.16.31.25 1
 route inside 10.170.47.202 255.255.255.255 172.16.31.25 1
@@ -5182,5 +5184,5 @@ call-home
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
 hpm topN enable
-Cryptochecksum:404e28960918c00dd3ec43e294da78ea
+Cryptochecksum:7a2c618b8114e046373cdb7f906d8f98
 : end
