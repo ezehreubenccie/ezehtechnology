@@ -8026,9 +8026,9 @@ no monitor-interface vlan_load_db
 no monitor-interface p2p_corpedge
 icmp unreachable rate-limit 1 burst-size 1
 icmp permit any echo-reply external
-icmp deny any external
+icmp permit any echo external
 icmp permit any echo-reply p2p_comcast
-icmp deny any p2p_comcast
+icmp permit any echo p2p_comcast
 asdm image disk0:/asdm-7181-161.bin
 asdm history enable
 arp timeout 14400
@@ -9317,5 +9317,5 @@ privilege clear level 3 mode configure command aaa-server
 prompt hostname context 
 no call-home reporting anonymous
 hpm topN enable
-Cryptochecksum:8a67acc86f7b44635cf23fcc0ae0f662
+Cryptochecksum:d6208dcf25667aa7b518eb62cc8857fa
 : end
