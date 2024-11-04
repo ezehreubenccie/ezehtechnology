@@ -2,17 +2,17 @@
   hosts: wa-fmc2500
   connection: httpapi
   tasks:
-    - name: Get Domain UUID
+    - name: "TASK 1: Get Domain UUID"
       cisco.fmcansible.fmc_configuration:
         operation: getAllDomain
         register_as: domain
-      tags: endpt, vpn
+      tags: endpt, vpn, count
 
 
 
     #- name: Get network objects to add to SACL
 
-    - name: Execute 'getAllStandardACL' operation
+    - name: "TASK 2: Execute 'getAllStandardACL' operation"
       cisco.fmcansible.fmc_configuration:
         operation: "getAllStandardACL"
         path_params:
@@ -22,11 +22,16 @@
           limit: "{{ limit }}"
           expanded: "{{ expanded }}"
         register_as: sacl
+      tags: count
+        
 
     # - debug:
     #     var: sacl
+
+    # - set_fact:
+    #     number_of_element: "{{ sacl.interested_sacl|length }}"
    
-    - name: Extract interested SACL
+    - name: "TASK 3: Extract interested SACL"
       set_fact:
         sacl_id: "{{ item.id }}"
         sacl_name: "{{ item.name}}"
@@ -34,29 +39,291 @@
       loop: "{{ sacl }}"
       loop_control: 
         label: "{{ item.name }}"
+        pause: 0.5
+      tags: count
 
-    - name: Show Extracted info
+    - name: "TASK 4: Show Extracted info"
       debug:
         msg: 
           - "{{ sacl_id }}"
           - "{{ sacl_name }}"
+      tags: count
+
+    - name: "TASK 5: Extract ENTRY COUNT"
+      set_fact:
+        entry_count: "{{ item.entries[0].networks.literals|length }}"
+        # intf_id: "{{ item.id}}"
+      when: "interested_sacl == item.name"
+      loop: "{{ sacl }}"
+      loop_control: 
+        label: "{{ item.name }}"
+        pause: 0.5
+      tags: count
+
+
+    - name: "TASK 6: Debug Entry Count"
+      debug:
+        msg: 
+          - "Number of entries before add/subtract is {{entry_count}}"
+      tags: count
       
-    - name: Execute 'updateStandardACL' operation
+    - name: "TASK 7: Execute 'updateStandardACL' operation - UPDATE SACL - INTRUSIVE"
       cisco.fmcansible.fmc_configuration:
-        operation: "upsertStandardACL"
+        operation: "updateStandardACL"
         data:
-          id: "{{ sacl_id }}"
+          # id: "{{ sacl_id }}"
           name: "{{ sacl_name }}"
-          entries: [{'action': 'PERMIT', 'networks': {'literals': [{'type': "Network", "value": '5.5.5.0/22'}, {'type': "host", "value": '6.6.6.6'}]}}]
+          entries: [{'action': 'PERMIT', 
+                     'networks': {
+                          'literals': [
+                               {
+                                "type": "Network",
+                                "value": "10.103.180.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.103.184.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.109.176.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.133.0.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.133.8.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.139.240.0/20"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.141.80.0/20"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.141.104.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.141.136.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.145.20.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.145.24.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.145.252.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.161.248.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.162.80.0/23"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.240.0.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.240.16.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.240.32.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.240.40.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.240.76.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.240.136.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.150.20.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.150.80.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.150.196.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.150.248.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.192.152.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.128.204.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.171.12.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.171.64.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.171.72.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.177.156.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.177.160.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.177.168.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.128.152.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.128.160.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.128.168.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.177.116.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.177.120.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.128.172.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.128.176.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.177.128.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.177.136.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.51.16.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.51.24.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.51.32.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.51.40.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.51.48.0/21"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.51.20.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "35.199.192.0/19"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.128.208.0/22"
+                               },
+                               {
+                                   "type": "Network",
+                                   "value": "10.252.112.0/22"
+                               },
+                               {   
+                                   'type': "{{ type1 }}", 
+                                   "value": '{{ entry1 }}'
+                               }, 
+                               {   
+                                    'type': "{{ type2 }}", 
+                                    "value": '{{ entry3 }}'
+                               }, 
+                               {   
+                                    'type': "{{ type1 }}", 
+                                    "value": '{{ entry2 }}'
+                               }
+                           ]
+                        }
+                     } 
+                  ]
         path_params:
           objectId: "{{ sacl_id }}"
           domainUUID: "{{ domain[0].uuid }}"
         register_as: updated_sacl
+      tags: intrusive
 
 
-    - name: Print Updated SACL
+    # - name: Print Updated SACL
+    #   debug:
+    #     var: updated_sacl
+
+    - name: "TASK 8: Get number of entries after add/delete operation"
       debug:
-        var: updated_sacl
+        msg:
+          - "Number of entries after add/subtract is {{ updated_sacl.entries[0].networks.literals|length }}"
+      tags: intrusive
+
+
+    # - name: "TASK 9: Extract Source Zone NAME AND ID"
+    #   set_fact:
+    #     entry_count: "{{ item.entries[0].networks.literals|length }}"
+    #     # intf_id: "{{ item.id}}"
+    #   when: "interested_sacl == item.name"
+    #   loop: "{{ sacl }}"
+    #   loop_control: 
+    #     label: "{{ item.name }}"
+    #     pause: 0.5
+
+
+    # - debug:
+    #     msg: 
+    #       - "Number of entries after add/subtract is {{entry_count}}"
 
 
 

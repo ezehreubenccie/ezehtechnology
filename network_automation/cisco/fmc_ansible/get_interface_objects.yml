@@ -1,0 +1,48 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+      tags: endpt, vpn
+
+
+
+
+
+    - name: Execute 'getAllInterfaceGroupObject' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllInterfaceGroupObject"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: intf_obj
+
+    
+    # - name: "Debug interface objects"
+    #   debug:
+    #     var: intf_obj
+
+
+   
+    
+    - name: "TASK 9: Extract Source Zone NAME AND ID"
+      set_fact:
+        intf_name: "{{ item.name }}"
+        intf_id: "{{ item.id}}"
+      when: "source_int == item.name"
+      loop: "{{ intf_obj }}"
+      loop_control: 
+        label: "{{ item.name }}"
+        pause: 0.5
+
+    - name: "TASK 10: PRINT EXTRACTED SOURCE SECURITY ZONE NAME AND ID"
+      debug:
+        msg:
+          - "{{ intf_name }}"
+          - "{{ intf_id }}"

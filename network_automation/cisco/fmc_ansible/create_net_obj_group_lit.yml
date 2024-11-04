@@ -1,0 +1,52 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+      tags: endpt, vpn
+
+
+    - name: "TASK 2: Create NETOBJ 1 - Execute 'createMultipleNetworkGroup' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "createMultipleNetworkGroup"
+        data:
+          name: "SJ_ESXPOWERSTORE01P"
+          literals: [
+              {'type': 'host', 'value': "10.15.54.170"},
+              {'type': 'host', 'value': "10.15.54.171"},
+              {'type': 'host', 'value': "10.15.54.172"},
+              {'type': 'host', 'value': "10.15.54.173"},
+            ]
+          type: NetworkGroup
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          bulk: true
+        register_as: netobjg1
+
+    - debug:
+        var: netobjg1
+
+    # - name: "TASK 3: Create NETOBJ 2 - Execute 'createMultipleNetworkGroup' operation"
+    #   cisco.fmcansible.fmc_configuration:
+    #     operation: "createMultipleNetworkGroup"
+    #     data:
+    #       name: "NYCENTDBPOWERSTORE01P"
+    #       literals: [
+    #         {'type': 'host', 'value': "10.20.54.105"},
+    #         {'type': 'host', 'value': "10.20.54.208"},
+    #         {'type': 'host', 'value': "10.20.54.209"},
+    #         {'type': 'host', 'value': "10.20.54.210"},
+    #         ]
+    #       type: NetworkGroup
+    #     path_params:
+    #       domainUUID: "{{ domain[0].uuid }}"
+    #     query_params:
+    #       bulk: true
+    #     register_as: netobjg2
+        
+    # - debug:
+    #     var: netobjg2

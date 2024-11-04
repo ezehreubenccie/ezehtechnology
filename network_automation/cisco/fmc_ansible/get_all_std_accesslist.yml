@@ -1,0 +1,45 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+      tags: endpt, vpn
+
+
+
+
+    - name: Execute 'getAllStandardACL' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllStandardACL"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: std_acl
+
+
+    # - debug:
+    #     var: std_acl
+
+    - name: "TASK 9: Extract Source Zone NAME AND ID"
+      set_fact:
+        entry_count: "{{ item.entries[0].networks.literals|length }}"
+        # intf_id: "{{ item.id}}"
+      when: "interested_sacl == item.name"
+      loop: "{{ std_acl }}"
+      loop_control: 
+        label: "{{ item.name }}"
+        pause: 0.5
+
+
+    - debug:
+        var: entry_count
+
+    - debug:
+        msg: 
+          - "Number of entries in {{ interested_sacl }} is {{ entry_count }}"

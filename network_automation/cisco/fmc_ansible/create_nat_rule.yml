@@ -46,29 +46,100 @@
         register_as: nat_dest_nets
 
     
-    - name: "TASK 6: Extract Source Network"
+    - name: "TASK 6: Extract DEST Network"
       set_fact:
         nat_dest_nets_id: "{{ nat_dest_nets[0].id }}"
         nat_dest_nets_name: "{{ nat_dest_nets[0].name }}"
 
-    - name: "TASK 7: DEBUG EXTRACTED SOURCE NET AND ID"
+    - name: "TASK 7: DEBUG EXTRACTED DEST NET AND ID"
       debug:
         msg:
           - "{{ nat_dest_nets_id }}"
           - "{{ nat_dest_nets_name }}"
 
+    
+    - name: "TASK 7: Execute 'getAllInterfaceGroupObject' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllInterfaceGroupObject"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: intf_obj
+
+    
+    # - name: "Debug interface objects"
+    #   debug:
+    #     var: intf_obj
 
 
-    - name: "TASK 8: Execute 'createMultipleFTDManualNatRule' operation"
+   
+    
+    - name: "TASK 8: Extract Source INTF NAME AND ID"
+      set_fact:
+        intf_name: "{{ item.name }}"
+        intf_id: "{{ item.id}}"
+      when: "source_int == item.name"
+      loop: "{{ intf_obj }}"
+      loop_control: 
+        label: "{{ item.name }}"
+        pause: 0.5
+
+    - name: "TASK 9: PRINT EXTRACTED SOURCE INTF NAME AND ID"
+      debug:
+        msg:
+          - "{{ intf_name }}"
+          - "{{ intf_id }}"
+
+
+    - name: "TASK 10: Execute 'getAllFTDNatPolicy' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllFTDNatPolicy"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          filter: "nameOrValue:{{ nat_policy_name }}"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: nat_policy
+
+    # - name: Debug NAT policy name
+    #   debug:
+    #     var: nat_policy
+
+    - name: "TASK 11: Extract Source NAT NAME AND ID"
+      set_fact:
+        nat_name: "{{ item.name }}"
+        nat_id: "{{ item.id}}"
+      when: "nat_policy_name == item.name"
+      loop: "{{ nat_policy }}"
+      loop_control: 
+        label: "{{ item.name }}"
+        pause: 0.5
+
+    - name: "TASK 12: PRINT EXTRACTED NAT NAME AND ID"
+      debug:
+        msg:
+          - "{{ nat_name }}"
+          - "{{ nat_id }}"
+
+
+
+
+
+    - name: "TASK 13: Execute 'createMultipleFTDManualNatRule' operation"
       cisco.fmcansible.fmc_configuration:
         operation: "createMultipleFTDManualNatRule"
         data:
           # originalDestinationPort: {'type': 'ProtocolPortObject', 'id': 'protocol port object uuid'}
           originalSource: {'type': 'Network', 'id': '{{ nat_nets_id }}'}
           # originalSourcePort: {'type': 'ProtocolPortObject', 'id': 'protocol port object uuid'}
-          translatedDestination: {'type': 'Network', 'id': "{{ translated_dest_nets }}"}
+          translatedDestination: {'type': 'Network', 'id': "{{ nat_dest_nets_id }}"}
           # translatedDestinationPort: {'type': 'ProtocolPortObject', 'id': 'protocol port object uuid'}
-          translatedSource: {'type': 'Network', 'id': '{{ translated_source_nets }}'}
+          translatedSource: {'type': 'Network', 'id': '{{ nat_nets_id }}'}
           # translatedSourcePort: {'type': 'ProtocolPortObject', 'id': 'protocol port object uuid'}
           unidirectional: False
           originalDestination: {'type': 'Network', 'id': '{{ nat_dest_nets_id }}'}
@@ -82,13 +153,18 @@
           routeLookup: True
           noProxyArp: True
           netToNet: False
-          sourceInterface: {'id': 'security zone uuid', 'type': 'SecurityZone'}
-          destinationInterface: {'id': 'security zone uuid', 'type': 'SecurityZone'}
-          description: description of nat rule
+          sourceInterface: {'id': '{{ intf_id }}', 'type': 'SecurityZone'}
+          # destinationInterface: {'id': 'security zone uuid', 'type': 'SecurityZone'}
+          description: Test NAT rule
         path_params:
-          containerUUID: "{{ container_uuid }}"
-          domainUUID: "{{ domain_uuid }}"
-        query_params:
-          bulk: "{{ bulk }}"
-          section: "{{ section }}"
-          targetIndex: "{{ target_index }}"
+          containerUUID: "{{ nat_id }}"
+          domainUUID: "{{ domain[0].uuid }}"
+        # query_params:
+        #   bulk: "{{ bulk }}"
+        #   section: "{{ section }}"
+        #   targetIndex: "{{ target_index }}"
+        register_as: nat_rule
+
+    - name: "DEBUG NAT rule"
+      debug:
+        var: nat_rule

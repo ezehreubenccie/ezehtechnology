@@ -468,7 +468,7 @@
           action: ALLOW
           enabled: True
           type: AccessRule
-          name: "{{ ldap_rule_name}}"
+          name: "{{ ldap_rule_name }}"
           sendEventsToFMC: True
           logFiles: False
           logBegin: True

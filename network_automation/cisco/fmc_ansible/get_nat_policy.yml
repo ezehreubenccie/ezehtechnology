@@ -1,0 +1,45 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+      tags: endpt, vpn
+
+
+
+    - name: Execute 'getAllFTDNatPolicy' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllFTDNatPolicy"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          filter: "nameOrValue:{{ nat_policy_name }}"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: nat_policy
+
+    # - name: Debug NAT policy name
+    #   debug:
+    #     var: nat_policy
+
+
+    
+    - name: "TASK 10: Extract Source INTF NAME AND ID"
+      set_fact:
+        intf_name: "{{ item.name }}"
+        intf_id: "{{ item.id}}"
+      when: "nat_policy_name == item.name"
+      loop: "{{ nat_policy }}"
+      loop_control: 
+        label: "{{ item.name }}"
+        pause: 0.5
+
+    - name: "TASK 11: PRINT EXTRACTED SOURCE INTF NAME AND ID"
+      debug:
+        msg:
+          - "{{ intf_name }}"
+          - "{{ intf_id }}"

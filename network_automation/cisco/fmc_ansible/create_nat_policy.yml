@@ -1,0 +1,27 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: "TASK 1: Get Domain UUID"
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+      tags: endpt, vpn
+
+
+
+
+    - name: "TASK 2: Execute 'createFTDNatPolicy' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "createFTDNatPolicy"
+        data:
+          type: FTDNatPolicy
+          name: TestNatPol1
+          description: nat policy for testing rest api
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        register_as: nat_pol
+
+    - name: "TASK 3: DEBUG Nat policy"
+      debug:
+        var: nat_pol

@@ -47,7 +47,7 @@
         data:
           id: "{{ sacl_id }}"
           name: "{{ sacl_name }}"
-          entries: [{'action': 'PERMIT', 'networks': {'literals': [{'type': "Network", "value": '5.5.5.0/22'}, {'type': "host", "value": '6.6.6.6'}]}}]
+          entries: [{'action': 'PERMIT', 'networks': {'literals': [{'type': "Network", "value": '8.5.5.0/22'}, {'type': "host", "value": '7.6.6.6'}]}}]
         path_params:
           objectId: "{{ sacl_id }}"
           domainUUID: "{{ domain[0].uuid }}"

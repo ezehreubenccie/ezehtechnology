@@ -15,10 +15,17 @@
           expanded: true
         register_as: devices
 
+
     # - debug:
-    #     var: "{{ item }}"
-    #   loop: "{{ devices }}"
-    #   when: item.device.name == "WA-LAN-FPR-FW200"
+    #     var: devices
+
+    - debug:
+        msg: "{{ item.device.name }}"
+      loop: "{{ devices }}"
+      loop_control: 
+        label: "{{ item.device.name }}"
+        pause: 0.5
+      when: item.device.name == "WA-LAB-FTD-HA"
 
     - name: Complete playbook when nothing to deploy
       meta: end_play
@@ -28,38 +35,55 @@
       cisco.fmcansible.fmc_configuration:
         operation: getPendingChanges
         path_params:
-          containerUUID: '{{ devices[0].device.id }}'
+          containerUUID: '{{ item.device.id }}'
           domainUUID: '{{ domain[0].uuid }}'
         register_as: pending_changes
+      loop: "{{ devices }}"
+      loop_control: 
+        label: "{{ item.device.name }}: {{ item.device.id }}"
+        pause: 0.5
+      when: item.device.name == "WA-LAB-FTD-HA"
+
     
 
-    # - debug:
-    #     var: pending_changes
+    - debug:
+        var: pending_changes
 
-    # - name: Start deployment
-    #   cisco.fmcansible.fmc_configuration:
-    #     operation: createDeploymentRequest
-    #     data:
-    #       version: '{{ devices[0].version }}'
-    #       deviceList:
-    #         - '{{ devices[0].device.id }}'
-    #       forceDeploy: True
-    #     path_params:
-    #       domainUUID: '{{ domain[0].uuid }}'
-    #     register_as: deployment_job
+    - name: Start deployment
+      cisco.fmcansible.fmc_configuration:
+        operation: createDeploymentRequest
+        data:
+          version: '{{ item.version }}'
+          deviceList:
+            - '{{ item.device.id }}'
+          forceDeploy: True
+        path_params:
+          domainUUID: '{{ domain[0].uuid }}'
+        register_as: deployment_job
+      loop: "{{ devices }}"
+      loop_control: 
+        label: "{{ item.device.name }}: {{ item.device.id }}"
+        pause: 0.5
+      when: item.device.name == "WA-LAB-FTD-HA"
 
-    # - name: Poll deployment status until the job is finished
-    #   cisco.fmcansible.fmc_configuration:
-    #     operation: getDeploymentDetail
-    #     path_params:
-    #       containerUUID: '{{ devices[0].device.id }}'
-    #       domainUUID: '{{ domain[0].uuid }}'
-    #     register_as: deployment_status
-    #   until: deployment_status[0].status is match("SUCCEEDED")
-    #   retries: 100
-    #   delay: 3
+    - name: Poll deployment status until the job is finished
+      cisco.fmcansible.fmc_configuration:
+        operation: getDeploymentDetail
+        path_params:
+          containerUUID: '{{ item.device.id }}'
+          domainUUID: '{{ domain[0].uuid }}'
+        register_as: deployment_status
+      until: deployment_status[0].status is match("SUCCEEDED")
+      retries: 100
+      delay: 3
+      loop: "{{ devices }}"
+      loop_control: 
+        label: "{{ item.device.name }}: {{ item.device.id }}"
+        pause: 0.5
+      when: item.device.name == "WA-LAB-FTD-HA"
 
-    # - name: Stop the playbook if the deployment failed
-    #   fail:
-    #     msg: 'Deployment failed. Status: {{ deployment_status[0].status }}'
-    #   when: deployment_status[0].status is not match("SUCCEEDED")
+
+    - name: Stop the playbook if the deployment failed
+      fail:
+        msg: 'Deployment failed. Status: {{ deployment_status[0].status }}'
+      when: deployment_status[0].status is not match("SUCCEEDED")

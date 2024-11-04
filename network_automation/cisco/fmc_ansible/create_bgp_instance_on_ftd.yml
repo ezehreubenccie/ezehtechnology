@@ -1,0 +1,34 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+
+
+
+    - name: Execute 'createBGPGeneralSettingModel' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createBGPGeneralSettingModel"
+        data:
+          name: TEST_BGP
+          asNumber: "68114"
+          routerId: "AUTOMATIC"
+        #   logNeighborChanges: boolean
+        #   maxasLimit: Integer
+        #   transportPathMtuDiscovery: boolean
+        #   fastExternalFallOver: boolean
+        #   enforceFirstAs: boolean
+        #   asnotationDot: boolean
+        #   bgptimers: {'keepAlive': 'Integer', 'holdTime': 'Integer', 'minHoldTime': 'Integer', 'type': 'bgptimers'}
+        #   bgpGracefulRestart: {'gracefulRestart': 'boolean', 'gracefulRestartRestartTime': 'Integer', 'gracefulRestartStalePathTime': 'Integer', 'type': 'bgpgracefulrestart'}
+        #   bestPath: {'defaultLocalPreferenceValue': 'Long', 'alwaysCompareMed': 'boolean', 'bestPathCompareRouterId': 'boolean', 'deterministicMed': 'boolean', 'bestPathMedMissingAsWorst': 'boolean', 'type': 'bgpbestpath'}
+        path_params:
+          containerUUID: "a2cf177a-667c-11ef-aa9f-f6fda07b7654"
+          domainUUID: "{{ domain[0].uuid }}"
+
+
+

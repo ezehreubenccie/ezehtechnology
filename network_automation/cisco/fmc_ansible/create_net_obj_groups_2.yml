@@ -1,0 +1,30 @@
+- name: Execute 'createMultipleNetworkGroup' operation
+  cisco.fmcansible.fmc_configuration:
+    operation: "createMultipleNetworkGroup"
+    data:
+      name: "{{ netobj_name }}"
+      literals: [
+         {'type': 'Network', 'value': "10.20.54.120"},
+         {'type': 'Network', 'value': "10.20.54.121"},
+         {'type': 'Network', 'value': "10.20.54.122"},
+         {'type': 'Network', 'value': "10.20.54.123"},
+        #  {'type': 'Network', 'value': "{{ net_2 }}"},
+        #  {'type': 'Network', 'value': "{{ net_3 }}"},
+        #  {'type': 'Network', 'value': "{{ net_4 }}"},
+        #  {'type': 'Network', 'value': "{{ net_5 }}"},
+        #  {'type': 'Network', 'value': "{{ net_6 }}"},
+        #  {'type': 'Network', 'value': "{{ net_7 }}"},
+        #  {'type': 'Network', 'value': "{{ net_8 }}"},
+        #  {'type': 'Network', 'value': "{{ net_9 }}"},
+        #  {'type': 'Network', 'value': "{{ net_10 }}"},
+        #  {'type': 'Network', 'value': "{{ net_11 }}"},
+        #  {'type': 'Network', 'value': "{{ net_12 }}"},
+        #  {'type': 'Network', 'value': "{{ net_13 }}"}, 
+        #  {'type': "{{ type }}", 'value': "{{ item }}"}
+        ]
+      type: NetworkGroup
+    path_params:
+      domainUUID: "{{ domain[0].uuid }}"
+    query_params:
+      bulk: true
+    register_as: netobjg
