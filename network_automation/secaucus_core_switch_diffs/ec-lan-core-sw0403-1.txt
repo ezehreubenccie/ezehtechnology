@@ -1,6 +1,6 @@
 !Command: show running-config
-!Running configuration last done at: Wed Mar 13 02:52:28 2024
-!Time: Wed Mar 13 20:57:50 2024
+!Running configuration last done at: Thu Oct 31 02:48:39 2024
+!Time: Mon Nov  4 00:50:35 2024
 
 version 9.3(7) Bios:version 5.4.1 
 hostname ec-lan-core-sw0403-1
@@ -33,6 +33,10 @@ username admin password 5 $5$QYv9Ycum$n/VIzLrgw86J7bO/ldpPRipmwPByInTC3mXRs/NKAl
 username wklslrmgt password 5 $5$lQAAutEI$SUSSkN/6oaBg7xmudxVwbOFNl89pZEmCB9FUG8Orr0/  role network-operator
 username wklslrmgt role network-admin
 username wklslrmgt passphrase  lifetime 99999 warntime 7
+username Support password 5 $5$H0PNrw/b$LiA9dVrX2EiFMZ8VRxW351qdnFWl02kCYrK3WArnrAD  role network-operator
+username Support passphrase  lifetime 99999 warntime 14 gracetime 3
+username reuben password 5 $5$susODaoi$eyoUG8GPPzsLJA0oBIzEXwci79lwqPCylzEb.svmfM2  role network-admin
+username reuben passphrase  lifetime 99999 warntime 14 gracetime 3
 
 banner motd ^
 ************************* WARNING ***************************
@@ -280,6 +284,8 @@ snmp-server contact Wolters Kluwer IT Service Desk 1-888-995-3375 it-servicedesk
 snmp-server location Equinix NY2 Cage NY2:01:003140 275 Hartz Way Secaucus, NJ 07094-1908
 snmp-server source-interface traps mgmt0
 snmp-server user admin network-admin auth md5 0xf4c2766507452d9888865cc48b557001 priv 0xf4c2766507452d9888865cc48b557001 localizedkey
+snmp-server user reuben network-admin auth md5 0x47b2cd11d5628be83c70296004386571 priv 0x47b2cd11d5628be83c70296004386571 localizedkey
+snmp-server user Support network-operator auth md5 0x47b2cd11d5628be83c70296004386571 priv 0x47b2cd11d5628be83c70296004386571 localizedkey
 snmp-server user wklslrmgt network-operator auth sha 0x3a2ba4e361940e70513c17488eb61dee7d6ac0db priv aes-128 0x3a2ba4e361940e70513c17488eb61dee7d6ac0db localizedkey
 snmp-server user wklslrmgt network-admin
 snmp-server host 10.232.124.12 traps version 3 auth wklslrmgt
@@ -598,9 +604,8 @@ interface Ethernet1/43
   no switchport
 
 interface Ethernet1/44
-  description att mpls primary router USWOKLSECNJ01R G0/0/1
-  switchport access vlan 2058
-  spanning-tree port type edge
+  shutdown
+  no switchport
 
 interface Ethernet1/45
   shutdown
