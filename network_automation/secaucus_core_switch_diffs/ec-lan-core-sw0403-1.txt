@@ -1,0 +1,654 @@
+!Command: show running-config
+!Running configuration last done at: Wed Mar 13 02:52:28 2024
+!Time: Wed Mar 13 20:57:50 2024
+
+version 9.3(7) Bios:version 5.4.1 
+hostname ec-lan-core-sw0403-1
+vdc ec-lan-core-sw0403-1 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 48
+  limit-resource u4route-mem minimum 128 maximum 128
+  limit-resource u6route-mem minimum 96 maximum 96
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature scp-server
+feature vrrp
+feature tacacs+
+cfs eth distribute
+feature scheduler
+feature ospf
+feature udld
+feature interface-vlan
+feature hsrp
+feature lacp
+feature vpc
+feature lldp
+feature bfd
+feature sla sender
+feature sla responder
+
+username admin password 5 $5$QYv9Ycum$n/VIzLrgw86J7bO/ldpPRipmwPByInTC3mXRs/NKAl6  role network-admin
+username wklslrmgt password 5 $5$lQAAutEI$SUSSkN/6oaBg7xmudxVwbOFNl89pZEmCB9FUG8Orr0/  role network-operator
+username wklslrmgt role network-admin
+username wklslrmgt passphrase  lifetime 99999 warntime 7
+
+banner motd ^
+************************* WARNING ***************************
+* THIS SYSTEM IS FOR THE USE OF AUTHORIZED PERSONNEL ONLY!  *
+* ACCESS IS RESTRICTED TO AUTHORIZED USERS ONLY!            *
+* UNAUTHORIZED ACCESS IS A VIOLATION OF STATE AND FEDERAL,  *
+* CIVIL AND CRIMINAL LAWS.  VIOLATORS WILL BE PROSECUTED.   *
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *                                      
+* ALL ACTIVITY ON THIS COMPUTER SYSTEM IS MONITORED BY      *
+* SYSTEM SECURITY PERSONNEL. BY USING THIS COMPUTER SYSTEM  *
+* YOU CONSENT TO THIS MONITORING. INDIVIDUALS DETERMINED TO *
+* BE USING THIS COMPUTER NETWORK SYSTEM WITHOUT PROPER      *
+* AUTHORIZATION, OR IN EXCESS OF THEIR AUTHORIZATION MAY    *
+* HAVE THEIR ACTIVITY RECORD SUBMITTED TO LEGAL AUTHORITIES *
+* AND LEGAL AND CRIMINAL CHARGES MAY FOLLOW.                *
+*************************************************************
+^
+
+ssh login-attempts 2
+
+no ip domain-lookup
+ip domain-name utd.com
+radius-server key 6 "JDYknekqXMFfeR4OcXVabuYyWCTEFvceCOk/HwdSiOg/EjsgiMSw3N3SCD7C3Rym/iapPCSUWjASNy7599f7wQtDnJzomvgvVwA="
+radius-server host 10.231.7.7 authentication accounting 
+radius-server host 10.226.2.132 authentication accounting 
+aaa group server radius GBS_RADIUS 
+    server 10.231.7.7 
+    server 10.226.2.132 
+    use-vrf management
+feature password encryption aes
+service unsupported-transceiver
+errdisable recovery interval 60
+errdisable recovery cause link-flap
+errdisable recovery cause udld
+errdisable recovery cause storm-control
+errdisable recovery cause vpc-peerlink
+ip access-list 1
+  10 permit ip any any 
+  100 deny ip any any 
+ip access-list copp-system-acl-bfd
+  10 permit udp any any eq 3784 
+  20 permit udp any any eq 3785 
+ip access-list copp-system-acl-eigrp
+  10 permit eigrp any any 
+ip access-list copp-system-acl-ftp
+  10 permit tcp any any eq ftp-data 
+  20 permit tcp any any eq ftp 
+  30 permit tcp any eq ftp-data any 
+  40 permit tcp any eq ftp any 
+ip access-list copp-system-acl-http
+  10 permit tcp any any eq www 
+  20 permit tcp any any eq 443 
+ip access-list copp-system-acl-icmp
+  10 permit icmp any any 
+ip access-list copp-system-acl-ntp
+  10 permit udp any any eq ntp 
+  20 permit udp any eq ntp any 
+ip access-list copp-system-acl-pimreg
+  10 permit pim any any 
+ip access-list copp-system-acl-ping
+  10 permit icmp any any echo 
+  20 permit icmp any any echo-reply 
+ip access-list copp-system-acl-routingproto1
+  10 permit tcp any any eq bgp 
+  20 permit tcp any eq bgp any 
+  30 permit tcp any any eq 639 
+  40 permit tcp any eq 639 any 
+  50 permit ospf any any 
+ip access-list copp-system-acl-routingproto2
+  10 permit 112 any 224.0.0.0/24 
+ip access-list copp-system-acl-snmp
+  10 permit udp any any eq snmp 
+  30 permit udp any any eq snmptrap 
+ip access-list copp-system-acl-ssh
+  10 permit tcp any any eq 22 
+  20 permit tcp any eq 22 any 
+ip access-list copp-system-acl-stftp
+  10 permit udp any any eq tftp 
+  20 permit udp any any eq 1758 
+  30 permit udp any eq tftp any 
+  40 permit udp any eq 1758 any 
+  50 permit tcp any any eq 115 
+  60 permit tcp any eq 115 any 
+ip access-list copp-system-acl-tacacsradius
+  10 permit tcp any any eq tacacs 
+  20 permit tcp any eq tacacs any 
+  30 permit udp any any eq 1812 
+  40 permit udp any any eq 1813 
+  50 permit udp any any eq 1645 
+  60 permit udp any any eq 1646 
+  70 permit udp any eq 1812 any 
+  80 permit udp any eq 1813 any 
+  90 permit udp any eq 1645 any 
+  100 permit udp any eq 1646 any 
+ip access-list copp-system-acl-telnet
+  10 permit tcp any any eq telnet 
+  20 permit tcp any any eq 107 
+  30 permit tcp any eq telnet any 
+  40 permit tcp any eq 107 any 
+ip access-list copp-system-dhcp-relay
+  10 permit udp any eq bootps any eq bootps 
+policy-map type network-qos jumbo
+  class type network-qos class-default
+    mtu 9216
+system qos
+  service-policy type network-qos jumbo
+class-map type control-plane match-any copp-ftp
+  match access-group name copp-system-acl-ftp
+class-map type control-plane match-any copp-http
+  match access-group name copp-system-acl-http
+class-map type control-plane match-any copp-icmp
+  match access-group name copp-system-acl-icmp
+class-map type control-plane match-any copp-ntp
+  match access-group name copp-system-acl-ntp
+class-map type control-plane match-any copp-s-arp
+class-map type control-plane match-any copp-s-bfd
+  match access-group name copp-system-acl-bfd
+class-map type control-plane match-any copp-s-bpdu
+class-map type control-plane match-any copp-s-cdp
+class-map type control-plane match-any copp-s-dai
+class-map type control-plane match-any copp-s-default
+class-map type control-plane match-any copp-s-dhcpreq
+class-map type control-plane match-any copp-s-dhcpresp
+  match access-group name copp-system-dhcp-relay
+class-map type control-plane match-any copp-s-dpss
+class-map type control-plane match-any copp-s-eigrp
+  match access-group name copp-system-acl-eigrp
+class-map type control-plane match-any copp-s-glean
+class-map type control-plane match-any copp-s-igmp
+class-map type control-plane match-any copp-s-ip-nat
+class-map type control-plane match-any copp-s-ip-options
+class-map type control-plane match-any copp-s-ipmc-g-hit
+class-map type control-plane match-any copp-s-ipmc-rpf-fail-g
+class-map type control-plane match-any copp-s-ipmc-rpf-fail-sg
+class-map type control-plane match-any copp-s-ipmcmiss
+class-map type control-plane match-any copp-s-l2switched
+class-map type control-plane match-any copp-s-l3destmiss
+class-map type control-plane match-any copp-s-l3mtufail
+class-map type control-plane match-any copp-s-l3slowpath
+class-map type control-plane match-any copp-s-lacp
+class-map type control-plane match-any copp-s-lldp
+class-map type control-plane match-any copp-s-pim-datareg
+class-map type control-plane match-any copp-s-pimautorp
+class-map type control-plane match-any copp-s-pimreg
+  match access-group name copp-system-acl-pimreg
+class-map type control-plane match-any copp-s-ping
+  match access-group name copp-system-acl-ping
+class-map type control-plane match-any copp-s-ptp
+class-map type control-plane match-any copp-s-routingProto1
+  match access-group name copp-system-acl-routingproto1
+class-map type control-plane match-any copp-s-routingProto2
+  match access-group name copp-system-acl-routingproto2
+class-map type control-plane match-any copp-s-ttl1
+class-map type control-plane match-any copp-snmp
+  match access-group name copp-system-acl-snmp
+class-map type control-plane match-any copp-ssh
+  match access-group name copp-system-acl-ssh
+class-map type control-plane match-any copp-stftp
+  match access-group name copp-system-acl-stftp
+class-map type control-plane match-any copp-tacacsradius
+  match access-group name copp-system-acl-tacacsradius
+class-map type control-plane match-any copp-telnet
+  match access-group name copp-system-acl-telnet
+policy-map type control-plane copp-system-policy 
+  class copp-s-default
+    police pps 400 
+  class copp-s-ping
+    police pps 100 
+  class copp-s-l3destmiss
+    police pps 100 
+  class copp-s-glean
+    police pps 500 
+  class copp-s-l3mtufail
+    police pps 100 
+  class copp-s-ttl1
+    police pps 100 
+  class copp-s-dhcpreq
+    police pps 300 
+  class copp-s-dhcpresp
+    police pps 300 
+  class copp-s-ip-options
+    police pps 100 
+  class copp-s-ip-nat
+    police pps 100 
+  class copp-s-ipmcmiss
+    police pps 400 
+  class copp-s-ipmc-g-hit
+    police pps 400 
+  class copp-s-ipmc-rpf-fail-g
+    police pps 400 
+  class copp-s-ipmc-rpf-fail-sg
+    police pps 400 
+  class copp-s-igmp
+    police pps 400 
+  class copp-s-routingProto2
+    police pps 1300 
+  class copp-s-eigrp
+    police pps 200 
+  class copp-s-pimreg
+    police pps 200 
+  class copp-s-pimautorp
+    police pps 200 
+  class copp-s-routingProto1
+    police pps 1000 
+  class copp-s-arp
+    police pps 200 
+  class copp-s-ptp
+    police pps 1000 
+  class copp-s-bfd
+    police pps 350 
+  class copp-s-bpdu
+    police pps 12000 
+  class copp-s-dpss
+    police pps 6400 
+  class copp-s-cdp
+    police pps 400 
+  class copp-s-lacp
+    police pps 400 
+  class copp-s-lldp
+    police pps 500 
+  class copp-icmp
+    police pps 200 
+  class copp-telnet
+    police pps 500 
+  class copp-ssh
+    police pps 500 
+  class copp-snmp
+    police pps 500 
+  class copp-ntp
+    police pps 100 
+  class copp-tacacsradius
+    police pps 400 
+  class copp-stftp
+    police pps 400 
+  class copp-ftp
+    police pps 100 
+  class copp-http
+    police pps 100 
+  class copp-s-pim-datareg
+    police pps 600 
+control-plane
+  service-policy input copp-system-policy 
+ip ssh source-interface mgmt0 vrf management
+snmp-server contact Wolters Kluwer IT Service Desk 1-888-995-3375 it-servicedesk@wolterskluwer.com
+snmp-server location Equinix NY2 Cage NY2:01:003140 275 Hartz Way Secaucus, NJ 07094-1908
+snmp-server source-interface traps mgmt0
+snmp-server user admin network-admin auth md5 0xf4c2766507452d9888865cc48b557001 priv 0xf4c2766507452d9888865cc48b557001 localizedkey
+snmp-server user wklslrmgt network-operator auth sha 0x3a2ba4e361940e70513c17488eb61dee7d6ac0db priv aes-128 0x3a2ba4e361940e70513c17488eb61dee7d6ac0db localizedkey
+snmp-server user wklslrmgt network-admin
+snmp-server host 10.232.124.12 traps version 3 auth wklslrmgt
+snmp-server host 10.232.124.13 traps version 3 auth wklslrmgt
+snmp-server host 10.232.124.18 traps version 3 auth wklslrmgt
+snmp-server host 10.1.101.69 traps version 3 auth wklslrmgt
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+ntp server 10.1.254.1 prefer use-vrf management
+ntp server 10.198.208.1 prefer use-vrf management
+ntp server 10.245.22.6 use-vrf management
+ntp source-interface mgmt0
+aaa authentication login default group GBS_RADIUS 
+aaa authentication login console local 
+aaa accounting default group GBS_RADIUS 
+aaa authentication login error-enable 
+
+vlan 1
+vlan 2050
+  name DMZ_2050_(F5_Frontside)
+vlan 2052
+  name F5_Backside
+vlan 2054
+  name DMZ_2054_(Web)
+vlan 2056
+  name DMZ_2056_(Database)
+vlan 2058
+  name INSIDE_2058_(ASA)
+vlan 2060
+  name Oracle_Replication
+vlan 2064
+  name DMZ_2064_(ASA)
+vlan 2070
+  name TomCat_Session_Replication
+spanning-tree pathcost method long
+spanning-tree port type network default
+spanning-tree loopguard default
+spanning-tree vlan 1-3967,4048-4093 priority 4096
+udld aggressive
+vrf context VPC-MGT
+  description VRF for VPC Keepalives
+vrf context management
+  ip route 0.0.0.0/0 10.198.207.1
+no port-channel load-balance resilient
+
+vpc domain 1
+  peer-switch
+  role priority 8192
+  system-priority 8192
+  peer-keepalive destination 192.168.0.1 source 192.168.0.0 vrf VPC-MGT
+  delay restore 150
+  peer-gateway
+  auto-recovery
+lldp reinit 1
+lldp timer 5
+
+
+interface Vlan1
+
+interface port-channel1
+  description VPC Peer Link
+  switchport mode trunk
+  switchport trunk allowed vlan 2050,2052,2054,2056,2058,2060,2064,2070
+  spanning-tree port type network
+  vpc peer-link
+
+interface port-channel10
+  description ec-lan-fpr-sw0403-1
+  switchport mode trunk
+  switchport trunk allowed vlan 2050,2054,2056,2058,2064
+  spanning-tree port type normal
+  spanning-tree guard root
+  vpc 10
+
+interface port-channel11
+  description ec-lan-fpr-sw0403-2
+  switchport mode trunk
+  switchport trunk allowed vlan 2050,2054,2056,2058,2064
+  spanning-tree port type normal
+  spanning-tree guard root
+  vpc 11
+
+interface port-channel102
+  description EC-LAN-SW0203-1
+  switchport mode trunk
+  switchport trunk allowed vlan 2050,2052,2054,2056,2058,2060,2064,2070
+  spanning-tree port type normal
+  spanning-tree guard root
+  vpc 102
+
+interface port-channel103
+  description EC-LAN-SW0303-1
+  switchport mode trunk
+  switchport trunk allowed vlan 2050,2052,2054,2056,2058,2060,2064,2070
+  spanning-tree port type normal
+  spanning-tree guard root
+  vpc 103
+
+interface port-channel104
+  description EC-LAN-SW0403-1
+  switchport mode trunk
+  switchport trunk allowed vlan 2050,2052,2054,2056,2058,2060,2064,2070
+  spanning-tree port type normal
+  spanning-tree guard root
+  vpc 104
+
+interface port-channel105
+  description EC-LAN-SW503-1
+  switchport mode trunk
+  switchport trunk allowed vlan 2050,2052,2054,2056,2058,2060,2064,2070
+  spanning-tree port type normal
+  spanning-tree guard root
+  vpc 105
+
+interface port-channel106
+  description EC-LAN-SW0603-1
+  switchport mode trunk
+  switchport trunk allowed vlan 2050,2052,2054,2056,2058,2060,2064,2070
+  spanning-tree port type normal
+  spanning-tree guard root
+  vpc 106
+
+interface Ethernet1/1
+  description ec-lan-fpr-sw0403-1 Ethernet 1/1
+  lacp rate fast
+  switchport mode trunk
+  switchport trunk allowed vlan 2050,2054,2056,2058,2064
+  spanning-tree port type normal
+  spanning-tree guard root
+  channel-group 11 mode active
+
+interface Ethernet1/2
+  description ec-lan-fpr-sw0403-2 Ethernet 1/1
+  lacp rate fast
+  switchport mode trunk
+  switchport trunk allowed vlan 2050,2054,2056,2058,2064
+  spanning-tree port type normal
+  spanning-tree guard root
+  channel-group 10 mode active
+
+interface Ethernet1/3
+  description ec-lan-sw0203-1 Ethernet 1/49
+  switchport mode trunk
+  switchport trunk allowed vlan 2050,2052,2054,2056,2058,2060,2064,2070
+  channel-group 102 mode active
+
+interface Ethernet1/4
+  description ec-lan-sw0303-1 Ethernet 1/49
+  switchport mode trunk
+  switchport trunk allowed vlan 2050,2052,2054,2056,2058,2060,2064,2070
+  channel-group 103 mode active
+
+interface Ethernet1/5
+  description ec-lan-sw0403-1 Ethernet 1/49
+  switchport mode trunk
+  switchport trunk allowed vlan 2050,2052,2054,2056,2058,2060,2064,2070
+  channel-group 104 mode active
+
+interface Ethernet1/6
+  description ec-lan-sw0503-1 Ethernet 1/49
+  switchport mode trunk
+  switchport trunk allowed vlan 2050,2052,2054,2056,2058,2060,2064,2070
+  channel-group 105 mode active
+
+interface Ethernet1/7
+  description ec-lan-sw0603-1 Ethernet 1/49
+  switchport mode trunk
+  switchport trunk allowed vlan 2050,2052,2054,2056,2058,2060,2064,2070
+  channel-group 106 mode active
+
+interface Ethernet1/8
+  shutdown
+  no switchport
+
+interface Ethernet1/9
+  shutdown
+  no switchport
+
+interface Ethernet1/10
+  shutdown
+  no switchport
+
+interface Ethernet1/11
+  shutdown
+  no switchport
+
+interface Ethernet1/12
+  shutdown
+  no switchport
+
+interface Ethernet1/13
+  shutdown
+  no switchport
+
+interface Ethernet1/14
+  shutdown
+  no switchport
+
+interface Ethernet1/15
+  shutdown
+  no switchport
+
+interface Ethernet1/16
+  shutdown
+  no switchport
+
+interface Ethernet1/17
+  shutdown
+  no switchport
+
+interface Ethernet1/18
+  shutdown
+  no switchport
+
+interface Ethernet1/19
+  shutdown
+  no switchport
+
+interface Ethernet1/20
+  shutdown
+  no switchport
+
+interface Ethernet1/21
+  shutdown
+  no switchport
+
+interface Ethernet1/22
+  shutdown
+  no switchport
+
+interface Ethernet1/23
+  shutdown
+  no switchport
+
+interface Ethernet1/24
+  shutdown
+  no switchport
+
+interface Ethernet1/25
+  shutdown
+  no switchport
+
+interface Ethernet1/26
+  shutdown
+  no switchport
+
+interface Ethernet1/27
+  shutdown
+  no switchport
+
+interface Ethernet1/28
+  shutdown
+  no switchport
+
+interface Ethernet1/29
+  shutdown
+  no switchport
+
+interface Ethernet1/30
+  shutdown
+  no switchport
+
+interface Ethernet1/31
+  shutdown
+  no switchport
+
+interface Ethernet1/32
+  shutdown
+  no switchport
+
+interface Ethernet1/33
+  shutdown
+  no switchport
+
+interface Ethernet1/34
+  shutdown
+  no switchport
+
+interface Ethernet1/35
+  shutdown
+  no switchport
+
+interface Ethernet1/36
+  shutdown
+  no switchport
+
+interface Ethernet1/37
+  shutdown
+  no switchport
+
+interface Ethernet1/38
+  shutdown
+  no switchport
+
+interface Ethernet1/39
+  shutdown
+  no switchport
+
+interface Ethernet1/40
+  shutdown
+  no switchport
+
+interface Ethernet1/41
+  shutdown
+  no switchport
+
+interface Ethernet1/42
+  shutdown
+  no switchport
+
+interface Ethernet1/43
+  shutdown
+  no switchport
+
+interface Ethernet1/44
+  description att mpls primary router USWOKLSECNJ01R G0/0/1
+  switchport access vlan 2058
+  spanning-tree port type edge
+
+interface Ethernet1/45
+  shutdown
+  no switchport
+
+interface Ethernet1/46
+  description VPC Keepalive to ec-lan-core-sw0405-2 Eth1/46
+  no switchport
+  vrf member VPC-MGT
+  ip address 192.168.0.0/31
+
+interface Ethernet1/47
+  description Peer-link ec-lan-core-sw0403-2 Eth1/47
+  switchport mode trunk
+  switchport trunk allowed vlan 2050,2052,2054,2056,2058,2060,2064,2070
+  channel-group 1 mode active
+
+interface Ethernet1/48
+  description Peer-link ec-lan-core-sw0403-2 Eth1/48
+  switchport mode trunk
+  switchport trunk allowed vlan 2050,2052,2054,2056,2058,2060,2064,2070
+  channel-group 1 mode active
+
+interface mgmt0
+  vrf member management
+  ip address 10.198.207.34/26
+cli alias name wr copy run start
+line console
+  exec-timeout 0
+  terminal width  511
+line vty
+boot nxos bootflash:/nxos.9.3.7.bin 
+
+logging server 10.219.2.132
+logging server 10.232.124.16
+logging server 10.232.124.18
+logging server 10.145.248.200
+logging source-interface mgmt0
+no logging console
+
+scheduler logfile size 1024
+
+
+scheduler job name backup-config
+  copy running-config tftp://10.198.208.1/Configs/Switches/$(SWITCHNAME)-cfg.$(TIMESTAMP) vrf management
+  
+end-job
+
+scheduler schedule name daily-backup
+  job name backup-config
+  time daily 01:00
