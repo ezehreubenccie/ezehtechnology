@@ -1,0 +1,4 @@
+rule_name: test1
+access_policy_name: TEST
+target_dev: "WA-LAB-FTD-HA"
+comments: IS-7688

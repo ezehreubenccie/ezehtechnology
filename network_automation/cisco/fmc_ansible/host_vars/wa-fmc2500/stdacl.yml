@@ -1,1 +1,7 @@
-interested_sacl: "StandardAccessListTest"
+# interested_sacl: "StandardAccessListTest"
+# interested_sacl: BGP-OSPF
+type1: "Network"
+type2: "host"
+entry1: "9.9.9.0/22"
+entry2: "10.10.0.0/21"
+entry3: "16.16.16.16"

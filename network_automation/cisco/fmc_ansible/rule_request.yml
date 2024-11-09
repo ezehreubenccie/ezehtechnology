@@ -1,0 +1,229 @@
+- hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: "TASK 1: Get Domain UUID"
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+      tags: enable,disable,deploy
+
+    - debug:
+        var: domain
+      tags: enable,disable,deploy
+
+    - name: "TASK 2: Get Access Policy"
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllAccessPolicy
+        path_params: 
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          name: "{{ access_policy_name }}"
+          # filter: "nameOrValue:TEST"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: access_policy
+      tags: enable,disable
+
+    # - debug:
+    #     var: access_policy
+
+    - name: "TASK 3: Set Fact"
+      set_fact:
+        pol_id: "{{ access_policy[0].id }}"
+        pol_name: "{{ access_policy[0].name }}"
+      tags: enable,disable
+    
+    - name: "TASK 4: PRINT ACCESS POLCIY INFORMATION"
+      debug:
+        msg:
+          - "{{ pol_id }}"
+          - "{{ pol_name }}"
+      tags: enable,disable
+
+
+
+    - name: "TASK 5: Execute 'getAllAccessRule' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllAccessRule"
+        path_params:
+          containerUUID: "{{ pol_id }}"
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          #filter: "{{ filter }}"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: access_rule
+      tags: enable,disable
+
+    # - debug:
+    #     var: access_rule
+
+    - name: "TASK 6: SET NUMBER OF ACCESS RULES"
+      set_fact:
+        number_of_element: "{{ access_rule|length }}"
+      tags: enable,disable
+
+    - name: "TASK 7: PRINT NUMBER OF ACCESS RULES"
+      debug:
+        msg: 
+          - "Access Rule Count is: {{ number_of_element}}"
+      tags: enable,disable
+
+    - name: "TASK 8: Get Target access rule"
+      set_fact:
+        access_rule_id: "{{ item.id }}"
+        access_rule_name: "{{ item.name }}"
+      when: item.name == rule_name
+      loop: "{{ access_rule }}"
+      loop_control: 
+        label: "{{ item.name }}"
+        pause: 0.5
+      tags: enable,disable
+
+
+
+    - name: "TASK 9: Disable - Execute 'updateAccessRule' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "updateAccessRule"
+        data:
+            action: ALLOW
+            enabled: False
+            type: AccessRule
+            id: "{{ access_rule_id }}"
+            newComments: ['{{ comments }} - Disable']
+        path_params:
+            objectId: "{{ access_rule_id}}"
+            containerUUID: "{{ pol_id }}"
+            domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+            partialUpdate: True
+      tags: disable
+
+      
+    - name: "TASK 10: Enable - Execute 'updateAccessRule' operation"
+      cisco.fmcansible.fmc_configuration:
+        operation: "updateAccessRule"
+        data:
+            action: ALLOW
+            enabled: True
+            type: AccessRule
+            id: "{{ access_rule_id }}"
+            newComments: ['{{ comments }} - Enable']
+        path_params:
+            objectId: "{{ access_rule_id}}"
+            containerUUID: "{{ pol_id }}"
+            domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+            partialUpdate: True
+      tags: enable
+
+    
+    - name: "TASK 11: Get Deployable Devices"
+      cisco.fmcansible.fmc_configuration:
+        operation: getDeployableDevice
+        path_params:
+          domainUUID: '{{ domain[0].uuid }}'
+        query_params:
+          expanded: true
+        register_as: devices
+      tags: enable,disable,deploy
+
+
+    # - debug:
+    #     var: devices
+    #   tags: enable,disable,deploy
+
+    - debug:
+        var: target_dev
+      tags: enable,disable,deploy
+
+    - name: "TASK 12: EXTRACT DEPLOYABLE DEVICES"
+      debug:
+        msg: "{{ item.device.name }}"
+      loop: "{{ devices }}"
+      loop_control: 
+        label: "{{ item.device.name }}"
+        pause: 0.5
+      register: tagt_dev
+      when: "item.device.name == target_dev"
+      tags: enable,disable,deploy
+
+    # - debug:
+    #     var: tagt_dev
+    #   tags: enable,disable,deploy
+
+    - name: "TASK 13: Complete playbook when nothing to deploy"
+      meta: end_play
+      when: devices[0].device is undefined
+      tags: enable,disable,deploy
+
+    - name: "TASK 14: Fetch pending changes"
+      cisco.fmcansible.fmc_configuration:
+        operation: getPendingChanges
+        path_params:
+          containerUUID: '{{ item.device.id }}'
+          domainUUID: '{{ domain[0].uuid }}'
+        register_as: pending_changes
+      loop: "{{ devices }}"
+      loop_control: 
+        label: "{{ item.device.name }}: {{ item.device.id }}"
+        pause: 0.5
+      when: item.device.name == target_dev
+      tags: enable,disable,deploy
+
+    
+
+    - name: "TASK 15: PRINT PENDING CHANGES"
+      debug:
+        var: pending_changes
+      tags: enable,disable,deploy
+
+    - name: "TASK 16: Start deployment"
+      cisco.fmcansible.fmc_configuration:
+        operation: createDeploymentRequest
+        data:
+          version: '{{ item.version }}'
+          deviceList:
+            - '{{ item.device.id }}'
+          forceDeploy: False
+          ignoreWarning: True
+        path_params:
+          domainUUID: '{{ domain[0].uuid }}'
+        register_as: deployment_job
+      loop: "{{ devices }}"
+      loop_control: 
+        label: "{{ item.device.name }}: {{ item.device.id }}"
+        pause: 0.5
+      when: item.device.name == target_dev
+      tags: enable,disable,deploy
+
+    - name: "TASK 17: Poll deployment status until the job is finished"
+      cisco.fmcansible.fmc_configuration:
+        operation: getDeploymentDetail
+        path_params:
+          containerUUID: '{{ item.device.id }}'
+          domainUUID: '{{ domain[0].uuid }}'
+        register_as: deployment_status
+      until: deployment_status[0].status is match("SUCCEEDED")
+      retries: 100
+      delay: 3
+      loop: "{{ devices }}"
+      loop_control: 
+        label: "{{ item.device.name }}: {{ item.device.id }}"
+        pause: 0.5
+      when: item.device.name == target_dev
+      tags: enable,disable,deploy
+
+
+    - name: "TASK 18: Stop the playbook if the deployment failed"
+      fail:
+        msg: 'Deployment failed. Status: {{ deployment_status[0].status }}'
+      when: deployment_status[0].status is not match("SUCCEEDED")
+      tags: enable,disable,deploy
+
+
+
+    
+    

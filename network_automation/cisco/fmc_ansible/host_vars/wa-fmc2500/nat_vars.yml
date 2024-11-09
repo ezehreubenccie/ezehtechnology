@@ -1,7 +1,8 @@
 original_source_nets: Waltham-Server-NAT-Subnets
-translated_source_nets: "{{ original_source_nets}}"
-original_dest_nets: Google-CE-Central-Hub-W2-Subnets
-translated_dest_nets: "{{ original_dest_nets }}"
+# translated_source_nets: "{{ original_source_nets}}"
+original_dest_nets: Azure-CE-DHA-Prod02-Subnets
+# translated_dest_nets: "{{ original_dest_nets }}"
 source_int: inside_ig
+nat_policy_name: TestNatPol1
 proxy_var: True
 route_lookup: True

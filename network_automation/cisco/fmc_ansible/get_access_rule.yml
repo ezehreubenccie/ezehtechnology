@@ -13,7 +13,7 @@
       cisco.fmcansible.fmc_configuration:
         operation: "getAllAccessRule"
         path_params:
-          containerUUID: "40CE2481-5D56-0ed3-0000-292057865814"
+          containerUUID: "40CE2481-5D56-0ed3-0000-304942813923"
           domainUUID: "{{ domain[0].uuid }}"
         query_params:
           #filter: "{{ filter }}"
@@ -22,17 +22,20 @@
           expanded: "{{ expanded }}"
         register_as: access_rule
 
-    # - debug:
-    #     var: access_rule
+    - debug:
+        var: access_rule
 
     - set_fact:
         number_of_element: "{{ access_rule|length }}"
 
+    # - set_fact:
+        
+
     - debug:
         var: number_of_element
 
-    - debug:
-        var: access_rule[97]
+    # - debug:
+    #     var: access_rule[97]
 
     # - debug:
     #     var: access_rule[0].metadata.ruleIndex
