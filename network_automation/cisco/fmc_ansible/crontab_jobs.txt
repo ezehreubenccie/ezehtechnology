@@ -1,0 +1,7 @@
+30 19 * * *  cd /home/rezeh/VENV&&source ansible_netauto/bin/activate&&cd ansible_netauto&&ansible-playbook backup_network_devices_config_6.yml --tags backup_to_ansible_node
+30 20 * * *  cd /home/rezeh/VENV&&source ansible_netauto/bin/activate&&cd ansible_netauto&&ansible-playbook backup_network_devices_config_8.yml --tags backup_to_git
+40 20 * * *  cd /home/rezeh/VENV&&source ansible_netauto/bin/activate&&cd ansible_netauto&&ansible-playbook backup_to_git.yml
+30 18 * * *  cd /home/rezeh/VENV&&source ansible_netauto/bin/activate&&cd ansible_netauto&&ansible-playbook delete_files_older_than_30d.yml --tags delete
+50 19 * * *  cd /home/rezeh/VENV&&source ansible_netauto/bin/activate&&cd ansible_netauto&&ansible-playbook backup_cisco_nexus_9000.yml  --tags backup_to_ansible_node
+00 16 * * *  cd /home/rezeh/VENV&&source ansible_netauto/bin/activate&&cd ../cisco/fmc_ansible/&&ansible-playbook rule_request.yml --tags enable
+10 16 * * *  cd /home/rezeh/VENV&&source ansible_netauto/bin/activate&&cd ../cisco/fmc_ansible/&&ansible-playbook rule_request.yml --tags disable
