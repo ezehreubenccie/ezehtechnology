@@ -1,5 +1,4 @@
-- name: PLAY 1 - get domainUUID
-  hosts: wa-fmc2500
+- hosts: wa-fmc2500
   connection: httpapi
   tasks:
     - name: Get Domain UUID
@@ -7,21 +6,24 @@
         operation: getAllDomain
         register_as: domain
 
-
-
-    - name: Execute 'getAllBGPGeneralSettingModel' operation
+    
+    - name: Execute 'getAllDevice' operation
       cisco.fmcansible.fmc_configuration:
-        operation: "getAllBGPGeneralSettingModel"
+        operation: "getAllDevice"
         path_params:
-          containerUUID: "a2cf177a-667c-11ef-aa9f-f6fda07b7654"
           domainUUID: "{{ domain[0].uuid }}"
         query_params:
+          filter: "name: {{ target_bgp_dev }}"
           offset: "{{ offset }}"
           limit: "{{ limit }}"
           expanded: "{{ expanded }}"
-        register_as: bgp_setgs
-
+        register_as: devices
 
     - debug:
-        var: bgp_setgs
-         
+        var: devices
+
+    - debug:
+        msg:
+          - "Device name is: {{ devices[0].name }}"
+          - "Device id is: {{ devices[0].id }}"
+          

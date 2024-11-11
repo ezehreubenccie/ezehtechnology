@@ -12,7 +12,7 @@
       cisco.fmcansible.fmc_configuration:
         operation: "getAllBGPIPvAddressFamilyModel"
         path_params:
-          containerUUID: "87f71aea-0bda-11ee-b635-b0d44974184b"
+          containerUUID: "a2cf177a-667c-11ef-aa9f-f6fda07b7654"
           domainUUID: "{{ domain[0].uuid }}"
         query_params:
           offset: "{{ offset }}"
