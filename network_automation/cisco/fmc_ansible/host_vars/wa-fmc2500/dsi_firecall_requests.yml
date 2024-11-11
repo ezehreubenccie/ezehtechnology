@@ -1,4 +1,5 @@
-rule_name: test1
-access_policy_name: TEST
-target_dev: "WA-LAB-FTD-HA"
-comments: IS-7688
+rule_name: OUTSIDE_#4-no-lookup
+access_policy_name: WA-LAN-FPR-INET
+target_dev: "WA-LAN-FPR-FW100"
+comments: "IS-7688 Close"
+# target_dev is the High Availability name. For example, waltham INET group is WA-FTD-INET but HA name is WA-LAN-FPR-FW100

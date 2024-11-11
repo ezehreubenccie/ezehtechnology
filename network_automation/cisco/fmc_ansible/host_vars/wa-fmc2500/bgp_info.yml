@@ -1,0 +1,12 @@
+name: TEST_BGP
+# asNumber: "68114"
+routerId: "9.9.9.9"
+remote_peer_ip: "169.254.11.11"
+remote_as: "65876"
+neighbor_descr: "Route-based VPN Testing"
+filter_upt_actn: "OUT"
+networks: test_network_1
+target_bgp_dev: "WA-LAB-LAN-FPR-FW100-1"
+target_bgp_dev_grp: "WA-LAB-FTD-HA"
+# route_map:
+#   id: 
