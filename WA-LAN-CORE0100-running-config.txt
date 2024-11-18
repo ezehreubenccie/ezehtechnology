@@ -1,0 +1,1351 @@
+!Command: show running-config
+!Running configuration last done at: Thu Aug 15 20:48:51 2024
+!Time: Thu Aug 15 23:50:38 2024
+
+version 10.3(4a) Bios:version 05.47 
+license smart transport smart
+
+switchname WA-LAN-CORE0100
+vdc WA-LAN-CORE0100 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4097
+  limit-resource port-channel minimum 0 maximum 48
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature scp-server
+feature vrrp
+feature tacacs+
+cfs eth distribute
+feature scheduler
+feature ospf
+feature pim
+feature pbr
+feature private-vlan
+feature udld
+feature interface-vlan
+feature netflow
+feature hsrp
+feature lacp
+feature dhcp
+feature vpc
+feature lldp
+feature vtp
+feature bfd
+feature sla sender
+feature sla responder
+
+archive
+  path bootflash:backup/WA-LAN-CORE0100
+  time-period 0
+  maximum 14
+  write-memory
+
+username admin password 5 $5$BPHFOA$tF9WiZ8f4YtPkgMPYZLUxbkUjxh0/jU8fxD5baKQpo5  role network-admin
+username Support password 5 $5$ONLFAE$Lf1sKBcBYD5PnUjGasZc3asJv7NaPOow/E38xM1Sn./  role network-admin
+username Support passphrase  lifetime 99999 warntime 14 gracetime 3
+username wklslrmgt password 5 $5$GGBHOI$sa7uxOeCc883714FXdpqCeTC9r8B5FYJ68oCf2dw8YD  role network-operator
+username wklslrmgt passphrase  lifetime 99999 warntime 14 gracetime 3
+ssh key rsa 2048 
+
+banner motd ^
+************************* WARNING ***************************
+* THIS SYSTEM IS FOR THE USE OF AUTHORIZED PERSONNEL ONLY!  *
+* ACCESS IS RESTRICTED TO AUTHORIZED USERS ONLY!            *
+* UNAUTHORIZED ACCESS IS A VIOLATION OF STATE AND FEDERAL,  *
+* CIVIL AND CRIMINAL LAWS.  VIOLATORS WILL BE PROSECUTED.   *
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *                                      
+* ALL ACTIVITY ON THIS COMPUTER SYSTEM IS MONITORED BY      *
+* SYSTEM SECURITY PERSONNEL. BY USING THIS COMPUTER SYSTEM  *
+* YOU CONSENT TO THIS MONITORING. INDIVIDUALS DETERMINED TO *
+* BE USING THIS COMPUTER NETWORK SYSTEM WITHOUT PROPER      *
+* AUTHORIZATION, OR IN EXCESS OF THEIR AUTHORIZATION MAY    *
+* HAVE THEIR ACTIVITY RECORD SUBMITTED TO LEGAL AUTHORITIES *
+* AND LEGAL AND CRIMINAL CHARGES MAY FOLLOW.                *
+*************************************************************
+^
+
+ssh login-attempts 2
+
+no ip domain-lookup
+ip domain-name na.wkglobal.com
+radius-server key 7 "OXrN%Y%Fs!YH8GH6f3iDjWTDcZu@"
+radius-server host 10.231.7.7 authentication accounting 
+radius-server host 10.226.2.132 authentication accounting 
+aaa group server radius GBS_RADIUS 
+    server 10.231.7.7 
+    server 10.226.2.132 
+    use-vrf management
+feature password encryption aes
+interface breakout module 1 port 32 map 10g-4x
+ip access-list 1
+  10 permit ip any any 
+  100 deny ip any any 
+copp profile strict
+ip ssh source-interface mgmt0 vrf management
+snmp-server contact Wolters Kluwer IT Service Desk +1-518-531-3459 it-servicedesk@wolterskluwer.com
+snmp-server location 1st Floor Data Center Cabinet 03 Wolters Kluwer (UpToDate) 230 3rd Ave. Waltham MA 02453
+snmp-server source-interface traps mgmt0
+snmp-server user admin network-admin auth md5 17481CF71EF9E916F6E1320E1BAB47E15972 priv aes-128 367E1ECA3FB8EB0EEFF1132A41FF0DB55E73 localizedV2key
+snmp-server user Support network-admin auth md5 481A488A21929F7684CD70000CFE69A94220 priv aes-128 01621CDE5CEBBA5A86E91F4647B009A25A27 localizedV2key
+snmp-server user wklslrmgt network-operator auth sha 52329C91051F5FCAFFD2D6C9E2AAB9A673D1D2042EC1 priv aes-128 320990D15F6C1C93F59BAE9EE6FCF6D209FDF23E449E localizedV2key
+snmp-server host 10.232.124.12 traps version 3 auth wklslrmgt
+snmp-server host 10.232.124.12 use-vrf management
+snmp-server host 10.232.124.13 traps version 3 auth wklslrmgt
+snmp-server host 10.232.124.13 use-vrf management
+snmp-server host 10.232.124.18 traps version 3 auth wklslrmgt
+snmp-server host 10.232.124.18 use-vrf management
+snmp-server host 10.1.101.69 traps version 3 auth wklslrmgt
+snmp-server host 10.1.101.69 use-vrf management
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+ntp server 10.198.208.22 prefer use-vrf management
+ntp server 10.245.22.6 use-vrf management
+ntp source-interface mgmt0
+ntp logging
+aaa authentication login default group GBS_RADIUS 
+aaa authentication login console local 
+aaa accounting default group GBS_RADIUS 
+aaa authentication login error-enable 
+system default switchport
+errdisable recovery interval 60
+errdisable recovery cause link-flap
+errdisable recovery cause udld
+errdisable recovery cause bpduguard
+errdisable recovery cause storm-control
+errdisable recovery cause vpc-peerlink
+errdisable recovery cause failed-port-state
+
+ip route 10.20.50.0/24 172.16.31.18
+ip route 10.20.56.0/24 172.16.31.18
+ip route 10.20.58.0/24 172.16.31.18
+ip route 10.20.64.0/24 172.16.31.18
+ip route 10.20.200.10/32 172.16.31.18
+ip route 10.20.200.11/32 172.16.31.18
+ip route 10.20.200.12/32 172.16.31.18
+ip route 10.20.200.13/32 172.16.31.18
+ip route 10.20.200.14/32 172.16.31.18
+ip route 10.20.200.15/32 172.16.31.18
+ip route 10.20.200.16/32 172.16.31.18
+ip route 10.20.200.17/32 172.16.31.18
+ip route 10.20.200.18/32 172.16.31.18
+ip route 10.20.200.19/32 172.16.31.18
+ip route 10.20.200.20/32 172.16.31.18
+ip route 10.20.200.21/32 172.16.31.18
+ip route 10.20.200.22/32 172.16.31.18
+ip route 10.20.200.23/32 172.16.31.18
+ip route 10.20.200.24/32 172.16.31.18
+ip route 10.20.200.25/32 172.16.31.18
+ip route 10.20.200.26/32 172.16.31.18
+ip route 10.20.200.27/32 172.16.31.18
+ip route 10.20.200.28/32 172.16.31.18
+ip route 10.20.200.29/32 172.16.31.18
+ip route 10.20.200.30/32 172.16.31.18
+ip route 10.20.200.31/32 172.16.31.18
+ip route 10.20.200.32/32 172.16.31.18
+ip route 10.20.200.33/32 172.16.31.18
+ip route 10.20.200.34/32 172.16.31.18
+ip route 10.20.200.35/32 172.16.31.18
+ip route 10.20.200.36/32 172.16.31.18
+ip route 10.20.200.37/32 172.16.31.18
+ip route 10.20.200.38/32 172.16.31.18
+ip route 10.20.200.39/32 172.16.31.18
+ip route 10.20.200.40/32 172.16.31.18
+ip route 10.20.200.41/32 172.16.31.18
+ip route 10.20.200.42/32 172.16.31.18
+ip route 10.20.200.43/32 172.16.31.18
+ip route 10.20.200.44/32 172.16.31.18
+ip route 10.20.200.45/32 172.16.31.18
+ip route 10.20.200.46/32 172.16.31.18
+ip route 10.20.200.47/32 172.16.31.18
+ip route 10.20.200.48/32 172.16.31.18
+ip route 10.20.200.49/32 172.16.31.18
+ip route 10.20.200.50/32 172.16.31.18
+ip route 10.20.200.51/32 172.16.31.18
+ip route 10.20.200.52/32 172.16.31.18
+ip route 10.20.200.53/32 172.16.31.18
+ip route 10.20.200.54/32 172.16.31.18
+ip route 10.20.200.55/32 172.16.31.18
+ip route 10.20.200.56/32 172.16.31.18
+ip route 10.20.200.57/32 172.16.31.18
+ip route 10.20.200.58/32 172.16.31.18
+ip route 10.20.200.59/32 172.16.31.18
+ip route 10.20.200.60/32 172.16.31.18
+ip route 10.20.200.61/32 172.16.31.18
+ip route 10.20.200.62/32 172.16.31.18
+ip route 10.20.200.63/32 172.16.31.18
+ip route 10.20.200.64/32 172.16.31.18
+ip route 10.20.200.65/32 172.16.31.18
+ip route 10.20.200.66/32 172.16.31.18
+ip route 10.20.200.67/32 172.16.31.18
+ip route 10.20.200.68/32 172.16.31.18
+ip route 10.20.200.69/32 172.16.31.18
+ip route 10.20.200.70/32 172.16.31.18
+ip route 10.20.200.71/32 172.16.31.18
+ip route 10.20.200.72/32 172.16.31.18
+ip route 10.20.200.73/32 172.16.31.18
+ip route 10.20.200.74/32 172.16.31.18
+ip route 10.20.200.75/32 172.16.31.18
+ip route 10.20.200.76/32 172.16.31.18
+ip route 10.20.200.77/32 172.16.31.18
+ip route 10.20.200.78/32 172.16.31.18
+ip route 10.20.200.79/32 172.16.31.18
+ip route 10.20.200.80/32 172.16.31.18
+ip route 10.20.200.81/32 172.16.31.18
+ip route 10.20.200.82/32 172.16.31.18
+ip route 10.20.200.83/32 172.16.31.18
+ip route 10.20.200.84/32 172.16.31.18
+ip route 10.20.200.85/32 172.16.31.18
+ip route 10.20.200.86/32 172.16.31.18
+ip route 10.20.200.87/32 172.16.31.18
+ip route 10.20.200.88/32 172.16.31.18
+ip route 10.20.200.89/32 172.16.31.18
+ip route 10.20.200.90/32 172.16.31.18
+ip route 10.20.200.91/32 172.16.31.18
+ip route 10.20.200.92/32 172.16.31.18
+ip route 10.20.200.93/32 172.16.31.18
+ip route 10.20.200.94/32 172.16.31.18
+ip route 10.20.200.95/32 172.16.31.18
+ip route 10.20.200.96/32 172.16.31.18
+ip route 10.20.200.97/32 172.16.31.18
+ip route 10.20.200.98/32 172.16.31.18
+ip route 10.20.200.99/32 172.16.31.18
+ip route 10.20.200.100/32 172.16.31.18
+ip route 10.20.200.101/32 172.16.31.18
+ip route 10.20.200.102/32 172.16.31.18
+ip route 10.20.200.103/32 172.16.31.18
+ip route 10.20.200.104/32 172.16.31.18
+ip route 10.20.200.105/32 172.16.31.18
+ip route 10.20.200.106/32 172.16.31.18
+ip route 10.20.200.107/32 172.16.31.18
+ip route 10.20.200.108/32 172.16.31.18
+ip route 10.20.200.109/32 172.16.31.18
+ip route 10.20.200.110/32 172.16.31.18
+ip route 10.20.200.111/32 172.16.31.18
+ip route 10.20.200.112/32 172.16.31.18
+ip route 10.20.200.113/32 172.16.31.18
+ip route 10.20.200.114/32 172.16.31.18
+ip route 10.20.200.115/32 172.16.31.18
+ip route 10.20.200.116/32 172.16.31.18
+ip route 10.20.200.117/32 172.16.31.18
+ip route 10.20.200.118/32 172.16.31.18
+ip route 10.20.200.119/32 172.16.31.18
+ip route 10.20.200.120/32 172.16.31.18
+ip route 10.20.200.121/32 172.16.31.18
+ip route 10.20.200.122/32 172.16.31.18
+ip route 10.20.200.123/32 172.16.31.18
+ip route 10.20.200.124/32 172.16.31.18
+ip route 10.20.200.125/32 172.16.31.18
+ip route 10.20.200.126/32 172.16.31.18
+ip route 10.20.200.127/32 172.16.31.18
+ip route 10.20.200.128/32 172.16.31.18
+ip route 10.20.200.129/32 172.16.31.18
+ip route 10.20.200.130/32 172.16.31.18
+ip route 10.20.200.131/32 172.16.31.18
+ip route 10.20.200.132/32 172.16.31.18
+ip route 10.20.200.133/32 172.16.31.18
+ip route 10.20.200.134/32 172.16.31.18
+ip route 10.20.200.135/32 172.16.31.18
+ip route 10.20.200.136/32 172.16.31.18
+ip route 10.20.200.137/32 172.16.31.18
+ip route 10.20.200.138/32 172.16.31.18
+ip route 10.20.200.139/32 172.16.31.18
+ip route 10.20.200.140/32 172.16.31.18
+ip route 10.20.200.141/32 172.16.31.18
+ip route 10.20.200.142/32 172.16.31.18
+ip route 10.20.200.143/32 172.16.31.18
+ip route 10.20.200.144/32 172.16.31.18
+ip route 10.20.200.145/32 172.16.31.18
+ip route 10.20.200.146/32 172.16.31.18
+ip route 10.20.200.147/32 172.16.31.18
+ip route 10.20.200.148/32 172.16.31.18
+ip route 10.20.200.149/32 172.16.31.18
+ip route 10.20.200.150/32 172.16.31.18
+ip route 10.20.200.151/32 172.16.31.18
+ip route 10.20.200.152/32 172.16.31.18
+ip route 10.20.200.153/32 172.16.31.18
+ip route 10.20.200.154/32 172.16.31.18
+ip route 10.20.200.155/32 172.16.31.18
+ip route 10.20.200.156/32 172.16.31.18
+ip route 10.20.200.157/32 172.16.31.18
+ip route 10.20.200.158/32 172.16.31.18
+ip route 10.20.200.159/32 172.16.31.18
+ip route 10.20.200.160/32 172.16.31.18
+ip route 10.20.200.161/32 172.16.31.18
+ip route 10.20.200.162/32 172.16.31.18
+ip route 10.20.200.163/32 172.16.31.18
+ip route 10.20.200.164/32 172.16.31.18
+ip route 10.20.200.165/32 172.16.31.18
+ip route 10.20.200.166/32 172.16.31.18
+ip route 10.20.200.167/32 172.16.31.18
+ip route 10.20.200.168/32 172.16.31.18
+ip route 10.20.200.169/32 172.16.31.18
+ip route 10.20.200.170/32 172.16.31.18
+ip route 10.20.200.171/32 172.16.31.18
+ip route 10.20.200.172/32 172.16.31.18
+ip route 10.20.200.173/32 172.16.31.18
+ip route 10.20.200.174/32 172.16.31.18
+ip route 10.20.200.175/32 172.16.31.18
+ip route 10.20.200.176/32 172.16.31.18
+ip route 10.20.200.177/32 172.16.31.18
+ip route 10.20.200.178/32 172.16.31.18
+ip route 10.20.200.179/32 172.16.31.18
+ip route 10.20.200.180/32 172.16.31.18
+ip route 10.20.200.181/32 172.16.31.18
+ip route 10.20.200.182/32 172.16.31.18
+ip route 10.20.200.183/32 172.16.31.18
+ip route 10.20.200.184/32 172.16.31.18
+ip route 10.20.200.185/32 172.16.31.18
+ip route 10.20.200.186/32 172.16.31.18
+ip route 10.20.200.187/32 172.16.31.18
+ip route 10.20.200.188/32 172.16.31.18
+ip route 10.20.200.189/32 172.16.31.18
+ip route 10.20.200.190/32 172.16.31.18
+ip route 10.20.200.191/32 172.16.31.18
+ip route 10.20.200.192/32 172.16.31.18
+ip route 10.20.200.193/32 172.16.31.18
+ip route 10.20.200.194/32 172.16.31.18
+ip route 10.20.200.195/32 172.16.31.18
+ip route 10.65.10.12/32 10.79.209.73
+ip route 10.65.15.15/32 10.79.209.73
+ip route 10.65.15.16/32 10.79.209.73
+ip route 10.65.15.17/32 10.79.209.73
+ip route 10.67.10.12/32 10.79.209.73
+ip route 10.67.15.15/32 10.79.209.73
+ip route 10.67.15.16/32 10.79.209.73
+ip route 10.67.15.17/32 10.79.209.73
+ip route 10.71.0.0/18 10.79.209.73
+ip route 10.103.181.101/32 172.16.31.18
+ip route 10.118.32.0/19 10.79.209.73
+ip route 10.137.160.0/22 10.79.209.73
+ip route 10.138.72.0/21 10.79.209.73
+ip route 10.138.80.0/21 10.79.209.73
+ip route 10.138.82.3/32 10.79.209.73
+ip route 10.138.88.0/21 10.79.209.73
+ip route 10.138.98.20/32 10.79.209.73
+ip route 10.138.98.43/32 10.79.209.73
+ip route 10.138.98.49/32 10.79.209.73
+ip route 10.138.98.161/32 10.79.209.73
+ip route 10.138.99.118/32 10.79.209.73
+ip route 10.138.100.109/32 10.79.209.73
+ip route 10.139.80.5/32 10.79.209.73
+ip route 10.141.32.0/19 10.79.209.73
+ip route 10.141.192.196/32 10.79.209.73
+ip route 10.141.192.198/32 10.79.209.73
+ip route 10.141.192.199/32 10.79.209.73
+ip route 10.144.30.0/24 10.79.209.73
+ip route 10.148.128.0/21 10.79.209.73
+ip route 10.149.96.0/21 10.79.209.73
+ip route 10.152.96.0/21 10.79.209.73
+ip route 10.158.2.0/23 10.79.209.73
+ip route 10.158.6.0/23 10.79.209.73
+ip route 10.163.1.0/24 10.79.209.73
+ip route 10.164.28.0/22 10.79.209.73
+ip route 10.170.30.0/23 10.79.209.73
+ip route 10.170.34.0/24 10.79.209.73
+ip route 10.170.34.107/32 10.79.209.73
+ip route 10.170.34.114/32 10.79.209.73
+ip route 10.170.35.0/24 10.79.209.73
+ip route 10.170.36.0/24 10.79.209.73
+ip route 10.170.37.0/24 10.79.209.73
+ip route 10.170.38.0/24 10.79.209.73
+ip route 10.170.39.0/24 10.79.209.73
+ip route 10.170.40.0/24 10.79.209.73
+ip route 10.170.41.0/24 10.79.209.73
+ip route 10.170.42.0/23 10.79.209.73
+ip route 10.170.44.0/23 10.79.209.73
+ip route 10.170.46.22/32 10.79.209.73
+ip route 10.170.46.23/32 10.79.209.73
+ip route 10.170.46.59/32 10.79.209.73
+ip route 10.170.46.116/32 10.79.209.73
+ip route 10.170.47.22/32 10.79.209.73
+ip route 10.170.47.202/32 10.79.209.73
+ip route 10.170.48.0/20 10.79.209.73
+ip route 10.170.128.0/21 10.79.209.73
+ip route 10.170.144.0/23 10.79.209.73
+ip route 10.170.146.0/24 10.79.209.73
+ip route 10.170.147.0/24 10.79.209.73
+ip route 10.170.167.0/24 10.79.209.73
+ip route 10.171.255.241/32 10.79.209.73
+ip route 10.176.232.0/22 10.79.209.73
+ip route 10.177.24.0/21 10.79.209.73
+ip route 10.177.32.0/21 10.79.209.73
+ip route 10.177.33.157/32 10.79.209.73
+ip route 10.191.92.4/32 10.79.209.73
+ip route 10.194.206.36/32 10.79.209.73
+ip route 10.198.157.228/32 10.79.209.73
+ip route 10.198.158.137/32 10.79.209.73
+ip route 10.198.158.178/32 10.79.209.73
+ip route 10.198.201.0/24 10.79.209.73
+ip route 10.198.202.0/24 10.79.209.73
+ip route 10.203.100.0/24 10.79.209.73
+ip route 10.203.101.132/32 10.79.209.73
+ip route 10.203.108.0/24 10.79.209.73
+ip route 10.203.108.50/32 10.79.209.73
+ip route 10.203.108.51/32 10.79.209.73
+ip route 10.203.113.0/24 10.79.209.73
+ip route 10.204.24.164/32 10.79.209.73
+ip route 10.204.24.165/32 10.79.209.73
+ip route 10.204.29.1/32 10.79.209.73
+ip route 10.204.32.15/32 10.79.209.73
+ip route 10.204.32.75/32 10.79.209.73
+ip route 10.204.32.99/32 10.79.209.73
+ip route 10.204.32.100/32 10.79.209.73
+ip route 10.204.32.101/32 10.79.209.73
+ip route 10.204.32.102/32 10.79.209.73
+ip route 10.204.32.115/32 10.79.209.73
+ip route 10.204.34.35/32 10.79.209.73
+ip route 10.204.34.36/32 10.79.209.73
+ip route 10.204.34.111/32 10.79.209.73
+ip route 10.204.34.122/32 10.79.209.73
+ip route 10.204.34.255/32 10.79.209.73
+ip route 10.204.36.16/32 10.79.209.73
+ip route 10.204.36.17/32 10.79.209.73
+ip route 10.204.37.246/32 10.79.209.73
+ip route 10.204.37.247/32 10.79.209.73
+ip route 10.204.40.79/32 10.79.209.73
+ip route 10.204.40.99/32 10.79.209.73
+ip route 10.204.40.113/32 10.79.209.73
+ip route 10.204.40.114/32 10.79.209.73
+ip route 10.204.40.115/32 10.79.209.73
+ip route 10.204.41.81/32 10.79.209.73
+ip route 10.204.41.82/32 10.79.209.73
+ip route 10.204.41.83/32 10.79.209.73
+ip route 10.204.41.84/32 10.79.209.73
+ip route 10.204.41.85/32 10.79.209.73
+ip route 10.204.41.86/32 10.79.209.73
+ip route 10.204.41.87/32 10.79.209.73
+ip route 10.204.41.88/32 10.79.209.73
+ip route 10.204.41.89/32 10.79.209.73
+ip route 10.204.41.90/32 10.79.209.73
+ip route 10.204.41.91/32 10.79.209.73
+ip route 10.204.41.92/32 10.79.209.73
+ip route 10.204.41.93/32 10.79.209.73
+ip route 10.204.41.94/32 10.79.209.73
+ip route 10.204.41.95/32 10.79.209.73
+ip route 10.204.42.40/32 10.79.209.73
+ip route 10.204.118.13/32 172.16.31.18
+ip route 10.204.128.23/32 10.79.209.73
+ip route 10.204.196.102/32 10.79.209.73
+ip route 10.204.196.103/32 10.79.209.73
+ip route 10.204.196.105/32 10.79.209.73
+ip route 10.204.196.112/32 10.79.209.73
+ip route 10.204.214.13/32 172.16.31.18
+ip route 10.204.217.43/32 172.16.31.18
+ip route 10.204.221.76/32 172.16.31.18
+ip route 10.204.221.77/32 172.16.31.18
+ip route 10.204.223.63/32 10.79.209.73
+ip route 10.204.223.136/32 10.79.209.73
+ip route 10.204.223.137/32 10.79.209.73
+ip route 10.204.223.138/32 10.79.209.73
+ip route 10.204.223.139/32 10.79.209.73
+ip route 10.204.223.144/32 10.79.209.73
+ip route 10.204.245.12/32 172.16.31.18
+ip route 10.204.245.13/32 172.16.31.18
+ip route 10.204.245.15/32 172.16.31.18
+ip route 10.205.0.0/19 10.79.209.73
+ip route 10.205.32.0/19 10.79.209.73
+ip route 10.208.32.29/32 10.79.209.73
+ip route 10.208.34.111/32 10.79.209.73
+ip route 10.208.34.157/32 10.79.209.73
+ip route 10.208.34.197/32 10.79.209.73
+ip route 10.208.34.234/32 10.79.209.73
+ip route 10.208.34.238/32 10.79.209.73
+ip route 10.208.35.60/32 10.79.209.73
+ip route 10.208.35.61/32 10.79.209.73
+ip route 10.208.37.9/32 10.79.209.73
+ip route 10.208.80.6/32 10.79.209.73
+ip route 10.208.80.7/32 10.79.209.73
+ip route 10.208.80.8/32 10.79.209.73
+ip route 10.208.86.73/32 10.79.209.73
+ip route 10.208.86.74/32 10.79.209.73
+ip route 10.208.214.5/32 10.79.209.73
+ip route 10.209.0.0/19 10.79.209.73
+ip route 10.212.0.0/15 10.79.209.73
+ip route 10.212.37.20/32 10.79.209.73
+ip route 10.212.120.6/32 10.79.209.73
+ip route 10.212.120.7/32 10.79.209.73
+ip route 10.212.120.8/32 10.79.209.73
+ip route 10.212.223.20/32 10.79.209.73
+ip route 10.213.0.0/19 10.79.209.73
+ip route 10.223.27.126/32 10.79.209.73
+ip route 10.226.76.115/32 10.79.209.73
+ip route 10.229.44.5/32 10.79.209.73
+ip route 10.229.44.7/32 10.79.209.73
+ip route 10.231.0.0/16 10.79.209.73
+ip route 10.231.58.10/32 10.79.209.73
+ip route 10.232.0.0/16 10.79.209.73
+ip route 10.233.0.0/16 10.79.209.73
+ip route 10.234.0.0/16 10.79.209.73
+ip route 10.234.6.4/32 10.79.209.73
+ip route 10.235.0.0/16 10.79.209.73
+ip route 10.236.0.0/16 10.79.209.73
+ip route 10.237.0.0/16 10.79.209.73
+ip route 10.238.0.0/16 10.79.209.73
+ip route 10.239.0.0/16 10.79.209.73
+ip route 10.242.6.0/24 10.79.209.73
+ip route 10.242.7.136/32 10.79.209.73
+ip route 10.243.160.0/25 10.79.209.73
+ip route 10.244.62.26/32 10.79.209.73
+ip route 10.245.22.0/25 10.79.209.73
+ip route 34.193.139.199/32 172.16.31.18
+ip route 108.168.173.32/27 10.79.209.73
+ip route 108.168.173.240/28 10.79.209.73
+ip route 110.139.240.62/32 172.16.31.18
+ip route 159.8.240.16/28 10.79.209.73
+ip route 168.1.81.168/29 10.79.209.73
+ip route 168.1.142.80/28 10.79.209.73
+ip route 169.55.61.18/32 10.79.209.73
+ip route 169.56.130.160/27 10.79.209.73
+ip route 172.21.21.42/32 172.16.31.18
+ip route 172.21.21.43/32 172.16.31.18
+ip route 172.21.21.49/32 172.16.31.18
+ip route 172.22.2.0/24 172.16.31.10 name DMZ1
+ip route 174.36.250.160/29 10.79.209.73
+ip route 174.36.253.44/32 10.79.209.73
+ip route 208.43.236.160/29 10.79.209.73
+vlan 1,20,101,110-114,120,141-142,192,201,203,254,550,554,556,590,900-902,905-908,970,999,1002,1011-1012,1023,1150
+vlan 101
+  name SR-DB-SERVERS
+vlan 110
+  name SR-LAB-0
+vlan 111
+  name SR-LAB-1
+vlan 112
+  name SR-LAB-2
+vlan 113
+  name SR-LAB-3
+vlan 114
+  name SR-LAB-4
+vlan 120
+  name SR-ASA-LEGACY
+vlan 141
+  name AT&T_Fortigate_Transport
+vlan 142
+  name AT&T_Shanghai_MPLS_Transport
+vlan 192
+  name SR-DC-SERVERS
+vlan 201
+  name CP-PROD-SERVERS
+vlan 203
+  name CP-MGMT-2
+vlan 254
+  name SR-MGMT-1
+vlan 550
+  name WF_APACHE
+vlan 554
+  name WF_TOMCAT
+vlan 556
+  name WF_DB
+vlan 590
+  name AMT_CENTRAL_DB
+vlan 900
+  name ASA-L3-INET
+vlan 901
+  name ASA-L3-L2L
+vlan 902
+  name ASA-L3-RA
+vlan 905
+  name Network_Mgmt_transport_1
+vlan 906
+  name Network_Mgmt_transport_2
+vlan 907
+  name LAB_Network_Mgmt_transport_1
+vlan 908
+  name LAB_Network_Mgmt_transport_2
+vlan 970
+  name I3-GATEWAY
+vlan 999
+  name DOT1Q-NATIVE
+vlan 1002
+  name PRV02-L2-ONLY
+vlan 1011
+  name PRV11-L2-ONLY
+vlan 1012
+  name PRV12-L2-ONLY
+vlan 1023
+  name PRV23-L2-ONLY
+vlan 1150
+  name PRV150-L2-ONLY
+
+spanning-tree pathcost method long
+spanning-tree port type edge bpduguard default
+spanning-tree port type network default
+spanning-tree loopguard default
+spanning-tree vlan 1-3967 priority 4096
+ip prefix-list STATIC-TO-OSPF seq 10 permit 10.144.30.0/24 
+ip prefix-list STATIC-TO-OSPF seq 20 permit 10.149.96.0/21 
+ip prefix-list STATIC-TO-OSPF seq 30 permit 10.152.96.0/21 
+ip prefix-list STATIC-TO-OSPF seq 40 permit 10.204.34.35/32 
+ip prefix-list STATIC-TO-OSPF seq 50 permit 10.204.34.36/32 
+ip prefix-list STATIC-TO-OSPF seq 60 permit 10.204.29.1/32 
+ip prefix-list STATIC-TO-OSPF seq 70 permit 10.204.42.40/32 
+ip prefix-list STATIC-TO-OSPF seq 80 permit 10.71.0.0/18 
+ip prefix-list STATIC-TO-OSPF seq 90 permit 10.170.48.0/20 
+route-map DIRECT-TO-OSPF permit 10
+  match interface Vlan101 Vlan110 Vlan111 Vlan112 Vlan113 Vlan114 Vlan120 Vlan141 Vlan142 Vlan192 Vlan201 Vlan203 Vlan254 Vlan550 Vlan554 Vlan556 Vlan590 Vlan900 Vlan901 Vlan902 Vlan905 Vlan970 
+route-map STATIC-TO-OSPF permit 10
+  match ip address prefix-list STATIC-TO-OSPF 
+route-map STATIC-TO-OSPF deny 20
+key chain HSRP-SECURE
+  key 0
+    key-string 6 JDYk14984N31mPEValL1N8GbrCR1bzA8MhEJqvwN9Z1794vkJH5T5IxRFTQ7WHsxVf26qeXUKnq7AA==
+udld aggressive
+service dhcp
+ip dhcp relay
+ipv6 dhcp relay
+vrf context VPC-MGT
+  description VRF for VPC Keepalives
+vrf context management
+  ip route 0.0.0.0/0 10.198.208.129
+vpc domain 1
+  peer-switch
+  role priority 8192
+  system-priority 8192
+  peer-keepalive destination 169.254.0.1 source 169.254.0.0 vrf VPC-MGT
+  delay restore 150
+  peer-gateway
+  layer3 peer-router
+  auto-recovery
+lldp reinit 1
+lldp timer 5
+flow exporter SolarWinds
+  destination 10.232.124.18 use-vrf management
+  transport udp 2055
+  source mgmt0
+  dscp 10
+  version 9
+    template data timeout 1200
+    option exporter-stats timeout 1200
+    option interface-table timeout 600
+flow record SolarWinds
+  match ipv4 source address
+  match ipv4 destination address
+  match ip protocol
+  match transport source-port
+  match transport destination-port
+  collect transport tcp flags
+  collect counter bytes long
+  collect counter packets long
+  collect timestamp sys-uptime first
+  collect ip version
+flow monitor SolarWinds
+  record SolarWinds
+  exporter SolarWinds
+vlan configuration 101
+  ip igmp snooping querier 10.1.101.3
+vlan configuration 110
+  ip igmp snooping querier 10.1.110.3
+vlan configuration 111
+  ip igmp snooping querier 10.1.111.3
+vlan configuration 112
+  ip igmp snooping querier 10.1.112.3
+
+hsrp bfd all-interfaces
+
+
+interface Vlan1
+  no ip redirects
+  no ipv6 redirects
+
+interface Vlan101
+  description DB-SERVERS
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.1.101.3/24
+  no ipv6 redirects
+  ip ospf passive-interface
+  ip arp 10.1.101.216 02bf.0a01.65d8
+  hsrp version 2
+  hsrp 101 
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.1.101.1
+    ip 10.1.101.2 secondary
+
+interface Vlan110
+  description SR-LAB-0
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.1.110.3/24
+  no ipv6 redirects
+  hsrp version 2
+  hsrp 110 
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.1.110.1
+    ip 10.1.110.2 secondary
+  ip dhcp relay address 10.1.101.100 
+
+interface Vlan111
+  description SR-LAB-1
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.1.111.3/24
+  no ipv6 redirects
+  hsrp version 2
+  hsrp 111 
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.1.111.1
+    ip 10.1.111.2 secondary
+  ip dhcp relay address 10.1.101.100 
+
+interface Vlan112
+  description SR-LAB-2
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.1.112.3/24
+  no ipv6 redirects
+  hsrp version 2
+  hsrp 112 
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.1.112.1
+    ip 10.1.112.2 secondary
+  ip dhcp relay address 10.1.101.100 
+
+interface Vlan113
+  description SR-LAB-3
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.1.113.3/24
+  no ipv6 redirects
+  hsrp version 2
+  hsrp 113 
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.1.113.1
+    ip 10.1.113.2 secondary
+  ip dhcp relay address 10.1.101.100 
+
+interface Vlan114
+  description SR-LAB-4
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.1.114.3/24
+  no ipv6 redirects
+  hsrp version 2
+  hsrp 114 
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.1.114.1
+    ip 10.1.114.2 secondary
+  ip dhcp relay address 10.1.101.100 
+
+interface Vlan120
+  description SR-ASA-LEGACY
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.1.120.3/24
+  no ipv6 redirects
+  hsrp version 2
+  hsrp 120 
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.1.120.1
+    ip 10.1.120.2 secondary
+
+interface Vlan141
+  description FGT-WOKA-FW17 (AT&T Transport to WKTRUSTED VRF)
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  ip flow monitor SolarWinds input  
+  no ip redirects
+  ip address 10.79.209.76/29
+  no ipv6 redirects
+  hsrp version 2
+  hsrp 141 
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.79.209.78
+
+interface Vlan142
+  description AT&T-USWOKLWALMA01R(AT&T Shanghai MPLS)
+  no shutdown
+  ip flow monitor SolarWinds input  
+  no ip redirects
+  ip address 172.16.31.134/30
+  no ipv6 redirects
+  ip ospf message-digest-key 1 md5 7 122A2D3743050B0C0A7A
+  no ip ospf passive-interface
+  ip router ospf 99 area 0.0.0.0
+
+interface Vlan192
+  description SR-DC-SERVERS
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 192.168.0.3/22
+  no ipv6 redirects
+  hsrp version 2
+  hsrp 192 
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 192.168.0.1
+    ip 192.168.0.2 secondary
+
+interface Vlan201
+  description CP-PROD-SERVERS
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.2.101.2/24
+  no ipv6 redirects
+  no ip ospf passive-interface
+  hsrp version 2
+  hsrp 201 
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.2.101.1
+
+interface Vlan203
+  description CP-MGMT-2
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.2.253.2/24
+  no ipv6 redirects
+  hsrp version 2
+  hsrp 203 
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.2.253.1
+
+interface Vlan254
+  description SR-MGMT-1
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.1.254.7/24
+  no ipv6 redirects
+  hsrp version 2
+  hsrp 254 
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.1.254.1
+    ip 10.1.254.2 secondary
+
+interface Vlan550
+  description WF-APACHE
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.2.150.2/24
+  no ipv6 redirects
+  hsrp version 2
+  hsrp 550 
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.2.150.1
+  ip dhcp relay address 10.1.101.100 
+
+interface Vlan554
+  description WF-TOMCAT
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.2.154.2/24
+  no ipv6 redirects
+  hsrp version 2
+  hsrp 554 
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.2.154.1
+  ip dhcp relay address 10.1.101.100 
+
+interface Vlan556
+  description WF-DB
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.2.156.2/24
+  no ipv6 redirects
+  hsrp version 2
+  hsrp 556 
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.2.156.1
+  ip dhcp relay address 10.1.101.100 
+
+interface Vlan590
+  description AMT-CENTRAL-DB
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.2.190.2/24
+  no ipv6 redirects
+  hsrp version 2
+  hsrp 590 
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.2.190.1
+  ip dhcp relay address 10.1.101.100 
+
+interface Vlan900
+  description INTERNET TRANSPORT (Firepower)
+  no shutdown
+  ip flow monitor SolarWinds input  
+  no ip redirects
+  ip address 172.16.31.9/29
+  no ipv6 redirects
+  ip ospf message-digest-key 1 md5 7 013D0F400B5A5E5F70
+  no ip ospf passive-interface
+  ip ospf priority 255
+  ip router ospf 99 area 0.0.0.0
+
+interface Vlan901
+  description S2S VPN TRANSPORT (Firepower)
+  no shutdown
+  ip flow monitor SolarWinds input  
+  no ip redirects
+  ip address 172.16.31.17/29
+  no ipv6 redirects
+  ip ospf message-digest-key 1 md5 7 132B1E565B5D5C7A7A
+  no ip ospf passive-interface
+  ip ospf priority 255
+  ip router ospf 99 area 0.0.0.0
+
+interface Vlan902
+  description REMOTE ACCESS VPN TRANSPORT (ASA)
+  no shutdown
+  ip flow monitor SolarWinds input  
+  no ip redirects
+  ip address 172.16.31.25/29
+  no ipv6 redirects
+  ip ospf message-digest-key 1 md5 7 153C0248547B737479
+  no ip ospf passive-interface
+  ip ospf priority 255
+  ip router ospf 99 area 0.0.0.0
+
+interface Vlan905
+  description WA-LAN-MGMT01:Gi1/0/45
+  no shutdown
+  no ip redirects
+  ip address 10.2.0.0/31
+  no ipv6 redirects
+  ip ospf message-digest-key 1 md5 7 122A2D3743050B0C0A7A
+  ip ospf dead-interval 3
+  ip ospf hello-interval 1
+  ip ospf network point-to-point
+  no ip ospf passive-interface
+  ip router ospf 99 area 0.0.0.0
+  ip ospf bfd
+
+interface Vlan907
+  description WA-LAN-LAB-MGMT01:Gi1/0/47
+  no shutdown
+  no ip redirects
+  ip address 169.254.0.4/31
+  no ipv6 redirects
+  ip ospf message-digest-key 1 md5 7 122A2D3743050B0C0A7A
+  ip ospf dead-interval 3
+  ip ospf hello-interval 1
+  ip ospf network point-to-point
+  no ip ospf passive-interface
+  ip router ospf 99 area 0.0.0.0
+  ip ospf bfd
+
+interface Vlan970
+  description CP-I3-GATEWAY
+  no shutdown
+  bfd interval 999 min_rx 999 multiplier 3
+  no ip redirects
+  ip address 10.170.55.2/24
+  no ipv6 redirects
+  hsrp version 2
+  hsrp 970 
+    authentication md5 key-chain HSRP-SECURE
+    priority 120
+    ip 10.170.55.1
+
+interface port-channel1
+  description VPC Peer Link
+  switchport mode trunk
+  spanning-tree port type network
+  vpc peer-link
+
+interface port-channel2
+  description L3 to WA-LAN-CORE0200
+  no switchport
+  bfd interval 999 min_rx 999 multiplier 3
+  no bfd echo
+  ip flow monitor SolarWinds input  
+  no ip redirects
+  ip address 172.16.31.49/30
+  ip ospf message-digest-key 1 md5 7 120D1641470C1F
+  ip ospf network point-to-point
+  no ip ospf passive-interface
+  ip router ospf 99 area 0.0.0.0
+  ip ospf bfd
+
+interface port-channel10
+  description WA-LAN-FW-FPW0100-1
+  switchport mode trunk
+  switchport trunk allowed vlan 900
+  spanning-tree port type normal
+  spanning-tree guard root
+  vpc 10
+
+interface port-channel11
+  description WA-LAN-FW-FPW0100-2
+  switchport mode trunk
+  switchport trunk allowed vlan 900
+  spanning-tree port type normal
+  spanning-tree guard root
+  vpc 11
+
+interface port-channel12
+  description WA-LAN-FW-FPW0200-1
+  switchport mode trunk
+  switchport trunk allowed vlan 901
+  spanning-tree port type normal
+  spanning-tree guard root
+  vpc 12
+
+interface port-channel13
+  description WA-LAN-FW-FPW0200-2
+  switchport mode trunk
+  switchport trunk allowed vlan 901
+  spanning-tree port type normal
+  spanning-tree guard root
+  vpc 13
+
+interface port-channel103
+  description WA-LAN-CAB03-0100:Po103
+  switchport mode trunk
+  spanning-tree port type network
+  vpc 103
+
+interface port-channel104
+  description WA-LAN-CAB04-05-0100
+  switchport mode trunk
+  spanning-tree port type network
+  spanning-tree guard root
+  vpc 104
+
+interface port-channel106
+  description WA-LAN-CAB06-07-0100
+  switchport mode trunk
+  spanning-tree port type network
+  spanning-tree guard root
+  vpc 106
+
+interface port-channel108
+  description WA-LAN-CAB08-09-0100
+  switchport mode trunk
+  spanning-tree port type network
+  spanning-tree guard root
+  vpc 108
+
+interface port-channel110
+  description WA-LAN-CAB10-11-0100
+  switchport mode trunk
+  spanning-tree port type network
+  spanning-tree guard root
+  vpc 110
+
+interface port-channel113
+  description WA-LAN-CAB13-14-0100
+  switchport mode trunk
+  spanning-tree port type network
+  spanning-tree guard root
+  vpc 113
+
+interface port-channel115
+  description WA-LAN-CAB15-16-0100
+  switchport mode trunk
+  spanning-tree port type network
+  spanning-tree guard root
+  vpc 115
+
+interface port-channel117
+  description WA-LAN-CAB17-18-0100
+  switchport mode trunk
+  spanning-tree port type network
+  spanning-tree guard root
+  vpc 117
+
+interface port-channel119
+  description WA-LAN-CAB19-20-0100
+  switchport mode trunk
+  spanning-tree port type network
+  spanning-tree guard root
+  vpc 119
+
+interface Ethernet1/1
+  description WA-LAN-CAB04-0100:Eth1/54
+  switchport mode trunk
+  spanning-tree port type network
+  spanning-tree guard root
+  channel-group 104 mode active
+  no shutdown
+
+interface Ethernet1/2
+  description WA-LAN-CAB06-0100:Eth1/54
+  switchport mode trunk
+  spanning-tree port type network
+  spanning-tree guard root
+  channel-group 106 mode active
+  no shutdown
+
+interface Ethernet1/3
+  description WA-LAN-CAB08-0100:Eth1/54
+  switchport mode trunk
+  spanning-tree port type network
+  spanning-tree guard root
+  channel-group 108 mode active
+  no shutdown
+
+interface Ethernet1/4
+  description WA-LAN-CAB10-0100:Eth1/54
+  switchport mode trunk
+  spanning-tree port type network
+  spanning-tree guard root
+  channel-group 110 mode active
+  no shutdown
+
+interface Ethernet1/5
+  description WA-LAN-CAB13-0100:Eth1/54
+  switchport mode trunk
+  spanning-tree port type network
+  spanning-tree guard root
+  channel-group 113 mode active
+  no shutdown
+
+interface Ethernet1/6
+  description WA-LAN-CAB15-0100:Eth1/54
+  switchport mode trunk
+  spanning-tree port type network
+  spanning-tree guard root
+  channel-group 115 mode active
+  no shutdown
+
+interface Ethernet1/7
+  description WA-LAN-CAB17-0100:Eth1/54
+  switchport mode trunk
+  spanning-tree port type network
+  spanning-tree guard root
+  channel-group 117 mode active
+  no shutdown
+
+interface Ethernet1/8
+  description WA-LAN-CAB19-0100:Eth1/54
+  switchport mode trunk
+  spanning-tree port type network
+  spanning-tree guard root
+  channel-group 119 mode active
+  no shutdown
+
+interface Ethernet1/9
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+  description WA-LAN-CORE0200:Eth1/29
+  no switchport
+  channel-group 2 mode active
+  no shutdown
+
+interface Ethernet1/30
+  description WA-LAN-CORE0200:Eth1/30
+  no switchport
+  channel-group 2 mode active
+  no shutdown
+
+interface Ethernet1/31
+
+interface Ethernet1/32/1
+  description WA-LAN-FW-FPW0100-1:Eth1/11
+  lacp rate fast
+  switchport mode trunk
+  switchport trunk allowed vlan 900
+  spanning-tree port type normal
+  spanning-tree guard root
+  channel-group 10 mode active
+  no shutdown
+
+interface Ethernet1/32/2
+  description WA-LAN-FW-FPW0100-2:Eth1/11
+  lacp rate fast
+  switchport mode trunk
+  switchport trunk allowed vlan 900
+  spanning-tree port type normal
+  spanning-tree guard root
+  channel-group 11 mode active
+  no shutdown
+
+interface Ethernet1/32/3
+  description WA-LAN-FW-FPW0200-1:Eth1/11
+  lacp rate fast
+  switchport mode trunk
+  switchport trunk allowed vlan 901
+  spanning-tree port type normal
+  spanning-tree guard root
+  channel-group 12 mode active
+  no shutdown
+
+interface Ethernet1/32/4
+  description WA-LAN-FW-FPW0200-2:Eth1/11
+  lacp rate fast
+  switchport mode trunk
+  switchport trunk allowed vlan 901
+  spanning-tree port type normal
+  spanning-tree guard root
+  channel-group 13 mode active
+  no shutdown
+
+interface Ethernet1/33
+  description WA-LAN-CAB03-0100:Eth1/54
+  switchport mode trunk
+  spanning-tree port type network
+  channel-group 103 mode active
+  no shutdown
+
+interface Ethernet1/34
+  description WA-LAN-CORE0200:Eth1/33
+  no switchport
+  vrf member VPC-MGT
+  no ip redirects
+  ip address 169.254.0.0/31
+  no ipv6 redirects
+  no shutdown
+
+interface Ethernet1/35
+  description WA-LAN-CORE0200:Eth1/35
+  switchport mode trunk
+  spanning-tree port type network
+  channel-group 1 mode active
+  no shutdown
+
+interface Ethernet1/36
+  description WA-LAN-CORE0200:Eth1/36
+  switchport mode trunk
+  spanning-tree port type network
+  channel-group 1 mode active
+  no shutdown
+
+interface mgmt0
+  vrf member management
+  ip address 10.198.208.136/25
+
+interface loopback0
+  ip address 172.16.31.4/32
+  ip router ospf 99 area 0.0.0.0
+icam monitor scale
+
+cli alias name wr copy run start
+line console
+line vty
+boot nxos bootflash:/nxos64-cs.10.3.4a.M.bin 
+router ospf 99
+  bfd
+  router-id 172.16.31.4
+  redistribute direct route-map DIRECT-TO-OSPF
+  redistribute static route-map STATIC-TO-OSPF
+  log-adjacency-changes
+  area 0.0.0.0 authentication message-digest
+  timers throttle spf 10 100 5000
+  timers lsa-arrival 80
+  timers throttle lsa 10 100 5000
+  passive-interface default
+
+ip sla 1
+  icmp-echo 10.198.208.5 source-interface Vlan201
+    tag WA_to_TK_MGMT_VPN
+    frequency 5
+ip sla schedule 1 life forever start-time now
+ip sla 2
+  icmp-echo 10.198.207.34 source-interface Vlan101
+    tag WA_to_NY2_MGMT_VPN
+    frequency 5
+ip sla schedule 2 life forever start-time now
+ip sla 3
+  icmp-echo 10.198.218.34 source-interface Vlan101
+    tag WA_to_FF_MGMT_VPN
+    frequency 5
+ip sla schedule 3 life forever start-time now
+ip sla 4
+  icmp-echo 10.198.219.34 source-interface Vlan101
+    tag WA_to_SJ_MGMT_VPN
+    frequency 5
+ip sla schedule 4 life forever start-time now
+ip sla 7
+  icmp-echo 10.10.50.254 source-interface Vlan101
+    tag WA_to_NY-SB_PROD_VPN
+    frequency 5
+ip sla schedule 7 life forever start-time now
+ip sla 9
+  icmp-echo 10.82.6.10 source-interface Vlan101
+    tag WA_to_CHI_EMMI_VPN
+    frequency 5
+ip sla schedule 9 life forever start-time now
+ip sla 10
+  icmp-echo 10.25.50.254 source-interface Vlan101
+    tag WA_to_TK_PROD_VPN
+    frequency 5
+ip sla schedule 10 life forever start-time now
+logging server 10.219.2.132 use-vrf management
+logging server 10.232.124.16 use-vrf management
+logging server 10.232.124.18 use-vrf management
+logging server 10.145.248.200 use-vrf management
+logging source-interface mgmt0
+no logging console
+
+scheduler logfile size 1024
+
+
+scheduler job name backup-config
+  copy running-config tftp://10.198.208.22/Configs/Switches/$(SWITCHNAME)-cfg.$(TIMESTAMP) vrf management
+  
+end-job
+
+scheduler schedule name daily-backup
+  job name backup-config
+  time daily 01:00
