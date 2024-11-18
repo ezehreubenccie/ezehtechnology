@@ -1,6 +1,6 @@
 !Command: show running-config
-!Running configuration last done at: Thu Aug 15 20:48:51 2024
-!Time: Thu Aug 15 23:50:38 2024
+!Running configuration last done at: Fri Oct 25 00:27:40 2024
+!Time: Mon Nov 18 00:00:28 2024
 
 version 10.3(4a) Bios:version 05.47 
 license smart transport smart
@@ -337,6 +337,7 @@ ip route 10.141.192.196/32 10.79.209.73
 ip route 10.141.192.198/32 10.79.209.73
 ip route 10.141.192.199/32 10.79.209.73
 ip route 10.144.30.0/24 10.79.209.73
+ip route 10.145.248.200/32 10.79.209.73
 ip route 10.148.128.0/21 10.79.209.73
 ip route 10.149.96.0/21 10.79.209.73
 ip route 10.152.96.0/21 10.79.209.73
@@ -472,6 +473,7 @@ ip route 10.212.120.8/32 10.79.209.73
 ip route 10.212.223.20/32 10.79.209.73
 ip route 10.213.0.0/19 10.79.209.73
 ip route 10.223.27.126/32 10.79.209.73
+ip route 10.226.76.83/32 10.79.209.73
 ip route 10.226.76.115/32 10.79.209.73
 ip route 10.229.44.5/32 10.79.209.73
 ip route 10.229.44.7/32 10.79.209.73
@@ -1299,38 +1301,87 @@ router ospf 99
 ip sla 1
   icmp-echo 10.198.208.5 source-interface Vlan201
     tag WA_to_TK_MGMT_VPN
-    frequency 5
+    frequency 30
+    timeout 30000
+    threshold 30000
 ip sla schedule 1 life forever start-time now
 ip sla 2
   icmp-echo 10.198.207.34 source-interface Vlan101
     tag WA_to_NY2_MGMT_VPN
-    frequency 5
+    frequency 30
+    timeout 30000
+    threshold 30000
 ip sla schedule 2 life forever start-time now
 ip sla 3
   icmp-echo 10.198.218.34 source-interface Vlan101
     tag WA_to_FF_MGMT_VPN
-    frequency 5
+    frequency 30
+    timeout 30000
+    threshold 30000
 ip sla schedule 3 life forever start-time now
 ip sla 4
   icmp-echo 10.198.219.34 source-interface Vlan101
     tag WA_to_SJ_MGMT_VPN
-    frequency 5
+    frequency 30
+    timeout 30000
+    threshold 30000
 ip sla schedule 4 life forever start-time now
+ip sla 5
+  icmp-echo 10.15.50.101 source-interface Vlan101
+    tag WA_to_SJ_PROD_VPN
+    frequency 30
+    timeout 30000
+    threshold 30000
+ip sla schedule 5 life forever start-time now
+ip sla 6
+  icmp-echo 10.30.50.101 source-interface Vlan101
+    tag WA_to_FF_PROD_VPN
+    frequency 30
+    timeout 30000
+    threshold 30000
+ip sla schedule 6 life forever start-time now
 ip sla 7
-  icmp-echo 10.10.50.254 source-interface Vlan101
+  icmp-echo 10.10.50.101 source-interface Vlan101
     tag WA_to_NY-SB_PROD_VPN
-    frequency 5
+    frequency 30
+    timeout 30000
+    threshold 30000
 ip sla schedule 7 life forever start-time now
+ip sla 8
+  icmp-echo 10.20.50.101 source-interface Vlan101
+    tag WA_to_NY2_PROD_VPN
+    frequency 30
+    timeout 30000
+    threshold 30000
+ip sla schedule 8 life forever start-time now
 ip sla 9
   icmp-echo 10.82.6.10 source-interface Vlan101
     tag WA_to_CHI_EMMI_VPN
-    frequency 5
+    frequency 30
+    timeout 30000
+    threshold 30000
 ip sla schedule 9 life forever start-time now
 ip sla 10
   icmp-echo 10.25.50.254 source-interface Vlan101
     tag WA_to_TK_PROD_VPN
-    frequency 5
+    frequency 30
+    timeout 30000
+    threshold 30000
 ip sla schedule 10 life forever start-time now
+ip sla 11
+  icmp-echo 10.103.181.118 source-interface Vlan101
+    tag WA_to_CLR_DATA_WEST_1
+    frequency 30
+    timeout 30000
+    threshold 30000
+ip sla schedule 11 life forever start-time now
+ip sla 12
+  icmp-echo 10.133.8.76 source-interface Vlan101
+    tag WA_to_CLR_DATA_EAST_1
+    frequency 30
+    timeout 30000
+    threshold 30000
+ip sla schedule 12 life forever start-time now
 logging server 10.219.2.132 use-vrf management
 logging server 10.232.124.16 use-vrf management
 logging server 10.232.124.18 use-vrf management
