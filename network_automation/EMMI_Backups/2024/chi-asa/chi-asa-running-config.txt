@@ -87,6 +87,7 @@ interface GigabitEthernet0/6
  no ip address
 !
 interface GigabitEthernet0/6.200
+ shutdown
  vlan 200
  nameif external
  security-level 0
@@ -8084,6 +8085,11 @@ nat (any,any) source static n-GP-RFC-1918 n-GP-RFC-1918 destination static n-GP-
 nat (p2p_comcast,p2p_comcast) source static n-10.82.0.192-28 n-10.82.0.192-28 destination static n-10.82.0.192-28 n-10.82.0.192-28 no-proxy-arp
 nat (p2p_comcast,p2p_comcast) source static n-10.82.14.0-24 n-10.82.14.0-24 destination static n-10.82.14.0-24 n-10.82.14.0-24 no-proxy-arp
 nat (p2p_comcast,p2p_comcast) source static n-10.82.8.0-24 n-10.82.8.0-24 destination static n-10.82.8.0-24 n-10.82.8.0-24 no-proxy-arp
+nat (p2p_comcast,p2p_comcast) source dynamic n-10.82.0.192-28 interface description "pool_enrollment"
+nat (p2p_comcast,p2p_comcast) source dynamic n-10.82.8.0-24 interface description "pool_fredtest"
+nat (p2p_comcast,p2p_comcast) source dynamic n-10.82.14.0-24 interface description "pool_emmi"
+nat (any,p2p_comcast) source dynamic n-GP-RFC-1918 interface
+nat (any,p2p_comcast) source static n-GP-RFC-1918 n-GP-RFC-1918 destination static n-GP-RFC-1918 n-GP-RFC-1918 no-proxy-arp
 !
 object network net-chi-dmz_old
  nat (any,external) dynamic ext-104.129.79.1
@@ -8135,9 +8141,6 @@ object network hst-chi-sentinel
  nat (vlan_corp_servers,external) static ext-104.129.79.32 no-proxy-arp
 !
 nat (p2p_comcast,p2p_comcast) after-auto source dynamic n-GP-RFC-1918 interface
-nat (p2p_comcast,p2p_comcast) after-auto source dynamic n-10.82.0.192-28 interface description "pool_enrollment"
-nat (p2p_comcast,p2p_comcast) after-auto source dynamic n-10.82.14.0-24 interface description "pool_emmi"
-nat (p2p_comcast,p2p_comcast) after-auto source dynamic n-10.82.8.0-24 interface description "pool_fredtest"
 access-group external_in in interface external
 access-group p2p_comcast_in in interface p2p_comcast
 access-group vlan_corp_servers_in in interface vlan_corp_servers
@@ -9318,5 +9321,5 @@ privilege clear level 3 mode configure command aaa-server
 prompt hostname context 
 no call-home reporting anonymous
 hpm topN enable
-Cryptochecksum:6bb763c9771f95d7f513020b97cfec4b
+Cryptochecksum:ffba9b4afec8b0c483293616b6c08312
 : end
