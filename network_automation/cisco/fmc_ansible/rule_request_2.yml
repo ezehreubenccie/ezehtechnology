@@ -17,7 +17,7 @@
         path_params: 
           domainUUID: "{{ domain[0].uuid }}"
         query_params:
-          name: "{{ access_policy_name }}"
+          name: "{{ access_policy_name_fc }}"
           # filter: "nameOrValue:TEST"
           offset: "{{ offset }}"
           limit: "{{ limit }}"
@@ -75,11 +75,11 @@
       set_fact:
         access_rule_id: "{{ item.id }}"
         access_rule_name: "{{ item.name }}"
-      when: item.name == rule_name
+      when: item.name == rule_name_fc
       loop: "{{ access_rule }}"
       loop_control: 
         label: "{{ item.name }}"
-        # pause: 0.5
+        #pause: 0.5
       tags: enable,disable
 
 
@@ -88,17 +88,17 @@
       cisco.fmcansible.fmc_configuration:
         operation: "updateAccessRule"
         data:
-            action: ALLOW
-            enabled: False
-            type: AccessRule
-            id: "{{ access_rule_id }}"
-            newComments: ['{{ comments }} - Disable']
+          action: ALLOW
+          enabled: False
+          type: AccessRule
+          id: "{{ access_rule_id }}"
+          newComments: ['{{ comments_fc }} - Disable']
         path_params:
-            objectId: "{{ access_rule_id}}"
-            containerUUID: "{{ pol_id }}"
-            domainUUID: "{{ domain[0].uuid }}"
+          objectId: "{{ access_rule_id}}"
+          containerUUID: "{{ pol_id }}"
+          domainUUID: "{{ domain[0].uuid }}"
         query_params:
-            partialUpdate: True
+          partialUpdate: True
       tags: disable
 
       
@@ -106,17 +106,17 @@
       cisco.fmcansible.fmc_configuration:
         operation: "updateAccessRule"
         data:
-            action: ALLOW
-            enabled: True
-            type: AccessRule
-            id: "{{ access_rule_id }}"
-            newComments: ['{{ comments }} - Enable']
+          action: ALLOW
+          enabled: True
+          type: AccessRule
+          id: "{{ access_rule_id }}"
+          newComments: ['{{ comments_fc }} - Enable']
         path_params:
-            objectId: "{{ access_rule_id}}"
-            containerUUID: "{{ pol_id }}"
-            domainUUID: "{{ domain[0].uuid }}"
+          objectId: "{{ access_rule_id}}"
+          containerUUID: "{{ pol_id }}"
+          domainUUID: "{{ domain[0].uuid }}"
         query_params:
-            partialUpdate: True
+          partialUpdate: True
       tags: enable
 
     
@@ -136,7 +136,7 @@
     #   tags: enable,disable,deploy
 
     - debug:
-        var: target_dev
+        var: target_dev_fc
       tags: enable,disable,deploy
 
     - name: "TASK 12: EXTRACT DEPLOYABLE DEVICES"
@@ -147,7 +147,7 @@
         label: "{{ item.device.name }}"
         pause: 0.5
       register: tagt_dev
-      when: "item.device.name == target_dev"
+      when: "item.device.name == target_dev_fc"
       tags: enable,disable,deploy
 
     # - debug:
@@ -170,7 +170,7 @@
       loop_control: 
         label: "{{ item.device.name }}: {{ item.device.id }}"
         pause: 0.5
-      when: item.device.name == target_dev
+      when: item.device.name == target_dev_fc
       tags: enable,disable,deploy
 
     
@@ -196,7 +196,7 @@
       loop_control: 
         label: "{{ item.device.name }}: {{ item.device.id }}"
         pause: 0.5
-      when: item.device.name == target_dev
+      when: item.device.name == target_dev_fc
       tags: enable,disable,deploy
 
     - name: "TASK 17: Poll deployment status until the job is finished"
@@ -213,7 +213,7 @@
       loop_control: 
         label: "{{ item.device.name }}: {{ item.device.id }}"
         pause: 0.5
-      when: item.device.name == target_dev
+      when: item.device.name == target_dev_fc
       tags: enable,disable,deploy
 
 
