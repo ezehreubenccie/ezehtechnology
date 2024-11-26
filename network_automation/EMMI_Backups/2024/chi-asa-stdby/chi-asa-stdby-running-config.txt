@@ -5838,6 +5838,12 @@ object-group network n-10.82.14.0-24
  network-object 10.82.14.0 255.255.255.0
 object-group network n-10.82.8.0-24
  network-object 10.82.8.0 255.255.255.0
+object-group network DM_INLINE_NETWORK_11
+ network-object host 172.21.21.181
+ network-object host 172.21.21.191
+object-group service DM_INLINE_TCP_5 tcp
+ port-object eq www
+ port-object eq https
 access-list crypto_wa_b2b extended permit ip object net-chi-corp_servers_old object net-wal-10.1.101.0 
 access-list crypto_wa_b2b extended permit ip object net-chi-chicago object net-wal-10.1.101.0 
 access-list crypto_wa_b2b extended permit ip object net-chi-dev_old object net-wal-10.1.101.0 
@@ -6572,6 +6578,8 @@ access-list vpn_dap_sysadmin extended permit ip object rng-chi-vpn_emmi host 172
 access-list vpn_dap_sysadmin remark fred temp
 access-list vpn_dap_sysadmin extended permit ip object rng-chi-vpn_emmi host 172.21.25.14 
 access-list vpn_dap_sysadmin extended permit ip object rng-chi-vpn_emmi object-group grp-eat-cl-proxy-test 
+access-list vpn_dap_sysadmin remark RITM1403573 - Reuben E
+access-list vpn_dap_sysadmin extended permit tcp object rng-chi-vpn_emmi object-group DM_INLINE_NETWORK_11 object-group DM_INLINE_TCP_5 inactive 
 access-list vpn_dap_enrollment extended deny ip object rng-chi-vpn_emmi object-group blocked 
 access-list vpn_dap_enrollment extended permit icmp object rng-chi-vpn_emmi any 
 access-list vpn_dap_enrollment extended permit object-group AD-Domain object rng-chi-vpn_emmi object-group Corp_Domain_Controllers 
@@ -8168,6 +8176,20 @@ access-group vlan_rc_db_in in interface vlan_rc_db
 access-group vlan_load_legacy_in in interface vlan_load_legacy
 access-group vlan_load_db_in in interface vlan_load_db
 access-group p2p_corpedge_in in interface p2p_corpedge
+!
+prefix-list ALLOW description expected_Azure_routes
+prefix-list ALLOW seq 5 permit 10.141.80.0/21 le 32
+prefix-list ALLOW seq 10 permit 10.141.88.0/21 le 32
+prefix-list ALLOW seq 20 permit 10.141.104.0/21 le 32
+prefix-list ALLOW seq 30 permit 10.141.136.0/22 le 32
+prefix-list ALLOW seq 40 permit 10.141.140.0/22 le 32
+prefix-list ALLOW seq 50 permit 172.30.209.0/25 le 32
+!
+!
+route-map ALLOW_EXPECTED_AZURE_SUBNETS permit 10
+ match ip address prefix-list ALLOW
+
+!
 router bgp 65514
  bgp log-neighbor-changes
  bgp graceful-restart
@@ -9324,5 +9346,5 @@ privilege clear level 3 mode configure command aaa-server
 prompt hostname context 
 no call-home reporting anonymous
 hpm topN enable
-Cryptochecksum:23d74051ecf6d0f2fd28d9c604605b02
+Cryptochecksum:6dfdae4b65cfe79e24dbdc6b372645a3
 : end
