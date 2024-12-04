@@ -6579,7 +6579,7 @@ access-list vpn_dap_sysadmin remark fred temp
 access-list vpn_dap_sysadmin extended permit ip object rng-chi-vpn_emmi host 172.21.25.14 
 access-list vpn_dap_sysadmin extended permit ip object rng-chi-vpn_emmi object-group grp-eat-cl-proxy-test 
 access-list vpn_dap_sysadmin remark RITM1403573 - Reuben E
-access-list vpn_dap_sysadmin extended permit tcp object rng-chi-vpn_emmi object-group DM_INLINE_NETWORK_11 object-group DM_INLINE_TCP_5 inactive 
+access-list vpn_dap_sysadmin extended permit tcp object rng-chi-vpn_emmi object-group DM_INLINE_NETWORK_11 object-group DM_INLINE_TCP_5 
 access-list vpn_dap_enrollment extended deny ip object rng-chi-vpn_emmi object-group blocked 
 access-list vpn_dap_enrollment extended permit icmp object rng-chi-vpn_emmi any 
 access-list vpn_dap_enrollment extended permit object-group AD-Domain object rng-chi-vpn_emmi object-group Corp_Domain_Controllers 
@@ -9346,5 +9346,5 @@ privilege clear level 3 mode configure command aaa-server
 prompt hostname context 
 no call-home reporting anonymous
 hpm topN enable
-Cryptochecksum:6dfdae4b65cfe79e24dbdc6b372645a3
+Cryptochecksum:d1691d27f150d8a6880108843a748d72
 : end
