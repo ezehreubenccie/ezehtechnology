@@ -1,7 +1,7 @@
 : Saved
 
 : 
-: Serial Number: FCH2238758H
+: Serial Number: FCH223875ZU
 : Hardware:   ASA5525, 8192 MB RAM, CPU Lynnfield 2400 MHz, 1 CPU (4 cores)
 :
 ASA Version 9.12(4)67 
@@ -3839,10 +3839,10 @@ no logging message 302020
 flow-export destination inside 10.1.101.69 5567
 flow-export active refresh-interval 5
 mtu outside 1500
-mtu inside 1500
 mtu sentinel_logging 1500
+mtu inside 1500
 failover
-failover lan unit secondary
+failover lan unit primary
 failover lan interface FAILOVER GigabitEthernet0/3
 failover link FAILOVER GigabitEthernet0/3
 failover interface ip FAILOVER 10.8.0.9 255.255.255.252 standby 10.8.0.10
@@ -5184,5 +5184,5 @@ call-home
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
 hpm topN enable
-Cryptochecksum:7c003ae88bd5746e32e8c6528dc1e982
+Cryptochecksum:c63f75bf0fd999e2450ae2ee2e1043c5
 : end
