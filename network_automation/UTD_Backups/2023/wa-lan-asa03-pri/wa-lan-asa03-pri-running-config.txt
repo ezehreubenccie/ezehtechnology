@@ -4631,6 +4631,8 @@ dhcprelay timeout 60
 threat-detection basic-threat
 threat-detection scanning-threat shun except ip-address 10.2.250.0 255.255.254.0
 threat-detection scanning-threat shun except ip-address 10.1.101.0 255.255.255.0
+threat-detection scanning-threat shun except ip-address 172.16.31.24 255.255.255.248
+threat-detection scanning-threat shun except ip-address 10.1.120.0 255.255.255.0
 threat-detection scanning-threat shun duration 3600
 threat-detection statistics
 threat-detection statistics tcp-intercept rate-interval 30 burst-rate 400 average-rate 200
@@ -5184,5 +5186,5 @@ call-home
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
 hpm topN enable
-Cryptochecksum:c63f75bf0fd999e2450ae2ee2e1043c5
+Cryptochecksum:f906ce449486495e6d9fa4f885f83162
 : end

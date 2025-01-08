@@ -4993,7 +4993,6 @@ logging timestamp
 logging emblem
 logging buffer-size 65535
 logging asdm-buffer-size 512
-logging console debugging
 logging buffered informational
 logging trap informational
 logging asdm informational
@@ -5487,5 +5486,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname priority state 
 no call-home reporting anonymous
-Cryptochecksum:15781a71c0ec0440b2bc9741551165c6
+Cryptochecksum:04c45762b8ce79728b48757a6e22e4ad
 : end
