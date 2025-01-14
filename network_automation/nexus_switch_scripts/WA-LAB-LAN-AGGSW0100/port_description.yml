@@ -1,0 +1,18 @@
+---
+# descr: "Test Configuration by Ansible"
+
+port_config:
+  - descr: Lab Test LTMs
+    name: Ethernet1/33
+    vlan_id: "{{ vlans | selectattr('vlan_name', 'equalto', 'vlan_119') | map(attribute='vlan_id') | first }}"
+  - descr: Lab Test LTMs
+    name: Ethernet1/34
+    vlan_id: "{{ vlans | selectattr('vlan_id', 'equalto', 120) | map(attribute='vlan_id') | first }}"
+  # - descr: DECOM
+  #   name: Ethernet1/15
+
+vlans:
+  - vlan_name: "vlan_119"
+    vlan_id: 119
+  - vlan_name: "vlan_120"
+    vlan_id: 120

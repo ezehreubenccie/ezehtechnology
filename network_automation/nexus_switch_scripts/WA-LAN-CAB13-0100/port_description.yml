@@ -1,0 +1,12 @@
+---
+# descr: "Test Configuration by Ansible"
+
+port_config:
+  - descr: Lab Test LTMs
+    name: Ethernet1/45
+    vlan_id: 111
+  - descr: Lab Test LTMs
+    name: Ethernet1/46
+    vlan_id: 111
+  # - descr: DECOM
+  #   name: Ethernet1/15
