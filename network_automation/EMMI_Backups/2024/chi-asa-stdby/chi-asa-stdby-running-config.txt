@@ -1731,6 +1731,12 @@ object network object_any
  subnet 0.0.0.0 0.0.0.0
 object network hst-chi-securemail
  host 192.168.100.51
+object network load_perf
+ host 10.141.101.47
+object network QA
+ host 10.141.94.10
+object network RC
+ host 10.141.110.10
 object-group network azr_j2c_prod
  network-object object net-azr-j2c_ite
  network-object object net-azr-j2c_prod
@@ -5844,6 +5850,19 @@ object-group network DM_INLINE_NETWORK_11
 object-group service DM_INLINE_TCP_5 tcp
  port-object eq www
  port-object eq https
+object-group network Azure_kubernetes_cluster
+ network-object object QA
+ network-object object RC
+ network-object object load_perf
+object-group service DM_INLINE_SERVICE_2
+ service-object object svc-http 
+ service-object object svc-https 
+object-group service DM_INLINE_SERVICE_3
+ service-object object svc-http 
+ service-object object svc-https 
+object-group service DM_INLINE_SERVICE_4
+ service-object object svc-http 
+ service-object object svc-https 
 access-list crypto_wa_b2b extended permit ip object net-chi-corp_servers_old object net-wal-10.1.101.0 
 access-list crypto_wa_b2b extended permit ip object net-chi-chicago object net-wal-10.1.101.0 
 access-list crypto_wa_b2b extended permit ip object net-chi-dev_old object net-wal-10.1.101.0 
@@ -6427,6 +6446,8 @@ access-list vpn_dap_technology_dept remark Y.A 3.5.24 CECR 5390
 access-list vpn_dap_technology_dept remark Y.A 3.5.24 CECR 5411
 access-list vpn_dap_technology_dept remark Y.A 3-12-24 CECR-5423
 access-list vpn_dap_technology_dept extended permit tcp object rng-chi-vpn_emmi object Azure_Coverity_2 object-group DM_INLINE_TCP_3 
+access-list vpn_dap_technology_dept remark CECR-7118 Reuben E
+access-list vpn_dap_technology_dept extended permit object-group DM_INLINE_SERVICE_4 object rng-chi-vpn_emmi object-group Azure_kubernetes_cluster inactive 
 access-list vpn_dap_technology_dept remark fredtest
 access-list vpn_dap_technology_dept extended permit ip any host 10.82.2.208 
 access-list vlan_load_db_in extended deny ip object net-chi-load_db object-group blocked 
@@ -7590,6 +7611,8 @@ access-list vpn_dap_cetech extended permit object-group web_common object rng-ch
 access-list vpn_dap_cetech remark emsre-2147
 access-list vpn_dap_cetech extended permit object-group web_common object rng-chi-vpn_emmi host 10.141.117.44 
 access-list vpn_dap_cetech extended permit object-group web_common object rng-chi-vpn_emmi host 10.141.125.44 
+access-list vpn_dap_cetech remark CECR-7118 Reuben E
+access-list vpn_dap_cetech extended permit object-group DM_INLINE_SERVICE_3 object rng-chi-vpn_emmi object-group Azure_kubernetes_cluster inactive 
 access-list vpn_dap_ce extended deny ip object rng-chi-vpn_emmi object-group blocked 
 access-list vpn_dap_ce extended permit icmp object rng-chi-vpn_emmi any4 
 access-list vpn_dap_ce extended permit ip object rng-chi-vpn_emmi object-group Internet 
@@ -7671,6 +7694,8 @@ access-list vpn_dap_ce extended permit object svc-ms-sql-s object rng-chi-vpn_em
 access-list vpn_dap_ce extended permit object-group web_common object rng-chi-vpn_emmi object hst-azr-clientmanager 
 access-list vpn_dap_ce extended permit object-group web_common object rng-chi-vpn_emmi host 10.141.127.44 
 access-list vpn_dap_ce extended permit object svc-ssh object rng-chi-vpn_emmi object hst-eat-emmi-ite-ft1.emmilab.com 
+access-list vpn_dap_ce remark CECR-7118 Reuben E
+access-list vpn_dap_ce extended permit object-group DM_INLINE_SERVICE_2 object rng-chi-vpn_emmi object-group Azure_kubernetes_cluster inactive 
 access-list p2p_comcast_in extended deny ip object-group blocked any 
 access-list p2p_comcast_in extended permit icmp any any echo-reply 
 access-list p2p_comcast_in extended permit icmp any any unreachable 
@@ -9346,5 +9371,5 @@ privilege clear level 3 mode configure command aaa-server
 prompt hostname context 
 no call-home reporting anonymous
 hpm topN enable
-Cryptochecksum:d1691d27f150d8a6880108843a748d72
+Cryptochecksum:dd2c03cf401a4f39d183c7050fe9cb6b
 : end
