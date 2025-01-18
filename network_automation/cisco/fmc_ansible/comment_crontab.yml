@@ -1,0 +1,32 @@
+---
+- name: Comment lines in crontab based on a pattern
+  hosts: localhost
+  # become: true
+  gather_facts: true
+
+  vars:
+    pattern: "ansible-playbook rule_request.yml --vault-password-file nothing.sh --tags enable"
+  tasks:
+    - name: Backup the current crontab
+      shell: crontab -l > /tmp/crontab_backup_{{ ansible_date_time.iso8601 }}.bak
+
+    - name: Get the current crontab
+      shell: crontab -l
+      register: current_crontab
+
+    - name: Modify the crontab to comment lines matching the pattern
+      copy:
+        content: |
+          {% for line in current_crontab.stdout_lines %}
+          {% if pattern in line %}
+          # {{ line }}
+          {% else %}
+          {{ line }}
+          {% endif %}
+          {% endfor %}
+        dest: /tmp/updated_crontab
+
+    - name: Apply the modified crontab
+      shell: crontab /tmp/updated_crontab
+      # args:
+      #   warn: false
