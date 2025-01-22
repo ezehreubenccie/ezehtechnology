@@ -8070,6 +8070,7 @@ asdm history enable
 arp timeout 14400
 no arp permit-nonconnected
 arp rate-limit 16384
+nat (any,external) source static rng-chi-vpn_emmi nat-chi-users_to_eat destination static eat_remote eat_remote
 nat (vlan_corp_servers,any) source static chicago_nets chicago_nets destination static azr_j2c azr_j2c no-proxy-arp route-lookup
 nat (any,external) source dynamic net-chi-users nat-10.82.9.100 destination static net-wal-10.1.114.0 net-wal-10.1.114.0
 nat (any,external) source dynamic net-chi-users nat-10.82.9.100 destination static hst-wal-secretserver01d.utd.com hst-wal-secretserver01d.utd.com
@@ -8116,7 +8117,6 @@ nat (external,external) source dynamic rng-chi-vpn_emmi ext-104.129.79.1 destina
 nat (external,external) source dynamic rng-chi-vpn_emmi ext-104.129.79.1 destination static ext-104.129.79.203 ext-104.129.79.203 description hdreq-13178
 nat (external,external) source dynamic rng-chi-vpn_emmi ext-104.129.79.1 destination static ext-104.129.79.204 ext-104.129.79.204 description hdreq-13178
 nat (vlan_corp_servers,external) source static 10.82.2.226 ext-104.129.79.226 no-proxy-arp description IS-7476
-nat (any,any) source static n-GP-RFC-1918 n-GP-RFC-1918 destination static n-GP-RFC-1918 n-GP-RFC-1918 no-proxy-arp
 nat (p2p_comcast,p2p_comcast) source static n-10.82.0.192-28 n-10.82.0.192-28 destination static n-10.82.0.192-28 n-10.82.0.192-28 no-proxy-arp
 nat (p2p_comcast,p2p_comcast) source static n-10.82.14.0-24 n-10.82.14.0-24 destination static n-10.82.14.0-24 n-10.82.14.0-24 no-proxy-arp
 nat (p2p_comcast,p2p_comcast) source static n-10.82.8.0-24 n-10.82.8.0-24 destination static n-10.82.8.0-24 n-10.82.8.0-24 no-proxy-arp
@@ -8125,6 +8125,7 @@ nat (p2p_comcast,p2p_comcast) source dynamic n-10.82.8.0-24 interface descriptio
 nat (p2p_comcast,p2p_comcast) source dynamic n-10.82.14.0-24 interface description "pool_emmi"
 nat (any,p2p_comcast) source dynamic n-GP-RFC-1918 interface
 nat (any,p2p_comcast) source static n-GP-RFC-1918 n-GP-RFC-1918 destination static n-GP-RFC-1918 n-GP-RFC-1918 no-proxy-arp
+nat (any,any) source static n-GP-RFC-1918 n-GP-RFC-1918 destination static n-GP-RFC-1918 n-GP-RFC-1918 no-proxy-arp
 !
 object network net-chi-dmz_old
  nat (any,external) dynamic ext-104.129.79.1
@@ -8500,7 +8501,6 @@ crypto map external_map2 1 match address external_cryptomap
 crypto map external_map2 1 set pfs group2
 crypto map external_map2 1 set peer 69.2.37.220 
 crypto map external_map2 1 set ikev1 transform-set ESP-AES-128-SHA ESP-AES-128-MD5 ESP-AES-192-SHA ESP-AES-192-MD5 ESP-AES-256-SHA ESP-AES-256-MD5 ESP-3DES-SHA ESP-3DES-MD5 ESP-DES-SHA ESP-DES-MD5
-crypto map external_map2 1 set reverse-route
 crypto map external_map2 2 match address crypto_wa_b2b
 crypto map external_map2 2 set peer 198.52.89.254 
 crypto map external_map2 2 set ikev2 ipsec-proposal AES-256-SHA-256
@@ -9031,8 +9031,8 @@ threat-detection scanning-threat shun except ip-address net-corp_servers_old 255
 threat-detection scanning-threat shun except ip-address 10.12.0.0 255.255.128.0
 threat-detection scanning-threat shun except ip-address 192.168.201.0 255.255.255.0
 threat-detection scanning-threat shun except ip-address 10.82.64.0 255.255.192.0
-threat-detection scanning-threat shun except ip-address 172.21.0.0 255.255.0.0
 threat-detection scanning-threat shun except ip-address 45.31.163.93 255.255.255.255
+threat-detection scanning-threat shun except ip-address 172.21.0.0 255.255.0.0
 threat-detection statistics
 threat-detection statistics tcp-intercept rate-interval 30 burst-rate 400 average-rate 200
 ntp server chicagodc01 prefer
@@ -9373,5 +9373,5 @@ privilege clear level 3 mode configure command aaa-server
 prompt hostname context 
 no call-home reporting anonymous
 hpm topN enable
-Cryptochecksum:a5451b4a3fe29fe592391c6f96cadcdf
+Cryptochecksum:7d3d55bfc5c5d90cba19190a7e3bc162
 : end
