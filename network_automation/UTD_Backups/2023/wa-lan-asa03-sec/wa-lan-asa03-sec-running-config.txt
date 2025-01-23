@@ -91,15 +91,36 @@ interface Port-channel1
  ospf priority 0
  ospf message-digest-key 1 md5 *****
 !
-banner exec  
-banner exec  * * * AUTHORIZED ACCESS ONLY * * *
-banner exec 
-banner exec Individuals using this system with or without proper authority
-banner exec are subject to having all of their activities on this system
-banner exec monitored and recorded.  Anyone using this system expressly
-banner exec consents to such monitoring and to all appropriate disclosure
-banner exec of any evidence of violation of the Firm's rules including,
-banner exec but not limited to, criminal activity.
+banner login ************************* WARNING ***************************
+banner login * THIS SYSTEM IS FOR THE USE OF AUTHORIZED PERSONNEL ONLY!  *
+banner login * ACCESS IS RESTRICTED TO AUTHORIZED USERS ONLY!            *
+banner login * UNAUTHORIZED ACCESS IS A VIOLATION OF STATE AND FEDERAL,  *
+banner login * CIVIL AND CRIMINAL LAWS.  VIOLATORS WILL BE PROSECUTED.   *
+banner login * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *
+banner login 
+banner login * ALL ACTIVITY ON THIS COMPUTER SYSTEM IS MONITORED BY      *
+banner login * SYSTEM SECURITY PERSONNEL. BY USING THIS COMPUTER SYSTEM  *
+banner login * YOU CONSENT TO THIS MONITORING. INDIVIDUALS DETERMINED TO *
+banner login * BE USING THIS COMPUTER NETWORK SYSTEM WITHOUT PROPER      *
+banner login * AUTHORIZATION, OR IN EXCESS OF THEIR AUTHORIZATION MAY    *
+banner login * HAVE THEIR ACTIVITY RECORD SUBMITTED TO LEGAL AUTHORITIES *
+banner login * AND LEGAL AND CRIMINAL CHARGES MAY FOLLOW.                *
+banner login *************************************************************
+banner motd  ************************* WARNING ***************************
+banner motd  * THIS SYSTEM IS FOR THE USE OF AUTHORIZED PERSONNEL ONLY!  *
+banner motd  * ACCESS IS RESTRICTED TO AUTHORIZED USERS ONLY!            *
+banner motd  * UNAUTHORIZED ACCESS IS A VIOLATION OF STATE AND FEDERAL,  *
+banner motd  * CIVIL AND CRIMINAL LAWS.  VIOLATORS WILL BE PROSECUTED.   *
+banner motd  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *
+banner motd  
+banner motd  * ALL ACTIVITY ON THIS COMPUTER SYSTEM IS MONITORED BY      *
+banner motd  * SYSTEM SECURITY PERSONNEL. BY USING THIS COMPUTER SYSTEM  *
+banner motd  * YOU CONSENT TO THIS MONITORING. INDIVIDUALS DETERMINED TO *
+banner motd  * BE USING THIS COMPUTER NETWORK SYSTEM WITHOUT PROPER      *
+banner motd  * AUTHORIZATION, OR IN EXCESS OF THEIR AUTHORIZATION MAY    *
+banner motd  * HAVE THEIR ACTIVITY RECORD SUBMITTED TO LEGAL AUTHORITIES *
+banner motd  * AND LEGAL AND CRIMINAL CHARGES MAY FOLLOW.                *
+banner motd  *************************************************************
 banner asdm  
 banner asdm  * * * AUTHORIZED ACCESS ONLY * * *
 banner asdm 
@@ -3998,7 +4019,8 @@ aaa authorization command ISE-TACACS LOCAL
 aaa authorization exec authentication-server auto-enable
 aaa authentication login-history
 http server enable 8443
-http server session-timeout 60
+http server idle-timeout 5
+http server session-timeout 30
 http 10.0.0.0 255.0.0.0 inside
 snmp-server group WKSNMPGROUP v3 priv 
 snmp-server user WKUTDSNMP WKSNMPGROUP v3 engineID 80000009fee598527bfcaa0f4ae397fcbaa3a12f8755465639 encrypted auth sha b8:f4:c8:0d:f8:ea:cc:b0:9f:aa:99:ce:76:d1:19:b0:2e:c2:e8:c4 priv aes 128 ee:8e:04:4d:84:ed:4c:6b:5c:1a:dc:36:09:53:24:75 
@@ -4618,11 +4640,11 @@ crypto ca certificate chain sra_2025
   quit
 telnet timeout 5
 no ssh stricthostkeycheck
-ssh timeout 30
+ssh timeout 5
 ssh version 2
 ssh key-exchange group dh-group1-sha1
 ssh 10.0.0.0 255.0.0.0 inside
-console timeout 15
+console timeout 5
 management-access inside
 no vpn-addr-assign aaa
 no vpn-addr-assign dhcp
@@ -4670,6 +4692,7 @@ webvpn
  hostscan data-limit 10000
 group-policy sra_japan_salesteam internal
 group-policy sra_japan_salesteam attributes
+ vpn-session-timeout 1440
  split-tunnel-policy tunnelspecified
  split-tunnel-network-list value acl-split-tunnel4-Japan
  split-tunnel-all-dns disable
@@ -4690,6 +4713,7 @@ group-policy DfltGrpPolicy attributes
  banner value 
  banner value but not limited to, criminal activity.
  dns-server value 10.2.101.100 10.1.101.100
+ vpn-session-timeout 1440
  vpn-tunnel-protocol ssl-client 
  group-lock value DefaultWEBVPNGroup
  split-tunnel-policy tunnelspecified
@@ -4715,6 +4739,7 @@ group-policy grp_policy_sra_qa attributes
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
  banner value 
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-qa
 group-policy grp_policy_sra_acquia internal
 group-policy grp_policy_sra_acquia attributes
@@ -4728,6 +4753,7 @@ group-policy grp_policy_sra_acquia attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-acquia
  split-tunnel-policy tunnelspecified
  split-tunnel-network-list value acl-split-tunnel1
@@ -4744,6 +4770,7 @@ group-policy grp_policy_sra_hr attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-hr
 group-policy grp_policy_domain_admins internal
 group-policy grp_policy_domain_admins attributes
@@ -4758,6 +4785,7 @@ group-policy grp_policy_domain_admins attributes
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
  banner value 
+ vpn-session-timeout 1440
  vpn-filter value acl-domain-admins
 group-policy grp_policy_sra_sales internal
 group-policy grp_policy_sra_sales attributes
@@ -4772,6 +4800,7 @@ group-policy grp_policy_sra_sales attributes
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
  banner value 
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-sales
  group-lock value ldap-only-users
 group-policy grp_policy_sra_business internal
@@ -4787,6 +4816,7 @@ group-policy grp_policy_sra_business attributes
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
  banner value 
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-business
  group-lock value ldap-only-users
 group-policy grp_policy_sra_fc internal
@@ -4801,6 +4831,7 @@ group-policy grp_policy_sra_fc attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-fc
 group-policy grp_policy_sra_logicnets internal
 group-policy grp_policy_sra_logicnets attributes
@@ -4814,6 +4845,7 @@ group-policy grp_policy_sra_logicnets attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-logicnets
  split-tunnel-policy tunnelspecified
  split-tunnel-network-list value acl-split-tunnel1
@@ -4830,6 +4862,7 @@ group-policy grp_policy_sra_nosplit_users attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-nosplit_users
  vpn-tunnel-protocol ssl-client ssl-clientless
  split-tunnel-policy tunnelall
@@ -4847,6 +4880,7 @@ group-policy grp_policy_sra_editorial_staff_nosplit attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-editorial-staff-nosplit
  split-tunnel-policy tunnelall
 group-policy grp_policy_sra_biconsultant internal
@@ -4861,6 +4895,7 @@ group-policy grp_policy_sra_biconsultant attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-biconsultant
  split-tunnel-policy tunnelspecified
  split-tunnel-network-list value acl-split-tunnel1
@@ -4876,6 +4911,7 @@ group-policy grp_policy_sra_mule attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-mule
  split-tunnel-policy tunnelspecified
  split-tunnel-network-list value acl-split-tunnel2-Sunnyvale
@@ -4891,6 +4927,7 @@ group-policy grp_policy_sra_finance attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-finance
 group-policy grp_policy_sra_editorial_staff internal
 group-policy grp_policy_sra_editorial_staff attributes
@@ -4905,6 +4942,7 @@ group-policy grp_policy_sra_editorial_staff attributes
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
  banner value 
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-editorial-staff
 group-policy grp_policy_sra_dev internal
 group-policy grp_policy_sra_dev attributes
@@ -4919,6 +4957,7 @@ group-policy grp_policy_sra_dev attributes
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
  banner value 
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-dev
 group-policy grp_policy_sra_custserv internal
 group-policy grp_policy_sra_custserv attributes
@@ -4932,6 +4971,7 @@ group-policy grp_policy_sra_custserv attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-custserv
 group-policy grp_policy_sra_marketing internal
 group-policy grp_policy_sra_marketing attributes
@@ -4945,6 +4985,7 @@ group-policy grp_policy_sra_marketing attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-marketing
 group-policy grp_policy_sra_mponly internal
 group-policy grp_policy_sra_mponly attributes
@@ -4958,6 +4999,7 @@ group-policy grp_policy_sra_mponly attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-mponly
  split-tunnel-policy tunnelspecified
  split-tunnel-network-list value acl-split-tunnel1
@@ -4975,6 +5017,7 @@ group-policy grp_policy_sra_dev_editorial_emmi_cdi attributes
  banner value but not limited to, criminal activity.
  banner value 
  banner value sra_dev_editorial
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-dev-editorial
  split-tunnel-all-dns disable
 group-policy grp_policy_sra_dev_editorial internal
@@ -4991,6 +5034,7 @@ group-policy grp_policy_sra_dev_editorial attributes
  banner value but not limited to, criminal activity.
  banner value 
  banner value sra_dev_editorial
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-dev-editorial
 group-policy grp_policy_sra_dev_full internal
 group-policy grp_policy_sra_dev_full attributes
@@ -5005,6 +5049,7 @@ group-policy grp_policy_sra_dev_full attributes
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
  banner value 
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-dev-full
 group-policy grp_policy_sra_qa_editorial internal
 group-policy grp_policy_sra_qa_editorial attributes
@@ -5019,6 +5064,7 @@ group-policy grp_policy_sra_qa_editorial attributes
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
  banner value 
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-qa-editorial
 group-policy grp_policy_sra_datavail internal
 group-policy grp_policy_sra_datavail attributes
@@ -5032,6 +5078,7 @@ group-policy grp_policy_sra_datavail attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-datavail
  split-tunnel-policy tunnelspecified
  split-tunnel-network-list value acl-split-tunnel1
@@ -5047,6 +5094,7 @@ group-policy grp_policy_sra_full attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-dev-full
  split-tunnel-all-dns disable
 group-policy grp_policy_sra_amsterdam internal
@@ -5061,6 +5109,7 @@ group-policy grp_policy_sra_amsterdam attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-amsterdam
  split-tunnel-policy tunnelspecified
  split-tunnel-network-list value acl-split-tunnel3-Amsterdam
@@ -5076,6 +5125,7 @@ group-policy grp_policy_sra_salesteam attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-salesteam
 group-policy grp_policy_sra_japan_salesteam internal
 group-policy grp_policy_sra_japan_salesteam attributes
@@ -5089,6 +5139,7 @@ group-policy grp_policy_sra_japan_salesteam attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-split-tunnel4-Japan
  split-tunnel-policy tunnelspecified
  split-tunnel-network-list value acl-split-tunnel4-Japan
@@ -5105,6 +5156,7 @@ group-policy grp_policy_sra_pmo attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-sra-pmo
 dynamic-access-policy-record SRA-AD-Group-Membership
  description "Allow access from user that are members of SRA AD groups - deny all others"
@@ -5185,6 +5237,7 @@ call-home
   subscribe-to-alert-group inventory periodic monthly
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
+password encryption aes
 hpm topN enable
-Cryptochecksum:798143c2ddd060c52f1516a84a6a539e
+Cryptochecksum:8e9536725d7b320deba59f176f0cfdab
 : end

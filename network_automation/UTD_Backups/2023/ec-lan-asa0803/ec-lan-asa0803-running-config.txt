@@ -36,7 +36,7 @@ interface GigabitEthernet0/1
  nameif Inside2058
  security-level 100
  ip address 10.20.58.4 255.255.255.0 
- ospf message-digest-key 1 md5 *****
+ ospf message-digest-key 1 md5 8 dvui47ljJpNx5YmK2j223os5SzQD9YVa
 !
 interface GigabitEthernet0/2
  shutdown
@@ -81,15 +81,36 @@ interface Management0/0
  no security-level
  no ip address
 !
-banner exec  
-banner exec  * * * AUTHORIZED ACCESS ONLY * * *
-banner exec 
-banner exec Individuals using this system with or without proper authority
-banner exec are subject to having all of their activities on this system
-banner exec monitored and recorded.  Anyone using this system expressly
-banner exec consents to such monitoring and to all appropriate disclosure
-banner exec of any evidence of violation of the Firm's rules including,
-banner exec but not limited to, criminal activity.
+banner login ************************* WARNING ***************************
+banner login * THIS SYSTEM IS FOR THE USE OF AUTHORIZED PERSONNEL ONLY!  *
+banner login * ACCESS IS RESTRICTED TO AUTHORIZED USERS ONLY!            *
+banner login * UNAUTHORIZED ACCESS IS A VIOLATION OF STATE AND FEDERAL,  *
+banner login * CIVIL AND CRIMINAL LAWS.  VIOLATORS WILL BE PROSECUTED.   *
+banner login * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *
+banner login 
+banner login * ALL ACTIVITY ON THIS COMPUTER SYSTEM IS MONITORED BY      *
+banner login * SYSTEM SECURITY PERSONNEL. BY USING THIS COMPUTER SYSTEM  *
+banner login * YOU CONSENT TO THIS MONITORING. INDIVIDUALS DETERMINED TO *
+banner login * BE USING THIS COMPUTER NETWORK SYSTEM WITHOUT PROPER      *
+banner login * AUTHORIZATION, OR IN EXCESS OF THEIR AUTHORIZATION MAY    *
+banner login * HAVE THEIR ACTIVITY RECORD SUBMITTED TO LEGAL AUTHORITIES *
+banner login * AND LEGAL AND CRIMINAL CHARGES MAY FOLLOW.                *
+banner login *************************************************************
+banner motd  ************************* WARNING ***************************
+banner motd  * THIS SYSTEM IS FOR THE USE OF AUTHORIZED PERSONNEL ONLY!  *
+banner motd  * ACCESS IS RESTRICTED TO AUTHORIZED USERS ONLY!            *
+banner motd  * UNAUTHORIZED ACCESS IS A VIOLATION OF STATE AND FEDERAL,  *
+banner motd  * CIVIL AND CRIMINAL LAWS.  VIOLATORS WILL BE PROSECUTED.   *
+banner motd  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *
+banner motd  
+banner motd  * ALL ACTIVITY ON THIS COMPUTER SYSTEM IS MONITORED BY      *
+banner motd  * SYSTEM SECURITY PERSONNEL. BY USING THIS COMPUTER SYSTEM  *
+banner motd  * YOU CONSENT TO THIS MONITORING. INDIVIDUALS DETERMINED TO *
+banner motd  * BE USING THIS COMPUTER NETWORK SYSTEM WITHOUT PROPER      *
+banner motd  * AUTHORIZATION, OR IN EXCESS OF THEIR AUTHORIZATION MAY    *
+banner motd  * HAVE THEIR ACTIVITY RECORD SUBMITTED TO LEGAL AUTHORITIES *
+banner motd  * AND LEGAL AND CRIMINAL CHARGES MAY FOLLOW.                *
+banner motd  *************************************************************
 banner asdm  
 banner asdm  * * * AUTHORIZED ACCESS ONLY * * *
 banner asdm 
@@ -2232,7 +2253,7 @@ aaa-server LDAP (Inside2058) host 10.20.56.30
  ldap-base-dn DC=utd,DC=com
  ldap-scope subtree
  ldap-naming-attribute sAMAccountName
- ldap-login-password *****
+ ldap-login-password 8 hH11F3UMHe1Al8+HMkhQ+3zURBZARIdV
  ldap-login-dn CN=Admap Ldap,CN=Users,DC=UTD,DC=com
  ldap-over-ssl enable
  server-type microsoft
@@ -2241,13 +2262,13 @@ aaa-server RSA protocol sdi
 aaa-server RSA (Inside2058) host 10.20.56.7
 aaa-server ISE-TACACS protocol tacacs+
 aaa-server ISE-TACACS (Inside2058) host 10.1.101.78
- key *****
+ key 8 Es52ygpdXeNGQQ2Zb1Q6ChUdGcuXKmaKnNZykLJHxDM=
 aaa-server ISE-TACACS (Inside2058) host 10.1.101.79
- key *****
+ key 8 I5UBLAsW1/xyHokYS/YGog99+ZTvy3ZP2U09VYk16Rk=
 aaa-server RSA-RADIUS protocol radius
 aaa-server RSA-RADIUS (Inside2058) host 10.20.56.7
  timeout 60
- key *****
+ key 8 yKDE+iSOAatMgNzuc4Z4PYN3uNnXV+KifvA=
  authentication-port 1812
  accounting-port 1812
  radius-common-pw *****
@@ -2268,6 +2289,8 @@ aaa authorization command ISE-TACACS LOCAL
 aaa authorization exec authentication-server auto-enable
 aaa authentication login-history
 http server enable
+http server idle-timeout 5
+http server session-timeout 30
 http 10.0.0.0 255.0.0.0 Inside2058
 snmp-server group WKSNMPGROUP v3 priv 
 snmp-server user WKUTDSNMP WKSNMPGROUP v3 engineID 80000009fe655ec0f8e17e4cfe11019746858698ce7e8fe9d1 encrypted auth sha ba:3b:29:b3:4a:af:db:ee:f9:df:ba:07:aa:96:d5:40:91:72:96:ab priv aes 128 e9:78:69:5b:41:5f:7b:e8:d3:b9:ca:5c:5b:02:87:da 
@@ -2569,12 +2592,12 @@ crypto ikev2 enable outside client-services port 443
 telnet timeout 5
 ssh scopy enable
 ssh stricthostkeycheck
-ssh timeout 30
+ssh timeout 5
 ssh version 2
 ssh key-exchange group dh-group1-sha1
 ssh 0.0.0.0 0.0.0.0 Inside2058
 ssh 10.0.0.0 255.0.0.0 Inside2058
-console timeout 1
+console timeout 5
 management-access Inside2058
 no vpn-addr-assign aaa
 no vpn-addr-assign dhcp
@@ -2630,8 +2653,7 @@ group-policy DfltGrpPolicy attributes
  wins-server value 10.20.56.30
  dns-server value 10.20.54.16 10.20.56.30
  vpn-simultaneous-logins 2
- vpn-idle-timeout 60
- vpn-session-timeout 480
+ vpn-session-timeout 1440
  vpn-tunnel-protocol ssl-client 
  split-tunnel-policy tunnelspecified
  split-tunnel-network-list value acl-split-tunnel1
@@ -2651,6 +2673,7 @@ group-policy grp_policy_bcdr_dba attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-bcdr-dba
 group-policy grp_policy_bcdr_cs internal
 group-policy grp_policy_bcdr_cs attributes
@@ -2663,6 +2686,7 @@ group-policy grp_policy_bcdr_cs attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-bcdr-cs
 group-policy grp_policy_bcdr_users internal
 group-policy grp_policy_bcdr_users attributes
@@ -2675,6 +2699,7 @@ group-policy grp_policy_bcdr_users attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-bcdr-users
 group-policy grp_policy_bcdr_dev internal
 group-policy grp_policy_bcdr_dev attributes
@@ -2687,6 +2712,7 @@ group-policy grp_policy_bcdr_dev attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-bcdr-dev
 group-policy grp_policy_bcdr_admin internal
 group-policy grp_policy_bcdr_admin attributes
@@ -2698,6 +2724,7 @@ group-policy grp_policy_bcdr_admin attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-bcdr-admin
  vpn-tunnel-protocol ssl-client 
 dynamic-access-policy-record SRA-AD-Group-Membership
@@ -2747,5 +2774,6 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname context 
 no call-home reporting anonymous
-Cryptochecksum:1ca2bf4ab92e56d78efe8a85ffc94044
+password encryption aes
+Cryptochecksum:a7fb50b39519eb056d5af033ffc620f8
 : end
