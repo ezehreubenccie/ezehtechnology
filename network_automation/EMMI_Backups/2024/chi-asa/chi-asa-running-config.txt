@@ -278,6 +278,36 @@ time-range chi-nes_eatel
  periodic Sunday 0:00 to Monday 5:00
 !
 banner login This is an actively monitored system. Unauthorized access is prohibited.
+banner login ************************* WARNING ***************************
+banner login * THIS SYSTEM IS FOR THE USE OF AUTHORIZED PERSONNEL ONLY!  *
+banner login * ACCESS IS RESTRICTED TO AUTHORIZED USERS ONLY!            *
+banner login * UNAUTHORIZED ACCESS IS A VIOLATION OF STATE AND FEDERAL,  *
+banner login * CIVIL AND CRIMINAL LAWS.  VIOLATORS WILL BE PROSECUTED.   *
+banner login * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *
+banner login 
+banner login * ALL ACTIVITY ON THIS COMPUTER SYSTEM IS MONITORED BY      *
+banner login * SYSTEM SECURITY PERSONNEL. BY USING THIS COMPUTER SYSTEM  *
+banner login * YOU CONSENT TO THIS MONITORING. INDIVIDUALS DETERMINED TO *
+banner login * BE USING THIS COMPUTER NETWORK SYSTEM WITHOUT PROPER      *
+banner login * AUTHORIZATION, OR IN EXCESS OF THEIR AUTHORIZATION MAY    *
+banner login * HAVE THEIR ACTIVITY RECORD SUBMITTED TO LEGAL AUTHORITIES *
+banner login * AND LEGAL AND CRIMINAL CHARGES MAY FOLLOW.                *
+banner login *************************************************************
+banner motd  ************************* WARNING ***************************
+banner motd  * THIS SYSTEM IS FOR THE USE OF AUTHORIZED PERSONNEL ONLY!  *
+banner motd  * ACCESS IS RESTRICTED TO AUTHORIZED USERS ONLY!            *
+banner motd  * UNAUTHORIZED ACCESS IS A VIOLATION OF STATE AND FEDERAL,  *
+banner motd  * CIVIL AND CRIMINAL LAWS.  VIOLATORS WILL BE PROSECUTED.   *
+banner motd  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *
+banner motd  
+banner motd  * ALL ACTIVITY ON THIS COMPUTER SYSTEM IS MONITORED BY      *
+banner motd  * SYSTEM SECURITY PERSONNEL. BY USING THIS COMPUTER SYSTEM  *
+banner motd  * YOU CONSENT TO THIS MONITORING. INDIVIDUALS DETERMINED TO *
+banner motd  * BE USING THIS COMPUTER NETWORK SYSTEM WITHOUT PROPER      *
+banner motd  * AUTHORIZATION, OR IN EXCESS OF THEIR AUTHORIZATION MAY    *
+banner motd  * HAVE THEIR ACTIVITY RECORD SUBMITTED TO LEGAL AUTHORITIES *
+banner motd  * AND LEGAL AND CRIMINAL CHARGES MAY FOLLOW.                *
+banner motd  *************************************************************
 banner asdm This is an actively monitored system. Unauthorized access is prohibited.
 boot system disk0:/asa9-14-4-24-smp-k8.bin
 boot system disk0:/asa9-14-4-23-smp-k8.bin
@@ -8386,6 +8416,8 @@ aaa authorization command LOCAL
 aaa authorization exec authentication-server auto-enable
 aaa authentication login-history
 http server enable
+http server idle-timeout 5
+http server session-timeout 30
 http net-corp_servers 255.255.255.0 vlan_corp_servers
 http net-corp_servers_old 255.255.254.0 vlan_corp_servers_old
 http 10.232.124.18 255.255.255.255 p2p_corpedge
@@ -8561,6 +8593,12 @@ crypto ca trustpoint Wildcard_2025
  crl configure
 crypto ca trustpoint wildcard-2025
  keypair ASDM_TrustPoint0
+ crl configure
+crypto ca trustpoint wildcard2026
+ crl configure
+crypto ca trustpoint wildcard-2026
+ keypair ASDM_TrustPoint0
+ no validation-usage
  crl configure
 crypto ca trustpool policy
 crypto ca certificate chain wildcard2023
@@ -8912,6 +8950,104 @@ crypto ca certificate chain wildcard-2025
     5eabe6c4 858d0e84 075c7812 ced94735 45faa6f1 80065354 31ee8646 c62e380e 
     91287003
   quit
+crypto ca certificate chain wildcard-2026
+ certificate 58cfaca4a3643a7a
+    3082069f 30820587 a0030201 02020858 cfaca4a3 643a7a30 0d06092a 864886f7 
+    0d01010b 05003081 b4310b30 09060355 04061302 55533110 300e0603 55040813 
+    07417269 7a6f6e61 31133011 06035504 07130a53 636f7474 7364616c 65311a30 
+    18060355 040a1311 476f4461 6464792e 636f6d2c 20496e63 2e312d30 2b060355 
+    040b1324 68747470 3a2f2f63 65727473 2e676f64 61646479 2e636f6d 2f726570 
+    6f736974 6f72792f 31333031 06035504 03132a47 6f204461 64647920 53656375 
+    72652043 65727469 66696361 74652041 7574686f 72697479 202d2047 32301e17 
+    0d323530 31323231 35333431 305a170d 32363031 32323135 33343130 5a301e31 
+    1c301a06 03550403 0c132a2e 656d6d69 736f6c75 74696f6e 732e636f 6d308201 
+    22300d06 092a8648 86f70d01 01010500 0382010f 00308201 0a028201 0100ceb1 
+    86f976a6 304f47a4 c02f3c29 2dd5cc4d c5575dbe 55d1a9aa f579eaa9 e5bde96d 
+    44ce6143 11c131c8 84239100 068f880a 9ab355bb 7daf5994 865c3ff3 8545114e 
+    1c890b45 a2c6e8aa cfb4f787 2b2a0a89 9a0eea61 1442c52e adbacc05 3124f46d 
+    29dbd93e 34d2ed1b 72a3b0f2 ac551b62 64af7cfb 1688362c ecb0e01d 588c1bb5 
+    f76c7c13 7eb4ee93 1ec803c1 1aa71ba6 ced306d1 51ba0393 dd62e7e3 d5af97ec 
+    0d80ed7e ccf9605d cd6eb0e9 0fc4f958 748a0ae6 9dc428ef 473039a3 8b864e4f 
+    9f1091e8 f66442ca acd9c0b4 650a67a9 3c35ec90 4464bd98 7de45807 f0c9da2f 
+    347ef648 cfa9cbfe 959d9d8c 653247b6 d668f5e5 abcf0ad8 94f07bf1 8ee90203 
+    010001a3 82034830 82034430 0c060355 1d130101 ff040230 00301d06 03551d25 
+    04163014 06082b06 01050507 03010608 2b060105 05070302 300e0603 551d0f01 
+    01ff0404 030205a0 30390603 551d1f04 32303030 2ea02ca0 2a862868 7474703a 
+    2f2f6372 6c2e676f 64616464 792e636f 6d2f6764 69673273 312d3337 3833332e 
+    63726c30 5d060355 1d200456 30543048 060b6086 480186fd 6d010717 01303930 
+    3706082b 06010505 07020116 2b687474 703a2f2f 63657274 69666963 61746573 
+    2e676f64 61646479 2e636f6d 2f726570 6f736974 6f72792f 30080606 67810c01 
+    02013076 06082b06 01050507 0101046a 30683024 06082b06 01050507 30018618 
+    68747470 3a2f2f6f 6373702e 676f6461 6464792e 636f6d2f 30400608 2b060105 
+    05073002 86346874 74703a2f 2f636572 74696669 63617465 732e676f 64616464 
+    792e636f 6d2f7265 706f7369 746f7279 2f676469 67322e63 7274301f 0603551d 
+    23041830 16801440 c2bd278e cc348330 a233d7fb 6cb3f0b4 2c80ce30 31060355 
+    1d11042a 30288213 2a2e656d 6d69736f 6c757469 6f6e732e 636f6d82 11656d6d 
+    69736f6c 7574696f 6e732e63 6f6d301d 0603551d 0e041604 14ee2baf 579a1fd3 
+    962e04c7 61dbdf5b 745360db 18308201 7e060a2b 06010401 d6790204 02048201 
+    6e048201 6a016800 76000e57 94bcf3ae a93e331b 2c9907b3 f790df9b c23d7132 
+    25dd21a9 25ac61c5 4e210000 01948ea6 4fff0000 04030047 30450220 169ba341 
+    64668585 8259dfd8 56f4fd7c a610473b 25b6e6df faa2d21e 4345d7ee 022100f9 
+    40c72974 41520311 187197a7 c560a0fa 5a71ff59 29a6cd7c 9e259005 13921700 
+    76006411 c46ca412 eca7891c a2022e00 bcab4f28 07d41e35 27abeafe d503c97d 
+    cdf00000 01948ea6 509f0000 04030047 30450221 00ba4f24 0422226f 9a87db39 
+    94820083 bb2a639c f4c54cef e3d23a20 ce071b9e 5702206f c04e5314 e9391200 
+    fce50c33 dc3bc6e9 dcb10625 3895865b 28703a75 92a3b800 7600cb38 f715897c 
+    84a1445f 5bc1ddfb c96ef29a 59cd470a 690585b0 cb14c314 58e70000 01948ea6 
+    513c0000 04030047 30450220 22f6f733 4dfcc66b e4391689 bb8c147c 95627cb7 
+    38526118 0d0d469c b887116f 022100e1 9c80b0c2 9daf48a1 9fab5a16 33f26d83 
+    57f4976c aba71e9b 4dd9a08d 7cc8ec30 0d06092a 864886f7 0d01010b 05000382 
+    01010016 c210d4fa c288a946 6db2656e f8a19064 7f6a0e8b 5a9deadf 76d3648b 
+    c4fdfdbd eec095bc 68788107 ae41c810 ec30ef1a 81bc7024 661972a8 e564cec6 
+    6ea685bc 91e56263 61aed0e3 8e1748be 1e550a3e de5011c6 242f05d2 dedfee00 
+    4b650f3d 1bc98464 8247f3ac bf55f73e 2bd46fee c38f9c64 306afafb aaa385e2 
+    f1ed16d3 82a107f5 896b00c3 b53cedd2 e213f573 f6f98c9b 3d05b553 f32c50ef 
+    de0fa3c0 d08d93c9 8735e16d 1771aff6 10efe573 f3bda98d f418c0bd 8ae7bff5 
+    a9c4aded ae32e394 c918556d b9cba114 c9e055db 614a43ff ad210317 b673318c 
+    895e16c0 f18fa202 66ae1e1d afe1a5f8 f55a7421 dbc03eee 794dbc3a a697cd27 
+    0dd47d
+  quit
+ certificate ca 07
+    308204d0 308203b8 a0030201 02020107 300d0609 2a864886 f70d0101 0b050030 
+    8183310b 30090603 55040613 02555331 10300e06 03550408 13074172 697a6f6e 
+    61311330 11060355 0407130a 53636f74 74736461 6c65311a 30180603 55040a13 
+    11476f44 61646479 2e636f6d 2c20496e 632e3131 302f0603 55040313 28476f20 
+    44616464 7920526f 6f742043 65727469 66696361 74652041 7574686f 72697479 
+    202d2047 32301e17 0d313130 35303330 37303030 305a170d 33313035 30333037 
+    30303030 5a3081b4 310b3009 06035504 06130255 53311030 0e060355 04081307 
+    4172697a 6f6e6131 13301106 03550407 130a5363 6f747473 64616c65 311a3018 
+    06035504 0a131147 6f446164 64792e63 6f6d2c20 496e632e 312d302b 06035504 
+    0b132468 7474703a 2f2f6365 7274732e 676f6461 6464792e 636f6d2f 7265706f 
+    7369746f 72792f31 33303106 03550403 132a476f 20446164 64792053 65637572 
+    65204365 72746966 69636174 65204175 74686f72 69747920 2d204732 30820122 
+    300d0609 2a864886 f70d0101 01050003 82010f00 3082010a 02820101 00b9e0cb 
+    10d4af76 bdd49362 eb3064b8 81086cc3 04d96217 8e2fff3e 65cf8fce 62e63c52 
+    1cda1645 4b55ab78 6b638362 90ce0f69 6c99c81a 148b4ccc 4533ea88 dc9ea3af 
+    2bfe8061 9d7957c4 cf2ef43f 303c5d47 fc9a16bc c3379641 518e114b 54f828be 
+    d08cbef0 30381ef3 b026f866 47636dde 7126478f 384753d1 461db4e3 dc00ea45 
+    acbdbc71 d9aa6f00 dbdbcd30 3a794f5f 4c47f81d ef5bc2c4 9d603bb1 b24391d8 
+    a4334eea b3d6274f ad258aa5 c6f4d5d0 a6ae7405 645788b5 4455d42d 2a3a3ef8 
+    b8bde932 0a029464 c4163a50 f14aaee7 7933af0c 20077fe8 df0439c2 69026c63 
+    52fa77c1 1bc87487 c8b99318 5054354b 694ebc3b d3492e1f dcc1d252 fb020301 
+    0001a382 011a3082 0116300f 0603551d 130101ff 04053003 0101ff30 0e060355 
+    1d0f0101 ff040403 02010630 1d060355 1d0e0416 041440c2 bd278ecc 348330a2 
+    33d7fb6c b3f0b42c 80ce301f 0603551d 23041830 1680143a 9a850710 6728b6ef 
+    f6bd0541 6e20c194 da0fde30 3406082b 06010505 07010104 28302630 2406082b 
+    06010505 07300186 18687474 703a2f2f 6f637370 2e676f64 61646479 2e636f6d 
+    2f303506 03551d1f 042e302c 302aa028 a0268624 68747470 3a2f2f63 726c2e67 
+    6f646164 64792e63 6f6d2f67 64726f6f 742d6732 2e63726c 30460603 551d2004 
+    3f303d30 3b060455 1d200030 33303106 082b0601 05050702 01162568 74747073 
+    3a2f2f63 65727473 2e676f64 61646479 2e636f6d 2f726570 6f736974 6f72792f 
+    300d0609 2a864886 f70d0101 0b050003 82010100 087e6c93 10c838b8 96a9904b 
+    ffa15f4f 04ef6c3e 9c8806c9 508fa673 f757311b bebce42f dbf8bad3 5be0b4e7 
+    e679620e 0ca2d76a 637331b5 f5a848a4 3b082da2 5d90d7b4 7c254f11 5630c4b6 
+    449d7b2c 9de55ee6 ef0c61aa bfe42a1b ee849eb8 837dc143 ce44a713 700d911f 
+    f4c813ad 8360d9d8 72a87324 1eb5ac22 0eca1789 6258441b ab892501 000fcdc4 
+    1b62db51 b4d30f51 2a9bf4bc 73fc76ce 36a4cdd9 d82ceaae 9bf52ab2 90d14d75 
+    188a3f8a 4190237d 5b4bfea4 03589b46 b2c36060 83f87d50 41cec2a1 90c3bbef 
+    022fd215 54ee4415 d90aaea7 8a33edb1 2d763626 dc04eb9f f7611f15 dc876fee 
+    469628ad a1267d0a 09a72e04 a38dbcf8 bc043001
+  quit
 crypto ikev2 policy 1
  encryption aes-256
  integrity sha256
@@ -9002,7 +9138,7 @@ track 2 rtr 2 reachability
 telnet timeout 5
 ssh scopy enable
 ssh stricthostkeycheck
-ssh timeout 60
+ssh timeout 5
 ssh version 2
 ssh key-exchange group dh-group1-sha1
 ssh net-corp_servers 255.255.255.0 vlan_corp_servers
@@ -9012,7 +9148,7 @@ ssh 10.232.124.18 255.255.255.255 p2p_corpedge
 ssh 10.82.10.0 255.255.254.0 p2p_corpedge
 ssh 10.82.8.0 255.255.254.0 p2p_corpedge
 ssh 10.232.124.29 255.255.255.255 p2p_corpedge
-console timeout 0
+console timeout 5
 no vpn-addr-assign aaa
 no vpn-addr-assign dhcp
 vpn-addr-assign local reuse-delay 2
@@ -9099,34 +9235,42 @@ webvpn
 group-policy DfltGrpPolicy attributes
  banner value You are about to access a network owned by Wolters Kluwer that is intended for authorized users only. Unauthorized access to this network is forbidden and violators shall be subject to prosecution. You should have no expectation of privacy in your use of this network. By accessing this network, you consent to the monitoring, retrieval, and disclosure of any information stored within the network for any purpose.
  dns-server value 10.82.2.69 10.82.2.77
+ vpn-session-timeout 1440
  vpn-tunnel-protocol ikev1 l2tp-ipsec ssl-client ssl-clientless
  default-domain value emmisolutions.local
 group-policy EMMItoAzure_VTI_20.94.168.27 internal
 group-policy EMMItoAzure_VTI_20.94.168.27 attributes
+ vpn-session-timeout 1440
  vpn-tunnel-protocol ikev2 
 group-policy Policy_ServerCentral internal
 group-policy Policy_ServerCentral attributes
+ vpn-session-timeout 1440
  vpn-tunnel-protocol ikev1 
 group-policy Policy_Eatel internal
 group-policy Policy_Eatel attributes
+ vpn-session-timeout 1440
  vpn-filter value filter_eatel
  vpn-tunnel-protocol ikev1 
 group-policy policy_ibm internal
 group-policy policy_ibm attributes
+ vpn-session-timeout 1440
  vpn-filter value filter_ibm
  vpn-tunnel-protocol ikev2 
 group-policy policy_azr_j2c_sandbox internal
 group-policy policy_azr_j2c_sandbox attributes
+ vpn-session-timeout 1440
  vpn-filter value filter_azr_j2c_sandbox
  vpn-tunnel-protocol ikev2 
 group-policy policy_emmi internal
 group-policy policy_emmi attributes
+ vpn-session-timeout 1440
  default-domain value emmisolutions.local
  client-bypass-protocol enable
 group-policy policy_enrollment internal
 group-policy policy_enrollment attributes
  banner value This group is only for enrolling to the VPN. For general access please reconnect and select a the Chicago VPN group.
  dns-server value 10.82.2.69 192.168.101.179
+ vpn-session-timeout 1440
  vpn-tunnel-protocol ssl-client 
  group-lock value profile_enrollment
  split-tunnel-policy tunnelspecified
@@ -9138,14 +9282,17 @@ group-policy policy_enrollment attributes
   anyconnect profiles value VPN_Enrollment type user
 group-policy policy_azr_j2c_prod internal
 group-policy policy_azr_j2c_prod attributes
+ vpn-session-timeout 1440
  vpn-filter value filter_azr_j2c_prod
  vpn-tunnel-protocol ikev2 
 group-policy Policy_WA_B2B internal
 group-policy Policy_WA_B2B attributes
+ vpn-session-timeout 1440
  vpn-filter value filter_wa_b2b
  vpn-tunnel-protocol ikev2 
 group-policy policy_azr_j2c internal
 group-policy policy_azr_j2c attributes
+ vpn-session-timeout 1440
  vpn-filter value filter_azr_j2c
  vpn-tunnel-protocol ikev2 
 dynamic-access-policy-record DfltAccessPolicy
@@ -9373,5 +9520,5 @@ privilege clear level 3 mode configure command aaa-server
 prompt hostname context 
 no call-home reporting anonymous
 hpm topN enable
-Cryptochecksum:7ea6ae1bea56c47ea7165b772eead04f
+Cryptochecksum:c457abd503b1b4fc6041daebe66206f7
 : end
