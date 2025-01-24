@@ -4094,6 +4094,18 @@ crypto ca trustpoint sra_2025
  subject-name CN=sra.uptodate.com
  keypair sra_uptodate_2025
  crl configure
+crypto ca trustpoint ASDM_TrustPoint8
+ enrollment terminal
+ fqdn sra.uptodate.com
+ subject-name CN=sra.uptodate.com,OU=Health-CE,O=UpToDate,C=US,St=Massachusetts,L=Waltham
+ keypair SRA-VPN
+ crl configure
+crypto ca trustpoint sra_2026
+ enrollment terminal
+ fqdn sra.uptodate.com
+ subject-name CN=sra.uptodate.com,OU=Health-CE,O=UpToDate,C=US,St=Massachusetts,L=Waltham
+ keypair sra_2026
+ crl configure
 crypto ca trustpool policy
 crypto ca certificate chain ASDM_TrustPoint1
  certificate ca 70bae41d10d92934b638ca7b03ccbabf
@@ -5239,5 +5251,5 @@ call-home
   subscribe-to-alert-group telemetry periodic daily
 password encryption aes
 hpm topN enable
-Cryptochecksum:8e9536725d7b320deba59f176f0cfdab
+Cryptochecksum:c580c639b3a5d568c709ae17ab13d396
 : end
