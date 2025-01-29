@@ -2148,6 +2148,7 @@ object-group network BlockOut
  network-object host 194.26.29.174
  network-object host 194.26.69.12
  network-object host 194.26.29.79
+ network-object host 88.214.25.248
 object-group network CyberArk_Servers
  description CyberArk_Servers
  network-object host 104.42.192.253
@@ -2606,6 +2607,9 @@ tls-proxy maximum-session 1000
 !
 threat-detection basic-threat
 threat-detection scanning-threat shun except ip-address 10.20.200.0 255.255.255.0
+threat-detection scanning-threat shun except ip-address 10.20.58.1 255.255.255.255
+threat-detection scanning-threat shun except ip-address 224.0.0.5 255.255.255.255
+threat-detection scanning-threat shun except ip-address 224.0.0.6 255.255.255.255
 threat-detection scanning-threat shun duration 3600
 threat-detection statistics
 threat-detection statistics tcp-intercept rate-interval 30 burst-rate 400 average-rate 200
@@ -2775,5 +2779,5 @@ service-policy global_policy global
 prompt hostname context 
 no call-home reporting anonymous
 password encryption aes
-Cryptochecksum:a7fb50b39519eb056d5af033ffc620f8
+Cryptochecksum:01b7274d5612d1d58b6c0cf248835cf9
 : end

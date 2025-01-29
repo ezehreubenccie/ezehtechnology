@@ -3440,6 +3440,7 @@ object-group network BlockOut
  network-object host 77.221.146.125
  network-object host 77.221.146.247
  network-object host 77.221.146.44
+ network-object host 88.214.25.248
 object-group protocol TCPUDP
  protocol-object udp
  protocol-object tcp
@@ -4724,6 +4725,8 @@ threat-detection scanning-threat shun except ip-address 10.2.250.0 255.255.254.0
 threat-detection scanning-threat shun except ip-address 10.1.101.0 255.255.255.0
 threat-detection scanning-threat shun except ip-address 172.16.31.24 255.255.255.248
 threat-detection scanning-threat shun except ip-address 10.1.120.0 255.255.255.0
+threat-detection scanning-threat shun except ip-address 224.0.0.5 255.255.255.255
+threat-detection scanning-threat shun except ip-address 224.0.0.6 255.255.255.255
 threat-detection scanning-threat shun duration 3600
 threat-detection statistics
 threat-detection statistics tcp-intercept rate-interval 30 burst-rate 400 average-rate 200
@@ -5308,5 +5311,5 @@ call-home
   subscribe-to-alert-group telemetry periodic daily
 password encryption aes
 hpm topN enable
-Cryptochecksum:f3c7a2ab4ced3fa32114f97c0a0df201
+Cryptochecksum:75efedb62d6f56a78348a98d3fdade30
 : end
