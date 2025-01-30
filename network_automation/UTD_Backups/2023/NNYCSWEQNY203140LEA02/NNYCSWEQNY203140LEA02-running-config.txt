@@ -1,0 +1,395 @@
+!Command: show running-config
+!Running configuration last done at: Mon Oct 28 17:55:04 2024
+!Time: Thu Jan 30 01:30:26 2025
+
+version 10.3(5) Bios:version 05.46 
+switchname NNYCSWEQNY203140LEA02
+vdc NNYCSWEQNY203140LEA02 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 48
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature scp-server
+feature tacacs+
+cfs eth distribute
+feature scheduler
+feature udld
+feature lacp
+feature vpc
+feature lldp
+feature bfd
+feature sla sender
+feature sla responder
+
+archive
+  path bootflash:backup/NNYCSWEQNY203140LEA02-cfg.2024-10-24-12.55.24
+  time-period 0
+  maximum 14
+  write-memory
+
+username admin password 5 $5$NAdqucZFtMRNFvJi$8nwYNS8/iWQqJ59KYQ/3lCMHmY.ylv8nBkvDlpFKkY/  role network-admin
+username Support password 5 $5$m9PgMoD0hvu3phju$XWAlqHaeeAaTWM0Id7nblLGotN82C9HQ.j0J6EmsV17  role network-admin
+username Support passphrase  lifetime 99999 warntime 14 gracetime 3
+username wklslrmgt password 5 $5$y.CroafmAWmZ9B4Q$Tcvp.EQZTyJFMqfRNCQdJFA5H7pbCsjBIUE0U8evMxD  role network-operator
+username wklslrmgt passphrase  lifetime 99999 warntime 7
+ssh key rsa 2048 
+
+banner motd ^
+************************* WARNING ***************************
+* THIS SYSTEM IS FOR THE USE OF AUTHORIZED PERSONNEL ONLY!  *
+* ACCESS IS RESTRICTED TO AUTHORIZED USERS ONLY!            *
+* UNAUTHORIZED ACCESS IS A VIOLATION OF STATE AND FEDERAL,  *
+* CIVIL AND CRIMINAL LAWS.  VIOLATORS WILL BE PROSECUTED.   *
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *                   
+                   
+* ALL ACTIVITY ON THIS COMPUTER SYSTEM IS MONITORED BY      *
+* SYSTEM SECURITY PERSONNEL. BY USING THIS COMPUTER SYSTEM  *
+* YOU CONSENT TO THIS MONITORING. INDIVIDUALS DETERMINED TO *
+* BE USING THIS COMPUTER NETWORK SYSTEM WITHOUT PROPER      *
+* AUTHORIZATION, OR IN EXCESS OF THEIR AUTHORIZATION MAY    *
+* HAVE THEIR ACTIVITY RECORD SUBMITTED TO LEGAL AUTHORITIES *
+* AND LEGAL AND CRIMINAL CHARGES MAY FOLLOW.                *
+*************************************************************
+^
+
+ssh login-attempts 2
+
+no ip domain-lookup
+ip domain-name na.wkglobal.com
+radius-server key 6 "JDYk0Tcm9tfPAWnxT5splTMAzSTPW8U4FbjCYhKQtUpNQquBND2nQQEPvqf+U+xcr8dt9SQAVHlfbS/zKECHKMnkBwctfqNSLwA="
+radius-server host 10.231.7.7 authentication accounting 
+radius-server host 10.226.2.132 authentication accounting 
+aaa group server radius GBS_RADIUS 
+    server 10.231.7.7 
+    server 10.226.2.132 
+    deadtime 2
+    use-vrf management
+feature password encryption aes
+ip access-list 1
+  10 permit ip any any 
+  100 deny ip any any 
+copp profile strict
+ip ssh source-interface mgmt0 vrf management
+snmp-server contact Wolters Kluwer IT Service Desk +1-518-531-3459 it-servicedesk@wolterskluwer.com
+snmp-server location Equinix NY2 Cage NY2:01:003140 Cage 3140 275 Hartz Way Secaucus, NJ 07094-1908
+snmp-server source-interface traps mgmt0
+snmp-server user admin network-admin auth md5 480A263BD6DC7D23305C6B4DAD815D5048BC priv aes-128 480B7B3A89D32E34255E341DA088733D4AFB localizedV2key
+snmp-server user Support network-admin auth md5 0064312ED4832D2E3972064FEA9141424DA5 priv aes-128 49720A47A9EB5B0727007648A3F6484612F1 localizedV2key
+snmp-server user wklslrmgt network-operator auth sha 367E956AC44E95883BB229D51B4C775F770D38DB099A priv aes-128 367BBA4EF3519CBF14971FF65E12390F2255629B4C97 localizedV2key
+snmp-server host 10.232.124.12 traps version 3 auth wklslrmgt
+snmp-server host 10.232.124.12 use-vrf management
+snmp-server host 10.232.124.13 traps version 3 auth wklslrmgt
+snmp-server host 10.232.124.13 use-vrf management
+snmp-server host 10.232.124.18 traps version 3 auth wklslrmgt
+snmp-server host 10.232.124.18 use-vrf management
+snmp-server host 10.1.101.69 traps version 3 auth wklslrmgt
+snmp-server host 10.1.101.69 use-vrf management
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+callhome
+  email-contact sch-smart-licensing@cisco.com
+  destination-profile CiscoTAC-1 transport-method http
+  destination-profile CiscoTAC-1 index 1 http https://tools.cisco.com/its/service/oddce/services/DDCEService
+  transport http use-vrf management
+  enable
+ntp server 10.198.208.1 prefer use-vrf management
+ntp server 10.245.22.6 use-vrf management
+ntp source-interface mgmt0
+ntp logging
+aaa authentication login default group GBS_RADIUS local 
+aaa accounting default group GBS_RADIUS 
+aaa authentication login error-enable 
+errdisable recovery interval 60
+errdisable recovery cause link-flap
+errdisable recovery cause udld
+errdisable recovery cause bpduguard
+errdisable recovery cause storm-control
+errdisable recovery cause vpc-peerlink
+errdisable recovery cause failed-port-state
+
+vlan 1,1050,1052-1054,1056,1060,1070
+
+spanning-tree pathcost method long
+spanning-tree port type edge bpduguard default
+spanning-tree port type network default
+spanning-tree loopguard default
+spanning-tree vlan 1-3967 priority 8192
+udld aggressive
+vrf context VPC-MGT
+  description VRF for VPC Keepalives
+vrf context management
+  ip route 0.0.0.0/0 10.198.207.1
+vpc domain 1
+  peer-switch
+  role priority 16384
+  system-priority 8192
+  peer-keepalive destination 169.254.0.0 source 169.254.0.1 vrf VPC-MGT
+  delay restore 150
+  peer-gateway
+  layer3 peer-router
+  auto-recovery
+lldp reinit 1
+lldp timer 5
+
+
+interface port-channel1
+  description VPC Peer Link
+  switchport
+  switchport mode trunk
+  spanning-tree port type network
+  vpc peer-link
+
+interface port-channel10
+  description Trunk to NNYCFWEQNY203140INT01
+  switchport
+  switchport mode trunk
+  spanning-tree port type normal
+  spanning-tree guard root
+  vpc 10
+
+interface port-channel11
+  description Trunk to NNYCFWEQNY203140INT02
+  switchport
+  switchport mode trunk
+  spanning-tree port type normal
+  spanning-tree guard root
+  vpc 11
+
+interface Ethernet1/1
+  description vm0401d
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 1050,1052
+  spanning-tree port type normal
+  spanning-tree bpduguard enable
+  spanning-tree guard root
+  logging event port link-status
+  no shutdown
+
+interface Ethernet1/2
+  description description sblb0201 bck
+  switchport
+  switchport access vlan 1052
+  spanning-tree port type normal
+  spanning-tree guard root
+  logging event port link-status
+  logging event port trunk-status
+  no shutdown
+
+interface Ethernet1/3
+  description description sblb0201 frt
+  switchport
+  switchport access vlan 1050
+  spanning-tree port type normal
+  spanning-tree guard root
+  logging event port link-status
+  logging event port trunk-status
+  no shutdown
+
+interface Ethernet1/4
+  description description vm0401d
+  switchport
+  switchport access vlan 1054
+  spanning-tree port type normal
+  spanning-tree guard root
+  logging event port link-status
+  logging event port trunk-status
+  no shutdown
+
+interface Ethernet1/5
+  description description sblb0201-new mgmt
+  switchport
+  switchport access vlan 1054
+  spanning-tree port type normal
+  spanning-tree guard root
+  logging event port link-status
+  logging event port trunk-status
+  no shutdown
+
+interface Ethernet1/6
+
+interface Ethernet1/7
+  description description vm0401d
+  switchport
+  switchport access vlan 1056
+  spanning-tree port type normal
+  spanning-tree guard root
+  logging event port link-status
+  logging event port trunk-status
+  no shutdown
+
+interface Ethernet1/8
+  description description dme0101d-b
+  switchport
+  switchport access vlan 1056
+  spanning-tree port type normal
+  spanning-tree guard root
+  logging event port link-status
+  logging event port trunk-status
+  no shutdown
+
+interface Ethernet1/9
+  description description  vm0401d drac
+  switchport
+  switchport access vlan 1056
+  spanning-tree port type normal
+  spanning-tree guard root
+  logging event port link-status
+  logging event port trunk-status
+  no shutdown
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+
+interface Ethernet1/30
+
+interface Ethernet1/31
+
+interface Ethernet1/32
+
+interface Ethernet1/33
+
+interface Ethernet1/34
+
+interface Ethernet1/35
+
+interface Ethernet1/36
+
+interface Ethernet1/37
+
+interface Ethernet1/38
+
+interface Ethernet1/39
+
+interface Ethernet1/40
+
+interface Ethernet1/41
+
+interface Ethernet1/42
+
+interface Ethernet1/43
+
+interface Ethernet1/44
+
+interface Ethernet1/45
+  description NNYCFWEQNY203140INT01:Eth1/4
+  switchport
+  switchport mode trunk
+  spanning-tree port type normal
+  channel-group 10 mode active
+  no shutdown
+
+interface Ethernet1/46
+  description NNYCFWEQNY203140INT02:Eth1/4
+  switchport
+  switchport mode trunk
+  spanning-tree port type normal
+  channel-group 11 mode active
+  no shutdown
+
+interface Ethernet1/47
+
+interface Ethernet1/48
+  description NNYCSWEQNY203140LEA01:Eth1/48
+  vrf member VPC-MGT
+  ip address 169.254.0.1/31
+  no shutdown
+
+interface Ethernet1/49
+
+interface Ethernet1/50
+
+interface Ethernet1/51
+  description NNYCSWEQNY203140LEA01:Eth1/51
+  switchport
+  switchport mode trunk
+  spanning-tree guard root
+  logging event port link-status
+  logging event port trunk-status
+  channel-group 1 mode active
+  no shutdown
+
+interface Ethernet1/52
+  description NNYCSWEQNY203140LEA01:Eth1/52
+  switchport
+  switchport mode trunk
+  spanning-tree guard root
+  logging event port link-status
+  logging event port trunk-status
+  channel-group 1 mode active
+  no shutdown
+
+interface Ethernet1/53
+
+interface Ethernet1/54
+
+interface mgmt0
+  vrf member management
+  ip address 10.198.207.62/26
+cli alias name wr copy run start
+line console
+  exec-timeout 0
+  terminal width  511
+line vty
+boot nxos bootflash:/nxos64-cs.10.3.5.M.bin 
+
+logging server 10.219.2.132
+logging server 10.232.124.16
+logging server 10.232.124.18
+logging server 10.145.248.200
+logging source-interface mgmt0
+no logging console
+
+scheduler logfile size 1024
+
+
+scheduler job name backup-config
+  copy running-config tftp://10.198.207.1/Configs/Switches/$(SWITCHNAME)-cfg.$(TIMESTAMP) vrf management
+  
+end-job
+
+scheduler schedule name daily-backup
+  job name backup-config
+  time daily 01:00

@@ -1,3 +1,10 @@
+ikev1 policy 30 is superseded by identical policy 10
+ikev1 policy 60 is superseded by identical policy 40
+ikev1 policy 90 is superseded by identical policy 70
+ikev1 policy 100 is superseded by identical policy 70
+ikev1 policy 120 is superseded by identical policy 70
+ikev1 policy 110 is superseded by identical policy 80
+ikev1 policy 150 is superseded by identical policy 130
 : Saved
 
 : 
@@ -4708,6 +4715,54 @@ crypto ca certificate chain sra_2026
     717f7b74 18d1d304 33b0bf8d b90beff4 918f184e 0c5e83bd 79838d2b 2d115f5b 
     cf4010
   quit
+crypto ikev1 policy 10
+ authentication pre-share
+ encryption aes-256
+ hash sha
+ group 2
+ lifetime 86400
+crypto ikev1 policy 20
+ authentication rsa-sig
+ encryption aes-256
+ hash sha
+ group 2
+ lifetime 86400
+crypto ikev1 policy 40
+ authentication pre-share
+ encryption aes-192
+ hash sha
+ group 2
+ lifetime 86400
+crypto ikev1 policy 50
+ authentication rsa-sig
+ encryption aes-192
+ hash sha
+ group 2
+ lifetime 86400
+crypto ikev1 policy 70
+ authentication pre-share
+ encryption 3des
+ hash sha
+ group 2
+ lifetime 86400
+crypto ikev1 policy 80
+ authentication rsa-sig
+ encryption 3des
+ hash sha
+ group 2
+ lifetime 86400
+crypto ikev1 policy 130
+ authentication pre-share
+ encryption des
+ hash sha
+ group 2
+ lifetime 86400
+crypto ikev1 policy 140
+ authentication rsa-sig
+ encryption des
+ hash sha
+ group 2
+ lifetime 86400
 telnet timeout 5
 no ssh stricthostkeycheck
 ssh timeout 5
@@ -4738,8 +4793,9 @@ ssl cipher tlsv1 low
 ssl cipher tlsv1.1 low
 ssl cipher tlsv1.2 custom "AES128-SHA:AES256-SHA:AES128-SHA256:AES256-SHA256"
 ssl cipher dtlsv1 custom "AES128-SHA:AES256-SHA:AES128-SHA256:AES256-SHA256"
-ssl trust-point sra_2025 outside
-ssl trust-point sra_2025 inside
+ssl trust-point sra_2026 outside
+ssl trust-point sra_2026 sentinel_logging
+ssl trust-point sra_2026 inside
 webvpn
  enable outside
  enable inside
@@ -5311,5 +5367,5 @@ call-home
   subscribe-to-alert-group telemetry periodic daily
 password encryption aes
 hpm topN enable
-Cryptochecksum:19fa9cd860e04fe8fd36ca7b1fe02201
+Cryptochecksum:3e6562eeb6112364a5d17d204902390a
 : end
