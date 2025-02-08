@@ -738,6 +738,9 @@ object network 10.35.50.170
 object network 10.35.50.190
  host 10.35.50.190
  description CECR-6042 Reuben E
+object network utd-dc03.utd.com
+ host 10.1.101.104
+ description CECR-7295 Reuben E
 object-group network Tomcat-Servers
  network-object object ecapp0506p
  network-object object ecapp0606p
@@ -870,6 +873,7 @@ object-group network ECWebAppServers
 object-group network WalthamDNSServers
  network-object object utd-dc01
  network-object object utd-dc02
+ network-object object utd-dc03.utd.com
 object-group network NetIQSystems
  description NetIQ Management Systems
  network-object 10.1.30.0 255.255.255.0
@@ -1313,6 +1317,7 @@ object-group network DM_INLINE_NETWORK_23
  network-object object dc04p
  network-object object utd-dc01
  network-object object utd-dc02
+ network-object object utd-dc03.utd.com
 object-group service centrify tcp-udp
  description centrify
  port-object eq 3268
@@ -1333,6 +1338,7 @@ object-group network DM_INLINE_NETWORK_25
  network-object object dc04p
  network-object object utd-dc01
  network-object object utd-dc02
+ network-object object utd-dc03.utd.com
 object-group service DM_INLINE_TCP_21 tcp
  port-object eq 5063
  port-object eq 5555
@@ -4467,6 +4473,7 @@ object-group network Waltham_Domain_Controllers
  network-object object dc04p
  network-object object utd-dc01
  network-object object utd-dc02
+ network-object object utd-dc03.utd.com
 object-group network DM_INLINE_NETWORK_66
  network-object object oradbp01-vip
  network-object object oradbp02-vip
@@ -4852,6 +4859,18 @@ object-group network ESX_UNITY
 object-group network WALTHAM_ESRS_VMS
  description IS-7121
  network-object object obj-10.1.101.249
+object-group network DM_INLINE_NETWORK_91
+ network-object object utd-dc01
+ network-object object utd-dc03.utd.com
+object-group network DM_INLINE_NETWORK_92
+ network-object object utd-dc01
+ network-object object utd-dc03.utd.com
+object-group network DM_INLINE_NETWORK_93
+ network-object object utd-dc01
+ network-object object utd-dc03.utd.com
+object-group network DM_INLINE_NETWORK_94
+ network-object object utd-dc01
+ network-object object utd-dc03.utd.com
 access-list inside-in remark Block List to INET YA 12.23.18
 access-list inside-in extended deny ip any object-group BlockOut 
 access-list inside-in extended permit icmp object-group TechGroup any 
@@ -4985,6 +5004,7 @@ access-list DMZ3554_access_in extended permit tcp object-group ECWebAppServers 1
 access-list DMZ3554_access_in remark Splunk / appplog01p Rule for JR
 access-list DMZ3554_access_in extended permit tcp object-group DM_INLINE_NETWORK_17 object-group DM_INLINE_NETWORK_19 object-group DM_INLINE_TCP_18 
 access-list DMZ3554_access_in remark Centrify comunication to Waltham DC's SA 8.9.16
+access-list DMZ3554_access_in remark CECR-7295  Reuben E
 access-list DMZ3554_access_in extended permit object-group TCPUDP object-group DM_INLINE_NETWORK_22 object-group DM_INLINE_NETWORK_23 object-group centrify 
 access-list DMZ3554_access_in remark Centrify comunication to Waltham DC's SA 8.9.16
 access-list DMZ3554_access_in extended permit tcp object-group DM_INLINE_NETWORK_24 object centrify01p object-group DM_INLINE_TCP_20 
@@ -5004,7 +5024,8 @@ access-list DMZ3554_access_in remark to allow out bound DNS requests to public D
 access-list DMZ3554_access_in extended permit object-group DM_INLINE_SERVICE_1 10.35.54.0 255.255.255.0 any 
 access-list DMZ3554_access_in remark For 3554 to Waltham Nagios
 access-list DMZ3554_access_in extended permit tcp 10.35.54.0 255.255.255.0 object-group Nagios_Servers object-group DM_INLINE_TCP_9 
-access-list DMZ3554_access_in extended permit udp object-group ECWebAppServers object utd-dc01 eq ntp 
+access-list DMZ3554_access_in remark CECR-7295  Reuben E
+access-list DMZ3554_access_in extended permit udp object-group ECWebAppServers object-group DM_INLINE_NETWORK_92 eq ntp 
 access-list DMZ3554_access_in extended permit udp object-group ECWebAppServers object utd-dc02 eq ntp 
 access-list DMZ3554_access_in remark Germany Web / App Servers to Waltham Linux NTP Source
 access-list DMZ3554_access_in extended permit udp object-group ECWebAppServers object-group NTP_Servers eq ntp 
@@ -5105,7 +5126,8 @@ access-list DMZ3550_access_in remark valn3550 for DNS Lookups
 access-list DMZ3550_access_in extended permit tcp 10.35.50.0 255.255.255.0 any eq domain 
 access-list DMZ3550_access_in extended permit udp object-group BigIPNATServers-INET_real1 object-group WalthamDNSServers eq domain 
 access-list DMZ3550_access_in extended permit udp object-group BigIPNATServers-INET_real1 object utd-dc02 eq ntp 
-access-list DMZ3550_access_in extended permit udp object-group BigIPNATServers-INET_real1 object utd-dc01 eq ntp 
+access-list DMZ3550_access_in remark CECR-7295  Reuben E
+access-list DMZ3550_access_in extended permit udp object-group BigIPNATServers-INET_real1 object-group DM_INLINE_NETWORK_91 eq ntp 
 access-list DMZ3550_access_in remark Rule for LTM's to deny traffic to DMZ3554
 access-list DMZ3550_access_in extended deny ip object-group BigIPNATServers-INET_real1 10.35.54.0 255.255.255.0 
 access-list DMZ3550_access_in remark Rule for LTM's to deny traffic to DMZ3556
@@ -5166,12 +5188,14 @@ access-list DMZ3556_access_in remark NetIQ_6.25.15 - Edit - Updated 3.16.18 SA
 access-list DMZ3556_access_in extended permit tcp object-group DM_INLINE_NETWORK_41 object-group NetIQSystems object-group NetIQ 
 access-list DMZ3556_access_in extended permit tcp object-group DM_INLINE_NETWORK_42 10.1.30.0 255.255.255.0 object-group NetIQ 
 access-list DMZ3556_access_in remark Centrify comunication to Waltham DC's SA 8.9.16
+access-list DMZ3556_access_in remark CECR-7295  Reuben E
 access-list DMZ3556_access_in extended permit object-group TCPUDP object-group Database-Servers object-group DM_INLINE_NETWORK_25 object-group centrify 
 access-list DMZ3556_access_in remark Centrify comunication to Waltham DC's YA 8.9.16
 access-list DMZ3556_access_in extended permit tcp object-group Database-Servers object centrify01p object-group DM_INLINE_TCP_21 
 access-list DMZ3556_access_in remark 3556 to Waltham Nagios
 access-list DMZ3556_access_in extended permit tcp 10.35.56.0 255.255.255.0 object-group Nagios_Servers object-group DM_INLINE_TCP_10 
-access-list DMZ3556_access_in extended permit udp any object utd-dc01 eq ntp 
+access-list DMZ3556_access_in remark CECR-7295  Reuben E
+access-list DMZ3556_access_in extended permit udp any object-group DM_INLINE_NETWORK_93 eq ntp 
 access-list DMZ3556_access_in extended permit udp object-group ECDBServers object utd-dc02 eq ntp 
 access-list DMZ3556_access_in remark Germany DB servers to Waltham Linux NTP Servers
 access-list DMZ3556_access_in extended permit udp object-group ECDBServers object-group NTP_Servers eq ntp 
@@ -5179,7 +5203,8 @@ access-list DMZ3556_access_in extended permit udp 10.35.56.0 255.255.255.0 objec
 access-list DMZ3556_access_in extended permit tcp 10.35.56.0 255.255.255.0 object-group DM_INLINE_NETWORK_74 object-group Cisco-LMS-TCP 
 access-list DMZ3556_access_in remark Dell_Open_Manage_SNMP_Traps YA 6.22.18
 access-list DMZ3556_access_in extended permit udp 10.35.56.0 255.255.255.0 object-group DM_INLINE_NETWORK_5 object-group Dell_Open_Manage_SNMP_Traps 
-access-list DMZ3556_access_in extended permit udp object-group ECDBServers object utd-dc01 eq ntp 
+access-list DMZ3556_access_in remark CECR-7295  Reuben E
+access-list DMZ3556_access_in extended permit udp object-group ECDBServers object-group DM_INLINE_NETWORK_94 eq ntp 
 access-list DMZ3556_access_in extended permit tcp object-group Database-Servers object-group WalthamDBServers eq 61616 
 access-list DMZ3556_access_in extended permit tcp object-group Database-Servers object-group WalthamDBServers eq 61617 
 access-list DMZ3556_access_in extended permit tcp object-group Database-Servers object-group DM_INLINE_NETWORK_1 object-group DBReplication 
@@ -5731,5 +5756,5 @@ call-home
   subscribe-to-alert-group inventory periodic monthly
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
-Cryptochecksum:6e27559cadc9d4abf3cce9c35249bfc1
+Cryptochecksum:3c61397748d675e0269c2d0e66375d3f
 : end

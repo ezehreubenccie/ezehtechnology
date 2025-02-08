@@ -775,6 +775,9 @@ object network obj-10.25.50.170
 object network obj-10.25.50.190
  host 10.25.50.190
  description CECR-5057 Reuben Ezeh
+object network utd-dc03.utd.com
+ host 10.1.101.104
+ description CECR-7295 - Reuben E
 object-group network DM_INLINE_NETWORK_32
  network-object host 10.20.56.83
  network-object host 10.20.56.84
@@ -1301,10 +1304,12 @@ object-group network DM_INLINE_NETWORK_21
  network-object object utd-dc02
  network-object object dc04p
  network-object object utd-dc01
+ network-object object utd-dc03.utd.com
 object-group network DM_INLINE_NETWORK_22
  network-object object utd-dc02
  network-object object dc04p
  network-object object utd-dc01
+ network-object object utd-dc03.utd.com
 object-group network DM_INLINE_NETWORK_23
  network-object object ecmon0904p-bk
  group-object App_Servers
@@ -4229,6 +4234,7 @@ object-group network Waltham_Domain_Controllers
  network-object object dc04p
  network-object object utd-dc01
  network-object object utd-dc02
+ network-object object utd-dc03.utd.com
 object-group network DM_INLINE_NETWORK_46
  network-object object oradbp01-vip
  network-object object oradbp02-vip
@@ -4760,6 +4766,7 @@ access-list DMZ2554_access_in extended permit tcp object-group DM_INLINE_NETWORK
 access-list DMZ2554_access_in remark ST
 access-list DMZ2554_access_in extended permit tcp object ecapp0504p object Applog01p eq 8090 
 access-list DMZ2554_access_in remark Centrify comunication to Waltham DC's SA 6.6.16
+access-list DMZ2554_access_in remark CECR-7295 Reuben E
 access-list DMZ2554_access_in extended permit object-group TCPUDP object-group DM_INLINE_NETWORK_23 object-group DM_INLINE_NETWORK_21 object-group Centrify 
 access-list DMZ2554_access_in remark TK NFS Cluster to Waltham VCenter SA 11.19.19
 access-list DMZ2554_access_in extended permit tcp object-group OpenShift_Cluster-TK-NFS object vc01p object-group http_s 
@@ -4930,6 +4937,7 @@ access-list DMZ2556_access_in extended permit icmp any4 object-group TechGroup
 access-list DMZ2556_access_in remark NetIQ_10.12.16 - Edit - Updated 3.16.18
 access-list DMZ2556_access_in extended permit tcp object-group DM_INLINE_NETWORK_24 object-group NetIQSystems object-group NetIQ 
 access-list DMZ2556_access_in remark Centrify comunication to Waltham DC's SA 6.6.16
+access-list DMZ2556_access_in remark CECR-7295 Reuben E
 access-list DMZ2556_access_in extended permit object-group TCPUDP object-group Database-Servers object-group DM_INLINE_NETWORK_22 object-group Centrify 
 access-list DMZ2556_access_in extended permit tcp object-group Database-Servers 10.1.30.0 255.255.255.0 object-group NetIQ 
 access-list DMZ2556_access_in extended permit udp object-group ECDBServers object-group NTP_Servers eq ntp 
@@ -5486,5 +5494,5 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname priority state 
 no call-home reporting anonymous
-Cryptochecksum:04c45762b8ce79728b48757a6e22e4ad
+Cryptochecksum:5a79b12460d0eb01c516db530c5a92bc
 : end
