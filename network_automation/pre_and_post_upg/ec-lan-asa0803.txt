@@ -37,27 +37,27 @@ Interface GigabitEthernet0/0 "outside", is up, line protocol is up
 	Description: outside interface
 	MAC address 2cd0.2d12.f059, MTU 1500
 	IP address 63.240.21.174, subnet mask 255.255.255.248
-	78167 packets input, 17222235 bytes, 0 no buffer
+	9620384 packets input, 1467995008 bytes, 0 no buffer
 	Received 0 broadcasts, 0 runts, 0 giants
 	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
 	0 L2 decode drops
-	87450 packets output, 43016817 bytes, 0 underruns
+	11930849 packets output, 3415342139 bytes, 0 underruns
 	0 pause output, 0 resume output
 	0 output errors, 0 collisions, 1 interface resets
 	0 late collisions, 0 deferred
 	0 input reset drops, 0 output reset drops
-	input queue (blocks free curr/low): hardware (506/456)
-	output queue (blocks free curr/low): hardware (501/440)
+	input queue (blocks free curr/low): hardware (509/422)
+	output queue (blocks free curr/low): hardware (449/406)
   Traffic Statistics for "outside":
-	78167 packets input, 15538728 bytes
-	87450 packets output, 41174333 bytes
-	2813 packets dropped
-      1 minute input rate 6 pkts/sec,  696 bytes/sec
-      1 minute output rate 7 pkts/sec,  3702 bytes/sec
+	9620372 packets input, 1273307862 bytes
+	11930849 packets output, 3173974508 bytes
+	566973 packets dropped
+      1 minute input rate 5 pkts/sec,  697 bytes/sec
+      1 minute output rate 5 pkts/sec,  2042 bytes/sec
       1 minute drop rate, 0 pkts/sec
-      5 minute input rate 5 pkts/sec,  611 bytes/sec
-      5 minute output rate 6 pkts/sec,  3016 bytes/sec
+      5 minute input rate 6 pkts/sec,  879 bytes/sec
+      5 minute output rate 6 pkts/sec,  2111 bytes/sec
       5 minute drop rate, 0 pkts/sec
 Interface GigabitEthernet0/1 "Inside2058", is up, line protocol is up
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
@@ -66,27 +66,27 @@ Interface GigabitEthernet0/1 "Inside2058", is up, line protocol is up
 	Description: inside interface
 	MAC address 2cd0.2d12.f055, MTU 1500
 	IP address 10.20.58.4, subnet mask 255.255.255.0
-	67067 packets input, 4899376 bytes, 0 no buffer
+	928721 packets input, 130619822 bytes, 0 no buffer
 	Received 0 broadcasts, 0 runts, 0 giants
 	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
 	0 L2 decode drops
-	267556 packets output, 52650896 bytes, 0 underruns
+	9738737 packets output, 1827091576 bytes, 0 underruns
 	0 pause output, 0 resume output
 	0 output errors, 0 collisions, 1 interface resets
 	0 late collisions, 0 deferred
 	0 input reset drops, 0 output reset drops
-	input queue (blocks free curr/low): hardware (489/456)
-	output queue (blocks free curr/low): hardware (501/435)
+	input queue (blocks free curr/low): hardware (489/451)
+	output queue (blocks free curr/low): hardware (508/398)
   Traffic Statistics for "Inside2058":
-	67067 packets input, 3329712 bytes
-	267556 packets output, 47819315 bytes
-	266 packets dropped
-      1 minute input rate 4 pkts/sec,  193 bytes/sec
-      1 minute output rate 20 pkts/sec,  3579 bytes/sec
+	928721 packets input, 112903222 bytes
+	9738737 packets output, 1650783022 bytes
+	27339 packets dropped
+      1 minute input rate 0 pkts/sec,  18 bytes/sec
+      1 minute output rate 3 pkts/sec,  601 bytes/sec
       1 minute drop rate, 0 pkts/sec
-      5 minute input rate 4 pkts/sec,  206 bytes/sec
-      5 minute output rate 19 pkts/sec,  3497 bytes/sec
+      5 minute input rate 0 pkts/sec,  63 bytes/sec
+      5 minute output rate 5 pkts/sec,  942 bytes/sec
       5 minute drop rate, 0 pkts/sec
 Interface GigabitEthernet0/2 "", is administratively down, line protocol is down
   Hardware is i82574L rev00, BW 1000 Mbps, DLY 10 usec
@@ -210,16 +210,16 @@ Interface Management0/0 "", is down, line protocol is down
 	Available but not configured via nameif
 	MAC address 2cd0.2d12.f054, MTU not set
 	IP address unassigned
-	757 packets input, 32094 bytes, 0 no buffer
+	54022 packets input, 2269224 bytes, 0 no buffer
 	Received 0 broadcasts, 0 runts, 0 giants
 	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
 	0 pause input, 0 resume input
-	757 L2 decode drops
+	54022 L2 decode drops
 	0 packets output, 0 bytes, 0 underruns
 	0 pause output, 0 resume output
 	0 output errors, 0 collisions, 1 interface resets
 	0 late collisions, 0 deferred
-	14 input reset drops, 0 output reset drops
+	13 input reset drops, 0 output reset drops
 	input queue (blocks free curr/low): hardware (0/0)
 	output queue (blocks free curr/low): hardware (0/0)
 
@@ -264,7 +264,7 @@ interface GigabitEthernet0/1
  nameif Inside2058
  security-level 100
  ip address 10.20.58.4 255.255.255.0 
- ospf message-digest-key 1 md5 *****
+ ospf message-digest-key 1 md5 8 dvui47ljJpNx5YmK2j223os5SzQD9YVa
 !
 interface GigabitEthernet0/2
  shutdown
@@ -309,15 +309,36 @@ interface Management0/0
  no security-level
  no ip address
 !
-banner exec  
-banner exec  * * * AUTHORIZED ACCESS ONLY * * *
-banner exec 
-banner exec Individuals using this system with or without proper authority
-banner exec are subject to having all of their activities on this system
-banner exec monitored and recorded.  Anyone using this system expressly
-banner exec consents to such monitoring and to all appropriate disclosure
-banner exec of any evidence of violation of the Firm's rules including,
-banner exec but not limited to, criminal activity.
+banner login ************************* WARNING ***************************
+banner login * THIS SYSTEM IS FOR THE USE OF AUTHORIZED PERSONNEL ONLY!  *
+banner login * ACCESS IS RESTRICTED TO AUTHORIZED USERS ONLY!            *
+banner login * UNAUTHORIZED ACCESS IS A VIOLATION OF STATE AND FEDERAL,  *
+banner login * CIVIL AND CRIMINAL LAWS.  VIOLATORS WILL BE PROSECUTED.   *
+banner login * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *
+banner login 
+banner login * ALL ACTIVITY ON THIS COMPUTER SYSTEM IS MONITORED BY      *
+banner login * SYSTEM SECURITY PERSONNEL. BY USING THIS COMPUTER SYSTEM  *
+banner login * YOU CONSENT TO THIS MONITORING. INDIVIDUALS DETERMINED TO *
+banner login * BE USING THIS COMPUTER NETWORK SYSTEM WITHOUT PROPER      *
+banner login * AUTHORIZATION, OR IN EXCESS OF THEIR AUTHORIZATION MAY    *
+banner login * HAVE THEIR ACTIVITY RECORD SUBMITTED TO LEGAL AUTHORITIES *
+banner login * AND LEGAL AND CRIMINAL CHARGES MAY FOLLOW.                *
+banner login *************************************************************
+banner motd  ************************* WARNING ***************************
+banner motd  * THIS SYSTEM IS FOR THE USE OF AUTHORIZED PERSONNEL ONLY!  *
+banner motd  * ACCESS IS RESTRICTED TO AUTHORIZED USERS ONLY!            *
+banner motd  * UNAUTHORIZED ACCESS IS A VIOLATION OF STATE AND FEDERAL,  *
+banner motd  * CIVIL AND CRIMINAL LAWS.  VIOLATORS WILL BE PROSECUTED.   *
+banner motd  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *
+banner motd  
+banner motd  * ALL ACTIVITY ON THIS COMPUTER SYSTEM IS MONITORED BY      *
+banner motd  * SYSTEM SECURITY PERSONNEL. BY USING THIS COMPUTER SYSTEM  *
+banner motd  * YOU CONSENT TO THIS MONITORING. INDIVIDUALS DETERMINED TO *
+banner motd  * BE USING THIS COMPUTER NETWORK SYSTEM WITHOUT PROPER      *
+banner motd  * AUTHORIZATION, OR IN EXCESS OF THEIR AUTHORIZATION MAY    *
+banner motd  * HAVE THEIR ACTIVITY RECORD SUBMITTED TO LEGAL AUTHORITIES *
+banner motd  * AND LEGAL AND CRIMINAL CHARGES MAY FOLLOW.                *
+banner motd  *************************************************************
 banner asdm  
 banner asdm  * * * AUTHORIZED ACCESS ONLY * * *
 banner asdm 
@@ -2349,6 +2370,13 @@ object-group network BlockOut
  network-object 204.85.191.8 255.255.255.254
  network-object 212.193.30.142 255.255.255.254
  network-object 213.164.205.168 255.255.255.254
+ network-object host 194.26.25.105
+ network-object host 194.26.29.187
+ network-object host 77.221.146.4
+ network-object host 194.26.29.174
+ network-object host 194.26.69.12
+ network-object host 194.26.29.79
+ network-object host 88.214.25.248
 object-group network CyberArk_Servers
  description CyberArk_Servers
  network-object host 104.42.192.253
@@ -2380,8 +2408,9 @@ access-list ny2-to-ny1 standard permit 10.20.50.0 255.255.255.0
 access-list ny2-to-ny1 standard permit 10.20.54.0 255.255.255.0 
 access-list ny2-to-ny1 standard permit 10.20.56.0 255.255.255.0 
 access-list ny2-to-ny1 standard permit 10.20.64.0 255.255.255.0 
-pager lines 25
+pager lines 24
 logging enable
+no logging hide username
 logging emblem
 logging buffer-size 16384
 logging buffered debugging
@@ -2453,7 +2482,7 @@ aaa-server LDAP (Inside2058) host 10.20.56.30
  ldap-base-dn DC=utd,DC=com
  ldap-scope subtree
  ldap-naming-attribute sAMAccountName
- ldap-login-password *****
+ ldap-login-password 8 hH11F3UMHe1Al8+HMkhQ+3zURBZARIdV
  ldap-login-dn CN=Admap Ldap,CN=Users,DC=UTD,DC=com
  ldap-over-ssl enable
  server-type microsoft
@@ -2462,13 +2491,13 @@ aaa-server RSA protocol sdi
 aaa-server RSA (Inside2058) host 10.20.56.7
 aaa-server ISE-TACACS protocol tacacs+
 aaa-server ISE-TACACS (Inside2058) host 10.1.101.78
- key *****
+ key 8 Es52ygpdXeNGQQ2Zb1Q6ChUdGcuXKmaKnNZykLJHxDM=
 aaa-server ISE-TACACS (Inside2058) host 10.1.101.79
- key *****
+ key 8 I5UBLAsW1/xyHokYS/YGog99+ZTvy3ZP2U09VYk16Rk=
 aaa-server RSA-RADIUS protocol radius
 aaa-server RSA-RADIUS (Inside2058) host 10.20.56.7
  timeout 60
- key *****
+ key 8 yKDE+iSOAatMgNzuc4Z4PYN3uNnXV+KifvA=
  authentication-port 1812
  accounting-port 1812
  radius-common-pw *****
@@ -2489,6 +2518,8 @@ aaa authorization command ISE-TACACS LOCAL
 aaa authorization exec authentication-server auto-enable
 aaa authentication login-history
 http server enable
+http server idle-timeout 5
+http server session-timeout 30
 http 10.0.0.0 255.0.0.0 Inside2058
 snmp-server group WKSNMPGROUP v3 priv 
 snmp-server user WKUTDSNMP WKSNMPGROUP v3 engineID 80000009fe655ec0f8e17e4cfe11019746858698ce7e8fe9d1 encrypted auth sha ba:3b:29:b3:4a:af:db:ee:f9:df:ba:07:aa:96:d5:40:91:72:96:ab priv aes 128 e9:78:69:5b:41:5f:7b:e8:d3:b9:ca:5c:5b:02:87:da 
@@ -2535,6 +2566,12 @@ crypto ca trustpoint SSL_EXTERNAL_2023_3
  fqdn srany.uptodate.com
  subject-name CN=srany.uptodate.com
  keypair SSL_EXTERNAL_2023_3
+ crl configure
+crypto ca trustpoint SSL_EXTERNAL_2024
+ enrollment terminal
+ fqdn srany.uptodate.com
+ subject-name CN=srany.uptodate.com
+ keypair SSL_EXTERNAL_2024
  crl configure
 crypto ca trustpool policy
 crypto ca certificate chain ASDM_TrustPoint1
@@ -2693,6 +2730,63 @@ crypto ca certificate chain SSL_EXTERNAL_2023_3
     4706f5e0 e57db5f3 ff9d808d 312256ee 21da28a0 72ebc2e6 abf99c1b b7f4e4f8 
     26b358ae 766f
   quit
+crypto ca certificate chain SSL_EXTERNAL_2024
+ certificate 2a6fd3151087a360
+    308206a2 3082058a a0030201 0202082a 6fd31510 87a36030 0d06092a 864886f7 
+    0d01010b 05003081 b4310b30 09060355 04061302 55533110 300e0603 55040813 
+    07417269 7a6f6e61 31133011 06035504 07130a53 636f7474 7364616c 65311a30 
+    18060355 040a1311 476f4461 6464792e 636f6d2c 20496e63 2e312d30 2b060355 
+    040b1324 68747470 3a2f2f63 65727473 2e676f64 61646479 2e636f6d 2f726570 
+    6f736974 6f72792f 31333031 06035504 03132a47 6f204461 64647920 53656375 
+    72652043 65727469 66696361 74652041 7574686f 72697479 202d2047 32301e17 
+    0d323430 38313331 39303435 345a170d 32353038 31333139 30343534 5a301d31 
+    1b301906 03550403 13127372 616e792e 7570746f 64617465 2e636f6d 30820122 
+    300d0609 2a864886 f70d0101 01050003 82010f00 3082010a 02820101 00c0ce1d 
+    fbf878ff 31e50e73 ce2f14ea c9c8baf8 3a759f62 205b54c3 c32db79f 71331f3d 
+    0395cc44 83fb3bb4 3202341e 81b9a2da 57c99157 3bc6789f c908ebcb 77275825 
+    605b3733 0253228b 668175a7 d1472863 93454850 1646ef3e d061e9ec 4b624cf0 
+    f6d106b4 8a3e0ca5 5f581afe 15d027fe bf26c844 65723b2e 837f91d9 8ff65489 
+    f90ea5e0 fecd18b7 3a8694c3 a151caff 263947b8 84f07c6d 3b1c99ad 269f6b54 
+    d5cb74fc 331869b0 8018f544 57880b52 8082c5ec 78dcae85 6eaf549b fc77f86d 
+    5260d95b 4a1c857f 47c64683 a0425a9b 4ecdf5eb 755fe36d 63a61904 44fb2e3d 
+    24d57097 181a57d4 c754a9e0 6be9bbfd 32484930 9eeca48b 230dc5ac 4b020301 
+    0001a382 034c3082 0348300c 0603551d 130101ff 04023000 301d0603 551d2504 
+    16301406 082b0601 05050703 0106082b 06010505 07030230 0e060355 1d0f0101 
+    ff040403 0205a030 39060355 1d1f0432 3030302e a02ca02a 86286874 74703a2f 
+    2f63726c 2e676f64 61646479 2e636f6d 2f676469 67327331 2d323833 30382e63 
+    726c305d 0603551d 20045630 54304806 0b608648 0186fd6d 01071701 30393037 
+    06082b06 01050507 0201162b 68747470 3a2f2f63 65727469 66696361 7465732e 
+    676f6461 6464792e 636f6d2f 7265706f 7369746f 72792f30 08060667 810c0102 
+    01307606 082b0601 05050701 01046a30 68302406 082b0601 05050730 01861868 
+    7474703a 2f2f6f63 73702e67 6f646164 64792e63 6f6d2f30 4006082b 06010505 
+    07300286 34687474 703a2f2f 63657274 69666963 61746573 2e676f64 61646479 
+    2e636f6d 2f726570 6f736974 6f72792f 67646967 322e6372 74301f06 03551d23 
+    04183016 801440c2 bd278ecc 348330a2 33d7fb6c b3f0b42c 80ce3035 0603551d 
+    11042e30 2c821273 72616e79 2e757074 6f646174 652e636f 6d821677 77772e73 
+    72616e79 2e757074 6f646174 652e636f 6d301d06 03551d0e 04160414 6ed8535a 
+    eabdd016 9dafc223 367ba883 fe86a652 3082017e 060a2b06 010401d6 79020402 
+    0482016e 0482016a 01680076 0012f14e 34bd5372 4c840619 c38f3f7a 13f8e7b5 
+    6287889c 6d300584 ebe58626 3a000001 914d2102 1d000004 03004730 45022100 
+    baacd630 79f6e7ad 6e2f484a 1c16579d 6517c0ed a4fa79a7 1fad2f40 44fec041 
+    02201a98 e57822f5 183b0827 6402a6ec 03d7c35f 735fb911 2c8b488c 279c9ac6 
+    20870076 007d591e 12e1782a 7b1c6167 7c5efdf8 d0875c14 a04e959e b9032fd9 
+    0e8c2e79 b8000001 914d2103 89000004 03004730 45022100 ed75deb4 41bbe2a2 
+    7cd56d5a 19aba5c9 9aed41bc 6372f36f 51e2650b aae4826c 0220124c 7062d232 
+    1b055500 221ed268 e6195096 9307aba3 3b7ef948 33928361 03420076 00ccfb0f 
+    6a857109 65fe959b 53cee9b2 7c22e985 5c0d978d b6a97e54 c0fe4c0d b0000001 
+    914d2104 59000004 03004730 45022100 b73e36b2 88ba02a6 8ded164b 0af344a7 
+    42b480a4 1b16afd7 29ffb517 8ff66c73 02207ebd e1bfcf1d d2cb342d fbfb5d40 
+    957c01a6 c26e1617 b7769e74 54accf29 7755300d 06092a86 4886f70d 01010b05 
+    00038201 01006c3b 83f1578b b6c20f5e dd6396ff 55ff65e0 2bd98d79 7f87a372 
+    be25191d 8eee1d1f 1def9e1d 565b07c7 5b65f99d 70a226ee dc857691 011fc46b 
+    d388a10d 039f5276 c11c58e1 d56ebbcb 604dabaf 23a5616a c0871ab1 fdbf300b 
+    04cf0297 5a9ca5f8 1e8db00a 805e466a ec420392 7456092a 49edbfc2 b53e5eb4 
+    6834a379 4ffddea8 53f604a6 73c04711 07621018 d78621a0 53d47ea1 eb04499b 
+    dda3ecba e99c32ff 4bfaa7b7 546645d3 e9029752 cd697c2c 7f24dd7b b03a7b2b 
+    8bb8602d 701c4034 46e987f7 52e1e190 0de65ee2 3a24e245 95790cd1 8c5e8451 
+    59e4ec96 3a8d4b36 c13657a6 221070ff 08abd0b1 2efe902f 8b013f0f ac8bd774 
+    db54978e 1136
+  quit
 crypto ikev2 policy 1
  encryption aes-256
  integrity sha
@@ -2727,12 +2821,12 @@ crypto ikev2 enable outside client-services port 443
 telnet timeout 5
 ssh scopy enable
 ssh stricthostkeycheck
-ssh timeout 30
+ssh timeout 5
 ssh version 2
 ssh key-exchange group dh-group1-sha1
 ssh 0.0.0.0 0.0.0.0 Inside2058
 ssh 10.0.0.0 255.0.0.0 Inside2058
-console timeout 1
+console timeout 5
 management-access Inside2058
 no vpn-addr-assign aaa
 no vpn-addr-assign dhcp
@@ -2740,8 +2834,13 @@ no vpn-addr-assign dhcp
 tls-proxy maximum-session 1000
 !
 threat-detection basic-threat
-threat-detection statistics access-list
-no threat-detection statistics tcp-intercept
+threat-detection scanning-threat shun except ip-address 10.20.200.0 255.255.255.0
+threat-detection scanning-threat shun except ip-address 10.20.58.1 255.255.255.255
+threat-detection scanning-threat shun except ip-address 224.0.0.5 255.255.255.255
+threat-detection scanning-threat shun except ip-address 224.0.0.6 255.255.255.255
+threat-detection scanning-threat shun duration 3600
+threat-detection statistics
+threat-detection statistics tcp-intercept rate-interval 30 burst-rate 400 average-rate 200
 ssl server-version tlsv1.2
 ssl client-version tlsv1.2
 ssl cipher default custom "AES128-SHA:AES256-SHA:AES128-SHA256:AES256-SHA256"
@@ -2749,8 +2848,8 @@ ssl cipher tlsv1 custom "RC4-SHA:AES128-SHA:AES256-SHA:DES-CBC3-SHA"
 ssl cipher tlsv1.2 custom "AES128-SHA:AES256-SHA:AES128-SHA256:AES256-SHA256"
 ssl cipher dtlsv1 custom "AES128-SHA:AES256-SHA:AES128-SHA256:AES256-SHA256"
 ssl trust-point SSL2022
-ssl trust-point SSL_EXTERNAL_2023_3 outside
-ssl trust-point SSL_EXTERNAL_2023_3 Inside2058
+ssl trust-point SSL_EXTERNAL_2024 outside
+ssl trust-point SSL_EXTERNAL_2024 Inside2058
 webvpn
  enable outside
  hsts
@@ -2786,8 +2885,7 @@ group-policy DfltGrpPolicy attributes
  wins-server value 10.20.56.30
  dns-server value 10.20.54.16 10.20.56.30
  vpn-simultaneous-logins 2
- vpn-idle-timeout 60
- vpn-session-timeout 480
+ vpn-session-timeout 1440
  vpn-tunnel-protocol ssl-client 
  split-tunnel-policy tunnelspecified
  split-tunnel-network-list value acl-split-tunnel1
@@ -2807,6 +2905,7 @@ group-policy grp_policy_bcdr_dba attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-bcdr-dba
 group-policy grp_policy_bcdr_cs internal
 group-policy grp_policy_bcdr_cs attributes
@@ -2819,6 +2918,7 @@ group-policy grp_policy_bcdr_cs attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-bcdr-cs
 group-policy grp_policy_bcdr_users internal
 group-policy grp_policy_bcdr_users attributes
@@ -2831,6 +2931,7 @@ group-policy grp_policy_bcdr_users attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-bcdr-users
 group-policy grp_policy_bcdr_dev internal
 group-policy grp_policy_bcdr_dev attributes
@@ -2843,6 +2944,7 @@ group-policy grp_policy_bcdr_dev attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-bcdr-dev
 group-policy grp_policy_bcdr_admin internal
 group-policy grp_policy_bcdr_admin attributes
@@ -2854,6 +2956,7 @@ group-policy grp_policy_bcdr_admin attributes
  banner value consents to such monitoring and to all appropriate disclosure
  banner value of any evidence of violation of the Firm's rules including,
  banner value but not limited to, criminal activity.
+ vpn-session-timeout 1440
  vpn-filter value acl-bcdr-admin
  vpn-tunnel-protocol ssl-client 
 dynamic-access-policy-record SRA-AD-Group-Membership
@@ -2903,36 +3006,14 @@ policy-map global_policy
 service-policy global_policy global
 prompt hostname context 
 no call-home reporting anonymous
-Cryptochecksum:aa84989a2ffcc897942ef9fe989b797c
+password encryption aes
+Cryptochecksum:01b7274d5612d1d58b6c0cf248835cf9
 : end
 
 
-====================show vpn-sessiondb detail=======================================================
+====================show vpn-sessiondb detail l2l===================================================
 
----------------------------------------------------------------------------
-VPN Session Summary
----------------------------------------------------------------------------
-                               Active : Cumulative : Peak Concur : Inactive
-                             ----------------------------------------------
-AnyConnect Client            :      0 :          3 :           2 :        0
-  SSL/TLS/DTLS               :      0 :          3 :           2 :        0
----------------------------------------------------------------------------
-Total Active and Inactive    :      0             Total Cumulative :      3
-Device Total VPN Capacity    :   2500
-Device Load                  :     0%
----------------------------------------------------------------------------
-
----------------------------------------------------------------------------
-Tunnels Summary
----------------------------------------------------------------------------
-                               Active : Cumulative : Peak Concurrent   
-                             ----------------------------------------------
-AnyConnect-Parent            :      0 :          3 :               2
-SSL-Tunnel                   :      0 :          3 :               2
-DTLS-Tunnel                  :      0 :          3 :               2
----------------------------------------------------------------------------
-Totals                       :      0 :          9
----------------------------------------------------------------------------
+INFO: There are presently no active sessions
 
 
 
@@ -2958,19 +3039,13 @@ There are no IKEv1 SAs
 There are no IKEv2 SAs
 
 
-====================show run crypto map=============================================================
+====================sh run crypto map===============================================================
 
 crypto map outside_map 65535 ipsec-isakmp dynamic SYSTEM_DEFAULT_CRYPTO_MAP
 crypto map outside_map interface outside
 
 
-====================show vpn-sessiondb  detail l2l==================================================
-
-INFO: There are presently no active sessions
-
-
-
-====================show vpn-sessiondb l2l | grep Connection========================================
+====================sh vpn-sessiondb l2l | grep Connection==========================================
 
 
 
