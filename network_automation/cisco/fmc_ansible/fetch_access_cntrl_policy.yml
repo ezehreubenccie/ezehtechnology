@@ -1,0 +1,67 @@
+- name: Authenticate with FMC
+  hosts: localhost
+  # connection: httpapi
+  vars:
+    fmc_host: wa-fmc2500
+    domain_uuid: e276abec-e0f2-11e3-8169-6d9ed49b625f
+  vars_files:
+    - ~/cisco/fmc_ansible/host_vars/wa-fmc2500/creds.yml
+    # ansible_user: apiuser
+    # ansible_password: XXXX
+  tasks:
+    - name: Get authentication token
+      uri:
+        url: "https://{{ fmc_host }}/api/fmc_platform/v1/auth/generatetoken"
+        method: POST
+        headers:
+          Content-Type: application/json
+        user: "{{ ansible_user }}"
+        password: "{{ ansible_password }}"
+        force_basic_auth: yes
+        validate_certs: no
+        status_code: 204
+      register: auth_response
+
+    # - name: Debug authentication token
+    #   debug:
+    #     var: auth_response
+
+
+    - name: Extract token
+      set_fact:
+        fmc_token: "{{ auth_response['x_auth_access_token'] }}"
+
+    # - name: Debug Token
+    #   debug:
+    #     var: fmc_token
+
+    
+    - name: Get policies
+      uri:
+        url: "https://{{ fmc_host }}/api/fmc_config/v1/domain/{{ domain_uuid }}/policy/accesspolicies"
+        method: GET
+        headers:
+          Content-Type: application/json
+          X-auth-access-token: "{{ fmc_token }}"
+        validate_certs: no
+      register: policies_response
+
+    - name: Show access policies
+      debug:
+        var: policies_response.json
+
+
+    
+    # - name: Get access control rules for policy
+    #   uri:
+    #     url: "https://{{ fmc_host }}/api/fmc_config/v1/domain/{{ domain_uuid }}/policy/accesspolicies/{{ access_policy_id }}/accessrules"
+    #     method: GET
+    #     headers:
+    #       Content-Type: application/json
+    #       X-auth-access-token: "{{ fmc_token }}"
+    #     validate_certs: no
+    #   register: rules_response
+
+    # - name: Show access rules
+    #   debug:
+    #     var: rules_response.json

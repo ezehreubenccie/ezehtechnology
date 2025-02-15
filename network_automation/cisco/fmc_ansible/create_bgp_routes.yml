@@ -92,20 +92,20 @@
                         "sendCommunity": false,
                         "type": "neighboradvanced"
                     },
-                    # "neighborFiltering": {
-                    #     "neighborRouteMap": [
-                    #         {
-                    #             "filterUpdateAction": "OUT",
-                    #             "routeMap": {
-                    #                 "id": "40CE2481-5D56-0ed3-0000-292057880636",
-                    #                 "name": "Uptodate-to-Clrdata-west-1",
-                    #                 "overridable": false,
-                    #                 "type": "RouteMap"
-                    #             },
-                    #             "type": "neighborroutemap"
-                    #         }
-                    #     ]
-                    # },
+                    "neighborFiltering": {
+                        "neighborRouteMap": [
+                            {
+                                "filterUpdateAction": "OUT",
+                                "routeMap": {
+                                    "id": "40CE2481-5D56-0ed3-0000-292057880636",
+                                    "name": "Uptodate-to-Clrdata-west-1",
+                                    "overridable": false,
+                                    "type": "RouteMap"
+                                },
+                                "type": "neighborroutemap"
+                            }
+                        ]
+                    },
                     "neighborGeneral": {
                         "description": "{{ neighbor_descr }}",
                         "enableAddress": true,
@@ -181,15 +181,15 @@
                 #     "type": "neighboripv4"
                 #   }
                 # ],
-            # "networks": [
-            #         {
-            #             "ipv4Address": {
-            #                 "id": "40CE2481-5D56-0ed3-0000-081604409976",
-            #                 "name": "OBJ-10.20.0.0",
-            #                 "overridable": false,
-            #                 "type": "Network"
-            #             }
-            #         },
+            "networks": [
+                    {
+                        "ipv4Address": {
+                            "id": "40CE2481-5D56-0ed3-0000-081604409976",
+                            "name": "OBJ-10.20.0.0",
+                            "overridable": false,
+                            "type": "Network"
+                        }
+                    },
                     # {
                     #     "ipv4Address": {
                     #         "id": "40CE2481-5D56-0ed3-0000-081604410102",
@@ -279,6 +279,7 @@
                     #     }
                     # }
                 ],
+            ]  
           }
           type: bgp
         path_params:

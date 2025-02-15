@@ -6,6 +6,7 @@
       cisco.fmcansible.fmc_configuration:
         operation: getAllDomain
         register_as: domain
+      tags: enable,disable,deploy,config
 
     - name: Execute 'getAllDevice' operation
       cisco.fmcansible.fmc_configuration:
@@ -18,14 +19,15 @@
           limit: "{{ limit }}"
           expanded: "{{ expanded }}"
         register_as: devices
+      tags: enable,disable,deploy,config
 
     # - debug:
     #     var: devices
 
-    - debug:
-        msg:
-          - "Device name is: {{ devices[0].name }}"
-          - "Device id is: {{ devices[0].id }}"
+    # - debug:
+    #     msg:
+    #       - "Device name is: {{ devices[0].name }}"
+    #       - "Device id is: {{ devices[0].id }}"
     
     - name: Execute 'getAllBGPGeneralSettingModel' operation
       cisco.fmcansible.fmc_configuration:
@@ -38,355 +40,386 @@
           limit: "{{ limit }}"
           expanded: "{{ expanded }}"
         register_as: bgp_setgs
+      tags: enable,disable,deploy,config
+
+    # - name: Execute 'getAllBGPIPvAddressFamilyModel' operation
+    #   cisco.fmcansible.fmc_configuration:
+    #     operation: "getAllBGPIPvAddressFamilyModel"
+    #     path_params:
+    #       containerUUID: "{{ devices[0].id }}"
+    #       domainUUID: "{{ domain[0].uuid }}"
+    #     query_params:
+    #       offset: "{{ offset }}"
+    #       limit: "{{ limit }}"
+    #       expanded: "{{ expanded }}"
+    #     register_as: bgp_conf
+    #   tags: enable,disable,deploy,config
+
+    # - name: Print output
+    #   debug:
+    #     var: bgp_conf 
+
+    - debug: 
+        msg:
+          - "Bgp settings as number is {{ bgp_setgs[0].asNumber  }}"
+          - "Bgp settings id is {{ bgp_setgs[0].id  }}"
+          # - "IPV4 Address family config id on {{ devices[0].name }} is {{ bgp_conf[0].id }}"
+          - "Device name is: {{ devices[0].name }}"
+          - "Device id is: {{ devices[0].id }}"
+      tags: enable,disable,deploy,config
+
           
 
 
 
-    - name: Execute 'updateBGPIPvAddressFamilyModel' operation
-      cisco.fmcansible.fmc_configuration:
-        operation: "updateBGPIPvAddressFamilyModel"
-        data:
-          name: String
-          asNumber: "{{ bgp_setgs[0].asNumber }}"
-          routerId: "{{ routerId }}"
-          addressFamilyIPv4: {
-            "autoSummary": false,
-            "bgpRedistributeInternal": false,
-            "bgpSupressInactive": true,
-            "defaultInformationOrginate": false,
-            "distance": {
-                "externalDistance": 20,
-                "internalDistance": 200,
-                "localDistance": 200,
-                "type": "afbgpdistance"
-            },
-            "ebgp": 1,
-            "ibgp": 1,
-            # "id": "{{ ipv4_add_fam_id }}",
-            # "maximumPaths": [
-            #     {
-            #         "type": "afmaximumpaths",
-            #         "value": 1
-            #     }
-            # ],
-            "neighbors": [
-                {
-                    "ipv4Address": "{{ remote_peer_ip }}",
-                    "neighborAdvanced": {
-                        "neighborHops": {
-                            "disableConnectedCheck": false,
-                            "maxHopCount": 255,
-                            "type": "neighborebgpmultihop"
-                        },
-                        "neighborTransportConnectionMode": {
-                            "establishTCPSession": false,
-                            "type": "neighbortransportconnectionmode"
-                        },
-                        "neighborTransportPathMTUDiscovery": {
-                            "disable": true,
-                            "type": "neighbortransportpathmtudiscovery"
-                        },
-                        "neighborVersion": 0,
-                        "neighborWeight": 0,
-                        "nextHopSelf": false,
-                        "sendCommunity": false,
-                        "type": "neighboradvanced"
-                    },
-                    # "neighborFiltering": {
-                    #     "neighborRouteMap": [
-                    #         {
-                    #             "filterUpdateAction": "OUT",
-                    #             "routeMap": {
-                    #                 "id": "40CE2481-5D56-0ed3-0000-292057880636",
-                    #                 "name": "Uptodate-to-Clrdata-west-1",
-                    #                 "overridable": false,
-                    #                 "type": "RouteMap"
-                    #             },
-                    #             "type": "neighborroutemap"
-                    #         }
-                    #     ]
-                    # },
-                    "neighborGeneral": {
-                        "description": "{{ neighbor_descr }}",
-                        "enableAddress": true,
-                        "fallOverBFD": "SINGLE_HOP",
-                        "shutdown": false,
-                        "type": "neighborgeneral"
-                    },
-                    "neighborRoutes": {
-                        "removePrivateAs": false
-                    },
-                    "neighborTimers": {
-                        "holdTime": 180,
-                        "keepAliveInterval": 60,
-                        "minimumHoldTime": 0,
-                        "type": "neighbortimers"
-                    },
-                    "remoteAs": "{{ remote_as }}",
-                    "type": "neighboripv4"
-                },
-                # {
-                #     "ipv4Address": "169.254.188.41",
-                #     "neighborAdvanced": {
-                #         "neighborHops": {
-                #             "disableConnectedCheck": false,
-                #             "maxHopCount": 1,
-                #             "type": "neighborebgpmultihop"
-                #         },
-                #         "neighborTransportConnectionMode": {
-                #             "establishTCPSession": false,
-                #             "type": "neighbortransportconnectionmode"
-                #         },
-                #         "neighborTransportPathMTUDiscovery": {
-                #             "disable": true,
-                #             "type": "neighbortransportpathmtudiscovery"
-                #         },
-                #         "neighborVersion": 0,
-                #         "neighborWeight": 100,
-                #         "nextHopSelf": false,
-                #         "sendCommunity": false,
-                #         "type": "neighboradvanced"
-                #     },
-                #     "neighborFiltering": {
-                #         "neighborRouteMap": [
-                #             {
-                #                 "filterUpdateAction": "{{ filter_actn }}",
-                #                 "routeMap": {
-                #                     "id": "40CE2481-5D56-0ed3-0000-292057880617",
-                #                     "name": "Uptodate-to-Clrdata-east-1",
-                #                     "overridable": false,
-                #                     "type": "RouteMap"
-                #                 },
-                #                 "type": "neighborroutemap"
-                #             }
-                #         ]
-                #     },
-                #     "neighborGeneral": {
-                #         "description": "route_based_vpn_to_clear_data_east-1",
-                #         "enableAddress": true,
-                #         "fallOverBFD": "SINGLE_HOP",
-                #         "shutdown": false,
-                #         "type": "neighborgeneral"
-                #     },
-                #     "neighborRoutes": {
-                #         "removePrivateAs": false
-                #     },
-                #     "neighborTimers": {
-                #         "holdTime": 180,
-                #         "keepAliveInterval": 60,
-                #         "minimumHoldTime": 0,
-                #         "type": "neighbortimers"
-                #     },
-                #     "remoteAs": "65001",
-                #     "type": "neighboripv4"
-                #   }
-                ],
-            "networks": [
-                    {
-                        "ipv4Address": {
-                            "id": "40CE2481-5D56-0ed3-0000-081604409976",
-                            "name": "OBJ-10.20.0.0",
-                            "overridable": false,
-                            "type": "Network"
-                        }
-                    },
-                    {
-                        "ipv4Address": {
-                            "id": "40CE2481-5D56-0ed3-0000-081604410102",
-                            "name": "OBJ-10.71.0.0",
-                            "overridable": false,
-                            "type": "Network"
-                        }
-                    },
-                    # {
-                    #     "ipv4Address": {
-                    #         "id": "40CE2481-5D56-0ed3-0000-292057864582",
-                    #         "name": "net-wal-192.168.0.0",
-                    #         "overridable": false,
-                    #         "type": "Network"
-                    #     }
-                    # },
-                    # {
-                    #     "ipv4Address": {
-                    #         "id": "40CE2481-5D56-0ed3-0000-292057864418",
-                    #         "name": "net-wal-10.1.101.0",
-                    #         "overridable": false,
-                    #         "type": "Network"
-                    #     }
-                    # },
-                    # {
-                    #     "ipv4Address": {
-                    #         "id": "40CE2481-5D56-0ed3-0000-292057864446",
-                    #         "name": "net-wal-10.2.101.0",
-                    #         "overridable": false,
-                    #         "type": "Network"
-                    #     }
-                    # },
-                    # {
-                    #     "ipv4Address": {
-                    #         "id": "40CE2481-5D56-0ed3-0000-292057864463",
-                    #         "name": "net-wal-10.1.110.0",
-                    #         "overridable": false,
-                    #         "type": "Network"
-                    #     }
-                    # },
-                    # {
-                    #     "ipv4Address": {
-                    #         "id": "40CE2481-5D56-0ed3-0000-176094385108",
-                    #         "name": "10.1.111.0",
-                    #         "overridable": false,
-                    #         "type": "Network"
-                    #     }
-                    # },
-                    # {
-                    #     "ipv4Address": {
-                    #         "id": "40CE2481-5D56-0ed3-0000-292057864445",
-                    #         "name": "net-wal-10.1.112.0",
-                    #         "overridable": false,
-                    #         "type": "Network"
-                    #     }
-                    # },
-                    # {
-                    #     "ipv4Address": {
-                    #         "id": "40CE2481-5D56-0ed3-0000-292057864423",
-                    #         "name": "net-wal-10.1.113.0",
-                    #         "overridable": false,
-                    #         "type": "Network"
-                    #     }
-                    # },
-                    # {
-                    #     "ipv4Address": {
-                    #         "id": "40CE2481-5D56-0ed3-0000-292057864439",
-                    #         "name": "net-wal-10.1.114.0",
-                    #         "overridable": false,
-                    #         "type": "Network"
-                    #     }
-                    # },
-                    # {
-                    #     "ipv4Address": {
-                    #         "id": "40CE2481-5D56-0ed3-0000-292057864585",
-                    #         "name": "net-wal-10.2.250.0",
-                    #         "overridable": false,
-                    #         "type": "Network"
-                    #     }
-                    # },
-                    # {
-                    #     "ipv4Address": {
-                    #         "id": "40CE2481-5D56-0ed3-0000-292057864584",
-                    #         "name": "net-wal-10.1.113.192",
-                    #         "overridable": false,
-                    #         "type": "Network"
-                    #     }
-                    # }
-                ],
-          }
-          type: bgp
-        path_params:
-          objectId: 40CE2481-5D56-0ed3-0001-721748046145
-          containerUUID: "{{ devices[0].id }}"
-          domainUUID: "{{ domain[0].uuid }}"
+    # - name: Execute 'updateBGPIPvAddressFamilyModel' operation
+    #   cisco.fmcansible.fmc_configuration:
+    #     operation: "updateBGPIPvAddressFamilyModel"
+    #     data:
+    #       name: String
+    #       asNumber: "{{ bgp_setgs[0].asNumber }}"
+    #       routerId: "{{ routerId }}"
+    #       addressFamilyIPv4: {
+    #         "autoSummary": false,
+    #         "bgpRedistributeInternal": false,
+    #         "bgpSupressInactive": true,
+    #         "defaultInformationOrginate": false,
+    #         "distance": {
+    #             "externalDistance": 20,
+    #             "internalDistance": 200,
+    #             "localDistance": 200,
+    #             "type": "afbgpdistance"
+    #         },
+    #         "ebgp": 1,
+    #         "ibgp": 1,
+    # #         # "id": "{{ ipv4_add_fam_id }}",
+    # #         # "maximumPaths": [
+    # #         #     {
+    # #         #         "type": "afmaximumpaths",
+    # #         #         "value": 1
+    # #         #     }
+    # #         # ],
+    #         "neighbors": [
+    #             {
+    #                 "ipv4Address": "{{ remote_peer_ip }}",
+    #                 "neighborAdvanced": {
+    #                     "neighborHops": {
+    #                         "disableConnectedCheck": false,
+    #                         "maxHopCount": 255,
+    #                         "type": "neighborebgpmultihop"
+    #                     },
+    #                     "neighborTransportConnectionMode": {
+    #                         "establishTCPSession": false,
+    #                         "type": "neighbortransportconnectionmode"
+    #                     },
+    #                     "neighborTransportPathMTUDiscovery": {
+    #                         "disable": true,
+    #                         "type": "neighbortransportpathmtudiscovery"
+    #                     },
+    #                     "neighborVersion": 0,
+    #                     "neighborWeight": 0,
+    #                     "nextHopSelf": false,
+    #                     "sendCommunity": false,
+    #                     "type": "neighboradvanced"
+    #                 },
+    #                 "neighborFiltering": {
+    #                     "neighborRouteMap": [
+    #                         {
+    #                             "filterUpdateAction": "OUT",
+    #                             "routeMap": {
+    #                                  "id": "40CE2481-5D56-0ed3-0000-292057880636",
+    #                                  "name": "Uptodate-to-Clrdata-west-1",
+    #                                  "overridable": false,
+    #                                  "type": "RouteMap"
+    #                             },
+    #                             "type": "neighborroutemap"
+    #                         }
+    #                     ]
+    #                 },
+    #                 "neighborGeneral": {
+    #                     "description": "{{ neighbor_descr }}",
+    #                     "enableAddress": true,
+    #                     "fallOverBFD": "SINGLE_HOP",
+    #                     "shutdown": false,
+    #                     "type": "neighborgeneral"
+    #                 },
+    #                 "neighborRoutes": {
+    #                     "removePrivateAs": false
+    #                 },
+    #                 "neighborTimers": {
+    #                     "holdTime": 180,
+    #                     "keepAliveInterval": 60,
+    #                     "minimumHoldTime": 0,
+    #                     "type": "neighbortimers"
+    #                 },
+    #                 "remoteAs": "{{ remote_as }}",
+    #                 "type": "neighboripv4"
+    #             },
+    # #             # {
+    # #             #     "ipv4Address": "169.254.188.41",
+    # #             #     "neighborAdvanced": {
+    # #             #         "neighborHops": {
+    # #             #             "disableConnectedCheck": false,
+    # #             #             "maxHopCount": 1,
+    # #             #             "type": "neighborebgpmultihop"
+    # #             #         },
+    # #             #         "neighborTransportConnectionMode": {
+    # #             #             "establishTCPSession": false,
+    # #             #             "type": "neighbortransportconnectionmode"
+    # #             #         },
+    # #             #         "neighborTransportPathMTUDiscovery": {
+    # #             #             "disable": true,
+    # #             #             "type": "neighbortransportpathmtudiscovery"
+    # #             #         },"
+    # #             #         "neighborVersion": 0,
+    # #             #         "neighborWeight": 100,
+    # #             #         "nextHopSelf": false,
+    # #             #         "sendCommunity": false,
+    # #             #         "type": "neighboradvanced"
+    # #             #     },
+    # #             #     "neighborFiltering": {
+    # #             #         "neighborRouteMap": [
+    # #             #             {
+    # #             #                 "filterUpdateAction": "{{ filter_actn }}",
+    # #             #                 "routeMap": {
+    # #             #                     "id": "40CE2481-5D56-0ed3-0000-292057880617",
+    # #             #                     "name": "Uptodate-to-Clrdata-east-1",
+    # #             #                     "overridable": false,
+    # #             #                     "type": "RouteMap"
+    # #             #                 },
+    # #             #                 "type": "neighborroutemap"
+    # #             #             }
+    # #             #         ]
+    # #             #     },
+    # #             #     "neighborGeneral": {
+    # #             #         "description": "route_based_vpn_to_clear_data_east-1",
+    # #             #         "enableAddress": true,
+    # #             #         "fallOverBFD": "SINGLE_HOP",
+    # #             #         "shutdown": false,
+    # #             #         "type": "neighborgeneral"
+    # #             #     },
+    # #             #     "neighborRoutes": {
+    # #             #         "removePrivateAs": false
+    # #             #     },
+    # #             #     "neighborTimers": {
+    # #             #         "holdTime": 180,
+    # #             #         "keepAliveInterval": 60,
+    # #             #         "minimumHoldTime": 0,
+    # #             #         "type": "neighbortimers"
+    # #             #     },
+    # #             #     "remoteAs": "65001",
+    # #             #     "type": "neighboripv4"
+    # #             #   }
+    # #             ],
+    #         "networks": [
+    #                 {
+    #                     "ipv4Address": {
+    #                         "id": "40CE2481-5D56-0ed3-0000-081604409976",
+    #                         "name": "OBJ-10.20.0.0",
+    #                         "overridable": false,
+    #                         "type": "Network"
+    #                     }
+    #                 },
+    #                 {
+    #                     "ipv4Address": {
+    #                         "id": "40CE2481-5D56-0ed3-0000-081604410102",
+    #                         "name": "OBJ-10.71.0.0",
+    #                         "overridable": false,
+    #                         "type": "Network"
+    #                     }
+    #                 },
+    # #                 # {
+    # #                 #     "ipv4Address": {
+    # #                 #         "id": "40CE2481-5D56-0ed3-0000-292057864582",
+    # #                 #         "name": "net-wal-192.168.0.0",
+    # #                 #         "overridable": false,
+    # #                 #         "type": "Network"
+    # #                 #     }
+    # #                 # },
+    # #                 # {
+    # #                 #     "ipv4Address": {
+    # #                 #         "id": "40CE2481-5D56-0ed3-0000-292057864418",
+    # #                 #         "name": "net-wal-10.1.101.0",
+    # #                 #         "overridable": false,
+    # #                 #         "type": "Network"
+    # #                 #     }
+    # #                 # },
+    # #                 # {
+    # #                 #     "ipv4Address": {
+    # #                 #         "id": "40CE2481-5D56-0ed3-0000-292057864446",
+    # #                 #         "name": "net-wal-10.2.101.0",
+    # #                 #         "overridable": false,
+    # #                 #         "type": "Network"
+    # #                 #     }
+    # #                 # },
+    # #                 # {
+    # #                 #     "ipv4Address": {
+    # #                 #         "id": "40CE2481-5D56-0ed3-0000-292057864463",
+    # #                 #         "name": "net-wal-10.1.110.0",
+    # #                 #         "overridable": false,
+    # #                 #         "type": "Network"
+    # #                 #     }
+    # #                 # },
+    # #                 # {
+    # #                 #     "ipv4Address": {
+    # #                 #         "id": "40CE2481-5D56-0ed3-0000-176094385108",
+    # #                 #         "name": "10.1.111.0",
+    # #                 #         "overridable": false,
+    # #                 #         "type": "Network"
+    # #                 #     }
+    # #                 # },
+    # #                 # {
+    # #                 #     "ipv4Address": {
+    # #                 #         "id": "40CE2481-5D56-0ed3-0000-292057864445",
+    # #                 #         "name": "net-wal-10.1.112.0",
+    # #                 #         "overridable": false,
+    # #                 #         "type": "Network"
+    # #                 #     }
+    # #                 # },
+    # #                 # {
+    # #                 #     "ipv4Address": {
+    # #                 #         "id": "40CE2481-5D56-0ed3-0000-292057864423",
+    # #                 #         "name": "net-wal-10.1.113.0",
+    # #                 #         "overridable": false,
+    # #                 #         "type": "Network"
+    # #                 #     }
+    # #                 # },
+    # #                 # {
+    # #                 #     "ipv4Address": {
+    # #                 #         "id": "40CE2481-5D56-0ed3-0000-292057864439",
+    # #                 #         "name": "net-wal-10.1.114.0",
+    # #                 #         "overridable": false,
+    # #                 #         "type": "Network"
+    # #                 #     }
+    # #                 # },
+    # #                 # {
+    # #                 #     "ipv4Address": {
+    # #                 #         "id": "40CE2481-5D56-0ed3-0000-292057864585",
+    # #                 #         "name": "net-wal-10.2.250.0",
+    # #                 #         "overridable": false,
+    # #                 #         "type": "Network"
+    # #                 #     }
+    # #                 # },
+    # #                 # {
+    # #                 #     "ipv4Address": {
+    # #                 #         "id": "40CE2481-5D56-0ed3-0000-292057864584",
+    # #                 #         "name": "net-wal-10.1.113.192",
+    # #                 #         "overridable": false,
+    # #                 #         "type": "Network"
+    # #                 #     }
+    # #                 # }
+    #                 ],
+    #             ],
+    #       }
+    #       type: bgp
+    #     path_params:
+    #       objectId: "{{ bgp_conf[0].id }}"
+    #       containerUUID: "{{ devices[0].id }}"
+    #       domainUUID: "{{ domain[0].uuid }}"
+    #   tags: config
+      
 
 
-    - name: "TASK 11: Get Deployable Devices"
-      cisco.fmcansible.fmc_configuration:
-        operation: getDeployableDevice
-        path_params:
-          domainUUID: '{{ domain[0].uuid }}'
-        query_params:
-          expanded: true
-        register_as: devices
-      tags: enable,disable,deploy
-
-
-    # - debug:
-    #     var: devices
+    # - name: "TASK 11: Get Deployable Devices"
+    #   cisco.fmcansible.fmc_configuration:
+    #     operation: getDeployableDevice
+    #     path_params:
+    #       domainUUID: '{{ domain[0].uuid }}'
+    #     query_params:
+    #       expanded: true
+    #     register_as: devices
     #   tags: enable,disable,deploy
 
-    - debug:
-        var: target_bgp_dev_grp
-      tags: enable,disable,deploy
 
-    - name: "TASK 12: EXTRACT DEPLOYABLE DEVICES"
-      debug:
-        msg: "{{ item.device.name }}"
-      loop: "{{ devices }}"
-      loop_control: 
-        label: "{{ item.device.name }}"
-        pause: 0.5
-      register: tagt_dev
-      when: "item.device.name == target_bgp_dev_grp"
-      tags: enable,disable,deploy
+    # # - debug:
+    # #     var: devices
+    # #   tags: enable,disable,deploy
 
     # - debug:
-    #     var: tagt_dev
+    #     var: target_bgp_dev_grp
     #   tags: enable,disable,deploy
 
-    - name: "TASK 13: Complete playbook when nothing to deploy"
-      meta: end_play
-      when: devices[0].device is undefined
-      tags: enable,disable,deploy
+    # - name: "TASK 12: EXTRACT DEPLOYABLE DEVICES"
+    #   debug:
+    #     msg: "{{ item.device.name }}"
+    #   loop: "{{ devices }}"
+    #   loop_control: 
+    #     label: "{{ item.device.name }}"
+    #     pause: 0.5
+    #   register: tagt_dev
+    #   when: "item.device.name == target_bgp_dev_grp"
+    #   tags: enable,disable,deploy
 
-    - name: "TASK 14: Fetch pending changes"
-      cisco.fmcansible.fmc_configuration:
-        operation: getPendingChanges
-        path_params:
-          containerUUID: '{{ item.device.id }}'
-          domainUUID: '{{ domain[0].uuid }}'
-        register_as: pending_changes
-      loop: "{{ devices }}"
-      loop_control: 
-        label: "{{ item.device.name }}: {{ item.device.id }}"
-        pause: 0.5
-      when: item.device.name == target_bgp_dev_grp
-      tags: enable,disable,deploy
+    # # - debug:
+    # #     var: tagt_dev
+    # #   tags: enable,disable,deploy
+
+    # - name: "TASK 13: Complete playbook when nothing to deploy"
+    #   meta: end_play
+    #   when: devices[0].device is undefined
+    #   tags: enable,disable,deploy
+
+    # - name: "TASK 14: Fetch pending changes"
+    #   cisco.fmcansible.fmc_configuration:
+    #     operation: getPendingChanges
+    #     path_params:
+    #       containerUUID: '{{ item.device.id }}'
+    #       domainUUID: '{{ domain[0].uuid }}'
+    #     register_as: pending_changes
+    #   loop: "{{ devices }}"
+    #   loop_control: 
+    #     label: "{{ item.device.name }}: {{ item.device.id }}"
+    #     pause: 0.5
+    #   when: item.device.name == target_bgp_dev_grp
+    #   tags: enable,disable,deploy
 
     
 
-    - name: "TASK 15: PRINT PENDING CHANGES"
-      debug:
-        var: pending_changes
-      tags: enable,disable,deploy
+    # - name: "TASK 15: PRINT PENDING CHANGES"
+    #   debug:
+    #     var: pending_changes
+    #   tags: enable,disable,deploy
 
-    - name: "TASK 16: Start deployment"
-      cisco.fmcansible.fmc_configuration:
-        operation: createDeploymentRequest
-        data:
-          version: '{{ item.version }}'
-          deviceList:
-            - '{{ item.device.id }}'
-          forceDeploy: False
-          ignoreWarning: True
-        path_params:
-          domainUUID: '{{ domain[0].uuid }}'
-        register_as: deployment_job
-      loop: "{{ devices }}"
-      loop_control: 
-        label: "{{ item.device.name }}: {{ item.device.id }}"
-        pause: 0.5
-      when: item.device.name == target_bgp_dev_grp
-      tags: enable,disable,deploy
+    # - name: "TASK 16: Start deployment"
+    #   cisco.fmcansible.fmc_configuration:
+    #     operation: createDeploymentRequest
+    #     data:
+    #       version: '{{ item.version }}'
+    #       deviceList:
+    #         - '{{ item.device.id }}'
+    #       forceDeploy: False
+    #       ignoreWarning: True
+    #     path_params:
+    #       domainUUID: '{{ domain[0].uuid }}'
+    #     register_as: deployment_job
+    #   loop: "{{ devices }}"
+    #   loop_control: 
+    #     label: "{{ item.device.name }}: {{ item.device.id }}"
+    #     pause: 0.5
+    #   when: item.device.name == target_bgp_dev_grp
+    #   tags: enable,disable,deploy
 
-    - name: "TASK 17: Poll deployment status until the job is finished"
-      cisco.fmcansible.fmc_configuration:
-        operation: getDeploymentDetail
-        path_params:
-          containerUUID: '{{ item.device.id }}'
-          domainUUID: '{{ domain[0].uuid }}'
-        register_as: deployment_status
-      until: deployment_status[0].status is match("SUCCEEDED")
-      retries: 100
-      delay: 3
-      loop: "{{ devices }}"
-      loop_control: 
-        label: "{{ item.device.name }}: {{ item.device.id }}"
-        pause: 0.5
-      when: item.device.name == target_bgp_dev_grp
-      tags: enable,disable,deploy
+    # - name: "TASK 17: Poll deployment status until the job is finished"
+    #   cisco.fmcansible.fmc_configuration:
+    #     operation: getDeploymentDetail
+    #     path_params:
+    #       containerUUID: '{{ item.device.id }}'
+    #       domainUUID: '{{ domain[0].uuid }}'
+    #     register_as: deployment_status
+    #   until: deployment_status[0].status is match("SUCCEEDED")
+    #   retries: 100
+    #   delay: 3
+    #   loop: "{{ devices }}"
+    #   loop_control: 
+    #     label: "{{ item.device.name }}: {{ item.device.id }}"
+    #     pause: 0.5
+    #   when: item.device.name == target_bgp_dev_grp
+    #   tags: enable,disable,deploy
 
 
-    - name: "TASK 18: Stop the playbook if the deployment failed"
-      fail:
-        msg: 'Deployment failed. Status: {{ deployment_status[0].status }}'
-      when: deployment_status[0].status is not match("SUCCEEDED")
-      tags: enable,disable,deploy
+    # - name: "TASK 18: Stop the playbook if the deployment failed"
+    #   fail:
+    #     msg: 'Deployment failed. Status: {{ deployment_status[0].status }}'
+    #   when: deployment_status[0].status is not match("SUCCEEDED")
+    #   tags: enable,disable,deploy
 

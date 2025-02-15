@@ -15,7 +15,7 @@
         path_params: 
           domainUUID: "{{ domain[0].uuid }}"
         query_params:
-          name: "TEST"
+          name: "NY-SANDBOX-ACP"
           # filter: "nameOrValue:TEST"
           offset: "{{ offset }}"
           limit: "{{ limit }}"

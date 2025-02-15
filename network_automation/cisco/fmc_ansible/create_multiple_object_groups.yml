@@ -1,0 +1,47 @@
+- hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: "TASK 1: Get Domain UUID"
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+
+    - name: Define network groups data
+      set_fact:
+        network_groups:
+          test_2:
+            - 10.1.1.1
+            - 10.1.1.3
+          test_3:
+            - 10.1.1.7
+          test_4:
+            - 10.1.1.2
+            - 10.1.1.6
+            - 10.1.1.4
+            - 10.1.1.5
+            - 10.1.1.7
+          test_5:
+            - 10.1.1.3
+            - 10.1.1.6
+          test_6:
+            - 10.1.1.5
+            - 10.1.1.7
+
+    - name: Create Network Groups
+      cisco.fmcansible.fmc_configuration:
+        operation: "createMultipleNetworkGroup"
+        data:
+          name: "{{ item.key }}"
+          literals: 
+            "{{ item.value | map('regex_replace', '^(.*)$', '{\"type\": \"Network\", \"value\": \"\\1\"}') | list }}"
+          type: NetworkGroup
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          bulk: true
+      loop: "{{ network_groups | dict2items }}"
+      register: netobjg
+
+    - debug:
+        var: netobjg

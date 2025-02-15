@@ -3,25 +3,27 @@
 import requests
 import json
 import os
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
+import csv
+import sys
 
 FMC_HOST = os.getenv("FMC_HOST")
 USERNAME = os.getenv("FMC_USERNAME")
 PASSWORD = os.getenv("FMC_PASSWORD")
 
+# CSV file path (modify if needed)
+CSV_FILE = "hosts.csv"
+
 # Host objects with assigned groups
-HOSTS = [
-    {"name": "test-dc02", "ip": "10.1.1.2", "group": "test_2"},
-    {"name": "test-dc03", "ip": "10.1.1.3", "group": "test_3"},
-    {"name": "test-dc04", "ip": "10.1.1.4", "group": "test_4"},
-    {"name": "test-dc05", "ip": "10.1.1.5", "group": "test_4"},
-    {"name": "test-dc06", "ip": "10.1.1.6", "group": "test_5"},
-    {"name": "test-dc07", "ip": "10.1.1.7", "group": "test_6"},
-    {"name": "test-dc07", "ip": "10.1.1.7", "group": "test_4"},
-]
+# HOSTS = [
+#     {"name": "test-dc02", "ip": "10.1.1.2", "group": "test_2"},
+#     {"name": "test-dc03", "ip": "10.1.1.3", "group": "test_3"},
+#     {"name": "test-dc04", "ip": "10.1.1.4", "group": "test_4"},
+#     {"name": "test-dc05", "ip": "10.1.1.5", "group": "test_4"},
+#     {"name": "test-dc06", "ip": "10.1.1.6", "group": "test_5"},
+# ]
 
 # List of unique object groups
-GROUPS = set(host["group"] for host in HOSTS)
+#GROUPS = set(host["group"] for host in HOSTS)
 
 # API endpoints
 FMC_LOGIN_URL = f"https://{FMC_HOST}/api/fmc_platform/v1/auth/generatetoken"
@@ -33,7 +35,7 @@ FMC_DEVICE_URL = (
 HEADERS = {"Content-Type": "application/json"}
 
 # Suppress SSL warnings for self-signed certificates
-# from requests.packages.urllib3.exceptions import InsecureRequestWarning
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
@@ -54,6 +56,21 @@ def get_auth_token():
         exit()
 
 
+# Load hosts from CSV file
+def load_hosts_from_csv(csv_file):
+    hosts = []
+    try:
+        with open(csv_file, mode="r", encoding="utf-8") as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                if "name" in row and "ip" in row and "group" in row:
+                    hosts.append({"name": row["name"].strip(), "ip": row["ip"].strip(), "group": row["group"].strip()})
+    except Exception as e:
+        print(f"❌ Error reading CSV file: {e}")
+        sys.exit(1)
+    return hosts
+
+
 # Check if a host object already exists
 def check_host_exists(token, domain_uuid, host_name):
     url = f"https://{FMC_HOST}/api/fmc_config/v1/domain/{domain_uuid}/object/hosts?filter=nameOrValue:{host_name}"
@@ -70,13 +87,13 @@ def check_host_exists(token, domain_uuid, host_name):
 
 
 # Create Network Objects in FMC if they don't already exist
-def create_host_objects(token, domain_uuid):
+def create_host_objects(token, domain_uuid, hosts):
     url = f"https://{FMC_HOST}/api/fmc_config/v1/domain/{domain_uuid}/object/hosts"
 
     headers = {"Content-Type": "application/json", "X-auth-access-token": token}
 
     # Data for the new Host Object
-    for host in HOSTS:
+    for host in hosts:
         if check_host_exists(token, domain_uuid, host["name"]):
             print(
                 f"✅ Host {host['name']} ({host['ip']}) already exists. Skipping creation."
@@ -116,33 +133,26 @@ def check_group_exists(token, domain_uuid, group_name):
     return None  # Group does not exist
 
 
-# Create object groups with at least one member
-def create_object_groups(token, domain_uuid):
+# Create object groups if they don’t exist
+def create_object_groups(token, domain_uuid, hosts):
     url = f"https://{FMC_HOST}/api/fmc_config/v1/domain/{domain_uuid}/object/networkgroups"
     headers = {"Content-Type": "application/json", "X-auth-access-token": token}
 
-    for group_name in GROUPS:
+    groups = {host["group"] for host in hosts}
+
+    for group_name in groups:
         group_id = check_group_exists(token, domain_uuid, group_name)
 
-        # If group exists, skip creation
         if group_id:
             print(f"✅ Object group {group_name} already exists. Skipping creation.")
-            continue
-
-        # Find the first host in this group
-        first_host = next((host for host in HOSTS if host["group"] == group_name), None)
-        print(first_host)
-
-        if not first_host:
-            print(f"❌ No hosts found for group {group_name}, skipping creation.")
-            continue
+            continue  # Skip if group already exists
 
         data = {
             "name": group_name,
             "description": f"Object group for {group_name}",
             "type": "NetworkGroup",
             "overridable": False,
-            "objects": [{"type": "Host", "name": first_host["name"]}],
+            "objects": [],  # Initially empty, we'll add members later
         }
 
         response = requests.post(
@@ -150,45 +160,13 @@ def create_object_groups(token, domain_uuid):
         )
 
         if response.status_code in [200, 201]:
-            print(
-                f"✅ Successfully created object group {group_name} with {first_host['name']} as initial member"
-            )
+            print(f"✅ Successfully created object group {group_name}")
         else:
             print(f"❌ Failed to create object group {group_name}: {response.text}")
 
 
-# Create object groups if they don’t exist
-# def create_object_groups(token, domain_uuid):
-#     url = f"https://{FMC_HOST}/api/fmc_config/v1/domain/{domain_uuid}/object/networkgroups"
-#     headers = {"Content-Type": "application/json", "X-auth-access-token": token}
-
-#     for group_name in GROUPS:
-#         group_id = check_group_exists(token, domain_uuid, group_name)
-
-#         if group_id:
-#             print(f"✅ Object group {group_name} already exists. Skipping creation.")
-#             continue  # Skip if group already exists
-
-#         data = {
-#             "name": group_name,
-#             "description": f"Object group for {group_name}",
-#             "type": "NetworkGroup",
-#             "overridable": False,
-#             "objects": [],  # Initially empty, we'll add members later
-#         }
-
-#         response = requests.post(
-#             url, headers=headers, data=json.dumps(data), verify=False
-#         )
-
-#         if response.status_code in [200, 201]:
-#             print(f"✅ Successfully created object group {group_name}")
-#         else:
-#             print(f"❌ Failed to create object group {group_name}: {response.text}")
-
-
-# Add remaining hosts to their respective groups
-def add_hosts_to_groups(token, domain_uuid):
+# Add host objects to their respective groups
+def add_hosts_to_groups(token, domain_uuid, hosts):
     url = f"https://{FMC_HOST}/api/fmc_config/v1/domain/{domain_uuid}/object/networkgroups"
     headers = {"Content-Type": "application/json", "X-auth-access-token": token}
 
@@ -203,89 +181,50 @@ def add_hosts_to_groups(token, domain_uuid):
             print(f"❌ Object group {group_name} does not exist. Skipping.")
             continue
 
-        # Find hosts belonging to this group
-        hosts_to_add = [host for host in HOSTS if host["group"] == group_name]
+        # Fetch the current members of the group
+        group_url = f"{url}/{group_id}"
+        group_response = requests.get(group_url, headers=headers, verify=False)
+
+        if group_response.status_code != 200:
+            print(f"❌ Failed to fetch object group {group_name}: {group_response.text}")
+            continue
+
+        existing_group_data = group_response.json()
+        existing_members = {
+            obj["name"] for obj in existing_group_data.get("objects", [])
+        }
+
+        # Find hosts that belong to this group
+        hosts_to_add = [
+            host
+            for host in HOSTS
+            if host["group"] == group_name and host["name"] not in existing_members
+        ]
+
+        if not hosts_to_add:
+            print(f"✅ No new hosts to add to group {group_name}.")
+            continue
 
         # Prepare new member data
         new_members = [{"type": "Host", "name": host["name"]} for host in hosts_to_add]
+        existing_group_data["objects"].extend(new_members)
 
         # Update the group with new members
-        group_url = f"{url}/{group_id}"
-        response = requests.put(
+        update_response = requests.put(
             group_url,
             headers=headers,
-            data=json.dumps({"objects": new_members}),
+            data=json.dumps(existing_group_data),
             verify=False,
         )
 
-        if response.status_code in [200, 201]:
+        if update_response.status_code in [200, 201]:
             print(
-                f"✅ Updated group {group_name} with members: {', '.join(host['name'] for host in hosts_to_add)}"
+                f"✅ Added {', '.join(host['name'] for host in hosts_to_add)} to group {group_name}"
             )
         else:
-            print(f"❌ Failed to update group {group_name}: {response.text}")
-
-
-# Add host objects to their respective groups
-# def add_hosts_to_groups(token, domain_uuid):
-#     url = f"https://{FMC_HOST}/api/fmc_config/v1/domain/{domain_uuid}/object/networkgroups"
-#     headers = {"Content-Type": "application/json", "X-auth-access-token": token}
-
-#     # Fetch existing object groups
-#     group_ids = {
-#         group_name: check_group_exists(token, domain_uuid, group_name)
-#         for group_name in GROUPS
-#     }
-
-#     for group_name, group_id in group_ids.items():
-#         if not group_id:
-#             print(f"❌ Object group {group_name} does not exist. Skipping.")
-#             continue
-
-#         # Fetch the current members of the group
-#         group_url = f"{url}/{group_id}"
-#         group_response = requests.get(group_url, headers=headers, verify=False)
-
-#         if group_response.status_code != 200:
-#             print(f"❌ Failed to fetch object group {group_name}: {group_response.text}")
-#             continue
-
-#         existing_group_data = group_response.json()
-#         existing_members = {
-#             obj["name"] for obj in existing_group_data.get("objects", [])
-#         }
-
-#         # Find hosts that belong to this group
-#         hosts_to_add = [
-#             host
-#             for host in HOSTS
-#             if host["group"] == group_name and host["name"] not in existing_members
-#         ]
-
-#         if not hosts_to_add:
-#             print(f"✅ No new hosts to add to group {group_name}.")
-#             continue
-
-#         # Prepare new member data
-#         new_members = [{"type": "Host", "name": host["name"]} for host in hosts_to_add]
-#         existing_group_data["objects"].extend(new_members)
-
-#         # Update the group with new members
-#         update_response = requests.put(
-#             group_url,
-#             headers=headers,
-#             data=json.dumps(existing_group_data),
-#             verify=False,
-#         )
-
-#         if update_response.status_code in [200, 201]:
-#             print(
-#                 f"✅ Added {', '.join(host['name'] for host in hosts_to_add)} to group {group_name}"
-#             )
-#         else:
-#             print(
-#                 f"❌ Failed to add hosts to group {group_name}: {update_response.text}"
-#             )
+            print(
+                f"❌ Failed to add hosts to group {group_name}: {update_response.text}"
+            )
 
 
 # Main logic
@@ -301,11 +240,13 @@ def main():
         print(f"domain_uuid: {domain_uuid}")
 
         if auth_token and domain_uuid:
-            create_host_objects(auth_token, domain_uuid)
-            create_object_groups(auth_token, domain_uuid)
-            add_hosts_to_groups(auth_token, domain_uuid)
+            hosts = load_hosts_from_csv(CSV_FILE)
+            create_host_objects(auth_token, domain_uuid, hosts)
+            create_object_groups(auth_token, domain_uuid, hosts)
+            add_hosts_to_groups(auth_token, domain_uuid, hosts)
         else:
             print("❌ Could not retrieve authentication token.")
+
 
 
 if __name__ == "__main__":

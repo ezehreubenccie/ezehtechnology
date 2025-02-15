@@ -5,7 +5,7 @@
   gather_facts: true
 
   vars:
-    pattern: "ansible-playbook rule_request_2.yml --vault-password-file nothing.sh --tags disable"
+    pattern: "ansible-playbook rule_request_3.yml --vault-password-file nothing.sh --tags disable"
   tasks:
     - name: Backup the current crontab
       shell: crontab -l > /tmp/crontab_backup_{{ ansible_date_time.iso8601 }}.bak

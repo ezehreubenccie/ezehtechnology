@@ -1,0 +1,65 @@
+- hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+    - name: Execute 'getAllNetworkGroup' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllNetworkGroup"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: netog
+
+    - name: Extract NetworkGroup details
+      vars:
+        extracted_items: []
+      set_fact:
+        extracted_items: >-
+          {{
+            extracted_items +
+            [
+              {
+                "name": item.name,
+                "type": item.type,
+                "literals": item.literals | default([]),
+                "objects": item.objects | default([])
+              }
+            ]
+          }}
+      loop: "{{ netog }}"
+      when: item.type == "NetworkGroup"
+
+    - name: Process literals and objects
+      vars:
+        processed_items: []
+      set_fact:
+        processed_items: >-
+          {{
+            processed_items +
+            [
+              {
+                "group_name": item.name,
+                "type": "literal",
+                "details": item.literals | map(attribute='value') | list
+              },
+              {
+                "group_name": item.name,
+                "type": "object",
+                "details": item.objects | map(attribute='name') | list
+              }
+            ]
+          }}
+      loop: "{{ extracted_items }}"
+      # with_items: "{{ extracted_items }}"
+      when: item.literals | length > 0 or item.objects | length > 0
+
+    - name: Debug processed items
+      debug:
+        var: processed_items

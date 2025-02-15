@@ -16,10 +16,13 @@
           containerUUID: "40CE2481-5D56-0ed3-0000-304942813923"
           domainUUID: "{{ domain[0].uuid }}"
         query_params:
+          name: "Tunnel20-test25-DNS,Tunnel20-test25-HTTP"
+          # filter: "ids:40CE2481-5D56-0ed3-0000-000268450044"
           #filter: "{{ filter }}"
           offset: "{{ offset }}"
           limit: "{{ limit }}"
           expanded: "{{ expanded }}"
+          bulk: true
         register_as: access_rule
 
     - debug:

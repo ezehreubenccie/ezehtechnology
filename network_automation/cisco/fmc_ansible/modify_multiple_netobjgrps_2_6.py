@@ -75,6 +75,7 @@ def create_host_objects(token, domain_uuid):
 
     headers = {"Content-Type": "application/json", "X-auth-access-token": token}
 
+    object_ids = []
     # Data for the new Host Object
     for host in HOSTS:
         if check_host_exists(token, domain_uuid, host["name"]):
@@ -96,10 +97,12 @@ def create_host_objects(token, domain_uuid):
         )
 
         if response.status_code in [200, 201]:
+            object_ids.append(response.json()["id"])
             print(f"✅ Successfully created {host['name']} ({host['ip']})")
         else:
             print(f"❌ Failed to create {host['name']} ({host['ip']}): {response.text}")
-
+    print(object_ids)
+    return object_ids
 
 # Check if an object group exists
 def check_group_exists(token, domain_uuid, group_name):
@@ -117,7 +120,7 @@ def check_group_exists(token, domain_uuid, group_name):
 
 
 # Create object groups with at least one member
-def create_object_groups(token, domain_uuid):
+def create_object_groups(token, domain_uuid, object_ids):
     url = f"https://{FMC_HOST}/api/fmc_config/v1/domain/{domain_uuid}/object/networkgroups"
     headers = {"Content-Type": "application/json", "X-auth-access-token": token}
 
@@ -130,6 +133,7 @@ def create_object_groups(token, domain_uuid):
             continue
 
         # Find the first host in this group
+        print(object_ids)
         first_host = next((host for host in HOSTS if host["group"] == group_name), None)
         print(first_host)
 
@@ -142,7 +146,8 @@ def create_object_groups(token, domain_uuid):
             "description": f"Object group for {group_name}",
             "type": "NetworkGroup",
             "overridable": False,
-            "objects": [{"type": "Host", "name": first_host["name"]}],
+            # "objects": [{"type": "Host", "name": first_host["name"]}],
+            "objects": [{"id": obj_id, "type": "Network"} for obj_id in object_ids],
         }
 
         response = requests.post(
@@ -301,8 +306,8 @@ def main():
         print(f"domain_uuid: {domain_uuid}")
 
         if auth_token and domain_uuid:
-            create_host_objects(auth_token, domain_uuid)
-            create_object_groups(auth_token, domain_uuid)
+            object_ids = create_host_objects(auth_token, domain_uuid)
+            create_object_groups(auth_token, domain_uuid, object_ids)
             add_hosts_to_groups(auth_token, domain_uuid)
         else:
             print("❌ Could not retrieve authentication token.")

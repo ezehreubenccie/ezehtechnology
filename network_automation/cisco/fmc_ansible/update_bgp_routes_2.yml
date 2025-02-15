@@ -1,0 +1,1498 @@
+- name: PLAY 1 - get domainUUID
+  hosts: wa-fmc2500
+  connection: httpapi
+  tasks:
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+    - name: Execute 'getAllDevice' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllDevice"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          filter: "name: {{ target_bgp_dev }}"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: devices
+
+    # - debug:
+    #     var: devices
+
+    # - debug:
+    #     msg:
+    #       - "Device name is: {{ devices[0].name }}"
+    #       - "Device id is: {{ devices[0].id }}"
+    
+    - name: Execute 'getAllBGPGeneralSettingModel' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllBGPGeneralSettingModel"
+        path_params:
+          containerUUID: "{{ devices[0].id }}"
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: bgp_setgs
+
+    
+    - name: Execute 'getAllBGPIPvAddressFamilyModel' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllBGPIPvAddressFamilyModel"
+        path_params:
+          containerUUID: "{{ devices[0].id }}"
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: bgp_conf
+
+    # - name: Print output
+    #   debug:
+    #     var: bgp_conf 
+
+    - debug: 
+        msg:
+          - "Bgp settings as number is {{ bgp_setgs[0].asNumber  }}"
+          - "Bgp settings id is {{ bgp_setgs[0].id  }}"
+          - "IPV4 Address family config id on {{ devices[0].name }} is {{ bgp_conf[0].id }}"
+          - "Device name is: {{ devices[0].name }}"
+          - "Device id is: {{ devices[0].id }}"
+          
+
+
+
+    - name: Execute 'updateBGPIPvAddressFamilyModel' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "updateBGPIPvAddressFamilyModel"
+        data:
+          name: String
+          asNumber: "{{ bgp_setgs[0].asNumber }}"
+          routerId: "{{ routerId }}"
+          "addressFamilyIPv4": {
+                "autoSummary": false,
+                "bgpRedistributeInternal": false,
+                "bgpSupressInactive": true,
+                "defaultInformationOrginate": false,
+                "distance": {
+                    "externalDistance": 20,
+                    "internalDistance": 200,
+                    "localDistance": 200,
+                    "type": "afbgpdistance"
+                },
+                "ebgp": 1,
+                "ibgp": 1,
+                # "id": "40CE2481-5D56-0ed3-0001-715673936265",
+                # "maximumPaths": [
+                #     {
+                #         "type": "afmaximumpaths",
+                #         "value": 1
+                #     }
+                # ],
+                "neighbors": [
+                    {
+                        "ipv4Address": "169.254.132.21",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-292057880636",
+                                        "name": "Uptodate-to-Clrdata-west-1",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "route_based_vpn_to_clear_data_west-1",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "neighborTimers": {
+                            "holdTime": 180,
+                            "keepAliveInterval": 60,
+                            "minimumHoldTime": 0,
+                            "type": "neighbortimers"
+                        },
+                        "remoteAs": "65002",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "169.254.188.41",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 1,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 100,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-292057880617",
+                                        "name": "Uptodate-to-Clrdata-east-1",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "route_based_vpn_to_clear_data_east-1",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "neighborTimers": {
+                            "holdTime": 180,
+                            "keepAliveInterval": 60,
+                            "minimumHoldTime": 0,
+                            "type": "neighbortimers"
+                        },
+                        "remoteAs": "65001",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "10.145.20.62",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-292057880541",
+                                        "name": "Waltham-to-Azure-UTD-NonProd01",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "Route-Based VPN to Azure-UTD-NonProd01",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "neighborTimers": {
+                            "holdTime": 180,
+                            "keepAliveInterval": 60,
+                            "minimumHoldTime": 0,
+                            "type": "neighbortimers"
+                        },
+                        "remoteAs": "65510",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "10.139.240.62",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 1,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-292057880483",
+                                        "name": "Waltham-to-Azure-UTD-Sandbox",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "Route-Based VPN to Azure-UTD-Sandbox",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "neighborTimers": {
+                            "holdTime": 180,
+                            "keepAliveInterval": 60,
+                            "minimumHoldTime": 0,
+                            "type": "neighbortimers"
+                        },
+                        "remoteAs": "65515",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "10.150.20.126",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-296352755759",
+                                        "name": "Waltham-to-Azure-UTD-Prod01",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "Route-Based VPN to Azure-UTD-Prod01",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "remoteAs": "65495",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "10.240.76.126",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-292057880694",
+                                        "name": "Waltham-to-Azure-UTD-ToolsNonProd",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "Route-Based VPN to Azure-UTD-ToolsNonProd",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "neighborTimers": {
+                            "holdTime": 180,
+                            "keepAliveInterval": 60,
+                            "minimumHoldTime": 0,
+                            "type": "neighbortimers"
+                        },
+                        "remoteAs": "65505",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "10.141.136.126",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-292057880522",
+                                        "name": "Uptodate-to-Emmi",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "route_based_vpn_to_emmi_azure",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "neighborTimers": {
+                            "holdTime": 180,
+                            "keepAliveInterval": 60,
+                            "minimumHoldTime": 0,
+                            "type": "neighbortimers"
+                        },
+                        "remoteAs": "65521",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "10.240.136.5",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-292058800982",
+                                        "name": "Waltham-to-Azure-CECS-NonProd01",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "Route-Based VPN to Azure-CECS-NonProd01",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "remoteAs": "65490",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "10.150.196.4",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-300648427940",
+                                        "name": "Waltham-to-Azure-CECS-Prod01",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "Route-Based VPN to Azure-CECS-Prod01",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "remoteAs": "65485",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "10.145.252.126",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-292057880560",
+                                        "name": "Waltham-to-Azure-UTD-ToolsProd",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "Route-Based VPN to Azure-UTD-ToolsProd",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "neighborTimers": {
+                            "holdTime": 180,
+                            "keepAliveInterval": 60,
+                            "minimumHoldTime": 0,
+                            "type": "neighbortimers"
+                        },
+                        "remoteAs": "65500",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "169.254.116.137",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "IN",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-292057880713",
+                                        "name": "Clrdata-west2-to-Uptodate",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                },
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-292057880598",
+                                        "name": "Uptodate-to-Clrdata-east-2",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "route_based_vpn_to_clear_data_west-2",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "neighborTimers": {
+                            "holdTime": 180,
+                            "keepAliveInterval": 60,
+                            "minimumHoldTime": 0,
+                            "type": "neighbortimers"
+                        },
+                        "remoteAs": "65002",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "169.254.172.193",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "IN",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-292057880674",
+                                        "name": "Clrdata-east2-to-Uptodate",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                },
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-292057880598",
+                                        "name": "Uptodate-to-Clrdata-east-2",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "route_based_vpn_to_clear_data_east-2",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "neighborTimers": {
+                            "holdTime": 180,
+                            "keepAliveInterval": 60,
+                            "minimumHoldTime": 0,
+                            "type": "neighbortimers"
+                        },
+                        "remoteAs": "65001",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "10.171.12.4",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-300648428615",
+                                        "name": "Waltham-to-Azure-CECS-NonProd02",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "Route-Based VPN to Azure-CECS-NonProd02",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "remoteAs": "65480",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "10.177.156.4",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-300648423690",
+                                        "name": "Waltham-to-Azure-CECS-Prod02",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "Route-Based VPN to Azure-CECS-Prod02",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "remoteAs": "65475",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "10.128.168.126",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-304942773761",
+                                        "name": "Waltham-to-Azure-CE-DHA-NonProd01",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "Route-Based VPN to Azure-CE-DHA-NonProd01",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "remoteAs": "65470",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "10.177.116.126",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-304942790078",
+                                        "name": "Waltham-to-Azure-CE-DHA-NonProd02",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "Route-Based VPN to Azure-CE-DHA-NonProd02",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "remoteAs": "65465",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "10.128.172.126",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-304942808328",
+                                        "name": "Waltham-to-Azure-CE-DHA-Prod01",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "Route-Based VPN to Azure-CE-DHA-Prod01",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "remoteAs": "65460",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "10.177.136.126",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-304942827648",
+                                        "name": "Waltham-to-Azure-CE-DHA-Prod02",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "Route-Based VPN to Azure-CE-DHA-Prod02",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "remoteAs": "65455",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "169.254.203.118",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborSecret": "i2s2da2wwGxvo5r+8mFBovabtyfrnp06",
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "IN",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-304943362258",
+                                        "name": "ALLOW_EXPECTED_ROUTES_FROM_GCP_TO_WALTHAM",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                },
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-304943360224",
+                                        "name": "Waltham-to-Google-CE-Central-Hub-E4",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "Route-Based VPN to GCP EAST",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborHaMode": {
+                            "disable": false,
+                            "type": "neighborhamode"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "remoteAs": "65440",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "169.254.126.50",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborSecret": "mi0VGj7GvXDVETnYwg/75Mu76vkTFC7l",
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "IN",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-304943362258",
+                                        "name": "ALLOW_EXPECTED_ROUTES_FROM_GCP_TO_WALTHAM",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                },
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-304943368530",
+                                        "name": "Waltham-to-Google-CE-Central-Hub-W2",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "Route-Based VPN to GCP WEST",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": false,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborHaMode": {
+                            "disable": false,
+                            "type": "neighborhamode"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "remoteAs": "65435",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "10.128.208.12",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-304943386822",
+                                        "name": "Waltham-to-Azure-CE-Central-Hub-E1",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "Route-Based Azure VPN EAST",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": true,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborHaMode": {
+                            "disable": false,
+                            "type": "neighborhamode"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "remoteAs": "65515",
+                        "type": "neighboripv4"
+                    },
+                    {
+                        "ipv4Address": "10.252.112.13",
+                        "neighborAdvanced": {
+                            "neighborHops": {
+                                "disableConnectedCheck": false,
+                                "maxHopCount": 255,
+                                "type": "neighborebgpmultihop"
+                            },
+                            "neighborTransportConnectionMode": {
+                                "establishTCPSession": false,
+                                "type": "neighbortransportconnectionmode"
+                            },
+                            "neighborTransportPathMTUDiscovery": {
+                                "disable": true,
+                                "type": "neighbortransportpathmtudiscovery"
+                            },
+                            "neighborVersion": 0,
+                            "neighborWeight": 0,
+                            "nextHopSelf": false,
+                            "sendCommunity": false,
+                            "type": "neighboradvanced"
+                        },
+                        "neighborFiltering": {
+                            "neighborRouteMap": [
+                                {
+                                    "filterUpdateAction": "OUT",
+                                    "routeMap": {
+                                        "id": "40CE2481-5D56-0ed3-0000-304943390556",
+                                        "name": "Waltham-to-Azure-CE-Central-Hub-W3",
+                                        "overridable": false,
+                                        "type": "RouteMap"
+                                    },
+                                    "type": "neighborroutemap"
+                                }
+                            ]
+                        },
+                        "neighborGeneral": {
+                            "description": "Route-Based Azure VPN WEST",
+                            "enableAddress": true,
+                            "fallOverBFD": "SINGLE_HOP",
+                            "shutdown": true,
+                            "type": "neighborgeneral"
+                        },
+                        "neighborHaMode": {
+                            "disable": false,
+                            "type": "neighborhamode"
+                        },
+                        "neighborRoutes": {
+                            "removePrivateAs": false
+                        },
+                        "remoteAs": "65515",
+                        "type": "neighboripv4"
+                    }
+                ],
+                "networks": [
+                    {
+                        "ipv4Address": {
+                            "id": "40CE2481-5D56-0ed3-0000-081604409976",
+                            "name": "OBJ-10.20.0.0",
+                            "overridable": false,
+                            "type": "Network"
+                        }
+                    },
+                    {
+                        "ipv4Address": {
+                            "id": "40CE2481-5D56-0ed3-0000-081604410102",
+                            "name": "OBJ-10.71.0.0",
+                            "overridable": false,
+                            "type": "Network"
+                        }
+                    },
+                    {
+                        "ipv4Address": {
+                            "id": "40CE2481-5D56-0ed3-0000-292057864582",
+                            "name": "net-wal-192.168.0.0",
+                            "overridable": false,
+                            "type": "Network"
+                        }
+                    },
+                    {
+                        "ipv4Address": {
+                            "id": "40CE2481-5D56-0ed3-0000-292057864418",
+                            "name": "net-wal-10.1.101.0",
+                            "overridable": false,
+                            "type": "Network"
+                        }
+                    },
+                    {
+                        "ipv4Address": {
+                            "id": "40CE2481-5D56-0ed3-0000-292057864446",
+                            "name": "net-wal-10.2.101.0",
+                            "overridable": false,
+                            "type": "Network"
+                        }
+                    },
+                    {
+                        "ipv4Address": {
+                            "id": "40CE2481-5D56-0ed3-0000-292057864463",
+                            "name": "net-wal-10.1.110.0",
+                            "overridable": false,
+                            "type": "Network"
+                        }
+                    },
+                    {
+                        "ipv4Address": {
+                            "id": "40CE2481-5D56-0ed3-0000-176094385108",
+                            "name": "10.1.111.0",
+                            "overridable": false,
+                            "type": "Network"
+                        }
+                    },
+                    {
+                        "ipv4Address": {
+                            "id": "40CE2481-5D56-0ed3-0000-292057864445",
+                            "name": "net-wal-10.1.112.0",
+                            "overridable": false,
+                            "type": "Network"
+                        }
+                    },
+                    {
+                        "ipv4Address": {
+                            "id": "40CE2481-5D56-0ed3-0000-292057864423",
+                            "name": "net-wal-10.1.113.0",
+                            "overridable": false,
+                            "type": "Network"
+                        }
+                    },
+                    {
+                        "ipv4Address": {
+                            "id": "40CE2481-5D56-0ed3-0000-292057864439",
+                            "name": "net-wal-10.1.114.0",
+                            "overridable": false,
+                            "type": "Network"
+                        }
+                    },
+                    {
+                        "ipv4Address": {
+                            "id": "40CE2481-5D56-0ed3-0000-292057864585",
+                            "name": "net-wal-10.2.250.0",
+                            "overridable": false,
+                            "type": "Network"
+                        }
+                    },
+                    {
+                        "ipv4Address": {
+                            "id": "40CE2481-5D56-0ed3-0000-292057864584",
+                            "name": "net-wal-10.1.113.192",
+                            "overridable": false,
+                            "type": "Network"
+                        }
+                    }
+               
+                ],
+          }
+          type: bgp
+        path_params:
+          objectId: "{{ bgp_conf[0].id }}"
+          containerUUID: "{{ devices[0].id }}"
+          domainUUID: "{{ domain[0].uuid }}"
+
+
+    - name: "TASK 11: Get Deployable Devices"
+      cisco.fmcansible.fmc_configuration:
+        operation: getDeployableDevice
+        path_params:
+          domainUUID: '{{ domain[0].uuid }}'
+        query_params:
+          expanded: true
+        register_as: devices
+      tags: enable,disable,deploy
+
+
+    # - debug:
+    #     var: devices
+    #   tags: enable,disable,deploy
+
+    - debug:
+        var: target_bgp_dev_grp
+      tags: enable,disable,deploy
+
+    - name: "TASK 12: EXTRACT DEPLOYABLE DEVICES"
+      debug:
+        msg: "{{ item.device.name }}"
+      loop: "{{ devices }}"
+      loop_control: 
+        label: "{{ item.device.name }}"
+        pause: 0.5
+      register: tagt_dev
+      when: "item.device.name == target_bgp_dev_grp"
+      tags: enable,disable,deploy
+
+    # - debug:
+    #     var: tagt_dev
+    #   tags: enable,disable,deploy
+
+    - name: "TASK 13: Complete playbook when nothing to deploy"
+      meta: end_play
+      when: devices[0].device is undefined
+      tags: enable,disable,deploy
+
+    - name: "TASK 14: Fetch pending changes"
+      cisco.fmcansible.fmc_configuration:
+        operation: getPendingChanges
+        path_params:
+          containerUUID: '{{ item.device.id }}'
+          domainUUID: '{{ domain[0].uuid }}'
+        register_as: pending_changes
+      loop: "{{ devices }}"
+      loop_control: 
+        label: "{{ item.device.name }}: {{ item.device.id }}"
+        pause: 0.5
+      when: item.device.name == target_bgp_dev_grp
+      tags: enable,disable,deploy
+
+    
+
+    - name: "TASK 15: PRINT PENDING CHANGES"
+      debug:
+        var: pending_changes
+      tags: enable,disable,deploy
+
+    - name: "TASK 16: Start deployment"
+      cisco.fmcansible.fmc_configuration:
+        operation: createDeploymentRequest
+        data:
+          version: '{{ item.version }}'
+          deviceList:
+            - '{{ item.device.id }}'
+          forceDeploy: False
+          ignoreWarning: True
+        path_params:
+          domainUUID: '{{ domain[0].uuid }}'
+        register_as: deployment_job
+      loop: "{{ devices }}"
+      loop_control: 
+        label: "{{ item.device.name }}: {{ item.device.id }}"
+        pause: 0.5
+      when: item.device.name == target_bgp_dev_grp
+      tags: enable,disable,deploy
+
+    - name: "TASK 17: Poll deployment status until the job is finished"
+      cisco.fmcansible.fmc_configuration:
+        operation: getDeploymentDetail
+        path_params:
+          containerUUID: '{{ item.device.id }}'
+          domainUUID: '{{ domain[0].uuid }}'
+        register_as: deployment_status
+      until: deployment_status[0].status is match("SUCCEEDED")
+      retries: 100
+      delay: 3
+      loop: "{{ devices }}"
+      loop_control: 
+        label: "{{ item.device.name }}: {{ item.device.id }}"
+        pause: 0.5
+      when: item.device.name == target_bgp_dev_grp
+      tags: enable,disable,deploy
+
+
+    - name: "TASK 18: Stop the playbook if the deployment failed"
+      fail:
+        msg: 'Deployment failed. Status: {{ deployment_status[0].status }}'
+      when: deployment_status[0].status is not match("SUCCEEDED")
+      tags: enable,disable,deploy
+

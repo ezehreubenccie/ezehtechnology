@@ -40,7 +40,7 @@
         path_params: 
           domainUUID: "{{ domain[0].uuid }}"
         query_params:
-          name: "{{ access_policy_name_fc }}"
+          name: "{{ access_policy_name_fc3 }}"
           # filter: "nameOrValue:TEST"
           offset: "{{ offset }}"
           limit: "{{ limit }}"
@@ -98,7 +98,7 @@
       set_fact:
         access_rule_id: "{{ item.id }}"
         access_rule_name: "{{ item.name }}"
-      when: item.name == rule_name_fc
+      when: item.name == rule_name_fc3
       loop: "{{ access_rule }}"
       loop_control: 
         label: "{{ item.name }}"
@@ -115,7 +115,7 @@
           enabled: False
           type: AccessRule
           id: "{{ access_rule_id }}"
-          newComments: ['{{ comments_fc }} - Disable']
+          newComments: ['{{ comments_fc3 }} - Disable']
         path_params:
           objectId: "{{ access_rule_id}}"
           containerUUID: "{{ pol_id }}"
@@ -133,7 +133,7 @@
           enabled: True
           type: AccessRule
           id: "{{ access_rule_id }}"
-          newComments: ['{{ comments_fc }} - Enable']
+          newComments: ['{{ comments_fc3 }} - Enable']
         path_params:
           objectId: "{{ access_rule_id}}"
           containerUUID: "{{ pol_id }}"
@@ -159,7 +159,7 @@
     #   tags: enable,disable,deploy
 
     - debug:
-        var: target_dev_fc
+        var: target_dev_fc3
       tags: enable,disable,deploy
 
     - name: "TASK 12: EXTRACT DEPLOYABLE DEVICES"
@@ -170,7 +170,7 @@
         label: "{{ item.device.name }}"
         pause: 0.5
       register: tagt_dev
-      when: "item.device.name == target_dev_fc"
+      when: "item.device.name == target_dev_fc3"
       tags: enable,disable,deploy
 
     # - debug:
@@ -193,7 +193,7 @@
       loop_control: 
         label: "{{ item.device.name }}: {{ item.device.id }}"
         pause: 0.5
-      when: item.device.name == target_dev_fc
+      when: item.device.name == target_dev_fc3
       tags: enable,disable,deploy
 
     
@@ -219,7 +219,7 @@
       loop_control: 
         label: "{{ item.device.name }}: {{ item.device.id }}"
         pause: 0.5
-      when: item.device.name == target_dev_fc
+      when: item.device.name == target_dev_fc3
       tags: enable,disable,deploy
 
     - name: "TASK 17: Poll deployment status until the job is finished"
@@ -236,7 +236,7 @@
       loop_control: 
         label: "{{ item.device.name }}: {{ item.device.id }}"
         pause: 0.5
-      when: item.device.name == target_dev_fc
+      when: item.device.name == target_dev_fc3
       tags: enable,disable,deploy
 
 
@@ -262,10 +262,10 @@
         subject: "Firewall Rule Deployment - Success"
         body: |
           The Firewall Rule changes have been successfully deployed.
-          Details: {{ details_fc }} 
+          Details: {{ details_fc3 }} 
           Task Type: {{ task_type }}
           Rule Name: {{ access_rule_name }}
-          Comments: {{ comments_fc }}
+          Comments: {{ comments_fc3 }}
           Deployment Status: {{ deployment_status[0].status }}
       when: deployment_status[0].status is match("SUCCEEDED")
       tags: enable,disable,deploy
@@ -285,10 +285,10 @@
         subject: "Firewall Rule Deployment - Failed"
         body: |
           The Firewall Rule deployment has failed or did not succeed.
-          Details: {{ details_fc }}
+          Details: {{ details_fc3 }}
           Task Type: {{ task_type }}
           Rule Name: {{ access_rule_name }}
-          Comments: {{ comments_fc }}
+          Comments: {{ comments_fc3 }}
           Deployment Status: {{ deployment_status[0].status }}
       when: deployment_status[0].status is not match("SUCCEEDED")
       tags: enable,disable,deploy

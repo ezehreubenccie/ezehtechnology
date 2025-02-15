@@ -10,13 +10,14 @@
       cisco.fmcansible.fmc_configuration:
         operation: "getAllNetworkGroup"
         path_params:
-          domainUUID: "{{ domain[0].uuid }}"
+            domainUUID: "{{ domain[0].uuid }}"
         query_params:
-          # filter: "nameOrValue:{{ netobj_name }}"
-          offset: "{{ offset }}"
-          limit: "{{ limit }}"
-          expanded: "{{ expanded }}"
-        register_as: netog
+            # filter: "{{ filter }}"
+            offset: "{{ offset }}"
+            limit: "{{ limit }}"
+            expanded: "{{ expanded }}"
+        register_as: netobj_grp
 
-    - debug:
-        var: netog
+    - name: Print
+      debug:
+        var: netobj_grp

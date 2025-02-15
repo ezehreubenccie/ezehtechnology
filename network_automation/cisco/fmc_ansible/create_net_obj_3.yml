@@ -1,0 +1,38 @@
+- hosts: wa-fmc2500
+  connection: httpapi
+
+  # vars:
+  #   net_name: utd-dc03.utd.com
+  #   ip_add: "10.1.101.104"
+  #   description: "New Domain Controller"
+
+  tasks:
+
+    - name: Get Domain UUID
+      cisco.fmcansible.fmc_configuration:
+        operation: getAllDomain
+        register_as: domain
+
+    - name: Execute 'createMultipleNetworkObject' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "createMultipleNetworkObject"
+        data:
+           name: test-dc10
+           value: 10.1.1.10
+           overridable: False
+           description: "host object for {{ name }}"
+           type: Host
+        #  - name: net2
+        #    value: 1.1.0.0/24
+        #    overridable: False
+        #    description: Network obj 2
+        #    type: Network
+        path_params:
+            domainUUID: "{{ domain[0].uuid }}"
+        # query_params:
+        #     bulk: "{{ bulk }}"
+        register_as: hostobj
+
+    - name: print
+      debug:
+        var: hostobj

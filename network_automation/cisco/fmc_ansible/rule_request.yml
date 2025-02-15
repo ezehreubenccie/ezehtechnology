@@ -11,6 +11,23 @@
         var: domain
       tags: enable,disable,deploy
 
+    - name: "Set task type to Enable"
+      set_fact:
+        task_type: "Enable"
+      when: "'enable' in ansible_run_tags"
+      tags: enable,disable,deploy
+
+    - name: "Set task type to Disable"
+      set_fact:
+        task_type: "Disable"
+      when: "'disable' in ansible_run_tags"
+      tags: enable,disable,deploy
+
+    - name: "Debug task_type"
+      debug:
+        msg: "Task Type is {{ task_type }}"
+      tags: enable,disable,deploy
+
     - name: "TASK 2: Get Access Policy"
       cisco.fmcansible.fmc_configuration:
         operation: getAllAccessPolicy
@@ -222,6 +239,53 @@
         msg: 'Deployment failed. Status: {{ deployment_status[0].status }}'
       when: deployment_status[0].status is not match("SUCCEEDED")
       tags: enable,disable,deploy
+
+    
+    - name: "Send email notification after successful deployment"
+      mail:
+        host: 10.2.101.199
+        port: 25
+        to: 
+          - reuben.ezeh@wolterskluwer.com
+          - vivek.arora@wolterskluwer.com
+          - Michael.Keller@wolterskluwer.com
+          - deepak.goswami@wolterskluwer.com
+          # - yousef.ayyub@wolterskluwer.com
+        from: gbsnetopsansible@wolterskluwer.com
+        subject: "Firewall Rule Deployment - Success"
+        body: |
+          The Firewall Rule changes have been successfully deployed.
+          Details: {{ details }}
+          Task Type: {{ task_type }}
+          Rule Name: {{ access_rule_name }}
+          Comments: {{ comments }}
+          Deployment Status: {{ deployment_status[0].status }}
+      when: deployment_status[0].status is match("SUCCEEDED")
+      tags: enable,disable,deploy
+
+    
+    - name: "Send email notification after successful deployment"
+      mail:
+        host: 10.2.101.199
+        port: 25
+        to: 
+          - reuben.ezeh@wolterskluwer.com
+          - vivek.arora@wolterskluwer.com
+          - Michael.Keller@wolterskluwer.com
+          - deepak.goswami@wolterskluwer.com
+          # - yousef.ayyub@wolterskluwer.com
+        from: gbsnetopsansible@wolterskluwer.com
+        subject: "Firewall Rule Deployment - Failed"
+        body: |
+          The Firewall Rule deployment has failed or did not succeed.
+          Details: {{ details }}  
+          Task Type: {{ task_type }}
+          Rule Name: {{ access_rule_name }}
+          Comments: {{ comments }}
+          Deployment Status: {{ deployment_status[0].status }}
+      when: deployment_status[0].status is not match("SUCCEEDED")
+      tags: enable,disable,deploy
+
 
 
 

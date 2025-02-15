@@ -7,6 +7,28 @@
         operation: getAllDomain
         register_as: domain
 
+    
+    - name: Execute 'getAllDevice' operation
+      cisco.fmcansible.fmc_configuration:
+        operation: "getAllDevice"
+        path_params:
+          domainUUID: "{{ domain[0].uuid }}"
+        query_params:
+          filter: "name: {{ target_bgp_dev }}"
+          offset: "{{ offset }}"
+          limit: "{{ limit }}"
+          expanded: "{{ expanded }}"
+        register_as: devices
+
+    
+    # - debug:
+    #     var: devices
+
+    - debug:
+        msg:
+          - "Device name is: {{ devices[0].name }}"
+          - "Device id is: {{ devices[0].id }}"
+
 
 
 
@@ -15,7 +37,7 @@
         operation: "createBGPGeneralSettingModel"
         data:
           name: TEST_BGP
-          asNumber: "68114"
+          asNumber: "{{ asNumber }}"
           routerId: "AUTOMATIC"
         #   logNeighborChanges: boolean
         #   maxasLimit: Integer
@@ -27,8 +49,114 @@
         #   bgpGracefulRestart: {'gracefulRestart': 'boolean', 'gracefulRestartRestartTime': 'Integer', 'gracefulRestartStalePathTime': 'Integer', 'type': 'bgpgracefulrestart'}
         #   bestPath: {'defaultLocalPreferenceValue': 'Long', 'alwaysCompareMed': 'boolean', 'bestPathCompareRouterId': 'boolean', 'deterministicMed': 'boolean', 'bestPathMedMissingAsWorst': 'boolean', 'type': 'bgpbestpath'}
         path_params:
-          containerUUID: "a2cf177a-667c-11ef-aa9f-f6fda07b7654"
+          containerUUID: "{{ devices[0].id }}"
           domainUUID: "{{ domain[0].uuid }}"
+
+
+    - name: "TASK 11: Get Deployable Devices"
+      cisco.fmcansible.fmc_configuration:
+        operation: getDeployableDevice
+        path_params:
+          domainUUID: '{{ domain[0].uuid }}'
+        query_params:
+          expanded: true
+        register_as: devices
+      tags: enable,disable,deploy
+
+
+    # - debug:
+    #     var: devices
+    #   tags: enable,disable,deploy
+
+    - debug:
+        var: target_bgp_dev_grp
+      tags: enable,disable,deploy
+
+    - name: "TASK 12: EXTRACT DEPLOYABLE DEVICES"
+      debug:
+        msg: "{{ item.device.name }}"
+      loop: "{{ devices }}"
+      loop_control: 
+        label: "{{ item.device.name }}"
+        pause: 0.5
+      register: tagt_dev
+      when: "item.device.name == target_bgp_dev_grp"
+      tags: enable,disable,deploy
+
+    # - debug:
+    #     var: tagt_dev
+    #   tags: enable,disable,deploy
+
+    - name: "TASK 13: Complete playbook when nothing to deploy"
+      meta: end_play
+      when: devices[0].device is undefined
+      tags: enable,disable,deploy
+
+    - name: "TASK 14: Fetch pending changes"
+      cisco.fmcansible.fmc_configuration:
+        operation: getPendingChanges
+        path_params:
+          containerUUID: '{{ item.device.id }}'
+          domainUUID: '{{ domain[0].uuid }}'
+        register_as: pending_changes
+      loop: "{{ devices }}"
+      loop_control: 
+        label: "{{ item.device.name }}: {{ item.device.id }}"
+        pause: 0.5
+      when: item.device.name == target_bgp_dev_grp
+      tags: enable,disable,deploy
+
+    
+
+    - name: "TASK 15: PRINT PENDING CHANGES"
+      debug:
+        var: pending_changes
+      tags: enable,disable,deploy
+
+    - name: "TASK 16: Start deployment"
+      cisco.fmcansible.fmc_configuration:
+        operation: createDeploymentRequest
+        data:
+          version: '{{ item.version }}'
+          deviceList:
+            - '{{ item.device.id }}'
+          forceDeploy: False
+          ignoreWarning: True
+        path_params:
+          domainUUID: '{{ domain[0].uuid }}'
+        register_as: deployment_job
+      loop: "{{ devices }}"
+      loop_control: 
+        label: "{{ item.device.name }}: {{ item.device.id }}"
+        pause: 0.5
+      when: item.device.name == target_bgp_dev_grp
+      tags: enable,disable,deploy
+
+    - name: "TASK 17: Poll deployment status until the job is finished"
+      cisco.fmcansible.fmc_configuration:
+        operation: getDeploymentDetail
+        path_params:
+          containerUUID: '{{ item.device.id }}'
+          domainUUID: '{{ domain[0].uuid }}'
+        register_as: deployment_status
+      until: deployment_status[0].status is match("SUCCEEDED")
+      retries: 100
+      delay: 3
+      loop: "{{ devices }}"
+      loop_control: 
+        label: "{{ item.device.name }}: {{ item.device.id }}"
+        pause: 0.5
+      when: item.device.name == target_bgp_dev_grp
+      tags: enable,disable,deploy
+
+
+    - name: "TASK 18: Stop the playbook if the deployment failed"
+      fail:
+        msg: 'Deployment failed. Status: {{ deployment_status[0].status }}'
+      when: deployment_status[0].status is not match("SUCCEEDED")
+      tags: enable,disable,deploy
+
+
 
 
 

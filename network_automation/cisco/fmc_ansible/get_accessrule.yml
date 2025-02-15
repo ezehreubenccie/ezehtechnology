@@ -13,6 +13,10 @@
       cisco.fmcansible.fmc_configuration:
         operation: "getAccessRule"
         path_params:
-          objectId: "268446730"
-          containerUUID: "a6eddfc4-0bd5-11ee-9960-a6db2169469d"
+          objectId: "40CE2481-5D56-0ed3-0000-000268450044"
+          containerUUID: "40CE2481-5D56-0ed3-0000-304942813923"
           domainUUID: "{{ domain[0].uuid }}"
+        register_as: rule
+
+    - debug:
+        var: rule
