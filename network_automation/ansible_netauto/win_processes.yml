@@ -1,0 +1,14 @@
+- name: House Keeping old log files
+  hosts: prtg01p
+
+
+
+
+  tasks:
+    - name: Check task manager
+      community.general.pids:
+      register: procs
+
+
+    - debug:
+        var: procs

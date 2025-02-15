@@ -1,0 +1,38 @@
+---
+- name: "PLAY 1: Find and Modify files"
+  gather_facts: false
+  hosts: localhost
+
+
+  tasks:
+    - name: "TASK 1: Find files"
+      find:
+        paths: "group_vars/{{ item }}"
+        pattern: "*.yml"
+        recurse: yes
+      loop:
+        - ffnexusc92348gcxsw
+#        - ffnexus3548sw
+#        - ffc9300l48t4xsw
+#        - sjn9k
+#        - wan9k
+#        - wan3k
+#        - sjn3k
+#        - njnexusc92348gcxsw
+#        - njnexus3548p10gsw
+      register: connect_files
+      tags: check
+
+    - name: "TASK 2: Print Output"
+      debug:
+        msg: '{{ connect_files.results }}'
+      tags: check 
+
+    - name: "TASK 3: Replace oldPasswd with newPasswd"
+#      become: yes
+#      become_user: root
+      ansible.builtin.replace:
+        path: "{{ item.files[0].path }}"
+        regexp: '\s+(\w+)G#L*]'
+        replace: ''
+      loop: "{{ connect_files.results }}" 

@@ -1,0 +1,36 @@
+- name : VERIFY MD5 HASH OF ASA TARGET SOFTWARE COPIED TO ASA 5506X FIREWALLS
+  connection: network_cli
+  hosts: wa5525xasas:nyc5555xasas:tky5555xasas:ec-lan-asa0803:sh5555xasas
+  gather_facts: false
+
+
+  # vars:
+  #   asa_target_version: "9.14(4)24"
+  #   asa_image: "asa9-14-4-24-smp-k8.bin"
+  #   asa_md5: 546d9f5a20fcd595612efcd058bc8ffb
+
+
+  tasks:
+    - name: Check Contents of flash to verify if target software is present
+      asa_command:
+        commands: 'show disk0 | grep {{ asa_image }}'
+      register: dir_flash
+
+    - name: Check AND VERFIY MD5 Hash
+      block:
+        - name: Check MD5 Hash
+          asa_command:
+            commands:
+              - "verify /md5 flash:{{ asa_image}}"
+          register: md5_result
+          vars:
+            ansible_command_timeout: 300
+
+        - name: Assert That MD5 Sums are Identical
+          assert:
+            that:
+              - asa_md5 in md5_result['stdout'][0].split()
+            fail_msg: "The md5 hash of the software {{ asa_image }} on {{ inventory_hostname }} is not correct!! :( :("
+            success_msg: "Hooray!!. The md5 hash of the software {{ asa_image }} on {{ inventory_hostname }} is  correct!! :) :)"
+      when:    
+        - asa_image in dir_flash['stdout'][0]                  

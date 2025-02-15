@@ -1,0 +1,56 @@
+---
+- name: get facts from asa
+  hosts:  walthamfirewalls:newjerseybcdrasa
+  connection: network_cli
+  gather_facts: no
+
+  vars:
+    hostname:
+    version:
+    serialnum:
+    ipaddress:
+    physicaladdress:
+
+  tasks:
+    - name: asa facts
+      asa_command:
+        commands:
+          - show run hostname
+          - show version
+          - show inventory
+          - show ip | in INSIDE|inside|Data|guestwifi|DATA|FW|Inside2058
+          - sh run snmp-server | grep location
+      register: asa_vars
+
+    - debug:
+        var: asa_vars
+
+  #  - debug: 
+ #       var: "{{ asa_vars.stdout_lines[2][1].split()[-1] }}"
+
+
+
+    - name: asa set facts
+      set_fact:
+        hostname: "{{ asa_vars.stdout_lines[0][0].split()[-1] }}"
+        version: "{{ asa_vars.stdout_lines[1][0].split()[-1] }}"
+        serialnum: "{{ asa_vars.stdout_lines[2][1].split()[-1] }}"
+        ipaddress: "{{ asa_vars.stdout_lines[3][0].split()[2] }}"
+        physicaladdress: "{{ asa_vars.stdout_lines[4][0].split('snmp-server location ')[-1] }}"
+
+
+   # - debug:
+    #    var: serialnum
+
+    - name: Display facts
+      debug:
+        msg: "The software version for {{ hostname }} is {{ version }} on platform {{ serialnum }} with ip address {{ ipaddress }} installed at {{ physicaladdress }}"
+
+    - name: Write mydevices.csv
+      run_once: true
+      shell: echo Serial Number,Device Name,Software Version,Tags,Notes  > Ciscomydevicesfirewalls.csv
+
+
+    - name: Write My Devices CSV File
+      shell: echo "{{ serialnum }},{{ hostname }},{{ version }} Interim,{{ ipaddress }},{{ physicaladdress }}" >> Ciscomydevicesfirewalls.csv
+      delegate_to: localhost

@@ -1,0 +1,13 @@
+- name: House Keeping old log files
+  hosts: prtg01p
+
+
+
+  tasks:
+    - name: Find services
+      ansible.windows.win_service_info:
+      register: service_info
+
+
+    - debug:
+        var: service_info

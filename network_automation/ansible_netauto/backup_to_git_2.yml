@@ -18,8 +18,8 @@
         git pull --rebase
         git add .
         git commit -m "Device backup on {{ time.stdout }}"
-        git push
+        git push 
       args: 
-        chdir: /home/rezeh/VENV/ezehtechnology
+        chdir: /home/rezeh/gbsnetauto/wkgbsnetops
       delegate_to: localhost
       run_once: yes 

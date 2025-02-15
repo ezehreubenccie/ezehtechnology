@@ -1,0 +1,41 @@
+---
+- name: Network Device Backup
+  hosts: localhost
+  
+  tasks:
+    - name: Get ansible date/time facts
+      setup:
+        filter: 'ansible_date_time'
+        gather_subset: '!all'
+
+    - name: set fact
+      set_fact: 
+        date: '{{ ansible_date_time.date }}'
+
+    - debug:
+        var: date
+
+    - name: Create directory {{hostvars.localhost.date}} 
+      file: 
+        path: ../backups/{{hostvars.localhost.date}}
+        state: directory
+  run_once: true
+
+#
+## Backup running config 
+
+- hosts: walthamfirewalls
+  gather_facts: True
+  
+  tasks:
+    - name: Backup Firewall Running Config
+      asa_command:
+        commands: show run
+      register: config 
+
+    - name: Save output to ../backups
+      copy:
+        content: "{{config.stdout[0]}}"
+        dest: '../backups/{{ansible_date_time.date}}/{{ inventory_hostname }}-{{ansible_date_time.date}}-config.txt'
+      
+

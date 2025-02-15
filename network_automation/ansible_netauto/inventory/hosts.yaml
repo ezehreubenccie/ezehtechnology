@@ -1,0 +1,17 @@
+---
+# wc-lan-sw0102-1:
+#   hostname: wc-lan-sw0102-1
+#   groups:
+#     - sjn9k
+#   data:
+#     role: leaf
+
+WA-LAB-LAN-AGGSW0100:
+  hostname: WA-LAB-LAN-AGGSW0100
+  username: "admin"
+  password: "xxx"
+
+  groups:
+    - wallabswitches
+  data:
+    role: leaf

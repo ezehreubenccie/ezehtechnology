@@ -1,0 +1,240 @@
+---
+- name: "PLAY 1: Build Cisco Nexus Switch Compliance Report"
+  hosts: sjn9k:sjn3k:njnexusc92348gcxsw:ffnexusc92348gcxsw:ffnexus3548sw:wan9k:wan3k:wanexusn9kc9336cfx2:njnexus3548p10gsw:wallabswitches:sbnexusc92348gcxsw
+  gather_facts: False
+
+  vars:
+    # compliant_5672up: 7.3(13)N1(1)
+    # non_compliant_5672up: 7.0(5)N1(1a)
+    compliant_C3548P_XL: 10.3(6)
+    non_compliant_C3548P_XL: 10.3(4a)
+    compliant_C9348GC_FXP: 10.3(6)
+    non_compliant_C9348GC_FXP: 10.3(4a)
+    non_compliant_C9348GC_FXP_2: 10.3(5)
+    compliant_C9336C_FX2: 10.3(6)
+    non_compliant_C9336C_FX2: 10.3(4a)
+    compliant_C92348GC_X: 10.3(6)
+    non_compliant_C92348GC_X: 10.3(4a)
+    non_compliant_C92348GC_X_2: 9.3(9)
+    non_compliant_C92348GC_X_3: 9.3(7)
+    # compliant_9234_2: 10.3(4a)
+    non_compliant_C3548P_10GX: 9.3(7)
+    compliant_C3548P_10GX: 9.3(13)
+
+  tasks:
+    - name: "TASK 1: Gather Nexus Switch Facts"
+      cisco.nxos.nxos_facts:
+        gather_subset:
+          - all
+      register: nxos_facts
+      tags: facts,verd
+
+#    - name: "TASK 1_1: Gather interface facts"
+#      cisco.nxos.nxos_facts:
+#        gather_subset: 
+#          - config
+#        gather_network_resources:
+#          - interfaces
+#      register: nxos_intfs
+
+#    - name: "TASK 2: Print Output"
+#      debug:
+#        var: nxos_facts
+#      tags: facts
+
+#    - name: "TASK 2_1: Print Output"
+#      debug:
+#        var: nxos_intfs
+#
+    - name: "TASK 3: Get System uptime"
+      cisco.nxos.nxos_command:
+        commands: show version | in upt
+      register: sysupt
+      tags: upt,verd
+
+
+#    - debug:
+#        var: sysupt
+#      tags: upt
+
+    - name: "TASK 4: Get Physical Address from Nexus Switch"
+      cisco.nxos.nxos_command:
+        commands:
+          - command: sh run snmp | grep location
+      register: snmp_location 
+      tags: verd
+
+    # - name: "TASK 4_1: Get IP Address from Nexus Switch"
+    #   cisco.nxos.nxos_command:
+    #     commands:
+    #       - command: sh run int lo0 | in addr
+    #   register: ip_addr
+    #   when: '"wa-lan-sd" in inventory_hostname'
+
+#    - name: "TASK 4_2: Get hostname from Nexus Switch"
+#      cisco.nxos.nxos_command:
+#        commands:
+#          - command: sh run | grep hostname
+#      register: device_name
+#      tags: device     
+#
+#    - name: "TASK 4_3: Print Hostname"
+#      debug:
+#        var: device_name
+#      tags: device
+
+#    - name: "TASK 5: Print System Uptime"
+#      debug:
+#        var: sysupt.stdout_lines[0][0].split()
+#
+#    - name: "TASK 6: Print SNMP Location"
+#      debug:
+#        var: snmp_location.stdout[0][21:].replace(',','')
+
+    - name: "TASK 6_1: Set Facts"
+      set_fact:
+        version: "{{ ansible_net_version }}"
+        days_last_upgraded: "{{ sysupt.stdout_lines[0][0].split()[3] }}"
+        ipaddress: "{{ ansible_net_all_ipv4_addresses[0] }}"
+        model: "{{ ansible_net_model }}"
+        platform: "{{ ansible_net_platform }}"
+        serialnum: "{{ ansible_net_license_hostid }}"
+        hostname: "{{ ansible_net_hostname }}"
+        physicaladdress: "{{ snmp_location.stdout[0][21:].replace(',','') }}"
+      # when: ansible_net_version != non_compliant_5672up
+      tags: verd
+
+    # - name: "TASK 6_2: Set Facts"
+    #   set_fact:
+    #     version: "{{ ansible_net_version }}"
+    #     days_last_upgraded: "{{ sysupt.stdout_lines[0][0].split()[3] }}"
+    #     ipaddress_wa: "{{ ip_addr.stdout_lines[0][0].split()[-1].split('/')[0] }}"
+    #     model: "{{ ansible_net_model }}"
+    #     serialnum: "{{ ansible_net_license_hostid }}"
+    #     hostname: "{{ inventory_hostname }}"
+    #     physicaladdress: "{{ snmp_location.stdout[0][21:].replace(',','') }}"
+    #   when: '"wa-lan-sd" in inventory_hostname'
+
+#    - name: "TASK 7: Print Facts"
+#      debug:
+#        msg:
+#          - "{{ version }}"
+#          - "{{ days_last_upgraded }}"
+#          - "{{ ipaddress }}"
+#          - "{{ model }}"
+#          - "{{ platform }}"
+#          - "{{ serialnum }}"
+#          - "{{ hostname }}"
+#          - "{{ physicaladdress }}"
+#      when: ansible_net_version != non_compliant_5672up
+#
+#    - name: "TASK 7_1: Print Facts"
+#      debug:
+#        msg:
+#          - "{{ ipaddress_wa }}"
+#      when: '"wa-lan-sd" in inventory_hostname'
+
+    - name: "TASK 8: Set Fact 1"
+      set_fact:
+        verdict: 'compliant'
+      when: (version  == compliant_C92348GC_X) or (version  == compliant_C9336C_FX2) or (version  == compliant_C9348GC_FXP) or (version  == compliant_C3548P_10GX)  or (version  == compliant_C3548P_XL)
+      tags: verd
+#    - name: "TASK 8_1: Set Fact 1"
+#      set_fact:
+#        verdict: 'compliant'
+#      when: (version  == compliant_9234_2)
+
+    - name: "TASK 9: Set Fact 2"
+      set_fact:
+        verdict: 'non-compliant'
+      when: (version  == non_compliant_C92348GC_X) or (version  == non_compliant_C9348GC_FXP_2) or (version  == non_compliant_C9348GC_FXP)  or (version  == non_compliant_C3548P_10GX) or (version  == non_compliant_C3548P_XL) or (version  == non_compliant_C92348GC_X_2) or (version  == non_compliant_C92348GC_X_3)
+      tags: verd
+
+      
+
+#    - name: "TASK 9_1: Set Fact 2"
+#      set_fact:
+#        verdict: 'non-compliant'
+#      when: (version  != compliant_9234_2)
+
+    - name: "TASK 10: Set Fact 3"
+      set_fact:
+        upgradeto: 'N/A'
+      when: (version  == compliant_C92348GC_X) or (version  == compliant_C9336C_FX2) or (version  == compliant_C9348GC_FXP) or (version  == compliant_C3548P_10GX) or (version  == compliant_C3548P_XL)
+      tags: verd
+
+    - name: "TASK 11: Set Fact 4"
+      set_fact:
+        upgradeto: '{{ compliant_C92348GC_X }}'
+      when: (version  == non_compliant_C92348GC_X) or (version  == non_compliant_C92348GC_X_2) or (version  == non_compliant_C92348GC_X_3) and ("C92348GC-X" in ansible_net_platform)
+      tags: verd
+
+    - name: "TASK 12: Set Fact 5"
+      set_fact:
+        upgradeto: '{{ compliant_C3548P_10GX }}'
+      when: (version  == non_compliant_C3548P_10GX) and ("C3548P-10GX" in ansible_net_platform)
+      tags: verd
+
+    - name: "TASK 13: Set Fact 6"
+      set_fact:
+        upgradeto: '{{ compliant_C3548P_XL }}'
+      when: (version  == non_compliant_C3548P_XL) and ("C3548P-XL" in ansible_net_platform)
+      tags: verd
+
+    - name: "TASK 14: Set Fact 7"
+      set_fact:
+        upgradeto: '{{ compliant_C9348GC_FXP }}'
+      when: (version  == non_compliant_C9348GC_FXP) or (version == non_compliant_C9348GC_FXP_2) and ("C9348GC-FXP" in ansible_net_platform)
+      tags: verd
+
+    - name: "TASK 15: Set Fact 8"
+      set_fact:
+        upgradeto: '{{ compliant_C9336C_FX2 }}'
+      when: (version  == non_compliant_C9336C_FX2) and ("C9336C-FX2" in ansible_net_platform)
+      tags: verd
+    
+    # - name: "TASK 16: Set Fact 9"
+    #   set_fact:
+    #     upgradeto: '{{ compliant_C92348GC_X }}'
+    #   when: (version  == non_compliant_C92348GC_X_2)
+    #   tags: verd
+
+      
+
+    # - name: "TASK 13: Set Fact 6"
+    #   set_fact:
+    #     upgradeto: '{{ compliant_5672up }}'
+    #   when: (version  == non_compliant_5672up)
+    - name: debug Verdict
+      debug:
+        msg: 
+          - "{{ verdict }}"
+          - "{{ upgradeto }}" 
+      tags: verd
+
+    # - name: "TASK 17: Print Info"
+    #   debug:
+    #     msg: 'The device name is {{ hostname }}, ip address is {{ ipaddress }},  version is {{ version }}, serial number is {{ serialnum}}, physical address is {{ physicaladdress }}.'
+      # when: ansible_net_version != non_compliant_5672up
+   
+    # - name: "TASK 14_1: Print Info"
+    #   debug:
+    #     msg: 'The device name is {{ hostname }}, ip address is {{ ipaddress_wa }},  version is {{ version }}, serial umber is {{ serialnum}}, physical address is {{ physicaladdress }}.'
+    #   when: '"wa-lan-sd" in inventory_hostname'
+
+    - name: "TASK 18: Write mydevices.csv"
+      run_once: true
+      shell: echo Serial Number,Device Name,Device Model,Device Platform,Software Version,Verdict,UpgradeTO,DaysSincelastUpgrade,Tags,Notes  > UTDNexusswitchComplianceReport_2025.csv
+
+
+
+    - name: "TASK 19: Write My Devices CSV File"
+      shell: echo "{{ serialnum }},{{ hostname }},{{ model }},{{ platform }},{{ version }},{{ verdict }},{{ upgradeto }},{{ days_last_upgraded }},{{ ipaddress }},{{ physicaladdress }}" >> UTDNexusswitchComplianceReport_2025.csv
+      delegate_to: localhost
+      # when: ansible_net_version != non_compliant_5672up
+
+
+    # - name: "TASK 16_1: Write My Devices CSV File"
+    #   shell: echo "{{ serialnum }},{{ hostname }},{{ model }},{{ version }},{{ verdict }},{{ upgradeto }},{{ days_last_upgraded }},{{ ipaddress_wa }},{{ physicaladdress }}" >> NexusswitchComplianceReport.csv
+    #   delegate_to: localhost
+    #   when: '"wa-lan-sd" in inventory_hostname'

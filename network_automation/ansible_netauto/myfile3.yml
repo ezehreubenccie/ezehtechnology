@@ -1,0 +1,15 @@
+---
+network_devices:
+  - host: rtr1
+    username: reuben
+    password: cisco
+    device_type: cisco_ios
+    use_session_log: True
+    ip_address: 10.2.1.100
+  - host: asa01
+    username: reuben3010
+    password: cisco!23
+    device_type: cisco_asa
+    use_session_log: False
+    ip_address: 10.34.2.8
+

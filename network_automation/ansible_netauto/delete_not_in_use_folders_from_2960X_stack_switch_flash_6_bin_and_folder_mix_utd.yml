@@ -1,0 +1,107 @@
+- name: DELETE FILES THAT ARE NOT IN USE FROM CISCO 2960X STACK SWITCH FLASH
+  hosts: tkywsc2960x24tslsw
+  connection: network_cli
+  gather_facts: false
+
+  vars: 
+    target_system_image_folder:  "c2960x-universalk9-mz.152-7.E4"
+    folder_and_file_name_includes: "c2960x-universalk9"
+    flash_num: 'flash:'
+
+
+  tasks:
+    - name: Gather all 2960X SWITCH STACK Hardware facts
+      ios_facts:
+        gather_subset: hardware
+
+    - name: Gather all 2960X SWITCH  Hardware facts
+      ios_command:
+        commands:
+          - command: show version | in System image file
+      register: system_image_file
+
+    - debug:
+        var: system_image_file.stdout_lines[0][0].split()[4][1:-1]
+
+
+    - name: Gather FLASH FACTS FOR EACH 2960X SWITCH IN STACK
+      ios_command:
+        commands:
+          - command: 'dir {{ flash_num }}'
+      register: flash_contents
+
+
+    - debug:
+        var: flash_contents.stdout_lines[0]
+
+    - name: set fact 1
+      set_fact:
+        spacefree_before: "{{flash_contents.stdout_lines[0][-1].split()[3].replace('(', '')}}"
+
+    - name: DISPLAY FREE SPACE BEFORE DELETE
+      debug:
+        msg: "Free space is  {{ spacefree_before|float /1000000 }}MB for {{ ansible_net_hostname }} on {{ flash_num }} before delete task."
+
+    - name: set fact 2
+      set_fact:
+        list1: "{{ flash_contents.stdout_lines[0][2:-2] }}"
+
+    - debug:
+        var: list1
+
+    - name: DELETE FLASH FILES NOT IN USE
+      ios_command: 
+        commands:
+          - command: delete /recursive /force {{ flash_num }}{{ item.split()[-1] }}
+      loop: '{{ list1 }}'
+      when: 
+        - 'folder_and_file_name_includes in  item.split()[-1]'
+        - 'item.split()[-1]  not in  system_image_file.stdout_lines[0][0].split()[4][1:-1]'
+        - 'item.split()[-1]  !=  target_system_image_folder'
+         
+    - name: DISPLAY CONTENTS OF FLASH
+      ios_command:
+        commands:
+          - command: 'dir {{ flash_num }}'
+      register: flash_contents
+
+    - name: Print dir after delete
+      debug:
+        var: flash_contents
+
+    - name: GET FREE SPACE AFTER DELETE
+      ios_facts:
+        gather_subset: hardware
+#      tags: spacefree
+
+    - name: Set fact after delete
+      set_fact:
+        spacefree_after: "{{flash_contents.stdout_lines[0][-1].split()[3].replace('(', '')}}"
+     # tags: spacefree  
+
+    - debug:
+        msg: "Free space is  {{ spacefree_after|float / 1000000 }}MB for {{ ansible_net_hostname }} on {{ flash_num }} after delete task. {{ spacefree_after|float / 1000000 - spacefree_before|float / 1000000 }}MB was recovered!."
+
+
+    - name: Get Physical Address from Switch
+      ios_command:
+        commands:
+          - command: show run | in snmp-server location
+      register: snmp_location
+
+    - debug:
+        var: snmp_location.stdout[0][21:]
+
+    - set_fact:
+        physicaladdress: "{{ snmp_location.stdout[0][21:].replace(',','') }}"
+   
+    - name: Write Switch Disk Space Report Heading
+      run_once: true
+      shell: echo Device Name,DiskSpacePreCleanUP,DiskSpacePostCleanUP,DiskSpaceRecovered,location  > 2960XSwitchDiskSpaceReport.csv
+
+
+    - name: Write Switch Disk Space Report to CSV file
+      shell: echo "{{ inventory_hostname }},{{ (spacefree_before|float / 1000000) | round(2) }} MB,{{ (spacefree_after|float / 1000000) | round(2) }} MB,{{ (spacefree_after|float / 1000000 -  spacefree_before|float / 1000000) | round(2) }} MB,{{ physicaladdress }}" >> 2960XSwitchDiskSpaceReport.csv
+      delegate_to: localhost
+
+

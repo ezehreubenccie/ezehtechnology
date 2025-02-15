@@ -1,0 +1,219 @@
+---
+- name : UPGRADE Nexus 9K SWITCHES
+  connection: network_cli
+  hosts: wan9k:ffnexusc92348gcxsw:njnexusc92348gcxsw
+  gather_facts: false
+
+
+  vars:
+    # target_nxos_ver: 10.3(4a)
+    target_image: nxos.CSCwa04181-n9k_ALL-1.0.0-9.3.8.lib32_n9000.rpm
+    target_image_md5: 2c1a3f35083c2ad345de3c12d23e0280
+    vrf: management
+    install_check_mode: "no"
+
+  tasks:
+    - name: Gather all NEXUS SWITCHES bootflash facts
+      cisco.nxos.nxos_command:
+        commands:
+          - command: dir | json
+      register: dir_bootflash
+
+
+    - name: Set fact before patch
+      set_fact:
+        bytestotal_before: "{{ dir_bootflash.stdout_lines[0]['bytestotal'] }}"
+
+    - debug:
+        var: bytestotal_before
+      
+
+    
+    - name: DISPLAY FREE SPACE BEFORE DELETE
+      debug:
+        msg: "Total space is  {{ (bytestotal_before|float / 1000000000) | round(3) }} GB for {{ inventory_hostname }} before patch task."
+      tags: spacetotal  
+
+
+    - name: Backup the config for {{ inventory_hostname }}
+      tags: backup, install
+      nxos_config:
+        backup: yes
+        backup_options:
+          filename: "{{ inventory_hostname }}_backup.cfg"
+          dir_path: ../UTD_Backups/2023/
+      register: config_output
+
+    # - name: Get current NXOS version in JSON format
+    #   tags: pre-check, check-version, post-check, install
+    #   nxos_command:
+    #     commands: show version | json
+    #   register: show_version
+
+    # - debug:
+    #     var: show_version
+    #   tags: check-version
+
+    - name: Check if Nexus Switch Software was copied successfully to the flash
+      nxos_command:
+        commands: "dir bootflash: | include {{ target_image }}"
+      register: dir_bootflash
+      tags: check_flash
+
+    - name: Calculate MD5 Hash
+      nxos_command:
+        commands: 'show file bootflash:{{ target_image }} md5sum'
+      register: md5_result
+      when:
+        - target_image  in dir_bootflash.stdout_lines[0][0]
+
+
+    # - name: Set current NXOS version as variable
+    #   tags: pre-check, check-version, post-check, install
+    #   # debug: msg="{{ show_version.stdout_lines[0].nxos_ver_str }}"
+    #   set_fact:
+    #     current_nxos_ver: "{{ show_version['stdout_lines'][0]['nxos_ver_str'] }}"
+
+    # - name: Assert that switch is NOT running with the target NXOS version
+    #   tags: pre-check, check-version, install
+    #   assert:
+    #     quiet: no
+    #     success_msg: "{{ inventory_hostname }} not running target verion {{ target_nxos_ver }}, current version is {{ current_nxos_ver }}"
+    #     fail_msg: "{{ inventory_hostname }} already running {{ current_nxos_ver }}"
+    #     that:
+    #       - "'{{ current_nxos_ver }}' != '{{ target_nxos_ver }}'"
+
+    - name: Check if switch has the target image in the "bootflash:" directory 
+      tags: pre-check, image-check, image-copy, install
+      nxos_command:
+        commands: "dir bootflash: | in {{ target_image }} | awk '{ print $6 }'"
+      register: image_check
+
+    - debug:
+        var: image_check.stdout_lines[0]
+      tags: image-check
+
+    - debug:
+        var: target_image
+      tags: image-check
+
+    # - name: Preparing to install SMU software on the NXOS software, this will be a disruptive operation to the devices
+    #   tags: install
+    #   pause:
+    #     prompt: "Press enter to continue or cntrl-c + a to abort"
+    #   when: current_nxos_ver != target_nxos_ver
+
+    - name: Installing Target NXOS 
+      tags: install
+      # check_mode: '{{ install_check_mode }}'
+      nxos_command:
+        commands:
+          - command: Install add bootflash:{{ target_image }} activate
+            prompt: Do you want to continue \(y\/n\)?  
+            answer: 'y'
+        # system_image_file: '{{ target_image }}'
+        # issu: no
+      register: install_patch
+      vars:
+        ansible_command_timeout: 1800
+        ansible_connect_timeout: 1800
+      when: 
+        # - current_nxos_ver != target_nxos_ver
+        - target_image in image_check.stdout_lines[0]
+        - target_image_md5 == md5_result['stdout'][0]
+
+    - name: reset the connection
+      meta: reset_connection
+
+    - name: Wait for the switch to return
+      wait_for_connection:
+        host: "{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}"
+        port: 22
+        state: started
+        delay: 60
+        timeout: 600
+      #    ignore_errors: yes
+      #  delegate_to: localhost
+      #  tags:
+      #    - reload
+      #    - check_online
+
+    - name: Gather all NEXUS SWITCHES bootflash facts
+      cisco.nxos.nxos_command:
+        commands:
+          - command: dir | json
+      register: dir_bootflash
+
+    
+    - name: GET TOTAL SPACE AFTER PATCH
+      set_fact:
+        bytestotal_after: "{{ dir_bootflash.stdout_lines[0]['bytestotal'] }}"
+
+    - name: Assert that switch has 10GB, After patch.
+      # tags: post-check, install
+      assert:
+        quiet: no
+        success_msg: "{{ inventory_hostname }} has been patched. Total space is {{ bytestotal_after }}"
+        fail_msg: "Failed to patch the field notice, FN72292 on {{ inventory_hostname }}, total space is still {{ bytestotal_before }}"
+        that:
+          - "'{{ bytestotal_before }}' < '{{ bytestotal_after }}'"
+
+
+    # - name: Do you wish to delete old images from the device?
+    #   tags: image-delete
+    #   pause:
+    #     prompt: "Press enter to continue or cntrl-c + a to abort"
+    #   when: current_nxos_ver == target_nxos_ver
+
+    # - name: Check and register the old image(s) as variable 
+    #   tags: image-delete
+    #   nxos_command:
+    #     commands: "dir bootflash: | in nxos. | ex {{ target_image }} | awk '{ print $6 }'"
+    #   register: delete_image
+    #   when: current_nxos_ver == target_nxos_ver
+
+    # - debug: 
+    #     var: item
+    #   with_items: "{{ delete_image.stdout_lines }}"
+    #   tags: image-delete
+    #   when: current_nxos_ver == target_nxos_ver
+
+    # - name: Delete an image from the bootflash directory
+    #   tags: image-delete
+    #   nxos_command:
+    #     commands: ["delete {{ item }} no-prompt"]
+    #   with_items: "{{ delete_image.stdout_lines }}"
+    #   when: current_nxos_ver == target_nxos_ver
+
+
+    
+        
+    # - name: print Install Results
+    #   tags: install
+    #   debug: var=install_output.install_state
+    #   when: 
+    #     - current_nxos_ver != target_nxos_ver
+
+    
+    
+    
+    
+
+      # rescue:
+      #   - name: Waiting For {{ inventory_hostname }} To Come Back Up
+      #     wait_for:
+      #       host: "{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}"
+      #       port: 22
+      #       state: started
+      #       timeout: 300
+      #       delay: 60
+      
+      # always:
+      #   - name: Assert that switch is running with the target NXOS version {{ target_nxos_ver }} After Upgrade
+      #     tags: post-check, install
+      #     assert:
+      #       quiet: no
+      #       success_msg: "{{ inventory_hostname }} has been upgraded to {{ current_nxos_ver }}"
+      #       fail_msg: "Failed to upgrade the {{ inventory_hostname }}, it is still runninng {{ current_nxos_ver }}"
+      #       that:
+      #         - "'{{ current_nxos_ver }}' == '{{ target_nxos_ver }}'"

@@ -1,0 +1,323 @@
+---
+- name: "PLAY 1: Build Cisco Nexus Switch Compliance Report"
+  hosts: sjn3k:njnexusc92348gcxsw:ffnexusc92348gcxsw:ffnexus3548sw:sjn9k:njnexus3548p10gsw:wan9k:wan3k:wac930048tsw:wac9200l48t4gsw:wanexusn9kc9336cfx2:wainetrtr:sjc9300l48t4xsw:njc930048tsw:njc9200l24t4xsw:ffc9300l48t4xsw
+  gather_facts: False
+
+  # vars:
+  #   compliant_5672up: 7.3(13)N1(1)
+  #   non_compliant_5672up: 7.0(5)N1(1a)
+  #   compliant_3548p: 9.3(12)
+  #   non_compliant_3548p: 9.3(9)
+  #   compliant_9234: 10.2(6)
+  #   non_compliant_9234: 9.3(9)
+  #   non_compliant_9234_2: 9.3(7)
+  #   compliant_9234_2: 10.2(6)
+
+  tasks:
+    - name: "TASK 1: Gather Nexus Switch Facts"
+      cisco.nxos.nxos_facts:
+        gather_subset:
+          - all
+      register: nxos_facts
+      tags: facts
+      when: "ansible_network_os == 'nxos'"
+      
+
+    - name: "TASK 2: Gather IOS Switch Facts"
+      cisco.ios.ios_facts:
+        gather_subset:
+          - all
+      register: ios_facts
+      tags: facts
+      when: "ansible_network_os == 'ios'"
+
+    # - debug:
+    #     var: nxos_facts
+    #   tags: facts
+    #   when: "ansible_network_os == 'nxos'"
+
+    # - debug:
+    #     var: ios_facts
+    #   tags: facts
+    #   when: "ansible_network_os == 'ios'" 
+    
+
+#    - name: "TASK 1_1: Gather interface facts"
+#      cisco.nxos.nxos_facts:
+#        gather_subset: 
+#          - config
+#        gather_network_resources:
+#          - interfaces
+#      register: nxos_intfs
+
+#    - name: "TASK 2: Print Output"
+#      debug:
+#        var: nxos_facts
+#      tags: facts
+
+#    - name: "TASK 2_1: Print Output"
+#      debug:
+#        var: nxos_intfs
+#
+    - name: "TASK 3: Get Nexus Switch Logg config"
+      cisco.nxos.nxos_command:
+        commands: sh run | grep 10.145.248.200
+      register: checkloggnxos
+      tags: check_logg
+      when: "ansible_network_os == 'nxos'"
+
+    - name: "TASK 4: Debug NXOS"
+      debug:
+        var: checkloggnxos
+      tags: check_logg
+      when: "ansible_network_os == 'nxos'"
+    
+    
+
+    
+    - name: "TASK 5: Get IOS Switch Logg config"
+      cisco.ios.ios_command:
+        commands: sh run | in 10.145.248.200
+      register: checkloggios
+      tags: check_logg
+      when: "ansible_network_os == 'ios'"
+    
+    - name: "TASK 6: Debug IOS"
+      debug:
+        var: checkloggios
+      tags: check_logg
+      when: "ansible_network_os == 'ios'"
+    
+
+    - name: Set IOS facts
+      set_fact:
+        ios_logg_srv: "{{ checkloggios.stdout_lines[0][0].split() }}"
+      tags: check_logg
+      when: 
+        - "ansible_network_os == 'ios'"
+        - "'10.145.248.200' in checkloggios.stdout_lines[0][0]"
+
+    - name: Set IOS facts - No Sentinel Server configured
+      set_fact:
+        ios_logg_srv: "no sentinel server"
+      tags: check_logg
+      when: 
+        - "ansible_network_os == 'ios'"
+        - "'' in checkloggios.stdout_lines[0][0]"
+
+    - name: Debug IOS facts
+      debug:
+        var: ios_logg_srv
+      tags: check_logg
+      when: 
+        - "ansible_network_os == 'ios'"
+        # - "'10.145.248.200' in ios_logg_srv"
+
+    - name: Set NXOS facts
+      set_fact:
+        nxos_logg_srv: "{{ checkloggnxos.stdout_lines[0][0].split()[2] }}"
+      tags: check_logg
+      when: 
+        - "ansible_network_os == 'nxos'"
+        - "'10.145.248.200' in checkloggnxos.stdout_lines[0][0]"
+
+    - name: Set NXOS facts - No Sentinel Server configured
+      set_fact:
+        nxos_logg_no_srv: "no sentinel server"
+      tags: check_logg
+      when: 
+        - "ansible_network_os == 'nxos'"
+        - "'10.145.248.200' not in checkloggnxos.stdout_lines[0][0]"
+
+    - name: Debug NXOS facts
+      debug:
+        var: nxos_logg_srv
+      tags: check_logg
+      when: 
+        - "ansible_network_os == 'nxos'"
+        - "'10.145.248.200' in checkloggnxos.stdout_lines[0][0]"
+
+    - name: Debug NXOS facts - No Server
+      debug:
+        var: nxos_logg_no_srv
+      tags: check_logg
+      when: 
+        - "ansible_network_os == 'nxos'"
+        - "'10.145.248.200' not in checkloggnxos.stdout_lines[0][0]"
+    
+    
+
+    - name: "TASK 15: Write CSV Heading"
+      run_once: true
+      shell: echo Device Name,IPAddress,sentinelStatus  > sentinel_logg.csv
+
+    - name: "TASK 16: Write NXOS CSV File - server"
+      shell: echo "{{ inventory_hostname }},{{ansible_net_all_ipv4_addresses[0] }},{{ nxos_logg_srv }}" >> sentinel_logg.csv
+      delegate_to: localhost
+      when: 
+        - "ansible_network_os == 'nxos'"
+        - "'10.145.248.200' in checkloggnxos.stdout_lines[0][0]"
+
+    - name: "TASK 17: Write NXOS CSV File - no server"
+      shell: echo "{{ inventory_hostname }},{{ ansible_net_all_ipv4_addresses[0] }},{{ nxos_logg_no_srv }}" >> sentinel_logg.csv
+      delegate_to: localhost
+      when: 
+        - "ansible_network_os == 'nxos'"
+        - "'10.145.248.200' not in checkloggnxos.stdout_lines[0][0]"
+
+    - name: "TASK 18: Write IOS CSV File - server"
+      shell: echo "{{ inventory_hostname }},{{ ansible_net_all_ipv4_addresses[0] }},{{ ios_logg_srv }}" >> sentinel_logg.csv
+      delegate_to: localhost
+      when: 
+        - "ansible_network_os == 'ios'"
+        - "'10.145.248.200' in checkloggios.stdout_lines[0][0]"
+
+    - name: "TASK 19: Write IOS CSV File - no server"
+      shell: echo "{{ inventory_hostname }},{{ ansible_net_all_ipv4_addresses[0] }},{{ ios_logg_srv }}" >> sentinel_logg.csv
+      delegate_to: localhost
+      when: 
+        - "ansible_network_os == 'ios'"
+        - "'' in checkloggios.stdout_lines[0][0]"
+
+    
+
+#     # - name: "TASK 4: Get Physical Address from Nexus Switch"
+#     #   cisco.nxos.nxos_command:
+#     #     commands:
+#     #       - command: sh run snmp | grep location
+#     #   register: snmp_location 
+
+#     # - name: "TASK 4_1: Get IP Address from Nexus Switch"
+#     #   cisco.nxos.nxos_command:
+#     #     commands:
+#     #       - command: sh run int lo0 | in addr
+#     #   register: ip_addr
+#     #   when: '"wa-lan-sd" in inventory_hostname'
+
+# #    - name: "TASK 4_2: Get hostname from Nexus Switch"
+# #      cisco.nxos.nxos_command:
+# #        commands:
+# #          - command: sh run | grep hostname
+# #      register: device_name
+# #      tags: device     
+# #
+# #    - name: "TASK 4_3: Print Hostname"
+# #      debug:
+# #        var: device_name
+# #      tags: device
+
+# #    - name: "TASK 5: Print System Uptime"
+# #      debug:
+# #        var: sysupt.stdout_lines[0][0].split()
+# #
+# #    - name: "TASK 6: Print SNMP Location"
+# #      debug:
+# #        var: snmp_location.stdout[0][21:].replace(',','')
+
+#     # - name: "TASK 6_1: Set Facts"
+#     #   set_fact:
+#     #     version: "{{ ansible_net_version }}"
+#     #     days_last_upgraded: "{{ sysupt.stdout_lines[0][0].split()[3] }}"
+#     #     ipaddress: "{{ ansible_net_all_ipv4_addresses[0] }}"
+#     #     model: "{{ ansible_net_model }}"
+#     #     serialnum: "{{ ansible_net_license_hostid }}"
+#     #     hostname: "{{ ansible_net_hostname }}"
+#     #     physicaladdress: "{{ snmp_location.stdout[0][21:].replace(',','') }}"
+#     #   when: ansible_net_version != non_compliant_5672up 
+
+#     # - name: "TASK 6_2: Set Facts"
+#     #   set_fact:
+#     #     version: "{{ ansible_net_version }}"
+#     #     days_last_upgraded: "{{ sysupt.stdout_lines[0][0].split()[3] }}"
+#     #     ipaddress_wa: "{{ ip_addr.stdout_lines[0][0].split()[-1].split('/')[0] }}"
+#     #     model: "{{ ansible_net_model }}"
+#     #     serialnum: "{{ ansible_net_license_hostid }}"
+#     #     hostname: "{{ inventory_hostname }}"
+#     #     physicaladdress: "{{ snmp_location.stdout[0][21:].replace(',','') }}"
+#     #   when: '"wa-lan-sd" in inventory_hostname'
+
+# #    - name: "TASK 7: Print Facts"
+# #      debug:
+# #        msg:
+# #          - "{{ version }}"
+# #          - "{{ days_last_upgraded }}"
+# #          - "{{ ipaddress }}"
+# #          - "{{ model }}"
+# #          - "{{ serialnum }}"
+# #          - "{{ hostname }}"
+# #          - "{{ physicaladdress }}"
+# #      when: ansible_net_version != non_compliant_5672up
+# #
+# #    - name: "TASK 7_1: Print Facts"
+# #      debug:
+# #        msg:
+# #          - "{{ ipaddress_wa }}"
+# #      when: '"wa-lan-sd" in inventory_hostname'
+
+#     # - name: "TASK 8: Set Fact 1"
+#     #   set_fact:
+#     #     verdict: 'compliant'
+#     #   when: (version  == compliant_9234)  or (version  == compliant_3548p) or (version  == compliant_5672up) or  (version  == compliant_9234_2)
+
+# #    - name: "TASK 8_1: Set Fact 1"
+# #      set_fact:
+# #        verdict: 'compliant'
+# #      when: (version  == compliant_9234_2)
+
+#     # - name: "TASK 9: Set Fact 2"
+#     #   set_fact:
+#     #     verdict: 'non-compliant'
+#     #   when: (version  != compliant_9234)  or (version  != compliant_3548p) or (version  != compliant_5672up)  or (version  != compliant_9234_2)
+
+
+# #    - name: "TASK 9_1: Set Fact 2"
+# #      set_fact:
+# #        verdict: 'non-compliant'
+# #      when: (version  != compliant_9234_2)
+
+#     # - name: "TASK 10: Set Fact 3"
+#     #   set_fact:
+#     #     upgradeto: 'N/A'
+#     #   when: (version  == compliant_9234)  or (version  == compliant_3548p) or (version  == compliant_5672up) or (version  == compliant_9234_2)
+
+#     # - name: "TASK 11: Set Fact 4"
+#     #   set_fact:
+#     #     upgradeto: '{{ compliant_9234 }}'
+#     #   when:  '"9234" in ansible_net_model'
+
+#     # - name: "TASK 12: Set Fact 5"
+#     #   set_fact:
+#     #     upgradeto: '{{ compliant_3548p }}'
+#     #   when: '"3548P" in ansible_net_model'
+
+#     # - name: "TASK 13: Set Fact 6"
+#     #   set_fact:
+#     #     upgradeto: '{{ compliant_5672up }}'
+#     #   when: (version  == non_compliant_5672up) 
+
+#     # - name: "TASK 14: Print Info"
+#     #   debug:
+#     #     msg: 'The device name is {{ hostname }}, ip address is {{ ipaddress }},  version is {{ version }}, serial number is {{ serialnum}}, physical address is {{ physicaladdress }}.'
+#     #   when: ansible_net_version != non_compliant_5672up
+   
+#     # - name: "TASK 14_1: Print Info"
+#     #   debug:
+#     #     msg: 'The device name is {{ hostname }}, ip address is {{ ipaddress_wa }},  version is {{ version }}, serial umber is {{ serialnum}}, physical address is {{ physicaladdress }}.'
+#     #   when: '"wa-lan-sd" in inventory_hostname'
+
+#     # - name: "TASK 15: Write mydevices.csv"
+#     #   run_once: true
+#     #   shell: echo Serial Number,Device Name,Device Model,Software Version,Verdict,UpgradeTO,DaysSincelastUpgrade,Tags,Notes  > NexusswitchComplianceReport.csv
+
+
+
+#     # - name: "TASK 16: Write My Devices CSV File"
+#     #   shell: echo "{{ serialnum }},{{ hostname }},{{ model }},{{ version }},{{ verdict }},{{ upgradeto }},{{ days_last_upgraded }},{{ ipaddress }},{{ physicaladdress }}" >> NexusswitchComplianceReport.csv
+#     #   delegate_to: localhost
+#     #   when: ansible_net_version != non_compliant_5672up
+
+
+#     # - name: "TASK 16_1: Write My Devices CSV File"
+#     #   shell: echo "{{ serialnum }},{{ hostname }},{{ model }},{{ version }},{{ verdict }},{{ upgradeto }},{{ days_last_upgraded }},{{ ipaddress_wa }},{{ physicaladdress }}" >> NexusswitchComplianceReport.csv
+#     #   delegate_to: localhost
+#     #   when: '"wa-lan-sd" in inventory_hostname'

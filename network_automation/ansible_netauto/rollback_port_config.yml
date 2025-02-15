@@ -1,0 +1,28 @@
+---
+- name: "Rollback Port Configuration on Cisco Switches"
+  hosts: all
+  gather_facts: no
+  tasks:
+
+    - name: "TASK 1: Prompt user for rollback confirmation"
+      pause:
+        prompt: "Are you sure you want to roll back the port configuration? (yes/no)"
+      register: user_confirmation
+
+    - name: "TASK 2: Abort rollback if user declines"
+      fail:
+        msg: "Rollback aborted by user."
+      when: user_confirmation.user_input != 'yes'
+
+    - name: "TASK 3: Rollback configured ports"
+      ios_config:
+        lines: "{{ original_port_config }}"
+        before:
+          - "interface {{ port_name }}"  # Replace this with the specific interface name
+        replace: line
+      with_items: "{{ rollback_ports }}"
+      loop_control:
+        label: "{{ item }}"  # Display the current output
+
+    # Verify against output content
+    # test-task-

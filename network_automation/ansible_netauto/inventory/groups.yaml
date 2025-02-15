@@ -1,0 +1,14 @@
+---
+# sjn9k:
+#   connection_options:
+#     # napalm:
+#     #   platform: nxos
+#     netmiko:
+#       platform: cisco_nxos
+
+wallabswitches:
+  connection_options:
+    napalm:
+      platform: nxos
+    netmiko:
+      platform: cisco_nxos

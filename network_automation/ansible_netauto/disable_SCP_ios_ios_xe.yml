@@ -1,0 +1,24 @@
+---
+- name: "PLAY 1: Disable SCP feature"
+  hosts: nyc9300sw:ffc9300l48t4xsw
+  gather_facts: False
+
+  tasks:
+    - name: 'TASK 1: Apply PORT config using SSH/CLI'
+      cisco.ios.ios_config:
+        lines:
+          - no ip scp server enable
+      tags: two_stage
+      notify: config_changed
+      register: cli_result
+
+  handlers:
+    - name: "HANDLER 1: Display commands to be sent to device"
+      listen: config_changed
+      debug:
+        msg: "{{ cli_result.commands }}"
+
+    - name: "HANDLER 2: Save configuration"
+      listen: config_changed
+      ios_config:
+        save_when: always

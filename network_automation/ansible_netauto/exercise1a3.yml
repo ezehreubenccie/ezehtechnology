@@ -1,0 +1,27 @@
+---
+- name: collect information
+  hosts: walthamfirewalls:walthamswitches
+  gather_facts: False
+
+  tasks:
+    - name: gather switch info
+      ios_command:
+        commands: show ip arp 
+      register: show_ip_arp_ios
+      when: ansible_network_os == 'ios'
+      tags: ios
+
+    - debug:
+        var: show_ip_arp_ios
+      tags: ios
+ 
+    - name: gather asa info
+      asa_command:
+        commands: sh arp
+      register: show_arp_asa
+      when: ansible_network_os == 'asa'
+      tags: asa
+
+    - debug:
+        var: show_arp_asa
+      tags: asa

@@ -1,0 +1,24 @@
+- name : UTD CISCO 5545X ASA VUL CHECK
+  connection: network_cli
+  hosts: wa5525xasas:nyc5555xasas:tky5555xasas:ec-lan-asa0803:sh5555xasas
+  gather_facts: false
+
+
+  vars:
+    asa_target_version: 9.14(4)24
+
+
+
+  tasks:
+    - name: Get vul output
+      asa_command:
+        commands:
+#          - sh run boot
+#          - show run asdm | grep image
+          -  show running-config tunnel-group
+          - show running-config policy-map | include inspect dns
+      register: asavul
+
+    - debug:
+        var: asavul
+

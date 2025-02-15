@@ -1,0 +1,19 @@
+---
+- name: Backup config of utd devices
+  hosts: walthamfirewalls
+  gather_facts: False
+
+  tasks:
+    - name: get timestamp
+      command: date +%Y%m%d-%H-%M-%S
+      register: timestamp
+#
+    - debug:
+        var: timestamp
+
+#    - name: backup asa firewall config 
+#      asa_config:
+#        backup: yes
+#        backup_options:
+#          filename: 'running-config-{{ timestamp.stdout }}.txt'
+#          dir_path: "../backups/{{ inventory_hostname }}"

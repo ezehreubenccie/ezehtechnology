@@ -1,0 +1,36 @@
+- name: Automate Git/BitBucket Push with API Token
+  hosts: localhost
+  vars:
+    gitlab_api_token: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          31386564303934363964313131383165343232643366653930653663666363653237333064346334
+          3565336466336465623533346431353632636332326466390a326462333332646632653136346461
+          35343531336664326231626366643164616331613963313166626633643965353838353931383932
+          3761353036366534380a626436336365346161643330636438633933616233633936396565333331
+          63633232316632633432626439616338643130316464613663333831346562623166333163373532
+          3631326366613066306135373335333764663636366434376636
+    git_repo_url: "https://{{ gitlab_api_token }}@bitbucket.ce.wolterskluwer.io/scm/net/wkgbsnetops.git"
+    local_repo_path: "/home/rezeh/gbsnetauto"
+  tasks:
+    - name: Clone the repository (if not already cloned)
+      git:
+        repo: "{{ git_repo_url }}"
+        dest: "{{ local_repo_path }}"
+        version: "main"
+        force: yes
+
+    - name: Add changes to the repository
+      command: "git add ."
+      args:
+        chdir: "{{ local_repo_path }}"
+
+    - name: Commit changes
+      command: "git commit -m 'Automated commit via Ansible'"
+      args:
+        chdir: "{{ local_repo_path }}"
+      ignore_errors: true  # Ignore errors if there are no changes to commit
+
+    - name: Push changes
+      command: "git push origin main"
+      args:
+        chdir: "{{ local_repo_path }}"

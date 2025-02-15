@@ -1,0 +1,34 @@
+- name : GATHER NEXUS SWITCH FACTS
+  connection: network_cli
+  hosts: wan9k:ffnexusc92348gcxsw:wallabswitches:wan3k:njnexus3548p10gsw:sjn3k:sjn9k:wanexusn9kc9336cfx2:njnexusc92348gcxsw
+  gather_facts: false
+
+
+
+
+  vars:
+    switch_compliant_ver: 10.3(6)
+
+  tasks:
+    - name: Gather all Nexus Switch Hardware facts
+      nxos_facts:
+        gather_subset: hardware
+      register: output
+
+    - name: Print facts to console
+      debug:
+        var: output
+        # var: ansible_net_version
+        # msg:
+        #   - "{{ ansible_net_model }}"
+        #   - "{{ ansible_net_platform }}"
+        #   - "{{ ansible_net_version }}"
+
+    - name: Assert that Switch NXOS Version is the Compliant Version
+      assert:
+        that:
+          - ansible_net_version == switch_compliant_ver
+        fail_msg: 'The Software Version {{ ansible_net_version }} on {{ inventory_hostname }} has not been upgraded to the compliant version {{ switch_compliant_ver}}. Please upgrade!!'
+        success_msg: 'Hooray!!..The Software Version {{ ansible_net_version }} on {{ inventory_hostname }} has  been upgraded to the compliant version {{ switch_compliant_ver}}.'
+      tags:
+        - facts

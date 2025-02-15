@@ -1,0 +1,103 @@
+---
+- name: ASA AAA NEW COMMANDS
+  hosts:  nyc5555xasas
+  gather_facts: false
+
+  vars:
+
+
+
+
+  tasks:
+    - name: Update Support local creds
+      asa_config:
+        lines:
+           - no username Support
+           - username Support password !!Cov$14 privilege 15
+      notify: config_changed
+      register: cli_result
+      tags: updloccreds
+
+    - name: Configure radius server group
+      asa_config:
+        lines:
+          - aaa-server UTD_RADIUS protocol radius
+      notify: config_changed
+      register: cli_result
+      tags: createsrvgrp
+
+    - name: Configure first radius server
+      asa_config:
+        lines:
+          - key p7IbxCl8XzZKvEXMwGHr
+        parents: aaa-server UTD_RADIUS (DMZ1054) host 10.2.101.77
+      notify: config_changed
+      register: cli_result
+      tags: createradsrvs
+
+    - name: Configure second radius server
+      asa_config:
+        lines:
+          - key p7IbxCl8XzZKvEXMwGHr
+        parents: aaa-server UTD_RADIUS (DMZ1054) host 10.2.101.78
+      notify: config_changed
+      register: cli_result
+      tags: createradsrvs
+      
+
+    # - name: Configure radius server group
+    #   asa_config:
+    #     lines:
+    #       - aaa-server UTD_RADIUS protocol radius
+    #   notify: config_changed
+    #   register: cli_result
+    #   tags: createsrvgrp
+
+    - name: Configure aaa authentication and authorization
+      asa_config:
+        lines: 
+          - no aaa authentication enable console ISE-TACACS LOCAL
+          - no aaa authentication http console ISE-TACACS LOCAL
+          - no aaa authentication telnet console ISE-TACACS LOCAL
+          - no aaa authorization command ISE-TACACS LOCAL
+          - aaa authorization exec authentication-server auto-enable
+          - aaa authentication enable console UTD_RADIUS LOCAL
+          - aaa authentication http console UTD_RADIUS LOCAL
+          - aaa authentication ssh console UTD_RADIUS LOCAL
+          - aaa authentication telnet console UTD_RADIUS LOCAL
+      notify: config_changed
+      register: cli_result
+      tags: confaaa
+
+    - name: PRINT OUTPUT
+      debug:
+        var: cli_result
+      tags: confaaa,createsrvgrp,createradsrvs,updloccreds
+
+
+    # - name: Configure Console Interface
+    #   ios_config:
+    #     lines: login authentication CONSOLE
+    #     parents: line console 0
+    #   notify: config_changed
+    #   register: cli_result
+    #   tags: concfg
+          
+
+    
+
+  handlers:
+    # - name: "HANDLER 1: Display commands to be sent to device"
+    #   listen: config_changed
+    #   debug:
+    #     msg: "{{ cli_result.commands }}"
+
+    - name: "HANDLER 2: Save configuration"
+      listen: config_changed
+      asa_config:
+        save_when: always
+        # diff_against: running
+
+      
+
+    

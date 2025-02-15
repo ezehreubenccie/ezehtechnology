@@ -1,0 +1,11 @@
+---
+- name: Exercise 3a
+  hosts: localhost:walthamfirewalls
+  gather_facts: false
+  tasks:
+    - debug:
+        var: ansible_host
+
+    - debug:
+        var: ansible_connection
+

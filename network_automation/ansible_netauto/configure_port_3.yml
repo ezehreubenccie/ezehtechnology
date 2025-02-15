@@ -1,0 +1,35 @@
+---
+- name: "Snapshot and Configure Cisco Switch Ports"
+  hosts: all
+  gather_facts: no
+  tasks:
+
+    - name: "TASK 1: Capture current port configuration"
+      ios_command:
+        commands:
+          - "show running-config interface GigabitEthernet1/0/1"  # Replace with your port or range
+      register: port_snapshot
+
+    - name: "TASK 2: Display port snapshot to user"
+      debug:
+        msg: "{{ port_snapshot.stdout[0] }}"  # Output the current configuration
+
+    - name: "TASK 3: Prompt user for confirmation"
+      pause:
+        prompt: "Review the above snapshot. Do you want to proceed with configuration? (yes/no)"
+      register: user_confirmation
+
+    - name: "TASK 4: Fail if user declines"
+      fail:
+        msg: "Configuration aborted by user."
+      when: user_confirmation.user_input != 'yes'
+
+    - name: "TASK 5: Apply new port configuration"
+      ios_config:
+        lines:
+          - "interface GigabitEthernet1/0/1"  # Replace with your port or range
+          - "switchport mode access"
+          - "switchport access vlan 10"  # Replace with your VLAN ID
+          - "spanning-tree portfast"
+          - "no shutdown"
+      when: user_confirmation.user_input == 'yes'

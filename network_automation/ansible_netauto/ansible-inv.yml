@@ -1,0 +1,331 @@
+---
+all:
+  children:
+    location:
+      children:
+        waltham:
+          children:
+            # wanexus5672upsw:
+            #   hosts:
+            #     wa-lan-sd0100:
+            #     wa-lan-sd0200:
+            wac9200l48t4gsw:
+              hosts:
+                wa-lan-mansw0100:
+                wa-lan-mansw0200:
+                wa-lan-mansw0300:
+                wa-lan-mansw0400:
+                wa-lan-mansw0500:
+                wa-lan-mansw0600:
+                wa-lan-mansw0700:
+            wac930048tsw:
+              hosts:
+                WA-LAN-MGMT01.na.wkglobal.com:
+            wawsc385048tsw:
+              hosts:
+                #wa-lan-mansw0800:
+            # wa4500coresw:
+            #   hosts:
+            #     wa-lan-core0100:
+            wanexusn9kc9336cfx2:
+              hosts:
+                WA-LAN-CORE0100:
+                WA-LAN-CORE0200:
+            # wa5555xasas:
+            #   hosts:
+            #     wa-lan-asa01-pri:
+            #     wa-lan-asa01-sec:
+            wa5525xasas:
+              hosts:
+                wa-lan-asa03-pri:
+                wa-lan-asa03-sec:
+            wainetsw:
+              hosts:
+                # wa-lan-inetsw0100:
+                # wa-lan-inetsw0200:
+            waftds:
+              hosts:
+                wa-lan-fpr0100:
+                wa-lan-fpr0200:
+                wa-lan-fw-fpw200-1:
+                wa-lan-fw-fpw200-2:
+                wa-lan-fw-fpw100-1:
+                wa-lan-fw-fpw100-2:
+            wa2500fmcs:
+              hosts:
+                wa-fmc2500:
+            wafileservers:
+              hosts:
+                mkjump02:
+            warsaservers:
+              hosts:
+                wa-lan-rsa0300.utd.com:
+                wa-lan-rsa0400.utd.com:
+            waiseservers:
+              hosts:
+                ise01p.utd.com:
+                ise02p.utd.com:
+            wainetrtr:
+              hosts:
+                # wainetrtr_att:
+                WA-LAN-INETRTR0100:
+                WA-LAN-INETRTR0200:
+                # wainetrtr_comcast:
+            wan3k:
+              hosts:
+                WA-LAN-AGGSW0100:
+                WA-LAN-AGGSW0200:
+            wan9k:
+              hosts:
+                WA-LAN-CAB03-0100:
+                WA-LAN-CAB03-0200:
+                WA-LAN-CAB04-0100:
+                WA-LAN-CAB05-0100:
+                WA-LAN-CAB06-0100:
+                WA-LAN-CAB07-0100:
+                WA-LAN-CAB08-0100:
+                WA-LAN-CAB09-0100:
+                WA-LAN-CAB10-0100:
+                WA-LAN-CAB11-0100:
+                WA-LAN-CAB13-0100:
+                WA-LAN-CAB14-0100:
+                WA-LAN-CAB15-0100:
+                WA-LAN-CAB16-0100:
+                WA-LAN-CAB17-0100:
+                WA-LAN-CAB18-0100:
+                WA-LAN-CAB19-0100:
+                WA-LAN-CAB20-0100:
+            wallabswitches:
+              hosts:
+                WA-LAB-LAN-AGGSW0100:
+                WA-LAB-LAN-AGGSW0200:
+            wauseastawssmtpsrv:
+              hosts:
+                email-smtp.us-east-1.amazonaws.com:
+            waogs:
+              hosts:
+                wa-opengear:
+            jumpbox:
+              hosts:
+                mkjump02:
+            netbackup:
+              hosts:
+                prtg01p:
+            nps:
+              hosts:
+                utdnps02.UTD.com:
+                utdnps01.UTD.com:
+            local:
+              localhost:
+        sanjose:
+          children:
+            sjn3k:
+              hosts:
+                wc-lan-core-sw0102:
+                wc-lan-core-sw0202:
+            sjftds:
+              hosts:
+                sanjose-fpr4112-ftd01:
+                sanjose-fpr4112-ftd02:
+            sjmanagedinetrtr:
+              hosts:
+                sjinetpattrtr:
+                sjinetsattrtr:
+            sjopengear:
+              hosts:
+                sj-opengear:
+            sjn9k:
+              hosts:
+                wc-lan-sw0402-1:
+                wc-lan-sw0402-2:
+                wc-lan-sw0302-2:
+                wc-lan-sw0302-1:
+                wc-lan-sw0202-2:
+                wc-lan-sw0202-1:
+                wc-lan-sw0102-2:
+                wc-lan-sw0102-1:
+            sjc9300l48t4xsw:
+              hosts:
+                wc-lan-oob-sw0102:
+                wc-lan-ds-sw0102:
+        nycsb:
+          children:
+            # nyc5555xasas:
+            #   hosts:
+            #   sb-lan-asa0601-pri:
+                #sb-lan-asa0601-sec:
+            nycmanagedinetrtr:
+              hosts:
+                nycinetpattrtr:
+            nycopengear:
+              hosts:
+                nyc-opengear:
+            nycftds:
+              hosts:
+                newjersey-sanbox-fpr1120-ftd01_pri:
+                newjersey-sanbox-fpr1120-ftd01_sec:
+            nyc9300sw:
+              hosts:
+                sb-lan-sw0101:
+                sb-lan-sw0201:
+                sb-lan-sw0301:
+            nyc2960xsw:
+              hosts:
+                sb-lan-sw0401:
+                sb-lan-sw0501:
+            sbnexusc92348gcxsw:
+              hosts:
+                NNYCSWEQNY203140LEA01:
+                NNYCSWEQNY203140LEA02: 
+        nj:
+          children:
+            njftds:
+              hosts:
+                newjersey-fpr4112-ftd01_pri:
+                newjersey-fpr4112-ftd01_sec:
+            njbcdrasa:
+              hosts:
+                ec-lan-asa0803:
+            njmanagedinetrtr:
+              hosts:
+                secinetpattrtr:
+                secinetsattrtr:
+            njnexusc92348gcxsw:
+              hosts:
+                ec-lan-sw0203-1:
+                ec-lan-sw0203-2:
+                ec-lan-sw0303-1:
+                ec-lan-sw0303-2:
+                ec-lan-sw0403-1:
+                ec-lan-sw0403-2:
+                ec-lan-sw0503-1:
+                ec-lan-sw0503-2:
+                ec-lan-sw0603-1:
+                ec-lan-sw0603-2:
+            njc930048tsw:
+              hosts:
+                ec-lan-mgt-sw0403-1:
+                labsw01:
+            # njc9200l24t4xsw:
+            #   hosts:
+            #     ec-lan-ds-sw0403-1:
+            #     ec-lan-ds-sw0403-2:
+            njnexusc3548pxlsw:
+              hosts:
+                EC-LAN-DS-SW0403-1:
+                EC-LAN-DS-SW0403-2:
+            njnexus3548p10gsw:
+              hosts:
+                ec-lan-core-sw0403-1:
+                ec-lan-core-sw0403-2:
+            njfpmcs:
+              hosts:
+                njfpcm01:
+                njfpcm02:
+            njrsaserver:
+              hosts:
+                ec-lan-rsa0303.utd.com:
+        tky:
+          children:
+            tky5555xasas:
+              hosts:
+                pr-lan-asa0604-pri:
+                #pr-lan-asa0604-sec:
+            tkymanagedinetrtr:
+              hosts:
+                tkyinetpattrtr:
+                tkyinetsattrtr:
+            tkyopengear:
+              hosts:
+                # tky-opengear:
+                NTYOSCTY10817DC01:
+            tkyc930048tsw:
+              hosts:
+                pr-lan-sw0204:
+                pr-lan-sw0104:
+                pr-lan-sw0304:
+                pr-lan-sw0704:
+            tkywsc2960x24tslsw:
+              hosts:
+                pr-lan-sw0404:
+                pr-lan-sw0504:
+            tkyws385048tsw:
+              hosts:
+                pr-lan-sw0604:
+            tkyftds:
+              hosts:
+                tokyo-fpr3110-ftd01_pri:
+                tokyo-fpr3110-ftd01_sec:
+            tkynexusc3548pxlsw:
+              hosts:
+                NTYOSWTY10817AGG01:
+                NTYOSWTY10817AGG02:
+            tkynexusc92348gcxsw:
+              hosts:
+                NTYOSWTY10817LEA01:
+                NTYOSWTY10817LEA02:
+                NTYOSWTY10817MGT01.na.wkglobal.com:
+               
+        sh:
+          children:     
+            sh5555xasas:
+              hosts:
+                sh-lan-asa0606-pri:
+                sh-lan-asa0606-sec:
+            shwsc3750x24tssw:
+              hosts:
+                sh-lan-sw0306:
+                sh-lan-sw0206:
+                sh-lan-sw0106:       
+            shwsc2960x24tslsw:
+              hosts:
+                sh-lan-sw0506:
+                sh-lan-sw0406:
+            shwsc385048tsw:
+              hosts:
+                sh-lan-sw0606:
+            shc930048tsw:
+              hosts:
+                sh-lan-sw0706:
+            shinetrtr:
+              hosts:
+                shinetpattrtr:
+                shinetsattrtr:
+        ff:
+          children:
+            ffftds:
+              hosts:
+                frankfurt-fpr4112-ftd01:
+                frankfurt-fpr4112-ftd02:
+            ffmanagedinetrtr:
+              hosts:
+                ffinetpattrtr:
+                ffinetsattrtr:
+            ffopengear:
+              hosts:
+                ff-opengear:
+            ffnexusc92348gcxsw:
+              hosts:
+                eu-lan-sw0105-1:
+                eu-lan-sw0105-2:
+                eu-lan-sw0205-2:
+                eu-lan-sw0205-1:
+                eu-lan-sw0305-1:
+                eu-lan-sw0305-2:    
+            ffnexus3548sw:
+              hosts:
+                eu-lan-core-sw0105:
+                eu-lan-core-sw0205:
+            ffc9300l48t4xsw:
+              hosts:
+                eu-lan-oob-sw0105:
+                eu-lan-ds-sw0105:
+                eu-lan-ds-sw0205:
+            
+                  
+                 
+      
+
+                    
+
+      

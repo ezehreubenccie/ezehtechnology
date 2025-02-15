@@ -1,0 +1,95 @@
+---
+- name: AAA NEW COMMANDS
+  hosts: nyc9300sw:nyc2960xsw
+  gather_facts: false
+
+  vars:
+
+
+
+
+  tasks:
+    - name: Update Support local creds
+      ios_user:
+        name: Support
+        configured_password: "!!Cov$14"
+        update_password: always
+        state: present
+      notify: config_changed
+      register: cli_result
+      tags: updloccreds
+
+    
+
+    - name: Configure first radius server
+      ios_config:
+        lines:
+          - address ipv4 10.2.101.77 auth-port 1812 acct-port 1813
+          - key p7IbxCl8XzZKvEXMwGHr
+        parents: radius server UTD-RAD01
+      notify: config_changed
+      register: cli_result
+      tags: createradsrvs
+
+    - name: Configure second radius server
+      ios_config:
+        lines:
+          - address ipv4 10.2.101.78 auth-port 1812 acct-port 1813
+          - key p7IbxCl8XzZKvEXMwGHr
+        parents: radius server UTD-RAD02
+      notify: config_changed
+      register: cli_result
+      tags: createradsrvs
+      
+
+    - name: Configure radius server group
+      ios_config:
+        lines:
+          - server name UTD-RAD01
+          - server name UTD-RAD02
+        parents: aaa group server radius UTD_RADIUS
+      notify: config_changed
+      register: cli_result
+      tags: createsrvgrp
+
+    - name: Configure aaa authentication and authorization
+      ios_config:
+        lines: 
+          - aaa authentication login default group UTD_RADIUS local
+          - aaa authentication login CONSOLE local
+          - aaa authorization exec default group UTD_RADIUS local
+      notify: config_changed
+      register: cli_result
+      tags: confaaa
+
+    - name: Configure Console Interface
+      ios_config:
+        lines: login authentication CONSOLE
+        parents: line console 0
+      notify: config_changed
+      register: cli_result
+      tags: concfg
+
+    - name: PRINT OUTPUT
+      debug: 
+        var: cli_result
+      tags: concfg,confaaa,createsrvgrp,createradsrvs,updloccreds,
+          
+
+    
+
+  handlers:
+    # - name: "HANDLER 1: Display commands to be sent to device"
+    #   listen: config_changed
+    #   debug:
+    #     msg: "{{ cli_result.commands }}"
+
+    - name: "HANDLER 2: Save configuration"
+      listen: config_changed
+      ios_config:
+        save_when: always
+        diff_against: running
+
+      
+
+    

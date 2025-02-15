@@ -1,0 +1,42 @@
+---
+- name: "PLAY 1: Backup config of utd devices"
+  hosts: sjn9k:wan9k:wan3k:sjn3k:njnexusc92348gcxsw:njnexus3548p10gsw:ffnexusc92348gcxsw:ffnexus3548sw:wanexusn9kc9336cfx2:wanexusn9kc9336cfx2
+  gather_facts: False
+
+  vars: 
+    source_file: running-config
+    ftp_ip: 'x.x.x'
+    ftp_user: 'ansible'
+    ftp_pass: 'x.x.x'
+
+  tasks:
+    # - name: "TASK 1: get timestamp"
+    #   command: date +%Y-%m-%d_%H_%M_%S
+    #   register: timestamp
+    #   tags:
+    #     - backup_to_ansible_node
+    #     - backup_to_file_server
+    #     - backup_to_disk
+#
+#    - debug:
+#        var: timestamp
+
+    # - name: "TASK 2: set destination file name"
+    #   set_fact:
+    #     dest_file: 'UTD_Net_Device_Backups/2023/{{ inventory_hostname }}/{{ inventory_hostname }}-running-config-{{ timestamp.stdout }}.txt'
+    #   tags:
+    #     - backup_to_file_server
+
+    # - name: "TASK 3: set destination file name for local disk"
+    #   set_fact:
+    #     dest_file_disk: '{{ inventory_hostname }}-running-config-{{ timestamp.stdout }}.cfg'
+    #   tags:
+    #     - backup_to_disk
+      
+        
+    - name: "TASK 4: Create folder"
+      file: 
+        path: './host_vars/{{ inventory_hostname }}'
+        state: directory
+      # run_once: true
+      tags: create_folder

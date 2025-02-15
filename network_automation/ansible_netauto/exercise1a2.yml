@@ -1,0 +1,21 @@
+---
+- name: ansible exercise
+  hosts: WA-LAN-MANSW0100
+  gather_facts: True
+  vars_files: my_vars.yml
+  tasks:
+    - debug:
+        var: ansible_facts
+
+    - debug:
+        msg: "{{ ansible_network_os }}" 
+
+    - debug:
+        msg: "{{ desired_ios_version }}"
+
+    - set_fact:
+        device_hostname: "{{ inventory_hostname }}.utd.com"
+
+    - debug:
+        msg: "{{ device_hostname }}"
+

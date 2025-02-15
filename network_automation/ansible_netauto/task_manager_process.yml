@@ -1,0 +1,14 @@
+- name: House Keeping old log files
+  hosts: prtg01p
+
+
+
+
+  tasks:
+    - name: Check task manager
+      community.windows.win_scheduled_task_stat:
+      register: task_manager
+
+
+    - debug:
+        var: task_manager

@@ -1,0 +1,40 @@
+---
+- name: "PLAY 1: Backup config of utd devices"
+  hosts: wa5525xasas:wac9200l48t4gsw:wawsc385048tsw:wainetsw:nyc5555xasas:nyc9300sw:nyc2960xsw:tky5555xasas:tkyc930048tsw:tkywsc2960x24tslsw:tkyws385048tsw:sh5555xasas:shwsc3750x24tssw:shwsc2960x24tslsw:shwsc385048tsw:shc930048tsw:njbcdrasa:njnexusc92348gcxsw:njc930048tsw:njc9200l24t4xsw:njnexus3548p10gsw
+  gather_facts: False
+
+  tasks: 
+    - name: "TASK 4: Create folder"
+      file: 
+        path: '/home/rezeh/VENV/ezehtechnology/network_automation/pre_and_post_upg'
+        state: directory
+      run_once: true
+      tags: backup_to_git
+
+    - name: "TASK 5: backup device config"
+      ansible.builtin.copy:
+        src: /home/rezeh/VENV/show_commands/{{ inventory_hostname }}.txt
+        dest: "/home/rezeh/VENV/ezehtechnology/network_automation/pre_and_post_upg/{{ inventory_hostname }}.txt"
+      tags: backup_to_git
+
+    - name: "TASK 6: Print Time"
+      command: date +%m-%d-%Y_%H_%M_%S
+      register: time
+      changed_when: false
+      delegate_to: localhost
+      run_once: yes
+
+
+    - name: "TASK 7: GIT Commands"
+      shell: |
+        git pull --rebase
+        git add .
+        git commit -m "Device backup on {{ time.stdout }}"
+        git push
+      args: 
+        chdir: /home/rezeh/VENV/ezehtechnology
+      delegate_to: localhost
+      run_once: yes 
+
+
+    

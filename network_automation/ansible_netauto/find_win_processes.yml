@@ -1,0 +1,14 @@
+---
+- name: Gather process information on a Windows server
+  hosts: prtg01p
+  tasks:
+    - name: Get detailed process information
+      win_shell: |
+        $processes = Get-Process 
+        # $processes = Get-Process | Select-Object Name, Id, CPU, WS
+        $processes | ConvertTo-Json
+      register: process_output
+
+    - name: Display process information in JSON format
+      debug:
+        var: process_output.stdout

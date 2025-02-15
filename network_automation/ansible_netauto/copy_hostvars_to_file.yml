@@ -1,0 +1,13 @@
+---
+- name: investigate hostvars
+  hosts: localhost
+
+  tasks:
+    - name: get hostvars
+      setup:
+        gather_subset: '!all'
+      register: output
+
+    - name: write my hostvars
+      shell: echo "{{ output }}" > hostvars.txt 
+      delegate_to: localhost

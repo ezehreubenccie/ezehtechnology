@@ -1,0 +1,10 @@
+- name : GATHER HOSTNAME AND IP
+  connection: network_cli
+  hosts: wc-lan-sw0102-1
+  gather_facts: false
+
+  tasks:
+    - name: Get IP and HOSTNAME
+      debug:
+        msg:
+          - "{{ inventory_hostname }}"

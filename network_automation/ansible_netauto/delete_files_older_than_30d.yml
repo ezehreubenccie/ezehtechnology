@@ -1,0 +1,35 @@
+---
+- name: House Keeping old log files
+  hosts: prtg01p
+  vars:
+    directories: ['D:\UTDFMCV300_BACKUP\sf-storage\d5643eb8-4d1b-11e7-9d86-0eafbc3f2080\backups','D:\UTDFMCV300_BACKUP\sf-storage\d5643eb8-4d1b-11e7-9d86-0eafbc3f2080\remote-backups']
+    filepattern: ['*.tar']
+    age: 15d
+  tasks:
+    - name: Find FMC tar files
+      tags: always
+      win_find:
+        paths: "{{directories}}"
+        age: "{{age}}"
+        age_stamp: mtime
+        patterns: "{{filepattern}}"
+        recurse: yes
+      register: filestoremove
+
+    - name: list of files to be removed
+      tags: always
+      vars:
+        files: "{{ filestoremove.files | json_query('[].path') }}"
+      debug: var=files
+      when: filestoremove.matched > 0
+
+    - name: remove the files found - this would work only when you call the – tags=delete
+      tags: never,delete
+      vars:
+        files: "{{ filestoremove.files | json_query('[].path') }}"
+      win_file:
+        path: "{{item}}"
+        state: absent
+      with_items:
+        - "{{files}}"
+      when: filestoremove.matched > 0

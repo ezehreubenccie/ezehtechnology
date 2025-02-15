@@ -1,0 +1,61 @@
+---
+- name: Automate Git Push to Bitbucket
+  hosts: localhost
+  vars:
+    repo_url: "https://Reuben.Ezeh@wolterskluwer.com@bitbucket.ce.wolterskluwer.io/scm/net/wkgbsnetops.git"
+    branch_name: "main"
+    # bitbucket_api_token: !vault |
+    #       $ANSIBLE_VAULT;1.1;AES256
+    #       63316536386137356638353233633563343334626130643537333234636134653834373064323339
+    #       6138383763343462376539363434396162323931646663380a643364363633313863666231663139
+    #       39383261623437386265306239643732623339323634383366383238336561353434313265653965
+    #       6538316430303039330a366265636661323033646236316666653562663730653137383630623839
+    #       62363265373833363735336532316537663737313832396266303033373532333161326234623963
+    #       6165663739386234326532343030393662643464623037323132
+
+  tasks:
+    # - name: Clone the repository (if not already cloned)
+    #   git:
+    #     repo: "{{ repo_url }}"
+    #     dest: /path/to/local/repo  # Local path where the repo will be cloned
+    #     update: yes
+    #     accept_hostkey: yes
+
+    - name: "TASK 1: Print Time"
+      command: date +%m-%d-%Y_%H_%M_%S
+      register: time
+      changed_when: false
+      delegate_to: localhost
+      run_once: yes
+
+
+    - name: Make changes or add files (example task)
+      shell: |
+        # echo "Automated changes on {{ time.stdout }}" > /home/rezeh/gbsnetauto/git_add_time.txt
+        cd /home/rezeh/gbsnetauto && git add .
+      args:
+        executable: /bin/bash
+      tags: add
+
+    - name: Commit the changes
+      shell: |
+        cd /home/rezeh/gbsnetauto && git commit -m "Automated commit: {{ time.stdout }}"
+      args:
+        executable: /bin/bash
+      ignore_errors: yes  # Ignore if there are no changes to commit
+      tags: commit
+
+    # - name: Push changes to Bitbucket
+    #   shell: |
+    #     cd /home/rezeh/gbsnetauto && git push  https://Reuben.Ezeh@wolterskluwer.com:{{ bitbucket_api_token }}@bitbucket.ce.wolterskluwer.io/scm/net/wkgbsnetops.git
+    #   args:
+    #     executable: /bin/bash
+
+    - name: Push changes to Bitbucket
+      ansible.builtin.command:
+        cmd: |
+          git push https://Reuben.Ezeh@wolterskluwer.com:{{ api_token | urlencode }}@bitbucket.ce.wolterskluwer.io/scm/net/wkgbsnetops.git main
+      tags: push
+  # vars:
+  #   api_token: "MNqBiVrf68PCKIV05tKrjciGVP3wCbacTv1ekI"
+

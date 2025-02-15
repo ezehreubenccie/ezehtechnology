@@ -1,0 +1,37 @@
+- name: Configure Cisco Switch Ports
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Backup running config (before)
+      cisco.nxos.nxos_config:
+        backup: yes
+        backup_options:
+          filename: '{{ inventory_hostname }}-running-config.txt'
+          dir_path: "../UTD_Backups/2023/{{ inventory_hostname }}"
+      register: before_config
+      tags: backup
+
+    - name: Apply port configuration
+      cisco.nxos.nxos_config:
+        lines:
+          - "interface {{ port }}"
+          # - "description {{ descr }}"
+          - switchport
+          - switchport mode access
+          - switchport access vlan 101
+          - spanning-tree port type edge
+          - storm-control broadcast level 10.00
+          - storm-control multicast level 10.00
+          - no shutdown
+
+    - name: Backup running config (after)
+      cisco.nxos.nxos_config:
+        backup: yes
+      register: after_config
+
+    - name: Generate configuration diff
+      ansible.builtin.debug:
+        msg: |
+          Configuration Diff:
+          {{ before_config.backup_file | default('') | file }} --> Before
+          {{ after_config.backup_file | default('') | file }} --> After

@@ -1,0 +1,67 @@
+- name : UPGRADE SOFTWARE ON 9300 9200 3850X SWITCHES
+  connection: network_cli
+  hosts: njc9200l24t4xsw:nyc9300sw:ffc9300l48t4xsw:tkyc930048tsw:tkyws385048tsw
+  gather_facts: false
+
+
+
+
+  tasks:
+    - name: Save the Config
+      cisco.ios.ios_command:
+        commands: 
+          - command: 'copy running-config startup-config'
+            prompt: 'Destination filename \[startup-config\]\?'
+            answer: "\r"
+      register: save_config
+      tags: save_conf
+    
+    - name: Save config output
+      debug:
+        msg: "{{ save_config }}"
+      tags: save_conf
+
+    - name: Install and activate new IOS image
+      cisco.ios.ios_command:
+          commands:
+            - command: 'install add file flash:{{ new_file }} activate commit'
+              prompt: 
+                - 'This operation may require a reload of the system. Do you want to proceed\? \[y/n\]'
+              answer: 
+                - 'y'
+      register: install_activate_output
+      vars:
+        ansible_command_timeout: 1200
+      tags: install
+    
+    - debug:
+        var: install_activate_output.stdout_lines
+      tags: install
+
+    - name: Wait for switch to reboot and become reachable
+      wait_for_connection:
+        delay: 180
+        sleep: 60
+        timeout: 900
+      tags: install
+    
+    - name: Gather new facts
+      cisco.ios.ios_facts:
+        gather_subset: hardware
+      register: facts_output_new
+      tags: install
+    
+    - name: New Version
+      debug:
+        msg: "New Version is {{ facts_output_new['ansible_facts']['ansible_net_version'] }}, Upgrade Successfully Completed"
+      when: new_version == facts_output_new['ansible_facts']['ansible_net_version']
+      tags: install
+
+
+
+
+
+
+
+
+

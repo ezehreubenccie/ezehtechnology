@@ -1,0 +1,137 @@
+- name: Configure Cisco Switch Ports
+  hosts: wan9k
+  gather_facts: no
+  vars:
+    request_num: "IS-7781"
+
+  tasks:
+    - name: "TASK 1: Print Time"
+      command: date +%m-%d-%Y_%H_%M_%S
+      register: time
+      changed_when: false
+      delegate_to: localhost
+      run_once: yes
+      tags: backup_to_git,config
+
+
+    
+
+    - name: "TASK 2: Create GIT folder"
+      file: 
+        path: '/home/rezeh/gbsnetauto/wkgbsnetops/UTD_Backups/2024_2025/chgreqs'
+        state: directory
+      run_once: true
+      
+
+    - name: "TASK 3: backup device config (before)"
+      nxos_config:
+        backup: yes
+        backup_options:
+          filename: '{{ request_num }}-running-config.txt'
+          dir_path: "/home/rezeh/gbsnetauto/wkgbsnetops/UTD_Backups/2024_2025/chgreqs/{{ inventory_hostname }}"
+      tags: backup_to_git
+
+
+    - name: "TASK 4: GIT Commands"
+      shell: |
+        git pull --rebase
+        git add .
+        git commit -m "Device backup on {{ time.stdout }}"
+        git push 
+      args: 
+        chdir: /home/rezeh/gbsnetauto/wkgbsnetops
+      delegate_to: localhost
+      run_once: yes
+
+    
+
+    # - name: "TASK 5: Apply port configuration"
+    #   cisco.nxos.nxos_config:
+    #     lines:
+    #       - "description {{ item.descr }}"
+          # - switchport
+          # - switchport mode access
+          # - switchport access vlan 101
+          # - spanning-tree port type edge
+          # - storm-control broadcast level 10.00
+          # - storm-control multicast level 10.00
+          # - no shutdown
+      #   parents: interface {{ item.name }}
+      # loop:
+      #   "{{ port_config }}"
+      # loop_control:
+      #   label: "{{ item.name }}"
+      # when: "item.name == 'Ethernet1/13'"
+
+    
+    - name: "TASK 6: Apply port configuration"
+      cisco.nxos.nxos_config:
+        lines:
+          - "description {{ item.descr }}"
+          - switchport
+          - switchport mode access
+          - "switchport access vlan {{ item.vlan_id }}"
+          - spanning-tree port type edge
+          - storm-control broadcast level 10.00
+          - storm-control multicast level 10.00
+          - no shutdown
+        parents: interface {{ item.name }}
+      loop:
+        "{{ port_config }}"
+      loop_control:
+        label: "{{ item.name }}"
+      # when: "item.name == 'Ethernet1/14'"
+
+    # - name: "TASK 7: Apply port configuration"
+    #   cisco.nxos.nxos_config:
+    #     lines:
+    #       "default interface {{ item.name }}"     
+      #     - "description {{ item.descr }}"
+      #     - switchport
+      #     - switchport mode access
+      #     - "switchport access vlan {{ vlan_id }}"
+      #     - spanning-tree port type edge
+      #     - storm-control broadcast level 10.00
+      #     - storm-control multicast level 10.00
+      #     - no shutdown
+      #   parents: interface {{ item.name }}
+      # loop:
+      #   "{{ port_config }}"
+      # loop_control:
+      #   label: "{{ item.name }}"
+      # when: "item.name == 'Ethernet1/50'"
+
+
+
+
+    - name: "TASK 8: backup device config (after)"
+      nxos_config:
+        backup: yes
+        backup_options:
+          filename: '{{ request_num }}-running-config.txt'
+          dir_path: "/home/rezeh/gbsnetauto/wkgbsnetops/UTD_Backups/2024_2025/chgreqs/{{ inventory_hostname }}"
+      tags: backup_to_git
+
+    # - name: "TASK 1: Print Time"
+    #   command: date +%m-%d-%Y_%H_%M_%S
+    #   register: time
+    #   changed_when: false
+    #   delegate_to: localhost
+    #   run_once: yes
+
+
+    - name: "TASK 9: GIT Commands"
+      shell: |
+        git pull --rebase
+        git add .
+        git commit -m "Device backup on {{ time.stdout }}"
+        git push 
+      args: 
+        chdir: /home/rezeh/gbsnetauto/wkgbsnetops
+      delegate_to: localhost
+      run_once: yes
+
+    
+
+
+    

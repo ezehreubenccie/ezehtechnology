@@ -1,0 +1,31 @@
+- name : REMOVE OLD SOFTWARE FROM 9300 SWITCHES TO FREE UP SPACE
+  connection: network_cli
+  hosts: njc9200l24t4xsw:nyc9300sw:ffc9300l48t4xsw:tkyc930048tsw:tkyws385048tsw
+  gather_facts: false
+
+
+  tasks:
+    - name: Gather all Switch Hardware facts
+      ios_facts:
+        gather_subset: hardware
+      register: output
+      tags: check_flash
+
+
+    - name: Remove old files from 9300
+      cisco.ios.ios_command:
+        commands:
+          - command: 'install remove inactive'
+            prompt: 
+              - 'Do you want to remove the above files\? \[y/n\]'
+            answer:
+              - 'n'
+      register: install_remove_output
+      vars:
+        ansible_command_timeout: 600
+      when: ("'C9300' in ansible_net_model" ) or ("'C9200' in ansible_net_model" )
+      tags: check_files
+
+    
+    - debug:
+        var: install_remove_output
