@@ -11,3 +11,5 @@ network_automation/ansible_usap_switches_upgrade/
 network_automation/configs2/
 network_automation/templates/asafirepower/
 network_automation/cisco/fmc_ansible/inventory.ini
+network_automation/cisco/fmc_ansible/update_bgp_routes_2.yml
+network_automation/cisco/fmc_ansible/update_bgp_routes.yml
