@@ -1,0 +1,116 @@
+- name : COPY TARGET SOFTWARE TO 9300 SWITCHES
+  connection: network_cli
+  hosts: njc9200l24t4xsw:nyc9300sw:ffc9300l48t4xsw:tkyc930048tsw:wainetrtr:njc930048tsw
+  gather_facts: false
+
+
+
+  vars:
+    ios_version: 17.09.05e
+    ios_binary: c8000be-universalk9.17.09.05e.SPA.bin
+    ios_size_kb: 1990000
+    # protocol: 'ftp'
+    # sw_version: 9.3(14)
+    # sw_image: nxos.9.3.14.bin
+    # sw_image_size_kb: 3000000
+    # actual_sw_image_size: 2005689856
+    # scp_server: '10.1.101.130'
+    # protocol: 'scp'
+    # scp_user: 'rezeh'
+    # file_path: "home/rezeh/VENV/python_netauto/paramiko"
+    ftp_user: 'ftpuser1'
+    ftp_pass: 'ftpuser'
+    vrf: 'Mgmt'
+    # ftp_pass: !vault |
+    #       $ANSIBLE_VAULT;1.2;AES256;reuben3010
+    #       36373037643461376333393863323262356639656135313633646637383131373732326262646430
+    #       6231333532313535393436396438643261346537616366640a373664316132393463656562313935
+    #       64366165663239343065353362626337656132316230646639326265333331373930356333613136
+    #       3039656333316233300a323132376261663739313564663464303335633635383136653931366464
+    #       6664
+
+  tasks:
+    - name: Gather all 9300 Switch Hardware facts
+      ios_facts:
+        gather_subset: hardware
+      register: output
+      tags: check_flash,copy_image
+
+    - name: Print output
+      debug: 
+        var: output
+      tags: check_flash
+
+
+    - name: Check if IOS Software is present in the flash
+      ios_command:
+        commands: "dir  flash: | include {{ ios_binary }}"
+      register: dir_flash
+      tags: check_flash,copy_image
+
+    - name: Print output
+      debug:
+        var: dir_flash
+      tags: check_flash
+
+    - name: Check that there is enough space for upload
+      assert:
+        that:
+          - ansible_net_filesystems_info['bootflash:']['spacefree_kb'] > ios_size_kb
+        fail_msg: 'There is not enough space left on {{ inventory_hostname }} flash'
+        success_msg: '{{ inventory_hostname }} has enough space left on flash.'
+      when:
+        - ios_binary not in dir_flash.stdout[0]
+      tags: check_flash,copy_image
+
+
+    - name: Start Image Copy from FTP Server
+      ios_command:
+         commands:
+          - command: 'copy {{ protocol }}://{{ ftp_user }}:{{ ftp_pass }}@{{ ftp_server }}/{{ ios_binary }}  bootflash:/ vrf {{ vrf }}'
+            prompt: 'Destination filename \[{{ ios_binary }}\]?'
+            answer: '{{ ios_binary }}'
+      when:
+        - ios_binary not in dir_flash.stdout[0]
+        - ansible_net_filesystems_info['bootflash:']['spacefree_kb'] > ios_size_kb
+      vars:
+        ansible_command_timeout: 4200
+      tags: copy_image
+
+    
+    # - name: Start Image Copy from SCP Server
+    #   nxos_command:
+    #     commands:
+    #       - command: 'clear ssh hosts'
+    #       - command: 'copy {{ protocol }}://{{ scp_user }}@{{ scp_server }}/{{ file_path }}/{{ sw_image }} bootflash: vrf {{ vrf }} use-kstack'
+    #         check_all: True
+    #         prompt:
+    #           - "Destination filename [c8000be-universalk9.17.09.05e.SPA.bin]?"
+    #           - "Password:"
+    #         answer:
+    #           - 'yes'
+    #           - "{{ scp_pass }}"
+    #   no_log: false
+    #   register: image_copy
+    #   async: 3600
+    #   poll: 0
+    #   when:
+    #     - sw_image not in dir_bootflash.stdout_lines[0][0]
+    #     - free_space_KB|float > sw_image_size_kb|float
+    #   vars:
+    #     ansible_command_timeout: 3600
+    #   tags: copy_image
+
+    - name: Check if IOS Software was copied successfully to the flash
+      ios_command:
+        commands: "dir  flash: | include {{ ios_binary }}"
+      register: dir_flash
+      tags: copy_image
+
+    - name: Assert that software BIN is in Router flash
+      assert:
+        that:
+          - ios_binary in dir_flash['stdout'][0]
+        fail_msg: 'Target software {{ ios_binary }} was not copied successfully to {{ inventory_hostname }} flash. Please troubleshoot!!'
+        success_msg: 'Hooray!!..Target software {{ ios_binary }} was  copied successfully to {{ inventory_hostname }} flash.'
+      tags: copy_image
