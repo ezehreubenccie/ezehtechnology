@@ -1,6 +1,6 @@
 !Command: show running-config
-!Running configuration last done at: Mon Oct 28 17:52:04 2024
-!Time: Thu Feb  6 01:30:26 2025
+!Running configuration last done at: Tue Feb 25 21:02:40 2025
+!Time: Fri Feb 28 01:30:20 2025
 
 version 10.3(5) Bios:version 05.46 
 switchname NNYCSWEQNY203140LEA01
@@ -58,7 +58,7 @@ ssh login-attempts 2
 
 no ip domain-lookup
 ip domain-name na.wkglobal.com
-radius-server key 6 "JDYk7DUsA7E2RLDsU2UBjBQsZSRxyDXkM9ite/QAXM35RS8suPYXVRVfGAXK2URLS71deCSmPGQq2buZrJ1E0sc+hbk3/3DFTgA="
+radius-server key 6 "JDYkVF3Y5eEnW/4uZTmfmk2/TSTMI5KQBHnvfIf+Chug2MCNZq4PnbZz1aT55qtNwRXFWiQru1CoAX0COLUBbeIQSQAhoPWDXgA="
 radius-server host 10.231.7.7 authentication accounting 
 radius-server host 10.226.2.132 authentication accounting 
 aaa group server radius GBS_RADIUS 
@@ -161,12 +161,16 @@ interface port-channel11
   vpc 11
 
 interface Ethernet1/1
-  description vm0301d allowed vlan 1050,1052
+  description vm0301d:vSwitch2
   switchport
   switchport mode trunk
+  switchport trunk allowed vlan 1050,1052
+  priority-flow-control mode on
+  priority-flow-control watch-dog-interval on
   spanning-tree port type normal
   spanning-tree bpduguard enable
   spanning-tree guard root
+  mtu 9216
   logging event port link-status
   logging event port trunk-status
   no shutdown
@@ -192,11 +196,15 @@ interface Ethernet1/3
   no shutdown
 
 interface Ethernet1/4
-  description description vm0301d
+  description vm0301d:vSwitch1
   switchport
   switchport access vlan 1054
+  priority-flow-control mode on
+  priority-flow-control watch-dog-interval on
   spanning-tree port type normal
+  spanning-tree bpduguard enable
   spanning-tree guard root
+  mtu 9216
   logging event port link-status
   logging event port trunk-status
   no shutdown
@@ -222,11 +230,15 @@ interface Ethernet1/6
   no shutdown
 
 interface Ethernet1/7
-  description description vm0301d
+  description vm0301d:vSwitch0
   switchport
   switchport access vlan 1056
+  priority-flow-control mode on
+  priority-flow-control watch-dog-interval on
   spanning-tree port type normal
+  spanning-tree bpduguard enable
   spanning-tree guard root
+  mtu 9216
   logging event port link-status
   logging event port trunk-status
   no shutdown
@@ -252,10 +264,46 @@ interface Ethernet1/9
   no shutdown
 
 interface Ethernet1/10
+  description vm0401d:vSwitch0
+  switchport
+  switchport access vlan 1056
+  priority-flow-control mode on
+  priority-flow-control watch-dog-interval on
+  spanning-tree port type normal
+  spanning-tree bpduguard enable
+  spanning-tree guard root
+  mtu 9216
+  logging event port link-status
+  logging event port trunk-status
+  no shutdown
 
 interface Ethernet1/11
+  description vm0401d:vSwitch1
+  switchport
+  switchport access vlan 1054
+  priority-flow-control mode on
+  priority-flow-control watch-dog-interval on
+  spanning-tree port type normal
+  spanning-tree bpduguard enable
+  spanning-tree guard root
+  mtu 9216
+  logging event port link-status
+  logging event port trunk-status
+  no shutdown
 
 interface Ethernet1/12
+  description vm0401d:vSwitch0
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 1050,1052
+  priority-flow-control mode on
+  priority-flow-control watch-dog-interval on
+  spanning-tree port type normal
+  spanning-tree bpduguard enable
+  spanning-tree guard root
+  mtu 9216
+  logging event port link-status
+  no shutdown
 
 interface Ethernet1/13
 
